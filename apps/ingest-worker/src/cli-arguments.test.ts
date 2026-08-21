@@ -1,0 +1,24 @@
+import { describe, expect, it } from "vitest";
+
+import { CliArgumentError, parseCliArguments } from "./cli-arguments.ts";
+import { SYNTHETIC_SCOTT_ADAPTER_ID, SYNTHETIC_SCOTT_SOURCE_ID } from "./execution-guard.ts";
+
+describe("parseCliArguments", () => {
+  it("creates a closed synthetic execution request", () => {
+    expect(parseCliArguments(["run", "--scenario=valid-empty", "--dry-run"])).toEqual({
+      adapterId: SYNTHETIC_SCOTT_ADAPTER_ID,
+      sourceId: SYNTHETIC_SCOTT_SOURCE_ID,
+      scenario: "valid-empty",
+      dryRun: true
+    });
+  });
+
+  it.each([
+    ["missing dry-run", ["run", "--scenario=current-custody"]],
+    ["unknown command", ["live", "--scenario=current-custody", "--dry-run"]],
+    ["unknown scenario", ["run", "--scenario=live", "--dry-run"]],
+    ["unknown argument", ["run", "--scenario=current-custody", "--dry-run", "--write"]]
+  ])("rejects %s", (_name, arguments_) => {
+    expect(() => parseCliArguments(arguments_)).toThrow(CliArgumentError);
+  });
+});

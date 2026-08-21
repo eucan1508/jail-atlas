@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: "true"
+  DATA_MODE: synthetic
+  APP_ENV: test
+  BRAND_NAME: Phase 1 Test Utility
+  PRODUCTION_DOMAIN: https://example.test
+  DEFAULT_LOCALE: en-US
+  CURSOR_SIGNING_SECRET: ci-only-synthetic-cursor-secret-000000
+  CORRECTION_FORM_HMAC_SECRET: ci-only-synthetic-correction-secret-000
+  INGEST_MODE: synthetic
+  INGEST_NETWORK_ACCESS: disabled
+  INGEST_DATABASE_WRITES: disabled
+  ALLOW_LIVE_SOURCE_FETCHES: "false"
+  SCOTT_COUNTY_LIVE_SOURCE_ENABLED: "false"
+  SOURCE_HOST_ALLOWLIST: ""
+
+jobs:
+  quality:
+    name: Lint, types, unit contracts, and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace package contracts
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type-check
+        run: pnpm typecheck
+
+      - name: Run unit, contract, and production bundle smoke tests
+        run: pnpm test
+
+      - name: Check migration consistency
+        run: pnpm --filter @jail-atlas/database db:check
+
+      - name: Prove Phase 1 worker is synthetic-only
+        run: pnpm --filter @jail-atlas/ingest-worker ingest:synthetic
+
+      - name: Build web artifact without deploying
+        run: pnpm --filter @jail-atlas/web build
+
+  browser:
+    name: Browser and accessibility contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: quality
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace package contracts
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Install Chromium for Playwright
+        run: pnpm --filter @jail-atlas/web exec playwright install --with-deps chromium
+
+      - name: Run end-to-end tests
+        run: pnpm test:e2e
+
+      - name: Run axe accessibility tests
+        run: pnpm test:a11y
+
+      - name: Upload design checkpoint and browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-lab-and-playwright-${{ github.run_id }}
+          path: |
+            artifacts/design-lab
+            artifacts/playwright
+            artifacts/playwright-report
+          if-no-files-found: warn
+          retention-days: 14

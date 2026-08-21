@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: custody_phase_one
+      POSTGRES_PASSWORD: custody_app
+      POSTGRES_USER: custody_app
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U custody_app -d custody_phase_one"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - custody-postgres:/var/lib/postgresql/data
+
+volumes:
+  custody-postgres:

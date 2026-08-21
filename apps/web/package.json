@@ -1,0 +1,40 @@
+{
+  "name": "@jail-atlas/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack -p 3100",
+    "lint": "eslint .",
+    "start": "next start -p 3100",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:production-smoke": "node tests/production/run-production-smoke.mjs",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test --grep @a11y",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@jail-atlas/database": "workspace:*",
+    "@jail-atlas/domain": "workspace:*",
+    "@jail-atlas/editorial": "workspace:*",
+    "@jail-atlas/test-fixtures": "workspace:*",
+    "@jail-atlas/ui": "workspace:*",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "server-only": "latest",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "latest",
+    "@playwright/test": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "jsdom": "latest",
+    "vitest": "catalog:"
+  }
+}

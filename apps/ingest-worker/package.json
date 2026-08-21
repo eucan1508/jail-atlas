@@ -1,0 +1,33 @@
+{
+  "name": "@jail-atlas/ingest-worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "dev": "tsx src/cli.ts",
+    "start": "tsx src/cli.ts run --scenario=current-custody --dry-run",
+    "ingest:synthetic": "tsx src/cli.ts run --scenario=current-custody --dry-run",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@jail-atlas/domain": "workspace:*",
+    "@jail-atlas/source-adapters": "workspace:*",
+    "@jail-atlas/test-fixtures": "workspace:*",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

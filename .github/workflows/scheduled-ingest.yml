@@ -1,0 +1,65 @@
+name: Scheduled Phase 1 ingest dry run
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase-one-synthetic-ingest
+  cancel-in-progress: false
+
+# This workflow validates the independently scheduled data-refresh boundary. Phase 1
+# deliberately supplies no database or source credentials and never deploys the web app.
+env:
+  CI: "true"
+  NODE_ENV: test
+  INGEST_MODE: synthetic
+  INGEST_NETWORK_ACCESS: disabled
+  INGEST_DATABASE_WRITES: disabled
+  ALLOW_LIVE_SOURCE_FETCHES: "false"
+  SCOTT_COUNTY_LIVE_SOURCE_ENABLED: "false"
+  SOURCE_HOST_ALLOWLIST: ""
+
+jobs:
+  synthetic-ingest:
+    name: Exercise synthetic source contract without writes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace package contracts
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Fail if any live capability was enabled
+        shell: bash
+        run: |
+          test "$INGEST_MODE" = "synthetic"
+          test "$INGEST_NETWORK_ACCESS" = "disabled"
+          test "$INGEST_DATABASE_WRITES" = "disabled"
+          test "$ALLOW_LIVE_SOURCE_FETCHES" = "false"
+          test "$SCOTT_COUNTY_LIVE_SOURCE_ENABLED" = "false"
+          test -z "$SOURCE_HOST_ALLOWLIST"
+
+      - name: Run worker contract tests
+        run: pnpm --filter @jail-atlas/ingest-worker test:unit
+
+      - name: Run synthetic ingestion dry run
+        run: pnpm --filter @jail-atlas/ingest-worker ingest:synthetic

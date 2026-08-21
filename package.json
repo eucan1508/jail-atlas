@@ -1,0 +1,41 @@
+{
+  "name": "jail-atlas-phase-one",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-first county custody information product",
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "corepack pnpm -r --if-present build",
+    "build:packages": "corepack pnpm -r --filter \"./packages/**\" --if-present build",
+    "dev": "corepack pnpm build:packages && corepack pnpm --filter @jail-atlas/web dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "corepack pnpm -r --if-present lint",
+    "typecheck": "corepack pnpm -r --if-present typecheck",
+    "test": "corepack pnpm build:packages && corepack pnpm -r --if-present test:unit && corepack pnpm test:production-smoke",
+    "test:unit": "corepack pnpm build:packages && corepack pnpm -r --if-present test:unit",
+    "test:production-smoke": "corepack pnpm --filter @jail-atlas/web test:production-smoke",
+    "test:e2e": "corepack pnpm build:packages && corepack pnpm --filter @jail-atlas/web test:e2e",
+    "test:a11y": "corepack pnpm build:packages && corepack pnpm --filter @jail-atlas/web test:a11y",
+    "check": "corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test:unit",
+    "db:generate": "corepack pnpm --filter @jail-atlas/database db:generate",
+    "db:migrate": "corepack pnpm --filter @jail-atlas/database db:migrate",
+    "ingest": "corepack pnpm build:packages && corepack pnpm --filter @jail-atlas/ingest-worker start"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@next/eslint-plugin-next": "latest",
+    "@types/node": "latest",
+    "eslint": "^9.39.0",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "globals": "latest",
+    "prettier": "latest",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.67.0"
+  }
+}
