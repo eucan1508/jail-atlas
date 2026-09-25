@@ -49,6 +49,7 @@ test.describe("county indexation contract", () => {
       "/source-policy/",
       "/corrections/",
       "/privacy/",
+      "/cookies/",
       "/terms/",
       "/disclaimer/"
     ];
