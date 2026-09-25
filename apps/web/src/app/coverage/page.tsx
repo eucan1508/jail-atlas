@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Alert, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/page-intro";
+import { countiesForState } from "@/lib/coverage-catalog";
 import { canRenderSyntheticScottCounty, hasPublishedIowaCoverage } from "@/lib/publication";
 import { createPageMetadata } from "@/lib/site";
 
@@ -14,6 +15,8 @@ export const metadata = createPageMetadata({
 export default function CoveragePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const iowaPublished = hasPublishedIowaCoverage();
+  const iowaPlanned = countiesForState("iowa");
+  const minnesotaPlanned = countiesForState("minnesota");
 
   return (
     <main id="main-content" className="page-main site-shell">
@@ -39,10 +42,18 @@ export default function CoveragePage() {
               <p>
                 {iowaPublished
                   ? "Published county coverage and source health are available."
-                  : "Scott County is the only approved Phase 1 prototype; it is not published."}
+                  : `${iowaPlanned.length} Iowa county sources are selected for audit; none are published yet.`}
               </p>
             </div>
             {prototypeAvailable ? <Link href="/coverage/iowa/">View Phase 1 status</Link> : null}
+          </div>
+          <div className="surface-card coverage-state-row">
+            <div>
+              <StatusPill tone="neutral">Proposed · audit pending</StatusPill>
+              <h3>Minnesota</h3>
+              <p>{minnesotaPlanned.length} county sources are selected for the second-state launch set.</p>
+            </div>
+            <Link href="/coverage/minnesota/">View Minnesota plan</Link>
           </div>
           <Alert heading="No placeholder coverage" tone="info">
             Inactive states and unreviewed counties return a genuine 404. Coverage is added one county

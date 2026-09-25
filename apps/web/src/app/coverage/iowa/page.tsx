@@ -11,6 +11,7 @@ import {
   hasPublishedIowaCoverage
 } from "@/lib/publication";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
+import { countiesForState } from "@/lib/coverage-catalog";
 
 export const metadata = createPageMetadata({
   path: "/coverage/iowa/",
@@ -24,6 +25,7 @@ export default function IowaCoveragePage() {
 
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const countyPublished = hasPublishedIowaCoverage();
+  const plannedCounties = countiesForState("iowa");
 
   return (
     <main id="main-content" className="page-main site-shell">
@@ -68,6 +70,27 @@ export default function IowaCoveragePage() {
             <strong className="stat__value">Not recorded</strong>
             <span className="stat__label">last official verification</span>
           </div>
+        </div>
+      </section>
+
+      <section className="content-section" aria-labelledby="planned-heading">
+        <h2 id="planned-heading">Selected Iowa counties</h2>
+        <div className="coverage-grid">
+          {plannedCounties.map((county) => (
+            <article className="surface-card coverage-state-row" key={county.slug}>
+              <div>
+                <p className="eyebrow">{county.seatCity}</p>
+                <h3>{county.county}</h3>
+                <p>{county.article}</p>
+              </div>
+              <div className="button-row">
+                <Link href={`/${county.state}/${county.slug}/custody/`}>Review page brief</Link>
+                <a href={county.officialSourceUrl} rel="noreferrer" target="_blank">
+                  Official source
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
