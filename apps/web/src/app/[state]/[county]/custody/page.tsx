@@ -71,7 +71,7 @@ export default async function CountyCustodyBriefPage({
         <p>
           The finished page will include a visible H1, canonical title and description, current
           source timestamp, source-labeled fields, county-specific contact guidance, correction
-          flow, and structured data. It will not infer charges, bond, release, or court outcomes.
+          flow, and structured data. It will not infer charges, release, or court outcomes.
         </p>
       </section>
 

@@ -19,7 +19,7 @@ export default function TermsPage() {
           heading: "Informational purpose",
           paragraphs: [
             "The service organizes information from identified official public sources and explains source scope and freshness. It is not an official record, government service, court docket, background-check service, legal service, notification system, or substitute for contacting the responsible institution.",
-            "Custody status, charges, and bond information can change after the displayed successful-fetch time. Use the linked official source or verified facility contact for decisions that depend on current information."
+            "Custody status and charges can change after the displayed successful-fetch time. Use the linked official source or verified facility contact for decisions that depend on current information."
           ]
         },
         {
@@ -32,7 +32,7 @@ export default function TermsPage() {
         {
           heading: "Source meaning and corrections",
           paragraphs: [
-            "Displayed fields retain the meaning supplied by the approved source. A charge is not a conviction, a custody record is not a court disposition, and a bond entry is not a promise of release. Missing information is not converted into a more definite statement.",
+            "Displayed fields retain the meaning supplied by the approved source. A charge is not a conviction, and a custody record is not a court disposition. Missing information is not converted into a more definite statement.",
             "Report suspected stale data, source mismatch, contact errors, display problems, or accessibility barriers through the correction process. The publisher may temporarily withhold a county page while investigating evidence or source health."
           ]
         },

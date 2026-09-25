@@ -119,13 +119,12 @@ export default function ScottCountyCustodyPage() {
             </div>
             <div className="prose">
               <p>
-                Each source-labeled charge stays attached to its booking. Multiple bond entries
-                remain separate. Monetary bond, “No bond,” information not published, unknown
-                information, and not-applicable are distinct states.
+                Each source-labeled charge stays attached to its booking. Source fields are shown
+                only when the approved official page publishes them.
               </p>
-              <Alert heading="Missing never means “No bond”" tone="info">
-                When a source omits bond information, this interface says it was not published. It
-                does not infer a restriction or release condition.
+              <Alert heading="Missing fields remain missing" tone="info">
+                This interface does not infer a restriction or release condition from an omitted
+                field.
               </Alert>
             </div>
           </section>

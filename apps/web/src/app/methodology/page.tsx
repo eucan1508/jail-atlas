@@ -39,7 +39,7 @@ export default function MethodologyPage() {
         {
           heading: "3. Preserve meaning during normalization",
           paragraphs: [
-            "Current custody, recent release, historical booking, and arrest-report scopes remain distinct. A booking can retain multiple charges and multiple bond entries; those arrays are never flattened into an ambiguous sentence. A missing bond field is not converted to “No Bond.” Booking identifiers are retained only when the source identifies them that way.",
+            "Current custody, recent release, historical booking, and arrest-report scopes remain distinct. A booking can retain multiple source-listed charges; those arrays are never flattened into an ambiguous sentence. Booking identifiers are retained only when the source identifies them that way.",
             "Every displayed field is mapped to a source field, a documented derivation, or an editorial evidence record. Unsupported fields are omitted rather than guessed. Source text is sanitized for safe display without silently rewriting its factual meaning."
           ]
         },

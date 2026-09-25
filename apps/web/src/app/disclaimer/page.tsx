@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/site";
 export const metadata = createPageMetadata({
   path: "/disclaimer/",
   title: "Custody information disclaimer",
-  description: "Important limits on custody, charge, bond, release, and contact information."
+  description: "Important limits on custody, charge, release, and contact information."
 });
 
 export default function DisclaimerPage() {
@@ -23,9 +23,9 @@ export default function DisclaimerPage() {
           ]
         },
         {
-          heading: "Charges, bonds, and court outcomes",
+          heading: "Charges and court outcomes",
           paragraphs: [
-            "A displayed charge is an official-source label, not proof of guilt or conviction. Custody information is not a complete case history or court disposition. Bond information can be monetary, explicitly no bond, not published, unknown, or not applicable; those states have different meanings.",
+            "A displayed charge is an official-source label, not proof of guilt or conviction. Custody information is not a complete case history or court disposition.",
             "The product does not determine whether someone can be released, calculate payment, provide legal advice, or tell a visitor what action to take. Courts and responsible official institutions control their own records and processes."
           ]
         },

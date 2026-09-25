@@ -1,9 +1,4 @@
-import {
-  NormalizedCustodySnapshotSchema,
-  type BondEntry,
-  type Booking,
-  type Charge
-} from "@jail-atlas/domain";
+import { NormalizedCustodySnapshotSchema, type Booking, type Charge } from "@jail-atlas/domain";
 import { load } from "cheerio/slim";
 import { z } from "zod";
 
@@ -32,16 +27,10 @@ const SourceDocumentSchema = z.object({
 });
 type SourceDocument = z.infer<typeof SourceDocumentSchema>;
 
-const ParsedBondSchema = z.object({
-  state: z.enum(["monetary", "no_bond"]),
-  amountMinor: z.number().int().nonnegative().optional(),
-  note: z.string().max(500).nullable()
-});
 const ParsedRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
   bookingText: z.string().trim().max(200).nullable(),
-  charges: z.array(z.string().trim().min(1).max(1_000)).max(100),
-  bond: ParsedBondSchema
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(100)
 });
 const ParsedRosterSchema = z.object({
   records: z.array(ParsedRecordSchema).max(2_000),
@@ -52,7 +41,7 @@ export type IowaParsedRoster = z.infer<typeof ParsedRosterSchema>;
 export type IowaRosterSource = "cedar" | "black_hawk";
 export type IowaRosterFetch = (input: string, init: RequestInit) => Promise<Response>;
 export type IowaRosterIdFactory = (
-  kind: "snapshot" | "person" | "booking" | "charge" | "bond",
+  kind: "snapshot" | "person" | "booking" | "charge",
   sourceKey: string
 ) => string;
 
@@ -85,12 +74,6 @@ function text(value: string): string {
     .trim();
 }
 
-function parseMoney(value: string): number | null {
-  const match = /^\$\s*([\d,]+)(?:\.(\d{2}))?$/.exec(text(value));
-  if (!match) return null;
-  return Number((match[1] ?? "0").replaceAll(",", "")) * 100 + Number(match[2] ?? "00");
-}
-
 function parseCedar(document: SourceDocument): IowaParsedRoster {
   const $ = load(document.html);
   const title = text($("title").first().text());
@@ -112,17 +95,10 @@ function parseCedar(document: SourceDocument): IowaParsedRoster {
       const booked =
         info.find((value) => value.startsWith("Booked:"))?.replace(/^Booked:\s*/, "") ??
         "Booking information not published";
-      const bondText =
-        info.find((value) => value.startsWith("Bond:"))?.replace(/^Bond:\s*/, "") ?? "";
-      const amountMinor = parseMoney(bondText);
       return ParsedRecordSchema.parse({
         displayName,
         bookingText,
-        charges: [booked],
-        bond:
-          amountMinor === null
-            ? { state: "no_bond", note: bondText || "No bond amount published" }
-            : { state: "monetary", amountMinor, note: "Bond" }
+        charges: [booked]
       });
     });
   return ParsedRosterSchema.parse({ records, validEmptyMarker: records.length === 0 });
@@ -151,19 +127,10 @@ function parseBlackHawk(document: SourceDocument): IowaParsedRoster {
       } catch {
         throw new Error("Black Hawk charge payload was invalid");
       }
-      const bondElement = row.find(".jsBond").first();
-      const bondText = text(bondElement.text());
-      const amountMinor = parseMoney(bondText) ?? parseMoney(bondElement.attr("data-bond") ?? "");
-      const noBond = /no bond/i.test(bondText);
       return ParsedRecordSchema.parse({
         displayName,
         bookingText,
-        charges: charges.length > 0 ? charges : ["Charge information not published"],
-        bond: noBond
-          ? { state: "no_bond", note: bondText }
-          : amountMinor === null
-            ? { state: "no_bond", note: "Bond amount not published" }
-            : { state: "monetary", amountMinor, note: bondText || "Bond" }
+        charges: charges.length > 0 ? charges : ["Charge information not published"]
       });
     });
   return ParsedRosterSchema.parse({ records, validEmptyMarker: records.length === 0 });
@@ -187,30 +154,6 @@ function classify(
     occurredAt: context.requestedAt,
     diagnosticCode: `${config.key.toUpperCase().replaceAll("-", "_")}_${code}`.slice(0, 100)
   };
-}
-
-function bondsFor(
-  record: IowaParsedRoster["records"][number],
-  bookingId: string,
-  createId: IowaRosterIdFactory
-): BondEntry[] {
-  const base = {
-    id: createId("bond", `${bookingId}|bond`),
-    bookingId,
-    sequence: 0,
-    sourceLabel: "Bond Amount",
-    note: record.bond.note
-  };
-  return record.bond.state === "monetary"
-    ? [
-        {
-          ...base,
-          state: "monetary" as const,
-          amountMinor: record.bond.amountMinor ?? 0,
-          currency: "USD"
-        }
-      ]
-    : [{ ...base, state: "no_bond" as const }];
 }
 
 export function createIowaCurrentRosterAdapter(
@@ -305,7 +248,7 @@ export function createIowaCurrentRosterAdapter(
             releasedAt: null,
             facilityId: options.facilityId,
             charges,
-            bondEntries: bondsFor(record, bookingId, options.createId),
+            bondEntries: [],
             sourceOrder
           };
         });

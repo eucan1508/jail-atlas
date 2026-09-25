@@ -35,7 +35,7 @@ export default function AboutPage() {
         {
           heading: "What the product can and cannot answer",
           paragraphs: [
-            "A published county page can report what a verified official current-custody source displayed at a stated successful-fetch time. It can preserve source-published booking, charge, and bond fields without changing their meaning, and it can show verified facility contacts and supported operational guidance.",
+            "A published county page can report what a verified official current-custody source displayed at a stated successful-fetch time. It can preserve source-published booking and charge fields without changing their meaning, and it can show verified facility contacts and supported operational guidance.",
             "It cannot establish guilt, conviction, court disposition, release eligibility, future release, identity beyond the source display, or legal rights. Custody information changes and should be confirmed with the official institution for time-sensitive decisions."
           ]
         },

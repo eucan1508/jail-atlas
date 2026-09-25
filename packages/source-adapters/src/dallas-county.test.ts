@@ -128,7 +128,7 @@ describe("Dallas County source adapter", () => {
     expect(assertSyntheticDallasSourceFixtureSafety(syntheticDallasSourceHtmlFixture)).toBe(true);
   });
 
-  it("follows emitted pagination and preserves booking-local charges and bonds", async () => {
+  it("follows emitted pagination while preserving booking-local charges", async () => {
     const calls: string[] = [];
     const result = await runSourceAdapter(adapter(fixtureMap(), calls), context());
 
@@ -149,11 +149,8 @@ describe("Dallas County source adapter", () => {
       "SYNTHETIC CHARGE BETA — TEST ONLY"
     ]);
     expect(alpha?.charges.every((charge) => charge.bookingId === alpha.id)).toBe(true);
-    expect(alpha?.bondEntries.map((bond) => bond.state)).toEqual(["monetary", "no_bond"]);
-    expect(alpha?.bondEntries.every((bond) => bond.bookingId === alpha.id)).toBe(true);
-    expect(alpha?.bondEntries[0]).toMatchObject({ amountMinor: 12_500, currency: "USD" });
-    expect(beta?.bondEntries).toHaveLength(1);
-    expect(beta?.bondEntries[0]?.state).toBe("unknown");
+    expect(alpha?.bondEntries).toEqual([]);
+    expect(beta?.bondEntries).toEqual([]);
   });
 
   it("accepts the reviewed official title after its harmless title update", async () => {
@@ -242,7 +239,7 @@ describe("Dallas County source adapter", () => {
     expect(result.failure.diagnosticCode).toBe("DALLAS_ACTIVE_BOOKING_AMBIGUOUS");
   });
 
-  it("does not infer No Bond from zero or an unreviewed bond type", async () => {
+  it("ignores optional bond rows, including contradictory values", async () => {
     const unknownType = syntheticDallasAlphaDetail.replace("CASH ONLY", "UNREVIEWED TYPE");
     const zeroMonetary = syntheticDallasAlphaDetail.replace("$125.00", "$0.00");
     const positiveNoBond = syntheticDallasAlphaDetail.replace(
@@ -255,13 +252,13 @@ describe("Dallas County source adapter", () => {
       runSourceAdapter(adapter(fixtureMap({ [alphaUrl]: positiveNoBond })), context())
     ]);
 
-    expect(unknownResult.ok).toBe(false);
-    expect(zeroResult.ok).toBe(false);
-    expect(contradictoryResult.ok).toBe(false);
-    if (!unknownResult.ok) expect(unknownResult.failure.diagnosticCode).toBe("DALLAS_BOND_TYPE");
-    if (!zeroResult.ok) expect(zeroResult.failure.diagnosticCode).toBe("DALLAS_BOND_AMOUNT");
-    if (!contradictoryResult.ok) {
-      expect(contradictoryResult.failure.diagnosticCode).toBe("DALLAS_NO_BOND_AMOUNT");
+    expect(unknownResult.ok).toBe(true);
+    expect(zeroResult.ok).toBe(true);
+    expect(contradictoryResult.ok).toBe(true);
+    if (unknownResult.ok) expect(unknownResult.snapshot.bookings[0]?.bondEntries).toEqual([]);
+    if (zeroResult.ok) expect(zeroResult.snapshot.bookings[0]?.bondEntries).toEqual([]);
+    if (contradictoryResult.ok) {
+      expect(contradictoryResult.snapshot.bookings[0]?.bondEntries).toEqual([]);
     }
   });
 
