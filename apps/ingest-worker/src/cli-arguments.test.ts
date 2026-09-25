@@ -39,6 +39,13 @@ describe("parseLiveCliArguments", () => {
     });
   });
 
+  it("accepts the separator pnpm passes to a package script", () => {
+    expect(parseLiveCliArguments(["--", "run", "--state=IA", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "IA"
+    });
+  });
+
   it("rejects an unsupported state", () => {
     expect(() => parseLiveCliArguments(["run", "--state=TX", "--dry-run"])).toThrow(
       CliArgumentError

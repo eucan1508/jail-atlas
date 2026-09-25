@@ -23,7 +23,8 @@ export class CliArgumentError extends Error {
 }
 
 export function parseCliArguments(arguments_: readonly string[]): ExecutionRequest {
-  const [command, ...flags] = arguments_;
+  const normalizedArguments = arguments_[0] === "--" ? arguments_.slice(1) : arguments_;
+  const [command, ...flags] = normalizedArguments;
   const commandResult = CliCommandSchema.safeParse(command);
   if (!commandResult.success) {
     throw new CliArgumentError("Expected command: run");
@@ -60,7 +61,8 @@ export function parseCliArguments(arguments_: readonly string[]): ExecutionReque
 }
 
 export function parseLiveCliArguments(arguments_: readonly string[]): LiveExecutionRequest {
-  const [command, ...flags] = arguments_;
+  const normalizedArguments = arguments_[0] === "--" ? arguments_.slice(1) : arguments_;
+  const [command, ...flags] = normalizedArguments;
   if (!CliCommandSchema.safeParse(command).success) {
     throw new CliArgumentError("Expected command: run");
   }
