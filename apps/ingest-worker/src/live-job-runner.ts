@@ -204,7 +204,11 @@ export async function executeLiveSource(
       sourceId: source.id,
       runId,
       health: health.status,
+      healthFailureStage: health.failure?.stage ?? null,
+      healthFailureCode: health.failure?.diagnosticCode ?? null,
       ok: result.ok,
+      resultFailureStage: result.ok ? null : result.failure.stage,
+      resultFailureCode: result.ok ? null : result.failure.diagnosticCode,
       recordCount: result.ok ? result.snapshot.recordCount : null,
       persisted
     });
