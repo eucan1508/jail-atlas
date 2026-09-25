@@ -3,10 +3,11 @@
 ## Goals and constraints
 
 The system is a small, evidence-first custody-information platform, not a general-purpose directory.
-Its initial approved geography is Iowa; Phase 1 contains one synthetic Scott County vertical slice
-and makes no live source requests. The architecture optimizes for explicit provenance, reliable
-failure semantics, independent code and data releases, minimal client JavaScript, and safe
-county-by-county onboarding.
+Its initial approved geography is Iowa. Phase 1 contains one synthetic Scott County vertical slice.
+Phase 2B adds an unregistered Dallas County adapter, fictional parser fixtures, and a secure source
+transport without enabling live execution, persistence, or publication. The architecture optimizes
+for explicit provenance, reliable failure semantics, independent code and data releases, minimal
+client JavaScript, and safe county-by-county onboarding.
 
 The application must never fetch, parse, or proxy an external roster during a visitor request.
 Synthetic Phase 1 records are development and test data only.
@@ -100,11 +101,14 @@ interface SourceAdapter {
 Exact names may vary in code, but no stage may be implicit. Source-specific logic is not folded into
 a nationwide scraper.
 
-The worker validates the source configuration and allowlist before network access. It permits only
-`https` destinations whose resolved host and redirect targets match the approved record, rejects
-loopback, link-local, private, and metadata-network addresses, limits redirects, bytes, content
-types, and timeouts, and never bypasses authentication, CAPTCHAs, robots restrictions, WAFs, or
-access controls.
+The worker validates the source configuration and exact-host/path allowlist before network access.
+Its connection-bound HTTPS transport resolves and validates public addresses inside the socket
+lookup, rejects mixed or non-public answers, fixes method and request headers, disables redirects,
+strips response cookies, rejects unreviewed content encoding, and caps bytes and timeouts. The Phase
+2B Dallas adapter independently enforces the exact reviewed current-custody URL and same-host
+list/detail paths. Neither component is registered with the worker job runner yet, and the existing
+execution guard still permits only synthetic, network-disabled, database-write-disabled dry runs.
+The worker never bypasses authentication, CAPTCHAs, robots restrictions, WAFs, or access controls.
 
 An ingestion transaction writes the run, immutable custody snapshot, and relational children
 together. A snapshot is displayable only after structural validation and normalization succeed.

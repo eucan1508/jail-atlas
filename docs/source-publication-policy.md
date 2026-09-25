@@ -11,8 +11,9 @@ weakly sourced page. An unpublished county returns a genuine `404`; it does not 
 placeholder, “coming soon” page, search landing page, or sitemap entry.
 
 Phase 1 is synthetic-only. The Scott County vertical slice demonstrates policy behavior but is not
-approved for publication and must not be deployed. No real source integration begins until Phase 2
-is explicitly authorized.
+approved for publication and must not be deployed. Phase 2B contains a reviewed Dallas County
+adapter implementation and wholly fictional parser fixtures, but the adapter is not registered for
+execution and no source, county, state, or route is approved for publication.
 
 ## Eligible sources
 

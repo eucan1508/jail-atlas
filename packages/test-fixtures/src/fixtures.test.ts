@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  assertSyntheticDallasSourceFixtureSafety,
   assertSyntheticFixtureSafety,
+  syntheticDallasSourceHtmlFixture,
   syntheticFetchFailure,
   syntheticParserFailure,
   syntheticScottCountyFixture,
@@ -9,6 +11,11 @@ import {
 } from "./index.js";
 
 describe("synthetic fixture contract", () => {
+  it("keeps Dallas source HTML fixtures fictional and publication-disabled", () => {
+    expect(assertSyntheticDallasSourceFixtureSafety(syntheticDallasSourceHtmlFixture)).toBe(true);
+    expect(syntheticDallasSourceHtmlFixture.publicationAllowed).toBe(false);
+  });
+
   it("contains 52 clearly synthetic current-custody records", () => {
     expect(syntheticScottCountyFixture.currentCustody.bookings).toHaveLength(52);
     expect(assertSyntheticFixtureSafety(syntheticScottCountyFixture)).toBe(true);

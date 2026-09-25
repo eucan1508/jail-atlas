@@ -89,9 +89,10 @@ dispute resolution, its exact fields, access group, storage location, deletion d
 basis require approval. Raw artifacts are never committed to Git or included in CI output.
 
 Source-specific regression fixtures must be structurally minimized and fully fictionalized. Phase 1
-fixtures use conspicuously fictional names, reserved non-real identifiers, fixed dates,
-`example.test`, and `synthetic: true`. They must not reproduce a live roster or real facility
-contact set.
+and Phase 2B fixtures use conspicuously fictional names, reserved non-real identifiers, fixed dates,
+`example.test` where a host is necessary, and an explicit synthetic sentinel. They must be authored
+from the reviewed field/relationship contract rather than copied or redacted from a live roster, and
+must not reproduce real facility contact data.
 
 Production builds, startup validation, and seed commands reject synthetic markers and fixture
 packages. Synthetic content must never be publicly deployed.

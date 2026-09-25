@@ -22,8 +22,8 @@
     "@jail-atlas/test-fixtures": "workspace:*",
     "@jail-atlas/ui": "workspace:*",
     "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "server-only": "latest",
     "zod": "catalog:"
   },
@@ -32,8 +32,8 @@
     "@playwright/test": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "jsdom": "latest",
     "vitest": "catalog:"
   }

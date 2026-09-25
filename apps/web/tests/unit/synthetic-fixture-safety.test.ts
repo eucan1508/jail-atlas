@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  assertSyntheticDallasSourceFixtureSafety,
   assertSyntheticFixtureSafety,
   SYNTHETIC_FIXTURE_MARKER,
+  syntheticDallasSourceHtmlFixture,
   syntheticScottCountyFixture
 } from "@jail-atlas/test-fixtures";
 
@@ -38,5 +40,10 @@ describe("web synthetic-data boundary", () => {
     ]) {
       expect(serialized).not.toContain(forbiddenField);
     }
+  });
+
+  it("keeps Dallas parser fixtures fictional and outside the publication boundary", () => {
+    expect(assertSyntheticDallasSourceFixtureSafety(syntheticDallasSourceHtmlFixture)).toBe(true);
+    expect(syntheticDallasSourceHtmlFixture.publicationAllowed).toBe(false);
   });
 });

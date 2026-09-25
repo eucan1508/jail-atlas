@@ -16,8 +16,9 @@ Primary security goals are:
 6. remain available enough to show truthful failure state without converting failures to empty
    rosters.
 
-Phase 1 has no real source connection, production database, deployment, or real personal data.
-Controls must nevertheless be designed for later approved operation.
+Phase 1 has no real source connection, production database, deployment, or real personal data. Phase
+2B adds a connection-bound transport and a Dallas County adapter behind the still-closed synthetic
+execution guard. It does not activate live fetching, persistence, or publication.
 
 ## Assets
 
@@ -90,8 +91,9 @@ proof that source content is safe.
 ## Safe source-fetch contract
 
 Only an approved `OfficialSource` record can initiate a fetch. A job accepts a source identifier,
-not an arbitrary URL. Before each request and redirect, the worker verifies scheme, normalized host,
-port, resolved address, and destination relationship against the reviewed allowlist.
+not an arbitrary URL. The Phase 2B transport validates scheme, normalized exact host, port, and path
+before requesting, then resolves and revalidates every address inside the connection-time lookup so
+the socket receives only validated public destinations. Redirects fail rather than being followed.
 
 Requests use an identifiable product user agent and conservative cadence where permitted. They do
 not submit visitor input, cookies, referers containing roster context, or correction data.
@@ -156,12 +158,13 @@ represented as eliminated.
 
 ## Verification
 
-Phase 1 security checks include Zod boundary tests, cursor tamper/cross-source cases, rate-limit
-behavior, CSP/security-header assertions, adversarial XSS fixtures, SSRF host/address/redirect tests
-without live private-network access, log-redaction canaries, synthetic-production guards, dependency
-audit, secret scan, and sitemap/noindex contracts.
+Phase 1 and Phase 2B security checks include Zod boundary tests, cursor tamper/cross-source cases,
+rate-limit behavior, CSP/security-header assertions, adversarial XSS fixtures, connection-bound SSRF
+host/address/rebinding/redirect tests without live private-network access, log-redaction canaries,
+synthetic-production guards, dependency audit, secret scan, source-specific fictional parser
+fixtures, and sitemap/noindex contracts.
 
-Before Phase 2, review the exact source host, redirects, robots/access behavior, response size/type,
-adapter assumptions, and fixture sanitization. Before Phase 3, conduct a deployment-specific CSP
-review, database-role test, correction-data access review, backup/restore exercise, platform log
-audit, and incident-response tabletop.
+Before live Dallas execution, review the adapter invariants, transport configuration, request
+budget, cadence, anomaly quarantine, retention deletion, and a privacy-preserving compatibility run.
+Before Phase 3, conduct a deployment-specific CSP review, database-role test, correction-data access
+review, backup/restore exercise, platform log audit, and incident-response tabletop.
