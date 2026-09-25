@@ -11,7 +11,8 @@ brand decisions. See `.env.example` and the policy documents in `docs/`.
 ## Workspace
 
 - `apps/web` — Next.js App Router public utility and private development design lab
-- `apps/ingest-worker` — source-specific ingestion boundary with closed synthetic defaults and an explicit live mode
+- `apps/ingest-worker` — source-specific ingestion boundary with closed synthetic defaults and an
+  explicit live mode
 - `packages/domain` — validated custody and publication concepts
 - `packages/database` — PostgreSQL/Drizzle schema and migrations
 - `packages/source-adapters` — explicit adapter contracts and failure semantics
