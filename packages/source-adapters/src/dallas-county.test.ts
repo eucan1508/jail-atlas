@@ -169,6 +169,21 @@ describe("Dallas County source adapter", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("accepts the official inline disclaimer layout", async () => {
+    const inlineDisclaimer = syntheticDallasListPageOne
+      .replace(
+        '<p class="disclaimer">Synthetic structural fixture. Not a real custody record.</p>',
+        "Disclaimer: Synthetic structural fixture. Not a real custody record."
+      )
+      .replace("<title>Dallas County Inmate Inquiry</title>", "<title>Inmate Search</title>");
+    const result = await runSourceAdapter(
+      adapter(fixtureMap({ [DALLAS_COUNTY_CURRENT_SOURCE_URL]: inlineDisclaimer })),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+  });
+
   it("does not retain a released historical booking from a current detail", async () => {
     const result = await runSourceAdapter(adapter(fixtureMap()), context());
     expect(result.ok).toBe(true);
