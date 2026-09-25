@@ -227,7 +227,7 @@ function hasEveryHeader(headers: readonly string[], expected: readonly string[])
   return expected.every((header) => headers.includes(header));
 }
 
-function assertSourceIdentity($: CheerioAPI): void {
+function assertSourceIdentity($: CheerioAPI, detailName?: string): void {
   const title = normalizeText($("title").first().text());
   const heading = $("h1, h2")
     .toArray()
@@ -235,12 +235,19 @@ function assertSourceIdentity($: CheerioAPI): void {
   const disclaimer = $(".disclaimer, #disclaimer, [data-disclaimer], .alert")
     .toArray()
     .some((element) => normalizeText($(element).text()).length > 0);
-  const inlineDisclaimer = normalizeText($("body").text()).includes("Disclaimer:");
+  const inlineDisclaimer = $(".Header")
+    .toArray()
+    .some((element) => {
+      const text = normalizeText($(element).text());
+      return text.includes("Disclaimer:") && text.includes("Record of an arrest is not an indication of guilt.");
+    });
   // The reviewed official page changed its document title to "Inmate Search"
   // while retaining the Dallas heading, disclaimer, current-custody filter,
   // and table structure. Require those body markers so the relaxed title is
   // still bound to the reviewed official source.
-  const reviewedTitle = title === "Dallas County Inmate Inquiry" || title === "Inmate Search";
+  const reviewedTitle =
+    title === "Dallas County Inmate Inquiry" ||
+    (detailName === undefined ? title === "Inmate Search" : title === `Inmate Detail - ${detailName}`);
   if (!reviewedTitle || !heading || (!disclaimer && !inlineDisclaimer)) {
     throw adapterError(
       "DALLAS_IDENTITY_MISSING",
@@ -323,7 +330,7 @@ function parseListPage(document: SourceDocument): ValidatedListPage {
     if (
       displayName.length === 0 ||
       custodyStatus !== "Yes" ||
-      (multipleText !== "Yes" && multipleText !== "No") ||
+      (multipleText !== "Yes" && multipleText !== "No" && multipleText !== "") ||
       detailHref === undefined
     ) {
       throw adapterError(
@@ -521,7 +528,7 @@ function parseDetailDocument(
     );
   }
   const $ = load(document.html);
-  assertSourceIdentity($);
+  assertSourceIdentity($, listRecord.displayName);
   const hasDemographicHeading = $("h1, h2, h3")
     .toArray()
     .some((element) => normalizeText($(element).text()) === "Demographic Information");
