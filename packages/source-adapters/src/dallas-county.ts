@@ -1,6 +1,5 @@
 import {
   NormalizedCustodySnapshotSchema,
-  type BondEntry,
   type Booking,
   type Charge,
   type NormalizedCustodySnapshot
@@ -67,19 +66,13 @@ const ValidatedListPageSchema = z.object({
 });
 type ValidatedListPage = z.infer<typeof ValidatedListPageSchema>;
 
-const ParsedBondSchema = z.object({
-  sourceType: z.enum(["NO BOND", "CASH ONLY", "CASH/SURETY"]),
-  amountText: z.string().trim().max(100)
-});
-
 const ParsedRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
   detailUrl: z.string().url(),
   sourceOrder: z.number().int().nonnegative(),
   bookingIdentifier: z.string().trim().min(1).max(200),
   bookingDateText: z.string().trim().min(1).max(200).nullable(),
-  charges: z.array(z.string().trim().min(1).max(1_000)).max(100),
-  bonds: z.array(ParsedBondSchema).max(100)
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(100)
 });
 
 const DallasValidatedBundleSchema = z.object({
@@ -489,38 +482,6 @@ function parseCharges($: CheerioAPI, booking: ReturnType<CheerioAPI>): readonly 
   return charges;
 }
 
-function parseBonds(
-  $: CheerioAPI,
-  booking: ReturnType<CheerioAPI>
-): readonly z.infer<typeof ParsedBondSchema>[] {
-  const table = matchingTable($, booking, ["Bond Number", "Bond Type", "Bond Amount"]);
-  if (table === null) return [];
-  const headers = tableHeaders($, table);
-  const typeIndex = headers.indexOf("Bond Type");
-  const amountIndex = headers.indexOf("Bond Amount");
-  const bonds: z.infer<typeof ParsedBondSchema>[] = [];
-  table.find("tbody tr").each((_index, row) => {
-    const cells = $(row).find("td");
-    if (cells.length === 0 || (cells.length === 1 && normalizeText(cells.text()) === "No data")) {
-      return;
-    }
-    if (cells.length < headers.length) {
-      throw adapterError("DALLAS_BOND_ROW_SHAPE", "A bond row did not match its headers.");
-    }
-    const sourceType = normalizeText(cells.eq(typeIndex).text());
-    if (sourceType !== "NO BOND" && sourceType !== "CASH ONLY" && sourceType !== "CASH/SURETY") {
-      throw adapterError("DALLAS_BOND_TYPE", "A bond row used an unreviewed source type.");
-    }
-    bonds.push(
-      ParsedBondSchema.parse({
-        sourceType,
-        amountText: normalizeText(cells.eq(amountIndex).text())
-      })
-    );
-  });
-  return bonds;
-}
-
 function parseDetailDocument(
   document: SourceDocument,
   listRecord: z.infer<typeof ListRecordSchema>
@@ -595,8 +556,7 @@ function parseDetailDocument(
     detailUrl: listRecord.detailUrl,
     bookingIdentifier,
     bookingDateText: bookingDate,
-    charges: parseCharges($, booking),
-    bonds: parseBonds($, booking)
+    charges: parseCharges($, booking)
   };
 }
 
@@ -737,20 +697,6 @@ function publicFailure(
   };
 }
 
-function parseMoneyMinor(value: string): number {
-  const match = /^\$\s*(\d+(?:,\d{3})*)(?:\.(\d{2}))?$/.exec(value);
-  if (match === null) {
-    throw adapterError("DALLAS_BOND_AMOUNT", "A monetary bond used an unknown amount format.");
-  }
-  const whole = Number((match[1] ?? "").replace(/,/g, ""));
-  const cents = Number(match[2] ?? "00");
-  const minor = whole * 100 + cents;
-  if (!Number.isSafeInteger(minor) || minor <= 0) {
-    throw adapterError("DALLAS_BOND_AMOUNT", "A monetary bond used an invalid amount.");
-  }
-  return minor;
-}
-
 function createCharges(
   row: DallasParsedBundle["records"][number],
   bookingId: string,
@@ -765,51 +711,6 @@ function createCharges(
     statuteCode: null,
     disposition: null
   }));
-}
-
-function createBonds(
-  row: DallasParsedBundle["records"][number],
-  bookingId: string,
-  createId: DallasIdFactory,
-  currency: "USD"
-): BondEntry[] {
-  if (row.bonds.length === 0) {
-    return [
-      {
-        id: createId("bond", `${row.detailUrl}|${row.bookingIdentifier}|bond|missing`),
-        bookingId,
-        sequence: 0,
-        sourceLabel: null,
-        note: "Bond information was not present in the selected booking section.",
-        state: "unknown"
-      }
-    ];
-  }
-
-  return row.bonds.map((bond, sequence) => {
-    const base = {
-      id: createId("bond", `${row.detailUrl}|${row.bookingIdentifier}|bond|${sequence}`),
-      bookingId,
-      sequence,
-      sourceLabel: "Bond Type",
-      note: bond.sourceType
-    } as const;
-    if (bond.sourceType === "NO BOND") {
-      if (!/^\$\s*0(?:\.00)?$/.test(bond.amountText)) {
-        throw adapterError(
-          "DALLAS_NO_BOND_AMOUNT",
-          "An explicit no-bond row contradicted its reviewed zero amount."
-        );
-      }
-      return { ...base, state: "no_bond" as const };
-    }
-    return {
-      ...base,
-      state: "monetary" as const,
-      amountMinor: parseMoneyMinor(bond.amountText),
-      currency
-    };
-  });
 }
 
 function assertDallasSourceContract(context: AdapterContext): void {
@@ -1014,7 +915,6 @@ export function createDallasCountySourceAdapter(
           );
           const personId = options.createId("person", row.detailUrl);
           const charges = createCharges(row, bookingId, options.createId);
-          const bondEntries = createBonds(row, bookingId, options.createId, options.currency);
           return {
             id: bookingId,
             snapshotId,
@@ -1034,7 +934,10 @@ export function createDallasCountySourceAdapter(
             releasedAt: null,
             facilityId: options.facilityId,
             charges,
-            bondEntries,
+            // Bond values are intentionally excluded from the public product.
+            // The official Dallas page can publish contradictory bond rows;
+            // ignoring that optional section keeps custody ingestion reliable.
+            bondEntries: [],
             sourceOrder: row.sourceOrder
           };
         });

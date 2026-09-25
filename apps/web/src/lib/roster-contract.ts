@@ -9,18 +9,9 @@ export const PublicChargeSchema = z.object({
   statuteCode: z.string().max(100).nullable()
 });
 
-export const PublicBondSchema = z.discriminatedUnion("state", [
-  z.object({ state: z.literal("monetary"), label: z.string(), note: z.string().nullable() }),
-  z.object({ state: z.literal("no_bond"), label: z.string(), note: z.string().nullable() }),
-  z.object({ state: z.literal("not_published"), label: z.string(), note: z.string().nullable() }),
-  z.object({ state: z.literal("unknown"), label: z.string(), note: z.string().nullable() }),
-  z.object({ state: z.literal("not_applicable"), label: z.string(), note: z.string().nullable() })
-]);
-
 export const PublicRosterRecordSchema = z.object({
   bookedAtLabel: z.string(),
   bookingIdentifier: z.string().nullable(),
-  bonds: z.array(PublicBondSchema),
   charges: z.array(PublicChargeSchema),
   displayName: z.string().min(1).max(250),
   recordKey: z.string(),

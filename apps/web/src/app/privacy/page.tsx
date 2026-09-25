@@ -25,7 +25,7 @@ export default function PrivacyPage() {
         {
           heading: "Logs and operational data",
           paragraphs: [
-            "Structured logs use run, source, adapter, outcome, duration, and aggregate-count identifiers. Names, booking identifiers, charge text, bond text, contact-form narratives, raw source bodies, cookies, authorization values, and secrets are redacted or omitted. Logs have a separate, time-limited operational retention policy.",
+            "Structured logs use run, source, adapter, outcome, duration, and aggregate-count identifiers. Names, booking identifiers, charge text, contact-form narratives, raw source bodies, cookies, authorization values, and secrets are redacted or omitted. Logs have a separate, time-limited operational retention policy.",
             "No advertising or blocking third-party analytics scripts are included in the MVP. Production analytics, if later approved, must be documented, minimized, and reviewed before activation."
           ]
         },

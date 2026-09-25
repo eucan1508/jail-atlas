@@ -30,20 +30,6 @@ function RosterRecordRow({ record }: { record: PublicRosterRecord }) {
           <span>Charge information not published</span>
         )}
       </td>
-      <td data-label="Bond">
-        {record.bonds.length > 0 ? (
-          <ul className="roster-detail-list roster-detail-list--bond">
-            {record.bonds.map((bond, index) => (
-              <li key={`${record.recordKey}-bond-${index}`}>
-                <strong>{bond.label}</strong>
-                {bond.note ? <span>{bond.note}</span> : null}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <span>Bond information not published</span>
-        )}
-      </td>
     </tr>
   );
 }
@@ -115,7 +101,6 @@ export function RosterExplorer({
             <tr>
               <th scope="col">Name and booking</th>
               <th scope="col">Source-listed charges</th>
-              <th scope="col">Source-listed bond entries</th>
             </tr>
           </thead>
           <tbody>

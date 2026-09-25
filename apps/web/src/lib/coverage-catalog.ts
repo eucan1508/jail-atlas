@@ -31,9 +31,9 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     h1: "Dallas County, Iowa custody information",
     title: "Dallas County Iowa custody information and inmate search",
     description:
-      "Check Dallas County, Iowa custody information with the official source, freshness time, charges, and bond fields kept in context.",
+      "Check Dallas County, Iowa custody information with the official source, freshness time, and source-listed charges kept in context.",
     article:
-      "This page is being prepared around the Dallas County Inmate Inquiry and the county's jail information. When approved, it will show the current-custody scope published by that source, the last successful fetch, source-labelled charges and bond entries, and verified facility contacts.",
+      "This page is being prepared around the Dallas County Inmate Inquiry and the county's jail information. When approved, it will show the current-custody scope published by that source, the last successful fetch, source-labelled charges, and verified facility contacts.",
     officialSourceUrl:
       "https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True",
     officialSourceLabel: "Dallas County Inmate Inquiry",
@@ -97,7 +97,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     h1: "Black Hawk County, Iowa custody information",
     title: "Black Hawk County Iowa custody information and who's in jail",
     description:
-      "Review Black Hawk County, Iowa custody information with official source context, charges, bond fields, and update status.",
+      "Review Black Hawk County, Iowa custody information with official source context, charges, and update status.",
     article:
       "Black Hawk County Sheriff's Office publishes a current Who's In Jail view. The county article will explain the source's scope, preserve its labels, and provide a correction path without creating a permanent person profile.",
     officialSourceUrl: "https://www.bhcso.org/whos-in-jail",

@@ -108,7 +108,6 @@ export default function DesignLabPage() {
                   <strong>Morgan Example</strong>
                   <span>SYN-BKG-001</span>
                   <span>Two source-labeled charges</span>
-                  <span>Bond not published</span>
                 </div>
 
                 <article className="lab-roster-card" data-specimen="roster-card">
@@ -119,10 +118,6 @@ export default function DesignLabPage() {
                   <div>
                     <span>Booking identifier</span>
                     <strong>SYN-BKG-001</strong>
-                  </div>
-                  <div>
-                    <span>Bond</span>
-                    <strong>Information not published</strong>
                   </div>
                 </article>
 

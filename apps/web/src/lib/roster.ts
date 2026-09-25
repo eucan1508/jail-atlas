@@ -1,7 +1,7 @@
 import "server-only";
 
 import { createHmac, timingSafeEqual } from "node:crypto";
-import type { BondEntry, Booking } from "@jail-atlas/domain";
+import type { Booking } from "@jail-atlas/domain";
 import {
   syntheticCurrentCustodySnapshot,
   syntheticOfficialSource
@@ -16,7 +16,6 @@ import {
   type PublicRosterRecord,
   type RosterPage
 } from "./roster-contract";
-import type { PublicBondSchema } from "./roster-contract";
 
 export { maximumRosterPageSize, rosterPageSize } from "./roster-contract";
 
@@ -76,32 +75,6 @@ function bookingOrder(left: Booking, right: Booking): number {
   return left.sourceOrder - right.sourceOrder || left.id.localeCompare(right.id);
 }
 
-function formatBond(bond: BondEntry, locale: string): z.infer<typeof PublicBondSchema> {
-  switch (bond.state) {
-    case "monetary":
-      return {
-        state: "monetary",
-        label: new Intl.NumberFormat(locale, {
-          style: "currency",
-          currency: bond.currency
-        }).format(bond.amountMinor / 100),
-        note: bond.note
-      };
-    case "no_bond":
-      return { state: "no_bond", label: "No bond", note: bond.note };
-    case "not_published":
-      return {
-        state: "not_published",
-        label: "Bond information not published",
-        note: bond.note
-      };
-    case "unknown":
-      return { state: "unknown", label: "Bond information unknown", note: bond.note };
-    case "not_applicable":
-      return { state: "not_applicable", label: "Bond not applicable", note: bond.note };
-  }
-}
-
 function toPublicRecord(booking: Booking): PublicRosterRecord {
   const { DEFAULT_LOCALE } = readEnvironment();
   const bookedAtLabel = booking.bookedAt
@@ -117,7 +90,6 @@ function toPublicRecord(booking: Booking): PublicRosterRecord {
     bookingIdentifier: booking.bookingIdentifier?.sourceIdentifiesAsBookingIdentifier
       ? booking.bookingIdentifier.value
       : null,
-    bonds: booking.bondEntries.map((bond) => formatBond(bond, DEFAULT_LOCALE)),
     charges: booking.charges.map((charge) => ({
       description: charge.description,
       sourceLabel: charge.sourceLabel,

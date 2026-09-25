@@ -91,16 +91,12 @@ describe("Iowa current roster adapters", () => {
     expect(result.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
       "Warrant"
     ]);
-    expect(result.snapshot.bookings[0]?.bondEntries[0]).toMatchObject({
-      state: "monetary",
-      amountMinor: 510_000,
-      currency: "USD"
-    });
+    expect(result.snapshot.bookings[0]?.bondEntries).toEqual([]);
     expect(JSON.stringify(result.snapshot)).not.toContain("Age");
     expect(JSON.stringify(result.snapshot)).not.toContain('"Sex"');
   });
 
-  it("parses Black Hawk's source-labelled charge and bond payload", async () => {
+  it("parses Black Hawk's source-labelled charge payload", async () => {
     const result = await runSourceAdapter(
       adapter("black_hawk", blackHawkHtml),
       context("black_hawk")
@@ -111,10 +107,6 @@ describe("Iowa current roster adapters", () => {
     expect(result.snapshot.bookings[0]?.charges[0]?.description).toBe(
       "SYNTHETIC BLACK HAWK CHARGE — TEST ONLY"
     );
-    expect(result.snapshot.bookings[0]?.bondEntries[0]).toMatchObject({
-      state: "monetary",
-      amountMinor: 30_000,
-      currency: "USD"
-    });
+    expect(result.snapshot.bookings[0]?.bondEntries).toEqual([]);
   });
 });
