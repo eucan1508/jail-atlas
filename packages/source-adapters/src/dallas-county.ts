@@ -235,7 +235,12 @@ function assertSourceIdentity($: CheerioAPI): void {
   const disclaimer = $(".disclaimer, #disclaimer, [data-disclaimer], .alert")
     .toArray()
     .some((element) => normalizeText($(element).text()).length > 0);
-  if (title !== "Dallas County Inmate Inquiry" || !heading || !disclaimer) {
+  // The reviewed official page changed its document title to "Inmate Search"
+  // while retaining the Dallas heading, disclaimer, current-custody filter,
+  // and table structure. Require those body markers so the relaxed title is
+  // still bound to the reviewed official source.
+  const reviewedTitle = title === "Dallas County Inmate Inquiry" || title === "Inmate Search";
+  if (!reviewedTitle || !heading || !disclaimer) {
     throw adapterError(
       "DALLAS_IDENTITY_MISSING",
       "The response did not contain the reviewed Dallas County inquiry identity.",
