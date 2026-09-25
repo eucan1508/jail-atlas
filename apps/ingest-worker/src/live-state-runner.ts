@@ -40,6 +40,14 @@ export interface LiveStateExecution {
   readonly results: readonly CountyIngestResult<LiveJobExecution>[];
 }
 
+export function liveStateSucceeded(
+  results: readonly CountyIngestResult<LiveJobExecution>[]
+): boolean {
+  return (
+    results.length > 0 && results.every((result) => result.ok && result.value?.result.ok === true)
+  );
+}
+
 /**
  * Runs the approved adapter set for one state in declaration order. Minnesota stays empty until
  * its source-specific adapters pass the same audit as Iowa; an empty state is therefore explicit.
