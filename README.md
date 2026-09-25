@@ -1,8 +1,9 @@
 # Evidence-first county custody information — Phase 1
 
-This workspace contains an independent, public-service-oriented custody verification product. Phase
-1 is deliberately limited to a synthetic Scott County, Iowa vertical slice. It does not connect to a
-live roster and must not be deployed with synthetic data enabled.
+This workspace contains an independent, public-service-oriented custody verification product. The
+default local and CI mode remains a synthetic Scott County, Iowa vertical slice. The repository also
+contains a guarded live-ingest path for explicitly approved official sources; it requires the Neon
+migration, source activation, and the environment described in `docs/live-ingest-runbook.md`.
 
 The publisher name and canonical production origin are environment configuration, not hard-coded
 brand decisions. See `.env.example` and the policy documents in `docs/`.
@@ -10,7 +11,7 @@ brand decisions. See `.env.example` and the policy documents in `docs/`.
 ## Workspace
 
 - `apps/web` — Next.js App Router public utility and private development design lab
-- `apps/ingest-worker` — source-specific ingestion boundary (synthetic-only in Phase 1)
+- `apps/ingest-worker` — source-specific ingestion boundary with closed synthetic defaults and an explicit live mode
 - `packages/domain` — validated custody and publication concepts
 - `packages/database` — PostgreSQL/Drizzle schema and migrations
 - `packages/source-adapters` — explicit adapter contracts and failure semantics
@@ -39,4 +40,5 @@ corepack pnpm audit --prod --audit-level moderate
 followed by `next start`. Local development/test secrets have safe prototype defaults; production
 startup requires explicit non-placeholder cursor-signing and correction-form HMAC secrets.
 
-Production source integration, deployment, and live data are explicitly outside Phase 1.
+Production source integration is opt-in and remains disabled until each official source passes its
+audit and health check. See `docs/iowa-source-audit.md` for the current Iowa status.
