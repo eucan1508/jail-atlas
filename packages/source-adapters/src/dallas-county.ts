@@ -239,7 +239,10 @@ function assertSourceIdentity($: CheerioAPI, detailName?: string): void {
     .toArray()
     .some((element) => {
       const text = normalizeText($(element).text());
-      return text.includes("Disclaimer:") && text.includes("Record of an arrest is not an indication of guilt.");
+      return (
+        text.includes("Disclaimer:") &&
+        text.includes("Record of an arrest is not an indication of guilt.")
+      );
     });
   // The reviewed official page changed its document title to "Inmate Search"
   // while retaining the Dallas heading, disclaimer, current-custody filter,
@@ -247,7 +250,9 @@ function assertSourceIdentity($: CheerioAPI, detailName?: string): void {
   // still bound to the reviewed official source.
   const reviewedTitle =
     title === "Dallas County Inmate Inquiry" ||
-    (detailName === undefined ? title === "Inmate Search" : title === `Inmate Detail - ${detailName}`);
+    (detailName === undefined
+      ? title === "Inmate Search"
+      : title === `Inmate Detail - ${detailName}`);
   if (!reviewedTitle || !heading || (!disclaimer && !inlineDisclaimer)) {
     throw adapterError(
       "DALLAS_IDENTITY_MISSING",
