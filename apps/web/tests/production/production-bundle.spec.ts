@@ -9,6 +9,7 @@ const approvedIndexablePaths = [
   "/source-policy/",
   "/corrections/",
   "/privacy/",
+  "/cookies/",
   "/terms/",
   "/disclaimer/"
 ] as const;
