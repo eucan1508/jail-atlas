@@ -38,11 +38,13 @@ export function RosterExplorer({
   initialCursor,
   initialRecords,
   sourceId,
+  official = false,
   total
 }: {
   initialCursor: string | null;
   initialRecords: PublicRosterRecord[];
   sourceId: string;
+  official?: boolean;
   total: number;
 }) {
   const [records, setRecords] = useState(initialRecords);
@@ -69,6 +71,13 @@ export function RosterExplorer({
           headers: { Accept: "application/json" }
         }
       );
+      if (response.status === 400 || response.status === 409 || response.status === 404) {
+        setRecords([]);
+        setCursor(null);
+        setFailed(true);
+        setAnnouncement("The roster changed or is unavailable. Refresh this page to check again.");
+        return;
+      }
       if (!response.ok) throw new Error("Roster continuation request failed.");
       const page = RosterPageSchema.parse(await response.json());
       const existingKeys = new Set(records.map((record) => record.recordKey));
@@ -94,8 +103,9 @@ export function RosterExplorer({
       <div className="roster-table-wrap" data-testid="roster-results" data-nosnippet="">
         <table className="roster-table">
           <caption>
-            Synthetic current-custody records. Names and identifiers are fictional and are not
-            official information.
+            {official
+              ? "Current-custody records as reported by the linked official source at the displayed fetch time."
+              : "Synthetic current-custody records. Names and identifiers are fictional and are not official information."}
           </caption>
           <thead>
             <tr>

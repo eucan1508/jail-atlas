@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 import { readEnvironment } from "@/lib/env";
 import { checkRateLimit, requestIdentifier } from "@/lib/rate-limit";
-import { getLiveRosterPage } from "@/lib/live-roster";
+import { getLiveRosterPage, RosterUnavailableError } from "@/lib/live-roster";
 import { InvalidCursorError, maximumRosterPageSize } from "@/lib/roster";
 
 const querySchema = z.object({
@@ -64,6 +64,9 @@ export async function GET(
       rateHeaders
     );
   } catch (error) {
+    if (error instanceof RosterUnavailableError) {
+      return json({ error: "Roster source is unavailable." }, 404, rateHeaders);
+    }
     if (error instanceof InvalidCursorError) {
       return json({ error: "Invalid or expired roster cursor." }, 400, rateHeaders);
     }

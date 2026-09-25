@@ -48,8 +48,11 @@ export default async function CountyCustodyBriefPage({
 
   const path = countyCoveragePath(entry);
   if (liveSource) {
-    const initialPage = await getLiveRosterPage({ sourceId: liveSource.sourceId });
-    const capturedAt = liveSource.capturedAt ?? liveSource.lastSuccessAt;
+    const initialPage = await getLiveRosterPage({
+      sourceId: liveSource.sourceId,
+      snapshotId: liveSource.snapshotId
+    });
+    const capturedAt = liveSource.capturedAt;
     return (
       <main id="main-content" className="page-main site-shell">
         <Breadcrumbs
@@ -79,7 +82,11 @@ export default async function CountyCustodyBriefPage({
               <h2 id="roster-heading">Current custody</h2>
               <p>
                 Last successful fetch:{" "}
-                {capturedAt ? capturedAt.toLocaleString("en-US") : "Not recorded"}.
+                {capturedAt.toLocaleString("en-US", {
+                  timeZone: "America/Chicago",
+                  timeZoneName: "short"
+                })}
+                .
               </p>
             </div>
             <a href={liveSource.sourceUrl} rel="noreferrer" target="_blank">
@@ -87,6 +94,7 @@ export default async function CountyCustodyBriefPage({
             </a>
           </div>
           <RosterExplorer
+            official
             initialCursor={initialPage.nextCursor}
             initialRecords={initialPage.records}
             sourceId={liveSource.sourceId}
