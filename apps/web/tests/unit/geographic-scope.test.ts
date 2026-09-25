@@ -14,7 +14,6 @@ const inspectedExtensions = new Set([".css", ".json", ".md", ".ts", ".tsx", ".ya
 const excludedJurisdictions = [
   ["ala", "bama"],
   ["arkan", "sas"],
-  ["minne", "sota"],
   ["mis", "souri"],
   ["okla", "homa"]
 ].map((parts) => parts.join(""));
@@ -46,7 +45,7 @@ async function filesWithin(target: string): Promise<string[]> {
   return files;
 }
 
-describe("approved Iowa-only scope", () => {
+describe("approved Iowa and Minnesota scope", () => {
   it("keeps excluded legacy jurisdictions out of routes, navigation, sitemap code, and fixtures", async () => {
     const inspectedFiles = (await Promise.all(inspectedRoots.map(filesWithin))).flat();
     expect(inspectedFiles.length).toBeGreaterThan(0);

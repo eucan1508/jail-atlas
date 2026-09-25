@@ -29,8 +29,10 @@ export function verifyCorrectionFormToken({
   token: string;
 }): boolean {
   const segments = token.split(".");
-  if (segments.length !== 3) return false;
-  const [tokenStartedAt, nonce, suppliedSignature] = segments;
+  // Read the base64url fields from the end: ISO timestamps contain a decimal point.
+  const suppliedSignature = segments.pop();
+  const nonce = segments.pop();
+  const tokenStartedAt = segments.join(".");
   if (!tokenStartedAt || !nonce || !suppliedSignature || tokenStartedAt !== startedAt) return false;
 
   const startedAtMilliseconds = Date.parse(startedAt);

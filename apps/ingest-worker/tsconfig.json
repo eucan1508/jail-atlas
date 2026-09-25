@@ -6,6 +6,7 @@
     "moduleResolution": "Bundler",
     "paths": {
       "@jail-atlas/domain": ["../../packages/domain/src/index.ts"],
+      "@jail-atlas/database": ["../../packages/database/src/index.ts"],
       "@jail-atlas/source-adapters": ["../../packages/source-adapters/src/index.ts"],
       "@jail-atlas/test-fixtures": ["../../packages/test-fixtures/src/index.ts"]
     },

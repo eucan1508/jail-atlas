@@ -44,4 +44,24 @@ describe("readWorkerConfig", () => {
 
     expect(config.sourceHostAllowlist).toEqual(["roster.example.test", "official.example.test"]);
   });
+
+  it("accepts an explicitly configured live dry-run", () => {
+    expect(
+      readWorkerConfig({
+        INGEST_MODE: "live",
+        INGEST_NETWORK_ACCESS: "enabled",
+        INGEST_DATABASE_WRITES: "disabled",
+        ALLOW_LIVE_SOURCE_FETCHES: "true",
+        SOURCE_HOST_ALLOWLIST: "roster.example.test",
+        DATABASE_URL: "postgresql://user:password@db.example.test/jail_atlas",
+        LIVE_SOURCE_ADAPTER_KEY: "cedar-county-iowa-current-roster"
+      })
+    ).toMatchObject({
+      ingestMode: "live",
+      networkAccess: "enabled",
+      databaseWrites: "disabled",
+      allowLiveSourceFetches: true,
+      liveSourceAdapterKey: "cedar-county-iowa-current-roster"
+    });
+  });
 });

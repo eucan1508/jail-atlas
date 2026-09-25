@@ -1,0 +1,24 @@
+# Iowa official source audit
+
+Checked on 2026-09-25 from the official county or sheriff pages. A county is listed as
+production-ready only when its current-custody page can be fetched without credentials, CAPTCHA
+bypass, or a browser-only step and the page has a stable source identity that can be validated by an
+adapter.
+
+| County     | Official source                                                                                                                                                                         | Status                                    | Reason                                                                                                                                                                                                            |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dallas     | [Dallas County inmate search](https://www.dallascountyiowa.gov/365/Inmate-Search) → [current roster](https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True) | Adapter exists; live approval pending     | The source is an official county-linked New World roster. The existing Dallas adapter still needs a live health check and production source record.                                                               |
+| Cedar      | [Cedar County inmate roster](https://cedarcounty.iowa.gov/sheriff/inmate_roster/)                                                                                                       | Parser implemented; live approval pending | The official HTML roster exposes name, booked date, charge text, and bond. The adapter validates the Cedar page identity and does not retain age or sex.                                                          |
+| Black Hawk | [Black Hawk County Who's In Jail](https://www.bhcso.org/whos-in-jail)                                                                                                                   | Parser implemented; live approval pending | The sheriff page exposes name, booked timestamp, charge payload, and bond. The adapter validates the sheriff page identity.                                                                                       |
+| Polk       | [Polk County jail and arrest information](https://www.polkcountyiowa.gov/county-sheriff/detention/jail-and-arrest-information/)                                                         | Blocked                                   | The official page is reachable, but the roster endpoint returned an access-denied response during unattended verification. It is not activated until the exact official endpoint and access policy are confirmed. |
+| Linn       | [Linn County find an inmate](https://www.linncountyiowa.gov/1150/Find)                                                                                                                  | Blocked                                   | The linked roster currently presents a CAPTCHA. The system will not bypass it or claim unattended refresh support.                                                                                                |
+| Johnson    | [Johnson County sheriff](https://johnsoncountyiowa.gov/office-of-sheriff)                                                                                                               | Blocked                                   | The linked jail roster returned an access-denied response during unattended verification.                                                                                                                         |
+| Story      | [Story County sheriff](https://storycountyiowa.gov/112/Sheriffs-Office)                                                                                                                 | Pending endpoint audit                    | The official page links to the Central Iowa Police to Citizen service. The exact current-roster endpoint and parser contract still need verification before activation.                                           |
+
+## Activation rule
+
+Only Dallas, Cedar, and Black Hawk may move into the enabled adapter registry after a live health
+check, source-evidence record, and a successful dry run against the customer's Neon database. Polk,
+Linn, Johnson, and Story remain unpublished until their source contracts are verified. A failed
+fetch must preserve the last successful snapshot and mark the source stale; an empty page without an
+explicit empty-result marker must never replace current data.

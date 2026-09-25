@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { CliArgumentError, parseCliArguments } from "./cli-arguments.ts";
+import { CliArgumentError, parseCliArguments, parseLiveCliArguments } from "./cli-arguments.ts";
 import { SYNTHETIC_SCOTT_ADAPTER_ID, SYNTHETIC_SCOTT_SOURCE_ID } from "./execution-guard.ts";
 
 describe("parseCliArguments", () => {
@@ -20,5 +20,28 @@ describe("parseCliArguments", () => {
     ["unknown argument", ["run", "--scenario=current-custody", "--dry-run", "--write"]]
   ])("rejects %s", (_name, arguments_) => {
     expect(() => parseCliArguments(arguments_)).toThrow(CliArgumentError);
+  });
+});
+
+describe("parseLiveCliArguments", () => {
+  it("accepts an explicit live dry-run", () => {
+    expect(parseLiveCliArguments(["run", "--dry-run"])).toEqual({ dryRun: true });
+  });
+
+  it("defaults live execution to a write-capable run", () => {
+    expect(parseLiveCliArguments(["run"])).toEqual({ dryRun: false });
+  });
+
+  it("accepts a state batch request", () => {
+    expect(parseLiveCliArguments(["run", "--state=ia", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "IA"
+    });
+  });
+
+  it("rejects an unsupported state", () => {
+    expect(() => parseLiveCliArguments(["run", "--state=TX", "--dry-run"])).toThrow(
+      CliArgumentError
+    );
   });
 });

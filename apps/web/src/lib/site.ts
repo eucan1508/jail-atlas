@@ -5,12 +5,14 @@ export const publicPaths = [
   "/",
   "/coverage/",
   "/coverage/iowa/",
+  "/coverage/minnesota/",
   "/iowa/scott-county/custody/",
   "/about/",
   "/methodology/",
   "/source-policy/",
   "/corrections/",
   "/privacy/",
+  "/cookies/",
   "/terms/",
   "/disclaimer/"
 ] as const;
@@ -21,6 +23,7 @@ export const trustPaths = [
   "/source-policy/",
   "/corrections/",
   "/privacy/",
+  "/cookies/",
   "/terms/",
   "/disclaimer/"
 ] as const;

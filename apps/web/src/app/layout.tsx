@@ -20,7 +20,8 @@ export function generateMetadata(): Metadata {
       default: `${environment.BRAND_NAME} — Verified county custody sources`,
       template: `%s | ${environment.BRAND_NAME}`
     },
-    description: "Check the scope, source, and freshness of verified county custody information.",
+    description:
+      "Check verified county custody information across Iowa and Minnesota, with source scope and freshness shown clearly.",
     alternates: { canonical: absoluteUrl("/") },
     robots: {
       index: !noIndex,

@@ -49,6 +49,7 @@ test.describe("county indexation contract", () => {
       "/source-policy/",
       "/corrections/",
       "/privacy/",
+      "/cookies/",
       "/terms/",
       "/disclaimer/"
     ];
@@ -94,7 +95,7 @@ test.describe("approved geographic scope", () => {
     for (const route of [
       "/coverage/nebraska/",
       "/nebraska/example-county/custody/",
-      "/iowa/linn-county/custody/"
+      "/iowa/unknown-county/custody/"
     ]) {
       const response = await request.get(route, { maxRedirects: 0 });
       expect(response.status(), route).toBe(404);
@@ -105,7 +106,6 @@ test.describe("approved geographic scope", () => {
     const excludedSlugs = [
       ["ala", "bama"],
       ["arkan", "sas"],
-      ["minne", "sota"],
       ["mis", "souri"],
       ["okla", "homa"]
     ].map((parts) => parts.join(""));

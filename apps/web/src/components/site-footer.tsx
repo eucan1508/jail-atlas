@@ -6,6 +6,7 @@ const footerLinks = [
   ["Source policy", "/source-policy/"],
   ["Corrections", "/corrections/"],
   ["Privacy", "/privacy/"],
+  ["Cookies", "/cookies/"],
   ["Terms", "/terms/"],
   ["Disclaimer", "/disclaimer/"]
 ] as const;
