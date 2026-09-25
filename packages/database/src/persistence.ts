@@ -1,4 +1,4 @@
-import type { NormalizedCustodySnapshot } from "@jail-atlas/domain";
+import type { NormalizedCustodySnapshot, RedactedFailure } from "@jail-atlas/domain";
 import type { Database } from "./client.js";
 import {
   bondEntries,
@@ -23,6 +23,17 @@ export interface PersistedIngestResult {
   readonly snapshotId: string;
   readonly recordCount: number;
   readonly outcome: "succeeded_with_records" | "succeeded_empty";
+}
+
+export interface PersistedIngestFailureInput {
+  readonly runId: string;
+  readonly sourceId: string;
+  readonly adapterId: string;
+  readonly parserVersion: string;
+  readonly traceId: string;
+  readonly startedAt: Date;
+  readonly finishedAt: Date;
+  readonly failure: RedactedFailure;
 }
 
 /**
@@ -136,4 +147,31 @@ export async function persistNormalizedSnapshot(
     recordCount: snapshot.recordCount,
     outcome
   };
+}
+
+/** Records a failed run without touching the last successful custody snapshot. */
+export async function persistIngestFailure(
+  db: Database,
+  input: PersistedIngestFailureInput
+): Promise<void> {
+  await db.insert(ingestRuns).values({
+    id: input.runId,
+    sourceId: input.sourceId,
+    adapterId: input.adapterId,
+    startedAt: input.startedAt,
+    finishedAt: input.finishedAt,
+    outcome:
+      input.failure.classification === "parser"
+        ? "parser_failed"
+        : input.failure.classification === "normalization"
+          ? "normalization_failed"
+          : input.failure.classification === "validation"
+            ? "validation_failed"
+            : "fetch_failed",
+    recordCount: null,
+    validEmptyResult: false,
+    failure: input.failure,
+    parserVersion: input.parserVersion,
+    traceId: input.traceId
+  });
 }

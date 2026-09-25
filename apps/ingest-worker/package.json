@@ -15,9 +15,11 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@jail-atlas/database": "workspace:*",
     "@jail-atlas/domain": "workspace:*",
     "@jail-atlas/source-adapters": "workspace:*",
     "@jail-atlas/test-fixtures": "workspace:*",
+    "drizzle-orm": "^0.45.2",
     "zod": "^4.1.0"
   },
   "devDependencies": {

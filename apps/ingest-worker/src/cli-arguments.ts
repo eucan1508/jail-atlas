@@ -9,6 +9,11 @@ import {
 
 const CliCommandSchema = z.literal("run");
 
+export const LiveExecutionRequestSchema = z.object({
+  dryRun: z.boolean()
+});
+export type LiveExecutionRequest = z.infer<typeof LiveExecutionRequestSchema>;
+
 export class CliArgumentError extends Error {
   constructor(message: string) {
     super(message);
@@ -51,4 +56,21 @@ export function parseCliArguments(arguments_: readonly string[]): ExecutionReque
     scenario: scenarioResult.data,
     dryRun: true
   };
+}
+
+export function parseLiveCliArguments(arguments_: readonly string[]): LiveExecutionRequest {
+  const [command, ...flags] = arguments_;
+  if (!CliCommandSchema.safeParse(command).success) {
+    throw new CliArgumentError("Expected command: run");
+  }
+  let dryRun = false;
+  for (const flag of flags) {
+    if (flag === "--dry-run") {
+      if (dryRun) throw new CliArgumentError("--dry-run may be provided only once");
+      dryRun = true;
+      continue;
+    }
+    throw new CliArgumentError(`Unknown argument: ${flag}`);
+  }
+  return LiveExecutionRequestSchema.parse({ dryRun });
 }

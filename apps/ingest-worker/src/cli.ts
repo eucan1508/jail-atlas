@@ -1,8 +1,9 @@
 import { pathToFileURL } from "node:url";
 
-import { parseCliArguments } from "./cli-arguments.ts";
+import { parseCliArguments, parseLiveCliArguments } from "./cli-arguments.ts";
 import { readWorkerConfig } from "./config.ts";
 import { executeSyntheticScottCountyDryRun } from "./job-runner.ts";
+import { executeLiveSource } from "./live-job-runner.ts";
 import { createStructuredLogger } from "./logger.ts";
 
 export async function main(
@@ -14,6 +15,11 @@ export async function main(
   try {
     const config = readWorkerConfig(environment);
     logger = createStructuredLogger({ minimumLevel: config.logLevel });
+    if (config.ingestMode === "live") {
+      const request = parseLiveCliArguments(arguments_);
+      const execution = await executeLiveSource(config, { logger, dryRun: request.dryRun });
+      return execution.result.ok ? 0 : 1;
+    }
     const request = parseCliArguments(arguments_);
     const execution = await executeSyntheticScottCountyDryRun(config, request, { logger });
     return execution.summary.ok ? 0 : 1;
