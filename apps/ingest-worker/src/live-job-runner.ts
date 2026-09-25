@@ -103,11 +103,14 @@ function createAdapter(
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);
 }
 
-function requireLiveSource(source: OfficialSource): void {
-  if (!source.publicationApproved) {
+function requireLiveSource(source: OfficialSource, dryRun: boolean): void {
+  if (!dryRun && !source.publicationApproved) {
     throw new Error("The source is not publication-approved for live ingestion");
   }
-  if (source.sourceStatus !== "healthy" && source.sourceStatus !== "valid_empty") {
+  const allowedStatuses = dryRun
+    ? ["verification_pending", "healthy", "valid_empty"]
+    : ["healthy", "valid_empty"];
+  if (!allowedStatuses.includes(source.sourceStatus)) {
     throw new Error(`The source status is not live-enabled: ${source.sourceStatus}`);
   }
 }
@@ -137,14 +140,18 @@ export async function executeLiveSource(
       .limit(1);
     if (!sourceRow) throw new Error(`No approved official source found for adapter: ${adapterKey}`);
     const source = sourceFromRow(sourceRow);
-    requireLiveSource(source);
+    requireLiveSource(source, dependencies.dryRun === true);
 
     const [adapterRow] = await database.db
       .select()
       .from(sourceAdapters)
       .where(and(eq(sourceAdapters.sourceId, source.id), eq(sourceAdapters.adapterKey, adapterKey)))
       .limit(1);
-    if (!adapterRow || !adapterRow.enabled || adapterRow.adapterKey !== adapterKey) {
+    if (
+      !adapterRow ||
+      (!dependencies.dryRun && !adapterRow.enabled) ||
+      adapterRow.adapterKey !== adapterKey
+    ) {
       throw new Error(`No enabled adapter record found for source: ${adapterKey}`);
     }
     const [facility] = await database.db

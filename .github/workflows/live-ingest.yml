@@ -1,0 +1,71 @@
+name: Approved live ingest
+
+on:
+  schedule:
+    # Iowa's daily slot. Minnesota remains disabled until its adapters pass source audit.
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: approved-live-ingest-iowa
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    name: Check live ingest switch
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.gate.outputs.enabled }}
+    steps:
+      - id: gate
+        name: Read operator switch
+        env:
+          LIVE_INGEST_ENABLED: ${{ secrets.LIVE_INGEST_ENABLED }}
+        run: |
+          if [[ "$LIVE_INGEST_ENABLED" == "true" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  iowa:
+    needs: gate
+    name: Refresh approved Iowa sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # The explicit repository secret is the final operator-controlled enable switch. Keeping it
+    # absent or false makes this scheduled workflow a no-op until the customer approves live writes.
+    if: ${{ needs.gate.outputs.enabled == 'true' }}
+    env:
+      CI: "true"
+      NODE_ENV: production
+      INGEST_MODE: live
+      INGEST_NETWORK_ACCESS: enabled
+      INGEST_DATABASE_WRITES: enabled
+      ALLOW_LIVE_SOURCE_FETCHES: "true"
+      SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace packages
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Refresh Iowa counties sequentially
+        run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA

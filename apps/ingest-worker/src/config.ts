@@ -123,13 +123,6 @@ const WorkerEnvironmentSchema = z
           message: "live mode requires an exact source host allowlist"
         });
       }
-      if (value.LIVE_SOURCE_ADAPTER_KEY === undefined) {
-        context.addIssue({
-          path: ["LIVE_SOURCE_ADAPTER_KEY"],
-          code: "custom",
-          message: "live mode requires a source adapter key"
-        });
-      }
       if (value.DATABASE_URL === undefined) {
         context.addIssue({
           path: ["DATABASE_URL"],

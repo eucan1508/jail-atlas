@@ -31,4 +31,17 @@ describe("parseLiveCliArguments", () => {
   it("defaults live execution to a write-capable run", () => {
     expect(parseLiveCliArguments(["run"])).toEqual({ dryRun: false });
   });
+
+  it("accepts a state batch request", () => {
+    expect(parseLiveCliArguments(["run", "--state=ia", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "IA"
+    });
+  });
+
+  it("rejects an unsupported state", () => {
+    expect(() => parseLiveCliArguments(["run", "--state=TX", "--dry-run"])).toThrow(
+      CliArgumentError
+    );
+  });
 });

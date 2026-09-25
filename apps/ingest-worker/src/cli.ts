@@ -4,6 +4,7 @@ import { parseCliArguments, parseLiveCliArguments } from "./cli-arguments.ts";
 import { readWorkerConfig } from "./config.ts";
 import { executeSyntheticScottCountyDryRun } from "./job-runner.ts";
 import { executeLiveSource } from "./live-job-runner.ts";
+import { executeLiveState } from "./live-state-runner.ts";
 import { createStructuredLogger } from "./logger.ts";
 
 export async function main(
@@ -17,6 +18,16 @@ export async function main(
     logger = createStructuredLogger({ minimumLevel: config.logLevel });
     if (config.ingestMode === "live") {
       const request = parseLiveCliArguments(arguments_);
+      if (request.state !== undefined) {
+        const execution = await executeLiveState(config, request.state, {
+          logger,
+          dryRun: request.dryRun
+        });
+        return execution.results.every((result) => result.ok) ? 0 : 1;
+      }
+      if (config.liveSourceAdapterKey === undefined) {
+        throw new Error("A source adapter key or --state is required for live execution");
+      }
       const execution = await executeLiveSource(config, { logger, dryRun: request.dryRun });
       return execution.result.ok ? 0 : 1;
     }
