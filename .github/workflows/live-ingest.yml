@@ -5,6 +5,15 @@ on:
     # Iowa's daily slot. Minnesota remains disabled until its adapters pass source audit.
     - cron: "0 0 * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Use dry-run until the source approvals are complete"
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - write
 
 permissions:
   contents: read
@@ -25,7 +34,7 @@ jobs:
         env:
           LIVE_INGEST_ENABLED: ${{ secrets.LIVE_INGEST_ENABLED }}
         run: |
-          if [[ "$LIVE_INGEST_ENABLED" == "true" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.mode }}" == "dry-run" ]] || [[ "$LIVE_INGEST_ENABLED" == "true" ]]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
@@ -44,7 +53,7 @@ jobs:
       NODE_ENV: production
       INGEST_MODE: live
       INGEST_NETWORK_ACCESS: enabled
-      INGEST_DATABASE_WRITES: enabled
+      INGEST_DATABASE_WRITES: ${{ inputs.mode == 'dry-run' && 'disabled' || 'enabled' }}
       ALLOW_LIVE_SOURCE_FETCHES: "true"
       SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -68,4 +77,9 @@ jobs:
         run: pnpm -r --filter "./packages/**" --if-present build
 
       - name: Refresh Iowa counties sequentially
-        run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA
+        run: |
+          if [[ "${{ inputs.mode }}" == "dry-run" ]]; then
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
+          else
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA
+          fi
