@@ -156,6 +156,19 @@ describe("Dallas County source adapter", () => {
     expect(beta?.bondEntries[0]?.state).toBe("unknown");
   });
 
+  it("accepts the reviewed official title after its harmless title update", async () => {
+    const updatedTitle = syntheticDallasListPageOne.replace(
+      "<title>Dallas County Inmate Inquiry</title>",
+      "<title>Inmate Search</title>"
+    );
+    const result = await runSourceAdapter(
+      adapter(fixtureMap({ [DALLAS_COUNTY_CURRENT_SOURCE_URL]: updatedTitle })),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+  });
+
   it("does not retain a released historical booking from a current detail", async () => {
     const result = await runSourceAdapter(adapter(fixtureMap()), context());
     expect(result.ok).toBe(true);
