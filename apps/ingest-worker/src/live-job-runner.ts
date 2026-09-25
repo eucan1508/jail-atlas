@@ -65,16 +65,19 @@ function sourceFromRow(row: typeof officialSources.$inferSelect): OfficialSource
   });
 }
 
-function createAdapter(
+export function createLiveSourceAdapter(
   source: OfficialSource,
   facilityId: string,
   config: WorkerConfig,
   createId: () => string
 ): AnySourceAdapter {
   const sourceUrl = new URL(source.sourceUrl);
-  const allowedPathPrefixes = [
-    sourceUrl.pathname.endsWith("/") ? sourceUrl.pathname : `${sourceUrl.pathname}/`
-  ];
+  // The transport already enforces path-segment boundaries. Keep the exact list
+  // path so sources without a trailing slash can fetch their list and details.
+  const allowedPathPrefixes = [sourceUrl.pathname];
+  // Adapter ID factories receive record kind/key arguments; randomUUID accepts
+  // an options object instead. Do not forward adapter arguments to this factory.
+  const createAdapterId = () => createId();
   const fetch = createConnectionBoundSourceFetch({
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
@@ -85,7 +88,7 @@ function createAdapter(
     return createDallasCountySourceAdapter({
       fetch,
       facilityId,
-      createId,
+      createId: createAdapterId,
       currency: "USD"
     });
   }
@@ -97,7 +100,7 @@ function createAdapter(
       source: source.adapterKey === CEDAR_COUNTY_ADAPTER_KEY ? "cedar" : "black_hawk",
       fetch,
       facilityId,
-      createId
+      createId: createAdapterId
     });
   }
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);
@@ -170,7 +173,7 @@ export async function executeLiveSource(
       signal: new AbortController().signal,
       logger: dependencies.logger
     };
-    const adapter = createAdapter(source, facility.id, config, createId);
+    const adapter = createLiveSourceAdapter(source, facility.id, config, createId);
     dependencies.logger.info("ingest.live.started", { adapterKey, sourceId: source.id, runId });
     const health = await adapter.healthCheck(context);
     const result = await runSourceAdapter(adapter, context);
