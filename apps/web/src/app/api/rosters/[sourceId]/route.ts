@@ -30,7 +30,10 @@ export async function GET(
 ) {
   const { sourceId } = await params;
   const environment = readEnvironment();
-  if (environment.DATA_MODE !== "official") {
+  // A production build without a customer database must fail closed as an
+  // unavailable route. This also keeps the production smoke artifact free of
+  // the development roster endpoint.
+  if (environment.DATA_MODE !== "official" || !process.env.DATABASE_URL) {
     return json({ error: "Roster source not found." }, 404);
   }
 
