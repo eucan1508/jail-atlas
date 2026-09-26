@@ -126,7 +126,9 @@ function parsePage(
     .filter((page) => Number.isInteger(page) && page > 0 && page <= MAX_PAGES);
   const lastPage = Math.max(1, ...pageNumbers);
   const lastUpdated =
-    text($("body").text()).match(/Data last updated on ([^.]+?)(?:\.|$)/i)?.[1] ?? null;
+    text($("body").text()).match(
+      /Data last updated on\s+(\d{2}\/\d{2}\/\d{4}\s+\d{1,2}:\d{2}\s+[AP]M)/i
+    )?.[1] ?? null;
   return { records: [...uniqueRecords.values()], lastUpdated, lastPage };
 }
 
