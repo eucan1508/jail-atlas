@@ -7,15 +7,11 @@ import { RosterPageSchema, type PublicRosterRecord } from "@/lib/roster-contract
 function RosterRecordRow({ record }: { record: PublicRosterRecord }) {
   return (
     <tr data-testid="roster-record">
-      <th scope="row" data-label="Name and booking">
+      <th scope="row" data-label="Name">
         <strong>{record.displayName}</strong>
-        <span>
-          {record.bookingIdentifier
-            ? `Booking ${record.bookingIdentifier}`
-            : "Booking ID not published"}
-        </span>
-        <span>Booked {record.bookedAtLabel}</span>
       </th>
+      <td data-label="Booking number">{record.bookingIdentifier ?? "Not published"}</td>
+      <td data-label="Booked at">{record.bookedAtLabel}</td>
       <td data-label="Charges">
         {record.charges.length > 0 ? (
           <ul className="roster-detail-list">
@@ -109,8 +105,10 @@ export function RosterExplorer({
           </caption>
           <thead>
             <tr>
-              <th scope="col">Name and booking</th>
-              <th scope="col">Source-listed charges</th>
+              <th scope="col">Name</th>
+              <th scope="col">Booking number</th>
+              <th scope="col">Booked at</th>
+              <th scope="col">Charges</th>
             </tr>
           </thead>
           <tbody>

@@ -72,26 +72,10 @@ export default async function CountyCustodyBriefPage({
             <h1>{entry.h1}</h1>
             <p>{entry.description}</p>
           </div>
-          <aside className="county-live-header__aside" aria-label="County source summary">
-            <span className="county-live-header__label">SOURCE RECORD</span>
-            <strong>{entry.county}</strong>
-            <span>
-              {entry.seatCity}, {entry.stateName}
-            </span>
-            <span className="county-live-header__rule" />
-            <small>Official roster connected</small>
-          </aside>
         </header>
-        <div className="county-live-notice">
-          <Alert heading="Published official-source roster" tone="info">
-            This page shows current-custody records captured from an approved public source. Use the
-            timestamp, coverage notes, and correction process when evaluating time-sensitive data.
-          </Alert>
-        </div>
         <section className="content-section roster-section" aria-labelledby="roster-heading">
           <div className="section-heading-row">
             <div>
-              <StatusPill tone="current">Healthy source</StatusPill>
               <h2 id="roster-heading">Current custody</h2>
               <p>
                 Last successful fetch:{" "}
@@ -102,7 +86,6 @@ export default async function CountyCustodyBriefPage({
                 .
               </p>
             </div>
-            <span className="county-live-header__status">Source captured and reviewed</span>
           </div>
           <RosterExplorer
             official
