@@ -23,7 +23,8 @@ const liveAdapterKeys: Record<string, string> = {
   "cedar-county": "cedar-county-iowa-current-roster",
   "black-hawk-county": "black-hawk-county-iowa-current-roster",
   "ramsey-county": "ramsey-county-mn-current-roster",
-  "stearns-county": "stearns-county-mn-current-roster"
+  "stearns-county": "stearns-county-mn-current-roster",
+  "anoka-county": "anoka-county-mn-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.

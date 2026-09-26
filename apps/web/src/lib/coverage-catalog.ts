@@ -149,8 +149,9 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "Find Anoka County, Minnesota custody information with the official inmate locator, source scope, and freshness details.",
     article:
       "Anoka County's official inmate locator covers current and recently released records. The production page will select one approved scope, label it clearly, and keep any release window separate from current custody.",
-    officialSourceUrl: "https://www.anokacountymn.gov/727/Inmate-Locator",
-    officialSourceLabel: "Anoka County inmate locator",
+    officialSourceUrl:
+      "https://incustodysearch.co.anoka.mn.us/JailInfoForPublic/inmates_jsonp.aspx?callback=anokaInmates",
+    officialSourceLabel: "Anoka County official inmate locator data feed",
     sourceStatus: "audit_pending"
   },
   {

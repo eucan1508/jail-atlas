@@ -42,6 +42,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "stearns",
       adapterKey: "stearns-county-mn-current-roster",
       sourceHost: "jailroster.stearnscountymn.gov"
+    },
+    {
+      countySlug: "anoka",
+      adapterKey: "anoka-county-mn-current-roster",
+      sourceHost: "incustodysearch.co.anoka.mn.us"
     }
   ]
 };
