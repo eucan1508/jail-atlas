@@ -27,7 +27,7 @@ export default function ScottCountyCustodyPage() {
   const sourceId = syntheticRosterSourceId();
 
   return (
-    <main id="main-content" className="county-page">
+    <main id="main-content" className="county-page county-page--prototype">
       <div className="site-shell county-shell">
         <Breadcrumbs
           currentPath="/iowa/scott-county/custody/"
