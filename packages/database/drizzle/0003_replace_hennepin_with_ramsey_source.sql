@@ -47,19 +47,22 @@ BEGIN
   ON CONFLICT ("state_id", "slug") DO UPDATE SET "name" = EXCLUDED."name"
   RETURNING "id" INTO v_ramsey_county_id;
 
-  INSERT INTO "official_institutions" ("county_id", "name", "kind", "official_url", "verified_at")
-  VALUES (
-    v_ramsey_county_id,
-    'Ramsey County Sheriff''s Office',
-    'sheriff',
-    'https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/',
-    now()
-  )
-  ON CONFLICT DO NOTHING;
   SELECT "id" INTO v_ramsey_institution_id
   FROM "official_institutions"
   WHERE "county_id" = v_ramsey_county_id
+    AND "official_url" = 'https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/'
   ORDER BY "created_at" LIMIT 1;
+  IF v_ramsey_institution_id IS NULL THEN
+    INSERT INTO "official_institutions" ("county_id", "name", "kind", "official_url", "verified_at")
+    VALUES (
+      v_ramsey_county_id,
+      'Ramsey County Sheriff''s Office',
+      'sheriff',
+      'https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/',
+      now()
+    )
+    RETURNING "id" INTO v_ramsey_institution_id;
+  END IF;
 
   INSERT INTO "facilities" ("county_id", "official_institution_id", "name", "jurisdiction_label", "city", "timezone")
   SELECT v_ramsey_county_id, v_ramsey_institution_id, 'Ramsey County Adult Detention Center', 'Ramsey County, Minnesota', 'Saint Paul', 'America/Chicago'
@@ -84,7 +87,7 @@ BEGIN
     '{"kind":"current_only","description":"Retain only the current-custody snapshot."}'::jsonb,
     'ramsey-county-mn-current-roster', false
   )
-  ON CONFLICT ("source_url") DO UPDATE SET "source_status" = 'verification_pending', "publication_approved" = false
+  ON CONFLICT ("source_url") DO NOTHING
   RETURNING "id" INTO v_ramsey_source_id;
   IF v_ramsey_source_id IS NULL THEN
     SELECT "id" INTO v_ramsey_source_id FROM "official_sources"
@@ -93,5 +96,5 @@ BEGIN
 
   INSERT INTO "source_adapters" ("source_id", "adapter_key", "adapter_version", "parser_version", "enabled")
   VALUES (v_ramsey_source_id, 'ramsey-county-mn-current-roster', '1.0.0', '1.0.0', false)
-  ON CONFLICT ("source_id", "adapter_version") DO UPDATE SET "enabled" = false;
+  ON CONFLICT ("source_id", "adapter_version") DO NOTHING;
 END $$;

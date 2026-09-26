@@ -23,6 +23,9 @@ export const RAMSEY_COUNTY_BOOKINGS_DATASET = "rmrn-stdv" as const;
 export const RAMSEY_COUNTY_ARREST_CHARGES_DATASET = "9xpb-vsb7" as const;
 export const RAMSEY_COUNTY_FORMAL_CHARGES_DATASET = "yvg4-ntpb" as const;
 
+const RAMSEY_BOOKINGS_LIMIT = 2_000;
+const RAMSEY_CHARGES_LIMIT = 10_000;
+
 const textValue = z.union([z.string(), z.number()]).transform(String);
 const nullableTextValue = textValue.nullable().optional();
 
@@ -30,7 +33,9 @@ const RamseyBookingSchema = z.object({
   person_id: textValue,
   booking_no: z.string().trim().min(1).max(200),
   date_booked: z.string().trim().min(1).max(80),
-  date_released: nullableTextValue,
+  // The request is explicitly filtered to current custody. A non-null release
+  // value means the upstream ignored that filter and must fail closed.
+  date_released: z.null().optional(),
   name: z.string().trim().min(1).max(250)
 });
 
@@ -44,8 +49,8 @@ const RamseyChargeSchema = z.object({
 });
 
 const RamseyRosterSchema = z.object({
-  bookings: z.array(RamseyBookingSchema).max(2_000),
-  charges: z.array(RamseyChargeSchema).max(10_000)
+  bookings: z.array(RamseyBookingSchema).max(RAMSEY_BOOKINGS_LIMIT),
+  charges: z.array(RamseyChargeSchema).max(RAMSEY_CHARGES_LIMIT)
 });
 export type RamseyRoster = z.infer<typeof RamseyRosterSchema>;
 export type RamseyRosterFetch = (input: string, init?: RequestInit) => Promise<Response>;
@@ -82,7 +87,8 @@ async function fetchDataset(
   options: RamseyRosterAdapterOptions,
   dataset: string,
   query: URLSearchParams,
-  context: AdapterContext
+  context: AdapterContext,
+  maximumRows: number
 ): Promise<unknown> {
   const response = await options.fetch(
     `${RAMSEY_COUNTY_RESOURCE_BASE_URL}${dataset}.json?${query.toString()}`,
@@ -94,13 +100,21 @@ async function fetchDataset(
     }
   );
   if (!response.ok) throw new Error(`HTTP_${response.status}`);
-  return response.json();
+  const payload: unknown = await response.json();
+  const rows = z.array(z.unknown()).parse(payload);
+  if (rows.length >= maximumRows) {
+    throw new Error(`ROW_LIMIT_REACHED_${dataset}`);
+  }
+  return rows;
 }
 
 async function requestRoster(
   options: RamseyRosterAdapterOptions,
   context: AdapterContext
 ): Promise<RamseyRoster> {
+  if (context.source.sourceUrl !== RAMSEY_COUNTY_CURRENT_SOURCE_URL) {
+    throw new Error("SOURCE_URL_MISMATCH");
+  }
   const bookings = await fetchDataset(
     options,
     RAMSEY_COUNTY_BOOKINGS_DATASET,
@@ -108,22 +122,32 @@ async function requestRoster(
       $limit: "2000",
       $where: "date_released IS NULL"
     }),
-    context
+    context,
+    RAMSEY_BOOKINGS_LIMIT
   );
   const arrestCharges = await fetchDataset(
     options,
     RAMSEY_COUNTY_ARREST_CHARGES_DATASET,
     new URLSearchParams({ $limit: "10000" }),
-    context
+    context,
+    RAMSEY_CHARGES_LIMIT
   );
   const formalCharges = await fetchDataset(
     options,
     RAMSEY_COUNTY_FORMAL_CHARGES_DATASET,
     new URLSearchParams({ $limit: "10000" }),
-    context
+    context,
+    RAMSEY_CHARGES_LIMIT
   );
   const currentBookings = z.array(RamseyBookingSchema).parse(bookings);
-  const currentBookingNumbers = new Set(currentBookings.map((booking) => booking.booking_no));
+  const bookingNumbers = new Set<string>();
+  for (const booking of currentBookings) {
+    if (bookingNumbers.has(booking.booking_no)) {
+      throw new Error("DUPLICATE_BOOKING_NUMBER");
+    }
+    bookingNumbers.add(booking.booking_no);
+  }
+  const currentBookingNumbers = bookingNumbers;
   const combinedCharges = [
     ...z
       .array(RamseyChargeSchema.partial({ formal_charge: true, formal_charge_level: true }))

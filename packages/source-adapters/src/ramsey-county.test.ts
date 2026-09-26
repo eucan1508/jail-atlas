@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import {
   createRamseyCountySourceAdapter,
-  RAMSEY_COUNTY_CURRENT_SOURCE_URL
+  RAMSEY_COUNTY_CURRENT_SOURCE_URL,
+  type RamseyRosterFetch
 } from "./ramsey-county.js";
 import type { AdapterContext } from "./contracts.js";
 
@@ -40,47 +41,51 @@ function response(value: unknown): Response {
   });
 }
 
+function createTestAdapter(fetch: RamseyRosterFetch) {
+  return createRamseyCountySourceAdapter({
+    facilityId: "00000000-0000-4000-8000-000000000004",
+    createId: (() => {
+      let sequence = 10;
+      return () => `00000000-0000-4000-8000-${String(sequence++).padStart(12, "0")}`;
+    })(),
+    fetch
+  });
+}
+
 describe("Ramsey County roster adapter", () => {
   it("fetches current bookings from the public datasets and preserves labelled charges", async () => {
     const urls: string[] = [];
-    const adapter = createRamseyCountySourceAdapter({
-      facilityId: "00000000-0000-4000-8000-000000000004",
-      createId: (() => {
-        let sequence = 10;
-        return () => `00000000-0000-4000-8000-${String(sequence++).padStart(12, "0")}`;
-      })(),
-      fetch: async (input) => {
-        urls.push(input);
-        if (input.includes("rmrn-stdv")) {
-          expect(input).toContain("date_released+IS+NULL");
-          return response([
-            {
-              person_id: "person-1",
-              booking_no: "B-1",
-              date_booked: "2026-09-25T10:00:00.000",
-              name: "Doe, Jane"
-            }
-          ]);
-        }
-        if (input.includes("9xpb-vsb7")) {
-          return response([
-            {
-              booking_no: "B-1",
-              charge_id: "A-1",
-              arrest_charge: "Arrest charge",
-              arrest_charge_level: "Gross misdemeanor"
-            }
-          ]);
-        }
+    const adapter = createTestAdapter(async (input) => {
+      urls.push(input);
+      if (input.includes("rmrn-stdv")) {
+        expect(input).toContain("date_released+IS+NULL");
         return response([
           {
+            person_id: "person-1",
             booking_no: "B-1",
-            charge_id: "F-1",
-            formal_charge: "Formal charge",
-            formal_charge_level: "Felony"
+            date_booked: "2026-09-25T10:00:00.000",
+            name: "Doe, Jane"
           }
         ]);
       }
+      if (input.includes("9xpb-vsb7")) {
+        return response([
+          {
+            booking_no: "B-1",
+            charge_id: "A-1",
+            arrest_charge: "Arrest charge",
+            arrest_charge_level: "Gross misdemeanor"
+          }
+        ]);
+      }
+      return response([
+        {
+          booking_no: "B-1",
+          charge_id: "F-1",
+          formal_charge: "Formal charge",
+          formal_charge_level: "Felony"
+        }
+      ]);
     });
 
     const fetched = await adapter.fetch(context);
@@ -101,5 +106,44 @@ describe("Ramsey County roster adapter", () => {
       "Formal charge"
     ]);
     expect(normalized.value.bookings[0]?.bondEntries).toEqual([]);
+  });
+
+  it("fails closed when the current-custody filter is ignored", async () => {
+    const adapter = createTestAdapter(async (input) => {
+      if (input.includes("rmrn-stdv")) {
+        return response([
+          {
+            person_id: "person-1",
+            booking_no: "B-1",
+            date_booked: "2026-09-25T10:00:00.000",
+            date_released: "2026-09-26T10:00:00.000",
+            name: "Doe, Jane"
+          }
+        ]);
+      }
+      return response([]);
+    });
+
+    const result = await adapter.fetch(context);
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toContain("RAMSEY_COUNTY_");
+  });
+
+  it("fails closed when the source reaches a response limit", async () => {
+    const bookings = Array.from({ length: 2_000 }, (_, index) => ({
+      person_id: `person-${index}`,
+      booking_no: `B-${index}`,
+      date_booked: "2026-09-25T10:00:00.000",
+      name: `Doe, ${index}`
+    }));
+    const adapter = createTestAdapter(async (input) =>
+      input.includes("rmrn-stdv") ? response(bookings) : response([])
+    );
+
+    const result = await adapter.fetch(context);
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toContain("ROW_LIMIT_REACHED_rmrn_stdv");
   });
 });
