@@ -32,6 +32,14 @@ export default async function HomePage() {
             This independent utility is designed to show what an official roster covers, when it
             last worked, and how each source was verified. It is not a government website.
           </p>
+          <div className="hero-proof-row" aria-label="Service principles">
+            <span>
+              <i aria-hidden="true" /> Official sources only
+            </span>
+            <span>
+              <i aria-hidden="true" /> Freshness shown
+            </span>
+          </div>
         </div>
         <div className="home-hero__finder">
           <h2>Find a county custody page</h2>

@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
     "ts",
     "jsx",
     "js",
-    ...(process.env.NODE_ENV === "development" ? ["dev.tsx", "prototype.tsx", "prototype.ts"] : [])
+    ...(process.env.NODE_ENV === "development" ? ["dev.tsx", "prototype.tsx"] : [])
   ],
   poweredByHeader: false,
   reactStrictMode: true,
