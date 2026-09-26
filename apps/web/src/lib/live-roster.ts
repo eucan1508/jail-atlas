@@ -13,7 +13,8 @@ import {
   decodeRosterCursor,
   encodeRosterCursor,
   InvalidCursorError,
-  maximumRosterPageSize
+  maximumRosterPageSize,
+  normalizeRosterSearch
 } from "./roster";
 import { PublicRosterRecordSchema, RosterPageSchema, type RosterPage } from "./roster-contract";
 import { countyCoverageCatalog, type CountyCoverageBrief } from "./coverage-catalog";
@@ -146,18 +147,22 @@ export async function getLiveRosterPage({
   sourceId,
   cursor,
   snapshotId,
-  limit = maximumRosterPageSize
+  limit = maximumRosterPageSize,
+  search
 }: {
   sourceId: string;
   cursor?: string;
   snapshotId?: string;
   limit?: number;
+  search?: string;
 }): Promise<RosterPage> {
   if (!z.string().uuid().safeParse(sourceId).success) throw new RosterUnavailableError();
   if (!Number.isInteger(limit) || limit < 1 || limit > maximumRosterPageSize) {
     throw new RangeError("Roster page size is outside the allowed range.");
   }
+  const normalizedSearch = normalizeRosterSearch(search);
   const after = cursor ? decodeRosterCursor(cursor, sourceId) : null;
+  if (after && (after.search ?? "") !== normalizedSearch) throw new InvalidCursorError();
   return getDatabase().transaction(
     async (tx) => {
       const source = await readSource(tx, { sourceId });
@@ -167,6 +172,20 @@ export async function getLiveRosterPage({
         (snapshotId && snapshotId !== source.snapshotId)
       )
         throw new InvalidCursorError();
+      const searchFilter = normalizedSearch
+        ? sql`strpos(lower(p.display_name), lower(${normalizedSearch})) > 0`
+        : sql`true`;
+      const matchedCount = normalizedSearch
+        ? await tx.execute<{ matched_count: number }>(sql`
+            SELECT COUNT(*)::int AS matched_count
+            FROM bookings b
+            JOIN person_display_records p
+              ON p.id = b.person_display_record_id AND p.snapshot_id = b.snapshot_id
+            WHERE b.snapshot_id = ${source.snapshotId}
+              AND b.custody_scope = 'current_custody' AND b.released_at IS NULL
+              AND ${searchFilter}
+          `)
+        : null;
       const result = await tx.execute<BookingRow>(sql`
       SELECT b.id AS record_key, p.display_name, b.booking_identifier_value,
         b.source_identifies_as_booking_identifier, b.booked_at, b.source_order,
@@ -187,11 +206,12 @@ export async function getLiveRosterPage({
             ? sql`(b.source_order, b.id) > (${after.afterSourceOrder}, ${after.afterId}::uuid)`
             : sql`true`
         }
+        AND ${searchFilter}
       GROUP BY b.id, p.display_name
       ORDER BY b.source_order ASC, b.id ASC
       LIMIT ${limit + 1}
     `);
-      if (source.recordCount > 0 && result.rows.length === 0) {
+      if (!normalizedSearch && source.recordCount > 0 && result.rows.length === 0) {
         throw new RosterUnavailableError();
       }
       const endOfResults = result.rows.length <= limit;
@@ -223,12 +243,15 @@ export async function getLiveRosterPage({
                 version: 1,
                 sourceId,
                 snapshotId: source.snapshotId,
+                ...(normalizedSearch ? { search: normalizedSearch } : {}),
                 afterSourceOrder: last.source_order,
                 afterId: last.record_key
               })
             : null,
         records,
-        total: source.recordCount
+        total: normalizedSearch
+          ? Number(matchedCount?.rows[0]?.matched_count ?? 0)
+          : source.recordCount
       });
     },
     { isolationLevel: "repeatable read", accessMode: "read only" }

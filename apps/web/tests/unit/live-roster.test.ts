@@ -104,6 +104,27 @@ describe("live roster publication", () => {
     expect(cursor).toBeUndefined();
   });
 
+  it("keeps a filtered total stable while loading later search pages", async () => {
+    const { getLiveRosterPage } = await import("@/lib/live-roster");
+    let cursor: string | undefined;
+    for (const start of [0, 25, 50]) {
+      execute.mockResolvedValueOnce({ rows: [source()] });
+      execute.mockResolvedValueOnce({ rows: [{ matched_count: 52 }] });
+      execute.mockResolvedValueOnce({
+        rows: Array.from({ length: Math.min(26, 52 - start) }, (_, index) => booking(start + index))
+      });
+      const page = await getLiveRosterPage({
+        sourceId,
+        search: "synthetic",
+        ...(cursor ? { cursor } : {})
+      });
+      expect(page.total).toBe(52);
+      expect(page.records).toHaveLength(Math.min(25, 52 - start));
+      cursor = page.nextCursor ?? undefined;
+    }
+    expect(cursor).toBeUndefined();
+  });
+
   it("rejects a continuation after a new snapshot replaces the old one", async () => {
     const { getLiveRosterPage } = await import("@/lib/live-roster");
     const { encodeRosterCursor, InvalidCursorError } = await import("@/lib/roster");

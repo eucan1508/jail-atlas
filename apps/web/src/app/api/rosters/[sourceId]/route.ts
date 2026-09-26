@@ -10,10 +10,16 @@ import {
   syntheticRosterSourceId
 } from "@/lib/roster";
 
-const querySchema = z.object({
-  cursor: z.string().min(20).max(1_024),
-  limit: z.coerce.number().int().min(1).max(maximumRosterPageSize).default(maximumRosterPageSize)
-});
+const querySchema = z
+  .object({
+    cursor: z.string().min(20).max(1_024).optional(),
+    search: z.string().trim().min(1).max(80).optional(),
+    snapshotId: z.string().uuid().optional(),
+    limit: z.coerce.number().int().min(1).max(maximumRosterPageSize).default(maximumRosterPageSize)
+  })
+  .refine(({ cursor, search }) => Boolean(cursor || search), {
+    message: "A cursor or roster search is required."
+  });
 
 const noIndexHeaders = {
   "Cache-Control": "private, no-store, max-age=0",
@@ -69,8 +75,18 @@ export async function GET(
   try {
     return json(
       syntheticRequest
-        ? getSyntheticRosterPage({ cursor: query.data.cursor, limit: query.data.limit })
-        : await getLiveRosterPage({ sourceId, cursor: query.data.cursor, limit: query.data.limit }),
+        ? getSyntheticRosterPage({
+            limit: query.data.limit,
+            ...(query.data.cursor ? { cursor: query.data.cursor } : {}),
+            ...(query.data.search ? { search: query.data.search } : {})
+          })
+        : await getLiveRosterPage({
+            sourceId,
+            limit: query.data.limit,
+            ...(query.data.cursor ? { cursor: query.data.cursor } : {}),
+            ...(query.data.search ? { search: query.data.search } : {}),
+            ...(query.data.snapshotId ? { snapshotId: query.data.snapshotId } : {})
+          }),
       200,
       rateHeaders
     );
