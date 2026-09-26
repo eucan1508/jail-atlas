@@ -9,22 +9,27 @@ export function SiteHeader({ brandName }: { brandName: string }) {
           <BrandMark />
           <span>
             <strong>{brandName}</strong>
-            <small>Independent custody source verification</small>
+            <small>Public custody data, clearly sourced</small>
           </span>
         </Link>
-        <nav aria-label="Primary navigation">
-          <ul className="primary-nav">
-            <li>
-              <Link href="/coverage/">Coverage</Link>
-            </li>
-            <li>
-              <Link href="/methodology/">Method</Link>
-            </li>
-            <li>
-              <Link href="/corrections/">Corrections</Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="site-header__actions">
+          <nav aria-label="Primary navigation">
+            <ul className="primary-nav">
+              <li>
+                <Link href="/coverage/">Coverage</Link>
+              </li>
+              <li>
+                <Link href="/methodology/">How it works</Link>
+              </li>
+              <li>
+                <Link href="/corrections/">Corrections</Link>
+              </li>
+            </ul>
+          </nav>
+          <Link className="header-cta" href="/coverage/">
+            Find a county <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </div>
     </header>
   );
