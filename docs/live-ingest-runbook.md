@@ -79,8 +79,8 @@ with the adapter records disabled and publication approval off.
    ```
 
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
-workflow for that specific adapter. The workflow performs the approval transaction with the
-customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
+   workflow for that specific adapter. The workflow performs the approval transaction with the
+   customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
 
    ```text
    GitHub → Actions → Approve live source → Run workflow
@@ -92,6 +92,7 @@ customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
 
    The workflow marks the source healthy, enables its adapter, and publishes the county in one
    transaction. It refuses to run unless the explicit `APPROVE` confirmation is supplied.
+
 5. Run the write-enabled job for that one adapter:
 
    ```text
