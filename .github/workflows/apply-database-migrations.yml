@@ -1,0 +1,46 @@
+name: Apply database migrations
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type APPLY to run append-only production migrations"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-database-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    name: Apply Drizzle migrations
+    if: ${{ inputs.confirm == 'APPLY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate migration journal
+        run: pnpm --filter @jail-atlas/database db:check
+
+      - name: Apply append-only migrations
+        run: pnpm --filter @jail-atlas/database db:migrate
