@@ -61,10 +61,7 @@ export default async function IowaCoveragePage() {
         </Alert>
       ) : null}
 
-      <section
-        className="content-section state-search-section"
-        aria-labelledby="state-search-heading"
-      >
+      <section className="content-section state-search-section" aria-label="State county finder">
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Find a county</p>

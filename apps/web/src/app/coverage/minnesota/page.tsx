@@ -56,10 +56,7 @@ export default async function MinnesotaCoveragePage() {
           : "No Minnesota roster is published from this page yet."}
       </Alert>
 
-      <section
-        className="content-section state-search-section"
-        aria-labelledby="state-search-heading"
-      >
+      <section className="content-section state-search-section" aria-label="State county finder">
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Find a county</p>
