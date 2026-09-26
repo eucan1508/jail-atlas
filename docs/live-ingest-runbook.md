@@ -40,10 +40,10 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```
 
-   The state command is intentionally limited to Dallas, Cedar, Black Hawk, and the Ramsey Minnesota
-   adapter until the remaining Iowa and Minnesota source contracts have approved adapters. A dry-run
-   is allowed while the source rows are `verification_pending`; it never writes a snapshot or
-   changes publication status.
+   The state command is intentionally limited to Dallas, Cedar, Black Hawk, and the Ramsey and
+   Stearns Minnesota adapters until the remaining Iowa and Minnesota source contracts have approved
+   adapters. A dry-run is allowed while the source rows are `verification_pending`; it never writes
+   a snapshot or changes publication status.
 
    Ramsey can be checked with the public county open-data host:
 
@@ -52,7 +52,7 @@ with the adapter records disabled and publication approval off.
    INGEST_NETWORK_ACCESS=enabled
    INGEST_DATABASE_WRITES=disabled
    ALLOW_LIVE_SOURCE_FETCHES=true
-   SOURCE_HOST_ALLOWLIST=opendata.ramseycountymn.gov
+   SOURCE_HOST_ALLOWLIST=opendata.ramseycountymn.gov,jailroster.stearnscountymn.gov
    DATABASE_URL=<customer Neon URL>
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
    ```
