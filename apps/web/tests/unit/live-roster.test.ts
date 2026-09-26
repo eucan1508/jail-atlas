@@ -18,6 +18,7 @@ const now = new Date("2026-09-26T00:00:00Z");
 function source(overrides = {}) {
   return {
     source_id: sourceId,
+    state_code: "IA",
     source_url: "https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True",
     adapter_key: "dallas-newworld-inmate-inquiry",
     snapshot_id: snapshotId,

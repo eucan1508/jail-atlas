@@ -6,6 +6,14 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
+      state:
+        description: "State to refresh"
+        required: true
+        default: IA
+        type: choice
+        options:
+          - IA
+          - MN
       mode:
         description: "Use dry-run until the source approvals are complete"
         required: true
@@ -19,7 +27,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: approved-live-ingest-iowa
+  group: approved-live-ingest-state
   cancel-in-progress: false
 
 jobs:
@@ -44,7 +52,7 @@ jobs:
 
   iowa:
     needs: gate
-    name: Refresh approved Iowa sources
+    name: Refresh approved state sources
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # The explicit repository secret is the final operator-controlled enable switch. Keeping it
@@ -57,8 +65,10 @@ jobs:
       INGEST_NETWORK_ACCESS: enabled
       INGEST_DATABASE_WRITES: ${{ inputs.mode == 'dry-run' && 'disabled' || 'enabled' }}
       ALLOW_LIVE_SOURCE_FETCHES: "true"
-      SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org
+      SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,api.hennepincounty.gov
+      HENNEPIN_SUBSCRIPTION_KEY: ${{ secrets.HENNEPIN_SUBSCRIPTION_KEY }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      INGEST_STATE: ${{ inputs.state || 'IA' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -78,10 +88,10 @@ jobs:
       - name: Build workspace packages
         run: pnpm -r --filter "./packages/**" --if-present build
 
-      - name: Refresh Iowa counties sequentially
+      - name: Refresh selected state counties sequentially
         run: |
           if [[ "${{ inputs.mode }}" == "dry-run" ]]; then
-            pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE" --dry-run
           else
-            pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE"
           fi

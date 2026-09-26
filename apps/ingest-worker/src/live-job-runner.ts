@@ -14,7 +14,9 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
+  HENNEPIN_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
+  createHennepinCountySourceAdapter,
   createIowaCurrentRosterAdapter,
   runSourceAdapter,
   type AdapterContext,
@@ -101,6 +103,17 @@ export function createLiveSourceAdapter(
       fetch,
       facilityId,
       createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY) {
+    if (!config.hennepinSubscriptionKey) {
+      throw new Error("Hennepin live ingestion requires HENNEPIN_SUBSCRIPTION_KEY");
+    }
+    return createHennepinCountySourceAdapter({
+      fetch,
+      subscriptionKey: config.hennepinSubscriptionKey,
+      facilityId,
+      createId: () => createId()
     });
   }
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);

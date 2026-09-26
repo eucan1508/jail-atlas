@@ -178,6 +178,10 @@ export function createConnectionBoundSourceFetch(
             : new SecureSourceFetchError("NETWORK_FAILURE", "The source transport failed")
         );
       };
+      const customHeaders: Record<string, string> = {};
+      new Headers(init.headers).forEach((value, key) => {
+        customHeaders[key] = value;
+      });
       const requestOptions: RequestOptions = {
         method: "GET",
         lookup,
@@ -186,7 +190,8 @@ export function createConnectionBoundSourceFetch(
           accept: "text/html",
           "accept-encoding": "identity",
           "cache-control": "no-cache",
-          "user-agent": options.userAgent
+          "user-agent": options.userAgent,
+          ...customHeaders
         }
       };
       const request = httpsRequest(validated.url, requestOptions, (incoming) => {
