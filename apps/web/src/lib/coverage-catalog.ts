@@ -133,7 +133,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "Check Stearns County, Minnesota custody information with the official jail roster source and its current-custody scope.",
     article:
       "Stearns County's Sheriff's Office links its jail roster for current custody information. The production article will preserve the source's labels, record the source timestamp, and send questions that the roster cannot answer back to the official jail contact.",
-    officialSourceUrl: "http://jailroster.stearnscountymn.gov/Current",
+    officialSourceUrl: "https://jailroster.stearnscountymn.gov/Current",
     officialSourceLabel: "Stearns County current jail roster",
     sourceStatus: "audit_pending"
   },
