@@ -33,7 +33,7 @@ export default async function FindPage({
   );
 
   return (
-    <main id="main-content" className="page-main site-shell narrow-shell">
+    <main id="main-content" className="page-main site-shell narrow-shell finder-page">
       <PageIntro
         eyebrow="County finder"
         title="Find a county custody page"

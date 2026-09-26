@@ -54,7 +54,7 @@ export default async function CountyCustodyBriefPage({
     });
     const capturedAt = liveSource.capturedAt;
     return (
-      <main id="main-content" className="page-main site-shell">
+      <main id="main-content" className="page-main site-shell county-page county-page--live">
         <Breadcrumbs
           currentPath={path}
           items={[
@@ -64,17 +64,30 @@ export default async function CountyCustodyBriefPage({
             { label: entry.county }
           ]}
         />
-        <header className="page-intro">
-          <p className="eyebrow">
-            {entry.stateName} · {entry.county}
-          </p>
-          <h1>{entry.h1}</h1>
-          <p>{entry.description}</p>
+        <header className="county-live-header">
+          <div className="county-live-header__copy">
+            <p className="eyebrow">
+              {entry.stateName} · {entry.county}
+            </p>
+            <h1>{entry.h1}</h1>
+            <p>{entry.description}</p>
+          </div>
+          <aside className="county-live-header__aside" aria-label="County source summary">
+            <span className="county-live-header__label">SOURCE RECORD</span>
+            <strong>{entry.county}</strong>
+            <span>
+              {entry.seatCity}, {entry.stateName}
+            </span>
+            <span className="county-live-header__rule" />
+            <small>Official roster connected</small>
+          </aside>
         </header>
-        <Alert heading="Published official-source roster" tone="info">
-          This page shows current-custody records from the approved official source. Verify
-          time-sensitive information at the source before relying on it.
-        </Alert>
+        <div className="county-live-notice">
+          <Alert heading="Published official-source roster" tone="info">
+            This page shows current-custody records from the approved official source. Verify
+            time-sensitive information at the source before relying on it.
+          </Alert>
+        </div>
         <section className="content-section roster-section" aria-labelledby="roster-heading">
           <div className="section-heading-row">
             <div>
@@ -126,7 +139,7 @@ export default async function CountyCustodyBriefPage({
   }
 
   return (
-    <main id="main-content" className="page-main site-shell">
+    <main id="main-content" className="page-main site-shell county-page county-page--preview">
       <Breadcrumbs
         currentPath={path}
         items={[

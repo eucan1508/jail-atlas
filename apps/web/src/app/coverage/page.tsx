@@ -25,19 +25,31 @@ export default async function CoveragePage() {
   const minnesotaPlanned = countiesForState("minnesota");
 
   return (
-    <main id="main-content" className="page-main site-shell">
+    <main id="main-content" className="page-main site-shell coverage-page">
       <Breadcrumbs
         currentPath="/coverage/"
         items={[{ href: "/", label: "Home" }, { label: "Coverage" }]}
       />
-      <PageIntro
-        eyebrow="Publication status"
-        title="Custody source coverage"
-        summary={<p>A county appears here only after every evidence, ingestion, and review gate passes.</p>}
-      />
+      <div className="coverage-hero">
+        <PageIntro
+          eyebrow="Publication status"
+          title="Custody source coverage"
+          summary={<p>A county appears here only after every evidence, ingestion, and review gate passes.</p>}
+        />
+        <div className="coverage-hero__signal" aria-label="Coverage summary">
+          <span className="coverage-hero__signal-label">CURRENT SCOPE</span>
+          <strong>{published.length}</strong>
+          <span>published county sources</span>
+          <div className="coverage-hero__meter" aria-hidden="true"><span style={{ width: `${Math.min(published.length * 16.66, 100)}%` }} /></div>
+          <small>Iowa + Minnesota</small>
+        </div>
+      </div>
 
       <section className="content-section" aria-labelledby="scope-heading">
-        <h2 id="scope-heading">Approved geographic scope</h2>
+        <div className="section-kicker-row">
+          <div><p className="eyebrow">Approved geography</p><h2 id="scope-heading">Where the evidence is live</h2></div>
+          <span className="section-index">01 / 02</span>
+        </div>
         <div className="coverage-grid">
           <div className="surface-card coverage-state-row">
             <div>

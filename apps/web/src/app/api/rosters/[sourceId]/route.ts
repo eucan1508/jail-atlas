@@ -3,7 +3,12 @@ import { z } from "zod";
 import { readEnvironment } from "@/lib/env";
 import { checkRateLimit, requestIdentifier } from "@/lib/rate-limit";
 import { getLiveRosterPage, RosterUnavailableError } from "@/lib/live-roster";
-import { InvalidCursorError, maximumRosterPageSize } from "@/lib/roster";
+import {
+  getSyntheticRosterPage,
+  InvalidCursorError,
+  maximumRosterPageSize,
+  syntheticRosterSourceId
+} from "@/lib/roster";
 
 const querySchema = z.object({
   cursor: z.string().min(20).max(1_024),
@@ -30,10 +35,14 @@ export async function GET(
 ) {
   const { sourceId } = await params;
   const environment = readEnvironment();
+  const syntheticRequest =
+    process.env.NODE_ENV !== "production" &&
+    environment.DATA_MODE === "synthetic" &&
+    sourceId === syntheticRosterSourceId();
   // A production build without a customer database must fail closed as an
   // unavailable route. This also keeps the production smoke artifact free of
   // the development roster endpoint.
-  if (environment.DATA_MODE !== "official" || !process.env.DATABASE_URL) {
+  if (!syntheticRequest && (environment.DATA_MODE !== "official" || !process.env.DATABASE_URL)) {
     return json({ error: "Roster source not found." }, 404);
   }
 
@@ -59,7 +68,9 @@ export async function GET(
 
   try {
     return json(
-      await getLiveRosterPage({ sourceId, cursor: query.data.cursor, limit: query.data.limit }),
+      syntheticRequest
+        ? getSyntheticRosterPage({ cursor: query.data.cursor, limit: query.data.limit })
+        : await getLiveRosterPage({ sourceId, cursor: query.data.cursor, limit: query.data.limit }),
       200,
       rateHeaders
     );
