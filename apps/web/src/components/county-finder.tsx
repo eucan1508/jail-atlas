@@ -32,7 +32,7 @@ export function CountyFinder({
   return (
     <section
       className={compact ? "county-finder county-finder--compact" : "county-finder"}
-      aria-label={label}
+      aria-label="County search"
     >
       <div className="county-finder__search">
         <label htmlFor={inputId}>{label}</label>
