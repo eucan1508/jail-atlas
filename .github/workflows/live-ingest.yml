@@ -35,9 +35,11 @@ jobs:
           LIVE_INGEST_ENABLED: ${{ secrets.LIVE_INGEST_ENABLED }}
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.mode }}" == "dry-run" ]] || [[ "$LIVE_INGEST_ENABLED" == "true" ]]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            # Do not emit the secret value itself as a job output. GitHub masks outputs that
+            # equal a secret, which would make the dependent ingest job skip unexpectedly.
+            echo "enabled=go" >> "$GITHUB_OUTPUT"
           else
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "enabled=stop" >> "$GITHUB_OUTPUT"
           fi
 
   iowa:
@@ -47,7 +49,7 @@ jobs:
     timeout-minutes: 15
     # The explicit repository secret is the final operator-controlled enable switch. Keeping it
     # absent or false makes this scheduled workflow a no-op until the customer approves live writes.
-    if: ${{ needs.gate.outputs.enabled == 'true' }}
+    if: ${{ needs.gate.outputs.enabled == 'go' }}
     env:
       CI: "true"
       NODE_ENV: production
