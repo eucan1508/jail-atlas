@@ -3,6 +3,8 @@ import { Alert, Button } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/page-intro";
 import { createCorrectionFormToken } from "@/lib/correction-security";
+import { countyCoveragePath } from "@/lib/coverage-catalog";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { createPageMetadata } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -48,6 +50,7 @@ export default async function CorrectionsPage({
       ? resultMessages[status as keyof typeof resultMessages]
       : null;
   const formToken = createCorrectionFormToken();
+  const published = await getPublishedCountyCoverage();
 
   return (
     <main id="main-content" className="page-main site-shell narrow-shell">
@@ -83,13 +86,13 @@ export default async function CorrectionsPage({
 
           <div className="field-group">
             <label htmlFor="source-page">Affected page</label>
-            <select
-              id="source-page"
-              name="sourcePagePath"
-              defaultValue="/iowa/scott-county/custody/"
-            >
-              <option value="/iowa/scott-county/custody/">Scott County custody prototype</option>
+            <select id="source-page" name="sourcePagePath" defaultValue="/">
               <option value="/">General site concern</option>
+              {published.map(({ entry }) => (
+                <option key={entry.slug} value={countyCoveragePath(entry)}>
+                  {entry.county} custody page
+                </option>
+              ))}
             </select>
           </div>
 

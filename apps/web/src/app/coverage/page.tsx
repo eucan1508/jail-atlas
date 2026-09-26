@@ -19,6 +19,7 @@ export default async function CoveragePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
   const publishedIowa = published.filter(({ entry }) => entry.state === "iowa");
+  const publishedMinnesota = published.filter(({ entry }) => entry.state === "minnesota");
   const iowaPublished = publishedIowa.length > 0 || hasPublishedIowaCoverage();
   const iowaPlanned = countiesForState("iowa");
   const minnesotaPlanned = countiesForState("minnesota");
@@ -54,11 +55,17 @@ export default async function CoveragePage() {
           </div>
           <div className="surface-card coverage-state-row">
             <div>
-              <StatusPill tone="neutral">Proposed · audit pending</StatusPill>
+              <StatusPill tone={publishedMinnesota.length > 0 ? "current" : "neutral"}>
+                {publishedMinnesota.length > 0 ? "Active coverage" : "No published counties"}
+              </StatusPill>
               <h3>Minnesota</h3>
-              <p>{minnesotaPlanned.length} county sources are selected for the second-state launch set.</p>
+              <p>
+                {publishedMinnesota.length > 0
+                  ? `${publishedMinnesota.length} published county source${publishedMinnesota.length === 1 ? " is" : "s are"} available.`
+                  : `${minnesotaPlanned.length} Minnesota county sources are selected for audit; none are published yet.`}
+              </p>
             </div>
-            <Link href="/coverage/minnesota/">View Minnesota plan</Link>
+            <Link href="/coverage/minnesota/">View Minnesota coverage</Link>
           </div>
           <Alert heading="No placeholder coverage" tone="info">
             Inactive states and unreviewed counties return a genuine 404. Coverage is added one county

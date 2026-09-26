@@ -51,6 +51,18 @@ export function createPageMetadata({
     title,
     description,
     alternates: { canonical: absoluteUrl(path) },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: absoluteUrl(path),
+      siteName: environment.BRAND_NAME
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description
+    },
     robots: {
       index: allowIndex,
       follow: allowIndex,
