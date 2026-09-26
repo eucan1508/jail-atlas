@@ -18,6 +18,8 @@ import {
   createIowaCurrentRosterAdapter,
   RAMSEY_COUNTY_ADAPTER_KEY,
   createRamseyCountySourceAdapter,
+  STEARNS_COUNTY_ADAPTER_KEY,
+  createStearnsCountySourceAdapter,
   runSourceAdapter,
   type AdapterContext,
   type AdapterExecutionResult,
@@ -111,6 +113,13 @@ export function createLiveSourceAdapter(
       fetch,
       facilityId,
       createId: () => createId()
+    });
+  }
+  if (source.adapterKey === STEARNS_COUNTY_ADAPTER_KEY) {
+    return createStearnsCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
     });
   }
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);

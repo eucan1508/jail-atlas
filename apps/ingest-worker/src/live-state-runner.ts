@@ -37,6 +37,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "ramsey",
       adapterKey: "ramsey-county-mn-current-roster",
       sourceHost: "opendata.ramseycountymn.gov"
+    },
+    {
+      countySlug: "stearns",
+      adapterKey: "stearns-county-mn-current-roster",
+      sourceHost: "jailroster.stearnscountymn.gov"
     }
   ]
 };
