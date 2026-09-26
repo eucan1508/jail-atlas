@@ -3,6 +3,8 @@ import { hasPublishedIowaCoverage, hasPublishedScottCounty } from "@/lib/publica
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, trustPaths } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export function indexableSitemapPaths(): string[] {
   const paths = ["/", "/coverage/", ...trustPaths];
 
