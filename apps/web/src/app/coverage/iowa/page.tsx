@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Alert, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CountyFinder } from "@/components/county-finder";
+import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
 import {
@@ -83,21 +84,14 @@ export default async function IowaCoveragePage() {
 
       <section className="content-section" aria-labelledby="planned-heading">
         <h2 id="planned-heading">Selected Iowa counties</h2>
-        <div className="coverage-grid">
+        <div className="coverage-grid coverage-grid--counties">
           {plannedCounties.map((county) => (
-            <article className="surface-card coverage-state-row" key={county.slug}>
-              <div>
-                <p className="eyebrow">{county.seatCity}</p>
-                <h3>{county.county}</h3>
-                <p>{county.article}</p>
-              </div>
-              <div className="button-row">
-                <Link href={`/${county.state}/${county.slug}/custody/`}>Review page brief</Link>
-                <a href={county.officialSourceUrl} rel="noreferrer" target="_blank">
-                  Official source
-                </a>
-              </div>
-            </article>
+            <CountyCoverageCard
+              entry={county}
+              href={`/${county.state}/${county.slug}/custody/`}
+              key={county.slug}
+              published={published.some(({ entry }) => entry.slug === county.slug)}
+            />
           ))}
         </div>
       </section>

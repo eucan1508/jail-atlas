@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Alert } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
 import { countiesForState } from "@/lib/coverage-catalog";
@@ -52,19 +52,15 @@ export default async function MinnesotaCoveragePage() {
 
       <section className="content-section" aria-labelledby="county-list-heading">
         <h2 id="county-list-heading">Published counties</h2>
-        <div className="coverage-grid">
+        <div className="coverage-grid coverage-grid--counties">
           {published.map(({ entry, path }) => (
-            <article className="surface-card coverage-state-row" key={entry.slug}>
-              <div>
-                <p className="eyebrow">{entry.seatCity}</p>
-                <h3>{entry.county}</h3>
-                <p>{entry.description}</p>
-              </div>
-              <div className="button-row">
-                <Link href={path}>View custody page</Link>
-                <a href={entry.officialSourceUrl} rel="noreferrer" target="_blank">Official source</a>
-              </div>
-            </article>
+            <CountyCoverageCard
+              actionLabel="View custody page"
+              entry={entry}
+              href={path}
+              key={entry.slug}
+              published
+            />
           ))}
         </div>
       </section>
@@ -72,16 +68,9 @@ export default async function MinnesotaCoveragePage() {
       {pending.length > 0 ? (
         <section className="content-section" aria-labelledby="pending-heading">
           <h2 id="pending-heading">Additional sources under review</h2>
-          <div className="coverage-grid">
+          <div className="coverage-grid coverage-grid--counties">
             {pending.map((county) => (
-              <article className="surface-card coverage-state-row" key={county.slug}>
-                <div>
-                  <p className="eyebrow">{county.seatCity}</p>
-                  <h3>{county.county}</h3>
-                  <p>{county.article}</p>
-                </div>
-                <a href={county.officialSourceUrl} rel="noreferrer" target="_blank">Official source</a>
-              </article>
+              <CountyCoverageCard entry={county} href={`/${county.state}/${county.slug}/custody/`} key={county.slug} />
             ))}
           </div>
         </section>
