@@ -33,7 +33,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Check Dallas County, Iowa custody information with the official source, freshness time, and source-listed charges kept in context.",
     article:
-      "This page is being prepared around the Dallas County Inmate Inquiry and the county's jail information. When approved, it will show the current-custody scope published by that source, the last successful fetch, source-labelled charges, and verified facility contacts.",
+      "Dallas County's official Inmate Inquiry publishes the current-custody scope shown here. This page keeps the last successful fetch, source-labelled charges, and official source link in view.",
     officialSourceUrl:
       "https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True",
     officialSourceLabel: "Dallas County Inmate Inquiry",
@@ -50,7 +50,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Review Cedar County, Iowa custody information with source scope, freshness, and official contact details shown beside the roster.",
     article:
-      "Cedar County publishes an inmate roster through its Sheriff's Office. The production page will preserve the roster's current-custody scope and will link directly to the county source whenever a record or source status is shown.",
+      "Cedar County publishes an inmate roster through its Sheriff's Office. This page preserves the roster's current-custody scope and links directly to the county source beside the records.",
     officialSourceUrl: "https://cedarcounty.iowa.gov/sheriff/inmate_roster/",
     officialSourceLabel: "Cedar County Sheriff inmate roster",
     sourceStatus: "audit_pending"
@@ -99,7 +99,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Review Black Hawk County, Iowa custody information with official source context, charges, and update status.",
     article:
-      "Black Hawk County Sheriff's Office publishes a current Who's In Jail view. The county article will explain the source's scope, preserve its labels, and provide a correction path without creating a permanent person profile.",
+      "Black Hawk County Sheriff's Office publishes a current Who's In Jail view. This page explains the source's scope, preserves its labels, and provides a correction path without creating a permanent person profile.",
     officialSourceUrl: "https://www.bhcso.org/whos-in-jail",
     officialSourceLabel: "Black Hawk County Sheriff's Office — Who's In Jail",
     sourceStatus: "audit_pending"
@@ -115,7 +115,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Review Ramsey County, Minnesota adult detention information with official source context, freshness, and clear data limits.",
     article:
-      "Ramsey County provides an Adult Detention Center roster through its official open-data service. The county page will distinguish current custody from the source's short release window and display the source update time.",
+      "Ramsey County provides an Adult Detention Center roster through its official open-data service. This page distinguishes current custody from the source's short release window and displays the source update time.",
     officialSourceUrl:
       "https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/",
     officialSourceLabel: "Ramsey County Adult Detention Center roster",
@@ -132,7 +132,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Check Stearns County, Minnesota custody information with the official jail roster source and its current-custody scope.",
     article:
-      "Stearns County's Sheriff's Office links its jail roster for current custody information. The production article will preserve the source's labels, record the source timestamp, and send questions that the roster cannot answer back to the official jail contact.",
+      "Stearns County's Sheriff's Office links its jail roster for current custody information. This page preserves the source's labels, records the source timestamp, and directs unanswered questions to the official jail contact.",
     officialSourceUrl: "https://jailroster.stearnscountymn.gov/Current",
     officialSourceLabel: "Stearns County current jail roster",
     sourceStatus: "audit_pending"
@@ -148,7 +148,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Find Anoka County, Minnesota custody information with the official inmate locator, source scope, and freshness details.",
     article:
-      "Anoka County's official inmate locator covers current and recently released records. The production page will select one approved scope, label it clearly, and keep any release window separate from current custody.",
+      "Anoka County's official inmate locator covers current and recently released records. This page publishes only the approved current-custody scope and keeps any release window separate from current custody.",
     officialSourceUrl:
       "https://incustodysearch.co.anoka.mn.us/JailInfoForPublic/inmates_jsonp.aspx?callback=anokaInmates",
     officialSourceLabel: "Anoka County official inmate locator data feed",

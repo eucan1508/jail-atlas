@@ -19,6 +19,8 @@ export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
   const showFinder = prototypeAvailable || published.length > 0;
+  const publishedStates = Array.from(new Set(published.map(({ entry }) => entry.stateName)));
+  const approvedScope = publishedStates.length > 0 ? publishedStates.join(" + ") : "None yet";
 
   return (
     <main id="main-content">
@@ -76,7 +78,7 @@ export default async function HomePage() {
             <span className="stat__label">healthy official sources</span>
           </div>
           <div className="stat">
-            <strong className="stat__value">Iowa only</strong>
+            <strong className="stat__value">{approvedScope}</strong>
             <span className="stat__label">approved geographic scope</span>
           </div>
         </div>

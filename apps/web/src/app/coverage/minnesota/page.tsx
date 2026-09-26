@@ -5,18 +5,25 @@ import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
 import { countiesForState } from "@/lib/coverage-catalog";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
-const counties = countiesForState("minnesota");
+export const dynamic = "force-dynamic";
 
-export const metadata = createPageMetadata({
-  path: "/coverage/minnesota/",
-  title: "Minnesota custody source coverage",
-  description:
-    "Review the proposed Minnesota county custody sources, audit status, and publication gates.",
-  index: false
-});
+export async function generateMetadata() {
+  const published = await getPublishedCountyCoverage("minnesota");
+  return createPageMetadata({
+    path: "/coverage/minnesota/",
+    title: "Minnesota custody source coverage",
+    description: "Review active Minnesota county custody coverage and official source health.",
+    index: published.length > 0
+  });
+}
 
-export default function MinnesotaCoveragePage() {
+export default async function MinnesotaCoveragePage() {
+  const counties = countiesForState("minnesota");
+  const published = await getPublishedCountyCoverage("minnesota");
+  const publishedSlugs = new Set(published.map(({ entry }) => entry.slug));
+  const pending = counties.filter((county) => !publishedSlugs.has(county.slug));
   return (
     <main id="main-content" className="page-main site-shell">
       <Breadcrumbs
@@ -24,42 +31,61 @@ export default function MinnesotaCoveragePage() {
         items={[{ href: "/", label: "Home" }, { href: "/coverage/", label: "Coverage" }, { label: "Minnesota" }]}
       />
       <PageIntro
-        eyebrow="Minnesota · proposed second state"
+        eyebrow="Minnesota"
         title="Minnesota custody source coverage"
         summary={
           <p>
-            Five county sources are selected for audit. Each county page remains private and
-            non-indexed until its official relationship, parser, freshness, retention, and human
-            review gates pass.
+            Published counties appear only after their official relationship, parser, freshness,
+            retention, and human review gates pass.
           </p>
         }
       />
 
-      <Alert heading="Source audit in progress" tone="warning">
-        No Minnesota roster is published from this page yet. The links below go to the official
-        county sources that will be used for the source-specific adapter review.
+      <Alert
+        heading={published.length > 0 ? "Active Minnesota coverage" : "Source audit in progress"}
+        tone={published.length > 0 ? "info" : "warning"}
+      >
+        {published.length > 0
+          ? `${published.length} Minnesota county source${published.length === 1 ? " is" : "s are"} currently published. Verify time-sensitive information at the official source.`
+          : "No Minnesota roster is published from this page yet."}
       </Alert>
 
       <section className="content-section" aria-labelledby="county-list-heading">
-        <h2 id="county-list-heading">Proposed counties</h2>
+        <h2 id="county-list-heading">Published counties</h2>
         <div className="coverage-grid">
-          {counties.map((county) => (
-            <article className="surface-card coverage-state-row" key={county.slug}>
+          {published.map(({ entry, path }) => (
+            <article className="surface-card coverage-state-row" key={entry.slug}>
               <div>
-                <p className="eyebrow">{county.seatCity}</p>
-                <h3>{county.county}</h3>
-                <p>{county.article}</p>
+                <p className="eyebrow">{entry.seatCity}</p>
+                <h3>{entry.county}</h3>
+                <p>{entry.description}</p>
               </div>
               <div className="button-row">
-                <Link href={`/${county.state}/${county.slug}/custody/`}>Review page brief</Link>
-                <a href={county.officialSourceUrl} rel="noreferrer" target="_blank">
-                  Official source
-                </a>
+                <Link href={path}>View custody page</Link>
+                <a href={entry.officialSourceUrl} rel="noreferrer" target="_blank">Official source</a>
               </div>
             </article>
           ))}
         </div>
       </section>
+
+      {pending.length > 0 ? (
+        <section className="content-section" aria-labelledby="pending-heading">
+          <h2 id="pending-heading">Additional sources under review</h2>
+          <div className="coverage-grid">
+            {pending.map((county) => (
+              <article className="surface-card coverage-state-row" key={county.slug}>
+                <div>
+                  <p className="eyebrow">{county.seatCity}</p>
+                  <h3>{county.county}</h3>
+                  <p>{county.article}</p>
+                </div>
+                <a href={county.officialSourceUrl} rel="noreferrer" target="_blank">Official source</a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <JsonLd
         data={{
@@ -68,7 +94,7 @@ export default function MinnesotaCoveragePage() {
           "@id": absoluteUrl("/coverage/minnesota/#page"),
           url: absoluteUrl("/coverage/minnesota/"),
           name: "Minnesota custody source coverage",
-          description: "Proposed Minnesota county custody coverage and source audit status.",
+          description: "Active Minnesota county custody coverage and official source health.",
           isPartOf: { "@id": absoluteUrl("/#website") }
         }}
       />

@@ -8,6 +8,12 @@ import {
 } from "@/lib/correction-security";
 import { readEnvironment } from "@/lib/env";
 import { checkRateLimit, requestIdentifier } from "@/lib/rate-limit";
+import { countyCoverageCatalog, countyCoveragePath } from "@/lib/coverage-catalog";
+
+const acceptedSourcePagePaths = new Set([
+  "/",
+  ...countyCoverageCatalog.map((entry) => countyCoveragePath(entry))
+]);
 
 const formSchema = z.object({
   category: z.enum([
@@ -21,7 +27,7 @@ const formSchema = z.object({
   contactEmail: z.union([z.literal(""), z.string().email().max(320)]),
   description: z.string().trim().min(20).max(5_000),
   formStartedAt: z.string().datetime(),
-  sourcePagePath: z.enum(["/", "/iowa/scott-county/custody/"]),
+  sourcePagePath: z.string().refine((path) => acceptedSourcePagePaths.has(path)),
   submissionToken: z.string().min(32).max(500),
   website: z.string().max(0)
 });
