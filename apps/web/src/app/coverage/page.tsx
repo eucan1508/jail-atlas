@@ -9,8 +9,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/coverage/",
-  title: "Custody source coverage",
-  description: "See which county custody sources have passed the evidence and publication gates."
+  title: "County Jail Roster Coverage",
+  description:
+    "Browse Jail Atlas coverage in Iowa and Minnesota. Choose a state to find available county jail rosters and see which additional counties are under review."
 });
 
 export const dynamic = "force-dynamic";
@@ -32,15 +33,22 @@ export default async function CoveragePage() {
       />
       <div className="coverage-hero">
         <PageIntro
-          eyebrow="Publication status"
-          title="Custody source coverage"
-          summary={<p>A county appears here only after every evidence, ingestion, and review gate passes.</p>}
+          eyebrow="Browse by state"
+          title="County jail roster coverage"
+          summary={
+            <p>
+              Choose a state to find available county jail rosters and search custody records by
+              county.
+            </p>
+          }
         />
         <div className="coverage-hero__signal" aria-label="Coverage summary">
           <span className="coverage-hero__signal-label">CURRENT SCOPE</span>
           <strong>{published.length}</strong>
           <span>public county pages</span>
-          <div className="coverage-hero__meter" aria-hidden="true"><span style={{ width: `${Math.min(published.length * 16.66, 100)}%` }} /></div>
+          <div className="coverage-hero__meter" aria-hidden="true">
+            <span style={{ width: `${Math.min(published.length * 16.66, 100)}%` }} />
+          </div>
           <small>
             {published.length > 0
               ? "Cleared for public display"
@@ -51,7 +59,10 @@ export default async function CoveragePage() {
 
       <section className="content-section" aria-labelledby="scope-heading">
         <div className="section-kicker-row">
-          <div><p className="eyebrow">Approved geography</p><h2 id="scope-heading">Where the evidence is live</h2></div>
+          <div>
+            <p className="eyebrow">Approved geography</p>
+            <h2 id="scope-heading">Where the evidence is live</h2>
+          </div>
           <span className="section-index">01 / 02</span>
         </div>
         <div className="coverage-grid">
@@ -88,8 +99,8 @@ export default async function CoveragePage() {
             </Link>
           </div>
           <Alert heading="No placeholder coverage" tone="info">
-            Inactive states and unreviewed counties return a genuine 404. Coverage is added one county
-            at a time through a separate approval process.
+            Inactive states and unreviewed counties return a genuine 404. Coverage is added one
+            county at a time through a separate approval process.
           </Alert>
         </div>
       </section>
@@ -99,8 +110,8 @@ export default async function CoveragePage() {
         <p>
           Verified does not mean that this publisher is the official source. It means the official
           institution-to-roster relationship is documented, a live fetch and source-specific parser
-          work, field provenance and retention are known, contacts are checked, and a human review is
-          recorded. Health and freshness can change after publication, so county pages show those
+          work, field provenance and retention are known, contacts are checked, and a human review
+          is recorded. Health and freshness can change after publication, so county pages show those
           states separately.
         </p>
         <p>

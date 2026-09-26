@@ -1,16 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { countyCoveragePath, type CountyCoverageBrief } from "@/lib/coverage-catalog";
 
 export function CountyFinder({
   compact = false,
-  counties = []
+  counties = [],
+  label = "Search by state or county",
+  placeholder = "Try Dallas, Iowa, or Ramsey"
 }: {
   compact?: boolean;
   counties?: readonly CountyCoverageBrief[] | undefined;
+  label?: string;
+  placeholder?: string;
 }) {
+  const inputId = useId();
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase("en-US");
   const matches = useMemo(
@@ -27,18 +32,16 @@ export function CountyFinder({
   return (
     <section
       className={compact ? "county-finder county-finder--compact" : "county-finder"}
-      aria-label="Search public county pages"
+      aria-label={label}
     >
       <div className="county-finder__search">
-        <label htmlFor={compact ? "finder-search-compact" : "finder-search"}>
-          Search by state or county
-        </label>
+        <label htmlFor={inputId}>{label}</label>
         <input
-          id={compact ? "finder-search-compact" : "finder-search"}
+          id={inputId}
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Try Dallas, Iowa, or Ramsey"
+          placeholder={placeholder}
           autoComplete="off"
         />
       </div>

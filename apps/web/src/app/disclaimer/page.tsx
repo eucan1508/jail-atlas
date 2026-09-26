@@ -3,8 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/disclaimer/",
-  title: "Custody information disclaimer",
-  description: "Important limits on custody, charge, release, and contact information."
+  title: "Custody Information Disclaimer",
+  description:
+    "Understand the limits of Jail Atlas custody records, charge labels, identity matching, and update times. A jail roster entry is not proof of guilt."
 });
 
 export default function DisclaimerPage() {
@@ -12,7 +13,7 @@ export default function DisclaimerPage() {
     <TrustPage
       eyebrow="Read before relying"
       path="/disclaimer/"
-      title="Disclaimer"
+      title="Custody information disclaimer"
       summary="This independent product is not a government website, does not control an official roster, and cannot make legal or custody determinations."
       sections={[
         {

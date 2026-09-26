@@ -3,9 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/methodology/",
-  title: "Custody data methodology",
+  title: "How We Verify Jail Rosters",
   description:
-    "How official custody sources are verified, fetched, interpreted, reviewed, and monitored for freshness."
+    "See how Jail Atlas checks official jail sources, processes custody records, and distinguishes successful updates from empty, stale, or unavailable data."
 });
 
 export default function MethodologyPage() {
@@ -13,7 +13,7 @@ export default function MethodologyPage() {
     <TrustPage
       eyebrow="Evidence and freshness"
       path="/methodology/"
-      title="Methodology"
+      title="How we verify county jail rosters"
       summary="The method separates source authority, technical health, data freshness, custody scope, field provenance, and human publication review so one signal cannot stand in for all the others."
       sections={[
         {

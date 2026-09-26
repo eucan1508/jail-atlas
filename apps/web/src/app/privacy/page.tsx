@@ -3,8 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/privacy/",
-  title: "Privacy and custody data retention",
-  description: "How this product minimizes, protects, and retires custody and correction data."
+  title: "Privacy and Data Retention",
+  description:
+    "Read how Jail Atlas handles public custody records and correction reports, including data minimization, retention, security, and privacy concerns."
 });
 
 export default function PrivacyPage() {
@@ -12,7 +13,7 @@ export default function PrivacyPage() {
     <TrustPage
       eyebrow="Data minimization"
       path="/privacy/"
-      title="Privacy"
+      title="Privacy policy and data retention"
       summary="Custody data can affect real people. The product collects only what an approved official source makes necessary for the current-custody task and retains it no longer than the documented source scope permits."
       sections={[
         {

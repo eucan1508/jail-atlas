@@ -1,6 +1,7 @@
 import { Alert } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CountyCoverageCard } from "@/components/county-coverage-card";
+import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
 import { countiesForState } from "@/lib/coverage-catalog";
@@ -13,8 +14,9 @@ export async function generateMetadata() {
   const published = await getPublishedCountyCoverage("minnesota");
   return createPageMetadata({
     path: "/coverage/minnesota/",
-    title: "Minnesota custody source coverage",
-    description: "Review active Minnesota county custody coverage and official source health.",
+    title: "Minnesota County Jail Rosters",
+    description:
+      "Find Minnesota county jail rosters by county or city. Search available detention records, review source-listed charges, and check when data was captured.",
     index: published.length > 0
   });
 }
@@ -28,15 +30,19 @@ export default async function MinnesotaCoveragePage() {
     <main id="main-content" className="page-main site-shell">
       <Breadcrumbs
         currentPath="/coverage/minnesota/"
-        items={[{ href: "/", label: "Home" }, { href: "/coverage/", label: "Coverage" }, { label: "Minnesota" }]}
+        items={[
+          { href: "/", label: "Home" },
+          { href: "/coverage/", label: "Coverage" },
+          { label: "Minnesota" }
+        ]}
       />
       <PageIntro
         eyebrow="Minnesota"
-        title="Minnesota custody source coverage"
+        title="Minnesota county jail rosters"
         summary={
           <p>
-            Published counties appear only after their official relationship, parser, freshness,
-            retention, and human review gates pass.
+            Browse Minnesota county jail and adult detention rosters. Open a published county page
+            to search names, review available booking details, and check the latest capture time.
           </p>
         }
       />
@@ -49,6 +55,26 @@ export default async function MinnesotaCoveragePage() {
           ? `${published.length} Minnesota county page${published.length === 1 ? " is" : "s are"} currently public. Each page carries its capture time and review status.`
           : "No Minnesota roster is published from this page yet."}
       </Alert>
+
+      <section
+        className="content-section state-search-section"
+        aria-labelledby="state-search-heading"
+      >
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Find a county</p>
+            <h2 id="state-search-heading">Search Minnesota county jails</h2>
+            <p className="section-lede">
+              Search by county or city to open a published Minnesota custody page.
+            </p>
+          </div>
+        </div>
+        <CountyFinder
+          counties={published.map(({ entry }) => entry)}
+          label="Search Minnesota county jails"
+          placeholder="Enter a Minnesota county or city"
+        />
+      </section>
 
       <section className="content-section" aria-labelledby="county-list-heading">
         <h2 id="county-list-heading">Published counties</h2>
@@ -70,7 +96,11 @@ export default async function MinnesotaCoveragePage() {
           <h2 id="pending-heading">Additional sources under review</h2>
           <div className="coverage-grid coverage-grid--counties">
             {pending.map((county) => (
-              <CountyCoverageCard entry={county} href={`/${county.state}/${county.slug}/custody/`} key={county.slug} />
+              <CountyCoverageCard
+                entry={county}
+                href={`/${county.state}/${county.slug}/custody/`}
+                key={county.slug}
+              />
             ))}
           </div>
         </section>
@@ -82,8 +112,9 @@ export default async function MinnesotaCoveragePage() {
           "@type": "CollectionPage",
           "@id": absoluteUrl("/coverage/minnesota/#page"),
           url: absoluteUrl("/coverage/minnesota/"),
-          name: "Minnesota custody source coverage",
-          description: "Active Minnesota county custody coverage and official source health.",
+          name: "Minnesota County Jail Rosters",
+          description:
+            "Published Minnesota county jail rosters with official source context and update times.",
           isPartOf: { "@id": absoluteUrl("/#website") }
         }}
       />

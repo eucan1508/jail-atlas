@@ -11,9 +11,9 @@ export const dynamic = "force-dynamic";
 
 export const metadata = createPageMetadata({
   path: "/",
-  title: "Verify county custody information",
+  title: "County Jail Rosters by State",
   description:
-    "Find a county custody page and check its official source, data scope, freshness, and review status."
+    "Search county jail rosters in Iowa and Minnesota. Find custody records, available booking details, source-listed charges, and the latest capture time."
 });
 
 export default async function HomePage() {
@@ -37,10 +37,10 @@ export default async function HomePage() {
       <section className="home-hero site-shell">
         <div className="home-hero__copy">
           <p className="eyebrow">Evidence before coverage</p>
-          <h1>Check custody information with the source and timestamp in view.</h1>
+          <h1>County jail rosters, clearly sourced.</h1>
           <p>
-            This independent utility is designed to show what an official roster covers, when it
-            last worked, and how each source was verified. It is not a government website.
+            Find a county, search its custody records, and see when the information was captured.
+            Our independent directory brings together public jail data from official sources.
           </p>
           <div className="hero-proof-row" aria-label="Service principles">
             <span>
@@ -52,7 +52,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="home-hero__finder">
-          <h2>Find a county custody page</h2>
+          <h2>Find a county jail roster</h2>
           <CountyFinder counties={published.map(({ entry }) => entry)} />
         </div>
       </section>
@@ -162,9 +162,9 @@ export default async function HomePage() {
           "@type": "WebPage",
           "@id": absoluteUrl("/#page"),
           url: absoluteUrl("/"),
-          name: "Verify county custody information",
+          name: "County Jail Rosters by State",
           description:
-            "Find a county custody page and check its official source, scope, and freshness.",
+            "Search Iowa and Minnesota county jail rosters with booking details, source-listed charges, and capture times.",
           isPartOf: { "@id": absoluteUrl("/#website") }
         }}
       />

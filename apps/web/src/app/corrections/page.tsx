@@ -11,9 +11,9 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createPageMetadata({
   path: "/corrections/",
-  title: "Report a custody data concern",
+  title: "Report a Roster Data Concern",
   description:
-    "Report stale custody data, a source mismatch, incorrect contact details, or an accessibility issue."
+    "Report a stale jail roster, incorrect display, privacy concern, or accessibility issue on Jail Atlas. Submit the affected page and details for review."
 });
 
 const resultMessages = {
@@ -60,7 +60,7 @@ export default async function CorrectionsPage({
       />
       <PageIntro
         eyebrow="Correction and freshness reports"
-        title="Report a custody data concern"
+        title="Report a county jail data concern"
         summary={
           <p>
             Flag a stale roster, display mismatch, incorrect verified contact, unsupported guidance,

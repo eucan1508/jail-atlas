@@ -3155,6 +3155,23 @@ textarea {
   scrollbar-color: #8db6aa transparent;
 }
 
+.state-search-section .section-heading-row {
+  margin-bottom: 1.25rem;
+}
+
+.state-search-section .section-lede {
+  color: var(--color-ink-soft);
+  margin-bottom: 0;
+}
+
+.state-search-section .county-finder {
+  box-shadow: 0 8px 24px rgb(16 44 53 / 0.05);
+}
+
+.state-search-section .county-finder::before {
+  display: none;
+}
+
 .roster-search__controls {
   grid-template-columns: minmax(0, 1fr) auto auto;
 }
