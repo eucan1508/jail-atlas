@@ -21,13 +21,15 @@ import { countyCoverageCatalog, type CountyCoverageBrief } from "./coverage-cata
 const liveAdapterKeys: Record<string, string> = {
   "dallas-county": "dallas-newworld-inmate-inquiry",
   "cedar-county": "cedar-county-iowa-current-roster",
-  "black-hawk-county": "black-hawk-county-iowa-current-roster"
+  "black-hawk-county": "black-hawk-county-iowa-current-roster",
+  "hennepin-county": "hennepin-county-mn-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.
 const maximumSnapshotAgeMs = 30 * 60 * 60 * 1_000;
 const SourceRowSchema = z.object({
   source_id: z.string().uuid(),
+  state_code: z.string().length(2),
   source_url: z.string().url(),
   adapter_key: z.string(),
   snapshot_id: z.string().uuid(),
@@ -76,7 +78,7 @@ async function readSource(
   selector: { sourceId: string } | { adapterKey: string }
 ): Promise<LiveSource | null> {
   const result = await db.execute(sql`
-    SELECT os.id AS source_id, os.source_url, os.adapter_key,
+    SELECT os.id AS source_id, st.code AS state_code, os.source_url, os.adapter_key,
       latest.id AS snapshot_id, latest.captured_at, latest.record_count,
       latest.valid_empty_result, latest.stale, latest.expires_at
     FROM official_sources os
@@ -97,7 +99,7 @@ async function readSource(
       AND os.publication_approved = true
       AND oi.active = true
       AND co.publication_status = 'published'
-      AND st.publication_status = 'published' AND st.code = 'IA'
+      AND st.publication_status = 'published' AND st.code IN ('IA', 'MN')
       AND EXISTS (
         SELECT 1 FROM source_adapters sa
         WHERE sa.source_id = os.id AND sa.adapter_key = os.adapter_key
@@ -107,8 +109,10 @@ async function readSource(
   `);
   if (!result.rows[0]) return null;
   const row = SourceRowSchema.parse(result.rows[0]);
+  const stateByCode = { IA: "iowa", MN: "minnesota" } as const;
+  const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(
-    (county) => county.state === "iowa" && liveAdapterKeys[county.slug] === row.adapter_key
+    (county) => county.state === expectedState && liveAdapterKeys[county.slug] === row.adapter_key
   );
   const age = Date.now() - row.captured_at.getTime();
   if (
@@ -132,7 +136,7 @@ async function readSource(
 
 export async function getLiveCountySource(entry: CountyCoverageBrief): Promise<LiveSource | null> {
   if (readEnvironment().DATA_MODE !== "official" || !process.env.DATABASE_URL) return null;
-  const adapterKey = entry.state === "iowa" ? liveAdapterKeys[entry.slug] : undefined;
+  const adapterKey = liveAdapterKeys[entry.slug];
   return adapterKey ? readSource(getDatabase(), { adapterKey }) : null;
 }
 

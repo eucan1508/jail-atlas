@@ -32,7 +32,13 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "www.bhcso.org"
     }
   ],
-  MN: []
+  MN: [
+    {
+      countySlug: "hennepin",
+      adapterKey: "hennepin-county-mn-current-roster",
+      sourceHost: "api.hennepincounty.gov"
+    }
+  ]
 };
 
 export interface LiveStateExecution {
@@ -49,8 +55,8 @@ export function liveStateSucceeded(
 }
 
 /**
- * Runs the approved adapter set for one state in declaration order. Minnesota stays empty until
- * its source-specific adapters pass the same audit as Iowa; an empty state is therefore explicit.
+ * Runs the approved adapter set for one state in declaration order. Each state remains explicit so
+ * an unapproved county cannot be reached through a generic live-ingest path.
  */
 export async function executeLiveState(
   config: WorkerConfig,
