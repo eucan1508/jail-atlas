@@ -11,8 +11,8 @@ with the adapter records disabled and publication approval off.
    ```
 
    The workflow uses the existing customer `DATABASE_URL` repository secret. It validates the
-   migration journal and applies append-only Drizzle migrations. If the workflow is unavailable,
-   the same command can be run from a customer-controlled environment:
+   migration journal and applies append-only Drizzle migrations. If the workflow is unavailable, the
+   same command can be run from a customer-controlled environment:
 
    ```text
    pnpm --filter @jail-atlas/database db:migrate
