@@ -3,8 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/terms/",
-  title: "Terms of use",
-  description: "Terms for using this independent county custody information product."
+  title: "Terms of Use",
+  description:
+    "Review the terms for using Jail Atlas, including permitted use of county custody information, source limitations, corrections, and service availability."
 });
 
 export default function TermsPage() {
@@ -12,7 +13,7 @@ export default function TermsPage() {
     <TrustPage
       eyebrow="Use of this service"
       path="/terms/"
-      title="Terms"
+      title="Terms of use"
       summary="These Phase 1 terms describe the intended public-information service and its limits. Production legal review, operator details, effective date, and jurisdiction must be approved before launch."
       sections={[
         {

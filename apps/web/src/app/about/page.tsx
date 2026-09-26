@@ -4,8 +4,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/about/",
-  title: "About this custody information product",
-  description: "Why this independent custody source verification product exists and who it serves."
+  title: "About Jail Atlas",
+  description:
+    "Learn about Jail Atlas, an independent county jail roster directory, how it uses official public sources, and the limits of the custody information it shows."
 });
 
 export default function AboutPage() {
@@ -15,7 +16,7 @@ export default function AboutPage() {
     <TrustPage
       eyebrow="Independent public information"
       path="/about/"
-      title="About this product"
+      title="About Jail Atlas"
       summary={`${BRAND_NAME} is an independently operated information product built to help people verify county custody information without obscuring its official source or age.`}
       sections={[
         {

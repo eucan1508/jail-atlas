@@ -3,8 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/source-policy/",
-  title: "Official custody source policy",
-  description: "The evidence and publication requirements for county custody sources."
+  title: "Official Jail Roster Source Policy",
+  description:
+    "Read the source requirements for Jail Atlas county rosters, including official ownership, vendor authorization, publication review, and data limits."
 });
 
 export default function SourcePolicyPage() {
@@ -12,7 +13,7 @@ export default function SourcePolicyPage() {
     <TrustPage
       eyebrow="Admission rules"
       path="/source-policy/"
-      title="Official source policy"
+      title="Our official source policy"
       summary="A roster is eligible only when an official public institution operates it or provides documentary evidence that the vendor roster is its custody source."
       sections={[
         {

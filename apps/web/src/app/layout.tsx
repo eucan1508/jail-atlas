@@ -17,11 +17,11 @@ export function generateMetadata(): Metadata {
     metadataBase: new URL(environment.PRODUCTION_DOMAIN),
     applicationName: environment.BRAND_NAME,
     title: {
-      default: `${environment.BRAND_NAME} — Verified county custody sources`,
+      default: `${environment.BRAND_NAME} — County Jail Rosters`,
       template: `%s | ${environment.BRAND_NAME}`
     },
     description:
-      "Check verified county custody information across Iowa and Minnesota, with source scope and freshness shown clearly.",
+      "Search Iowa and Minnesota county jail rosters with source context, custody scope, and the latest capture time shown clearly.",
     alternates: { canonical: absoluteUrl("/") },
     robots: {
       index: !noIndex,

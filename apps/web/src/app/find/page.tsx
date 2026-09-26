@@ -5,14 +5,15 @@ import { CountyFinder } from "@/components/county-finder";
 import { PageIntro } from "@/components/page-intro";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
-import { absoluteUrl } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Find a county custody page",
-  description: "Find an available county custody information page.",
-  alternates: { canonical: absoluteUrl("/find/") },
-  robots: { index: false, follow: false }
-};
+export const metadata: Metadata = createPageMetadata({
+  path: "/find/",
+  title: "Find a County Jail Roster",
+  description:
+    "Search Jail Atlas by state, county, or city to find an available jail roster. Open a county page to review custody records and the latest capture time.",
+  index: false
+});
 
 const searchSchema = z.object({
   state: z.string().optional(),
@@ -36,8 +37,8 @@ export default async function FindPage({
     <main id="main-content" className="page-main site-shell narrow-shell finder-page">
       <PageIntro
         eyebrow="County finder"
-        title="Find a county custody page"
-        summary={<p>Only counties that pass the publication gates can appear in public results.</p>}
+        title="Find a county jail roster"
+        summary={<p>Search published county pages by state, county, or city.</p>}
       />
       <CountyFinder counties={published.map(({ entry }) => entry)} />
       {selectedPublished ? (
@@ -56,7 +57,7 @@ export default async function FindPage({
             fictional data, not published custody information.
           </p>
         </section>
-      ) : query.county ? (
+      ) : query.county && !selectedPublished ? (
         <p className="surface-card" role="status">
           No published county page matches this selection.
         </p>

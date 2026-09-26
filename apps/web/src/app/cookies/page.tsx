@@ -3,8 +3,9 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/cookies/",
-  title: "Cookie policy",
-  description: "How this county custody information service uses cookies and local storage."
+  title: "Cookie Policy",
+  description:
+    "Learn how Jail Atlas uses browser storage for essential functions, its approach to optional analytics, and how to manage cookies in your browser."
 });
 
 export default function CookiesPage() {
