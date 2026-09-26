@@ -1188,7 +1188,7 @@ textarea {
   --color-surface-raised: #fbfdf9;
   --color-ink: #102d2b;
   --color-ink-soft: #47605c;
-  --color-ink-faint: #607570;
+  --color-ink-faint: #4e675f;
   --color-border: #cbd8d2;
   --color-border-strong: #8ca49b;
   --color-action: #08786b;
@@ -1660,7 +1660,7 @@ textarea {
   background: #f6fbf8;
 }
 .roster-table tbody th > span {
-  color: #6d847c;
+  color: #4e675f;
 }
 .roster-continuation {
   border-top: 1px solid #d5e1db;
