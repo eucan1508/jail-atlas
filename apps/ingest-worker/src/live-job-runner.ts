@@ -14,10 +14,10 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
-  HENNEPIN_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
-  createHennepinCountySourceAdapter,
   createIowaCurrentRosterAdapter,
+  RAMSEY_COUNTY_ADAPTER_KEY,
+  createRamseyCountySourceAdapter,
   runSourceAdapter,
   type AdapterContext,
   type AdapterExecutionResult,
@@ -76,7 +76,8 @@ export function createLiveSourceAdapter(
   const sourceUrl = new URL(source.sourceUrl);
   // The transport already enforces path-segment boundaries. Keep the exact list
   // path so sources without a trailing slash can fetch their list and details.
-  const allowedPathPrefixes = [sourceUrl.pathname];
+  const allowedPathPrefixes =
+    source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY ? ["/resource"] : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -105,13 +106,9 @@ export function createLiveSourceAdapter(
       createId: createAdapterId
     });
   }
-  if (source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY) {
-    if (!config.hennepinSubscriptionKey) {
-      throw new Error("Hennepin live ingestion requires HENNEPIN_SUBSCRIPTION_KEY");
-    }
-    return createHennepinCountySourceAdapter({
+  if (source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY) {
+    return createRamseyCountySourceAdapter({
       fetch,
-      subscriptionKey: config.hennepinSubscriptionKey,
       facilityId,
       createId: () => createId()
     });

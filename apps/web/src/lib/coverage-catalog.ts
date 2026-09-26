@@ -107,22 +107,6 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
-    county: "Hennepin County",
-    slug: "hennepin-county",
-    seatCity: "Minneapolis",
-    h1: "Hennepin County, Minnesota custody information",
-    title: "Hennepin County Minnesota custody information and jail roster",
-    description:
-      "Find Hennepin County, Minnesota custody information with the official jail source, freshness status, and source-labelled fields.",
-    article:
-      "Hennepin County's Sheriff's Office describes a jail roster that is refreshed regularly and includes current custody information. The production page will show only the approved scope and will send decisions that require current confirmation back to the official source.",
-    officialSourceUrl: "https://jailroster.hennepin.us/",
-    officialSourceLabel: "Hennepin County Sheriff jail roster",
-    sourceStatus: "audit_pending"
-  },
-  {
-    state: "minnesota",
-    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     seatCity: "Saint Paul",

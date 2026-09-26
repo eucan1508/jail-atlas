@@ -22,7 +22,6 @@ source-specific parser contract and a human review packet.
 
 | County     | Official source to audit                                                                                                                            | Status                                           |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Hennepin   | [Hennepin County jail information](https://www.hennepinsheriff.org/jail-warrants/jail)                                                              | Source audit pending                             |
 | Ramsey     | [Ramsey County Adult Detention Center roster](https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/) | Source audit pending                             |
 | Stearns    | [Stearns County current jail roster](http://jailroster.stearnscountymn.gov/Current)                                                                 | Reference connector exists; source audit pending |
 | Anoka      | [Anoka County inmate locator](https://www.anokacountymn.gov/727/Inmate-Locator)                                                                     | Source audit pending                             |
