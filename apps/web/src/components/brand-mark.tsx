@@ -4,14 +4,22 @@ export function BrandMark() {
       className="brand-mark"
       aria-hidden="true"
       focusable="false"
-      viewBox="0 0 42 42"
-      width="42"
-      height="42"
+      viewBox="0 0 48 48"
+      width="48"
+      height="48"
     >
-      <rect x="1" y="1" width="40" height="40" rx="11" fill="currentColor" />
-      <path d="M10 11h13a5 5 0 0 1 5 5v1H15a5 5 0 0 1-5-5v-1Z" fill="var(--color-action-soft)" />
-      <path d="M32 31H19a5 5 0 0 1-5-5v-1h13a5 5 0 0 1 5 5v1Z" fill="#9de1d2" />
-      <circle cx="29.5" cy="13" r="2.6" fill="#f5cb67" />
+      <rect x="1" y="1" width="46" height="46" rx="14" fill="currentColor" />
+      <path d="M12 14h18c4.4 0 8 3.6 8 8v2H20c-4.4 0-8-3.6-8-8v-2Z" fill="#d6f6e9" />
+      <path d="M36 34H18c-4.4 0-8-3.6-8-8v-2h18c4.4 0 8 3.6 8 8v2Z" fill="#67d8bd" />
+      <path
+        d="M24 17h6M18 31h8"
+        stroke="#0b302b"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity=".5"
+      />
+      <circle cx="35" cy="13" r="3.5" fill="#ffd36b" />
+      <circle cx="35" cy="13" r="1.2" fill="#142520" />
     </svg>
   );
 }

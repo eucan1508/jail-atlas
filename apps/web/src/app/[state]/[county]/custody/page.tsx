@@ -75,7 +75,7 @@ export default async function CountyCustodyBriefPage({
           This page shows current-custody records from the approved official source. Verify
           time-sensitive information at the source before relying on it.
         </Alert>
-        <section className="content-section" aria-labelledby="roster-heading">
+        <section className="content-section roster-section" aria-labelledby="roster-heading">
           <div className="section-heading-row">
             <div>
               <StatusPill tone="current">Healthy source</StatusPill>
