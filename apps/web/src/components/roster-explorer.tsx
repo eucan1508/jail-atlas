@@ -104,7 +104,7 @@ export function RosterExplorer({
         <table className="roster-table">
           <caption>
             {official
-              ? "Current-custody records as reported by the linked official source at the displayed fetch time."
+              ? "Current-custody records captured from the approved source at the displayed fetch time."
               : "Synthetic current-custody records. Names and identifiers are fictional and are not official information."}
           </caption>
           <thead>

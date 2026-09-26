@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Alert, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { CountyFinder } from "@/components/county-finder";
 import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
@@ -109,7 +108,6 @@ export default async function IowaCoveragePage() {
             </div>
             <Link href="/iowa/scott-county/custody/">Review the prototype</Link>
           </div>
-          <CountyFinder compact />
         </section>
       ) : null}
 

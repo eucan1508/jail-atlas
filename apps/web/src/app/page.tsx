@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Alert, LinkButton, StatusPill } from "@jail-atlas/ui";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
+import { countiesForState } from "@/lib/coverage-catalog";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
@@ -18,9 +19,20 @@ export const metadata = createPageMetadata({
 export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
-  const showFinder = prototypeAvailable || published.length > 0;
   const publishedStates = Array.from(new Set(published.map(({ entry }) => entry.stateName)));
   const approvedScope = publishedStates.length > 0 ? publishedStates.join(" + ") : "None yet";
+  const stateDirectory = [
+    { code: "IA", name: "Iowa", slug: "iowa", total: countiesForState("iowa").length },
+    {
+      code: "MN",
+      name: "Minnesota",
+      slug: "minnesota",
+      total: countiesForState("minnesota").length
+    }
+  ].map((state) => ({
+    ...state,
+    published: published.filter(({ entry }) => entry.state === state.slug).length
+  }));
 
   return (
     <main id="main-content">
@@ -43,16 +55,40 @@ export default async function HomePage() {
         </div>
         <div className="home-hero__finder">
           <h2>Find a county custody page</h2>
-          {showFinder ? (
-            <CountyFinder
-              counties={published.length ? published.map(({ entry }) => entry) : undefined}
-            />
-          ) : (
-            <Alert heading="No county is published yet" tone="info">
-              Coverage appears only after every source, parser, contact, evidence, and human-review
-              gate passes.
-            </Alert>
-          )}
+          <CountyFinder counties={published.map(({ entry }) => entry)} />
+        </div>
+      </section>
+
+      <section
+        className="home-section home-directory site-shell"
+        aria-labelledby="directory-heading"
+      >
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Browse by state</p>
+            <h2 id="directory-heading">Find a county by geography</h2>
+          </div>
+          <span className="section-note">Two states · {published.length} public pages</span>
+        </div>
+        <div className="state-directory-grid">
+          {stateDirectory.map((state) => (
+            <Link
+              className="state-directory-card"
+              href={`/coverage/${state.slug}/`}
+              key={state.slug}
+            >
+              <span className="state-directory-card__code">{state.code}</span>
+              <span className="state-directory-card__copy">
+                <strong>{state.name}</strong>
+                <small>
+                  {state.published} public · {state.total} tracked
+                </small>
+              </span>
+              <span className="state-directory-card__arrow" aria-hidden="true">
+                ↗
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -74,21 +110,25 @@ export default async function HomePage() {
             <p className="eyebrow">Verified coverage</p>
             <h2 id="coverage-heading">Coverage stays deliberately small</h2>
           </div>
-          <Link href="/coverage/">View coverage status</Link>
         </div>
         <div className="stat-grid">
           <div className="stat">
             <strong className="stat__value">{published.length}</strong>
-            <span className="stat__label">published counties</span>
+            <span className="stat__label">public county pages</span>
           </div>
           <div className="stat">
             <strong className="stat__value">{published.length}</strong>
-            <span className="stat__label">healthy official sources</span>
+            <span className="stat__label">reviewed source feeds</span>
           </div>
           <div className="stat">
             <strong className="stat__value">{approvedScope}</strong>
-            <span className="stat__label">approved geographic scope</span>
+            <span className="stat__label">public geographic scope</span>
           </div>
+        </div>
+        <div className="section-action-row">
+          <Link href="/coverage/">
+            View all coverage <span aria-hidden="true">↗</span>
+          </Link>
         </div>
         {prototypeAvailable ? (
           <div className="prototype-row">

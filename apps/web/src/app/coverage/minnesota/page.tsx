@@ -46,7 +46,7 @@ export default async function MinnesotaCoveragePage() {
         tone={published.length > 0 ? "info" : "warning"}
       >
         {published.length > 0
-          ? `${published.length} Minnesota county source${published.length === 1 ? " is" : "s are"} currently published. Verify time-sensitive information at the official source.`
+          ? `${published.length} Minnesota county page${published.length === 1 ? " is" : "s are"} currently public. Each page carries its capture time and review status.`
           : "No Minnesota roster is published from this page yet."}
       </Alert>
 
