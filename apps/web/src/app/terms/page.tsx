@@ -19,7 +19,7 @@ export default function TermsPage() {
           heading: "Informational purpose",
           paragraphs: [
             "The service organizes information from identified official public sources and explains source scope and freshness. It is not an official record, government service, court docket, background-check service, legal service, notification system, or substitute for contacting the responsible institution.",
-            "Custody status and charges can change after the displayed successful-fetch time. Use the linked official source or verified facility contact for decisions that depend on current information."
+            "Custody status and charges can change after the displayed successful-fetch time. Use the timestamp, page context, and correction process for decisions that depend on current information."
           ]
         },
         {

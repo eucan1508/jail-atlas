@@ -19,7 +19,7 @@ export default function MethodologyPage() {
         {
           heading: "1. Establish the official relationship",
           paragraphs: [
-            "An official county, sheriff, jail, detention authority, or public detention authority page must operate the roster or explicitly link or embed its vendor. A vendor domain by itself is not evidence. Reviewers store the official institution page, the roster URL, the relationship-evidence URL, and a plain-language description of what the evidence demonstrates.",
+            "An official county, sheriff, jail, detention authority, or public detention authority must operate the roster or explicitly authorize its vendor. A vendor domain by itself is not evidence. Reviewers store the institution record, the roster endpoint, the relationship evidence, and a plain-language description of what the evidence demonstrates.",
             "Search snippets, directories, aggregators, marketing sites, and vendor discovery pages are not factual evidence. Access controls and technical protections are never bypassed."
           ]
         },

@@ -39,9 +39,13 @@ export default async function CoveragePage() {
         <div className="coverage-hero__signal" aria-label="Coverage summary">
           <span className="coverage-hero__signal-label">CURRENT SCOPE</span>
           <strong>{published.length}</strong>
-          <span>published county sources</span>
+          <span>public county pages</span>
           <div className="coverage-hero__meter" aria-hidden="true"><span style={{ width: `${Math.min(published.length * 16.66, 100)}%` }} /></div>
-          <small>Iowa + Minnesota</small>
+          <small>
+            {published.length > 0
+              ? "Cleared for public display"
+              : "No county page has cleared review yet"}
+          </small>
         </div>
       </div>
 
@@ -59,11 +63,13 @@ export default async function CoveragePage() {
               <h3>Iowa</h3>
               <p>
                 {iowaPublished
-                  ? `${publishedIowa.length} published county source${publishedIowa.length === 1 ? " is" : "s are"} available.`
-                  : `${iowaPlanned.length} Iowa county sources are selected for audit; none are published yet.`}
+                  ? `${publishedIowa.length} public county page${publishedIowa.length === 1 ? " is" : "s are"} available.`
+                  : `${iowaPlanned.length} Iowa county pages are currently under review.`}
               </p>
             </div>
-            <Link href="/coverage/iowa/">View Iowa coverage</Link>
+            <Link className="coverage-state-row__link" href="/coverage/iowa/">
+              Explore Iowa <span aria-hidden="true">↗</span>
+            </Link>
           </div>
           <div className="surface-card coverage-state-row">
             <div>
@@ -73,11 +79,13 @@ export default async function CoveragePage() {
               <h3>Minnesota</h3>
               <p>
                 {publishedMinnesota.length > 0
-                  ? `${publishedMinnesota.length} published county source${publishedMinnesota.length === 1 ? " is" : "s are"} available.`
-                  : `${minnesotaPlanned.length} Minnesota county sources are selected for audit; none are published yet.`}
+                  ? `${publishedMinnesota.length} public county page${publishedMinnesota.length === 1 ? " is" : "s are"} available.`
+                  : `${minnesotaPlanned.length} Minnesota county pages are currently under review.`}
               </p>
             </div>
-            <Link href="/coverage/minnesota/">View Minnesota coverage</Link>
+            <Link className="coverage-state-row__link" href="/coverage/minnesota/">
+              Explore Minnesota <span aria-hidden="true">↗</span>
+            </Link>
           </div>
           <Alert heading="No placeholder coverage" tone="info">
             Inactive states and unreviewed counties return a genuine 404. Coverage is added one county

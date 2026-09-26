@@ -6,10 +6,10 @@ export function CountyCoverageCard({
   entry,
   href,
   published = false,
-  actionLabel = "Review page brief"
+  actionLabel = "View county page"
 }: {
   entry: CountyCoverageBrief;
-  href: string;
+  href?: string;
   published?: boolean;
   actionLabel?: string;
 }) {
@@ -22,13 +22,8 @@ export function CountyCoverageCard({
           {stateCode}
         </span>
         <StatusPill tone={published ? "current" : "neutral"}>
-          {published ? "Published source" : "Source under review"}
+          {published ? "Public page" : "Under review"}
         </StatusPill>
-      </div>
-      <div className="coverage-card__visual" aria-hidden="true">
-        <span className="coverage-card__visual-grid" />
-        <span className="coverage-card__visual-pin" />
-        <span className="coverage-card__visual-label">{entry.seatCity}</span>
       </div>
       <div className="coverage-card__body">
         <p className="eyebrow">
@@ -38,14 +33,15 @@ export function CountyCoverageCard({
         <p>{entry.description}</p>
       </div>
       <div className="coverage-card__footer">
-        <span>Official source</span>
+        <span>{published ? "JailAtlas page" : "Publication review"}</span>
         <div className="coverage-card__actions">
-          <Link href={href}>
-            {actionLabel} <span aria-hidden="true">↗</span>
-          </Link>
-          <a href={entry.officialSourceUrl} rel="noreferrer" target="_blank">
-            Source <span aria-hidden="true">↗</span>
-          </a>
+          {published && href ? (
+            <Link href={href}>
+              {actionLabel} <span aria-hidden="true">↗</span>
+            </Link>
+          ) : (
+            <span className="coverage-card__pending">Not public yet</span>
+          )}
         </div>
       </div>
     </article>

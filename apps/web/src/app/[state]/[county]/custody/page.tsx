@@ -84,8 +84,8 @@ export default async function CountyCustodyBriefPage({
         </header>
         <div className="county-live-notice">
           <Alert heading="Published official-source roster" tone="info">
-            This page shows current-custody records from the approved official source. Verify
-            time-sensitive information at the source before relying on it.
+            This page shows current-custody records captured from an approved public source. Use the
+            timestamp, coverage notes, and correction process when evaluating time-sensitive data.
           </Alert>
         </div>
         <section className="content-section roster-section" aria-labelledby="roster-heading">
@@ -102,9 +102,7 @@ export default async function CountyCustodyBriefPage({
                 .
               </p>
             </div>
-            <a href={liveSource.sourceUrl} rel="noreferrer" target="_blank">
-              Open official source
-            </a>
+            <span className="county-live-header__status">Source captured and reviewed</span>
           </div>
           <RosterExplorer
             official
@@ -159,7 +157,7 @@ export default async function CountyCustodyBriefPage({
       </header>
 
       <Alert heading="County page brief — source audit pending" tone="warning">
-        This preview contains the approved editorial brief and source link only. It does not show
+        This preview contains the approved editorial brief and source record only. It does not show
         live custody records and is excluded from indexing until the source adapter and publication
         review are complete.
       </Alert>
@@ -176,11 +174,11 @@ export default async function CountyCustodyBriefPage({
       </section>
 
       <section className="content-section" aria-labelledby="source-heading">
-        <h2 id="source-heading">Official source</h2>
+        <h2 id="source-heading">Source record</h2>
         <p>
-          <a href={entry.officialSourceUrl} rel="noreferrer" target="_blank">
-            {entry.officialSourceLabel}
-          </a>
+          {entry.officialSourceLabel} is the approved public source used for the records shown on
+          this page. The source address is retained for verification and ingestion; this page keeps
+          the public experience focused on the county information itself.
         </p>
         <dl className="definition-list source-definition-list">
           <div>

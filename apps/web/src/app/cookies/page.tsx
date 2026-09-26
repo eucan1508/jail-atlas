@@ -19,7 +19,7 @@ export default function CookiesPage() {
           heading: "Essential operation",
           paragraphs: [
             "The service may use short-lived, essential browser storage for security, rate limiting, form protection, or accessibility preferences. These values are not used to build a person profile or follow you across unrelated sites.",
-            "If a browser blocks non-essential storage, the public pages and official-source links should remain usable. A correction form may require a short-lived security value to prevent automated abuse."
+            "If a browser blocks non-essential storage, the public pages and source attribution should remain usable. A correction form may require a short-lived security value to prevent automated abuse."
           ]
         },
         {

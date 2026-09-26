@@ -33,7 +33,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Check Dallas County, Iowa custody information with the official source, freshness time, and source-listed charges kept in context.",
     article:
-      "Dallas County's official Inmate Inquiry publishes the current-custody scope shown here. This page keeps the last successful fetch, source-labelled charges, and official source link in view.",
+      "Dallas County's official Inmate Inquiry publishes the current-custody scope shown here. This page keeps the last successful fetch and source-labelled charges in view.",
     officialSourceUrl:
       "https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True",
     officialSourceLabel: "Dallas County Inmate Inquiry",
@@ -50,7 +50,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     description:
       "Review Cedar County, Iowa custody information with source scope, freshness, and official contact details shown beside the roster.",
     article:
-      "Cedar County publishes an inmate roster through its Sheriff's Office. This page preserves the roster's current-custody scope and links directly to the county source beside the records.",
+      "Cedar County publishes an inmate roster through its Sheriff's Office. This page preserves the roster's current-custody scope, capture time, and source-labelled fields.",
     officialSourceUrl: "https://cedarcounty.iowa.gov/sheriff/inmate_roster/",
     officialSourceLabel: "Cedar County Sheriff inmate roster",
     sourceStatus: "audit_pending"
@@ -81,9 +81,9 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     h1: "Linn County, Iowa custody information",
     title: "Linn County Iowa custody information and inmate search",
     description:
-      "Check Linn County, Iowa custody information with official source links, freshness status, and county-specific contact guidance.",
+      "Check Linn County, Iowa custody information with source status, freshness, and county-specific contact guidance.",
     article:
-      "Linn County's Law and Public Safety pages link to the Sheriff's Office and inmate-search resources. The production article will document which linked source supplies current custody, what fields it publishes, and when the source was last checked.",
+      "Linn County's Law and Public Safety pages identify the Sheriff's Office and inmate-search resources. The production article documents which source supplies current custody, what fields it publishes, and when the source was last checked.",
     officialSourceUrl: "https://www.linncountyiowa.gov/160/9061/Law-Public-Safety",
     officialSourceLabel: "Linn County Law and Public Safety",
     sourceStatus: "audit_pending"
