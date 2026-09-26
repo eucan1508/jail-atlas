@@ -22,11 +22,16 @@ export { maximumRosterPageSize, rosterPageSize } from "./roster-contract";
 const CursorPayloadSchema = z.object({
   afterId: z.string(),
   afterSourceOrder: z.number().int().nonnegative(),
+  search: z.string().max(80).optional(),
   sourceId: z.string(),
   snapshotId: z.string().uuid().optional(),
   version: z.literal(1)
 });
 type CursorPayload = z.infer<typeof CursorPayloadSchema>;
+
+export function normalizeRosterSearch(value: string | undefined): string {
+  return (value ?? "").trim().replace(/\s+/g, " ").toLocaleLowerCase("en-US").slice(0, 80);
+}
 
 export class InvalidCursorError extends Error {
   constructor() {
@@ -108,21 +113,32 @@ export function syntheticRosterSourceId(): string {
 
 export function getSyntheticRosterPage({
   cursor,
-  limit = rosterPageSize
+  limit = rosterPageSize,
+  search
 }: {
   cursor?: string;
   limit?: number;
+  search?: string;
 }): RosterPage {
   if (!Number.isInteger(limit) || limit < 1 || limit > maximumRosterPageSize) {
     throw new RangeError("Roster page size is outside the allowed range.");
   }
 
   const sourceId = syntheticRosterSourceId();
+  const normalizedSearch = normalizeRosterSearch(search);
   const ordered = syntheticCurrentCustodySnapshot.bookings
     .filter((booking) => booking.custodyScope === "current_custody")
+    .filter(
+      (booking) =>
+        !normalizedSearch ||
+        booking.person.displayName
+          .toLocaleLowerCase("en-US")
+          .includes(normalizedSearch.toLocaleLowerCase("en-US"))
+    )
     .slice()
     .sort(bookingOrder);
   const after = cursor ? decodeRosterCursor(cursor, sourceId) : null;
+  if (after && (after.search ?? "") !== normalizedSearch) throw new InvalidCursorError();
   const startIndex = after
     ? ordered.findIndex(
         (booking) =>
@@ -140,6 +156,7 @@ export function getSyntheticRosterPage({
       ? encodeRosterCursor({
           version: 1,
           sourceId,
+          ...(normalizedSearch ? { search: normalizedSearch } : {}),
           afterSourceOrder: last.sourceOrder,
           afterId: last.id
         })

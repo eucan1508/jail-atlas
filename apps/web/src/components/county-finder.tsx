@@ -22,6 +22,7 @@ export function CountyFinder({
       ),
     [counties, normalizedQuery]
   );
+  const showResults = compact || normalizedQuery.length > 0;
 
   return (
     <section
@@ -40,15 +41,10 @@ export function CountyFinder({
           placeholder="Try Dallas, Iowa, or Ramsey"
           autoComplete="off"
         />
-        <span className="county-finder__count">
-          {counties.length === 0
-            ? "No public county pages yet"
-            : `${matches.length} ${matches.length === 1 ? "page" : "pages"} found`}
-        </span>
       </div>
       <div className="county-finder__results" aria-live="polite">
-        {matches.length > 0 ? (
-          matches.slice(0, 8).map((county) => (
+        {!showResults ? null : matches.length > 0 ? (
+          matches.map((county) => (
             <Link
               className="county-finder__result"
               href={countyCoveragePath(county)}
@@ -75,9 +71,6 @@ export function CountyFinder({
               : "No public county page matches that search."}
           </p>
         )}
-        {matches.length > 8 ? (
-          <p className="county-finder__more">Showing the first 8 matches.</p>
-        ) : null}
       </div>
     </section>
   );

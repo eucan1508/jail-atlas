@@ -2349,8 +2349,7 @@ textarea {
   padding-inline: 1rem;
 }
 
-.county-finder__count,
-.county-finder__more {
+.county-finder__hint {
   color: var(--color-ink-faint);
   font-size: 0.73rem;
   margin: 0;
@@ -2437,6 +2436,55 @@ textarea {
   font-size: 0.82rem;
   line-height: 1.5;
   margin: 0;
+  padding: 1rem;
+}
+
+.roster-search {
+  background: #f5faf8;
+  border: 1px solid #d6e2df;
+  border-radius: 0.85rem;
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+}
+
+.roster-search label {
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roster-search__controls {
+  align-items: center;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.roster-search__controls input {
+  min-height: 2.9rem;
+}
+
+.roster-search__controls button {
+  min-height: 2.9rem;
+  white-space: nowrap;
+}
+
+.roster-search > p {
+  color: var(--color-ink-faint);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.roster-empty {
+  background: #f5faf8;
+  border: 1px dashed #b8cfca;
+  border-radius: 0.72rem;
+  color: var(--color-ink-soft);
+  margin: 1rem 0 0;
   padding: 1rem;
 }
 
@@ -2910,11 +2958,22 @@ textarea {
 }
 
 .county-page--live .county-live-header__copy h1 {
-  max-width: 22ch;
+  font-size: clamp(2.7rem, 4.2vw, 3.9rem);
+  max-width: none;
+}
+
+.county-page--preview .page-intro h1 {
+  font-size: clamp(2.7rem, 4.2vw, 3.9rem);
+  max-width: none;
 }
 
 .county-page--live .county-live-header__copy > p:last-child {
-  max-width: 84ch;
+  max-width: none;
+}
+
+.home-hero__copy h1 {
+  font-size: clamp(2.8rem, 4.4vw, 4rem);
+  max-width: 14ch;
 }
 
 .county-page--live .content-section.prose {
@@ -2987,8 +3046,8 @@ textarea {
   }
 
   .county-page--live .county-live-header__copy h1 {
-    font-size: clamp(2.35rem, 10vw, 4rem);
-    max-width: 15ch;
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+    max-width: none;
   }
 
   .county-page--live .content-section.prose {
@@ -3004,6 +3063,10 @@ textarea {
     table-layout: auto;
   }
 
+  .roster-search__controls {
+    grid-template-columns: 1fr;
+  }
+
   .county-page--live .roster-table tbody th::before {
     color: var(--color-ink-faint);
     content: attr(data-label);
@@ -3013,5 +3076,113 @@ textarea {
     letter-spacing: 0.04em;
     margin-bottom: var(--space-2);
     text-transform: uppercase;
+  }
+}
+
+/* --- Shared page rhythm and search polish ------------------------------ */
+.site-shell {
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+.county-page--live,
+.county-page--preview {
+  max-width: 84rem;
+}
+
+.county-page--live .county-live-header,
+.county-page--preview .page-intro {
+  text-align: center;
+}
+
+.county-page--live .county-live-header__copy h1,
+.county-page--preview .page-intro h1 {
+  margin-inline: auto;
+  max-width: 100%;
+  text-wrap: balance;
+}
+
+.county-page--live .county-live-header__copy > p:last-child,
+.county-page--preview .page-intro__summary {
+  margin-inline: auto;
+  max-width: 72ch;
+}
+
+.county-page--live .county-live-header {
+  justify-items: center;
+}
+
+.county-page--live .county-live-header__copy {
+  width: min(100%, 74rem);
+}
+
+.county-finder__search {
+  position: relative;
+}
+
+.county-finder__search input {
+  padding-inline-end: 3rem;
+}
+
+.county-finder__search::after {
+  border: 2px solid #71918a;
+  border-radius: 50%;
+  content: "";
+  height: 0.72rem;
+  pointer-events: none;
+  position: absolute;
+  right: 1.15rem;
+  top: 2.58rem;
+  width: 0.72rem;
+}
+
+.county-finder__search::before {
+  background: #71918a;
+  content: "";
+  height: 0.42rem;
+  pointer-events: none;
+  position: absolute;
+  right: 0.98rem;
+  top: 3.25rem;
+  transform: rotate(45deg);
+  width: 2px;
+}
+
+.county-finder__results:empty {
+  display: none;
+}
+
+.county-finder__results {
+  scrollbar-color: #8db6aa transparent;
+}
+
+.roster-search__controls {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+.roster-search__clear {
+  min-width: 4.5rem;
+}
+
+@media (max-width: 51.99rem) {
+  .county-page--live .roster-table th:nth-child(n),
+  .county-page--live .roster-table td:nth-child(n) {
+    width: 100% !important;
+  }
+
+  .roster-search__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .county-page--live .county-live-header__copy,
+  .county-page--preview .page-intro {
+    text-align: left;
+  }
+
+  .county-page--live .county-live-header__copy h1,
+  .county-page--preview .page-intro h1,
+  .county-page--live .county-live-header__copy > p:last-child,
+  .county-page--preview .page-intro__summary {
+    margin-inline: 0;
+    max-width: 100%;
   }
 }

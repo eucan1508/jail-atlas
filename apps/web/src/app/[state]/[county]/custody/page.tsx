@@ -92,6 +92,7 @@ export default async function CountyCustodyBriefPage({
             initialCursor={initialPage.nextCursor}
             initialRecords={initialPage.records}
             sourceId={liveSource.sourceId}
+            snapshotId={liveSource.snapshotId}
             total={initialPage.total}
           />
         </section>

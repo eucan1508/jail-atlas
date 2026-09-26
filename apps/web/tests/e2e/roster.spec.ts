@@ -29,6 +29,26 @@ test.describe("server-rendered roster", () => {
     );
     await expect(recordLinks).toHaveCount(0);
   });
+
+  test("searches the complete roster by name", async ({ page }) => {
+    await page.goto(countyPath);
+
+    await page
+      .getByRole("searchbox", { name: "Search current custody records" })
+      .fill("PERSON 051");
+    const responsePromise = page.waitForResponse((response) => {
+      const url = new URL(response.url());
+      return response.request().method() === "GET" && url.pathname.startsWith("/api/rosters/");
+    });
+    await page.getByRole("button", { name: "Search roster" }).click();
+    const response = await responsePromise;
+
+    expect(response.status()).toBe(200);
+    expect(new URL(response.url()).searchParams.get("search")).toBe("PERSON 051");
+    await expect(page.locator(roster.records)).toHaveCount(1);
+    await expect(page.getByText("SYNTHETIC PERSON 051", { exact: false })).toBeVisible();
+    await expect(page.getByText("SYNTHETIC PERSON 001", { exact: false })).toHaveCount(0);
+  });
 });
 
 test.describe("opaque cursor load-more flow", () => {

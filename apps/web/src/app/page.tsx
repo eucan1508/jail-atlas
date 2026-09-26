@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Alert, LinkButton, StatusPill } from "@jail-atlas/ui";
+import { Alert, LinkButton } from "@jail-atlas/ui";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
 import { countiesForState } from "@/lib/coverage-catalog";
@@ -19,8 +19,6 @@ export const metadata = createPageMetadata({
 export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
-  const publishedStates = Array.from(new Set(published.map(({ entry }) => entry.stateName)));
-  const approvedScope = publishedStates.length > 0 ? publishedStates.join(" + ") : "None yet";
   const stateDirectory = [
     { code: "IA", name: "Iowa", slug: "iowa", total: countiesForState("iowa").length },
     {
@@ -103,46 +101,6 @@ export default async function HomePage() {
           </Alert>
         </section>
       ) : null}
-
-      <section className="home-section site-shell" aria-labelledby="coverage-heading">
-        <div className="section-heading-row">
-          <div>
-            <p className="eyebrow">Verified coverage</p>
-            <h2 id="coverage-heading">Coverage stays deliberately small</h2>
-          </div>
-        </div>
-        <div className="stat-grid">
-          <div className="stat">
-            <strong className="stat__value">{published.length}</strong>
-            <span className="stat__label">public county pages</span>
-          </div>
-          <div className="stat">
-            <strong className="stat__value">{published.length}</strong>
-            <span className="stat__label">reviewed source feeds</span>
-          </div>
-          <div className="stat">
-            <strong className="stat__value">{approvedScope}</strong>
-            <span className="stat__label">public geographic scope</span>
-          </div>
-        </div>
-        <div className="section-action-row">
-          <Link href="/coverage/">
-            View all coverage <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-        {prototypeAvailable ? (
-          <div className="prototype-row">
-            <div>
-              <StatusPill tone="stale">Not publishable</StatusPill>
-              <h3>Scott County interaction prototype</h3>
-              <p>Exercises roster pagination and evidence states without an official connection.</p>
-            </div>
-            <LinkButton href="/iowa/scott-county/custody/" variant="secondary">
-              Open synthetic prototype
-            </LinkButton>
-          </div>
-        ) : null}
-      </section>
 
       <section className="home-section home-section--tinted">
         <div className="site-shell">
