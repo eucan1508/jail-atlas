@@ -22,7 +22,7 @@ const liveAdapterKeys: Record<string, string> = {
   "dallas-county": "dallas-newworld-inmate-inquiry",
   "cedar-county": "cedar-county-iowa-current-roster",
   "black-hawk-county": "black-hawk-county-iowa-current-roster",
-  "hennepin-county": "hennepin-county-mn-current-roster"
+  "ramsey-county": "ramsey-county-mn-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.

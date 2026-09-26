@@ -34,9 +34,9 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
   ],
   MN: [
     {
-      countySlug: "hennepin",
-      adapterKey: "hennepin-county-mn-current-roster",
-      sourceHost: "api.hennepincounty.gov"
+      countySlug: "ramsey",
+      adapterKey: "ramsey-county-mn-current-roster",
+      sourceHost: "opendata.ramseycountymn.gov"
     }
   ]
 };

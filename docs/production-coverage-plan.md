@@ -2,7 +2,9 @@
 
 This is the proposed launch set for the customer product: five Iowa counties and five Minnesota
 counties. The county list is an editorial and source-audit plan, not a declaration that live custody
-data is already approved for publication.
+data is already approved for publication. Ramsey is the first Minnesota source with a keyless public
+official data contract; the fifth Minnesota county remains intentionally unselected until its
+official source passes the same audit.
 
 ## Iowa
 
@@ -22,11 +24,11 @@ source-specific parser contract and a human review packet.
 
 | County     | Official source to audit                                                                                                                            | Status                                           |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Hennepin   | [Hennepin County jail information](https://www.hennepinsheriff.org/jail-warrants/jail)                                                              | Source audit pending                             |
-| Ramsey     | [Ramsey County Adult Detention Center roster](https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/) | Source audit pending                             |
+| Ramsey     | [Ramsey County Adult Detention Center roster](https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/) | Adapter tested; production approval pending      |
 | Stearns    | [Stearns County current jail roster](http://jailroster.stearnscountymn.gov/Current)                                                                 | Reference connector exists; source audit pending |
 | Anoka      | [Anoka County inmate locator](https://www.anokacountymn.gov/727/Inmate-Locator)                                                                     | Source audit pending                             |
 | Washington | [Washington County inmate information](https://washingtoncountymn.gov/3214/Inmate-Information)                                                      | Source audit pending                             |
+| TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## What “API content” means here
 

@@ -40,9 +40,22 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```
 
-   The state command is intentionally limited to Dallas, Cedar, and Black Hawk until the remaining
-   Iowa and Minnesota source contracts have approved adapters. A dry-run is allowed while the source
-   rows are `verification_pending`; it never writes a snapshot or changes publication status.
+   The state command is intentionally limited to Dallas, Cedar, Black Hawk, and the Ramsey Minnesota
+   adapter until the remaining Iowa and Minnesota source contracts have approved adapters. A dry-run
+   is allowed while the source rows are `verification_pending`; it never writes a snapshot or
+   changes publication status.
+
+   Ramsey can be checked with the public county open-data host:
+
+   ```text
+   INGEST_MODE=live
+   INGEST_NETWORK_ACCESS=enabled
+   INGEST_DATABASE_WRITES=disabled
+   ALLOW_LIVE_SOURCE_FETCHES=true
+   SOURCE_HOST_ALLOWLIST=opendata.ramseycountymn.gov
+   DATABASE_URL=<customer Neon URL>
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
+   ```
 
 3. Review the dry-run output and the source evidence. Only then enable the specific adapter and
    source in Neon. The activation is deliberately a customer-owned decision because it changes what

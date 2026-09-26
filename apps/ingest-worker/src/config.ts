@@ -55,7 +55,6 @@ const WorkerEnvironmentSchema = z
     ALLOW_LIVE_SOURCE_FETCHES: booleanFlag,
     SCOTT_COUNTY_LIVE_SOURCE_ENABLED: booleanFlag,
     SOURCE_HOST_ALLOWLIST: hostAllowlist,
-    HENNEPIN_SUBSCRIPTION_KEY: z.string().trim().min(16).optional(),
     DATABASE_URL: optionalDatabaseUrl,
     GITHUB_RUN_ID: z.string().trim().min(1).max(128).optional(),
     LIVE_SOURCE_ADAPTER_KEY: z
@@ -151,7 +150,6 @@ export interface WorkerConfig {
   readonly allowLiveSourceFetches: boolean;
   readonly scottCountyLiveSourceEnabled: boolean;
   readonly sourceHostAllowlist: readonly string[];
-  readonly hennepinSubscriptionKey?: string;
   readonly databaseUrl?: string;
   readonly runId?: string;
   readonly liveSourceAdapterKey?: string;
@@ -189,9 +187,6 @@ export function readWorkerConfig(environment: Record<string, string | undefined>
     allowLiveSourceFetches: result.data.ALLOW_LIVE_SOURCE_FETCHES,
     scottCountyLiveSourceEnabled: result.data.SCOTT_COUNTY_LIVE_SOURCE_ENABLED,
     sourceHostAllowlist: Object.freeze([...result.data.SOURCE_HOST_ALLOWLIST]),
-    ...(result.data.HENNEPIN_SUBSCRIPTION_KEY === undefined
-      ? {}
-      : { hennepinSubscriptionKey: result.data.HENNEPIN_SUBSCRIPTION_KEY }),
     ...(result.data.DATABASE_URL === undefined ? {} : { databaseUrl: result.data.DATABASE_URL }),
     ...(result.data.GITHUB_RUN_ID === undefined ? {} : { runId: result.data.GITHUB_RUN_ID }),
     ...(result.data.LIVE_SOURCE_ADAPTER_KEY === undefined
