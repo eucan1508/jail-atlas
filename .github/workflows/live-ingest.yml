@@ -2,8 +2,9 @@ name: Approved live ingest
 
 on:
   schedule:
-    # Iowa's daily slot. Minnesota remains disabled until its adapters pass source audit.
+    # Iowa runs at midnight UTC; Minnesota runs six hours later.
     - cron: "0 0 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       state:
@@ -67,7 +68,7 @@ jobs:
       ALLOW_LIVE_SOURCE_FETCHES: "true"
       SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,opendata.ramseycountymn.gov
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      INGEST_STATE: ${{ inputs.state || 'IA' }}
+      INGEST_STATE: ${{ inputs.state || (github.event.schedule == '0 6 * * *' && 'MN' || 'IA') }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
