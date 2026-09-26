@@ -78,20 +78,20 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
    ```
 
-4. Review the dry-run output and the source evidence. Only then enable the specific adapter and
-   source in Neon. The activation is deliberately a customer-owned decision because it changes what
-   is publishable:
+4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
+   workflow for that specific adapter. The workflow performs the approval transaction with the
+   customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
 
-   ```sql
-   UPDATE official_sources
-   SET source_status = 'healthy', publication_approved = true,
-       verified_at = now(), last_checked_at = now()
-   WHERE adapter_key = 'dallas-newworld-inmate-inquiry';
-
-   UPDATE source_adapters
-   SET enabled = true
-   WHERE adapter_key = 'dallas-newworld-inmate-inquiry';
+   ```text
+   GitHub → Actions → Approve live source → Run workflow
+   adapter_key=<approved adapter key>
+   state=<IA or MN>
+   county_slug=<county slug>
+   confirm=APPROVE
    ```
+
+   The workflow marks the source healthy, enables its adapter, and publishes the county in one
+   transaction. It refuses to run unless the explicit `APPROVE` confirmation is supplied.
 
 5. Run the write-enabled job for that one adapter:
 
