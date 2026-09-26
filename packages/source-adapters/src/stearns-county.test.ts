@@ -44,6 +44,7 @@ function page(pageNumber: number, lastPage = 2): string {
     <body><h1>Stearns County Current Inmates</h1>
       <table><tbody>
         <tr><td><a href="/InmateDetail/Index/1?booking=${pageNumber}01&origin=current">DOE</a></td><td>JANE</td><td>Female</td><td>30</td><td>09/25/2026</td><td>White</td></tr>
+        <tr><td><a href="/InmateDetail/Index/1?booking=${pageNumber}01&origin=current">DOE, JANE</a></td><td>JANE</td><td>Female</td><td>30</td><td>09/25/2026</td><td>White</td></tr>
       </tbody></table>
       ${Array.from({ length: lastPage }, (_, index) => `<a href="/Current?page=${index + 1}">${index + 1}</a>`).join("")}
       <p>Data last updated on 09/25/2026 08:00 PM.</p>

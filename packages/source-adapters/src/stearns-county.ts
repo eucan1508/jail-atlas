@@ -94,16 +94,30 @@ function parsePage(
         .find("td")
         .toArray()
         .map((cell) => text($(cell).text()));
-      const lastName = text(link.text());
-      const firstName = cells.find((cell, index) => index > 0 && cell !== lastName) ?? "";
+      const linkedName = text(link.text());
+      const firstName = cells.find((cell, index) => index > 0 && cell !== linkedName) ?? "";
       const bookingDate = cells.find((cell) => /\b\d{2}\/\d{2}\/\d{4}\b/.test(cell));
       if (!bookingDate) throw new Error("MISSING_BOOKING_DATE");
       return StearnsRecordSchema.parse({
-        displayName: text(`${lastName}, ${firstName}`),
+        displayName: linkedName.includes(",") ? linkedName : text(`${linkedName}, ${firstName}`),
         bookingNumber,
         bookingDate
       });
     });
+  const uniqueRecords = new Map<string, StearnsRoster["records"][number]>();
+  for (const record of records) {
+    const previous = uniqueRecords.get(record.bookingNumber);
+    if (previous === undefined) {
+      uniqueRecords.set(record.bookingNumber, record);
+      continue;
+    }
+    if (
+      previous.displayName !== record.displayName ||
+      previous.bookingDate !== record.bookingDate
+    ) {
+      throw new Error("CONFLICTING_DUPLICATE_BOOKING_NUMBER");
+    }
+  }
   const pageNumbers = $("a[href*='page=']")
     .toArray()
     .map((element) =>
@@ -113,7 +127,7 @@ function parsePage(
   const lastPage = Math.max(1, ...pageNumbers);
   const lastUpdated =
     text($("body").text()).match(/Data last updated on ([^.]+?)(?:\.|$)/i)?.[1] ?? null;
-  return { records, lastUpdated, lastPage };
+  return { records: [...uniqueRecords.values()], lastUpdated, lastPage };
 }
 
 async function requestRoster(
