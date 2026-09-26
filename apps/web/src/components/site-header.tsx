@@ -26,7 +26,7 @@ export function SiteHeader({ brandName }: { brandName: string }) {
               </li>
             </ul>
           </nav>
-          <Link className="header-cta" href="/find/">
+          <Link className="header-cta" href="/coverage/">
             Find a county <span aria-hidden="true">↗</span>
           </Link>
         </div>
