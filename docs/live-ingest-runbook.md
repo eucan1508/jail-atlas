@@ -35,6 +35,19 @@ with the adapter records disabled and publication approval off.
    Repeat with the Cedar and Black Hawk hostnames and adapter keys after their source pages pass the
    same check.
 
+3. After a dry-run succeeds, approve the source without opening Neon:
+
+   ```text
+   GitHub → Actions → Approve live source → Run workflow
+   adapter_key=<approved adapter key>
+   state=<IA or MN>
+   county_slug=<county slug>
+   confirm=APPROVE
+   ```
+
+   This transaction marks the source healthy, enables its adapter, and publishes the county. Only
+   run it after the source-specific dry-run and human review have passed.
+
    For the three audited Iowa sources, the worker can also run the checks sequentially in county
    order:
 
@@ -65,7 +78,7 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
    ```
 
-3. Review the dry-run output and the source evidence. Only then enable the specific adapter and
+4. Review the dry-run output and the source evidence. Only then enable the specific adapter and
    source in Neon. The activation is deliberately a customer-owned decision because it changes what
    is publishable:
 
@@ -80,7 +93,7 @@ with the adapter records disabled and publication approval off.
    WHERE adapter_key = 'dallas-newworld-inmate-inquiry';
    ```
 
-4. Run the write-enabled job for that one adapter:
+5. Run the write-enabled job for that one adapter:
 
    ```text
    INGEST_MODE=live
