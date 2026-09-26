@@ -11,6 +11,8 @@ import {
 } from "@jail-atlas/database";
 import { OfficialSourceSchema, type OfficialSource } from "@jail-atlas/domain";
 import {
+  ANOKA_COUNTY_ADAPTER_KEY,
+  createAnokaCountySourceAdapter,
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
@@ -117,6 +119,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === STEARNS_COUNTY_ADAPTER_KEY) {
     return createStearnsCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === ANOKA_COUNTY_ADAPTER_KEY) {
+    return createAnokaCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

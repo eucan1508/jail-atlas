@@ -36,6 +36,13 @@
       "when": 1790397600000,
       "tag": "0004_minnesota_stearns_source",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790401200000,
+      "tag": "0005_minnesota_anoka_source",
+      "breakpoints": true
     }
   ]
 }
