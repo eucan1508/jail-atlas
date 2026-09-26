@@ -1,0 +1,64 @@
+name: Approve live source
+
+on:
+  workflow_dispatch:
+    inputs:
+      adapter_key:
+        description: "Approved adapter key"
+        required: true
+        type: string
+      state:
+        description: "State code"
+        required: true
+        type: choice
+        options:
+          - IA
+          - MN
+      county_slug:
+        description: "County slug"
+        required: true
+        type: string
+      confirm:
+        description: "Type APPROVE only after the live dry-run succeeded"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-source-approval
+  cancel-in-progress: false
+
+jobs:
+  approve:
+    name: Approve source and publish county
+    if: ${{ inputs.confirm == 'APPROVE' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build database package
+        run: pnpm --filter @jail-atlas/database build
+
+      - name: Approve source
+        run: >-
+          pnpm --filter @jail-atlas/ingest-worker source:approve -- --adapter=${{ inputs.adapter_key
+          }} --county=${{ inputs.county_slug }} --state=${{ inputs.state }} --confirm=${{
+          inputs.confirm }}
