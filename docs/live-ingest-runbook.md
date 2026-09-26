@@ -4,7 +4,15 @@ The repository now contains a guarded live worker, but it is intentionally not e
 migration. The migration provisions the three audited Iowa source records as `verification_pending`,
 with the adapter records disabled and publication approval off.
 
-1. Apply migrations from the customer-controlled environment:
+1. Apply migrations through the repository workflow so the customer does not need to open Neon:
+
+   ```text
+   GitHub → Actions → Apply database migrations → Run workflow → confirm: APPLY
+   ```
+
+   The workflow uses the existing customer `DATABASE_URL` repository secret. It validates the
+   migration journal and applies append-only Drizzle migrations. If the workflow is unavailable, the
+   same command can be run from a customer-controlled environment:
 
    ```text
    pnpm --filter @jail-atlas/database db:migrate
