@@ -4,7 +4,19 @@ import { useState, type FormEvent } from "react";
 import { Button } from "@jail-atlas/ui";
 import { RosterPageSchema, type PublicRosterRecord } from "@/lib/roster-contract";
 
+function ChargeDetails({ charge }: { charge: PublicRosterRecord["charges"][number] }) {
+  return (
+    <>
+      <strong>{charge.description}</strong>
+      {charge.sourceLabel ? <span>{charge.sourceLabel}</span> : null}
+      {charge.statuteCode ? <span>Code {charge.statuteCode}</span> : null}
+    </>
+  );
+}
+
 function RosterRecordRow({ record }: { record: PublicRosterRecord }) {
+  const [firstCharge, ...additionalCharges] = record.charges;
+
   return (
     <tr data-testid="roster-record">
       <th scope="row" data-label="Name">
@@ -13,15 +25,41 @@ function RosterRecordRow({ record }: { record: PublicRosterRecord }) {
       <td data-label="Booking number">{record.bookingIdentifier ?? "Not published"}</td>
       <td data-label="Booked at">{record.bookedAtLabel}</td>
       <td data-label="Charges">
-        {record.charges.length > 0 ? (
-          <ul className="roster-detail-list">
-            {record.charges.map((charge, index) => (
-              <li key={`${record.recordKey}-charge-${index}`}>
-                <strong>{charge.description}</strong>
-                {charge.statuteCode ? <span>Code {charge.statuteCode}</span> : null}
+        {firstCharge ? (
+          <div className="roster-charges">
+            <ul className="roster-detail-list">
+              <li>
+                <ChargeDetails charge={firstCharge} />
               </li>
-            ))}
-          </ul>
+            </ul>
+            {additionalCharges.length > 0 ? (
+              <details className="roster-charges__disclosure">
+                <summary>
+                  <span className="roster-charges__show">
+                    View {additionalCharges.length} more{" "}
+                    {additionalCharges.length === 1 ? "charge" : "charges"}
+                  </span>
+                  <span className="roster-charges__hide">Show fewer charges</span>
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path d="m4 6 4 4 4-4" />
+                  </svg>
+                </summary>
+                <div
+                  className="roster-charges__scroll"
+                  role="region"
+                  aria-label={`Additional charges for ${record.displayName}`}
+                >
+                  <ul className="roster-detail-list">
+                    {additionalCharges.map((charge, index) => (
+                      <li key={`${record.recordKey}-charge-${index + 1}`}>
+                        <ChargeDetails charge={charge} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            ) : null}
+          </div>
         ) : (
           <span>Charge information not published</span>
         )}

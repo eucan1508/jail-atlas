@@ -49,6 +49,19 @@ test.describe("server-rendered roster", () => {
     await expect(page.getByText("SYNTHETIC PERSON 051", { exact: false })).toBeVisible();
     await expect(page.getByText("SYNTHETIC PERSON 001", { exact: false })).toHaveCount(0);
   });
+
+  test("keeps additional charges behind an explicit disclosure", async ({ page }) => {
+    await page.goto(countyPath);
+
+    const firstRecord = page.locator(roster.records).first();
+    await expect(firstRecord.getByText("SYNTHETIC CHARGE ALPHA 001 — TEST ONLY")).toBeVisible();
+    await expect(firstRecord.getByText("SYNTHETIC CHARGE BETA 001 — TEST ONLY")).toBeHidden();
+
+    const disclosure = firstRecord.getByText("View 1 more charge", { exact: true });
+    await expect(disclosure).toBeVisible();
+    await disclosure.click();
+    await expect(firstRecord.getByText("SYNTHETIC CHARGE BETA 001 — TEST ONLY")).toBeVisible();
+  });
 });
 
 test.describe("opaque cursor load-more flow", () => {
