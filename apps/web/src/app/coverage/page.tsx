@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/page-intro";
 import { countiesForState } from "@/lib/coverage-catalog";
 import { canRenderSyntheticScottCounty, hasPublishedIowaCoverage } from "@/lib/publication";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -12,9 +13,13 @@ export const metadata = createPageMetadata({
   description: "See which county custody sources have passed the evidence and publication gates."
 });
 
-export default function CoveragePage() {
+export const dynamic = "force-dynamic";
+
+export default async function CoveragePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
-  const iowaPublished = hasPublishedIowaCoverage();
+  const published = await getPublishedCountyCoverage();
+  const publishedIowa = published.filter(({ entry }) => entry.state === "iowa");
+  const iowaPublished = publishedIowa.length > 0 || hasPublishedIowaCoverage();
   const iowaPlanned = countiesForState("iowa");
   const minnesotaPlanned = countiesForState("minnesota");
 
@@ -41,11 +46,11 @@ export default function CoveragePage() {
               <h3>Iowa</h3>
               <p>
                 {iowaPublished
-                  ? "Published county coverage and source health are available."
+                  ? `${publishedIowa.length} published county source${publishedIowa.length === 1 ? " is" : "s are"} available.`
                   : `${iowaPlanned.length} Iowa county sources are selected for audit; none are published yet.`}
               </p>
             </div>
-            {prototypeAvailable ? <Link href="/coverage/iowa/">View Phase 1 status</Link> : null}
+            <Link href="/coverage/iowa/">View Iowa coverage</Link>
           </div>
           <div className="surface-card coverage-state-row">
             <div>

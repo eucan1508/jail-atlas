@@ -2,8 +2,11 @@ import Link from "next/link";
 import { Alert, LinkButton, StatusPill } from "@jail-atlas/ui";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
-import { canRenderSyntheticScottCounty, hasPublishedScottCounty } from "@/lib/publication";
+import { canRenderSyntheticScottCounty } from "@/lib/publication";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = createPageMetadata({
   path: "/",
@@ -12,9 +15,10 @@ export const metadata = createPageMetadata({
     "Find a county custody page and check its official source, data scope, freshness, and review status."
 });
 
-export default function HomePage() {
+export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
-  const countyPublished = hasPublishedScottCounty();
+  const published = await getPublishedCountyCoverage();
+  const showFinder = prototypeAvailable || published.length > 0;
 
   return (
     <main id="main-content">
@@ -29,8 +33,10 @@ export default function HomePage() {
         </div>
         <div className="home-hero__finder">
           <h2>Find a county custody page</h2>
-          {prototypeAvailable ? (
-            <CountyFinder />
+          {showFinder ? (
+            <CountyFinder
+              counties={published.length ? published.map(({ entry }) => entry) : undefined}
+            />
           ) : (
             <Alert heading="No county is published yet" tone="info">
               Coverage appears only after every source, parser, contact, evidence, and human-review
@@ -62,11 +68,11 @@ export default function HomePage() {
         </div>
         <div className="stat-grid">
           <div className="stat">
-            <strong className="stat__value">{countyPublished ? "1" : "0"}</strong>
+            <strong className="stat__value">{published.length}</strong>
             <span className="stat__label">published counties</span>
           </div>
           <div className="stat">
-            <strong className="stat__value">{countyPublished ? "1" : "0"}</strong>
+            <strong className="stat__value">{published.length}</strong>
             <span className="stat__label">healthy official sources</span>
           </div>
           <div className="stat">

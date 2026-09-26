@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Alert, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CountyFinder } from "@/components/county-finder";
@@ -10,21 +11,28 @@ import {
   canRenderSyntheticScottCounty,
   hasPublishedIowaCoverage
 } from "@/lib/publication";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { countiesForState } from "@/lib/coverage-catalog";
 
-export const metadata = createPageMetadata({
-  path: "/coverage/iowa/",
-  title: "Iowa custody source coverage",
-  description: "Review active Iowa county custody coverage, source health, and verification status.",
-  index: hasPublishedIowaCoverage()
-});
+export const dynamic = "force-dynamic";
 
-export default function IowaCoveragePage() {
-  if (!canRenderIowaCoverage()) notFound();
+export async function generateMetadata(): Promise<Metadata> {
+  const published = await getPublishedCountyCoverage("iowa");
+  return createPageMetadata({
+    path: "/coverage/iowa/",
+    title: "Iowa custody source coverage",
+    description: "Review active Iowa county custody coverage, source health, and verification status.",
+    index: published.length > 0
+  });
+}
+
+export default async function IowaCoveragePage() {
+  const published = await getPublishedCountyCoverage("iowa");
+  if (!canRenderIowaCoverage() && published.length === 0) notFound();
 
   const prototypeAvailable = canRenderSyntheticScottCounty();
-  const countyPublished = hasPublishedIowaCoverage();
+  const countyPublished = published.length > 0 || hasPublishedIowaCoverage();
   const plannedCounties = countiesForState("iowa");
 
   return (

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { CountyFinder } from "@/components/county-finder";
 import { PageIntro } from "@/components/page-intro";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,8 +25,12 @@ export default async function FindPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const query = searchSchema.parse(await searchParams);
+  const published = await getPublishedCountyCoverage();
   const isScott = query.state === "iowa" && query.county === "scott-county";
   const showPrototype = isScott && canRenderSyntheticScottCounty();
+  const selectedPublished = published.find(
+    ({ entry }) => entry.state === query.state && entry.slug === query.county
+  );
 
   return (
     <main id="main-content" className="page-main site-shell narrow-shell">
@@ -34,7 +39,15 @@ export default async function FindPage({
         title="Find a county custody page"
         summary={<p>Only counties that pass the publication gates can appear in public results.</p>}
       />
-      <CountyFinder />
+      <CountyFinder counties={published.map(({ entry }) => entry)} />
+      {selectedPublished ? (
+        <section className="content-section" aria-live="polite">
+          <h2>Published county result</h2>
+          <p>
+            <Link href={selectedPublished.path}>{selectedPublished.entry.county} custody page</Link>
+          </p>
+        </section>
+      ) : null}
       {showPrototype ? (
         <section className="content-section" aria-live="polite">
           <h2>One development result</h2>
