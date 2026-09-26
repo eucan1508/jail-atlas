@@ -23,6 +23,7 @@ const CursorPayloadSchema = z.object({
   afterId: z.string(),
   afterSourceOrder: z.number().int().nonnegative(),
   sourceId: z.string(),
+  snapshotId: z.string().uuid().optional(),
   version: z.literal(1)
 });
 type CursorPayload = z.infer<typeof CursorPayloadSchema>;

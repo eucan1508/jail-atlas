@@ -1,6 +1,13 @@
 import { Button } from "@jail-atlas/ui";
+import { countiesForState, type CountyCoverageBrief } from "@/lib/coverage-catalog";
 
-export function CountyFinder({ compact = false }: { compact?: boolean }) {
+export function CountyFinder({
+  compact = false,
+  counties = countiesForState("iowa")
+}: {
+  compact?: boolean;
+  counties?: readonly CountyCoverageBrief[] | undefined;
+}) {
   return (
     <form
       className={compact ? "county-finder county-finder--compact" : "county-finder"}
@@ -12,9 +19,13 @@ export function CountyFinder({ compact = false }: { compact?: boolean }) {
         <select
           id={compact ? "finder-state-compact" : "finder-state"}
           name="state"
-          defaultValue="iowa"
+          defaultValue={counties[0]?.state ?? "iowa"}
         >
-          <option value="iowa">Iowa</option>
+          {Array.from(new Set(counties.map((county) => county.state))).map((state) => (
+            <option key={state} value={state}>
+              {state.charAt(0).toUpperCase() + state.slice(1)}
+            </option>
+          ))}
         </select>
       </div>
       <div className="field-group">
@@ -22,9 +33,13 @@ export function CountyFinder({ compact = false }: { compact?: boolean }) {
         <select
           id={compact ? "finder-county-compact" : "finder-county"}
           name="county"
-          defaultValue="scott-county"
+          defaultValue={counties[0]?.slug}
         >
-          <option value="scott-county">Scott County</option>
+          {counties.map((county) => (
+            <option key={`${county.state}-${county.slug}`} value={county.slug}>
+              {county.county}
+            </option>
+          ))}
         </select>
       </div>
       <Button className="county-finder__submit" type="submit">
