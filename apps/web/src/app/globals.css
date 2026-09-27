@@ -3577,13 +3577,27 @@ textarea {
 }
 
 @media (min-width: 52rem) {
+  .county-page--live .roster-table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .county-page--live .roster-table thead,
   .county-page--live .roster-table tbody {
     display: block;
     width: 100%;
   }
 
+  .county-page--live .roster-table thead tr {
+    display: grid;
+    grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 18%) minmax(0, 34%);
+    width: 100%;
+  }
+
   .county-page--live .roster-table tbody th,
-  .county-page--live .roster-table tbody td {
+  .county-page--live .roster-table tbody td,
+  .county-page--live .roster-table thead th {
     width: auto !important;
   }
 
