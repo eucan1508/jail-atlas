@@ -53,7 +53,7 @@ export default async function CorrectionsPage({
   const published = await getPublishedCountyCoverage();
 
   return (
-    <main id="main-content" className="page-main site-shell narrow-shell">
+    <main id="main-content" className="page-main site-shell narrow-shell editorial-page">
       <Breadcrumbs
         currentPath="/corrections/"
         items={[{ href: "/", label: "Home" }, { label: "Corrections" }]}
