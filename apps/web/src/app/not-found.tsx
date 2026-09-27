@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main id="main-content" className="page-main site-shell narrow-shell">
+    <main id="main-content" className="page-main site-shell narrow-shell editorial-page">
       <p className="eyebrow">404 · Not published</p>
       <h1>This custody page is not available.</h1>
       <div className="page-intro__summary">

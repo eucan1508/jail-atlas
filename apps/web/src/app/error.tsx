@@ -16,7 +16,7 @@ export default function ErrorPage({
   }, [error.digest]);
 
   return (
-    <main id="main-content" className="page-main site-shell narrow-shell">
+    <main id="main-content" className="page-main site-shell narrow-shell editorial-page">
       <p className="eyebrow">Page error</p>
       <h1>This page could not be displayed.</h1>
       <p>The failure does not mean that an official roster is empty. Try the page again.</p>

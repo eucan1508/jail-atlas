@@ -21,7 +21,7 @@ export function TrustPage({
   title: string;
 }) {
   return (
-    <main id="main-content" className="page-main site-shell narrow-shell">
+    <main id="main-content" className="page-main site-shell narrow-shell editorial-page">
       <Breadcrumbs currentPath={path} items={[{ href: "/", label: "Home" }, { label: title }]} />
       <PageIntro eyebrow={eyebrow} title={title} summary={<p>{summary}</p>} />
       <div className="prose trust-content">
