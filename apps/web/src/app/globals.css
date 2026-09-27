@@ -1211,51 +1211,6 @@ textarea {
 }
 
 @media (min-width: 52rem) {
-  .county-page--live .roster-table {
-    min-width: 0;
-  }
-
-  .county-page--live .roster-table tbody tr {
-    display: grid;
-    grid-template-columns: minmax(12rem, 1.3fr) minmax(9rem, 0.8fr) minmax(10rem, 0.85fr) minmax(0, 1.7fr);
-  }
-
-  .county-page--live .roster-table tbody th,
-  .county-page--live .roster-table tbody td {
-    border-bottom: 0;
-  }
-
-  .county-page--live .roster-table tbody td:last-child {
-    border-top: 1px solid #d6e2df;
-    grid-column: 1 / -1;
-    padding-top: 0.85rem;
-  }
-
-  .county-page--live .roster-table tbody tr + tr {
-    border-top: 1px solid #d6e2df;
-  }
-
-  .county-page--live .roster-table tbody tr:hover {
-    background: #f5faf8;
-  }
-}
-
-@media (max-width: 51.99rem) {
-  .coverage-grid--counties {
-    grid-template-columns: 1fr;
-  }
-
-  .page-intro h1,
-  .county-page--live .county-live-header__copy h1 {
-    max-width: none;
-  }
-
-  .county-page--live .county-live-header {
-    padding-block: 0.5rem 1.5rem;
-  }
-}
-
-@media (min-width: 52rem) {
   .county-identity {
     align-items: end;
     grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
@@ -3513,7 +3468,10 @@ textarea {
   }
   .county-page--live .roster-table tbody tr {
     display: grid;
-    grid-template-columns: minmax(12rem, 1.3fr) minmax(9rem, 0.8fr) minmax(10rem, 0.85fr) minmax(0, 1.7fr);
+    grid-template-columns: minmax(12rem, 1.3fr) minmax(9rem, 0.8fr) minmax(10rem, 0.85fr) minmax(
+        0,
+        1.7fr
+      );
   }
   .county-page--live .roster-table tbody th,
   .county-page--live .roster-table tbody td {

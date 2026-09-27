@@ -23,7 +23,7 @@ export default async function HomePage() {
     {
       code: "MN",
       name: "Minnesota",
-      slug: "minnesota",
+      slug: "minnesota"
     }
   ].map((state) => ({
     ...state,
