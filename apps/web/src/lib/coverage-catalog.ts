@@ -28,7 +28,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Dallas County",
     slug: "dallas-county",
     seatCity: "Adel",
-    h1: "Dallas County, Iowa jail roster and custody information",
+    h1: "Dallas County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Dallas County Jail Roster & Inmate Search",
     description:
       "Check Dallas County, Iowa custody information with the official source, freshness time, and source-listed charges kept in context.",
@@ -45,7 +45,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Cedar County",
     slug: "cedar-county",
     seatCity: "Tipton",
-    h1: "Cedar County, Iowa jail roster and custody information",
+    h1: "Cedar County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Cedar County Jail Roster & Inmate Search",
     description:
       "Review Cedar County, Iowa custody information with source scope, freshness, and official contact details shown beside the roster.",
@@ -61,7 +61,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Polk County",
     slug: "polk-county",
     seatCity: "Des Moines",
-    h1: "Polk County, Iowa jail roster and custody information",
+    h1: "Polk County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Polk County Jail Roster & Inmate Search",
     description:
       "Find Polk County, Iowa jail and arrest information with the official source, update time, and clear custody-data limits.",
@@ -78,7 +78,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Linn County",
     slug: "linn-county",
     seatCity: "Cedar Rapids",
-    h1: "Linn County, Iowa jail roster and custody information",
+    h1: "Linn County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Linn County Jail Roster & Inmate Search",
     description:
       "Check Linn County, Iowa custody information with source status, freshness, and county-specific contact guidance.",
@@ -94,7 +94,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Black Hawk County",
     slug: "black-hawk-county",
     seatCity: "Waterloo",
-    h1: "Black Hawk County, Iowa jail roster and custody information",
+    h1: "Black Hawk County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Black Hawk County Jail Roster & Inmate Search",
     description:
       "Review Black Hawk County, Iowa custody information with official source context, charges, and update status.",
@@ -110,7 +110,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Ramsey County",
     slug: "ramsey-county",
     seatCity: "Saint Paul",
-    h1: "Ramsey County, Minnesota jail roster and custody information",
+    h1: "Ramsey County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Ramsey County Jail Roster & Inmate Search",
     description:
       "Review Ramsey County, Minnesota adult detention information with official source context, freshness, and clear data limits.",
@@ -127,7 +127,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Stearns County",
     slug: "stearns-county",
     seatCity: "Saint Cloud",
-    h1: "Stearns County, Minnesota jail roster and custody information",
+    h1: "Stearns County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Stearns County Jail Roster & Inmate Search",
     description:
       "Check Stearns County, Minnesota custody information with the official jail roster source and its current-custody scope.",
@@ -143,7 +143,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Anoka County",
     slug: "anoka-county",
     seatCity: "Anoka",
-    h1: "Anoka County, Minnesota jail roster and custody information",
+    h1: "Anoka County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Anoka County Jail Roster & Inmate Search",
     description:
       "Find Anoka County, Minnesota custody information with the official inmate locator, source scope, and freshness details.",
@@ -160,7 +160,7 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     county: "Washington County",
     slug: "washington-county",
     seatCity: "Stillwater",
-    h1: "Washington County, Minnesota jail roster and custody information",
+    h1: "Washington County Jail Roster & Inmate Search - JailAtlas.com",
     title: "Washington County Jail Roster & Inmate Search",
     description:
       "Review Washington County, Minnesota custody information with the official jail list, source date, and verified facility contacts.",

@@ -42,7 +42,7 @@ export default function ScottCountyCustodyPage() {
         <header className="county-identity">
           <div>
             <p className="eyebrow">Iowa · Scott County · Phase 1</p>
-            <h1>Scott County custody information</h1>
+            <h1>Scott County Jail Roster &amp; Inmate Search - JailAtlas.com</h1>
             <p className="county-identity__summary">
               A synthetic interaction prototype for {syntheticCounty.seatCity}, Iowa. It is not an
               official roster and contains no real custody records.
