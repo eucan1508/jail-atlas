@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { Alert, StatusPill } from "@jail-atlas/ui";
+import { StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/page-intro";
-import { countiesForState } from "@/lib/coverage-catalog";
-import { canRenderSyntheticScottCounty, hasPublishedIowaCoverage } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { createPageMetadata } from "@/lib/site";
 
@@ -11,19 +9,16 @@ export const metadata = createPageMetadata({
   path: "/coverage/",
   title: "County Jail Roster Coverage",
   description:
-    "Browse Jail Atlas coverage in Iowa and Minnesota. Choose a state to find available county jail rosters and see which additional counties are under review."
+    "Browse live Jail Atlas coverage in Iowa and Minnesota. Choose a state to search published county jail rosters."
 });
 
 export const dynamic = "force-dynamic";
 
 export default async function CoveragePage() {
-  const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
   const publishedIowa = published.filter(({ entry }) => entry.state === "iowa");
   const publishedMinnesota = published.filter(({ entry }) => entry.state === "minnesota");
-  const iowaPublished = publishedIowa.length > 0 || hasPublishedIowaCoverage();
-  const iowaPlanned = countiesForState("iowa");
-  const minnesotaPlanned = countiesForState("minnesota");
+  const iowaPublished = publishedIowa.length > 0;
 
   return (
     <main id="main-content" className="page-main site-shell coverage-page">
@@ -69,13 +64,13 @@ export default async function CoveragePage() {
           <div className="surface-card coverage-state-row">
             <div>
               <StatusPill tone={iowaPublished ? "current" : "neutral"}>
-                {iowaPublished ? "Active coverage" : "No published counties"}
+                {iowaPublished ? "Active coverage" : "Coming soon"}
               </StatusPill>
               <h3>Iowa</h3>
               <p>
                 {iowaPublished
                   ? `${publishedIowa.length} public county page${publishedIowa.length === 1 ? " is" : "s are"} available.`
-                  : `${iowaPlanned.length} Iowa county pages are currently under review.`}
+                  : "Public county pages are being prepared."}
               </p>
             </div>
             <Link className="coverage-state-row__link" href="/coverage/iowa/">
@@ -85,23 +80,19 @@ export default async function CoveragePage() {
           <div className="surface-card coverage-state-row">
             <div>
               <StatusPill tone={publishedMinnesota.length > 0 ? "current" : "neutral"}>
-                {publishedMinnesota.length > 0 ? "Active coverage" : "No published counties"}
+                {publishedMinnesota.length > 0 ? "Active coverage" : "Coming soon"}
               </StatusPill>
               <h3>Minnesota</h3>
               <p>
                 {publishedMinnesota.length > 0
                   ? `${publishedMinnesota.length} public county page${publishedMinnesota.length === 1 ? " is" : "s are"} available.`
-                  : `${minnesotaPlanned.length} Minnesota county pages are currently under review.`}
+                  : "Public county pages are being prepared."}
               </p>
             </div>
             <Link className="coverage-state-row__link" href="/coverage/minnesota/">
               Explore Minnesota <span aria-hidden="true">↗</span>
             </Link>
           </div>
-          <Alert heading="No placeholder coverage" tone="info">
-            Inactive states and unreviewed counties return a genuine 404. Coverage is added one
-            county at a time through a separate approval process.
-          </Alert>
         </div>
       </section>
 

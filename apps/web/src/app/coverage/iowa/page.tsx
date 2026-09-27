@@ -1,16 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Alert, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
-import { canRenderIowaCoverage, canRenderSyntheticScottCounty } from "@/lib/publication";
+import { canRenderIowaCoverage } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
-import { countiesForState } from "@/lib/coverage-catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -29,11 +27,8 @@ export default async function IowaCoveragePage() {
   const published = await getPublishedCountyCoverage("iowa");
   if (!canRenderIowaCoverage() && published.length === 0) notFound();
 
-  const prototypeAvailable = canRenderSyntheticScottCounty();
-  const plannedCounties = countiesForState("iowa");
-
   return (
-    <main id="main-content" className="page-main site-shell">
+    <main id="main-content" className="page-main site-shell state-coverage-page state-coverage-page--iowa">
       <Breadcrumbs
         currentPath="/coverage/iowa/"
         items={[
@@ -53,13 +48,6 @@ export default async function IowaCoveragePage() {
           </p>
         }
       />
-
-      {prototypeAvailable ? (
-        <Alert heading="Development checkpoint only" tone="warning">
-          No Iowa county is published. The Scott County link below opens synthetic, fictional
-          records for Phase 1 review and is excluded from indexing.
-        </Alert>
-      ) : null}
 
       <section className="content-section state-search-section" aria-label="State county finder">
         <div className="section-heading-row">
@@ -81,32 +69,16 @@ export default async function IowaCoveragePage() {
       <section className="content-section" aria-labelledby="planned-heading">
         <h2 id="planned-heading">Selected Iowa counties</h2>
         <div className="coverage-grid coverage-grid--counties">
-          {plannedCounties.map((county) => (
+          {published.map(({ entry: county, path }) => (
             <CountyCoverageCard
               entry={county}
-              href={`/${county.state}/${county.slug}/custody/`}
+              href={path}
               key={county.slug}
-              published={published.some(({ entry }) => entry.slug === county.slug)}
+              published
             />
           ))}
         </div>
       </section>
-
-      {prototypeAvailable ? (
-        <section className="content-section" aria-labelledby="prototype-heading">
-          <div className="section-heading-row">
-            <div>
-              <StatusPill tone="stale">Synthetic · not verified</StatusPill>
-              <h2 id="prototype-heading">Scott County interaction prototype</h2>
-              <p className="prose">
-                A source relationship, live fetch, verified contact, and publication review have not
-                been recorded. It must not be treated as custody information.
-              </p>
-            </div>
-            <Link href="/iowa/scott-county/custody/">Review the prototype</Link>
-          </div>
-        </section>
-      ) : null}
 
       <section className="content-section prose" aria-labelledby="meaning-heading">
         <h2 id="meaning-heading">How to read this page</h2>

@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { StatusPill } from "@jail-atlas/ui";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
 
 export function CountyCoverageCard({
   entry,
   href,
-  published = false,
+  published = true,
   actionLabel = "View county page"
 }: {
   entry: CountyCoverageBrief;
@@ -21,9 +20,7 @@ export function CountyCoverageCard({
         <span className="coverage-card__state" aria-hidden="true">
           {stateCode}
         </span>
-        <StatusPill tone={published ? "current" : "neutral"}>
-          {published ? "Public page" : "Under review"}
-        </StatusPill>
+        <span className="coverage-card__status">Live roster</span>
       </div>
       <div className="coverage-card__body">
         <p className="eyebrow">
@@ -33,15 +30,13 @@ export function CountyCoverageCard({
         <p>{entry.description}</p>
       </div>
       <div className="coverage-card__footer">
-        <span>{published ? "JailAtlas page" : "Publication review"}</span>
+        <span>JailAtlas roster</span>
         <div className="coverage-card__actions">
           {published && href ? (
             <Link href={href}>
               {actionLabel} <span aria-hidden="true">↗</span>
             </Link>
-          ) : (
-            <span className="coverage-card__pending">Not public yet</span>
-          )}
+          ) : null}
         </div>
       </div>
     </article>

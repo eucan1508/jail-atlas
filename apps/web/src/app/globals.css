@@ -1211,6 +1211,51 @@ textarea {
 }
 
 @media (min-width: 52rem) {
+  .county-page--live .roster-table {
+    min-width: 0;
+  }
+
+  .county-page--live .roster-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1.3fr) minmax(9rem, 0.8fr) minmax(10rem, 0.85fr) minmax(0, 1.7fr);
+  }
+
+  .county-page--live .roster-table tbody th,
+  .county-page--live .roster-table tbody td {
+    border-bottom: 0;
+  }
+
+  .county-page--live .roster-table tbody td:last-child {
+    border-top: 1px solid #d6e2df;
+    grid-column: 1 / -1;
+    padding-top: 0.85rem;
+  }
+
+  .county-page--live .roster-table tbody tr + tr {
+    border-top: 1px solid #d6e2df;
+  }
+
+  .county-page--live .roster-table tbody tr:hover {
+    background: #f5faf8;
+  }
+}
+
+@media (max-width: 51.99rem) {
+  .coverage-grid--counties {
+    grid-template-columns: 1fr;
+  }
+
+  .page-intro h1,
+  .county-page--live .county-live-header__copy h1 {
+    max-width: none;
+  }
+
+  .county-page--live .county-live-header {
+    padding-block: 0.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 52rem) {
   .county-identity {
     align-items: end;
     grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
@@ -3274,5 +3319,228 @@ textarea {
   .county-page--preview .page-intro__summary {
     margin-inline: 0;
     max-width: 100%;
+  }
+}
+
+/* --- Unified directory and roster layout --------------------------------
+   Keep every public page on the same wide reading grid. The earlier
+   component-specific limits made headings and descriptions look stranded on
+   the left while leaving an empty column beside them. */
+.site-shell {
+  max-width: 84rem;
+  padding-inline: clamp(1rem, 3.2vw, 2.75rem);
+}
+
+.page-main {
+  padding-block: clamp(2rem, 4vw, 3.6rem);
+}
+
+.page-intro,
+.state-coverage-page .page-intro,
+.finder-page .page-intro {
+  max-width: none;
+  margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.page-intro h1 {
+  font-size: clamp(2.45rem, 5vw, 4.05rem);
+  max-width: 28ch;
+}
+
+.page-intro__summary {
+  max-width: 78ch;
+  line-height: 1.6;
+}
+
+.content-section {
+  padding-block: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.state-coverage-page .content-section {
+  margin-top: 0;
+}
+
+.state-coverage-page .state-search-section {
+  padding-top: 1.4rem;
+}
+
+.state-coverage-page .state-search-section .section-heading-row {
+  margin-bottom: 1rem;
+}
+
+.state-coverage-page .state-search-section h2,
+.state-coverage-page > .content-section > h2 {
+  font-size: clamp(1.65rem, 2.7vw, 2.35rem);
+}
+
+.state-coverage-page .section-lede {
+  max-width: 72ch;
+}
+
+.coverage-grid--counties {
+  gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.coverage-card {
+  min-height: 0;
+}
+
+.coverage-card__topline {
+  padding: 1rem 1.15rem 0;
+}
+
+.coverage-card__status {
+  border: 1px solid #9ccfc0;
+  border-radius: 999px;
+  color: var(--color-action);
+  font-size: 0.68rem;
+  font-weight: 720;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.6rem;
+  text-transform: uppercase;
+}
+
+.coverage-card__body {
+  justify-content: flex-start;
+  padding: 1rem 1.15rem 1.25rem;
+}
+
+.coverage-card__body h3 {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  margin-bottom: 0.45rem;
+}
+
+.coverage-card__body > p:last-child {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: none;
+}
+
+.coverage-card__footer {
+  padding: 0.8rem 1.15rem 0.95rem;
+}
+
+.coverage-card__actions a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 2.25rem;
+}
+
+.coverage-page .coverage-hero {
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: 0.5rem 1.6rem;
+}
+
+.coverage-page .coverage-hero .page-intro {
+  margin: 0;
+}
+
+.coverage-page .coverage-hero__signal {
+  margin: 0;
+  max-width: none;
+}
+
+.coverage-page .content-section {
+  padding-block: clamp(1.7rem, 3vw, 2.5rem);
+}
+
+.coverage-page .coverage-state-row {
+  min-height: 0;
+  padding: 1.2rem;
+}
+
+.coverage-page .coverage-state-row::before {
+  display: none;
+}
+
+.coverage-page .coverage-state-row > div:first-child,
+.coverage-page .coverage-state-row p {
+  max-width: none;
+}
+
+.coverage-page .coverage-state-row__link {
+  justify-self: start;
+  margin-top: 0.5rem;
+}
+
+.county-page--live .county-live-header {
+  justify-items: stretch;
+  padding-block: 0.8rem 2rem;
+  text-align: left;
+}
+
+.county-page--live .county-live-header__copy {
+  max-width: none;
+  width: 100%;
+}
+
+.county-page--live .county-live-header__copy h1 {
+  font-size: clamp(2.35rem, 4.6vw, 3.65rem);
+  margin-inline: 0;
+  max-width: 30ch;
+}
+
+.county-page--live .county-live-header__copy > p:last-child {
+  margin-inline: 0;
+  max-width: 78ch;
+}
+
+.county-page--live .content-section.prose {
+  display: block;
+  max-width: none;
+  width: 100%;
+}
+
+.county-page--live .content-section.prose h2 {
+  margin-top: 0;
+}
+
+.county-page--live .content-section.prose p {
+  max-width: none;
+}
+
+@media (min-width: 68rem) {
+  .coverage-grid--counties {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Final grid rules */
+@media (min-width: 52rem) {
+  .county-page--live .roster-table {
+    min-width: 0;
+  }
+  .county-page--live .roster-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1.3fr) minmax(9rem, 0.8fr) minmax(10rem, 0.85fr) minmax(0, 1.7fr);
+  }
+  .county-page--live .roster-table tbody th,
+  .county-page--live .roster-table tbody td {
+    border-bottom: 0;
+  }
+  .county-page--live .roster-table tbody td:last-child {
+    border-top: 1px solid #d6e2df;
+    grid-column: 1 / -1;
+    padding-top: 0.85rem;
+  }
+  .county-page--live .roster-table tbody tr + tr {
+    border-top: 1px solid #d6e2df;
+  }
+  .county-page--live .roster-table tbody tr:hover {
+    background: #f5faf8;
+  }
+}
+
+@media (max-width: 51.99rem) {
+  .coverage-grid--counties {
+    grid-template-columns: 1fr;
+  }
+  .page-intro h1,
+  .county-page--live .county-live-header__copy h1 {
+    max-width: none;
+  }
+  .county-page--live .county-live-header {
+    padding-block: 0.5rem 1.5rem;
   }
 }
