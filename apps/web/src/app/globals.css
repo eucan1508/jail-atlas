@@ -3577,6 +3577,11 @@ textarea {
 }
 
 @media (min-width: 52rem) {
+  .county-page--live .roster-table tbody {
+    display: block;
+    width: 100%;
+  }
+
   .county-page--live .roster-table tbody th,
   .county-page--live .roster-table tbody td {
     width: auto !important;
