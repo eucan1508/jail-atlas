@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createPageMetadata({
   path: "/iowa/scott-county/custody/",
-  title: "Scott County custody information — synthetic prototype",
+  title: "Scott County Jail Roster & Inmate Search - JailAtlas.com",
   description:
     "Private Phase 1 prototype for Scott County custody source, freshness, roster, contact, and evidence patterns.",
   index: false

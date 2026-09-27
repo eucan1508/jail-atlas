@@ -25,12 +25,15 @@ export async function generateMetadata({
   if (!entry) return { title: "County custody information" };
   const liveSource =
     readEnvironment().DATA_MODE === "official" ? await getLiveCountySource(entry) : null;
-  return createPageMetadata({
+  const metadata = createPageMetadata({
     path: countyCoveragePath(entry),
     title: entry.title,
     description: entry.description,
     index: liveSource !== null
   });
+  // County pages use a complete, search-focused title. Use an absolute title
+  // here so the root layout's generic site-name suffix is not duplicated.
+  return { ...metadata, title: { absolute: entry.title } };
 }
 
 export default async function CountyCustodyBriefPage({
