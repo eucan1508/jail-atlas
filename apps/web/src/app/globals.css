@@ -3469,6 +3469,7 @@ textarea {
   .county-page--live .roster-table tbody tr {
     display: grid;
     grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 18%) minmax(0, 34%);
+    width: 100%;
   }
   .county-page--live .roster-table tbody th,
   .county-page--live .roster-table tbody td {
