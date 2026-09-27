@@ -23,7 +23,6 @@ function RosterRecordRow({ record }: { record: PublicRosterRecord }) {
         <strong>{record.displayName}</strong>
       </th>
       <td data-label="Booking number">{record.bookingIdentifier ?? "Not published"}</td>
-      <td data-label="Booked at">{record.bookedAtLabel}</td>
       <td data-label="Charges">
         {firstCharge ? (
           <div className="roster-charges">
@@ -259,7 +258,6 @@ export function RosterExplorer({
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Booking number</th>
-              <th scope="col">Booked at</th>
               <th scope="col">Charges</th>
             </tr>
           </thead>

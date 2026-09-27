@@ -3101,12 +3101,7 @@ textarea {
 
 .county-page--live .roster-table th:nth-child(3),
 .county-page--live .roster-table td:nth-child(3) {
-  width: 18%;
-}
-
-.county-page--live .roster-table th:nth-child(4),
-.county-page--live .roster-table td:nth-child(4) {
-  width: 34%;
+  width: 52%;
 }
 
 .county-page--live .roster-table td {
@@ -3468,17 +3463,12 @@ textarea {
   }
   .county-page--live .roster-table tbody tr {
     display: grid;
-    grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 18%) minmax(0, 34%);
+    grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 52%);
     width: 100%;
   }
   .county-page--live .roster-table tbody th,
   .county-page--live .roster-table tbody td {
     border-bottom: 0;
-  }
-  .county-page--live .roster-table tbody td:last-child {
-    border-top: 1px solid #d6e2df;
-    grid-column: 1 / -1;
-    padding-top: 0.85rem;
   }
   .county-page--live .roster-table tbody tr + tr {
     border-top: 1px solid #d6e2df;
@@ -3596,7 +3586,7 @@ textarea {
 
   .county-page--live .roster-table thead tr {
     display: grid;
-    grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 18%) minmax(0, 34%);
+    grid-template-columns: minmax(0, 30%) minmax(0, 18%) minmax(0, 52%);
     width: 100%;
   }
 
@@ -3609,6 +3599,14 @@ textarea {
   .county-page--live .roster-table tbody td:last-child {
     min-width: 0;
   }
+}
+
+/* Keep the county introduction on the same full-width editorial grid as the
+   roster below it, instead of constraining the title and summary to the left. */
+.county-page--live .county-live-header__copy h1,
+.county-page--live .county-live-header__copy > p:last-child {
+  max-width: none;
+  width: 100%;
 }
 
 @media (max-width: 51.99rem) {
