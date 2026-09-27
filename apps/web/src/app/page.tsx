@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Alert, LinkButton } from "@jail-atlas/ui";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
-import { countiesForState } from "@/lib/coverage-catalog";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
@@ -20,12 +19,11 @@ export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
   const stateDirectory = [
-    { code: "IA", name: "Iowa", slug: "iowa", total: countiesForState("iowa").length },
+    { code: "IA", name: "Iowa", slug: "iowa" },
     {
       code: "MN",
       name: "Minnesota",
-      slug: "minnesota",
-      total: countiesForState("minnesota").length
+      slug: "minnesota"
     }
   ].map((state) => ({
     ...state,
@@ -79,7 +77,7 @@ export default async function HomePage() {
               <span className="state-directory-card__copy">
                 <strong>{state.name}</strong>
                 <small>
-                  {state.published} public · {state.total} tracked
+                  {state.published} live county {state.published === 1 ? "roster" : "rosters"}
                 </small>
               </span>
               <span className="state-directory-card__arrow" aria-hidden="true">
