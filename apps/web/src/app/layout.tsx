@@ -21,7 +21,7 @@ export function generateMetadata(): Metadata {
       template: `%s | ${environment.BRAND_NAME}`
     },
     description:
-      "Search Iowa and Minnesota county jail rosters with source context, custody scope, and the latest capture time shown clearly.",
+      "Search county jail rosters with source context, custody scope, and the latest capture time shown clearly.",
     alternates: { canonical: absoluteUrl("/") },
     robots: {
       index: !noIndex,

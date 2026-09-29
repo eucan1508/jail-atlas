@@ -3,13 +3,14 @@ import { StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/page-intro";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
+import { coveragePreviewAllowed } from "@/lib/coverage-catalog";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   path: "/coverage/",
   title: "County Jail Roster Coverage",
   description:
-    "Browse live Jail Atlas coverage in Iowa and Minnesota. Choose a state to search published county jail rosters."
+    "Browse JailAtlas county jail roster coverage by state and open published county pages."
 });
 
 export const dynamic = "force-dynamic";
@@ -18,6 +19,8 @@ export default async function CoveragePage() {
   const published = await getPublishedCountyCoverage();
   const publishedIowa = published.filter(({ entry }) => entry.state === "iowa");
   const publishedMinnesota = published.filter(({ entry }) => entry.state === "minnesota");
+  const publishedTexas = published.filter(({ entry }) => entry.state === "texas");
+  const showTexas = publishedTexas.length > 0 || coveragePreviewAllowed();
   const iowaPublished = publishedIowa.length > 0;
 
   return (
@@ -58,7 +61,7 @@ export default async function CoveragePage() {
             <p className="eyebrow">Approved geography</p>
             <h2 id="scope-heading">Where the evidence is live</h2>
           </div>
-          <span className="section-index">01 / 02</span>
+          <span className="section-index">01 / {showTexas ? "03" : "02"}</span>
         </div>
         <div className="coverage-grid">
           <div className="surface-card coverage-state-row">
@@ -93,6 +96,24 @@ export default async function CoveragePage() {
               Explore Minnesota <span aria-hidden="true">↗</span>
             </Link>
           </div>
+          {showTexas ? (
+            <div className="surface-card coverage-state-row">
+              <div>
+                <StatusPill tone={publishedTexas.length > 0 ? "current" : "neutral"}>
+                  {publishedTexas.length > 0 ? "Active coverage" : "Under review"}
+                </StatusPill>
+                <h3>Texas</h3>
+                <p>
+                  {publishedTexas.length > 0
+                    ? `${publishedTexas.length} public county page${publishedTexas.length === 1 ? " is" : "s are"} available.`
+                    : "Milam County is prepared for source and publication review."}
+                </p>
+              </div>
+              <Link className="coverage-state-row__link" href="/coverage/texas/">
+                Explore Texas <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
 

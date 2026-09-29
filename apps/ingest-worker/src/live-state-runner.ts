@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN";
+export type LiveState = "IA" | "MN" | "TX";
 
 type LiveStateSource = Readonly<{
   countySlug: string;
@@ -47,6 +47,13 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "anoka",
       adapterKey: "anoka-county-mn-current-roster",
       sourceHost: "incustodysearch.co.anoka.mn.us"
+    }
+  ],
+  TX: [
+    {
+      countySlug: "milam",
+      adapterKey: "milam-county-tx-current-roster",
+      sourceHost: "www.milamcountysherifftx.org"
     }
   ]
 };

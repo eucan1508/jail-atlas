@@ -18,6 +18,8 @@ import {
   DALLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
   createIowaCurrentRosterAdapter,
+  createMilamCountySourceAdapter,
+  MILAM_COUNTY_ADAPTER_KEY,
   RAMSEY_COUNTY_ADAPTER_KEY,
   createRamseyCountySourceAdapter,
   STEARNS_COUNTY_ADAPTER_KEY,
@@ -115,6 +117,13 @@ export function createLiveSourceAdapter(
       fetch,
       facilityId,
       createId: () => createId()
+    });
+  }
+  if (source.adapterKey === MILAM_COUNTY_ADAPTER_KEY) {
+    return createMilamCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
     });
   }
   if (source.adapterKey === STEARNS_COUNTY_ADAPTER_KEY) {
