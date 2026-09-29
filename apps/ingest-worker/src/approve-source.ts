@@ -40,8 +40,9 @@ export async function approveSource(
     const sourceResult = await handle.db.execute<{
       source_id: string;
       county_id: string;
+      state_id: string;
     }>(sql`
-      SELECT os.id AS source_id, co.id AS county_id
+      SELECT os.id AS source_id, co.id AS county_id, st.id AS state_id
       FROM official_sources os
       JOIN official_institutions oi ON oi.id = os.official_institution_id
       JOIN counties co ON co.id = oi.county_id
@@ -77,6 +78,11 @@ export async function approveSource(
         SET publication_status = 'published',
             published_at = COALESCE(published_at, now())
         WHERE id = ${source.county_id}
+      `);
+      await tx.execute(sql`
+        UPDATE states
+        SET publication_status = 'published'
+        WHERE id = ${source.state_id}
       `);
     });
     console.log(
