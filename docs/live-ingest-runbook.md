@@ -40,7 +40,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA or MN>
+   state=<IA, MN, or TX>
    county_slug=<county slug>
    confirm=APPROVE
    ```
@@ -78,6 +78,13 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
    ```
 
+   Milam County, Texas can be checked against the official sheriff roster with:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.milamcountysherifftx.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
@@ -85,7 +92,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA or MN>
+   state=<IA, MN, or TX>
    county_slug=<county slug>
    confirm=APPROVE
    ```
