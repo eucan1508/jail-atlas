@@ -12,6 +12,7 @@ const ArgumentsSchema = z.object({
 function parseArguments(arguments_: readonly string[]) {
   const values: Record<string, string> = {};
   for (const argument of arguments_) {
+    if (argument === "--") continue;
     if (!argument.startsWith("--") || !argument.includes("=")) {
       throw new Error("Expected --adapter=, --county=, --state=, and --confirm= flags");
     }
