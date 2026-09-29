@@ -43,6 +43,13 @@
       "when": 1790401200000,
       "tag": "0005_minnesota_anoka_source",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790668800000,
+      "tag": "0006_texas_milam_source",
+      "breakpoints": true
     }
   ]
 }

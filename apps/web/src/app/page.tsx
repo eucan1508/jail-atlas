@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
+import { coveragePreviewAllowed } from "@/lib/coverage-catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ export const metadata = createPageMetadata({
   path: "/",
   title: "County Jail Rosters by State",
   description:
-    "Search county jail rosters in Iowa and Minnesota. Find custody records, available booking details, source-listed charges, and the latest capture time."
+    "Search county jail rosters by state. Find custody records, available booking details, source-listed charges, and the latest capture time."
 });
 
 export default async function HomePage() {
@@ -24,11 +25,14 @@ export default async function HomePage() {
       code: "MN",
       name: "Minnesota",
       slug: "minnesota"
-    }
-  ].map((state) => ({
-    ...state,
-    published: published.filter(({ entry }) => entry.state === state.slug).length
-  }));
+    },
+    { code: "TX", name: "Texas", slug: "texas" }
+  ]
+    .map((state) => ({
+      ...state,
+      published: published.filter(({ entry }) => entry.state === state.slug).length
+    }))
+    .filter((state) => state.slug !== "texas" || state.published > 0 || coveragePreviewAllowed());
 
   return (
     <main id="main-content">
@@ -64,7 +68,9 @@ export default async function HomePage() {
             <p className="eyebrow">Browse by state</p>
             <h2 id="directory-heading">Find a county by geography</h2>
           </div>
-          <span className="section-note">Two states · {published.length} public pages</span>
+          <span className="section-note">
+            {stateDirectory.length} states · {published.length} public pages
+          </span>
         </div>
         <div className="state-directory-grid">
           {stateDirectory.map((state) => (
@@ -162,7 +168,7 @@ export default async function HomePage() {
           url: absoluteUrl("/"),
           name: "County Jail Rosters by State",
           description:
-            "Search Iowa and Minnesota county jail rosters with booking details, source-listed charges, and capture times.",
+            "Search county jail rosters with booking details, source-listed charges, and capture times.",
           isPartOf: { "@id": absoluteUrl("/#website") }
         }}
       />

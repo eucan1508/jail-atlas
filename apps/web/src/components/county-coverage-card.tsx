@@ -12,7 +12,7 @@ export function CountyCoverageCard({
   published?: boolean;
   actionLabel?: string;
 }) {
-  const stateCode = entry.state === "iowa" ? "IA" : "MN";
+  const stateCode = { iowa: "IA", minnesota: "MN", texas: "TX" }[entry.state];
 
   return (
     <article className="surface-card coverage-card">
@@ -20,7 +20,7 @@ export function CountyCoverageCard({
         <span className="coverage-card__state" aria-hidden="true">
           {stateCode}
         </span>
-        <span className="coverage-card__status">Live roster</span>
+        <span className="coverage-card__status">{published ? "Live roster" : "Audit pending"}</span>
       </div>
       <div className="coverage-card__body">
         <p className="eyebrow">
@@ -32,7 +32,7 @@ export function CountyCoverageCard({
       <div className="coverage-card__footer">
         <span>JailAtlas roster</span>
         <div className="coverage-card__actions">
-          {published && href ? (
+          {href ? (
             <Link href={href}>
               {actionLabel} <span aria-hidden="true">↗</span>
             </Link>

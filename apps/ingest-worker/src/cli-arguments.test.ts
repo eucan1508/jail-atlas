@@ -46,8 +46,15 @@ describe("parseLiveCliArguments", () => {
     });
   });
 
+  it("accepts the Texas state batch", () => {
+    expect(parseLiveCliArguments(["run", "--state=tx", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "TX"
+    });
+  });
+
   it("rejects an unsupported state", () => {
-    expect(() => parseLiveCliArguments(["run", "--state=TX", "--dry-run"])).toThrow(
+    expect(() => parseLiveCliArguments(["run", "--state=WI", "--dry-run"])).toThrow(
       CliArgumentError
     );
   });

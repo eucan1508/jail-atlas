@@ -1,6 +1,6 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
-export type CoverageState = "iowa" | "minnesota";
+export type CoverageState = "iowa" | "minnesota" | "texas";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -102,6 +102,22 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "Black Hawk County Sheriff's Office publishes a current Who's In Jail view. This page explains the source's scope, preserves its labels, and provides a correction path without creating a permanent person profile.",
     officialSourceUrl: "https://www.bhcso.org/whos-in-jail",
     officialSourceLabel: "Black Hawk County Sheriff's Office — Who's In Jail",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "texas",
+    stateName: "Texas",
+    county: "Milam County",
+    slug: "milam-county",
+    seatCity: "Cameron",
+    h1: "Milam County Jail Roster & Inmate Search",
+    title: "Milam County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Review Milam County, Texas current-inmate information with the official sheriff roster, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Milam County Sheriff's Office publishes a paginated current Inmate Roster. This page preserves the roster's current-custody scope, booking number, source-listed charges, bond labels, and capture time without republishing mugshots.",
+    officialSourceUrl: "https://www.milamcountysherifftx.org/roster.php",
+    officialSourceLabel: "Milam County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {
