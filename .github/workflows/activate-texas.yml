@@ -69,7 +69,7 @@ jobs:
       - name: Verify canonical Milam County pagination without writes
         run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
 
-      - name: Approve source and publish Texas and Milam County
+      - name: Approve verified source and publish Texas and Milam County
         run: >-
           pnpm --filter @jail-atlas/ingest-worker source:approve --
           --adapter=milam-county-tx-current-roster --county=milam --state=TX --confirm=APPROVE
