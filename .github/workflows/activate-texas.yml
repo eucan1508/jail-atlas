@@ -1,0 +1,66 @@
+name: Activate Texas live source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/activate-texas.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-texas-activation
+  cancel-in-progress: false
+
+jobs:
+  activate:
+    name: Migrate, verify, approve, and ingest Milam County
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: "true"
+      NODE_ENV: production
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      INGEST_MODE: live
+      INGEST_NETWORK_ACCESS: enabled
+      INGEST_DATABASE_WRITES: disabled
+      ALLOW_LIVE_SOURCE_FETCHES: "true"
+      SOURCE_HOST_ALLOWLIST: www.milamcountysherifftx.org
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace packages
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Validate migration journal
+        run: pnpm --filter @jail-atlas/database db:check
+
+      - name: Apply append-only migrations
+        run: pnpm --filter @jail-atlas/database db:migrate
+
+      - name: Verify Milam County source without writes
+        run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
+
+      - name: Approve source and publish Texas and Milam County
+        run: >-
+          pnpm --filter @jail-atlas/ingest-worker source:approve --
+          --adapter=milam-county-tx-current-roster --county=milam --state=TX --confirm=APPROVE
+
+      - name: Write first current-custody snapshot
+        env:
+          INGEST_DATABASE_WRITES: enabled
+        run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX
