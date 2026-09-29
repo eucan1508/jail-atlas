@@ -11,7 +11,7 @@ import {
 import { runSourceAdapter } from "./runner.js";
 import { sourceAdapterRegistry } from "./registry.js";
 
-const pageTwoUrl = `${MILAM_COUNTY_CURRENT_SOURCE_URL}?grp=20&orderby=1`;
+const pageTwoUrl = `${MILAM_COUNTY_CURRENT_SOURCE_URL}?grp=20`;
 
 function syntheticPage(
   count: number,
@@ -151,6 +151,46 @@ describe("Milam County source adapter", () => {
       note: "The source displays $0.00; this is not interpreted as no bond."
     });
     expect(result.snapshot.bookings[1]?.bondEntries[0]?.amountMinor).toBe(125_000);
+  });
+
+  it("canonicalizes pagination links to the approved current-roster ordering", async () => {
+    const result = await runSourceAdapter(
+      adapter(
+        new Map([
+          [
+            MILAM_COUNTY_CURRENT_SOURCE_URL,
+            syntheticPage(
+              2,
+              [
+                {
+                  bookingNumber: "SYNTHETIC-003",
+                  name: "TESTER, GAMMA — TEST ONLY",
+                  charge: "SYNTHETIC CHARGE GAMMA — TEST ONLY",
+                  bond: "$25.00"
+                }
+              ],
+              "/roster.php?sort=1&grp=20&orderby=1"
+            )
+          ],
+          [
+            pageTwoUrl,
+            syntheticPage(2, [
+              {
+                bookingNumber: "SYNTHETIC-004",
+                name: "TESTER, DELTA — TEST ONLY",
+                charge: "SYNTHETIC CHARGE DELTA — TEST ONLY",
+                bond: "$50.00"
+              }
+            ])
+          ]
+        ])
+      ),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(2);
   });
 
   it("accepts only an explicit zero-count roster as valid empty", async () => {

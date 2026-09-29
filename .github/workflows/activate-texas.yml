@@ -66,7 +66,7 @@ jobs:
       - name: Apply append-only migrations
         run: pnpm --filter @jail-atlas/database db:migrate
 
-      - name: Verify Milam County source without writes
+      - name: Verify canonical Milam County pagination without writes
         run: pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
 
       - name: Approve source and publish Texas and Milam County

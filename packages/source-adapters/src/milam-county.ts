@@ -105,6 +105,15 @@ function exactRosterUrl(input: string): URL {
   return url;
 }
 
+function canonicalRosterPageUrl(input: string): string {
+  const url = exactRosterUrl(input);
+  const group = url.searchParams.get("grp");
+  if (group === null) return MILAM_COUNTY_CURRENT_SOURCE_URL;
+  const canonical = new URL(MILAM_COUNTY_CURRENT_SOURCE_URL);
+  canonical.searchParams.set("grp", group);
+  return canonical.href;
+}
+
 function sourceIdentity($: CheerioAPI): void {
   const title = normalizeText($("title").first().text());
   const body = normalizeText($("body").text());
@@ -225,7 +234,7 @@ function parsePage(
 
   const pageUrls = $("a[href*='roster.php'][href*='grp=']")
     .toArray()
-    .map((link) => exactRosterUrl(new URL($(link).attr("href") ?? "", pageUrl).href).href)
+    .map((link) => canonicalRosterPageUrl(new URL($(link).attr("href") ?? "", pageUrl).href))
     .filter((url, index, all) => all.indexOf(url) === index)
     .slice(0, MAX_PAGES - 1);
   return { records, pageUrls, validEmptyMarker };
@@ -244,9 +253,9 @@ async function requestRoster(
   let validEmptyMarker = false;
 
   while (pending.length > 0) {
-    if (visited.size >= MAX_PAGES) throw new Error("PAGE_LIMIT_REACHED");
-    const currentUrl = exactRosterUrl(pending.shift() ?? "").href;
+    const currentUrl = canonicalRosterPageUrl(pending.shift() ?? "");
     if (visited.has(currentUrl)) continue;
+    if (visited.size >= MAX_PAGES) throw new Error("PAGE_LIMIT_REACHED");
     visited.add(currentUrl);
     const response = await options.fetch(currentUrl, {
       method: "GET",
