@@ -60,6 +60,9 @@ jobs:
           ORDER BY created_at'); console.log(JSON.stringify(history.rows)); } } finally { await
           pool.end(); }"
 
+      - name: Baseline verified existing production schema
+        run: pnpm --filter @jail-atlas/database db:baseline-existing
+
       - name: Apply append-only migrations
         run: pnpm --filter @jail-atlas/database db:migrate
 

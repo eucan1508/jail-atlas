@@ -28,6 +28,7 @@
     "test": "vitest run",
     "test:unit": "vitest run",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:baseline-existing": "node --experimental-strip-types src/baseline-existing-production.ts",
     "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
     "db:check": "drizzle-kit check --config drizzle.config.ts"
   },
