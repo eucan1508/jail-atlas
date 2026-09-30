@@ -24,7 +24,7 @@ export const KENDALL_COUNTY_ADAPTER_KEY = "kendall-county-tx-current-roster" as 
 export const KENDALL_COUNTY_CURRENT_SOURCE_URL =
   "https://www.kendallcountysheriff.com/roster.php" as const;
 export const KENDALL_COUNTY_SOURCE_HOST = "www.kendallcountysheriff.com" as const;
-export const KENDALL_COUNTY_PARSER_VERSION = "1.0.0" as const;
+export const KENDALL_COUNTY_PARSER_VERSION = "1.0.1" as const;
 
 const MAX_PAGES = 20;
 const MAX_RECORDS = 1_000;
@@ -201,11 +201,14 @@ function parsePage(
       .map((image) => normalizeText($(image).attr("alt") ?? ""))
       .find((alt) => /^Mugshot of /i.test(alt))
       ?.replace(/^Mugshot of /i, "");
+    const sheriffOfficeLabelIndex = lines.findIndex((line) => line.toLowerCase() === "so #:");
     const bookingLabelIndex = lines.findIndex((line) => line.toLowerCase() === "booking #:");
+    const nameBoundaryIndex =
+      sheriffOfficeLabelIndex >= 0 ? sheriffOfficeLabelIndex : bookingLabelIndex;
     const displayName = normalizeText(
       altName ??
         lines
-          .slice(0, bookingLabelIndex < 0 ? 0 : bookingLabelIndex)
+          .slice(0, nameBoundaryIndex < 0 ? 0 : nameBoundaryIndex)
           .filter((line) => !/^inmate roster/i.test(line) && !/^current inmates$/i.test(line))
           .at(-1) ??
         ""
