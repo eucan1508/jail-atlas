@@ -121,6 +121,22 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Hutchinson County",
+    slug: "hutchinson-county",
+    seatCity: "Stinnett",
+    h1: "Hutchinson County Jail Roster & Inmate Search",
+    title: "Hutchinson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Review Hutchinson County, Texas current-inmate information with the official sheriff roster, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Hutchinson County Sheriff's Office publishes a paginated current Inmate Roster for its jail in Borger. This page preserves the roster's current-custody scope, booking number, source-listed charges, bond labels, and capture time without republishing mugshots.",
+    officialSourceUrl: "https://www.hutchinsonsherifftx.org/roster.php",
+    officialSourceLabel: "Hutchinson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Ramsey County",

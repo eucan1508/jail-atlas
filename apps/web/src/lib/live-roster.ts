@@ -26,7 +26,8 @@ const liveAdapterKeys: Record<string, string> = {
   "ramsey-county": "ramsey-county-mn-current-roster",
   "stearns-county": "stearns-county-mn-current-roster",
   "anoka-county": "anoka-county-mn-current-roster",
-  "milam-county": "milam-county-tx-current-roster"
+  "milam-county": "milam-county-tx-current-roster",
+  "hutchinson-county": "hutchinson-county-tx-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.

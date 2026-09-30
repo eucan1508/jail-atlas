@@ -50,6 +50,13 @@
       "when": 1790668800000,
       "tag": "0006_texas_milam_source",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1790755200000,
+      "tag": "0007_texas_hutchinson_source",
+      "breakpoints": true
     }
   ]
 }
