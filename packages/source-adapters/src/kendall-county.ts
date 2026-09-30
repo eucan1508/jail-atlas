@@ -213,8 +213,14 @@ function parsePage(
           .at(-1) ??
         ""
     );
+    const listedSheriffOfficeNumber = normalizeText(valueAfter(lines, "SO #:") ?? "");
     const listedBookingNumber = normalizeText(valueAfter(lines, "Booking #:") ?? "");
-    if (!displayName || listedBookingNumber !== bookingNumber) {
+    if (
+      !displayName ||
+      displayName === listedSheriffOfficeNumber ||
+      displayName === listedBookingNumber ||
+      listedBookingNumber !== bookingNumber
+    ) {
       throw new Error("INVALID_RECORD_IDENTITY");
     }
     const record = KendallRecordSchema.parse({
