@@ -54,6 +54,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "milam",
       adapterKey: "milam-county-tx-current-roster",
       sourceHost: "www.milamcountysherifftx.org"
+    },
+    {
+      countySlug: "hutchinson",
+      adapterKey: "hutchinson-county-tx-current-roster",
+      sourceHost: "www.hutchinsonsherifftx.org"
     }
   ]
 };
