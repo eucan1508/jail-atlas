@@ -193,6 +193,36 @@ describe("Kendall County source adapter", () => {
     expect(result.snapshot.recordCount).toBe(2);
   });
 
+  it("uses the visible inmate name instead of the sheriff office number", async () => {
+    const result = await runSourceAdapter(
+      adapter(
+        new Map([
+          [
+            KENDALL_COUNTY_CURRENT_SOURCE_URL,
+            `<!doctype html><html><head><title>Kendall County Sheriff</title></head><body>
+              <h1>Inmate Roster (1)</h1>
+              <article>
+                <p>TESTER, NAME — TEST ONLY</p>
+                <p>SO #:</p><p>K25-00656</p>
+                <p>Booking #:</p><p>SYNTHETIC-005</p>
+                <p>Booking Date:</p><p>01-01-2000 - 12:00 pm</p>
+                <p>Charges:</p><p>SYNTHETIC CHARGE — TEST ONLY</p>
+                <p>Bond:</p><p>Pending</p>
+                <a href="/roster_view.php?booking_num=SYNTHETIC-005">View Profile &gt;&gt;&gt;</a>
+              </article>
+            </body></html>`
+          ]
+        ])
+      ),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]?.person.displayName).toBe("TESTER, NAME — TEST ONLY");
+    expect(result.snapshot.bookings[0]?.person.displayName).not.toBe("K25-00656");
+  });
+
   it("accepts only an explicit zero-count roster as valid empty", async () => {
     const result = await runSourceAdapter(
       adapter(new Map([[KENDALL_COUNTY_CURRENT_SOURCE_URL, syntheticPage(0, [])]])),
