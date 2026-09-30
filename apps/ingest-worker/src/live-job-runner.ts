@@ -17,6 +17,8 @@ import {
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
+  createHutchinsonCountySourceAdapter,
+  HUTCHINSON_COUNTY_ADAPTER_KEY,
   createIowaCurrentRosterAdapter,
   createMilamCountySourceAdapter,
   MILAM_COUNTY_ADAPTER_KEY,
@@ -121,6 +123,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === MILAM_COUNTY_ADAPTER_KEY) {
     return createMilamCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === HUTCHINSON_COUNTY_ADAPTER_KEY) {
+    return createHutchinsonCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
