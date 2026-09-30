@@ -19,6 +19,8 @@ import {
   createDallasCountySourceAdapter,
   createHutchinsonCountySourceAdapter,
   HUTCHINSON_COUNTY_ADAPTER_KEY,
+  createKendallCountySourceAdapter,
+  KENDALL_COUNTY_ADAPTER_KEY,
   createIowaCurrentRosterAdapter,
   createMilamCountySourceAdapter,
   MILAM_COUNTY_ADAPTER_KEY,
@@ -130,6 +132,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === HUTCHINSON_COUNTY_ADAPTER_KEY) {
     return createHutchinsonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === KENDALL_COUNTY_ADAPTER_KEY) {
+    return createKendallCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

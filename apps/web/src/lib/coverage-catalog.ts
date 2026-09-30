@@ -137,6 +137,22 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Kendall County",
+    slug: "kendall-county",
+    seatCity: "Boerne",
+    h1: "Kendall County Jail Roster & Inmate Search",
+    title: "Kendall County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Review Kendall County, Texas current-inmate information with the official sheriff roster, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Kendall County Sheriff's Office publishes a paginated current Inmate Roster for the county jail in Boerne. This page preserves the roster's current-custody scope, booking number, source-listed charges, bond labels, and capture time without republishing mugshots.",
+    officialSourceUrl: "https://www.kendallcountysheriff.com/roster.php",
+    officialSourceLabel: "Kendall County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Ramsey County",

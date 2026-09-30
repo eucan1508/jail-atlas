@@ -59,6 +59,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "hutchinson",
       adapterKey: "hutchinson-county-tx-current-roster",
       sourceHost: "www.hutchinsonsherifftx.org"
+    },
+    {
+      countySlug: "kendall",
+      adapterKey: "kendall-county-tx-current-roster",
+      sourceHost: "www.kendallcountysheriff.com"
     }
   ]
 };
