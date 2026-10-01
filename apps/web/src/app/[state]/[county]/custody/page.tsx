@@ -12,6 +12,7 @@ import {
 } from "@/lib/coverage-catalog";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { readEnvironment } from "@/lib/env";
+import { findCountyGuide } from "@/lib/county-guides";
 import { getLiveCountySource, getLiveRosterPage } from "@/lib/live-roster";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
@@ -207,6 +208,10 @@ export default async function CountyCustodyBriefPage({
           </LinkButton>
         </div>
       </section>
+
+      {findCountyGuide(entry.state, entry.slug) ? (
+        <CountyGuide capturedAt={null} entry={entry} recordCount={null} related={[]} />
+      ) : null}
 
       <JsonLd
         data={{
