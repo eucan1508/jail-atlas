@@ -86,6 +86,14 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Verify Mower County official roster reachability
+        if: ${{ env.INGEST_STATE == 'MN' }}
+        run: |
+          curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 --max-time 30 --retry 2 \
+            --output "$RUNNER_TEMP/mower-roster.pdf" \
+            "https://mower-sftp.co.mower.mn.us/WSFTPSVR/mcounty/jail/JailRoster.rpt.pdf"
+          test "$(head -c 4 "$RUNNER_TEMP/mower-roster.pdf")" = "%PDF"
+
       - name: Install exact dependency graph
         run: pnpm install --frozen-lockfile
 
