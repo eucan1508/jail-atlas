@@ -57,6 +57,7 @@ const WorkerEnvironmentSchema = z
     SOURCE_HOST_ALLOWLIST: hostAllowlist,
     DATABASE_URL: optionalDatabaseUrl,
     GITHUB_RUN_ID: z.string().trim().min(1).max(128).optional(),
+    MOWER_COUNTY_ROSTER_FILE: z.string().trim().min(1).max(1_024).startsWith("/").optional(),
     LIVE_SOURCE_ADAPTER_KEY: z
       .string()
       .trim()
@@ -152,6 +153,7 @@ export interface WorkerConfig {
   readonly sourceHostAllowlist: readonly string[];
   readonly databaseUrl?: string;
   readonly runId?: string;
+  readonly mowerCountyRosterFile?: string;
   readonly liveSourceAdapterKey?: string;
 }
 
@@ -189,6 +191,9 @@ export function readWorkerConfig(environment: Record<string, string | undefined>
     sourceHostAllowlist: Object.freeze([...result.data.SOURCE_HOST_ALLOWLIST]),
     ...(result.data.DATABASE_URL === undefined ? {} : { databaseUrl: result.data.DATABASE_URL }),
     ...(result.data.GITHUB_RUN_ID === undefined ? {} : { runId: result.data.GITHUB_RUN_ID }),
+    ...(result.data.MOWER_COUNTY_ROSTER_FILE === undefined
+      ? {}
+      : { mowerCountyRosterFile: result.data.MOWER_COUNTY_ROSTER_FILE }),
     ...(result.data.LIVE_SOURCE_ADAPTER_KEY === undefined
       ? {}
       : { liveSourceAdapterKey: result.data.LIVE_SOURCE_ADAPTER_KEY })
