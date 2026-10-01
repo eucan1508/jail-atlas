@@ -10,6 +10,7 @@ import {
 
 export type PublishedCountyCoverage = Readonly<{
   entry: CountyCoverageBrief;
+  liveSource: NonNullable<Awaited<ReturnType<typeof getLiveCountySource>>>;
   path: string;
 }>;
 
@@ -28,7 +29,7 @@ export async function getPublishedCountyCoverage(
     candidates.map(async (entry) => {
       try {
         const source = await getLiveCountySource(entry);
-        return source ? { entry, path: countyCoveragePath(entry) } : null;
+        return source ? { entry, liveSource: source, path: countyCoveragePath(entry) } : null;
       } catch {
         return null;
       }

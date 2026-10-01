@@ -3,6 +3,7 @@ import { countyPath, expectNoAxeViolations } from "./support/contracts";
 
 for (const testCase of [
   { name: "home", path: "/" },
+  { name: "state directory", path: "/coverage/iowa/" },
   { name: "county roster", path: countyPath }
 ]) {
   test(`@a11y mobile ${testCase.name} has no detectable WCAG A/AA violations`, async ({ page }) => {
