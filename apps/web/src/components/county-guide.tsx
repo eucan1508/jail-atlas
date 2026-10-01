@@ -10,12 +10,15 @@ function countyFaqItems(
   entry: CountyCoverageBrief,
   facility: string,
   operatedBy: string,
-  phone: string
+  phone: string,
+  rosterPublished: boolean
 ): readonly FaqItem[] {
   return [
     {
       question: `How do I find out if someone is in ${facility}?`,
-      answer: `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
+      answer: rosterPublished
+        ? `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
+        : `The current-custody search is not published yet. Use the linked official roster source or contact ${facility} at ${phone} until the source audit is complete.`
     },
     {
       question: `Who operates ${facility}?`,
@@ -28,8 +31,9 @@ function countyFaqItems(
     },
     {
       question: `How current is the ${entry.county} roster?`,
-      answer:
-        "The page shows the latest successful capture time above the roster. Booking, transfer, release, and charge information can change, so confirm urgent details with the responsible official institution."
+      answer: rosterPublished
+        ? "The page shows the latest successful capture time above the roster. Booking, transfer, release, and charge information can change, so confirm urgent details with the responsible official institution."
+        : "JailAtlas has not published a current roster snapshot for this county yet. Use the linked official source and confirm urgent details with the responsible institution."
     },
     {
       question: `How do I correct information shown for ${entry.county}?`,
@@ -101,8 +105,8 @@ export function CountyGuide({
   related
 }: {
   entry: CountyCoverageBrief;
-  capturedAt: Date;
-  recordCount: number;
+  capturedAt: Date | null;
+  recordCount: number | null;
   related: readonly PublishedCountyCoverage[];
 }) {
   const profile = findCountyGuide(entry.state, entry.slug);
@@ -110,8 +114,15 @@ export function CountyGuide({
     throw new Error(`Missing verified county guide for ${entry.state}/${entry.slug}`);
   }
   const facility = profile.facilityName;
-  const faqItems = countyFaqItems(entry, facility, profile.operatedBy, profile.phone);
-  const capturedLabel = capturedAt.toLocaleString("en-US", {
+  const rosterPublished = capturedAt !== null && recordCount !== null;
+  const faqItems = countyFaqItems(
+    entry,
+    facility,
+    profile.operatedBy,
+    profile.phone,
+    rosterPublished
+  );
+  const capturedLabel = capturedAt?.toLocaleString("en-US", {
     timeZone: "America/Chicago",
     timeZoneName: "short"
   });
@@ -156,8 +167,9 @@ export function CountyGuide({
           <div>
             <dt>Current page status</dt>
             <dd>
-              {recordCount} visible {recordCount === 1 ? "record" : "records"} · captured{" "}
-              {capturedLabel}
+              {rosterPublished
+                ? `${recordCount} visible ${recordCount === 1 ? "record" : "records"} · captured ${capturedLabel}`
+                : "Verified facility guidance available · roster publication pending"}
             </dd>
           </div>
           <div>
@@ -167,29 +179,31 @@ export function CountyGuide({
         </dl>
       </section>
 
-      <section
-        className="content-section county-guide__panel county-guide__search"
-        aria-labelledby="search-guide-heading"
-      >
-        <div className="section-heading-row">
-          <div>
-            <p className="eyebrow">Using this page</p>
-            <h2 id="search-guide-heading">How the {entry.county} inmate search works</h2>
+      {rosterPublished ? (
+        <section
+          className="content-section county-guide__panel county-guide__search"
+          aria-labelledby="search-guide-heading"
+        >
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow">Using this page</p>
+              <h2 id="search-guide-heading">How the {entry.county} inmate search works</h2>
+            </div>
           </div>
-        </div>
-        <div className="county-guide__split">
-          <p>
-            The roster above searches the complete current snapshot, not only the records visible on
-            screen. Search names as published by the official source and use the booking number to
-            distinguish similar names when that identifier is available.
-          </p>
-          <p>
-            JailAtlas preserves source labels and does not turn a listed charge into a court
-            outcome. A missing result can mean the person is not in the current snapshot, the name
-            is recorded differently, or the official source has changed since the last capture.
-          </p>
-        </div>
-      </section>
+          <div className="county-guide__split">
+            <p>
+              The roster above searches the complete current snapshot, not only the records visible
+              on screen. Search names as published by the official source and use the booking number
+              to distinguish similar names when that identifier is available.
+            </p>
+            <p>
+              JailAtlas preserves source labels and does not turn a listed charge into a court
+              outcome. A missing result can mean the person is not in the current snapshot, the name
+              is recorded differently, or the official source has changed since the last capture.
+            </p>
+          </div>
+        </section>
+      ) : null}
 
       <section
         className="content-section county-guide__panel county-guide__guidance"
