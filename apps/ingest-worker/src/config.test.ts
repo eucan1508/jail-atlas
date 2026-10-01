@@ -46,9 +46,9 @@ describe("readWorkerConfig", () => {
   });
 
   it("accepts only an absolute pre-fetched Mower roster path", () => {
-    expect(
-      readWorkerConfig({ MOWER_COUNTY_ROSTER_FILE: "/tmp/mower-roster.pdf" })
-    ).toMatchObject({ mowerCountyRosterFile: "/tmp/mower-roster.pdf" });
+    expect(readWorkerConfig({ MOWER_COUNTY_ROSTER_FILE: "/tmp/mower-roster.pdf" })).toMatchObject({
+      mowerCountyRosterFile: "/tmp/mower-roster.pdf"
+    });
 
     expect(() =>
       readWorkerConfig({ MOWER_COUNTY_ROSTER_FILE: "relative/mower-roster.pdf" })
