@@ -7,6 +7,7 @@ export * from "./iowa-registry.js";
 export * from "./hutchinson-county.js";
 export * from "./kendall-county.js";
 export * from "./milam-county.js";
+export * from "./mower-county.js";
 export * from "./ramsey-county.js";
 export * from "./stearns-county.js";
 export * from "./registry.js";

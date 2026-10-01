@@ -155,6 +155,22 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Mower County",
+    slug: "mower-county",
+    seatCity: "Austin",
+    h1: "Mower County Jail Roster & Inmate Search",
+    title: "Mower County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Review Mower County, Minnesota current-custody information from the official jail roster, including booking identifiers, source-listed charges, and the latest source update time.",
+    article:
+      "Mower County publishes an official Jail Roster PDF for the county jail in Austin. JailAtlas keeps only rows explicitly marked IN CUSTODY, separates each person's name from the source booking number, preserves source-listed charge text, and excludes released rows and demographic fields.",
+    officialSourceUrl: "https://mower-sftp.co.mower.mn.us/WSFTPSVR/mcounty/jail/JailRoster.rpt.pdf",
+    officialSourceLabel: "Mower County official jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     seatCity: "Saint Paul",
