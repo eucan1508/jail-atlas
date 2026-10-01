@@ -86,6 +86,16 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Fetch Mower County official roster
+        if: ${{ env.INGEST_STATE == 'MN' }}
+        run: |
+          roster_file="$RUNNER_TEMP/mower-roster.pdf"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 --max-time 30 --retry 2 \
+            --output "$roster_file" \
+            "https://mower-sftp.co.mower.mn.us/WSFTPSVR/mcounty/jail/JailRoster.rpt.pdf"
+          test "$(head -c 4 "$roster_file")" = "%PDF"
+          echo "MOWER_COUNTY_ROSTER_FILE=$roster_file" >> "$GITHUB_ENV"
+
       - name: Install exact dependency graph
         run: pnpm install --frozen-lockfile
 

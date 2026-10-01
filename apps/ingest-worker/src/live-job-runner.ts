@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { readFile } from "node:fs/promises";
 
 import {
   createDatabase,
@@ -161,8 +162,23 @@ export function createLiveSourceAdapter(
     });
   }
   if (source.adapterKey === MOWER_COUNTY_ADAPTER_KEY) {
+    const mowerRosterFile = config.mowerCountyRosterFile;
+    const mowerFetch = mowerRosterFile
+      ? async (input: string, init?: RequestInit): Promise<Response> => {
+          if (input !== source.sourceUrl) throw new Error("SOURCE_URL_MISMATCH");
+          if (init?.signal?.aborted) throw new Error("REQUEST_ABORTED");
+          const bytes = new Uint8Array(await readFile(mowerRosterFile));
+          return new Response(bytes, {
+            status: 200,
+            headers: {
+              "content-length": String(bytes.length),
+              "content-type": "application/pdf"
+            }
+          });
+        }
+      : fetch;
     return createMowerCountySourceAdapter({
-      fetch,
+      fetch: mowerFetch,
       facilityId,
       createId: createAdapterId
     });
