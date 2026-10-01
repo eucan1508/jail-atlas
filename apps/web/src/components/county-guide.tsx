@@ -39,6 +39,61 @@ function countyFaqItems(
   ];
 }
 
+function guidanceChecklist(title: string): readonly string[] {
+  const normalizedTitle = title.toLocaleLowerCase("en-US");
+
+  if (normalizedTitle.includes("visit")) {
+    return [
+      "Confirm the current day and time before traveling.",
+      "Check identification, approval, age, dress, and arrival rules.",
+      "Use the official scheduling service when an appointment is required."
+    ];
+  }
+
+  if (
+    normalizedTitle.includes("money") ||
+    normalizedTitle.includes("commissary") ||
+    normalizedTitle.includes("canteen")
+  ) {
+    return [
+      "Match the recipient's full name and booking identifier.",
+      "Open deposit services only from the linked official county page.",
+      "Review transaction fees, limits, delivery time, and refund rules."
+    ];
+  }
+
+  if (
+    normalizedTitle.includes("mail") ||
+    normalizedTitle.includes("phone") ||
+    normalizedTitle.includes("communication") ||
+    normalizedTitle.includes("message")
+  ) {
+    return [
+      "Verify the current mailing format and required booking identifier.",
+      "Review prohibited-item, photo, publication, and package rules.",
+      "Confirm provider registration, rates, and service availability."
+    ];
+  }
+
+  if (
+    normalizedTitle.includes("bail") ||
+    normalizedTitle.includes("bond") ||
+    normalizedTitle.includes("court")
+  ) {
+    return [
+      "Confirm the case number, current amount, and bond type.",
+      "Ask which payment methods and locations are currently accepted.",
+      "Use the court for hearings, filings, dispositions, and legal status."
+    ];
+  }
+
+  return [
+    "Confirm the procedure with the responsible facility.",
+    "Use the linked official source for the latest instructions.",
+    "Keep the person's booking identifier available when contacting the agency."
+  ];
+}
+
 export function CountyGuide({
   entry,
   capturedAt,
@@ -64,7 +119,10 @@ export function CountyGuide({
 
   return (
     <>
-      <section className="content-section county-guide__about" aria-labelledby="facility-heading">
+      <section
+        className="content-section county-guide__panel county-guide__about"
+        aria-labelledby="facility-heading"
+      >
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Verified county context</p>
@@ -109,7 +167,10 @@ export function CountyGuide({
         </dl>
       </section>
 
-      <section className="content-section" aria-labelledby="search-guide-heading">
+      <section
+        className="content-section county-guide__panel county-guide__search"
+        aria-labelledby="search-guide-heading"
+      >
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Using this page</p>
@@ -130,7 +191,10 @@ export function CountyGuide({
         </div>
       </section>
 
-      <section className="content-section" aria-labelledby="local-guidance-heading">
+      <section
+        className="content-section county-guide__panel county-guide__guidance"
+        aria-labelledby="local-guidance-heading"
+      >
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Practical guidance</p>
@@ -142,10 +206,21 @@ export function CountyGuide({
           </div>
         </div>
         <div className="guidance-grid">
-          {profile.sections.map((section) => (
-            <article key={section.title}>
-              <h3>{section.title}</h3>
-              <p>{section.body}</p>
+          {profile.sections.map((section, index) => (
+            <article className="guidance-card" key={section.title}>
+              <header className="guidance-card__header">
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{section.title}</h3>
+              </header>
+              <p className="guidance-card__body">{section.body}</p>
+              <div className="guidance-card__checklist">
+                <h4>Before you use this information</h4>
+                <ul>
+                  {guidanceChecklist(section.title).map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
               <a className="guidance-source" href={section.sourceUrl}>
                 {section.sourceLabel} <span aria-hidden="true">↗</span>
               </a>
@@ -159,7 +234,10 @@ export function CountyGuide({
       </section>
 
       {related.length > 0 ? (
-        <section className="content-section" aria-labelledby="related-counties-heading">
+        <section
+          className="content-section county-guide__panel county-guide__related"
+          aria-labelledby="related-counties-heading"
+        >
           <div className="section-heading-row">
             <div>
               <p className="eyebrow">Continue browsing</p>
@@ -180,7 +258,10 @@ export function CountyGuide({
         </section>
       ) : null}
 
-      <section className="content-section faq-section" aria-labelledby="county-faq-heading">
+      <section
+        className="content-section county-guide__panel faq-section"
+        aria-labelledby="county-faq-heading"
+      >
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Common questions</p>
