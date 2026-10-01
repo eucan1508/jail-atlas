@@ -25,6 +25,7 @@
   "dependencies": {
     "@jail-atlas/domain": "workspace:*",
     "cheerio": "1.2.0",
+    "pdfjs-dist": "^6.3.289",
     "zod": "^4.1.5"
   },
   "devDependencies": {
