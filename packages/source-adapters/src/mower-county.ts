@@ -208,7 +208,11 @@ async function requestRoster(
     method: "GET",
     redirect: "error",
     signal: context.signal,
-    headers: { accept: "application/pdf", "accept-encoding": "identity" }
+    headers: {
+      accept: "application/pdf",
+      "accept-encoding": "identity",
+      "user-agent": "Mozilla/5.0 (compatible; JailAtlas/1.0; +https://jailatlas.com)"
+    }
   });
   if (!response.ok) throw new Error(`HTTP_${response.status}`);
   const declaredLength = Number(response.headers.get("content-length") ?? "0");
