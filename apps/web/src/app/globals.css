@@ -1287,6 +1287,14 @@ textarea {
   margin: 0;
 }
 
+.guidance-source {
+  display: inline-flex;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+}
+
 .terminology-grid {
   border-top: 2px solid var(--color-ink);
   display: grid;
