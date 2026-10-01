@@ -45,6 +45,16 @@ describe("readWorkerConfig", () => {
     expect(config.sourceHostAllowlist).toEqual(["roster.example.test", "official.example.test"]);
   });
 
+  it("accepts only an absolute pre-fetched Mower roster path", () => {
+    expect(
+      readWorkerConfig({ MOWER_COUNTY_ROSTER_FILE: "/tmp/mower-roster.pdf" })
+    ).toMatchObject({ mowerCountyRosterFile: "/tmp/mower-roster.pdf" });
+
+    expect(() =>
+      readWorkerConfig({ MOWER_COUNTY_ROSTER_FILE: "relative/mower-roster.pdf" })
+    ).toThrow(EnvironmentValidationError);
+  });
+
   it("accepts an explicitly configured live dry-run", () => {
     expect(
       readWorkerConfig({
