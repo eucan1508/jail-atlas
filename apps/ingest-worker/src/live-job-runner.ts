@@ -24,6 +24,8 @@ import {
   createIowaCurrentRosterAdapter,
   createMilamCountySourceAdapter,
   MILAM_COUNTY_ADAPTER_KEY,
+  createMowerCountySourceAdapter,
+  MOWER_COUNTY_ADAPTER_KEY,
   RAMSEY_COUNTY_ADAPTER_KEY,
   createRamseyCountySourceAdapter,
   STEARNS_COUNTY_ADAPTER_KEY,
@@ -153,6 +155,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === ANOKA_COUNTY_ADAPTER_KEY) {
     return createAnokaCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === MOWER_COUNTY_ADAPTER_KEY) {
+    return createMowerCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
