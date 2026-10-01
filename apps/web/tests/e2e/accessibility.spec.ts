@@ -3,6 +3,7 @@ import { countyPath, expectNoAxeViolations, roster } from "./support/contracts";
 
 for (const testCase of [
   { name: "home", path: "/" },
+  { name: "state directory", path: "/coverage/iowa/" },
   { name: "county roster", path: countyPath },
   { name: "corrections", path: "/corrections/" }
 ]) {
@@ -25,6 +26,20 @@ test("@a11y skip navigation is the first keyboard stop", async ({ page }) => {
   await page.keyboard.press("Enter");
   await expect(page.locator("#main-content")).toBeVisible();
   expect(new URL(page.url()).hash).toBe("#main-content");
+});
+
+test("@a11y directory FAQs use native keyboard-accessible disclosures", async ({ page }) => {
+  await page.goto("/coverage/iowa/");
+
+  const question = page.getByText("Does the Iowa Department of Corrections replace", {
+    exact: false
+  });
+  await expect(question).toBeVisible();
+  await question.focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByText("The state corrections system primarily covers", { exact: false })
+  ).toBeVisible();
 });
 
 test("@a11y roster personal data is excluded from snippets and has accessible controls", async ({

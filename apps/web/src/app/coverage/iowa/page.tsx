@@ -6,6 +6,7 @@ import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
+import { StateFaq } from "@/components/state-faq";
 import { canRenderIowaCoverage } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
@@ -92,6 +93,8 @@ export default async function IowaCoveragePage() {
           <Link href="/methodology/">See how source health and freshness are calculated</Link>.
         </p>
       </section>
+
+      <StateFaq state="iowa" />
 
       <JsonLd
         data={{

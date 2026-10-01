@@ -5,6 +5,7 @@ import { CountyCoverageCard } from "@/components/county-coverage-card";
 import { CountyFinder } from "@/components/county-finder";
 import { JsonLd } from "@/components/json-ld";
 import { PageIntro } from "@/components/page-intro";
+import { StateFaq } from "@/components/state-faq";
 import {
   countiesForState,
   countyCoveragePath,
@@ -88,6 +89,8 @@ export default async function TexasCoveragePage() {
           ))}
         </div>
       </section>
+
+      <StateFaq state="texas" />
 
       <JsonLd
         data={{

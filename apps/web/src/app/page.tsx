@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Alert, LinkButton } from "@jail-atlas/ui";
 import { CountyFinder } from "@/components/county-finder";
+import { FaqList, type FaqItem } from "@/components/faq-list";
 import { JsonLd } from "@/components/json-ld";
 import { canRenderSyntheticScottCounty } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
@@ -15,6 +16,29 @@ export const metadata = createPageMetadata({
   description:
     "Search county jail rosters by state. Find custody records, available booking details, source-listed charges, and the latest capture time."
 });
+
+const homeFaqItems: readonly FaqItem[] = [
+  {
+    question: "How do I find someone in a county jail?",
+    answer:
+      "Search by county, city, or jail name, open the published county page, and search the current custody snapshot by name. Confirm urgent information with the responsible jail."
+  },
+  {
+    question: "Does JailAtlas include every U.S. county?",
+    answer:
+      "No. JailAtlas publishes only county pages whose official source, parser behavior, freshness rules, and public display have passed review."
+  },
+  {
+    question: "What is the difference between a current jail roster and recent bookings?",
+    answer:
+      "A current jail roster describes people listed in current local custody. Recent bookings describe intake activity during a period and may include people who are no longer in custody."
+  },
+  {
+    question: "How current is the custody information?",
+    answer:
+      "Every county page shows its latest successful capture time. Custody changes continuously, so time-sensitive details should be confirmed with the jail or court."
+  }
+];
 
 export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
@@ -33,6 +57,9 @@ export default async function HomePage() {
       published: published.filter(({ entry }) => entry.state === state.slug).length
     }))
     .filter((state) => state.slug !== "texas" || state.published > 0 || coveragePreviewAllowed());
+  const recentlyAdded = [...published]
+    .sort((left, right) => right.entry.publishedAt.localeCompare(left.entry.publishedAt))
+    .slice(0, 9);
 
   return (
     <main id="main-content">
@@ -92,6 +119,124 @@ export default async function HomePage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {recentlyAdded.length > 0 ? (
+        <section className="home-section site-shell" aria-labelledby="recently-added-heading">
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow">New in the directory</p>
+              <h2 id="recently-added-heading">Recently added county pages</h2>
+              <p className="section-lede">
+                Explore the newest reviewed county pages. These dates show when a page joined the
+                directory, not routine roster updates.
+              </p>
+            </div>
+          </div>
+          <div className="recent-county-grid">
+            {recentlyAdded.map(({ entry, liveSource, path }) => (
+              <Link href={path} key={entry.slug}>
+                <strong>{entry.county} jail roster</strong>
+                <span>
+                  {entry.stateName} · Added{" "}
+                  {new Intl.DateTimeFormat("en-US", {
+                    dateStyle: "long",
+                    timeZone: "UTC"
+                  }).format(new Date(`${entry.publishedAt}T00:00:00Z`))}
+                </span>
+                <small>
+                  {liveSource.recordCount} visible{" "}
+                  {liveSource.recordCount === 1 ? "record" : "records"}
+                </small>
+              </Link>
+            ))}
+          </div>
+          <Link className="section-text-link" href="/coverage/">
+            Browse all counties A–Z <span aria-hidden="true">→</span>
+          </Link>
+        </section>
+      ) : null}
+
+      <section className="home-section home-section--tinted">
+        <div className="site-shell">
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow">County page coverage</p>
+              <h2>What you’ll find on county pages</h2>
+              <p className="section-lede">
+                County pages combine available custody records with verified local context.
+              </p>
+            </div>
+          </div>
+          <div className="feature-definition-grid">
+            <article>
+              <h3>Custody records</h3>
+              <p>Search the latest approved current-custody snapshot from the official source.</p>
+            </article>
+            <article>
+              <h3>Verified local guidance</h3>
+              <p>
+                Review source-backed contact, visitation, money, communication, and court guidance
+                when it has been published officially.
+              </p>
+            </article>
+            <article>
+              <h3>Clear coverage and status</h3>
+              <p>
+                See whether a page is live, when it was captured, and how many records are visible.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section site-shell" aria-labelledby="terminology-heading">
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Roster terminology</p>
+            <h2 id="terminology-heading">Understanding jail roster results</h2>
+            <p className="section-lede">
+              Labels and available information vary by county system. These terms describe different
+              kinds of custody information.
+            </p>
+          </div>
+        </div>
+        <dl className="terminology-grid">
+          <div>
+            <dt>Current jail roster</dt>
+            <dd>People listed in current local custody in the latest available source data.</dd>
+          </div>
+          <div>
+            <dt>Recent bookings</dt>
+            <dd>Recent intake activity that may not represent everyone currently in custody.</dd>
+          </div>
+          <div>
+            <dt>Inmate search</dt>
+            <dd>A lookup interface whose search fields and record details vary by county.</dd>
+          </div>
+          <div>
+            <dt>State corrections search</dt>
+            <dd>State correctional custody or supervision; it is not a county jail roster.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="home-section site-shell home-important">
+        <Alert heading="Important" tone="warning">
+          A jail roster is a custody record, not a court docket. Custody status, charges, bond
+          information, and release details can change; confirm time-sensitive information with the
+          appropriate jail or court.
+        </Alert>
+      </section>
+
+      <section className="home-section site-shell faq-section" aria-labelledby="home-faq-heading">
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">Common questions</p>
+            <h2 id="home-faq-heading">County jail directory FAQ</h2>
+          </div>
+        </div>
+        <FaqList items={homeFaqItems} />
       </section>
 
       {prototypeAvailable ? (
@@ -170,6 +315,18 @@ export default async function HomePage() {
           description:
             "Search county jail rosters with booking details, source-listed charges, and capture times.",
           isPartOf: { "@id": absoluteUrl("/#website") }
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "@id": absoluteUrl("/#faq"),
+          mainEntity: homeFaqItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer }
+          }))
         }}
       />
     </main>

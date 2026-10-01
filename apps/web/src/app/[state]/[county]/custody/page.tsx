@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Alert, LinkButton, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CountyGuide } from "@/components/county-guide";
 import { JsonLd } from "@/components/json-ld";
 import { RosterExplorer } from "@/components/roster-explorer";
 import {
@@ -12,6 +13,7 @@ import {
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { readEnvironment } from "@/lib/env";
 import { getLiveCountySource, getLiveRosterPage } from "@/lib/live-roster";
+import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
 type CountyPageParams = { state: string; county: string };
 
@@ -51,10 +53,13 @@ export default async function CountyCustodyBriefPage({
 
   const path = countyCoveragePath(entry);
   if (liveSource) {
-    const initialPage = await getLiveRosterPage({
-      sourceId: liveSource.sourceId,
-      snapshotId: liveSource.snapshotId
-    });
+    const [initialPage, stateCoverage] = await Promise.all([
+      getLiveRosterPage({
+        sourceId: liveSource.sourceId,
+        snapshotId: liveSource.snapshotId
+      }),
+      getPublishedCountyCoverage(entry.state)
+    ]);
     const capturedAt = liveSource.capturedAt;
     return (
       <main id="main-content" className="page-main site-shell county-page county-page--live">
@@ -99,14 +104,12 @@ export default async function CountyCustodyBriefPage({
             total={initialPage.total}
           />
         </section>
-        <section className="content-section prose" aria-labelledby="about-heading">
-          <h2 id="about-heading">About this source</h2>
-          <p>{entry.article}</p>
-          <p>
-            Records are source-labelled custody information, not court outcomes or proof of guilt.
-            Contact the responsible official institution for corrections or urgent confirmation.
-          </p>
-        </section>
+        <CountyGuide
+          capturedAt={capturedAt}
+          entry={entry}
+          recordCount={initialPage.total}
+          related={stateCoverage.filter(({ entry: county }) => county.slug !== entry.slug)}
+        />
         <JsonLd
           data={{
             "@context": "https://schema.org",
