@@ -106,6 +106,31 @@ describe("Mower County source adapter", () => {
     );
   });
 
+  it("identifies JailAtlas when requesting the official PDF", async () => {
+    let requestInit: RequestInit | undefined;
+    const result = await runSourceAdapter(
+      createMowerCountySourceAdapter({
+        fetch: async (_input, init) => {
+          requestInit = init;
+          return new Response(new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d]), {
+            status: 200,
+            headers: { "content-type": "application/pdf" }
+          });
+        },
+        facilityId: "00000000-0000-4000-8000-000000000044",
+        createId: idFactory(),
+        extractPdfLines: async () => fixtureLines,
+        nowMs: () => 1_000
+      }),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+    expect(new Headers(requestInit?.headers).get("user-agent")).toBe(
+      "Mozilla/5.0 (compatible; JailAtlas/1.0; +https://jailatlas.com)"
+    );
+  });
+
   it("accepts only an explicit zero-inmate marker as valid empty", async () => {
     const result = await runSourceAdapter(
       adapter([
