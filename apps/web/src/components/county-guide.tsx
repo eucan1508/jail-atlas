@@ -1,26 +1,25 @@
 import Link from "next/link";
-import { Alert } from "@jail-atlas/ui";
 import { FaqList, type FaqItem } from "./faq-list";
 import { JsonLd } from "./json-ld";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
+import { findCountyGuide } from "@/lib/county-guides";
 import type { PublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl } from "@/lib/site";
 
-function facilityName(entry: CountyCoverageBrief): string {
-  if (entry.slug === "ramsey-county") return "Ramsey County Adult Detention Center";
-  return `${entry.county} Jail`;
-}
-
-function countyFaqItems(entry: CountyCoverageBrief): readonly FaqItem[] {
-  const facility = facilityName(entry);
+function countyFaqItems(
+  entry: CountyCoverageBrief,
+  facility: string,
+  operatedBy: string,
+  phone: string
+): readonly FaqItem[] {
   return [
     {
       question: `How do I find out if someone is in ${facility}?`,
       answer: `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
     },
     {
-      question: `What information appears on the ${entry.county} roster?`,
-      answer: `JailAtlas displays only fields approved from ${entry.officialSourceLabel}, such as a name, source-identified booking number, booking time when published, and source-listed charges.`
+      question: `Who operates ${facility}?`,
+      answer: `${facility} is operated by ${operatedBy}. For current facility procedures, use the linked official sources or call ${phone}.`
     },
     {
       question: `Is the ${entry.county} jail roster a court record?`,
@@ -51,8 +50,12 @@ export function CountyGuide({
   recordCount: number;
   related: readonly PublishedCountyCoverage[];
 }) {
-  const facility = facilityName(entry);
-  const faqItems = countyFaqItems(entry);
+  const profile = findCountyGuide(entry.state, entry.slug);
+  if (!profile) {
+    throw new Error(`Missing verified county guide for ${entry.state}/${entry.slug}`);
+  }
+  const facility = profile.facilityName;
+  const faqItems = countyFaqItems(entry, facility, profile.operatedBy, profile.phone);
   const capturedLabel = capturedAt.toLocaleString("en-US", {
     timeZone: "America/Chicago",
     timeZoneName: "short"
@@ -61,12 +64,6 @@ export function CountyGuide({
 
   return (
     <>
-      <Alert heading="Important" tone="warning">
-        A jail roster is a custody record, not a court docket. Custody status, charges, bond
-        information, and release details can change; confirm time-sensitive information with the
-        appropriate jail or court.
-      </Alert>
-
       <section className="content-section county-guide__about" aria-labelledby="facility-heading">
         <div className="section-heading-row">
           <div>
@@ -74,22 +71,28 @@ export function CountyGuide({
             <h2 id="facility-heading">About {facility}</h2>
           </div>
         </div>
-        <p>{entry.article}</p>
+        <p>{profile.overview}</p>
         <dl className="definition-list county-facts">
           <div>
             <dt>Facility</dt>
             <dd>{facility}</dd>
           </div>
           <div>
-            <dt>County and city</dt>
-            <dd>
-              {entry.county}, {entry.seatCity}, {entry.stateName}
-            </dd>
+            <dt>Address</dt>
+            <dd>{profile.address}</dd>
           </div>
           <div>
-            <dt>Official roster source</dt>
+            <dt>Main phone</dt>
+            <dd>{profile.phone}</dd>
+          </div>
+          <div>
+            <dt>Operated by</dt>
+            <dd>{profile.operatedBy}</dd>
+          </div>
+          <div>
+            <dt>Official facility source</dt>
             <dd>
-              <a href={entry.officialSourceUrl}>{entry.officialSourceLabel}</a>
+              <a href={profile.contactSourceUrl}>{profile.contactSourceLabel}</a>
             </dd>
           </div>
           <div>
@@ -98,6 +101,10 @@ export function CountyGuide({
               {recordCount} visible {recordCount === 1 ? "record" : "records"} · captured{" "}
               {capturedLabel}
             </dd>
+          </div>
+          <div>
+            <dt>Facility details reviewed</dt>
+            <dd>{profile.reviewedAt}</dd>
           </div>
         </dl>
       </section>
@@ -135,39 +142,19 @@ export function CountyGuide({
           </div>
         </div>
         <div className="guidance-grid">
-          <article>
-            <h3>Bail and court records</h3>
-            <p>
-              Bail is controlled by the court, not by this directory. Confirm the current amount,
-              eligibility, case number, and accepted process with the jail or appropriate court.
-            </p>
-          </article>
-          <article>
-            <h3>Visitation</h3>
-            <p>
-              Schedules, identification rules, age limits, and approval requirements can change.
-              Check the official county source before traveling.
-            </p>
-          </article>
-          <article>
-            <h3>Money and commissary</h3>
-            <p>
-              Use only a deposit provider linked by the responsible official institution. Confirm
-              fees, limits, and the correct recipient before sending money.
-            </p>
-          </article>
-          <article>
-            <h3>Phone and mail</h3>
-            <p>
-              Calling, messaging, mail, and package rules are facility-specific. Verify current
-              instructions and addressing requirements with the jail.
-            </p>
-          </article>
+          {profile.sections.map((section) => (
+            <article key={section.title}>
+              <h3>{section.title}</h3>
+              <p>{section.body}</p>
+              <a className="guidance-source" href={section.sourceUrl}>
+                {section.sourceLabel} <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          ))}
         </div>
         <p className="official-source-callout">
-          Start with the <a href={entry.officialSourceUrl}>official {entry.county} roster source</a>
-          . If it does not publish the instruction you need, contact the responsible county agency
-          directly.
+          Facility procedures can change without notice. Use the official source linked in each
+          section and call {profile.phone} before traveling or sending money, mail, or property.
         </p>
       </section>
 
