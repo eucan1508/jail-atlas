@@ -47,6 +47,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "anoka",
       adapterKey: "anoka-county-mn-current-roster",
       sourceHost: "incustodysearch.co.anoka.mn.us"
+    },
+    {
+      countySlug: "mower",
+      adapterKey: "mower-county-mn-current-roster",
+      sourceHost: "mower-sftp.co.mower.mn.us"
     }
   ],
   TX: [
