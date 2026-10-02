@@ -4035,3 +4035,16 @@ textarea {
     padding: 1.1rem;
   }
 }
+
+/* Keep the homepage warning visually connected to the sections around it. */
+.home-section[aria-labelledby="terminology-heading"] {
+  padding-bottom: clamp(1.25rem, 2vw, 2rem);
+}
+
+.home-section.home-important {
+  padding-block: clamp(1.25rem, 2vw, 2rem);
+}
+
+.home-section.home-important + .faq-section {
+  padding-top: clamp(1.25rem, 2vw, 2rem);
+}
