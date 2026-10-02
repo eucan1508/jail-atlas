@@ -3876,3 +3876,162 @@ textarea {
     margin-bottom: var(--space-5);
   }
 }
+
+/* County guides use distinct reading surfaces so long operational guidance does
+   not visually merge into the page canvas. */
+.county-page--live > .county-guide__panel {
+  background: var(--color-surface);
+  border: 1px solid #cad9d8;
+  border-radius: 1.1rem;
+  box-shadow: 0 12px 30px rgb(16 44 53 / 0.045);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1.35rem, 4vw, 2.5rem);
+}
+
+.county-page--live > .county-guide__search,
+.county-page--live > .county-guide__guidance {
+  background: #f7faf8;
+}
+
+.county-guide__panel .section-heading-row {
+  border-bottom: 1px solid #d7e3df;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: 1.15rem;
+}
+
+.county-guide__panel .section-heading-row h2 {
+  margin-bottom: 0;
+}
+
+.county-guide__guidance .section-lede {
+  color: var(--color-ink-soft);
+  line-height: 1.65;
+  margin-bottom: 0;
+  max-width: 76ch;
+}
+
+.county-guide__guidance .guidance-grid {
+  border: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.county-guide__guidance .guidance-card {
+  background: var(--color-surface);
+  border: 1px solid #cbdad6;
+  border-radius: 0.9rem;
+  box-shadow: 0 8px 20px rgb(16 44 53 / 0.04);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 0;
+  padding: clamp(1.2rem, 3vw, 1.65rem);
+}
+
+.county-guide__guidance .guidance-card:nth-child(odd) {
+  margin-right: 0;
+}
+
+.guidance-card__header {
+  align-items: center;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.guidance-card__header > span {
+  align-items: center;
+  background: #dff1ea;
+  border-radius: 999px;
+  color: #176b5a;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: var(--weight-bold);
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.county-guide__guidance .guidance-card__header h3 {
+  margin: 0;
+}
+
+.county-guide__guidance .guidance-card__body {
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+  margin: 1rem 0 1.15rem;
+}
+
+.guidance-card__checklist {
+  background: #f1f6f4;
+  border-radius: 0.7rem;
+  margin-bottom: 1.1rem;
+  padding: 1rem 1.05rem;
+}
+
+.guidance-card__checklist h4 {
+  font-size: 0.78rem;
+  letter-spacing: 0.045em;
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+}
+
+.guidance-card__checklist ul {
+  color: var(--color-ink-soft);
+  display: grid;
+  gap: 0.45rem;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.guidance-card__checklist li::marker {
+  color: var(--color-action);
+}
+
+.guidance-card .guidance-source {
+  font-weight: var(--weight-bold);
+  margin-top: auto;
+}
+
+.county-guide__guidance .official-source-callout {
+  border-radius: 0 0.7rem 0.7rem 0;
+  max-width: none;
+}
+
+.county-guide__about .county-facts {
+  background: #f4f8f6;
+  border: 1px solid #d6e2df;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  padding-inline: 1.1rem;
+}
+
+.county-guide__related .related-county-grid > a {
+  background: #f6faf8;
+}
+
+.county-guide__panel.faq-section .faq-list {
+  background: #f7faf8;
+  border: 1px solid #d6e2df;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  padding-inline: 1.15rem;
+}
+
+@media (max-width: 51.99rem) {
+  .county-guide__guidance .guidance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .county-page--live > .county-guide__panel {
+    border-radius: 0.85rem;
+    padding: 1.2rem;
+  }
+
+  .county-guide__guidance .guidance-card {
+    padding: 1.1rem;
+  }
+}
