@@ -13,6 +13,8 @@ import {
 import { OfficialSourceSchema, type OfficialSource } from "@jail-atlas/domain";
 import {
   ANOKA_COUNTY_ADAPTER_KEY,
+  CARLTON_COUNTY_ADAPTER_KEY,
+  createCarltonCountySourceAdapter,
   createAnokaCountySourceAdapter,
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
@@ -187,6 +189,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === WRIGHT_COUNTY_ADAPTER_KEY) {
     return createWrightCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CARLTON_COUNTY_ADAPTER_KEY) {
+    return createCarltonCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

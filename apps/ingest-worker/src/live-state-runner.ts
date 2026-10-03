@@ -57,6 +57,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "wright",
       adapterKey: "wright-county-mn-current-roster",
       sourceHost: "www.wrightcountymn.gov"
+    },
+    {
+      countySlug: "carlton",
+      adapterKey: "carlton-county-mn-current-roster",
+      sourceHost: "jailroster.co.carlton.mn.us"
     }
   ],
   TX: [

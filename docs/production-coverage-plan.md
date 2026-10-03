@@ -29,6 +29,7 @@ source-specific parser contract and a human review packet.
 | Anoka      | [Anoka County inmate locator](https://www.anokacountymn.gov/727/Inmate-Locator)                                                                     | Source audit pending                             |
 | Washington | [Washington County inmate information](https://washingtoncountymn.gov/3214/Inmate-Information)                                                      | Roster PDF link returned 404 on 2026-10-03       |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
+| Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## What “API content” means here
