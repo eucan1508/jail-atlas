@@ -123,6 +123,6 @@ with the approved county adapters invoked sequentially inside each slot.
 Every live-ingest run writes a per-county result table to its job summary. Scheduled and `write`
 runs also add a comment to the open GitHub issue labelled `ingest-log` ("Ingest health log") when
 any county fails or the run stops before a county completes. The comment names the state, each
-failed adapter, its failure stage and code, and links the run. Successful runs are not logged, so
-an issue with no new comments means every county refreshed. The workflow creates the issue on the
-first failure.
+failed adapter, its failure stage and code, and links the run. Successful runs are not logged, so an
+issue with no new comments means every county refreshed. The workflow creates the issue on the first
+failure.
