@@ -198,6 +198,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Carlton County",
+    slug: "carlton-county",
+    publishedAt: "2026-10-03",
+    seatCity: "Carlton",
+    h1: "Carlton County Jail Roster & Inmate Search",
+    title: "Carlton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Carlton County, Minnesota current-custody information from the official jail roster, with source-listed charges and the latest capture time.",
+    article:
+      "Carlton County publishes an hourly jail roster PDF for the county jail in Carlton. JailAtlas checks each capture against the roster's record total, keeps names and source-listed charges, and leaves out mugshots, age, agencies, court dates, and bail amounts.",
+    officialSourceUrl: "https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf",
+    officialSourceLabel: "Carlton County official jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

@@ -10,6 +10,7 @@ const liveCountyKeys = [
   "minnesota/stearns-county",
   "minnesota/anoka-county",
   "minnesota/wright-county",
+  "minnesota/carlton-county",
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county"

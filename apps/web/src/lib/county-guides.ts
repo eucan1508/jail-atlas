@@ -585,6 +585,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           "First confirm the bail amount and conditions with the jail at 763-684-2381. You can then bring the exact cash amount to jail reception, or work with a bail bond company; a list of companies is posted in the jail lobby, and they charge at least 10% of the bond as a fee."
       }
     ]
+  },
+  "minnesota/carlton-county": {
+    facilityName: "Carlton County Jail",
+    address: "1780 Justice Drive, Suite 1200, Carlton, MN 55718",
+    phone: "218-384-4560",
+    operatedBy: "Carlton County Sheriff's Office",
+    reviewedAt: "October 3, 2026",
+    overview:
+      "The Carlton County Sheriff's Office runs the county jail in the Carlton County Justice Center. The Sheriff's Office posts a jail roster that it updates every hour, and its jail pages cover visiting, deposits, phone service, and mail.",
+    contactSourceLabel: "Official Carlton County Jail information",
+    contactSourceUrl: "https://www.carltoncountymn.gov/271/Jail-Information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are held Tuesday, Thursday, and Saturday from 1 to 4:30 p.m. and 7 to 9 p.m. They are non-contact, limited to 30 minutes per inmate, and at least one visitor must be 18 or older. Visitors need a photo ID and a PIN from jail staff, and they enter through door 4.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.carltoncountymn.gov/271/Jail-Information"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits can be made online through JailATM, up to $300 a week, with a 10% fee on credit cards. The lobby kiosk charges $3 on cash deposits and 10% on card deposits. Money orders and cashier's checks can also be mailed to the jail.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.carltoncountymn.gov/836/Commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Reliance Telephone handles inmate phone accounts at 800-896-3201. Letters go to the inmate's first and last name, C/O Carlton County Jail, 1780 Justice Drive, Suite 1200, Carlton, MN 55718. Only postmarked U.S. Mail is accepted, envelopes may not carry stickers, and personal property should not be mailed.",
+        sourceLabel: "Official correspondence page",
+        sourceUrl: "https://www.carltoncountymn.gov/273/Correspondence"
+      },
+      {
+        title: "Bail and court records",
+        body: "Call the jail at 218-384-4560 to make an appointment before posting bail or bond. Carlton County Court Administration is in the same Justice Center and lists 218-673-5065. A charge on the jail roster is not a court outcome.",
+        sourceLabel: "Official county contact list",
+        sourceUrl: "https://www.carltoncountymn.gov/883/Contact-Us"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Carlton County Jail?",
+        answer:
+          "Visiting days are Tuesday, Thursday, and Saturday, from 1 to 4:30 p.m. and again from 7 to 9 p.m. Visits are non-contact and last up to 30 minutes per inmate. Bring a photo ID; jail staff give you a PIN to use the visiting station."
+      },
+      {
+        question: "How do I put money on an inmate's account in Carlton County?",
+        answer:
+          "Use JailATM online (up to $300 a week, 10% card fee) or the Stellar kiosk in the jail lobby, which charges $3 on cash deposits and 10% on card deposits. You can also mail a money order or cashier's check to the jail, and it will be added to the person's account."
+      },
+      {
+        question: "What is the mailing address for Carlton County Jail?",
+        answer:
+          "Write the inmate's first and last name, then C/O Carlton County Jail, 1780 Justice Drive, Suite 1200, Carlton, MN 55718. The jail only accepts mail delivered by the U.S. Postal Service, envelopes cannot have stickers, and personal items sent by mail go into the person's property until release."
+      },
+      {
+        question: "How do I post bail at Carlton County Jail?",
+        answer:
+          "Call the jail at 218-384-4560 and make an appointment before you come in to post bail or bond. For hearing dates and case questions, contact Carlton County Court Administration at 218-673-5065."
+      }
+    ]
   }
 };
 
