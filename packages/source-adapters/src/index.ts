@@ -10,6 +10,7 @@ export * from "./milam-county.js";
 export * from "./mower-county.js";
 export * from "./ramsey-county.js";
 export * from "./stearns-county.js";
+export * from "./wright-county.js";
 export * from "./registry.js";
 export * from "./runner.js";
 export * from "./source-url-policy.js";

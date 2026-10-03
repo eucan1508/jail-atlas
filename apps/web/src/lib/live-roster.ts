@@ -27,6 +27,7 @@ const liveAdapterKeys: Record<string, string> = {
   "stearns-county": "stearns-county-mn-current-roster",
   "anoka-county": "anoka-county-mn-current-roster",
   "mower-county": "mower-county-mn-current-roster",
+  "wright-county": "wright-county-mn-current-roster",
   "milam-county": "milam-county-tx-current-roster",
   "hutchinson-county": "hutchinson-county-tx-current-roster",
   "kendall-county": "kendall-county-tx-current-roster"

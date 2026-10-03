@@ -27,6 +27,8 @@ import {
   MILAM_COUNTY_ADAPTER_KEY,
   createMowerCountySourceAdapter,
   MOWER_COUNTY_ADAPTER_KEY,
+  createWrightCountySourceAdapter,
+  WRIGHT_COUNTY_ADAPTER_KEY,
   RAMSEY_COUNTY_ADAPTER_KEY,
   createRamseyCountySourceAdapter,
   STEARNS_COUNTY_ADAPTER_KEY,
@@ -179,6 +181,13 @@ export function createLiveSourceAdapter(
       : fetch;
     return createMowerCountySourceAdapter({
       fetch: mowerFetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WRIGHT_COUNTY_ADAPTER_KEY) {
+    return createWrightCountySourceAdapter({
+      fetch,
       facilityId,
       createId: createAdapterId
     });

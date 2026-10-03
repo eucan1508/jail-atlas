@@ -181,6 +181,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Wright County",
+    slug: "wright-county",
+    publishedAt: "2026-10-03",
+    seatCity: "Buffalo",
+    h1: "Wright County Jail Roster & Inmate Search",
+    title: "Wright County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Wright County, Minnesota current-custody information from the official Jail Census, with source-listed charges and the latest capture time.",
+    article:
+      "Wright County publishes a Jail Census PDF that lists every adult currently held in the county jail in Buffalo. JailAtlas checks each capture against the census record total, keeps names and source-listed charge text, and leaves out photos, age, sex, release dates, and holding-agency fields.",
+    officialSourceUrl: "https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census",
+    officialSourceLabel: "Wright County official Jail Census",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",
