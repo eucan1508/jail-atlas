@@ -61,6 +61,10 @@ jobs:
     # The explicit repository secret is the final operator-controlled enable switch. Keeping it
     # absent or false makes this scheduled workflow a no-op until the customer approves live writes.
     if: ${{ needs.gate.outputs.enabled == 'go' }}
+    permissions:
+      contents: read
+      # Failed counties are recorded in the "Ingest health log" issue.
+      issues: write
     env:
       CI: "true"
       NODE_ENV: production
@@ -104,8 +108,20 @@ jobs:
 
       - name: Refresh selected state counties sequentially
         run: |
+          set -o pipefail
           if [[ "${{ inputs.mode }}" == "dry-run" ]]; then
-            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE" --dry-run
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE" --dry-run 2>&1 | tee "$RUNNER_TEMP/ingest.log"
           else
-            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE"
+            pnpm --filter @jail-atlas/ingest-worker dev -- run --state="$INGEST_STATE" 2>&1 | tee "$RUNNER_TEMP/ingest.log"
           fi
+
+      - name: Record county results
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL:
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          # Dry runs only write the job summary; scheduled and write runs also log failures.
+          RECORD_FAILURES: ${{ inputs.mode != 'dry-run' }}
+        run: node .github/scripts/ingest-report.mjs "$RUNNER_TEMP/ingest.log"
