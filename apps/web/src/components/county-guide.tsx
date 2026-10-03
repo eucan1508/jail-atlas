@@ -18,11 +18,11 @@ function countyFaqItems(
       question: `How do I find out if someone is in ${facility}?`,
       answer: rosterPublished
         ? `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
-        : `The current-custody search is not published yet. Use the linked official roster source or contact ${facility} at ${phone} until the source audit is complete.`
+        : `The current-custody search is not published yet. Contact ${facility} at ${phone} until the source audit is complete.`
     },
     {
       question: `Who operates ${facility}?`,
-      answer: `${facility} is operated by ${operatedBy}. For current facility procedures, use the linked official sources or call ${phone}.`
+      answer: `${facility} is operated by ${operatedBy}. For current facility procedures, call ${phone}.`
     },
     {
       question: `Is the ${entry.county} jail roster a court record?`,
@@ -33,7 +33,7 @@ function countyFaqItems(
       question: `How current is the ${entry.county} roster?`,
       answer: rosterPublished
         ? "The page shows the latest successful capture time above the roster. Booking, transfer, release, and charge information can change, so confirm urgent details with the responsible official institution."
-        : "JailAtlas has not published a current roster snapshot for this county yet. Use the linked official source and confirm urgent details with the responsible institution."
+        : "JailAtlas has not published a current roster snapshot for this county yet. Confirm urgent details with the responsible institution."
     },
     {
       question: `How do I correct information shown for ${entry.county}?`,
@@ -61,7 +61,7 @@ function guidanceChecklist(title: string): readonly string[] {
   ) {
     return [
       "Match the recipient's full name and booking identifier.",
-      "Open deposit services only from the linked official county page.",
+      "Use only the deposit method published by the county.",
       "Review transaction fees, limits, delivery time, and refund rules."
     ];
   }
@@ -93,7 +93,7 @@ function guidanceChecklist(title: string): readonly string[] {
 
   return [
     "Confirm the procedure with the responsible facility.",
-    "Use the linked official source for the latest instructions.",
+    "Ask the facility for the latest instructions.",
     "Keep the person's booking identifier available when contacting the agency."
   ];
 }
@@ -160,9 +160,7 @@ export function CountyGuide({
           </div>
           <div>
             <dt>Official facility source</dt>
-            <dd>
-              <a href={profile.contactSourceUrl}>{profile.contactSourceLabel}</a>
-            </dd>
+            <dd>{profile.contactSourceLabel}</dd>
           </div>
           <div>
             <dt>Current page status</dt>
@@ -235,15 +233,13 @@ export function CountyGuide({
                   ))}
                 </ul>
               </div>
-              <a className="guidance-source" href={section.sourceUrl}>
-                {section.sourceLabel} <span aria-hidden="true">↗</span>
-              </a>
+              <p className="guidance-source">Source: {section.sourceLabel}</p>
             </article>
           ))}
         </div>
         <p className="official-source-callout">
-          Facility procedures can change without notice. Use the official source linked in each
-          section and call {profile.phone} before traveling or sending money, mail, or property.
+          Facility procedures can change without notice. Call {profile.phone} before traveling or
+          sending money, mail, or property.
         </p>
       </section>
 
