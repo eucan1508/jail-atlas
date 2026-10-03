@@ -125,6 +125,20 @@ function responseHeaders(
   return headers;
 }
 
+// Adapters may ask for one of these source formats; any other value falls back to text/html.
+// Every other request header stays fixed.
+const ALLOWED_ACCEPT_VALUES = new Set([
+  "text/html",
+  "application/json",
+  "application/javascript",
+  "application/pdf"
+]);
+
+function requestedAccept(init: RequestInit): string {
+  const accept = new Headers(init.headers).get("accept")?.trim().toLowerCase();
+  return accept && ALLOWED_ACCEPT_VALUES.has(accept) ? accept : "text/html";
+}
+
 export function createConnectionBoundSourceFetch(
   inputOptions: ConnectionBoundSourceFetchOptions
 ): (input: string, init?: RequestInit) => Promise<Response> {
@@ -183,7 +197,7 @@ export function createConnectionBoundSourceFetch(
         lookup,
         signal: init.signal ?? undefined,
         headers: {
-          accept: "text/html",
+          accept: requestedAccept(init),
           "accept-encoding": "identity",
           "cache-control": "no-cache",
           "user-agent": options.userAgent
