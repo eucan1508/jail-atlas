@@ -118,6 +118,33 @@ describe("connection-bound source transport", () => {
     expect(typeof fake.captured[0]?.lookup).toBe("function");
   });
 
+  it("forwards only an approved accept value from the adapter", async () => {
+    const fake = fakeHttpsRequest("%PDF-SYNTHETIC TEST ONLY");
+    const fetchSource = createConnectionBoundSourceFetch({
+      allowlist,
+      allowedPathPrefixes: ["/approved"],
+      userAgent: "SyntheticCustodyResearch/1.0 (+https://example.test/source-policy)",
+      dnsLookup: publicLookup,
+      request: fake.implementation
+    });
+
+    await fetchSource(sourceUrl, {
+      method: "GET",
+      redirect: "error",
+      headers: { accept: "application/pdf", cookie: "session=synthetic", "x-extra": "1" }
+    });
+    await fetchSource(sourceUrl, {
+      method: "GET",
+      redirect: "error",
+      headers: { accept: "*/*" }
+    });
+
+    expect(fake.captured[0]?.headers).toMatchObject({ accept: "application/pdf" });
+    expect(fake.captured[0]?.headers).not.toHaveProperty("cookie");
+    expect(fake.captured[0]?.headers).not.toHaveProperty("x-extra");
+    expect(fake.captured[1]?.headers).toMatchObject({ accept: "text/html" });
+  });
+
   it("rejects alternate methods, redirect modes, and paths before connecting", async () => {
     const fake = fakeHttpsRequest("unused");
     const fetchSource = createConnectionBoundSourceFetch({
