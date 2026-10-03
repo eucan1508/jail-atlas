@@ -29,7 +29,8 @@ const MowerRecordSchema = z.object({
   bookingNumber: z
     .string()
     .trim()
-    .regex(/^MCJ-\d{12}$/),
+    // The prefix names the booking agency (MCJ, MCSO, APD, ...); the number is the jail sequence.
+    .regex(/^[A-Z]{2,6}-\d{12}$/),
   bookingDateText: z.string().trim().min(1).max(100).nullable(),
   charges: z.array(z.string().trim().min(1).max(5_000)).max(1)
 });

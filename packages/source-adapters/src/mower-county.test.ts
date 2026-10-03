@@ -79,6 +79,12 @@ const fixtureLines = [
   "Charges: | SYNTHETIC CHARGE ALPHA — TEST ONLY",
   "continued fictional detail",
   "Status: | Bond Set",
+  "3 | TESTER, AGENCY — TEST ONLY",
+  "Booking #: | APD-000000000003",
+  "Date and Time of Booking : | September 22, 2026 7:00 am",
+  "Custody Status : | IN CUSTODY | Bail | $100.00",
+  "Charges: | SYNTHETIC CHARGE GAMMA — TEST ONLY",
+  "Status: | Bond Set",
   "2 | TESTER, RELEASED — TEST ONLY",
   "Booking #: | MCJ-000000000002",
   "Date and Time of Booking : | September 21, 2026 8:00 am",
@@ -98,12 +104,13 @@ describe("Mower County source adapter", () => {
     expect(result.ok).toBe(true);
     if (!result.ok) return;
 
-    expect(result.snapshot.recordCount).toBe(1);
+    expect(result.snapshot.recordCount).toBe(2);
     expect(result.snapshot.bookings[0]?.person.displayName).toBe("TESTER, ALPHA — TEST ONLY");
     expect(result.snapshot.bookings[0]?.bookingIdentifier?.value).toBe("MCJ-000000000001");
     expect(result.snapshot.bookings[0]?.charges[0]?.description).toBe(
       "SYNTHETIC CHARGE ALPHA — TEST ONLY continued fictional detail"
     );
+    expect(result.snapshot.bookings[1]?.bookingIdentifier?.value).toBe("APD-000000000003");
   });
 
   it("identifies JailAtlas when requesting the official PDF", async () => {
