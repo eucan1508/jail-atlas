@@ -27,7 +27,8 @@ source-specific parser contract and a human review packet.
 | Ramsey     | [Ramsey County Adult Detention Center roster](https://opendata.ramseycountymn.gov/stories/s/Ramsey-County-Adult-Detention-Center-Roster/xs99-2bse/) | Adapter tested; production approval pending      |
 | Stearns    | [Stearns County current jail roster](http://jailroster.stearnscountymn.gov/Current)                                                                 | Reference connector exists; source audit pending |
 | Anoka      | [Anoka County inmate locator](https://www.anokacountymn.gov/727/Inmate-Locator)                                                                     | Source audit pending                             |
-| Washington | [Washington County inmate information](https://washingtoncountymn.gov/3214/Inmate-Information)                                                      | Source audit pending                             |
+| Washington | [Washington County inmate information](https://washingtoncountymn.gov/3214/Inmate-Information)                                                      | Roster PDF link returned 404 on 2026-10-03       |
+| Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## What “API content” means here

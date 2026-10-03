@@ -525,6 +525,66 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           "Set up an Inmate Canteen/TurnKey account online, or use the kiosk in the jail lobby in Anoka, which takes cash and credit or debit cards from 7 a.m. to 10 p.m. every day. The funds cover phone calls, vending items, and commissary orders, which are delivered on Tuesdays and Fridays."
       }
     ]
+  },
+  "minnesota/wright-county": {
+    facilityName: "Wright County Jail",
+    address: "3800 Braddock Ave. NE, Buffalo, MN 55313",
+    phone: "763-684-2381",
+    operatedBy: "Wright County Sheriff's Office",
+    reviewedAt: "October 3, 2026",
+    overview:
+      "The Wright County Sheriff's Office runs the county jail in Buffalo, which opened in 2009 with a licensed capacity of 288. On weekdays the Sheriff's Office publishes a Jail Census of every adult in custody, and its jail page covers visiting, deposits, phone service, and mail.",
+    contactSourceLabel: "Official Wright County Jail page",
+    contactSourceUrl: "https://www.wrightcountymn.gov/237/Jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Free video visits at the jail run Monday through Saturday from 9 to 11:30 a.m., weekdays from 2:30 to 4 p.m., and Tuesday and Wednesday evenings from 6 to 8 p.m. Visits last 20 minutes with up to two adults, children are allowed, and a current government-issued photo ID is required. There is no visiting on Sundays or listed holidays.",
+        sourceLabel: "Official jail visiting hours",
+        sourceUrl: "https://www.wrightcountymn.gov/237/Jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits can be made online through Inmate Canteen with a credit card, or in cash at the kiosk in the jail lobby, which posts the money straight to the person's account. Phone funds go through Reliance Telephone, or the person can move money from their canteen account to their phone account.",
+        sourceLabel: "Official jail FAQ",
+        sourceUrl: "https://www.wrightcountymn.gov/Faq.aspx?QID=94"
+      },
+      {
+        title: "Phone and mail",
+        body: "Reliance Telephone provides inmate phone service, and the jail lists 763-515-4160 for leaving a brief voicemail. Since July 6, 2026, personal mail goes to a Reliance processing center in Grand Forks, North Dakota, where it is scanned to the person's tablet and the originals are destroyed. Legal and medical mail still goes directly to the jail.",
+        sourceLabel: "Official personal mail notice",
+        sourceUrl:
+          "https://www.wrightcountymn.gov/DocumentCenter/View/37745/Wright-County-Jail-Personal-Mail-Process-Change-Notice"
+      },
+      {
+        title: "Bail and court records",
+        body: "Wright County is in Minnesota's Tenth Judicial District. Court Administration keeps case records, schedules hearings, and collects fines at 3700 Braddock Ave. NE, Suite 1100, Buffalo, and lists 763-760-6300. A charge on the jail census is not a court outcome.",
+        sourceLabel: "Official Court Administration page",
+        sourceUrl: "https://www.wrightcountymn.gov/155/Court-Administration"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Wright County Jail?",
+        answer:
+          "Morning visits run Monday through Saturday from 9 to 11:30 a.m. Afternoon visits run Monday through Friday from 2:30 to 4 p.m., and evening visits run Tuesday and Wednesday from 6 to 8 p.m. Each video visit at the jail is free and lasts 20 minutes, you may visit once per session, and there are no visits on Sundays or holidays."
+      },
+      {
+        question: "How do I put money on an inmate's account in Wright County?",
+        answer:
+          "Deposit online through Inmate Canteen with a credit card, or bring cash to the kiosk in the jail lobby in Buffalo. For phone calls, add money at Reliance Telephone, or let the person transfer funds from their canteen account to their phone account."
+      },
+      {
+        question: "Where do I send mail to someone in the Wright County Jail?",
+        answer:
+          "Personal letters and photos go to the inmate's first and last name, Wright County Jail – Buffalo, MN, 1533 S. 42nd St., Suite 200, Grand Forks, ND 58201. They are scanned to the person's tablet and the originals are not returned. Personal mail sent straight to the jail is returned to the sender, but legal and medical mail should still go to the jail."
+      },
+      {
+        question: "How do I post bail at Wright County Jail?",
+        answer:
+          "First confirm the bail amount and conditions with the jail at 763-684-2381. You can then bring the exact cash amount to jail reception, or work with a bail bond company; a list of companies is posted in the jail lobby, and they charge at least 10% of the bond as a fee."
+      }
+    ]
   }
 };
 

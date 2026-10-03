@@ -71,6 +71,13 @@
       "when": 1790881545000,
       "tag": "0009_minnesota_mower_source",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1791032400000,
+      "tag": "0010_minnesota_wright_source",
+      "breakpoints": true
     }
   ]
 }

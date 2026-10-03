@@ -52,6 +52,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "mower",
       adapterKey: "mower-county-mn-current-roster",
       sourceHost: "mower-sftp.co.mower.mn.us"
+    },
+    {
+      countySlug: "wright",
+      adapterKey: "wright-county-mn-current-roster",
+      sourceHost: "www.wrightcountymn.gov"
     }
   ],
   TX: [
