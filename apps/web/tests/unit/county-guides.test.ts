@@ -29,6 +29,29 @@ describe("verified county guides", () => {
       for (const section of profile?.sections ?? []) {
         expect(section.sourceUrl, `${key}/${section.title}`).toMatch(/^https:\/\//);
       }
+
+      const faq = profile?.faq ?? [];
+      expect(faq.length, `${key} county FAQ`).toBeGreaterThanOrEqual(2);
+      expect(new Set(faq.map((item) => item.question)).size, `${key} FAQ questions`).toBe(
+        faq.length
+      );
+      for (const item of faq) {
+        expect(item.question, key).toMatch(/\?$/);
+        expect(item.answer, key).not.toHaveLength(0);
+      }
+    }
+  });
+
+  it("keeps web addresses out of reader-facing guide text", () => {
+    for (const key of countyGuideKeys) {
+      const [state, county] = key.split("/") as [string, string];
+      const profile = findCountyGuide(state, county);
+      const text = [
+        profile?.overview,
+        ...(profile?.sections ?? []).map((section) => section.body),
+        ...(profile?.faq ?? []).flatMap((item) => [item.question, item.answer])
+      ].join("\n");
+      expect(text, key).not.toMatch(/https?:\/\/|www\./i);
     }
   });
 });

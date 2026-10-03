@@ -115,13 +115,10 @@ export function CountyGuide({
   }
   const facility = profile.facilityName;
   const rosterPublished = capturedAt !== null && recordCount !== null;
-  const faqItems = countyFaqItems(
-    entry,
-    facility,
-    profile.operatedBy,
-    profile.phone,
-    rosterPublished
-  );
+  const faqItems = [
+    ...profile.faq,
+    ...countyFaqItems(entry, facility, profile.operatedBy, profile.phone, rosterPublished)
+  ];
   const capturedLabel = capturedAt?.toLocaleString("en-US", {
     timeZone: "America/Chicago",
     timeZoneName: "short"
