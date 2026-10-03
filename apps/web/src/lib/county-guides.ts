@@ -5,6 +5,11 @@ export type CountyGuideSection = Readonly<{
   sourceUrl: string;
 }>;
 
+export type CountyGuideFaq = Readonly<{
+  question: string;
+  answer: string;
+}>;
+
 export type CountyGuideProfile = Readonly<{
   facilityName: string;
   address: string;
@@ -15,6 +20,8 @@ export type CountyGuideProfile = Readonly<{
   contactSourceLabel: string;
   contactSourceUrl: string;
   sections: readonly CountyGuideSection[];
+  /** County-specific questions shown ahead of the shared roster FAQ. */
+  faq: readonly CountyGuideFaq[];
 }>;
 
 const profiles: Readonly<Record<string, CountyGuideProfile>> = {
@@ -53,6 +60,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         sourceLabel: "Official bond information",
         sourceUrl: "https://www.dallascountyiowa.gov/367/Bond-Information"
       }
+    ],
+    faq: [
+      {
+        question: "Does Dallas County Jail offer video visits?",
+        answer:
+          "Yes. Video visits, phone calls, and email messages with people held at the Dallas County Jail all go through CIDNET, and families set up a CIDNET account before the first visit. The county does not post a weekly visiting schedule on its jail pages, so call 515-993-5815 to confirm a time."
+      },
+      {
+        question: "How do I put money on an inmate's account in Dallas County?",
+        answer:
+          "Deposits can be made online, by phone, or at the kiosk inside the jail in Adel, and you will need the person's name or inmate ID number. Do not mail cash or personal checks: money found in incoming mail is treated as contraband and posted to the account instead of being delivered."
+      }
     ]
   },
   "iowa/cedar-county": {
@@ -89,6 +108,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         body: "Roster bond labels can change and are not a court ruling. Cedar County is in Iowa Judicial District 7. The Clerk of Court is at 400 Cedar St. in Tipton and lists 563-886-2101 for court questions.",
         sourceLabel: "Official Cedar County court information",
         sourceUrl: "https://www.cedarcounty.iowa.gov/courts/"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting days at Cedar County Jail?",
+        answer:
+          "General visits are held on Wednesday and Sunday. Each person in custody may have two 30-minute visits a week with up to two visitors aged 18 or older, and contact visits are not allowed. Every visitor fills out a registration form in the lobby and must show a valid state photo ID with full name and date of birth."
+      },
+      {
+        question: "How can I add money to a Cedar County inmate's account?",
+        answer:
+          "Use the kiosk in the Sheriff's Office lobby with cash or a card, call 866-345-1884, or create an account with Access Corrections or Smart Deposit and deposit online. The lobby kiosk charges a transaction fee, much like an ATM."
       }
     ]
   },
@@ -127,6 +158,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         sourceLabel: "Official requested phone numbers",
         sourceUrl: "https://www.bhcso.org/resources/requested-phone-numbers"
       }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Black Hawk County Jail?",
+        answer:
+          "Hours depend on the housing pod. Most general-population pods (B through F) have weekday blocks between 8:15 a.m. and 2:30 p.m., plus 7 to 8 p.m. Monday through Thursday, and each person may have one local visit per weekday of up to 30 minutes. All visits are booked through CIDNET; local visits at the lobby kiosks are free but must be scheduled 24 hours ahead."
+      },
+      {
+        question: "How do I send money to someone in the Black Hawk County Jail?",
+        answer:
+          "There are three options: the lobby kiosk, which takes cash or cards 24 hours a day; an online deposit through Inmate Canteen; or a money order or certified cashier's check made out to the inmate and sent by USPS, UPS, or FedEx to 225 E. 6th St., Waterloo, IA 50703. Cash is no longer accepted at the front counter, and commissary deposits cannot be moved to a phone account."
+      }
     ]
   },
   "texas/milam-county": {
@@ -163,6 +206,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         body: "Court status and filed case records must be confirmed with the appropriate court. The Milam County District Clerk is at 102 S. Fannin, Suite 5, Cameron, and lists 254-697-7052.",
         sourceLabel: "Official Milam County District Clerk information",
         sourceUrl: "https://www.milamcounty.net/upload/page/8923/New%202024%20Filing%20Fees.pdf"
+      }
+    ],
+    faq: [
+      {
+        question: "What days can I visit an inmate at Milam County Jail?",
+        answer:
+          "Visitation is on Tuesday and Sunday, from 8:30 to 10:45 a.m. and again from 11:45 a.m. to 4:30 p.m., with a lunch break in between. Call 254-697-7063 before you go if you have questions."
+      },
+      {
+        question: "How do I put money on a Milam County inmate's account?",
+        answer:
+          "Deposits are made online through JailATM, which also handles care-package orders. The jail does not take cash, money orders, or cashier's checks, either in person or by mail."
       }
     ]
   },
@@ -201,6 +256,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         sourceLabel: "Official Hutchinson County District Clerk",
         sourceUrl: "https://www.co.hutchinson.tx.us/government/district-clerk/"
       }
+    ],
+    faq: [
+      {
+        question: "When is visitation at Hutchinson County Jail?",
+        answer:
+          "Men can visit on Tuesday from 8 to 11:30 a.m. and 1 to 3:30 p.m., and on Saturday from 9 a.m. to noon. Women can visit on Thursday from 8 to 11:30 a.m. and 1 to 3:30 p.m., and on Saturday from 1 to 4 p.m."
+      },
+      {
+        question: "Can I deposit money for a Hutchinson County inmate online?",
+        answer:
+          "The jail's official page does not name an online deposit service or describe how commissary funds are handled. Call the jail at 806-878-4012 to confirm the accepted method before sending money."
+      }
     ]
   },
   "texas/kendall-county": {
@@ -237,6 +304,23 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         body: "Bonds and jail records are directed to the detention center address. For felony and district-court records, the Kendall County District Clerk is at 201 E. San Antonio Ave., Suite 201, Boerne, and lists 830-249-9343.",
         sourceLabel: "Official Kendall County District Clerk",
         sourceUrl: "https://co.kendall.tx.us/196/District-Clerk"
+      }
+    ],
+    faq: [
+      {
+        question: "What are Kendall County Jail's visiting hours?",
+        answer:
+          "Face-to-face visits need an appointment, made by calling 830-249-4989 on weekdays between 9 and 11 a.m., one day ahead. Women visit Tuesday, Thursday, and Saturday from 8 to 11 a.m. and Wednesday and Friday from 1 to 4 p.m.; men have the opposite schedule. Each person gets two 20-minute visits a week, and visitors must arrive 10 minutes early with a valid government-issued ID."
+      },
+      {
+        question: "Does Kendall County Jail offer video visits?",
+        answer:
+          "Yes, through CIDNET. Free on-site video visits in the jail lobby run daily from 8 to 11:45 a.m. and 12:45 to 5 p.m. and must be booked 24 hours ahead. Paid remote visits are available from 7 a.m. to 10:30 p.m. every day and must be booked at least an hour ahead."
+      },
+      {
+        question: "How do I put money on an inmate's account in Kendall County?",
+        answer:
+          "Use the machine in the jail's main lobby, which takes cash or cards 24 hours a day for a $3.50 fee, deposit online through JailATM, or mail a money order. Detention staff do not accept funds in person, and mailed cash, checks, or gift cards are returned."
       }
     ]
   },
@@ -276,6 +360,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         sourceLabel: "Minnesota Judicial Branch court finder",
         sourceUrl: "https://www.mncourts.gov/Find-Courts.aspx"
       }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Mower County Jail?",
+        answer:
+          "Visits run Tuesday and Thursday from 1 to 4 p.m. and 6 to 8 p.m., and Wednesday and Friday from 1 to 4 p.m. Visitors must be on the approved visitor list, only one visitor is allowed in the visiting area at a time, and each inmate may have two visits per visiting day. Adults need a current photo ID."
+      },
+      {
+        question: "How do I send money to a Mower County inmate?",
+        answer:
+          "Money sent to the jail is added to the person's TurnKey canteen account. Only cash and money orders are accepted by mail; personal and third-party checks are refused. Address it to Mower County Jail, C/O the inmate's name, 201 2nd Ave. NE, Suite 4, Austin, MN 55912."
+      }
     ]
   },
   "minnesota/ramsey-county": {
@@ -283,39 +379,51 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
     address: "425 Grove St., Saint Paul, MN 55101",
     phone: "651-266-9350",
     operatedBy: "Ramsey County Sheriff's Office",
-    reviewedAt: "October 1, 2026",
+    reviewedAt: "October 3, 2026",
     overview:
-      "The Ramsey County Sheriff's Office Detention Services division operates the Adult Detention Center, a pretrial county jail in Saint Paul. The county's official material identifies phone calling and video visiting among the services available in the facility.",
-    contactSourceLabel: "Official Ramsey County detention contact",
+      "The Ramsey County Sheriff's Office Detention Services division operates the Adult Detention Center, a pretrial county jail in Saint Paul. The Sheriff's Office publishes separate pages for visiting, inmate money, and phone and mail at the facility.",
+    contactSourceLabel: "Official Adult Detention Center page",
     contactSourceUrl:
-      "https://assets.ramseycountymn.gov/files/migrated-files/Data_Practices_Policy-For_the_Public_3-4-2024.pdf",
+      "https://www.ramseycountymn.gov/your-government/leadership/sheriffs-office/sheriffs-office-divisions/detention-services/adult-detention-center-jail",
     sections: [
       {
         title: "Visitation and communication",
-        body: "Ramsey County uses NCIC for inmate calls, messages, and video visits. Friends and family can register through NCIC and use 800-943-2189 for provider support. Availability remains subject to facility rules and housing status.",
-        sourceLabel: "Official correctional communication guide",
+        body: "Visits are non-contact video visits, either free in the jail lobby or remotely from home, and need an approved account and a booking 24 hours ahead. NCIC provides phone service at 800-943-2189; people in custody can make outgoing calls only, and staff do not take phone messages.",
+        sourceLabel: "Official visiting information",
         sourceUrl:
-          "https://assets.ramseycountymn.gov/files/migrated-files/NCIC_Correctional_Communication_Services.pdf"
+          "https://www.ramseycountymn.gov/your-government/leadership/sheriffs-office/sheriffs-office-divisions/detention-services/adult-detention-center-jail/visit-inmate"
       },
       {
         title: "Money and commissary",
-        body: "County materials confirm that commissary-account deposits are available, but the currently accessible official documents do not give a complete public deposit procedure. Call Adult Detention at 651-266-9350 before sending funds.",
-        sourceLabel: "Official Adult Detention contact",
+        body: "Deposits can be made online through TurnKey Corrections, at the lobby kiosk 24 hours a day, or by mailing a cashier's check or money order payable to the inmate. Cash at the kiosk is free; online and card deposits carry a fee.",
+        sourceLabel: "Official inmate money instructions",
         sourceUrl:
-          "https://assets.ramseycountymn.gov/files/migrated-files/Data_Practices_Policy-For_the_Public_3-4-2024.pdf"
+          "https://www.ramseycountymn.gov/your-government/leadership/sheriffs-office/sheriffs-office-divisions/detention-services/adult-detention-center-jail/inmate-money"
       },
       {
         title: "Mail",
-        body: "The accessible county materials do not publish a complete current personal-mail format. Confirm the recipient name, address format, and prohibited items with Adult Detention before mailing correspondence or a package.",
-        sourceLabel: "Official Adult Detention contact",
+        body: "Address letters to the inmate's full name, Ramsey County ADC, Inmate Mail, 425 Grove Street, Saint Paul, MN 55101. Non-privileged mail is opened and inspected, packages are refused, and processing can add two to three business days.",
+        sourceLabel: "Official phone and mail instructions",
         sourceUrl:
-          "https://assets.ramseycountymn.gov/files/migrated-files/Data_Practices_Policy-For_the_Public_3-4-2024.pdf"
+          "https://www.ramseycountymn.gov/your-government/leadership/sheriffs-office/sheriffs-office-divisions/detention-services/adult-detention-center-jail/inmate-communication"
       },
       {
         title: "Bail and court records",
         body: "Ramsey County District Court is part of Minnesota's Second Judicial District. For hearing or warrant-resolution questions, the court lists 651-266-8266; court records are separate from the jail roster.",
         sourceLabel: "Minnesota Judicial Branch — Ramsey County",
         sourceUrl: "https://www.mncourts.gov/Find-Courts/Ramsey.aspx"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Ramsey County Adult Detention Center?",
+        answer:
+          "Free on-site video visits in the jail lobby are offered Sunday from 11:30 a.m. to 2:30 p.m. and Tuesday and Thursday from noon to 2:30 p.m. Remote visits from home run every day from 8 a.m. to 9:30 p.m., with breaks from 10:30 to 11:30 a.m. and 4:30 to 5:30 p.m., up to four 20-minute visits a day. Both need an approved visitation account and a booking at least 24 hours ahead."
+      },
+      {
+        question: "How do I deposit money for a Ramsey County inmate?",
+        answer:
+          "Deposit online through TurnKey Corrections for a fee, use the 24-hour lobby kiosk at 425 Grove St. (cash is free, cards carry a fee), or mail a cashier's check or money order made payable to the inmate. Phone deposits are not accepted, and cash or personal checks sent by mail are returned."
       }
     ]
   },
@@ -355,6 +463,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         sourceLabel: "Minnesota Judicial Branch court finder",
         sourceUrl: "https://www.mncourts.gov/Find-Courts.aspx"
       }
+    ],
+    faq: [
+      {
+        question: "Does Stearns County Jail publish visiting hours?",
+        answer:
+          "Stearns County keeps its visitation procedures on a dedicated page of the jail's website, and JailAtlas has not yet confirmed a weekly schedule from it. Call the jail at 320-259-3760 before you travel to check the current times and visitor rules."
+      },
+      {
+        question: "How do I add money to a Stearns County inmate's canteen account?",
+        answer:
+          "In most cases people held at the Stearns County Jail may receive money but not outside belongings, and the county's Inmate Funds page pictures a TurnKey deposit kiosk. Call 320-259-3760 to confirm the accepted methods and fees before sending money."
+      }
     ]
   },
   "minnesota/anoka-county": {
@@ -391,6 +511,18 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         body: "Anoka County District Court is at 2100 3rd Ave. in Anoka. The main line is 763-760-6700 and the court lists 763-760-6540 for district-court bail questions.",
         sourceLabel: "Minnesota Judicial Branch — Anoka County",
         sourceUrl: "https://www.mncourts.gov/Find-Courts/Anoka.aspx"
+      }
+    ],
+    faq: [
+      {
+        question: "How do video visits work at Anoka County Jail?",
+        answer:
+          "Family and friends can visit by video on-site at the jail, arriving no more than five minutes before the scheduled time, or remotely through ICSolutions for a fee. Remote visits must be booked on the ICSolutions website at least 24 hours in advance."
+      },
+      {
+        question: "How can I put money on an Anoka County inmate's account?",
+        answer:
+          "Set up an Inmate Canteen/TurnKey account online, or use the kiosk in the jail lobby in Anoka, which takes cash and credit or debit cards from 7 a.m. to 10 p.m. every day. The funds cover phone calls, vending items, and commissary orders, which are delivered on Tuesdays and Fridays."
       }
     ]
   }
