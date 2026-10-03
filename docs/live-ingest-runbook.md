@@ -117,3 +117,12 @@ The worker records a failed run without replacing the last successful snapshot. 
 adapter named by `LIVE_SOURCE_ADAPTER_KEY`; scheduling Iowa counties one by one is therefore a
 workflow concern. The existing state slots remain 00:00 UTC for Iowa and 06:00 UTC for Minnesota,
 with the approved county adapters invoked sequentially inside each slot.
+
+## Failure log
+
+Every live-ingest run writes a per-county result table to its job summary. Scheduled and `write`
+runs also add a comment to the open GitHub issue labelled `ingest-log` ("Ingest health log") when
+any county fails or the run stops before a county completes. The comment names the state, each
+failed adapter, its failure stage and code, and links the run. Successful runs are not logged, so an
+issue with no new comments means every county refreshed. The workflow creates the issue on the first
+failure.
