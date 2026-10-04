@@ -99,6 +99,13 @@
       "when": 1791120000000,
       "tag": "0013_arkansas_sources",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1791130000000,
+      "tag": "0014_minnesota_douglas_source",
+      "breakpoints": true
     }
   ]
 }

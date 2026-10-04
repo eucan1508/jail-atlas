@@ -645,6 +645,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/douglas-county": {
+    facilityName: "Douglas County Jail",
+    address: "509 3rd Avenue West, Alexandria, MN 56308",
+    phone: "320-762-2139",
+    operatedBy: "Douglas County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Douglas County Jail in Alexandria opened in 2010. It has 156 beds, is approved to hold up to 135 people, and holds men and women at minimum, medium, and maximum security. It is a direct-supervision jail, so correctional officers work inside the housing units. TurnKey Corrections runs commissary and video visits.",
+    contactSourceLabel: "Official jail administration page",
+    contactSourceUrl: "https://www.douglascountymn.gov/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by appointment through TurnKey's Inmate Canteen site, where you create a profile with a selfie and a photo of your ID. On-site visits at the jail are Tuesday 7 to 9:30 p.m., Thursday 1:30 to 4 p.m. and 7 to 9:30 p.m., and Sunday 1:30 to 4 p.m., one per inmate per day. Visits from home run daily from 9 to 10:30 a.m., 1 to 4 p.m., and 7 to 10:30 p.m. Each visit lasts 20 minutes.",
+        sourceLabel: "Official visiting information page",
+        sourceUrl: "https://www.douglascountymn.gov/visiting-jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Cash can be deposited at the kiosk in the public vestibule just inside the jail's main entrance, and it shows up in the inmate's account right away. Checks or money orders made out to the inmate can also be mailed; never mail cash. Property or money is released to someone outside only when the inmate fills out a release form, and all property goes out at once.",
+        sourceLabel: "Official inmate property and money page",
+        sourceUrl: "https://www.douglascountymn.gov/inmate-property-money"
+      },
+      {
+        title: "Phone and mail",
+        body: "Letters go to the inmate's full name, Douglas County Jail, 509 3rd Avenue West, Alexandria, MN 56308, by U.S. Mail only. All mail is scanned and inspected; crayon, gel pen, stickers, glitter, and glue are not allowed. The jail does not take phone messages, but you can leave one on the inmate message line at 320-391-6420. Phone cards cost $10.69 from canteen or can be bought online from Reliance Telephone.",
+        sourceLabel: "Official jail mail page",
+        sourceUrl: "https://www.douglascountymn.gov/jail-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail accepts bail 24 hours a day, cash only. Call 320-762-2139 for the amount. During business hours (8 a.m. to 4 p.m., Monday to Friday) pay in the front lobby; at other times press the intercom button next to the kiosk. A bond must go through a licensed Minnesota bail bond company. For hearing dates, call Court Administration at 320-304-6050.",
+        sourceLabel: "Official pay or post bond page",
+        sourceUrl: "https://www.douglascountymn.gov/paypost-bond"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Douglas County Jail?",
+        answer:
+          "On-site visits are Tuesday 7 to 9:30 p.m., Thursday 1:30 to 4 p.m. and 7 to 9:30 p.m., and Sunday 1:30 to 4 p.m. Video visits from home run every day from 9 to 10:30 a.m., 1 to 4 p.m., and 7 to 10:30 p.m. All visits are booked through TurnKey's Inmate Canteen site and last 20 minutes."
+      },
+      {
+        question: "How do I put money on an inmate's account in Douglas County?",
+        answer:
+          "Use the deposit kiosk just inside the main entrance of the jail at 509 3rd Avenue West in Alexandria; the money posts right away. You can also mail a check or money order made out to the inmate. Do not send cash in the mail."
+      },
+      {
+        question: "What is the mailing address for Douglas County Jail?",
+        answer:
+          "Write the inmate's full name, then Douglas County Jail, 509 3rd Avenue West, Alexandria, MN 56308. Send it by U.S. Mail. Mail for someone who has been released or transferred is returned if it has a return address."
+      },
+      {
+        question: "How do I post bail at Douglas County Jail?",
+        answer:
+          "Bail is paid in cash at the jail, any time of day. Call 320-762-2139 first to get the amount. On weekdays from 8 a.m. to 4 p.m. pay in the front lobby; after hours, use the intercom next to the lobby kiosk. For a bond, contact a licensed Minnesota bail bond company."
+      }
+    ]
+  },
   "texas/kleberg-county": {
     facilityName: "Kleberg County Detention Center",
     address: "1500 E. King Ave., Kingsville, TX 78363",
