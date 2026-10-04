@@ -21,6 +21,11 @@ const stateDetails: Record<
     name: "Texas",
     correctionsName: "Texas Department of Criminal Justice",
     path: "/coverage/texas/"
+  },
+  arkansas: {
+    name: "Arkansas",
+    correctionsName: "Arkansas Division of Correction",
+    path: "/coverage/arkansas/"
   }
 };
 

@@ -32,6 +32,19 @@ source-specific parser contract and a human review packet.
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
+## Arkansas
+
+Arkansas was added on 2026-10-04. Each county below has an official sheriff roster and official
+pages covering visiting, deposits, mail, and bonds. Arkansas County, Hempstead, Izard, and Randolph
+also run the same roster software but were left out because their sites do not publish all four.
+
+| County    | Official source                                                                                                          | Status                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| Jefferson | [Jefferson County Sheriff inmate roster](https://www.jeffcoso.org/roster.php)                                            | Adapter tested; production approval pending |
+| Logan     | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                 | Adapter tested; production approval pending |
+| Greene    | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+| Cleburne  | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,

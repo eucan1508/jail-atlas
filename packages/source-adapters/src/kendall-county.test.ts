@@ -193,6 +193,55 @@ describe("Kendall County source adapter", () => {
     expect(result.snapshot.recordCount).toBe(2);
   });
 
+  it("follows pager links that repeat the page parameter, as the live roster does", async () => {
+    const record = (n: number) => ({
+      bookingNumber: `SYNTHETIC-1${n}`,
+      name: `TESTER, PAGE${n} — TEST ONLY`,
+      charge: "SYNTHETIC CHARGE — TEST ONLY",
+      bond: "$0.00"
+    });
+    // Page 2 only links to page 3 as "grp=20&grp=40"; the server reads the last value.
+    const result = await runSourceAdapter(
+      adapter(
+        new Map([
+          [KENDALL_COUNTY_CURRENT_SOURCE_URL, syntheticPage(3, [record(1)], "roster.php?&grp=20")],
+          [pageTwoUrl, syntheticPage(3, [record(2)], "roster.php?grp=20&grp=40")],
+          [`${KENDALL_COUNTY_CURRENT_SOURCE_URL}?grp=40`, syntheticPage(3, [record(3)])]
+        ])
+      ),
+      context()
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(3);
+  });
+
+  it("fails closed when the crawl collects fewer records than the roster heading", async () => {
+    const result = await runSourceAdapter(
+      adapter(
+        new Map([
+          [
+            KENDALL_COUNTY_CURRENT_SOURCE_URL,
+            syntheticPage(2, [
+              {
+                bookingNumber: "SYNTHETIC-020",
+                name: "TESTER, SHORT — TEST ONLY",
+                charge: "SYNTHETIC CHARGE — TEST ONLY",
+                bond: "$0.00"
+              }
+            ])
+          ]
+        ])
+      ),
+      context()
+    );
+
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toContain("RECORD_COUNT_MISMATCH");
+  });
+
   it("uses the visible inmate name instead of the sheriff office number", async () => {
     const result = await runSourceAdapter(
       adapter(

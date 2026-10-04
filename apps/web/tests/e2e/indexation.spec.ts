@@ -104,8 +104,8 @@ test.describe("approved geographic scope", () => {
 
   test("excluded legacy jurisdictions have no routes or public output", async ({ request }) => {
     const excludedSlugs = [
+      // Arkansas left this list when its county pages were added on 2026-10-04.
       ["ala", "bama"],
-      ["arkan", "sas"],
       ["mis", "souri"],
       ["okla", "homa"]
     ].map((parts) => parts.join(""));

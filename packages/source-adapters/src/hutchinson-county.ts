@@ -98,7 +98,8 @@ function exactRosterUrl(input: string): URL {
   if ([...url.searchParams.keys()].some((key) => !allowedParameters.has(key))) {
     throw new Error("SOURCE_QUERY_BOUNDARY");
   }
-  const group = url.searchParams.get("grp");
+  // Pager links repeat the parameter ("grp=140&grp=160"); the server uses the last value.
+  const group = url.searchParams.getAll("grp").at(-1) ?? null;
   if (group !== null && (!/^\d{1,4}$/.test(group) || Number(group) > MAX_RECORDS)) {
     throw new Error("INVALID_PAGE_OFFSET");
   }
@@ -107,7 +108,7 @@ function exactRosterUrl(input: string): URL {
 
 function canonicalRosterPageUrl(input: string): string {
   const url = exactRosterUrl(input);
-  const group = url.searchParams.get("grp");
+  const group = url.searchParams.getAll("grp").at(-1) ?? null;
   if (group === null) return HUTCHINSON_COUNTY_CURRENT_SOURCE_URL;
   const canonical = new URL(HUTCHINSON_COUNTY_CURRENT_SOURCE_URL);
   canonical.searchParams.set("grp", group);
@@ -174,6 +175,7 @@ function parsePage(
   records: HutchinsonRoster["records"];
   pageUrls: readonly string[];
   validEmptyMarker: boolean;
+  declaredCount: number;
 } {
   const $ = load(html);
   sourceIdentity($);
@@ -238,7 +240,7 @@ function parsePage(
     .map((link) => canonicalRosterPageUrl(new URL($(link).attr("href") ?? "", pageUrl).href))
     .filter((url, index, all) => all.indexOf(url) === index)
     .slice(0, MAX_PAGES - 1);
-  return { records, pageUrls, validEmptyMarker };
+  return { records, pageUrls, validEmptyMarker, declaredCount };
 }
 
 async function requestRoster(
@@ -252,6 +254,7 @@ async function requestRoster(
   const visited = new Set<string>();
   const recordsByBooking = new Map<string, HutchinsonRoster["records"][number]>();
   let validEmptyMarker = false;
+  let declaredTotal: number | null = null;
 
   while (pending.length > 0) {
     const currentUrl = canonicalRosterPageUrl(pending.shift() ?? "");
@@ -269,6 +272,7 @@ async function requestRoster(
     if (!html || html.length > MAX_PAGE_BYTES) throw new Error("RESPONSE_SIZE");
     const parsed = parsePage(html, currentUrl);
     validEmptyMarker ||= parsed.validEmptyMarker;
+    declaredTotal ??= parsed.declaredCount;
     for (const record of parsed.records) {
       const previous = recordsByBooking.get(record.bookingNumber);
       if (previous && JSON.stringify(previous) !== JSON.stringify(record)) {
@@ -281,6 +285,10 @@ async function requestRoster(
     }
   }
   if (recordsByBooking.size > MAX_RECORDS) throw new Error("RECORD_LIMIT_REACHED");
+  // The first page's "Inmate Roster (N)" heading is the source total; a short crawl must fail.
+  if (declaredTotal === null || recordsByBooking.size !== declaredTotal) {
+    throw new Error("RECORD_COUNT_MISMATCH");
+  }
   return HutchinsonRosterSchema.parse({
     records: [...recordsByBooking.values()],
     validEmptyMarker

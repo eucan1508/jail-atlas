@@ -40,7 +40,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, or TX>
+   state=<IA, MN, TX, or AR>
    county_slug=<county slug>
    confirm=APPROVE
    ```
@@ -90,6 +90,17 @@ with the adapter records disabled and publication approval off.
    "Recently Released Inmates", so it cannot be read as current custody. Its adapter and guide stay
    in the repository and can be re-enabled in `live-state-runner.ts` if a reliable roster returns.
 
+   Arkansas runs Jefferson, Logan, Greene, and Cleburne through one shared adapter
+   (`sheriff-roster-site.ts`, configured in `arkansas-rosters.ts`). Jefferson and Logan use the
+   `roster.php?grp=` layout; Greene and Cleburne use `/inmate-roster/filters/current/...` paths and
+   only the current view is read. Every crawl must collect exactly the count in the page's "Inmate
+   Roster (N)" heading or the county fails closed:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
@@ -97,7 +108,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, or TX>
+   state=<IA, MN, TX, or AR>
    county_slug=<county slug>
    confirm=APPROVE
    ```

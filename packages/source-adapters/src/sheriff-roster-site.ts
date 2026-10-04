@@ -20,17 +20,33 @@ import type {
   ValidationResult
 } from "./contracts.js";
 
-export const MILAM_COUNTY_ADAPTER_KEY = "milam-county-tx-current-roster" as const;
-export const MILAM_COUNTY_CURRENT_SOURCE_URL =
-  "https://www.milamcountysherifftx.org/roster.php" as const;
-export const MILAM_COUNTY_SOURCE_HOST = "www.milamcountysherifftx.org" as const;
-export const MILAM_COUNTY_PARSER_VERSION = "1.0.0" as const;
+/**
+ * Sheriff websites that share one hosted roster template ("Inmate Roster (N)" heading, one card per
+ * person with Booking #, Booking Date, Charges and Bond). Two URL layouts exist:
+ *  - "roster-php": /roster.php?grp=20, profile links /roster_view.php?booking_num=...
+ *  - "inmate-roster-path": /inmate-roster/filters/current/booking_time=desc/2, profile links
+ *    /inmate-roster/<24 hex id>
+ */
+export type SheriffRosterLayout = "roster-php" | "inmate-roster-path";
 
-const MAX_PAGES = 20;
+export interface SheriffRosterSiteConfig {
+  readonly adapterKey: string;
+  /** Name that must appear on the official page, e.g. "Jefferson County". */
+  readonly countyName: string;
+  /** Prefix for diagnostic codes, e.g. "JEFFERSON_COUNTY_AR". */
+  readonly diagnosticPrefix: string;
+  readonly sourceUrl: string;
+  readonly parserVersion: string;
+  readonly layout: SheriffRosterLayout;
+}
+
+const MAX_PAGES = 40;
 const MAX_RECORDS = 1_000;
 const MAX_PAGE_BYTES = 3_000_000;
+const PAGE_SIZE = 20;
+const ROSTER_PATH_PREFIX = "/inmate-roster/filters/current/booking_time=desc/";
 
-const MilamRecordSchema = z.object({
+const SheriffRosterRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
   bookingNumber: z.string().trim().min(1).max(100),
   bookingDateText: z.string().trim().min(1).max(100).nullable(),
@@ -38,22 +54,22 @@ const MilamRecordSchema = z.object({
   bondText: z.string().trim().min(1).max(250).nullable()
 });
 
-const MilamRosterSchema = z.object({
-  records: z.array(MilamRecordSchema).max(MAX_RECORDS),
+const SheriffRosterSchema = z.object({
+  records: z.array(SheriffRosterRecordSchema).max(MAX_RECORDS),
   validEmptyMarker: z.boolean()
 });
 
-export type MilamRoster = z.infer<typeof MilamRosterSchema>;
-export type MilamRosterFetch = (input: string, init?: RequestInit) => Promise<Response>;
-export type MilamRosterIdFactory = (
+export type SheriffRoster = z.infer<typeof SheriffRosterSchema>;
+export type SheriffRosterFetch = (input: string, init?: RequestInit) => Promise<Response>;
+export type SheriffRosterIdFactory = (
   kind: "snapshot" | "person" | "booking" | "charge" | "bond",
   sourceKey: string
 ) => string;
 
-export interface MilamRosterAdapterOptions {
-  readonly fetch: MilamRosterFetch;
+export interface SheriffRosterAdapterOptions {
+  readonly fetch: SheriffRosterFetch;
   readonly facilityId: string;
-  readonly createId: MilamRosterIdFactory;
+  readonly createId: SheriffRosterIdFactory;
   readonly nowMs?: () => number;
 }
 
@@ -65,6 +81,7 @@ function normalizeText(value: string): string {
 }
 
 function classify(
+  config: SheriffRosterSiteConfig,
   context: AdapterContext,
   stage: AdapterStage,
   error: unknown
@@ -74,51 +91,66 @@ function classify(
   return {
     stage,
     classification: stage === "fetch" || stage === "health_check" ? "network" : "parser",
-    publicMessage: "The approved Milam County roster could not be processed safely.",
+    publicMessage: `The approved ${config.countyName} roster could not be processed safely.`,
     retryable: true,
     occurredAt: context.requestedAt,
-    diagnosticCode: `MILAM_COUNTY_${code}`.slice(0, 100)
+    diagnosticCode: `${config.diagnosticPrefix}_${code}`.slice(0, 100)
   };
 }
 
-function exactRosterUrl(input: string): URL {
-  const url = new URL(input);
-  if (
-    url.protocol !== "https:" ||
-    url.hostname !== MILAM_COUNTY_SOURCE_HOST ||
-    url.port !== "" ||
-    url.username !== "" ||
-    url.password !== "" ||
-    url.hash !== "" ||
-    url.pathname !== "/roster.php"
-  ) {
-    throw new Error("SOURCE_URL_BOUNDARY");
+function rosterSite(config: SheriffRosterSiteConfig) {
+  const sourceHost = new URL(config.sourceUrl).hostname;
+
+  /** Canonical page URL, or null when the link is not a page of the current-custody roster. */
+  function canonicalPageUrl(input: string): string | null {
+    const url = new URL(input);
+    if (
+      url.protocol !== "https:" ||
+      url.hostname !== sourceHost ||
+      url.port !== "" ||
+      url.username !== "" ||
+      url.password !== ""
+    ) {
+      return null;
+    }
+    if (config.layout === "roster-php") {
+      if (url.pathname !== "/roster.php") return null;
+      const allowedParameters = new Set(["grp", "orderby", "sort"]);
+      if ([...url.searchParams.keys()].some((key) => !allowedParameters.has(key))) return null;
+      // Pager links repeat the parameter ("grp=140&grp=160"); the server uses the last value.
+      const group = url.searchParams.getAll("grp").at(-1) ?? null;
+      if (group === null) return config.sourceUrl;
+      if (!/^\d{1,4}$/.test(group) || Number(group) > MAX_RECORDS) {
+        throw new Error("INVALID_PAGE_OFFSET");
+      }
+      const canonical = new URL(config.sourceUrl);
+      canonical.search = "";
+      canonical.searchParams.set("grp", group);
+      return canonical.href;
+    }
+    if (url.search !== "" || !url.pathname.startsWith(ROSTER_PATH_PREFIX)) return null;
+    const page = url.pathname.slice(ROSTER_PATH_PREFIX.length);
+    if (!/^\d{1,3}$/.test(page) || Number(page) < 1 || Number(page) > MAX_PAGES) {
+      throw new Error("INVALID_PAGE_NUMBER");
+    }
+    return `https://${sourceHost}${ROSTER_PATH_PREFIX}${Number(page)}`;
   }
-  const allowedParameters = new Set(["grp", "orderby", "sort"]);
-  if ([...url.searchParams.keys()].some((key) => !allowedParameters.has(key))) {
-    throw new Error("SOURCE_QUERY_BOUNDARY");
+
+  function profileLinks($: CheerioAPI) {
+    return config.layout === "roster-php"
+      ? $("a[href*='roster_view.php'][href*='booking_num=']").toArray()
+      : $("a[href^='/inmate-roster/']")
+          .toArray()
+          .filter((link) => /^\/inmate-roster\/[0-9a-f]{24}$/.test($(link).attr("href") ?? ""));
   }
-  // Pager links repeat the parameter ("grp=140&grp=160"); the server uses the last value.
-  const group = url.searchParams.getAll("grp").at(-1) ?? null;
-  if (group !== null && (!/^\d{1,4}$/.test(group) || Number(group) > MAX_RECORDS)) {
-    throw new Error("INVALID_PAGE_OFFSET");
-  }
-  return url;
+
+  return { sourceHost, canonicalPageUrl, profileLinks };
 }
 
-function canonicalRosterPageUrl(input: string): string {
-  const url = exactRosterUrl(input);
-  const group = url.searchParams.getAll("grp").at(-1) ?? null;
-  if (group === null) return MILAM_COUNTY_CURRENT_SOURCE_URL;
-  const canonical = new URL(MILAM_COUNTY_CURRENT_SOURCE_URL);
-  canonical.searchParams.set("grp", group);
-  return canonical.href;
-}
-
-function sourceIdentity($: CheerioAPI): void {
+function sourceIdentity($: CheerioAPI, config: SheriffRosterSiteConfig): void {
   const title = normalizeText($("title").first().text());
   const body = normalizeText($("body").text());
-  if (!`${title} ${body}`.includes("Milam County") || !body.includes("Inmate Roster")) {
+  if (!`${title} ${body}`.includes(config.countyName) || !body.includes("Inmate Roster")) {
     throw new Error("SOURCE_IDENTITY_MISMATCH");
   }
 }
@@ -126,41 +158,42 @@ function sourceIdentity($: CheerioAPI): void {
 function cardLines($: CheerioAPI, cardInput: ReturnType<CheerioAPI>): string[] {
   const card = cardInput.clone();
   card.find("br").replaceWith("\n");
-  card.find("dt, dd, p, h1, h2, h3, h4, h5, li").each((_index, node) => {
+  card.find("div, dt, dd, p, h1, h2, h3, h4, h5, li, strong").each((_index, node) => {
     $(node).prepend("\n").append("\n");
   });
   return card.text().split(/\n+/).map(normalizeText).filter(Boolean);
 }
 
-function valueAfter(lines: readonly string[], label: string): string | null {
-  const index = lines.findIndex((line) => line.toLowerCase() === label.toLowerCase());
-  return index >= 0 ? (lines[index + 1] ?? null) : null;
+function labelIndex(lines: readonly string[], label: string): number {
+  return lines.findIndex((line) => line.toLowerCase() === label.toLowerCase());
 }
 
-function valuesBetween(
-  lines: readonly string[],
-  startLabel: string,
-  endLabel: string
-): readonly string[] {
-  const start = lines.findIndex((line) => line.toLowerCase() === startLabel.toLowerCase());
+function valueAfter(lines: readonly string[], label: string): string | null {
+  const index = labelIndex(lines, label);
+  const value = index >= 0 ? (lines[index + 1] ?? null) : null;
+  return value !== null && /^[A-Za-z #]+:$/.test(value) ? null : value;
+}
+
+const CARD_LABELS = ["Booking #:", "Age:", "Booking Date:", "Charges:", "Bond:", "SO #:"];
+
+function valuesBetween(lines: readonly string[], startLabel: string): readonly string[] {
+  const start = labelIndex(lines, startLabel);
   if (start < 0) return [];
   const end = lines.findIndex(
-    (line, index) => index > start && line.toLowerCase() === endLabel.toLowerCase()
+    (line, index) =>
+      index > start &&
+      (CARD_LABELS.some((label) => label.toLowerCase() === line.toLowerCase()) ||
+        /^view profile/i.test(line))
   );
-  return lines
-    .slice(start + 1, end < 0 ? lines.length : end)
-    .filter((line) => !/^view profile/i.test(line));
+  return lines.slice(start + 1, end < 0 ? lines.length : end);
 }
 
 function findRecordCard(profileLink: ReturnType<CheerioAPI>) {
   let node = profileLink.parent();
   for (let depth = 0; depth < 10 && node.length > 0; depth += 1) {
     const text = normalizeText(node.text());
-    if (
-      text.includes("Booking #:") &&
-      text.includes("Booking Date:") &&
-      text.includes("Charges:")
-    ) {
+    if (text.includes("Booking #:") && text.includes("Booking Date:")) {
+      if (text.split("Booking #:").length !== 2) throw new Error("RECORD_CARD_AMBIGUOUS");
       return node;
     }
     node = node.parent();
@@ -170,57 +203,73 @@ function findRecordCard(profileLink: ReturnType<CheerioAPI>) {
 
 function parsePage(
   html: string,
-  pageUrl: string
+  pageUrl: string,
+  config: SheriffRosterSiteConfig,
+  site: ReturnType<typeof rosterSite>
 ): {
-  records: MilamRoster["records"];
+  records: SheriffRoster["records"];
   pageUrls: readonly string[];
-  validEmptyMarker: boolean;
   declaredCount: number;
 } {
   const $ = load(html);
-  sourceIdentity($);
+  sourceIdentity($, config);
   const headingText = $("h1, h2, h3, h4, h5")
     .toArray()
     .map((element) => normalizeText($(element).text()))
     .find((value) => /Inmate Roster\s*\(\d+\)/i.test(value));
-  const declaredCount = Number(headingText?.match(/\((\d+)\)/)?.[1] ?? "-1");
+  if (!headingText) throw new Error("ROSTER_HEADING_MISSING");
+  const declaredCount = Number(headingText.match(/\((\d+)\)/)?.[1]);
 
-  const recordsByBooking = new Map<string, MilamRoster["records"][number]>();
-  const profileLinks = $("a[href*='roster_view.php'][href*='booking_num=']").toArray();
-  for (const profileLink of profileLinks) {
+  const recordsByBooking = new Map<string, SheriffRoster["records"][number]>();
+  for (const profileLink of site.profileLinks($)) {
     const href = $(profileLink).attr("href");
     if (!href) throw new Error("MISSING_PROFILE_URL");
     const profileUrl = new URL(href, pageUrl);
-    if (profileUrl.hostname !== MILAM_COUNTY_SOURCE_HOST) throw new Error("PROFILE_URL_BOUNDARY");
-    const bookingNumber = normalizeText(profileUrl.searchParams.get("booking_num") ?? "");
-    if (!bookingNumber) throw new Error("MISSING_BOOKING_NUMBER");
+    if (profileUrl.hostname !== site.sourceHost) throw new Error("PROFILE_URL_BOUNDARY");
 
     const card = findRecordCard($(profileLink));
     const lines = cardLines($, card);
+    const bookingNumber = normalizeText(valueAfter(lines, "Booking #:") ?? "");
+    if (!bookingNumber) throw new Error("MISSING_BOOKING_NUMBER");
+    if (
+      config.layout === "roster-php" &&
+      normalizeText(profileUrl.searchParams.get("booking_num") ?? "") !== bookingNumber
+    ) {
+      throw new Error("INVALID_RECORD_IDENTITY");
+    }
+
     const altName = card
       .find("img[alt]")
       .toArray()
       .map((image) => normalizeText($(image).attr("alt") ?? ""))
       .find((alt) => /^Mugshot of /i.test(alt))
       ?.replace(/^Mugshot of /i, "");
-    const bookingLabelIndex = lines.findIndex((line) => line.toLowerCase() === "booking #:");
+    const sheriffOfficeLabelIndex = labelIndex(lines, "SO #:");
+    const bookingLabelIndex = labelIndex(lines, "Booking #:");
+    const nameBoundaryIndex =
+      sheriffOfficeLabelIndex >= 0 ? sheriffOfficeLabelIndex : bookingLabelIndex;
     const displayName = normalizeText(
       altName ??
         lines
-          .slice(0, bookingLabelIndex < 0 ? 0 : bookingLabelIndex)
+          .slice(0, nameBoundaryIndex < 0 ? 0 : nameBoundaryIndex)
           .filter((line) => !/^inmate roster/i.test(line) && !/^current inmates$/i.test(line))
           .at(-1) ??
         ""
     );
-    const listedBookingNumber = normalizeText(valueAfter(lines, "Booking #:") ?? "");
-    if (!displayName || listedBookingNumber !== bookingNumber) {
+    const listedSheriffOfficeNumber = normalizeText(valueAfter(lines, "SO #:") ?? "");
+    if (
+      !displayName ||
+      displayName === listedSheriffOfficeNumber ||
+      displayName === bookingNumber ||
+      /^[A-Za-z #]+:$/.test(displayName)
+    ) {
       throw new Error("INVALID_RECORD_IDENTITY");
     }
-    const record = MilamRecordSchema.parse({
+    const record = SheriffRosterRecordSchema.parse({
       displayName,
       bookingNumber,
       bookingDateText: valueAfter(lines, "Booking Date:"),
-      charges: valuesBetween(lines, "Charges:", "Bond:"),
+      charges: valuesBetween(lines, "Charges:"),
       bondText: valueAfter(lines, "Bond:")
     });
     const previous = recordsByBooking.get(bookingNumber);
@@ -231,33 +280,32 @@ function parsePage(
   }
 
   const records = [...recordsByBooking.values()];
-  const validEmptyMarker = declaredCount === 0 && records.length === 0;
-  if (records.length === 0 && !validEmptyMarker) throw new Error("ROSTER_STRUCTURE_MISSING");
+  if (records.length === 0 && declaredCount !== 0) throw new Error("ROSTER_STRUCTURE_MISSING");
+  if (records.length > PAGE_SIZE) throw new Error("PAGE_SIZE_EXCEEDED");
 
-  const pageUrls = $("a[href*='roster.php'][href*='grp=']")
+  const pageUrls = $("a[href]")
     .toArray()
-    .map((link) => canonicalRosterPageUrl(new URL($(link).attr("href") ?? "", pageUrl).href))
-    .filter((url, index, all) => all.indexOf(url) === index)
-    .slice(0, MAX_PAGES - 1);
-  return { records, pageUrls, validEmptyMarker, declaredCount };
+    .map((link) => site.canonicalPageUrl(new URL($(link).attr("href") ?? "", pageUrl).href))
+    .filter((url): url is string => url !== null)
+    .filter((url, index, all) => all.indexOf(url) === index);
+  return { records, pageUrls, declaredCount };
 }
 
 async function requestRoster(
-  options: MilamRosterAdapterOptions,
+  config: SheriffRosterSiteConfig,
+  options: SheriffRosterAdapterOptions,
   context: AdapterContext
-): Promise<MilamRoster> {
-  if (context.source.sourceUrl !== MILAM_COUNTY_CURRENT_SOURCE_URL) {
-    throw new Error("SOURCE_URL_MISMATCH");
-  }
-  const pending: string[] = [MILAM_COUNTY_CURRENT_SOURCE_URL];
+): Promise<SheriffRoster> {
+  if (context.source.sourceUrl !== config.sourceUrl) throw new Error("SOURCE_URL_MISMATCH");
+  const site = rosterSite(config);
+  const pending: string[] = [config.sourceUrl];
   const visited = new Set<string>();
-  const recordsByBooking = new Map<string, MilamRoster["records"][number]>();
-  let validEmptyMarker = false;
+  const recordsByBooking = new Map<string, SheriffRoster["records"][number]>();
   let declaredTotal: number | null = null;
 
   while (pending.length > 0) {
-    const currentUrl = canonicalRosterPageUrl(pending.shift() ?? "");
-    if (visited.has(currentUrl)) continue;
+    const currentUrl = site.canonicalPageUrl(pending.shift() ?? "");
+    if (currentUrl === null || visited.has(currentUrl)) continue;
     if (visited.size >= MAX_PAGES) throw new Error("PAGE_LIMIT_REACHED");
     visited.add(currentUrl);
     const response = await options.fetch(currentUrl, {
@@ -269,8 +317,7 @@ async function requestRoster(
     if (!response.ok) throw new Error(`HTTP_${response.status}`);
     const html = await response.text();
     if (!html || html.length > MAX_PAGE_BYTES) throw new Error("RESPONSE_SIZE");
-    const parsed = parsePage(html, currentUrl);
-    validEmptyMarker ||= parsed.validEmptyMarker;
+    const parsed = parsePage(html, currentUrl, config, site);
     declaredTotal ??= parsed.declaredCount;
     for (const record of parsed.records) {
       const previous = recordsByBooking.get(record.bookingNumber);
@@ -288,10 +335,17 @@ async function requestRoster(
   if (declaredTotal === null || recordsByBooking.size !== declaredTotal) {
     throw new Error("RECORD_COUNT_MISMATCH");
   }
-  return MilamRosterSchema.parse({ records: [...recordsByBooking.values()], validEmptyMarker });
+  return SheriffRosterSchema.parse({
+    records: [...recordsByBooking.values()],
+    validEmptyMarker: declaredTotal === 0
+  });
 }
 
-function monetaryBond(text: string | null, bookingId: string, options: MilamRosterAdapterOptions) {
+function monetaryBond(
+  text: string | null,
+  bookingId: string,
+  options: SheriffRosterAdapterOptions
+) {
   if (!text) return [];
   const match = text.replace(/,/g, "").match(/^\$(\d+)(?:\.(\d{2}))?$/);
   if (!match) return [];
@@ -311,35 +365,38 @@ function monetaryBond(text: string | null, bookingId: string, options: MilamRost
   return [bond];
 }
 
-export function createMilamCountySourceAdapter(
-  options: MilamRosterAdapterOptions
-): SourceAdapter<MilamRoster, MilamRoster, MilamRoster> {
+export function createSheriffRosterSiteAdapter(
+  config: SheriffRosterSiteConfig,
+  options: SheriffRosterAdapterOptions
+): SourceAdapter<SheriffRoster, SheriffRoster, SheriffRoster> {
   const nowMs = options.nowMs ?? (() => Date.now());
+  const fail = (context: AdapterContext, stage: AdapterStage, error: unknown) =>
+    classify(config, context, stage, error);
   return {
-    key: MILAM_COUNTY_ADAPTER_KEY,
+    key: config.adapterKey,
     adapterVersion: "1.0.0",
-    parserVersion: MILAM_COUNTY_PARSER_VERSION,
-    async fetch(context): Promise<FetchResult<MilamRoster>> {
+    parserVersion: config.parserVersion,
+    async fetch(context): Promise<FetchResult<SheriffRoster>> {
       try {
-        return { ok: true, value: await requestRoster(options, context) };
+        return { ok: true, value: await requestRoster(config, options, context) };
       } catch (error) {
-        return { ok: false, failure: classify(context, "fetch", error) };
+        return { ok: false, failure: fail(context, "fetch", error) };
       }
     },
-    validate(payload, context): Promise<ValidationResult<MilamRoster>> {
-      const result = MilamRosterSchema.safeParse(payload);
+    validate(payload, context): Promise<ValidationResult<SheriffRoster>> {
+      const result = SheriffRosterSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "validate", result.error) }
+          : { ok: false, failure: fail(context, "validate", result.error) }
       );
     },
-    parse(payload, context): Promise<ParseResult<MilamRoster>> {
-      const result = MilamRosterSchema.safeParse(payload);
+    parse(payload, context): Promise<ParseResult<SheriffRoster>> {
+      const result = SheriffRosterSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "parse", result.error) }
+          : { ok: false, failure: fail(context, "parse", result.error) }
       );
     },
     interpretEmptyResult(payload): Promise<EmptyResultInterpretation> {
@@ -348,8 +405,7 @@ export function createMilamCountySourceAdapter(
           ? {
               kind: "valid_empty",
               recordCount: 0,
-              evidence:
-                "The official Milam County current-inmate roster explicitly reported zero records."
+              evidence: `The official ${config.countyName} current-inmate roster explicitly reported zero records.`
             }
           : { kind: "not_empty", recordCount: payload.records.length }
       );
@@ -408,13 +464,13 @@ export function createMilamCountySourceAdapter(
           })
         });
       } catch (error) {
-        return Promise.resolve({ ok: false, failure: classify(context, "normalize", error) });
+        return Promise.resolve({ ok: false, failure: fail(context, "normalize", error) });
       }
     },
     async healthCheck(context): Promise<SourceHealth> {
       const started = nowMs();
       try {
-        await requestRoster(options, context);
+        await requestRoster(config, options, context);
         return {
           status: "healthy",
           checkedAt: context.requestedAt,
@@ -426,12 +482,12 @@ export function createMilamCountySourceAdapter(
           status: "unavailable",
           checkedAt: context.requestedAt,
           latencyMs: Math.max(0, nowMs() - started),
-          failure: classify(context, "health_check", error)
+          failure: fail(context, "health_check", error)
         };
       }
     },
     classifyFailure(error, stage, context) {
-      return classify(context, stage, error);
+      return fail(context, stage, error);
     }
   };
 }

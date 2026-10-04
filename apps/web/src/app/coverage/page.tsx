@@ -21,6 +21,9 @@ export default async function CoveragePage() {
   const publishedMinnesota = published.filter(({ entry }) => entry.state === "minnesota");
   const publishedTexas = published.filter(({ entry }) => entry.state === "texas");
   const showTexas = publishedTexas.length > 0 || coveragePreviewAllowed();
+  const publishedArkansas = published.filter(({ entry }) => entry.state === "arkansas");
+  const showArkansas = publishedArkansas.length > 0 || coveragePreviewAllowed();
+  const stateCount = 2 + (showTexas ? 1 : 0) + (showArkansas ? 1 : 0);
   const iowaPublished = publishedIowa.length > 0;
 
   return (
@@ -61,7 +64,7 @@ export default async function CoveragePage() {
             <p className="eyebrow">Approved geography</p>
             <h2 id="scope-heading">Where the evidence is live</h2>
           </div>
-          <span className="section-index">01 / {showTexas ? "03" : "02"}</span>
+          <span className="section-index">01 / {String(stateCount).padStart(2, "0")}</span>
         </div>
         <div className="coverage-grid">
           <div className="surface-card coverage-state-row">
@@ -111,6 +114,24 @@ export default async function CoveragePage() {
               </div>
               <Link className="coverage-state-row__link" href="/coverage/texas/">
                 Explore Texas <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          ) : null}
+          {showArkansas ? (
+            <div className="surface-card coverage-state-row">
+              <div>
+                <StatusPill tone={publishedArkansas.length > 0 ? "current" : "neutral"}>
+                  {publishedArkansas.length > 0 ? "Active coverage" : "Under review"}
+                </StatusPill>
+                <h3>Arkansas</h3>
+                <p>
+                  {publishedArkansas.length > 0
+                    ? `${publishedArkansas.length} public county page${publishedArkansas.length === 1 ? " is" : "s are"} available.`
+                    : "County pages are prepared for source and publication review."}
+                </p>
+              </div>
+              <Link className="coverage-state-row__link" href="/coverage/arkansas/">
+                Explore Arkansas <span aria-hidden="true">↗</span>
               </Link>
             </div>
           ) : null}

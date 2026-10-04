@@ -12,8 +12,8 @@ const inspectedRoots = [
 const inspectedExtensions = new Set([".css", ".json", ".md", ".ts", ".tsx", ".yaml", ".yml"]);
 
 const excludedJurisdictions = [
+  // Arkansas left this list when its county pages were added on 2026-10-04.
   ["ala", "bama"],
-  ["arkan", "sas"],
   ["mis", "souri"],
   ["okla", "homa"]
 ].map((parts) => parts.join(""));
