@@ -13,7 +13,8 @@ const liveCountyKeys = [
   "minnesota/carlton-county",
   "texas/milam-county",
   "texas/hutchinson-county",
-  "texas/kendall-county"
+  "texas/kendall-county",
+  "texas/kleberg-county"
 ] as const;
 
 describe("verified county guides", () => {

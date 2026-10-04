@@ -70,15 +70,17 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       adapterKey: "milam-county-tx-current-roster",
       sourceHost: "www.milamcountysherifftx.org"
     },
-    {
-      countySlug: "hutchinson",
-      adapterKey: "hutchinson-county-tx-current-roster",
-      sourceHost: "www.hutchinsonsherifftx.org"
-    },
+    // Hutchinson is paused: its sheriff domain stopped resolving on 2026-09-30, and the county's
+    // replacement page is a hand-typed list labelled "Recently Released Inmates".
     {
       countySlug: "kendall",
       adapterKey: "kendall-county-tx-current-roster",
       sourceHost: "www.kendallcountysheriff.com"
+    },
+    {
+      countySlug: "kleberg",
+      adapterKey: "kleberg-county-tx-current-roster",
+      sourceHost: "www.klebergcoso.org"
     }
   ]
 };

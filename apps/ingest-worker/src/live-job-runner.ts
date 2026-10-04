@@ -24,6 +24,8 @@ import {
   HUTCHINSON_COUNTY_ADAPTER_KEY,
   createKendallCountySourceAdapter,
   KENDALL_COUNTY_ADAPTER_KEY,
+  createKlebergCountySourceAdapter,
+  KLEBERG_COUNTY_ADAPTER_KEY,
   createIowaCurrentRosterAdapter,
   createMilamCountySourceAdapter,
   MILAM_COUNTY_ADAPTER_KEY,
@@ -146,6 +148,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === KENDALL_COUNTY_ADAPTER_KEY) {
     return createKendallCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === KLEBERG_COUNTY_ADAPTER_KEY) {
+    return createKlebergCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
