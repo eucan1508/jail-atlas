@@ -88,6 +88,7 @@ export function publisherGraph() {
       "@id": publisherId,
       name: environment.BRAND_NAME,
       url: absoluteUrl("/"),
+      logo: absoluteUrl("/icon.svg"),
       description:
         "An independent public-information publisher that verifies official custody sources.",
       sameAs: []

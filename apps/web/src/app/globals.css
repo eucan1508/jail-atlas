@@ -1390,7 +1390,43 @@ textarea {
 }
 
 .county-facts {
+  border-collapse: collapse;
   margin-top: 1.5rem;
+  width: 100%;
+}
+
+.county-facts th,
+.county-facts td {
+  border-top: var(--border-thin);
+  padding-block: var(--space-4);
+  text-align: left;
+  vertical-align: top;
+}
+
+.county-facts tr:first-child th,
+.county-facts tr:first-child td {
+  border-top: 0;
+}
+
+.county-facts th {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  padding-right: var(--space-4);
+  width: 34%;
+}
+
+@media (max-width: 40rem) {
+  .county-facts th,
+  .county-facts td {
+    display: block;
+    width: auto;
+  }
+
+  .county-facts td {
+    border-top: 0;
+    padding-top: 0;
+  }
 }
 
 .county-guide__split {
@@ -2520,7 +2556,7 @@ textarea {
 .county-live-header__copy h1 {
   max-width: 12ch;
 }
-.county-live-header__copy > p:last-child {
+.county-live-header__copy > p:not(.eyebrow) {
   color: var(--color-ink-soft);
   font-size: 1.03rem;
   line-height: 1.65;
@@ -3289,7 +3325,7 @@ textarea {
   max-width: none;
 }
 
-.county-page--live .county-live-header__copy > p:last-child {
+.county-page--live .county-live-header__copy > p:not(.eyebrow) {
   max-width: none;
 }
 
@@ -3418,7 +3454,7 @@ textarea {
   text-wrap: balance;
 }
 
-.county-page--live .county-live-header__copy > p:last-child,
+.county-page--live .county-live-header__copy > p:not(.eyebrow),
 .county-page--preview .page-intro__summary {
   margin-inline: auto;
   max-width: 72ch;
@@ -3514,7 +3550,7 @@ textarea {
 
   .county-page--live .county-live-header__copy h1,
   .county-page--preview .page-intro h1,
-  .county-page--live .county-live-header__copy > p:last-child,
+  .county-page--live .county-live-header__copy > p:not(.eyebrow),
   .county-page--preview .page-intro__summary {
     margin-inline: 0;
     max-width: 100%;
@@ -3681,7 +3717,7 @@ textarea {
   max-width: 30ch;
 }
 
-.county-page--live .county-live-header__copy > p:last-child {
+.county-page--live .county-live-header__copy > p:not(.eyebrow) {
   margin-inline: 0;
   max-width: 78ch;
 }
@@ -3853,7 +3889,7 @@ textarea {
 /* Keep the county introduction on the same full-width editorial grid as the
    roster below it, instead of constraining the title and summary to the left. */
 .county-page--live .county-live-header__copy h1,
-.county-page--live .county-live-header__copy > p:last-child {
+.county-page--live .county-live-header__copy > p:not(.eyebrow) {
   max-width: none;
   width: 100%;
 }
@@ -4003,8 +4039,14 @@ textarea {
 .county-guide__about .county-facts {
   background: #f4f8f6;
   border: 1px solid #d6e2df;
+  border-collapse: separate;
   border-radius: 0.85rem;
+  border-spacing: 0;
   overflow: hidden;
+}
+
+.county-guide__about .county-facts th,
+.county-guide__about .county-facts td {
   padding-inline: 1.1rem;
 }
 
@@ -4046,4 +4088,10 @@ textarea {
 
 .home-section.home-important + .faq-section {
   padding-top: clamp(1.25rem, 2vw, 2rem);
+}
+
+.county-page--live .county-live-header .county-live-header__copy > p.county-live-header__dates {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  margin-top: 0.75rem;
 }

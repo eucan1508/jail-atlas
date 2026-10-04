@@ -12,11 +12,54 @@ import {
 } from "@/lib/coverage-catalog";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { readEnvironment } from "@/lib/env";
-import { findCountyGuide } from "@/lib/county-guides";
+import { findCountyGuide, type CountyGuideProfile } from "@/lib/county-guides";
+import { countyAnswerSummary, reviewedDateIso } from "@/lib/county-summary";
+import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
 import { getLiveCountySource, getLiveRosterPage } from "@/lib/live-roster";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
 type CountyPageParams = { state: string; county: string };
+
+function countyArticle({
+  entry,
+  path,
+  profile,
+  summary,
+  capturedAt
+}: {
+  entry: CountyCoverageBrief;
+  path: string;
+  profile: CountyGuideProfile | undefined;
+  summary: string | null;
+  capturedAt: Date | null;
+}) {
+  const reviewed = profile ? reviewedDateIso(profile.reviewedAt) : null;
+  const modified = [capturedAt?.toISOString(), reviewed].filter(Boolean).sort().at(-1);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": absoluteUrl(`${path}#page`),
+    url: absoluteUrl(path),
+    headline: entry.h1,
+    description: summary ?? entry.description,
+    articleBody: entry.article,
+    datePublished: entry.publishedAt,
+    ...(modified ? { dateModified: modified } : {}),
+    author: { "@id": absoluteUrl("/#publisher") },
+    publisher: { "@id": absoluteUrl("/#publisher") },
+    isPartOf: { "@id": absoluteUrl("/#website") },
+    ...(profile
+      ? {
+          about: {
+            "@type": "Place",
+            name: profile.facilityName,
+            address: profile.address,
+            telephone: profile.phone
+          }
+        }
+      : {})
+  };
+}
 
 export async function generateMetadata({
   params
@@ -62,6 +105,11 @@ export default async function CountyCustodyBriefPage({
       getPublishedCountyCoverage(entry.state)
     ]);
     const capturedAt = liveSource.capturedAt;
+    const profile = findCountyGuide(entry.state, entry.slug);
+    const summary = profile
+      ? countyAnswerSummary({ entry, profile, recordCount: initialPage.total, capturedAt })
+      : null;
+    const reviewedIso = profile ? reviewedDateIso(profile.reviewedAt) : null;
     return (
       <main id="main-content" className="page-main site-shell county-page county-page--live">
         <Breadcrumbs
@@ -79,13 +127,35 @@ export default async function CountyCustodyBriefPage({
               {entry.stateName} · {entry.county}
             </p>
             <h1>{entry.h1}</h1>
-            <p>{entry.description}</p>
+            <p>{summary ?? entry.description}</p>
+            <p className="county-live-header__dates">
+              Roster updated{" "}
+              <time dateTime={capturedAt.toISOString()}>
+                {capturedAt.toLocaleDateString("en-US", {
+                  dateStyle: "long",
+                  timeZone: "America/Chicago"
+                })}
+              </time>
+              {profile ? (
+                <>
+                  {" "}
+                  · Facility details reviewed{" "}
+                  {reviewedIso ? (
+                    <time dateTime={reviewedIso}>{profile.reviewedAt}</time>
+                  ) : (
+                    profile.reviewedAt
+                  )}
+                </>
+              ) : null}
+            </p>
           </div>
         </header>
         <section className="content-section roster-section" aria-labelledby="roster-heading">
           <div className="section-heading-row">
             <div>
-              <h2 id="roster-heading">Current custody</h2>
+              <h2 id="roster-heading">
+                Who is currently held at {profile?.facilityName ?? `the ${entry.county} jail`}?
+              </h2>
               <p>
                 Last successful fetch:{" "}
                 {capturedAt.toLocaleString("en-US", {
@@ -111,18 +181,7 @@ export default async function CountyCustodyBriefPage({
           recordCount={initialPage.total}
           related={stateCoverage.filter(({ entry: county }) => county.slug !== entry.slug)}
         />
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "@id": absoluteUrl(`${path}#page`),
-            url: absoluteUrl(path),
-            headline: entry.h1,
-            description: entry.description,
-            articleBody: entry.article,
-            isPartOf: { "@id": absoluteUrl("/#website") }
-          }}
-        />
+        <JsonLd data={countyArticle({ entry, path, profile, summary, capturedAt })} />
       </main>
     );
   }
@@ -214,16 +273,13 @@ export default async function CountyCustodyBriefPage({
       ) : null}
 
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "@id": absoluteUrl(`${path}#page`),
-          url: absoluteUrl(path),
-          headline: entry.h1,
-          description: entry.description,
-          articleBody: entry.article,
-          isPartOf: { "@id": absoluteUrl("/#website") }
-        }}
+        data={countyArticle({
+          entry,
+          path,
+          profile: findCountyGuide(entry.state, entry.slug),
+          summary: null,
+          capturedAt: null
+        })}
       />
     </main>
   );
