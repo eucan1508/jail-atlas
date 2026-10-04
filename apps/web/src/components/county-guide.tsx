@@ -3,6 +3,7 @@ import { FaqList, type FaqItem } from "./faq-list";
 import { JsonLd } from "./json-ld";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
 import { findCountyGuide } from "@/lib/county-guides";
+import { guidanceQuestion, reviewedDateIso } from "@/lib/county-summary";
 import type { PublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl } from "@/lib/site";
 
@@ -124,6 +125,7 @@ export function CountyGuide({
     timeZoneName: "short"
   });
   const pagePath = `/${entry.state}/${entry.slug}/custody/`;
+  const reviewedIso = reviewedDateIso(profile.reviewedAt);
 
   return (
     <>
@@ -134,44 +136,58 @@ export function CountyGuide({
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Verified county context</p>
-            <h2 id="facility-heading">About {facility}</h2>
+            <h2 id="facility-heading">Where is {facility}, and who runs it?</h2>
           </div>
         </div>
         <p>{profile.overview}</p>
-        <dl className="definition-list county-facts">
-          <div>
-            <dt>Facility</dt>
-            <dd>{facility}</dd>
-          </div>
-          <div>
-            <dt>Address</dt>
-            <dd>{profile.address}</dd>
-          </div>
-          <div>
-            <dt>Main phone</dt>
-            <dd>{profile.phone}</dd>
-          </div>
-          <div>
-            <dt>Operated by</dt>
-            <dd>{profile.operatedBy}</dd>
-          </div>
-          <div>
-            <dt>Official facility source</dt>
-            <dd>{profile.contactSourceLabel}</dd>
-          </div>
-          <div>
-            <dt>Current page status</dt>
-            <dd>
-              {rosterPublished
-                ? `${recordCount} visible ${recordCount === 1 ? "record" : "records"} · captured ${capturedLabel}`
-                : "Verified facility guidance available · roster publication pending"}
-            </dd>
-          </div>
-          <div>
-            <dt>Facility details reviewed</dt>
-            <dd>{profile.reviewedAt}</dd>
-          </div>
-        </dl>
+        <table className="county-facts">
+          <caption className="ui-visually-hidden">{facility} facts</caption>
+          <tbody>
+            <tr>
+              <th scope="row">Facility</th>
+              <td>{facility}</td>
+            </tr>
+            <tr>
+              <th scope="row">Address</th>
+              <td>{profile.address}</td>
+            </tr>
+            <tr>
+              <th scope="row">Main phone</th>
+              <td>{profile.phone}</td>
+            </tr>
+            <tr>
+              <th scope="row">Operated by</th>
+              <td>{profile.operatedBy}</td>
+            </tr>
+            <tr>
+              <th scope="row">Official facility source</th>
+              <td>{profile.contactSourceLabel}</td>
+            </tr>
+            <tr>
+              <th scope="row">People in custody</th>
+              <td>
+                {rosterPublished && capturedAt ? (
+                  <>
+                    {recordCount} on the official roster · captured{" "}
+                    <time dateTime={capturedAt.toISOString()}>{capturedLabel}</time>
+                  </>
+                ) : (
+                  "Verified facility guidance available · roster publication pending"
+                )}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Facility details reviewed</th>
+              <td>
+                {reviewedIso ? (
+                  <time dateTime={reviewedIso}>{profile.reviewedAt}</time>
+                ) : (
+                  profile.reviewedAt
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       {rosterPublished ? (
@@ -182,7 +198,7 @@ export function CountyGuide({
           <div className="section-heading-row">
             <div>
               <p className="eyebrow">Using this page</p>
-              <h2 id="search-guide-heading">How the {entry.county} inmate search works</h2>
+              <h2 id="search-guide-heading">How does the {entry.county} inmate search work?</h2>
             </div>
           </div>
           <div className="county-guide__split">
@@ -207,7 +223,9 @@ export function CountyGuide({
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Practical guidance</p>
-            <h2 id="local-guidance-heading">Contact, visits, money, and court information</h2>
+            <h2 id="local-guidance-heading">
+              How do you visit, call, or send money to someone at {facility}?
+            </h2>
             <p className="section-lede">
               Procedures vary by facility. JailAtlas publishes a local instruction only after it is
               confirmed on an official page.
@@ -219,7 +237,7 @@ export function CountyGuide({
             <article className="guidance-card" key={section.title}>
               <header className="guidance-card__header">
                 <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{section.title}</h3>
+                <h3>{guidanceQuestion(section.title, facility)}</h3>
               </header>
               <p className="guidance-card__body">{section.body}</p>
               <div className="guidance-card__checklist">

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
-import { robotsRules } from "@/app/robots";
+import { answerEngineCrawlers, robotsRules } from "@/app/robots";
 import { readEnvironment, shouldNoIndex } from "@/lib/env";
 
 const reservedProductionOrigin = "https://custody.example.test";
@@ -26,7 +26,10 @@ afterEach(() => {
 
 describe("robots environment policy", () => {
   it("uses robots.txt as a crawl hint instead of route-level noindex enforcement", () => {
-    expect(robotsRules(false)).toEqual([{ userAgent: "*", allow: "/" }]);
+    expect(robotsRules(false)).toEqual([
+      { userAgent: "*", allow: "/" },
+      { userAgent: [...answerEngineCrawlers], allow: "/" }
+    ]);
     expect(robotsRules(true)).toEqual([{ userAgent: "*", disallow: "/" }]);
   });
 

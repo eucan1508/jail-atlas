@@ -2,8 +2,26 @@ import type { MetadataRoute } from "next";
 import { readEnvironment, shouldNoIndex } from "@/lib/env";
 import { absoluteUrl } from "@/lib/site";
 
+// Search and answer-engine crawlers are named explicitly so the policy is unambiguous to each.
+export const answerEngineCrawlers = [
+  "Googlebot",
+  "Google-Extended",
+  "Bingbot",
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "ClaudeBot",
+  "Claude-SearchBot",
+  "PerplexityBot"
+] as const;
+
 export function robotsRules(blocked: boolean): MetadataRoute.Robots["rules"] {
-  return blocked ? [{ userAgent: "*", disallow: "/" }] : [{ userAgent: "*", allow: "/" }];
+  return blocked
+    ? [{ userAgent: "*", disallow: "/" }]
+    : [
+        { userAgent: "*", allow: "/" },
+        { userAgent: [...answerEngineCrawlers], allow: "/" }
+      ];
 }
 
 export default function robots(): MetadataRoute.Robots {
