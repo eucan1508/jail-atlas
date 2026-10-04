@@ -85,6 +85,11 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
    ```
 
+   The Texas sequence runs Milam, Kendall, and Kleberg. Hutchinson is paused: its sheriff domain
+   stopped resolving on 2026-09-30, and the county's replacement page is a hand-typed list headed
+   "Recently Released Inmates", so it cannot be read as current custody. Its adapter and guide stay
+   in the repository and can be re-enabled in `live-state-runner.ts` if a reliable roster returns.
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:

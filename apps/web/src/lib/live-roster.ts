@@ -31,7 +31,8 @@ const liveAdapterKeys: Record<string, string> = {
   "carlton-county": "carlton-county-mn-current-roster",
   "milam-county": "milam-county-tx-current-roster",
   "hutchinson-county": "hutchinson-county-tx-current-roster",
-  "kendall-county": "kendall-county-tx-current-roster"
+  "kendall-county": "kendall-county-tx-current-roster",
+  "kleberg-county": "kleberg-county-tx-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.

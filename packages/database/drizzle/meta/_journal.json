@@ -85,6 +85,13 @@
       "when": 1791043200000,
       "tag": "0011_minnesota_carlton_source",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1791110400000,
+      "tag": "0012_texas_kleberg_source",
+      "breakpoints": true
     }
   ]
 }

@@ -644,6 +644,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           "Call the jail at 218-384-4560 and make an appointment before you come in to post bail or bond. For hearing dates and case questions, contact Carlton County Court Administration at 218-673-5065."
       }
     ]
+  },
+  "texas/kleberg-county": {
+    facilityName: "Kleberg County Detention Center",
+    address: "1500 E. King Ave., Kingsville, TX 78363",
+    phone: "361-595-8500",
+    operatedBy: "Kleberg County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Kleberg County Sheriff's Office runs the detention center in Kingsville. Its website keeps a current-inmates roster separate from a 48-hour release list, and the Detention Division pages cover visiting, deposits, phone and video calls, mail, and bonds.",
+    contactSourceLabel: "Official Detention Division page",
+    contactSourceUrl: "https://www.klebergcoso.org/jail-division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Regular visits are on Tuesday (men 2–3:30 p.m., women 3:30–4 p.m.) and Saturday (men 2–4:30 p.m., women 4:30–5 p.m.). Each inmate may have two 20-minute visits a week, visitors must be on the inmate's list and show photo ID, and close-custody and maximum-security inmates have separate times.",
+        sourceLabel: "Official inmate visitation page",
+        sourceUrl: "https://www.klebergcoso.org/inmate-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Kleberg County uses CTC Commissary. Family can deposit funds online through CommissaryDeposit.com or at the cash and card kiosk in the Sheriff's Office lobby; phone deposits are not available and fees may apply. Commissary orders go through CommissaryOrder.com, and items from other merchants are refused except soft-cover books.",
+        sourceLabel: "Official send-money page",
+        sourceUrl: "https://www.klebergcoso.org/send-money-to-an-inmate"
+      },
+      {
+        title: "Phone and mail",
+        body: "Encartele handles inmate phone accounts (866-476-6723), and City Tele-Coin handles video calls and messages. Letters go to the inmate's name and PID number, Kleberg County Detention Center, P.O. Box 1360, Kingsville, TX 78363. Mail is opened and inspected, and cash, money orders, and checks must not be mailed.",
+        sourceLabel: "Official inmate communication page",
+        sourceUrl: "https://www.klebergcoso.org/communicate-with-an-inmate"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office lets families post bond online through eBONDS with a credit card. For district-court filings and case records, the Kleberg County District Clerk lists 361-595-8561. A roster charge or bond label is not a court outcome.",
+        sourceLabel: "Official posting bond page",
+        sourceUrl: "https://www.klebergcoso.org/posting-bond"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Kleberg County Jail?",
+        answer:
+          "Regular visitation is on Tuesday and Saturday. On Tuesday, men visit from 2 to 3:30 p.m. and women from 3:30 to 4 p.m.; on Saturday, men visit from 2 to 4:30 p.m. and women from 4:30 to 5 p.m. Visits last 20 minutes, each inmate gets two a week, and you should arrive 30 minutes early with a photo ID."
+      },
+      {
+        question: "How do I put money on an inmate's account in Kleberg County?",
+        answer:
+          "Deposit online at CommissaryDeposit.com (CTC Commissary) or use the cash and card kiosk in the Sheriff's Office lobby in Kingsville. Phone deposits are not available, and you should not mail cash, money orders, or checks."
+      },
+      {
+        question: "What is the mailing address for Kleberg County Detention Center?",
+        answer:
+          "Write the inmate's name and PID number, then Kleberg County Detention Center, P.O. Box 1360, Kingsville, TX 78363. Mail is delivered Monday through Friday, letters must be written in ink, and photos are limited to six per envelope and no larger than 5 by 7 inches."
+      },
+      {
+        question: "How do I post bail at Kleberg County Jail?",
+        answer:
+          "Kleberg County uses eBONDS, which lets you post a bond online with a major credit card without going to the jail. Call the detention center at 361-595-8500 to confirm the bond amount and charges first."
+      }
+    ]
   }
 };
 
