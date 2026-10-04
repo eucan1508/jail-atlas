@@ -21,6 +21,8 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
+  createDouglasCountySourceAdapter,
+  DOUGLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
   createHutchinsonCountySourceAdapter,
   HUTCHINSON_COUNTY_ADAPTER_KEY,
@@ -149,6 +151,13 @@ export function createLiveSourceAdapter(
   }
   if (arkansasSite) {
     return createSheriffRosterSiteAdapter(arkansasSite, {
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === DOUGLAS_COUNTY_ADAPTER_KEY) {
+    return createDouglasCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

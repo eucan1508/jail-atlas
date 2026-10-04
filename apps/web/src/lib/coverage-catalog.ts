@@ -302,6 +302,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Douglas County",
+    slug: "douglas-county",
+    publishedAt: "2026-10-04",
+    seatCity: "Alexandria",
+    h1: "Douglas County Jail Roster & Inmate Search",
+    title: "Douglas County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Douglas County, Minnesota current-custody information from the official jail roster, with source-listed charges and the latest capture time.",
+    article:
+      "Douglas County publishes its jail's Inmate Roster as a single page sorted by name for the jail in Alexandria. JailAtlas checks each capture against the page's result total, keeps names and every listed charge, and leaves out booking times, arresting agencies, and case status.",
+    officialSourceUrl: "https://www.douglascountymn.gov/inmate-roster",
+    officialSourceLabel: "Douglas County official inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

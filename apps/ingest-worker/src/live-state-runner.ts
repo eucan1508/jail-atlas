@@ -62,6 +62,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "carlton",
       adapterKey: "carlton-county-mn-current-roster",
       sourceHost: "jailroster.co.carlton.mn.us"
+    },
+    {
+      countySlug: "douglas",
+      adapterKey: "douglas-county-mn-current-roster",
+      sourceHost: "www.douglascountymn.gov"
     }
   ],
   TX: [
