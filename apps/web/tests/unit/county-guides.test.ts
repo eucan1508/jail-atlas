@@ -14,7 +14,11 @@ const liveCountyKeys = [
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county",
-  "texas/kleberg-county"
+  "texas/kleberg-county",
+  "arkansas/jefferson-county",
+  "arkansas/logan-county",
+  "arkansas/greene-county",
+  "arkansas/cleburne-county"
 ] as const;
 
 describe("verified county guides", () => {

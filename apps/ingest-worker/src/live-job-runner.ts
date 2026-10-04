@@ -13,6 +13,8 @@ import {
 import { OfficialSourceSchema, type OfficialSource } from "@jail-atlas/domain";
 import {
   ANOKA_COUNTY_ADAPTER_KEY,
+  arkansasRosterSite,
+  createSheriffRosterSiteAdapter,
   CARLTON_COUNTY_ADAPTER_KEY,
   createCarltonCountySourceAdapter,
   createAnokaCountySourceAdapter,
@@ -95,8 +97,14 @@ export function createLiveSourceAdapter(
   const sourceUrl = new URL(source.sourceUrl);
   // The transport already enforces path-segment boundaries. Keep the exact list
   // path so sources without a trailing slash can fetch their list and details.
+  const arkansasSite = arkansasRosterSite(source.adapterKey);
+  // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
-    source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY ? ["/resource"] : [sourceUrl.pathname];
+    source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
+      ? ["/resource"]
+      : arkansasSite?.layout === "inmate-roster-path"
+        ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+        : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -134,6 +142,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === MILAM_COUNTY_ADAPTER_KEY) {
     return createMilamCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (arkansasSite) {
+    return createSheriffRosterSiteAdapter(arkansasSite, {
       fetch,
       facilityId,
       createId: createAdapterId

@@ -11,7 +11,7 @@ describe("editorial directory content", () => {
   });
 
   it("provides state-specific FAQ copy for every supported state", () => {
-    for (const state of ["iowa", "minnesota", "texas"] as const) {
+    for (const state of ["iowa", "minnesota", "texas", "arkansas"] as const) {
       const items = stateFaqItems(state);
       expect(items).toHaveLength(4);
       expect(new Set(items.map((item) => item.question)).size).toBe(items.length);

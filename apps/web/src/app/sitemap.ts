@@ -21,5 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (publishedStates.has("iowa")) paths.add("/coverage/iowa/");
   if (publishedStates.has("minnesota")) paths.add("/coverage/minnesota/");
   if (publishedStates.has("texas")) paths.add("/coverage/texas/");
+  if (publishedStates.has("arkansas")) paths.add("/coverage/arkansas/");
   return Array.from(paths).map((path) => ({ url: absoluteUrl(path) }));
 }

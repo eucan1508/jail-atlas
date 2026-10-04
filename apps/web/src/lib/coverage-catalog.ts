@@ -1,6 +1,6 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
-export type CoverageState = "iowa" | "minnesota" | "texas";
+export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -176,6 +176,76 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "The Kleberg County Sheriff's Office publishes a paginated Current Inmates roster for the detention center in Kingsville, separate from its 48-hour release list. This page keeps only the current-custody list, with booking numbers, source-listed charges, and bond labels, and does not republish mugshots or demographic fields.",
     officialSourceUrl: "https://www.klebergcoso.org/roster.php",
     officialSourceLabel: "Kleberg County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Jefferson County",
+    slug: "jefferson-county",
+    publishedAt: "2026-10-04",
+    seatCity: "Pine Bluff",
+    h1: "Jefferson County Jail Roster & Inmate Search",
+    title: "Jefferson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Jefferson County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      'The Jefferson County Sheriff\'s Office publishes a paginated Inmate Roster for the W.C. "Dub" Brassell Adult Detention Center in Pine Bluff. This page reads every roster page, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or demographic fields.',
+    officialSourceUrl: "https://www.jeffcoso.org/roster.php",
+    officialSourceLabel: "Jefferson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Logan County",
+    slug: "logan-county",
+    publishedAt: "2026-10-04",
+    seatCity: "Paris",
+    h1: "Logan County Jail Roster & Inmate Search",
+    title: "Logan County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Logan County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Logan County Sheriff's Office publishes a current Inmate Roster for its detention center in Paris. This page keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or demographic fields.",
+    officialSourceUrl: "https://www.loganso.com/roster.php",
+    officialSourceLabel: "Logan County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Greene County",
+    slug: "greene-county",
+    publishedAt: "2026-10-04",
+    seatCity: "Paragould",
+    h1: "Greene County Jail Roster & Inmate Search",
+    title: "Greene County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Greene County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Greene County Sheriff's Office publishes separate current and released views of its Inmate Roster for the detention center in Paragould. This page reads only the current view, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Greene County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Cleburne County",
+    slug: "cleburne-county",
+    publishedAt: "2026-10-04",
+    seatCity: "Heber Springs",
+    h1: "Cleburne County Jail Roster & Inmate Search",
+    title: "Cleburne County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cleburne County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Cleburne County Sheriff's Office publishes separate current and released views of its Inmate Roster for the detention center in Heber Springs. This page reads only the current view, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Cleburne County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

@@ -50,13 +50,19 @@ export default async function HomePage() {
       name: "Minnesota",
       slug: "minnesota"
     },
-    { code: "TX", name: "Texas", slug: "texas" }
+    { code: "TX", name: "Texas", slug: "texas" },
+    { code: "AR", name: "Arkansas", slug: "arkansas" }
   ]
     .map((state) => ({
       ...state,
       published: published.filter(({ entry }) => entry.state === state.slug).length
     }))
-    .filter((state) => state.slug !== "texas" || state.published > 0 || coveragePreviewAllowed());
+    .filter(
+      (state) =>
+        (state.slug !== "texas" && state.slug !== "arkansas") ||
+        state.published > 0 ||
+        coveragePreviewAllowed()
+    );
   const recentlyAdded = [...published]
     .sort((left, right) => right.entry.publishedAt.localeCompare(left.entry.publishedAt))
     .slice(0, 9);

@@ -32,7 +32,11 @@ const liveAdapterKeys: Record<string, string> = {
   "milam-county": "milam-county-tx-current-roster",
   "hutchinson-county": "hutchinson-county-tx-current-roster",
   "kendall-county": "kendall-county-tx-current-roster",
-  "kleberg-county": "kleberg-county-tx-current-roster"
+  "kleberg-county": "kleberg-county-tx-current-roster",
+  "jefferson-county": "jefferson-county-ar-current-roster",
+  "logan-county": "logan-county-ar-current-roster",
+  "greene-county": "greene-county-ar-current-roster",
+  "cleburne-county": "cleburne-county-ar-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.
@@ -109,7 +113,7 @@ async function readSource(
       AND os.publication_approved = true
       AND oi.active = true
       AND co.publication_status = 'published'
-      AND st.publication_status = 'published' AND st.code IN ('IA', 'MN', 'TX')
+      AND st.publication_status = 'published' AND st.code IN ('IA', 'MN', 'TX', 'AR')
       AND EXISTS (
         SELECT 1 FROM source_adapters sa
         WHERE sa.source_id = os.id AND sa.adapter_key = os.adapter_key
@@ -119,7 +123,7 @@ async function readSource(
   `);
   if (!result.rows[0]) return null;
   const row = SourceRowSchema.parse(result.rows[0]);
-  const stateByCode = { IA: "iowa", MN: "minnesota", TX: "texas" } as const;
+  const stateByCode = { IA: "iowa", MN: "minnesota", TX: "texas", AR: "arkansas" } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(
     (county) => county.state === expectedState && liveAdapterKeys[county.slug] === row.adapter_key

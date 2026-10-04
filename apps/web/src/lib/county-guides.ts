@@ -703,6 +703,242 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           "Kleberg County uses eBONDS, which lets you post a bond online with a major credit card without going to the jail. Call the detention center at 361-595-8500 to confirm the bond amount and charges first."
       }
     ]
+  },
+  "arkansas/jefferson-county": {
+    facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
+    address: "300 East 2nd Avenue, Pine Bluff, AR 71601",
+    phone: "870-541-1921",
+    operatedBy: "Jefferson County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Jefferson County Sheriff's Office runs the W.C. \"Dub\" Brassell Adult Detention Center in Pine Bluff, a 300-bed jail that opened in 2007. The booking desk is at 870-541-1921 and jail administration at 870-541-4620. The Sheriff's Office FAQ covers video visits, commissary deposits, and bonds.",
+    contactSourceLabel: "Official Jefferson County jail page",
+    contactSourceUrl: "https://www.jeffcoso.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Family visits are by video through HomeWAV, seven days a week from 8 to 10 a.m. and 1 to 3 p.m., from home or at the detention center. The HomeWAV account has to be set up before you arrive; it cannot be created at the jail. Setup costs $1.00 and visits $0.50 a minute, and HomeWAV support is at 1-877-241-7559.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.jeffcoso.org/faq"
+      },
+      {
+        title: "Money and commissary",
+        body: "There are three ways to add money to a detainee's commissary account: the lobby kiosk at the detention center (cash or debit/credit card), TigerDeposits.com, or a money order mailed with the detainee's first and last name to 300 East 2nd Avenue, Pine Bluff, AR 71601.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.jeffcoso.org/faq"
+      },
+      {
+        title: "Phone and mail",
+        body: "Video visits run through HomeWAV monitors in each housing pod; once your account is set up, the detainee's name shows on the pod monitor, so there is no need to call the jail to have a deputy notify them. Money orders are mailed to 300 East 2nd Avenue, Pine Bluff, AR 71601. The Sheriff's Office does not post separate letter rules, so call jail administration at 870-541-4620 before mailing anything else.",
+        sourceLabel: "Official Jefferson County jail page",
+        sourceUrl: "https://www.jeffcoso.org/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: 'Most warrants carry a bond set by the court; "No Bond" warrants mean the person stays in custody until seeing a judge. The Sheriff\'s Office accepts a cash bond or a surety bond from a licensed bail bonding company, and generally does not accept a release on recognizance or a property bond. A roster charge is not a court outcome.',
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.jeffcoso.org/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Jefferson County Jail?",
+        answer:
+          "Family visits are by HomeWAV video, every day from 8 to 10 a.m. and 1 to 3 p.m. Set up the account at HomeWAV before you go; it costs $1.00 to open and $0.50 a minute. Attorneys may visit any day, preferably during business hours, and clergy may visit for up to 30 minutes during business hours."
+      },
+      {
+        question: "How do I put money on an inmate's account in Jefferson County?",
+        answer:
+          "Use the kiosk in the detention center lobby (cash or card), deposit online at TigerDeposits.com, or mail a money order with the detainee's first and last name to 300 East 2nd Avenue, Pine Bluff, AR 71601."
+      },
+      {
+        question: "What is the address of the Jefferson County jail in Pine Bluff?",
+        answer:
+          'The W.C. "Dub" Brassell Adult Detention Center is at 300 East 2nd Avenue, Pine Bluff, AR 71601. Call booking at 870-541-1921 or jail administration at 870-541-4620.'
+      },
+      {
+        question: "How do I post bail at Jefferson County Jail?",
+        answer:
+          'Bring the bond amount in cash or use a licensed bail bonding company; the Sheriff\'s Office generally does not accept a release on recognizance or a property bond. Call booking at 870-541-1921 to confirm the bond amount first. A "No Bond" warrant means the person must see a judge before release.'
+      }
+    ]
+  },
+  "arkansas/logan-county": {
+    facilityName: "Logan County Detention Center",
+    address: "201 South Lowder Street, Paris, AR 72855",
+    phone: "479-963-3271, ext. 1",
+    operatedBy: "Logan County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Logan County Sheriff's Office runs a 100-bed detention center in Paris, built in 2019 to replace a 33-bed jail. Logan County has two county seats, Paris and Booneville; most people arrested in the county are booked here, and much of the Paris court docket is heard in a courtroom inside the building.",
+    contactSourceLabel: "Official detention center inmate information",
+    contactSourceUrl: "https://www.loganso.com/detention-center-inmate-information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are on Wednesdays and Sundays from 1 to 5 p.m. They are not in person: visitors use video kiosks in a room off the front lobby. The inmate schedules the visit from the cellblock kiosk, so the jail cannot book it for you; call 479-963-3271, ext. 1, on the morning of the visit to confirm you are on the list. Visits usually last 10 to 15 minutes.",
+        sourceLabel: "Official detention center inmate information",
+        sourceUrl: "https://www.loganso.com/detention-center-inmate-information"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money is added to an inmate's account through City Tele-Coin, the same service used for at-home video visits. The jail does not accept items for inmates except prescription medication and prescription glasses; no clothing, food, or books.",
+        sourceLabel: "Official detention center inmate information",
+        sourceUrl: "https://www.loganso.com/detention-center-inmate-information"
+      },
+      {
+        title: "Phone and mail",
+        body: "At-home video visits are set up through a City Tele-Coin account. The detention center is at 201 South Lowder Street, Paris, AR 72855. Staff check incoming mail; contraband found in it is seized, and sending contraband into a jail is a Class C felony that the Sheriff's Office investigates.",
+        sourceLabel: "Official detention center inmate information",
+        sourceUrl: "https://www.loganso.com/detention-center-inmate-information"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bonding out and release pickups use the door at the back of the building, next to the sally port; drive around to the right to reach the front lobby instead. For felony cases, the Circuit Clerk is at 479-963-2164 in Paris and 479-675-2894 in Booneville. District Court usually sits Tuesdays in Paris (clerk 479-963-3792) and Thursdays in Booneville (clerk 479-675-4929).",
+        sourceLabel: "Official court information page",
+        sourceUrl: "https://www.loganso.com/court-information"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Logan County Jail?",
+        answer:
+          "Wednesdays and Sundays, 1 to 5 p.m., by video kiosk in a room off the front lobby of the detention center in Paris. The inmate schedules the visit, not the jail. Call 479-963-3271, ext. 1, that morning to confirm you are on the list."
+      },
+      {
+        question: "How do I put money on an inmate's account in Logan County?",
+        answer:
+          "Use City Tele-Coin, the service the Sheriff's Office links for inmate accounts and video visits. The jail does not accept dropped-off items other than prescription medication and prescription glasses."
+      },
+      {
+        question: "Where is the Logan County jail?",
+        answer:
+          "The Logan County Sheriff's Office and Detention Center is at 201 South Lowder Street in Paris. Visitors park in front and use the lobby doors; people bonding out or being picked up use the release door at the back of the building."
+      },
+      {
+        question: "Who do I call about a Logan County court case?",
+        answer:
+          "For felony cases, call the Circuit Clerk at 479-963-2164 (Paris) or 479-675-2894 (Booneville). For misdemeanors and traffic cases, call the District Court clerk at 479-963-3792 (Paris) or 479-675-4929 (Booneville)."
+      }
+    ]
+  },
+  "arkansas/greene-county": {
+    facilityName: "Greene County Detention Center",
+    address: "1809 N Rockingchair Road, Paragould, AR 72450",
+    phone: "870-239-6334",
+    operatedBy: "Greene County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Greene County Sheriff's Office runs the detention center in Paragould, which can hold up to 456 people and averages about 350. Video visits, messages, and deposits go through JailATM, and the Sheriff's Office lists separate addresses for regular mail, legal mail, and money orders.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.greenesoar.gov/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video through JailATM (TechFriends), which also handles messages and photos. Create the account at jailatm.com; for problems with the service call JailATM at 870-627-5476. For other questions, call the detention center at 870-239-6334.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.greenesoar.gov/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is provided by Keefe, and money can be deposited through jailatm.com. Money orders go by mail to Financial Director, 1809 North Rockingchair, Paragould, AR 72450, and must be labeled as a money order. Property and money release is Friday through Sunday, 1 to 4 p.m., with a valid photo ID and a release form signed by the inmate.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.greenesoar.gov/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: 'Correct Solutions Group runs the inmate phones. Regular mail goes to 500 Amity Road Suite 5B PMB 53, Conway, AR 72032. Legal mail comes from an attorney to 1809 North Rockingchair, Paragould, AR 72450, stamped "Legal Mail"; mail that needs a notary goes to Notary at the same address.',
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.greenesoar.gov/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "Cash bonds can be paid at the Sheriff's Office at any time through dispatch, or online through the county's CIS Arkansas payment page, and carry a 10% Arkansas bond fee that is not refunded. Misdemeanor fines are paid at the courthouse, Monday through Friday, 8:30 a.m. to 4:30 p.m. Bond amounts and court dates also appear on the official roster.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.greenesoar.gov/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at Greene County Jail?",
+        answer:
+          "Visits are by video through JailATM. Set up an account at jailatm.com; JailATM's help line is 870-627-5476. The same account handles messages and photos."
+      },
+      {
+        question: "How do I put money on an inmate's account in Greene County?",
+        answer:
+          'Deposit through jailatm.com, or mail a money order labeled "money order" to Financial Director, 1809 North Rockingchair, Paragould, AR 72450.'
+      },
+      {
+        question: "What is the mailing address for Greene County Detention Center?",
+        answer:
+          'Regular mail goes to 500 Amity Road Suite 5B PMB 53, Conway, AR 72032, not to the jail. Only legal mail from an attorney, stamped "Legal Mail," goes directly to 1809 North Rockingchair, Paragould, AR 72450.'
+      },
+      {
+        question: "How do I pay a cash bond in Greene County?",
+        answer:
+          "Pay at the Sheriff's Office in Paragould at any hour through dispatch, or online through the CIS Arkansas payment page for the Greene County Sheriff. Cash bonds carry a 10% Arkansas bond fee that is not refunded."
+      }
+    ]
+  },
+  "arkansas/cleburne-county": {
+    facilityName: "Cleburne County Detention Center",
+    address: "914 South 9th Street, Heber Springs, AR 72543",
+    phone: "501-362-2596",
+    operatedBy: "Cleburne County Sheriff's Office",
+    reviewedAt: "October 4, 2026",
+    overview:
+      "The Cleburne County Sheriff's Office runs a 70-bed detention center in Heber Springs. It holds only men on a long-term basis; women held long term are housed at the White County Jail in Searcy, and the jail does not house juveniles.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.cleburnearso.gov/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "There are no in-person visits. Family and friends visit by video, seven days a week from 7 a.m. to 10 p.m., from any internet device or from the kiosk in the jail lobby. Video visits and e-messages are set up at jailatm.com.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.cleburnearso.gov/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Cash can be left at the front counter for an inmate's commissary account, or deposited at the kiosk in the jail lobby. Inmates use the account for phone cards, underwear, socks, and commissary items. The jail does not accept food or clothing from outside.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.cleburnearso.gov/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail is sent through jailatm.com or mailed to JailATM.com - Cleburne County Jail, with the inmate's ID and full name, 500 Amity Road, Ste 5B, PMB 53, Conway, AR 72032. It is scanned and delivered on a kiosk or tablet, and the original is destroyed. Legal and commercial mail still goes to the jail in Heber Springs.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.cleburnearso.gov/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "Judges set the bond amount and the sheriff decides whether a bond is sufficient. Bond can be posted in full in cash or through a licensed bail bonding company; the Cleburne County Sheriff's Office does not accept so-called sheriff's bonds. A roster charge or bond label is not a court outcome.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.cleburnearso.gov/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Cleburne County Jail?",
+        answer:
+          "Video visits run seven days a week, 7 a.m. to 10 p.m., from home or from the kiosk in the jail lobby. There are no face-to-face visits. Set up the account at jailatm.com."
+      },
+      {
+        question: "How do I put money on an inmate's account in Cleburne County?",
+        answer:
+          "Leave cash at the front counter of the detention center at 914 South 9th Street in Heber Springs, or use the deposit kiosk in the jail lobby."
+      },
+      {
+        question: "What is the mailing address for Cleburne County Jail?",
+        answer:
+          "Send personal mail to JailATM.com - Cleburne County Jail, the inmate's ID and full name, 500 Amity Road, Ste 5B, PMB 53, Conway, AR 72032, or send it electronically at jailatm.com. Legal and commercial mail goes directly to the jail."
+      },
+      {
+        question: "Are women held at the Cleburne County jail?",
+        answer:
+          "Only for a short time. The Cleburne County Detention Center holds men long term; women held long term are housed at the White County Jail in Searcy."
+      }
+    ]
   }
 };
 

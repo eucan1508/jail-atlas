@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX";
+export type LiveState = "IA" | "MN" | "TX" | "AR";
 
 type LiveStateSource = Readonly<{
   countySlug: string;
@@ -81,6 +81,28 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "kleberg",
       adapterKey: "kleberg-county-tx-current-roster",
       sourceHost: "www.klebergcoso.org"
+    }
+  ],
+  AR: [
+    {
+      countySlug: "jefferson",
+      adapterKey: "jefferson-county-ar-current-roster",
+      sourceHost: "www.jeffcoso.org"
+    },
+    {
+      countySlug: "logan",
+      adapterKey: "logan-county-ar-current-roster",
+      sourceHost: "www.loganso.com"
+    },
+    {
+      countySlug: "greene",
+      adapterKey: "greene-county-ar-current-roster",
+      sourceHost: "www.greenesoar.gov"
+    },
+    {
+      countySlug: "cleburne",
+      adapterKey: "cleburne-county-ar-current-roster",
+      sourceHost: "www.cleburnearso.gov"
     }
   ]
 };
