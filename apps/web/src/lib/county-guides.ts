@@ -704,6 +704,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/st-louis-county": {
+    facilityName: "St. Louis County Jail",
+    address: "4334 Haines Road, Duluth, MN 55811",
+    phone: "218-726-2345",
+    operatedBy: "St. Louis County Sheriff's Office",
+    reviewedAt: "October 5, 2026",
+    overview:
+      "The St. Louis County Sheriff's Office runs a 197-bed jail in Duluth, plus 72-hour lockups in Hibbing (8 beds) and Virginia (12 beds). Besides people arrested in the county, the jail holds fugitives wanted elsewhere and U.S. Marshals prisoners. Its roster is updated every hour and also lists people the county boards in other jails; this page shows only those held in Duluth.",
+    contactSourceLabel: "Official St. Louis County Jail page",
+    contactSourceUrl: "https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits use the video kiosks in the jail lobby in Duluth: Monday to Friday 8 to 10 a.m., and Saturday and Sunday 8 to 11 a.m. and 3 to 5 p.m. Every lobby visit must be registered 1 to 8 days ahead on the Reliance Telephone website. Reliance also runs video calls from home through its Reliance Connect app at $0.25 a minute.",
+        sourceLabel: "Official St. Louis County Jail page",
+        sourceUrl: "https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Each inmate has an account for commissary, phone time, and other necessities, managed by Stellar Services. Money deposited is first applied to any fees the inmate owes before it can be used. Do not mail money orders, checks, or cash; the jail's mail service returns them.",
+        sourceLabel: "Official inmate funds page",
+        sourceUrl: "https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail/inmate-funds"
+      },
+      {
+        title: "Phone and mail",
+        body: "The jail does not accept mail directly. Letters go through TextBehind, addressed with the inmate's first and last name and LID (shown on the official roster), P.O. Box 247, Phoenix, MD 21131; they are scanned and delivered as copies. Legal mail is not handled by TextBehind. Reliance Telephone (800-896-3201) handles phone accounts and the texting and video wallet, and you can leave a voice message at 218-409-8366.",
+        sourceLabel: "Official jail communication page",
+        sourceUrl: "https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail/jail-communication"
+      },
+      {
+        title: "Bail and court records",
+        body: "The court sets bail. A family member can post it, or a bail agent can post it for a nonrefundable fee, usually 10 to 20 percent of the amount. Call the jail at 218-726-2345 to confirm the amount and how to pay. Property pickup also needs a call to that number first and a picture ID.",
+        sourceLabel: "Official bail bonds page",
+        sourceUrl: "https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail/bail-bonds"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at St. Louis County Jail?",
+        answer:
+          "Lobby kiosk visits at the jail in Duluth run Monday to Friday from 8 to 10 a.m., and Saturday and Sunday from 8 to 11 a.m. and 3 to 5 p.m. Register each visit 1 to 8 days in advance on the Reliance Telephone website."
+      },
+      {
+        question: "How do I put money on an inmate's account in St. Louis County?",
+        answer:
+          "The jail uses Stellar Services for inmate accounts. Deposits pay off any fees the inmate owes first, and the rest can be used for commissary and phone time. Do not send money through the mail."
+      },
+      {
+        question: "What is the mailing address for St. Louis County Jail?",
+        answer:
+          "Personal mail goes to TextBehind, not the jail: the inmate's first and last name and LID, P.O. Box 247, Phoenix, MD 21131. The LID is listed next to each name on the official jail roster. Mail sent straight to the jail is returned."
+      },
+      {
+        question: "Why is someone on the St. Louis County roster but not on this page?",
+        answer:
+          "The county's roster also lists people it boards in other jails, such as Carlton County. This page shows only the people the roster places at the St. Louis County Jail in Duluth."
+      }
+    ]
+  },
   "texas/kleberg-county": {
     facilityName: "Kleberg County Detention Center",
     address: "1500 E. King Ave., Kingsville, TX 78363",

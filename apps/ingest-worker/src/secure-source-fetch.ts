@@ -11,7 +11,7 @@ const SecureSourceFetchOptionsSchema = z.object({
   allowedPathPrefixes: z.array(z.string().startsWith("/").min(1)).min(1),
   userAgent: z.string().trim().min(8).max(300),
   timeoutMs: z.number().int().min(1_000).max(60_000).default(15_000),
-  maxResponseBytes: z.number().int().min(16_384).max(2_000_000).default(1_000_000)
+  maxResponseBytes: z.number().int().min(16_384).max(8_000_000).default(1_000_000)
 });
 
 export class SecureSourceFetchError extends Error {
