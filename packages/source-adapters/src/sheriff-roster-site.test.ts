@@ -275,6 +275,35 @@ describe("sheriff roster site adapter", () => {
     expect(JSON.stringify(result.snapshot)).not.toContain("01-01-2000");
   });
 
+  it("starts the crawl again when the roster changes between pages", async () => {
+    const config = JEFFERSON_COUNTY_AR_ROSTER;
+    let firstPageRequests = 0;
+    const alpha = { bookingNumber: "900001", name: "TESTER, ALPHA — TEST ONLY", charges: ["HOLD"] };
+    const beta = { bookingNumber: "900002", name: "TESTER, BETA — TEST ONLY", charges: ["HOLD"] };
+    const result = await runSourceAdapter(
+      createSheriffRosterSiteAdapter(config, {
+        fetch: async (input) => {
+          if (input === config.sourceUrl) {
+            firstPageRequests += 1;
+            return new Response(
+              rosterPhpPage("Jefferson County", 2, [alpha], ["roster.php?grp=20"])
+            );
+          }
+          // On the first crawl a new booking lands while page 2 is being read.
+          const count = firstPageRequests === 1 ? 3 : 2;
+          return new Response(rosterPhpPage("Jefferson County", count, [beta]));
+        },
+        facilityId: "00000000-0000-4000-8000-000000000084",
+        createId: idFactory()
+      }),
+      context(config)
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(firstPageRequests).toBe(2);
+    expect(result.snapshot.recordCount).toBe(2);
+  });
+
   it("fails closed when the crawl collects fewer records than the roster heading", async () => {
     const config = JEFFERSON_COUNTY_AR_ROSTER;
     const result = await runSourceAdapter(
