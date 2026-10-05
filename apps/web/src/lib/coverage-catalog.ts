@@ -336,6 +336,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Steele County",
+    slug: "steele-county",
+    publishedAt: "2026-10-05",
+    seatCity: "Owatonna",
+    h1: "Steele County Jail Roster & Inmate Search",
+    title: "Steele County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Steele County, Minnesota current-custody information for the detention center in Owatonna from the official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Steele County Sheriff's Office publishes an Inmate Roster PDF for the detention center in Owatonna. JailAtlas checks each capture against the roster's Total Records line, keeps names and source-listed charges, and leaves out booking dates, agencies, and hold reasons.",
+    officialSourceUrl: "https://www.steelecountymn.gov/Sheriff/Inmate_Roster.pdf",
+    officialSourceLabel: "Steele County official inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

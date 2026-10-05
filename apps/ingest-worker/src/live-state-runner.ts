@@ -72,6 +72,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "st-louis",
       adapterKey: "st-louis-county-mn-current-roster",
       sourceHost: "www.stlouiscountymn.gov"
+    },
+    {
+      countySlug: "steele",
+      adapterKey: "steele-county-mn-current-roster",
+      sourceHost: "www.steelecountymn.gov"
     }
   ],
   TX: [
