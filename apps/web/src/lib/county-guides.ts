@@ -763,6 +763,68 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/steele-county": {
+    facilityName: "Steele County Detention Center",
+    address: "2500 Alexander Street SW, Owatonna, MN 55060",
+    phone: "507-446-7000",
+    operatedBy: "Steele County Sheriff's Office",
+    reviewedAt: "October 5, 2026",
+    overview:
+      "The Steele County Detention Center in Owatonna opened in October 2003 and is the county's fourth jail. It has a rated capacity of 154 beds and holds men and women, both before and after sentencing, along with detainees from other counties and from state and federal agencies. It is staffed 24 hours a day.",
+    contactSourceLabel: "Official Detention Center page",
+    contactSourceUrl: "https://steelecountymn.gov/departments/detention_center/index.php",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video; there is no face-to-face contact. Lobby visits are free, Monday through Sunday from 12:30 to 4 p.m. and 7:30 to 10 p.m., with up to two 20-minute visits per detainee per day. Visits from home run 8 a.m. to 10 p.m. outside lockdown times and cost 39 cents a minute by credit card. Accounts are created through TurnKey's Inmate Canteen site and can take up to 24 hours to be approved.",
+        sourceLabel: "Official inmate visiting page",
+        sourceUrl:
+          "https://steelecountymn.gov/departments/detention_center/communicating_with_an_inmate/inmate_visiting.php"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money can be added with cash or a credit card at the lobby kiosk, online through TurnKey's Inmate Canteen site, or by mailing cash to the facility, which staff deposit into the detainee's account. Personal checks, cashier's checks, and unapproved money orders that arrive by mail go into the detainee's property instead.",
+        sourceLabel: "Official inmate funds page",
+        sourceUrl: "https://steelecountymn.gov/departments/detention_center/inmate_funds.php"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail goes to the detainee at 2500 Alexander St SW, Owatonna, MN 55060. It is inspected, handed out Tuesday through Saturday, and refused if it is scented, written in crayon or marker, or marked on the envelope. Calls cost 21 cents a minute from the detainee's account, and messages cost 13 to 25 cents each through Inmate Canteen.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl:
+          "https://steelecountymn.gov/departments/detention_center/communicating_with_an_inmate/inmate_mail.php"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Detention Center does not post bail instructions online, so call 507-446-7000 (staffed 24 hours) for the amount and how to pay. For court dates and case questions, Steele County District Court lists 507-686-7012. Detainees arraigned on new charges are usually released between 2:30 and 4 p.m.; sentenced detainees between 6 and 8 a.m.",
+        sourceLabel: "Official detainee release times page",
+        sourceUrl:
+          "https://steelecountymn.gov/departments/detention_center/detainee_release_times.php"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Steele County Jail?",
+        answer:
+          "Free lobby video visits run every day from 12:30 to 4 p.m. and 7:30 to 10 p.m. Visits from home run 8 a.m. to 10 p.m. outside lockdown times and cost 39 cents a minute. Set up an account on TurnKey's Inmate Canteen site at least a day ahead, because approval can take 24 hours."
+      },
+      {
+        question: "How do I put money on an inmate's account in Steele County?",
+        answer:
+          "Use the cash and card kiosk in the Detention Center lobby, deposit online through TurnKey's Inmate Canteen site, or mail cash to the facility. Do not mail personal checks; they go into the detainee's property, not their account."
+      },
+      {
+        question: "What is the mailing address for Steele County Detention Center?",
+        answer:
+          "Address mail to the detainee at 2500 Alexander St SW, Owatonna, MN 55060. Incoming mail is handed out Tuesday through Saturday, and anything scented or written in crayon or marker is refused."
+      },
+      {
+        question: "When are people released from Steele County Jail?",
+        answer:
+          "Sentenced detainees are usually released between 6 and 8 a.m. People arraigned on new charges are usually released between 2:30 and 4 p.m. Call 507-446-7000 to confirm."
+      }
+    ]
+  },
   "texas/kleberg-county": {
     facilityName: "Kleberg County Detention Center",
     address: "1500 E. King Ave., Kingsville, TX 78363",
