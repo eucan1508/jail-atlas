@@ -291,12 +291,20 @@ function parsePage(
   return { records, pageUrls, declaredCount };
 }
 
-async function requestRoster(
+const ROSTER_CHANGED = "ROSTER_CHANGED_DURING_CRAWL";
+// Failures that a roster changing mid-crawl can cause; a fresh crawl usually succeeds.
+const RETRYABLE_CRAWL_ERRORS = new Set([
+  ROSTER_CHANGED,
+  "RECORD_COUNT_MISMATCH",
+  "CONFLICTING_DUPLICATE_BOOKING_NUMBER"
+]);
+const MAX_CRAWL_ATTEMPTS = 3;
+
+async function crawlRoster(
   config: SheriffRosterSiteConfig,
   options: SheriffRosterAdapterOptions,
   context: AdapterContext
 ): Promise<SheriffRoster> {
-  if (context.source.sourceUrl !== config.sourceUrl) throw new Error("SOURCE_URL_MISMATCH");
   const site = rosterSite(config);
   const pending: string[] = [config.sourceUrl];
   const visited = new Set<string>();
@@ -319,6 +327,8 @@ async function requestRoster(
     if (!html || html.length > MAX_PAGE_BYTES) throw new Error("RESPONSE_SIZE");
     const parsed = parsePage(html, currentUrl, config, site);
     declaredTotal ??= parsed.declaredCount;
+    // A booking or release while we page through shifts entries between pages.
+    if (parsed.declaredCount !== declaredTotal) throw new Error(ROSTER_CHANGED);
     for (const record of parsed.records) {
       const previous = recordsByBooking.get(record.bookingNumber);
       if (previous && JSON.stringify(previous) !== JSON.stringify(record)) {
@@ -339,6 +349,22 @@ async function requestRoster(
     records: [...recordsByBooking.values()],
     validEmptyMarker: declaredTotal === 0
   });
+}
+
+async function requestRoster(
+  config: SheriffRosterSiteConfig,
+  options: SheriffRosterAdapterOptions,
+  context: AdapterContext
+): Promise<SheriffRoster> {
+  if (context.source.sourceUrl !== config.sourceUrl) throw new Error("SOURCE_URL_MISMATCH");
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      return await crawlRoster(config, options, context);
+    } catch (error) {
+      const retryable = error instanceof Error && RETRYABLE_CRAWL_ERRORS.has(error.message);
+      if (!retryable || attempt >= MAX_CRAWL_ATTEMPTS) throw error;
+    }
+  }
 }
 
 function monetaryBond(
