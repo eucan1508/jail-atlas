@@ -67,6 +67,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "douglas",
       adapterKey: "douglas-county-mn-current-roster",
       sourceHost: "www.douglascountymn.gov"
+    },
+    {
+      countySlug: "st-louis",
+      adapterKey: "st-louis-county-mn-current-roster",
+      sourceHost: "www.stlouiscountymn.gov"
     }
   ],
   TX: [

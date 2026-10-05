@@ -21,6 +21,8 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
+  createStLouisCountySourceAdapter,
+  ST_LOUIS_COUNTY_ADAPTER_KEY,
   createDouglasCountySourceAdapter,
   DOUGLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
@@ -113,7 +115,10 @@ export function createLiveSourceAdapter(
   const fetch = createConnectionBoundSourceFetch({
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
-    userAgent: "JailAtlas/1.0 (+official-source-ingest)"
+    userAgent: "JailAtlas/1.0 (+official-source-ingest)",
+    // The St. Louis County report is a ~50-page PDF of about 3 MB; every other source stays at
+    // the 1 MB default.
+    ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 6_000_000 } : {})
   });
 
   if (source.adapterKey === DALLAS_COUNTY_ADAPTER_KEY) {
@@ -151,6 +156,13 @@ export function createLiveSourceAdapter(
   }
   if (arkansasSite) {
     return createSheriffRosterSiteAdapter(arkansasSite, {
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY) {
+    return createStLouisCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

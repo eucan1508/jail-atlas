@@ -31,6 +31,7 @@ source-specific parser contract and a human review packet.
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |
+| St. Louis  | [St. Louis County jail roster](https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail/jail-roster)                                            | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## Arkansas

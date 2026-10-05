@@ -319,6 +319,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "St. Louis County",
+    slug: "st-louis-county",
+    publishedAt: "2026-10-05",
+    seatCity: "Duluth",
+    h1: "St. Louis County Jail Roster & Inmate Search",
+    title: "St. Louis County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search St. Louis County, Minnesota current-custody information for the jail in Duluth from the official hourly jail roster, with source-listed charges and capture time.",
+    article:
+      "St. Louis County publishes an hourly Jail Roster Report covering everyone in its custody, including people boarded in other counties' jails. This page keeps only the people the report places at the St. Louis County Jail in Duluth, checks that the report's running numbers have no gaps, and leaves out dates of birth, bail, arresting agencies, and the jail's LID numbers.",
+    officialSourceUrl: "https://www.stlouiscountymn.gov/Portals/0/rpts/SLCJ_Jail_Roster.PDF",
+    officialSourceLabel: "St. Louis County official jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",
