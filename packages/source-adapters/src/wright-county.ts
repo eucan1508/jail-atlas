@@ -20,6 +20,9 @@ export const WRIGHT_COUNTY_CURRENT_SOURCE_URL =
   "https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census" as const;
 export const WRIGHT_COUNTY_SOURCE_HOST = "www.wrightcountymn.gov" as const;
 export const WRIGHT_COUNTY_PARSER_VERSION = "1.0.0" as const;
+/** Shown when the census lists an inmate number without a name. */
+export const WRIGHT_COUNTY_NAME_NOT_LISTED = "Name not listed on the census" as const;
+const NAME_NOT_LISTED = WRIGHT_COUNTY_NAME_NOT_LISTED;
 
 const MAX_RECORDS = 1_000;
 // The census embeds a photo column, so the PDF is much larger than its text.
@@ -218,8 +221,10 @@ function parseRosterPages(pages: readonly WrightPdfPage[]): WrightRoster {
           .sort((left, right) => right.y - left.y || left.x - right.x)
           .map((item) => item.text);
 
-      const displayName = normalizeText(column(nameStart, numberStart).join(" "));
-      if (!displayName) throw new Error("INVALID_RECORD_IDENTITY");
+      // The census sometimes prints a row with an inmate number but a blank Name cell. The row
+      // still counts toward Total Records, so keep it under an explicit placeholder.
+      const displayName =
+        normalizeText(column(nameStart, numberStart).join(" ")) || NAME_NOT_LISTED;
       if (seenInmateNumbers.has(anchor.text)) throw new Error("DUPLICATE_INMATE_NUMBER");
       seenInmateNumbers.add(anchor.text);
       records.push(

@@ -6,6 +6,7 @@ import { sourceAdapterRegistry } from "./registry.js";
 import {
   WRIGHT_COUNTY_ADAPTER_KEY,
   WRIGHT_COUNTY_CURRENT_SOURCE_URL,
+  WRIGHT_COUNTY_NAME_NOT_LISTED,
   createWrightCountySourceAdapter,
   type WrightPdfPage,
   type WrightRosterIdFactory
@@ -221,6 +222,17 @@ describe("Wright County source adapter", () => {
     expect(mismatch.ok).toBe(false);
     if (mismatch.ok) return;
     expect(mismatch.failure.diagnosticCode).toContain("RECORD_COUNT_MISMATCH");
+  });
+
+  it("keeps a census row whose Name cell is blank under a placeholder", async () => {
+    const blankName = lastPage.filter((item) => item.text !== "TESTER, GAMMA — TEST ONLY");
+    const result = await runSourceAdapter(adapter([firstPage, blankName]), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(3);
+    const gamma = result.snapshot.bookings[2];
+    expect(gamma?.person.displayName).toBe(WRIGHT_COUNTY_NAME_NOT_LISTED);
+    expect(gamma?.charges.map((charge) => charge.statuteCode)).toEqual(["999.33"]);
   });
 
   it("fails closed when a row continues across a page break", async () => {
