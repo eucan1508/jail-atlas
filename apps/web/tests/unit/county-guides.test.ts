@@ -21,7 +21,8 @@ const liveCountyKeys = [
   "arkansas/jefferson-county",
   "arkansas/logan-county",
   "arkansas/greene-county",
-  "arkansas/cleburne-county"
+  "arkansas/cleburne-county",
+  "arkansas/faulkner-county"
 ] as const;
 
 describe("verified county guides", () => {

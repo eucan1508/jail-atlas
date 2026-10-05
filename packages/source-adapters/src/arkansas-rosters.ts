@@ -40,11 +40,21 @@ export const CLEBURNE_COUNTY_AR_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const FAULKNER_COUNTY_AR_ROSTER = {
+  adapterKey: "faulkner-county-ar-current-roster",
+  countyName: "Faulkner County",
+  diagnosticPrefix: "FAULKNER_COUNTY_AR",
+  sourceUrl: "https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ARKANSAS_ROSTER_SITES = [
   JEFFERSON_COUNTY_AR_ROSTER,
   LOGAN_COUNTY_AR_ROSTER,
   GREENE_COUNTY_AR_ROSTER,
-  CLEBURNE_COUNTY_AR_ROSTER
+  CLEBURNE_COUNTY_AR_ROSTER,
+  FAULKNER_COUNTY_AR_ROSTER
 ] as const;
 
 export type ArkansasRosterAdapterKey = (typeof ARKANSAS_ROSTER_SITES)[number]["adapterKey"];

@@ -39,7 +39,8 @@ const liveAdapterKeys: Record<string, string> = {
   "jefferson-county": "jefferson-county-ar-current-roster",
   "logan-county": "logan-county-ar-current-roster",
   "greene-county": "greene-county-ar-current-roster",
-  "cleburne-county": "cleburne-county-ar-current-roster"
+  "cleburne-county": "cleburne-county-ar-current-roster",
+  "faulkner-county": "faulkner-county-ar-current-roster"
 };
 
 // One daily refresh, with six hours of allowance for runner/source delays.
