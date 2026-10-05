@@ -249,6 +249,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Faulkner County",
+    slug: "faulkner-county",
+    publishedAt: "2026-10-05",
+    seatCity: "Conway",
+    h1: "Faulkner County Jail Roster & Inmate Search",
+    title: "Faulkner County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Faulkner County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Faulkner County Sheriff's Office publishes separate current and released views of its Inmate Roster for the detention center units in Conway. This page reads only the current view, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Faulkner County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

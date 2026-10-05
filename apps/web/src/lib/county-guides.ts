@@ -645,6 +645,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/faulkner-county": {
+    facilityName: "Faulkner County Detention Center",
+    address: "500 S German Lane, Conway, AR",
+    phone: "501-328-4160",
+    operatedBy: "Faulkner County Sheriff's Office",
+    reviewedAt: "October 5, 2026",
+    overview:
+      "The Faulkner County Sheriff's Office runs the detention center in Conway in two units. Unit Two at 500 S German Lane handles booking and holds up to 218 men and 88 women; Unit One at 801 Locust Street is the maximum-security unit for up to 118 men. The county also has a separate 16-bed juvenile detention center.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.fcso.ar.gov/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Unit Two visits are by video only, except attorney conferences and visits the Jail Administrator approves. Video visits are available in both units, and accounts are set up through JailATM. A detainee can only start video visits after leaving booking and moving to general population. Visits are recorded and monitored.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.fcso.ar.gov/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary deposits go through Access Corrections: the Access Corrections app or website (lowest handling charge), the toll-free line at 866-345-1884, or the cash kiosk in the lobby. Pick the right detainee name, because staff may not be able to move money sent to the wrong account.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.fcso.ar.gov/faq"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail does not go to the jail. Send it to JailATM.com - Faulkner County Jail, with the inmate ID number and full name, 500 Amity Rd, Ste 5B, PMB 53, Conway, AR 72032. Only legal mail goes to 801 Locust St, Conway, AR 72034. Phone accounts run through Correct Solutions (facility ID 24096, 877-618-3516), and detainees can call from 8 a.m. to 10 p.m.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.fcso.ar.gov/faq"
+      },
+      {
+        title: "Bail and court records",
+        body: "Judges set the bond amount and the sheriff decides whether a bond is sufficient. Bond can be posted in full in cash or through a licensed bail bonding company, whose fees are not refunded. Release on one's own recognizance is rarely allowed except for very minor offenses. Call Unit Two at 501-328-4160 for the amount.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.fcso.ar.gov/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at Faulkner County Jail?",
+        answer:
+          "Visits are by video. Set up an account through JailATM; the detainee can take video visits once they are out of booking and in general population. In-person visits at Unit Two are limited to attorneys and visits the Jail Administrator approves."
+      },
+      {
+        question: "How do I put money on an inmate's account in Faulkner County?",
+        answer:
+          "Use Access Corrections: its app or website, the phone line at 866-345-1884, or the cash kiosk in the jail lobby. Phone money is separate and goes through Correct Solutions, facility ID 24096."
+      },
+      {
+        question: "What is the mailing address for Faulkner County Jail?",
+        answer:
+          "Send personal mail to JailATM.com - Faulkner County Jail, the inmate ID number and full name, 500 Amity Rd, Ste 5B, PMB 53, Conway, AR 72032. The jail itself only accepts legal mail, at 801 Locust St, Conway, AR 72034."
+      },
+      {
+        question: "What are the phone numbers for the Faulkner County Detention Center?",
+        answer:
+          "Unit Two, which handles booking, is at 501-328-4160. Unit One is reached through the Sheriff's Office at 501-450-4914, then press 3."
+      }
+    ]
+  },
   "minnesota/douglas-county": {
     facilityName: "Douglas County Jail",
     address: "509 3rd Avenue West, Alexandria, MN 56308",

@@ -47,6 +47,7 @@ also run the same roster software but were left out because their sites do not p
 | Logan     | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                 | Adapter tested; production approval pending |
 | Greene    | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 | Cleburne  | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Faulkner  | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)      | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

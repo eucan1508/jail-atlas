@@ -118,6 +118,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cleburne",
       adapterKey: "cleburne-county-ar-current-roster",
       sourceHost: "www.cleburnearso.gov"
+    },
+    {
+      countySlug: "faulkner",
+      adapterKey: "faulkner-county-ar-current-roster",
+      sourceHost: "www.fcso.ar.gov"
     }
   ]
 };
