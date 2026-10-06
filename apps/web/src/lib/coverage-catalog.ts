@@ -387,6 +387,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Renville County",
+    slug: "renville-county",
+    publishedAt: "2026-10-06",
+    seatCity: "Olivia",
+    h1: "Renville County Jail Roster & Inmate Search",
+    title: "Renville County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Renville County, Minnesota current-custody information for the jail in Olivia from the official Inmate List, with booking numbers, statute codes, and capture time.",
+    article:
+      "The Renville County Sheriff's Office publishes an In Custody list for its 72-bed jail in Olivia, which also holds federal inmates. This page keeps names, booking numbers, and each charge's statute code with the source's short charge text, and leaves out photos, ages, intake times, case status, and bail figures.",
+    officialSourceUrl: "https://custody.renvillecountymn.gov/custody.html",
+    officialSourceLabel: "Renville County official Inmate List",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

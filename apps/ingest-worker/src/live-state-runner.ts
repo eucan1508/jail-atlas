@@ -82,6 +82,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "crow-wing",
       adapterKey: "crow-wing-county-mn-current-roster",
       sourceHost: "www3.crowwing.us"
+    },
+    {
+      countySlug: "renville",
+      adapterKey: "renville-county-mn-current-roster",
+      sourceHost: "custody.renvillecountymn.gov"
     }
   ],
   TX: [
