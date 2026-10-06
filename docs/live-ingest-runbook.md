@@ -90,14 +90,14 @@ with the adapter records disabled and publication approval off.
    "Recently Released Inmates", so it cannot be read as current custody. Its adapter and guide stay
    in the repository and can be re-enabled in `live-state-runner.ts` if a reliable roster returns.
 
-   Arkansas runs Jefferson, Logan, Greene, Cleburne, and Faulkner through one shared adapter
-   (`sheriff-roster-site.ts`, configured in `arkansas-rosters.ts`). Jefferson and Logan use the
-   `roster.php?grp=` layout; Greene, Cleburne, and Faulkner use `/inmate-roster/filters/current/...`
-   paths and only the current view is read. Every crawl must collect exactly the count in the page's
-   "Inmate Roster (N)" heading or the county fails closed:
+   Arkansas runs Jefferson, Logan, Greene, Cleburne, Faulkner, and Hot Spring through one shared
+   adapter (`sheriff-roster-site.ts`, configured in `arkansas-rosters.ts`). Jefferson and Logan use
+   the `roster.php?grp=` layout; Greene, Cleburne, Faulkner, and Hot Spring use
+   `/inmate-roster/filters/current/...` paths and only the current view is read. Every crawl must
+   collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov
+   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 

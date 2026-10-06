@@ -192,7 +192,8 @@ function findRecordCard(profileLink: ReturnType<CheerioAPI>) {
   let node = profileLink.parent();
   for (let depth = 0; depth < 10 && node.length > 0; depth += 1) {
     const text = normalizeText(node.text());
-    if (text.includes("Booking #:") && text.includes("Booking Date:")) {
+    // Some cards leave out Booking Date, so the booking label alone marks the card boundary.
+    if (text.includes("Booking #:")) {
       if (text.split("Booking #:").length !== 2) throw new Error("RECORD_CARD_AMBIGUOUS");
       return node;
     }

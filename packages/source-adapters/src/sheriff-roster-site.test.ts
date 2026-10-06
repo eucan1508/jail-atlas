@@ -19,6 +19,7 @@ type SyntheticRecord = Readonly<{
   name: string;
   charges: readonly string[];
   bond?: string;
+  withoutBookingDate?: boolean;
 }>;
 
 function context(config: SheriffRosterSiteConfig, sourceUrl = config.sourceUrl): AdapterContext {
@@ -123,8 +124,12 @@ function rosterPathPage(
               <div class="inmate_data_content">${record.bookingNumber}</div></div>
             <div><div class="inmate_data_bold"><strong>Age: </strong></div>
               <div class="inmate_data_content">99</div></div>
-            <div><div class="inmate_data_bold"><strong>Booking Date: </strong></div>
-              <div class="inmate_data_content">01-01-2000 12:00 PM</div></div>
+            ${
+              record.withoutBookingDate
+                ? ""
+                : `<div><div class="inmate_data_bold"><strong>Booking Date: </strong></div>
+              <div class="inmate_data_content">01-01-2000 12:00 PM</div></div>`
+            }
             ${
               record.charges.length > 0
                 ? `<div><div class="inmate_data_bold"><strong>Charges: </strong></div>
@@ -213,7 +218,7 @@ describe("sheriff roster site adapter", () => {
     expect(alpha?.bondEntries[0]?.amountMinor).toBe(150_000);
   });
 
-  it("reads path-style rosters, including cards without charges, and skips other filters", async () => {
+  it("reads path-style rosters, including cards without charges or booking dates", async () => {
     const config = CLEBURNE_COUNTY_AR_ROSTER;
     const requested: string[] = [];
     const documents = new Map([
@@ -221,7 +226,7 @@ describe("sheriff roster site adapter", () => {
         cleburnePage(1),
         rosterPathPage(
           "Cleburne County",
-          2,
+          3,
           [
             {
               bookingNumber: "00-B-00001",
@@ -236,12 +241,19 @@ describe("sheriff roster site adapter", () => {
       ],
       [
         cleburnePage(2),
-        rosterPathPage("Cleburne County", 2, [
+        rosterPathPage("Cleburne County", 3, [
           {
             bookingNumber: "00-B-00002",
             name: "BETA TESTER",
             profileId: "0123456789abcdef01234568",
             charges: []
+          },
+          {
+            bookingNumber: "00-B-00003",
+            name: "GAMMA TESTER",
+            profileId: "0123456789abcdef01234569",
+            charges: ["SYNTHETIC OFFENSE GAMMA"],
+            withoutBookingDate: true
           }
         ])
       ]
@@ -272,6 +284,9 @@ describe("sheriff roster site adapter", () => {
     expect(beta?.person.displayName).toBe("BETA TESTER");
     expect(beta?.bookingIdentifier?.value).toBe("00-B-00002");
     expect(beta?.charges).toEqual([]);
+    const gamma = result.snapshot.bookings[2];
+    expect(gamma?.person.displayName).toBe("GAMMA TESTER");
+    expect(gamma?.charges.map((charge) => charge.description)).toEqual(["SYNTHETIC OFFENSE GAMMA"]);
     expect(JSON.stringify(result.snapshot)).not.toContain("01-01-2000");
   });
 

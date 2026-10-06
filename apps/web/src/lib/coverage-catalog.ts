@@ -266,6 +266,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Hot Spring County",
+    slug: "hot-spring-county",
+    publishedAt: "2026-10-06",
+    seatCity: "Malvern",
+    h1: "Hot Spring County Jail Roster & Inmate Search",
+    title: "Hot Spring County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Hot Spring County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Hot Spring County Sheriff's Office publishes separate current and released views of its Inmate Roster for the detention center in Malvern. This page reads only the current view, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Hot Spring County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

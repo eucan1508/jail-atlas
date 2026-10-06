@@ -133,6 +133,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "faulkner",
       adapterKey: "faulkner-county-ar-current-roster",
       sourceHost: "www.fcso.ar.gov"
+    },
+    {
+      countySlug: "hot-spring",
+      adapterKey: "hot-spring-county-ar-current-roster",
+      sourceHost: "www.hotspringcountysoar.gov"
     }
   ]
 };
