@@ -881,6 +881,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/renville-county": {
+    facilityName: "Renville County Jail",
+    address: "104 4th Street S., Olivia, MN 56277",
+    phone: "320-523-3600",
+    operatedBy: "Renville County Sheriff's Office",
+    reviewedAt: "October 6, 2026",
+    overview:
+      "The Renville County Jail in Olivia opened in 2008 and has 72 beds. Anyone arrested in Renville County is held here, whether the arrest was made by the Sheriff's Office or a city police department. The jail also holds federal inmates, who appear on the official list as Federal Inmate.",
+    contactSourceLabel: "Official sheriff contact page",
+    contactSourceUrl: "https://www.renvillecountymn.gov/sheriff/contact-us/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "There are no in-person visits right now; visits are by video unless the jail approves otherwise. Video visits run Saturday through Thursday, 1 to 3 p.m. and 7 to 9 p.m., and last 20 minutes. Bring a photo ID showing your name and current address and be ready to state your relationship to the inmate. Visitors under 18 need an adult with them. Dispatch starts each visit, so expect delays during busy call times.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.renvillecountymn.gov/sheriff/divisions/jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for an inmate's account can be dropped off at the jail's public entrance, or mailed as a money order made out to the inmate to Renville County Jail, C/O the inmate's name, 104 4th Street S., Olivia, MN 56277. Do not mail cash. Phone and text funds are added separately through Reliance Telephone.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.renvillecountymn.gov/sheriff/divisions/jail/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates can only make outgoing calls, so you cannot call someone in the jail. You can leave a voicemail at 320-400-3018. Address letters to the inmate's full name, C/O Renville County Jail, 104 4th Street S., Olivia, MN 56277. All mail is searched; letters from attorneys and courts are opened in front of the inmate. Letters with stickers, stamps, or perfume are not delivered.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.renvillecountymn.gov/sheriff/divisions/jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bail instructions online. Call the jail at 320-523-3600 for the amount and how it can be paid. For court dates and case questions, Court Administration at the Renville County Courthouse in Olivia is at 320-523-3680.",
+        sourceLabel: "Official county directory",
+        sourceUrl: "https://www.renvillecountymn.gov/directory-page/"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visiting hours at Renville County Jail?",
+        answer:
+          "Video visits run Saturday through Thursday from 1 to 3 p.m. and 7 to 9 p.m. Each visit lasts 20 minutes, and there are no visits on Friday evening. Inmates who have not been arraigned can only see immediate family, at the next scheduled visiting time."
+      },
+      {
+        question: "How do I send money to an inmate in Renville County?",
+        answer:
+          "Drop it off at the jail's public entrance in Olivia, or mail a money order made out to the inmate to Renville County Jail, C/O the inmate's name, 104 4th Street S., Olivia, MN 56277. Money for calls and texts goes through Reliance Telephone."
+      },
+      {
+        question: "Can I call someone in the Renville County Jail?",
+        answer:
+          "No. Inmates can only call out, using calling cards bought through commissary. You can leave a voicemail they can check by calling 320-400-3018. Staff pass on messages only for real emergencies, such as a death in the family, through 320-523-3600."
+      },
+      {
+        question: "Why do many people on the list show Federal Inmate?",
+        answer:
+          "The Renville County Jail also holds people for federal authorities. The official list labels them Federal Inmate instead of giving a Minnesota statute, and this page shows the same label."
+      }
+    ]
+  },
   "minnesota/steele-county": {
     facilityName: "Steele County Detention Center",
     address: "2500 Alexander Street SW, Owatonna, MN 55060",
