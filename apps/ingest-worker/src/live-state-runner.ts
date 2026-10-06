@@ -77,6 +77,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "steele",
       adapterKey: "steele-county-mn-current-roster",
       sourceHost: "www.steelecountymn.gov"
+    },
+    {
+      countySlug: "crow-wing",
+      adapterKey: "crow-wing-county-mn-current-roster",
+      sourceHost: "www3.crowwing.us"
     }
   ],
   TX: [

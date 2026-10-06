@@ -14,6 +14,7 @@ const liveCountyKeys = [
   "minnesota/douglas-county",
   "minnesota/st-louis-county",
   "minnesota/steele-county",
+  "minnesota/crow-wing-county",
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county",

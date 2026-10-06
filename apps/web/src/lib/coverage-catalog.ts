@@ -370,6 +370,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Crow Wing County",
+    slug: "crow-wing-county",
+    publishedAt: "2026-10-06",
+    seatCity: "Brainerd",
+    h1: "Crow Wing County Jail Roster & Inmate Search",
+    title: "Crow Wing County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Crow Wing County, Minnesota current-custody information for the jail in Brainerd from the official In Custody list, with booking numbers, statute codes, and capture time.",
+    article:
+      "The Crow Wing County Sheriff's Office publishes an In Custody list for the jail in Brainerd that it rebuilds through the day. This page keeps names, booking numbers, and each charge's statute code with the source's short charge text, and leaves out photos, ages, intake times, and case status.",
+    officialSourceUrl: "https://www3.crowwing.us/letg/Sheriff/Jail/custody2.html",
+    officialSourceLabel: "Crow Wing County official In Custody list",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",
