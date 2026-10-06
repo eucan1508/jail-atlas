@@ -1061,6 +1061,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/hot-spring-county": {
+    facilityName: "Hot Spring County Detention Center",
+    address: "1 Detention Lane, Malvern, AR 72104",
+    phone: "501-332-7410",
+    operatedBy: "Hot Spring County Sheriff's Office",
+    reviewedAt: "October 6, 2026",
+    overview:
+      "The Hot Spring County Detention Center in Malvern opened in March 2009 and is run by the Hot Spring County Sheriff's Office. The county seat is Malvern. The city of Hot Springs is not part of Hot Spring County; it is in neighboring Garland County, a separate jurisdiction.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.hotspringcountysoar.gov/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting days, hours, or visit rules online. Call the detention center at 501-332-7410 before you go to ask whether visits are on site or by video and when the next one can be scheduled.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hotspringcountysoar.gov/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary money is added online through City Tele-Coin, using its Commissary Deposit option. The jail page lists no other deposit method, so call 501-332-7410 before bringing cash or a money order to the building.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hotspringcountysoar.gov/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "The detention center is at 1 Detention Lane, Malvern, AR 72104, and the jail's phone is 501-332-7410. The Sheriff's Office does not publish its letter rules or how inmates make calls, so check with the jail before mailing anything other than a plain letter.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hotspringcountysoar.gov/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond amounts appear on the official roster, but the Sheriff's Office does not post how to pay a bond; call the jail at 501-332-7410. Misdemeanor and traffic cases go through District Court, 305 Locust St., Suite 3, Malvern (501-332-7604). Felony fines on cases numbered 30CR are paid to the Sheriff's Office at 215 E. Highland Ave., Malvern, in cash, card, money order, or cashier's check.",
+        sourceLabel: "Official FAQ and fines pages",
+        sourceUrl: "https://www.hotspringcountysoar.gov/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "Is Hot Spring County Jail in Hot Springs?",
+        answer:
+          "No. The Hot Spring County Detention Center is in Malvern, at 1 Detention Lane. The city of Hot Springs is in Garland County, which this Sheriff's Office does not serve."
+      },
+      {
+        question: "How do I put money on an inmate's account in Hot Spring County?",
+        answer:
+          "Use City Tele-Coin and choose Commissary Deposit. That is the only method listed on the jail's official page; call 501-332-7410 to ask about any other way."
+      },
+      {
+        question: "How do I find out an inmate's bond in Hot Spring County?",
+        answer:
+          "The Sheriff's Office's own roster lists a bond amount for each person. To confirm the amount or ask how to post it, call the detention center at 501-332-7410."
+      },
+      {
+        question: "Where do I pay a Hot Spring County fine?",
+        answer:
+          "Felony fines on 30CR cases are paid at the Sheriff's Office, 215 E. Highland Ave., Malvern, by mail, in person, or online; personal checks are not accepted. Misdemeanor and traffic fines go to District Court at 305 Locust St., Suite 3 (501-332-7604)."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

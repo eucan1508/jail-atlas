@@ -43,13 +43,14 @@ Arkansas was added on 2026-10-04. Each county below has an official sheriff rost
 pages covering visiting, deposits, mail, and bonds. Arkansas County, Hempstead, Izard, and Randolph
 also run the same roster software but were left out because their sites do not publish all four.
 
-| County    | Official source                                                                                                          | Status                                      |
-| --------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| Jefferson | [Jefferson County Sheriff inmate roster](https://www.jeffcoso.org/roster.php)                                            | Adapter tested; production approval pending |
-| Logan     | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                 | Adapter tested; production approval pending |
-| Greene    | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
-| Cleburne  | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
-| Faulkner  | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)      | Adapter tested; production approval pending |
+| County     | Official source                                                                                                                   | Status                                      |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Jefferson  | [Jefferson County Sheriff inmate roster](https://www.jeffcoso.org/roster.php)                                                     | Adapter tested; production approval pending |
+| Logan      | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                          | Adapter tested; production approval pending |
+| Greene     | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
+| Cleburne   | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1)          | Adapter tested; production approval pending |
+| Faulkner   | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)               | Adapter tested; production approval pending |
+| Hot Spring | [Hot Spring County Sheriff current roster](https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
