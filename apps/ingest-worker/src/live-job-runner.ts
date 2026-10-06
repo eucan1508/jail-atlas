@@ -21,6 +21,8 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
+  createCrowWingCountySourceAdapter,
+  CROW_WING_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -158,6 +160,13 @@ export function createLiveSourceAdapter(
   }
   if (arkansasSite) {
     return createSheriffRosterSiteAdapter(arkansasSite, {
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CROW_WING_COUNTY_ADAPTER_KEY) {
+    return createCrowWingCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

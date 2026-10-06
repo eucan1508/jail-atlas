@@ -822,6 +822,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/crow-wing-county": {
+    facilityName: "Crow Wing County Jail",
+    address: "313 Laurel Street, Brainerd, MN 56401",
+    phone: "218-822-7050",
+    operatedBy: "Crow Wing County Sheriff's Office",
+    reviewedAt: "October 6, 2026",
+    overview:
+      "The Crow Wing County Jail in Brainerd opened in 2007 and is licensed by the State of Minnesota for up to 276 men and women, in five direct-supervision housing units. Each unit has video visitation stations and phones, and the jail can be reached 24 hours a day.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.crowwing.gov/396/Jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are non-contact video visits through an NCIC account; requests are reviewed within 24 hours. Free visits from the lobby kiosks run 8 to 11 a.m., 1 to 4:30 p.m., and 6:30 to 10 p.m., up to two 25-minute visits per visitor per day. Visits from home cost $0.30 a minute and run 7 to 11 a.m., 1 to 4:30 p.m., and 6:30 to 10 p.m., including holidays. Inmates who have not been arraigned or moved to a housing unit cannot have visits.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.crowwing.gov/401/Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money can be added to an inmate's trust account at the lobby kiosk (cash or card, 24 hours a day), online through Inmate Canteen, or by mailing a money order or cashier's check made out to the inmate. Personal checks are not accepted. Commissary orders are processed on Tuesdays and Saturdays.",
+        sourceLabel: "Official money page",
+        sourceUrl: "https://www.crowwing.gov/400/Money"
+      },
+      {
+        title: "Phone and mail",
+        body: "Letters go by U.S. Mail to Crow Wing County Jail, the inmate's full name, 313 Laurel Street, Brainerd, MN 56401, with a complete return address. Mail with drawings, stickers, glitter, copied games, blank paper, stamps, or Polaroids is held in the inmate's property. Inmates can also be reached by text on their jail-issued tablets through NCIC.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.crowwing.gov/399/Inmate-Mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail up to $1,000 can be posted online through Inmate Canteen. Cash bail can be paid at the jail lobby kiosk or at Court Administration, 213 Laurel St, Suite 11, Brainerd (218-824-1310), which also handles court dates. Card payments through Inmate Canteen carry a transaction fee.",
+        sourceLabel: "Official money page",
+        sourceUrl: "https://www.crowwing.gov/400/Money"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Crow Wing County Jail?",
+        answer:
+          "Free video visits from the jail lobby kiosks run 8 to 11 a.m., 1 to 4:30 p.m., and 6:30 to 10 p.m. Visits from home through NCIC run 7 to 11 a.m., 1 to 4:30 p.m., and 6:30 to 10 p.m. and cost $0.30 a minute. Set up and get approval for your NCIC account first, which can take 24 hours."
+      },
+      {
+        question: "How do I put money on an inmate's account in Crow Wing County?",
+        answer:
+          "Use the kiosk in the jail lobby in Brainerd (cash or card, open 24 hours), deposit online through Inmate Canteen, or mail a money order or cashier's check made out to the inmate. Personal checks are not accepted."
+      },
+      {
+        question: "What is the mailing address for Crow Wing County Jail?",
+        answer:
+          "Write Crow Wing County Jail, then the inmate's full name, then 313 Laurel Street, Brainerd, MN 56401. Mail must come through the U.S. Postal Service with a full return address."
+      },
+      {
+        question: "How do I post bail at Crow Wing County Jail?",
+        answer:
+          "Bail of up to $1,000 can be paid online through Inmate Canteen. Cash bail is paid at the jail lobby kiosk or at Court Administration, 213 Laurel St, Suite 11, Brainerd. Call the jail at 218-822-7050 to confirm the amount."
+      }
+    ]
+  },
   "minnesota/steele-county": {
     facilityName: "Steele County Detention Center",
     address: "2500 Alexander Street SW, Owatonna, MN 55060",

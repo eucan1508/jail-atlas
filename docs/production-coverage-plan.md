@@ -33,6 +33,7 @@ source-specific parser contract and a human review packet.
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |
 | St. Louis  | [St. Louis County jail roster](https://www.stlouiscountymn.gov/departments-a-z/sheriff/jail/jail-roster)                                            | Adapter tested; production approval pending      |
 | Steele     | [Steele County inmate roster](https://www.steelecountymn.gov/Sheriff/Inmate_Roster.pdf)                                                             | Adapter tested; production approval pending      |
+| Crow Wing  | [Crow Wing County in-custody list](https://www.crowwing.gov/1747/In-Custody-List)                                                                   | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## Arkansas
