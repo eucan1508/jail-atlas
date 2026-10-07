@@ -40,15 +40,23 @@ function cell(value) {
   return String(value ?? "—").replace(/\|/g, "\\|");
 }
 
-const events = readCompletedEvents(logFile);
+// A county that fails is tried once more in the same run; its last attempt is the result.
+const attempts = readCompletedEvents(logFile);
+const lastByAdapter = new Map(attempts.map((event) => [event.adapterKey, event]));
+const retriedAdapters = new Set(
+  attempts
+    .filter((event) => lastByAdapter.get(event.adapterKey) !== event)
+    .map((event) => event.adapterKey)
+);
+const events = [...lastByAdapter.values()];
 const failures = events.filter((event) => event.ok !== true);
 const timestamp = new Date().toISOString().replace("T", " ").slice(0, 16) + " UTC";
 
 const rows = events.map(
   (event) =>
-    `| ${cell(countyName(event.adapterKey))} | ${event.ok ? "ok" : "**failed**"} | ${cell(
-      event.recordCount
-    )} | ${cell(event.resultFailureCode ?? event.healthFailureCode)} |`
+    `| ${cell(countyName(event.adapterKey))} | ${event.ok ? "ok" : "**failed**"}${
+      retriedAdapters.has(event.adapterKey) ? " (retried)" : ""
+    } | ${cell(event.recordCount)} | ${cell(event.resultFailureCode ?? event.healthFailureCode)} |`
 );
 const table = [
   "| County | Result | Records | Failure code |",

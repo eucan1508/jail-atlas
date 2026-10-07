@@ -131,8 +131,10 @@ with the adapter records disabled and publication approval off.
 
 The worker records a failed run without replacing the last successful snapshot. It runs only the
 adapter named by `LIVE_SOURCE_ADAPTER_KEY`; scheduling Iowa counties one by one is therefore a
-workflow concern. The existing state slots remain 00:00 UTC for Iowa and 06:00 UTC for Minnesota,
-with the approved county adapters invoked sequentially inside each slot.
+workflow concern. Each state runs twice a day, 12 hours apart: Iowa at 00:00 and 12:00 UTC,
+Minnesota at 06:00 and 18:00, Texas at 03:00 and 15:00, and Arkansas at 09:00 and 21:00. The
+approved county adapters run sequentially inside each slot, and a county that fails is tried once
+more, three minutes after the first pass, before the run is reported.
 
 ## Failure log
 

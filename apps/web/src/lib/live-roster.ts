@@ -46,7 +46,7 @@ const liveAdapterKeys: Record<string, string> = {
   "hot-spring-county": "hot-spring-county-ar-current-roster"
 };
 
-// One daily refresh, with six hours of allowance for runner/source delays.
+// Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
 const maximumSnapshotAgeMs = 30 * 60 * 60 * 1_000;
 const SourceRowSchema = z.object({
   source_id: z.string().uuid(),
