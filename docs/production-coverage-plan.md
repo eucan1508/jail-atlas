@@ -53,6 +53,7 @@ also run the same roster software but were left out because their sites do not p
 | Hot Spring  | [Hot Spring County Sheriff current roster](https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 | Baxter      | [Baxter County Sheriff current roster](https://www.baxtercountysheriff.com/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
 | St. Francis | [St. Francis County Sheriff current roster](https://www.stfranciscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Mississippi | [Mississippi County Sheriff inmate roster](https://www.mississippicountysheriffar.org/roster.php)                                     | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
