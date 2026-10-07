@@ -1237,6 +1237,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/mississippi-county": {
+    facilityName: "Mississippi County Detention Center",
+    address: "685 North County Road 599, Luxora, AR 72358",
+    phone: "870-658-2242",
+    operatedBy: "Mississippi County Sheriff's Office",
+    reviewedAt: "October 7, 2026",
+    overview:
+      "Mississippi County has two county seats, Blytheville and Osceola, but its Sheriff's Office and detention center are in Luxora, at 685 North County Road 599. The office answers 870-658-2242 and 870-762-2243 around the clock.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.mississippicountysheriffar.org/faqs",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Men visit from 8:30 to 11:30 a.m. (sign in by 11): last names A-M on Saturdays, N-Z on Sundays. Women visit from 1 to 2 p.m. (sign in by 1:30) on either Saturday or Sunday. Visits last 30 minutes, with no more than two visitors per detainee. Visitors must be over 18 and bring a photo ID, and cell phones are not allowed in the visiting booths.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.mississippicountysheriffar.org/faqs"
+      },
+      {
+        title: "Money and commissary",
+        body: "There are three ways to add money: the Tiger Commissary kiosk at the end of the visitation lobby (cash or card), online through Tiger Deposits by card, or a money order made out to the detainee and mailed to the detainee's name at 685 NCR 599, Luxora, AR 72358. Do not put letters or cards in with a money order; the whole envelope is returned unopened.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.mississippicountysheriffar.org/faqs"
+      },
+      {
+        title: "Phone and mail",
+        body: "Letters do not go to the jail. Send them through Smart Inmate, or by post to the detainee's name and inmate ID number, c/o Smart Communications - Mississippi County Detention Center, 1490 Union Ave #606, Memphis, TN 38104. Only legal mail and money orders go to the Luxora address. Mail for someone already released is returned, not forwarded.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.mississippicountysheriffar.org/faqs"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office charges a $20 fee, set by state law, for taking and entering each bail bond, and accepts cash, money orders, and credit or debit cards (cards carry a 2.49% fee). Call 870-658-2242 for the bond amount on a specific charge. Property left behind after release can be picked up Monday through Friday, 8:30 a.m. to 3:30 p.m., with a photo ID.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.mississippicountysheriffar.org/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visiting hours at Mississippi County Detention Center?",
+        answer:
+          "Men visit 8:30 to 11:30 a.m., on Saturday if their last name starts with A-M and Sunday for N-Z. Women visit 1 to 2 p.m. on Saturday or Sunday. Visits are 30 minutes, visitors must be over 18 with a photo ID, and no more than two people can visit at once."
+      },
+      {
+        question: "Where do I send a letter to someone in the Mississippi County jail?",
+        answer:
+          "Not to the jail. Address it to the detainee's name and inmate ID number, c/o Smart Communications - Mississippi County Detention Center, 1490 Union Ave #606, Memphis, TN 38104, or send it electronically through Smart Inmate."
+      },
+      {
+        question: "How do I put money on a detainee's account in Mississippi County?",
+        answer:
+          "Use the Tiger Commissary kiosk in the visitation lobby, deposit online through Tiger Deposits, or mail a money order made out to the detainee to 685 NCR 599, Luxora, AR 72358, with nothing else in the envelope."
+      },
+      {
+        question: "Is the Mississippi County jail in Blytheville or Osceola?",
+        answer:
+          "Neither. The county has two seats, Blytheville and Osceola, but the Sheriff's Office and detention center are in Luxora, at 685 North County Road 599."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

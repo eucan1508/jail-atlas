@@ -320,6 +320,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Mississippi County",
+    slug: "mississippi-county",
+    publishedAt: "2026-10-07",
+    seatCity: "Luxora",
+    h1: "Mississippi County Jail Roster & Inmate Search",
+    title: "Mississippi County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Mississippi County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Mississippi County Sheriff's Office publishes an Inmate Roster for its detention center in Luxora, which serves the whole county, including Blytheville and Osceola. This page reads the current roster, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.mississippicountysheriffar.org/roster.php",
+    officialSourceLabel: "Mississippi County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",
