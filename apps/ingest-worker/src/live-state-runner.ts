@@ -143,6 +143,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "baxter",
       adapterKey: "baxter-county-ar-current-roster",
       sourceHost: "www.baxtercountysheriff.com"
+    },
+    {
+      countySlug: "st-francis",
+      adapterKey: "st-francis-county-ar-current-roster",
+      sourceHost: "www.stfranciscountysheriff.org"
     }
   ]
 };

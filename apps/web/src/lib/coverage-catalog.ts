@@ -302,6 +302,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "St. Francis County",
+    slug: "st-francis-county",
+    publishedAt: "2026-10-07",
+    seatCity: "Forrest City",
+    h1: "St. Francis County Jail Roster & Inmate Search",
+    title: "St. Francis County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search St. Francis County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The St. Francis County Sheriff's Office publishes separate current and released views of its Inmate Roster for the detention center in Forrest City. This page reads only the current view, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.stfranciscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "St. Francis County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

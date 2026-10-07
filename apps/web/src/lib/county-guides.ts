@@ -1179,6 +1179,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/st-francis-county": {
+    facilityName: "St. Francis County Detention Center",
+    address: "2124 South Washington, Forrest City, AR",
+    phone: "870-633-2611",
+    operatedBy: "St. Francis County Sheriff's Office",
+    reviewedAt: "October 7, 2026",
+    overview:
+      "The St. Francis County Detention Center in Forrest City is a long-term jail built for 144 people: 124 men and 20 women. Besides county detainees, it holds Arkansas state prisoners waiting for a prison bed and federal inmates awaiting extradition. Some people held on misdemeanors work off their fines cleaning county roadways.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.stfranciscountysheriff.org/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video and run Monday through Friday, 8 a.m. to 4 p.m., at the detention center at 2124 South Washington in Forrest City. There are no posted weekend visiting hours, even though the building is open seven days a week. Call 870-633-2611 before you go to confirm the person can have visits.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stfranciscountysheriff.org/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for commissary is put on an inmate's books at the detention center, Monday through Friday from 8 a.m. to 4 p.m., the same hours as video visits. The Sheriff's Office does not list an online deposit service, so call 870-633-2611 to ask what forms of payment the window takes.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stfranciscountysheriff.org/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail for inmates goes to P.O. Box 1817, Forrest City, AR 72335, with the inmate's full name. The Sheriff's Office does not post letter rules or how inmates make calls, so check with the jail before sending anything other than a plain letter. The jail's line, 870-633-2611, is answered 24 hours a day.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stfranciscountysheriff.org/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "When a warrant lists a bond, the Sheriff's Office takes it in cash or as a surety bond from a licensed bail bonding company; it generally does not accept property bonds or release on recognizance. Some warrants are No Bond, and the person stays in custody until seeing a judge. District Court is at 615 East Cross in Forrest City.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.stfranciscountysheriff.org/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone in the St. Francis County jail?",
+        answer:
+          "Video visits run Monday through Friday from 8 a.m. to 4 p.m. at the detention center in Forrest City. No weekend visiting hours are posted."
+      },
+      {
+        question: "How do I put money on an inmate's books in St. Francis County?",
+        answer:
+          "Go to the detention center at 2124 South Washington in Forrest City, Monday through Friday between 8 a.m. and 4 p.m. Call 870-633-2611 first to ask which payment types are accepted."
+      },
+      {
+        question: "What is the mailing address for St. Francis County jail?",
+        answer: "Write the inmate's full name, then P.O. Box 1817, Forrest City, AR 72335."
+      },
+      {
+        question: "Why are there state and federal inmates in the St. Francis County jail?",
+        answer:
+          "The detention center holds Arkansas state prisoners who are waiting for space in a state prison, and federal inmates who are waiting to be extradited to other states, along with people held on county charges."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",
