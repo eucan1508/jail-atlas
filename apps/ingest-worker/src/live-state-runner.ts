@@ -142,17 +142,28 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
   ]
 };
 
+// Source sites sometimes change mid-read or publish a half-updated record; a short pause usually
+// clears it, so a failed county gets one more attempt before the run is reported.
+const COUNTY_RETRY_DELAY_MS = 3 * 60 * 1_000;
+
+export interface LiveStateRetryOptions {
+  readonly retryDelayMs?: number;
+  readonly sleep?: (ms: number) => Promise<void>;
+}
+
 export interface LiveStateExecution {
   readonly state: LiveState;
   readonly results: readonly CountyIngestResult<LiveJobExecution>[];
 }
 
+function countySucceeded(result: CountyIngestResult<LiveJobExecution>): boolean {
+  return result.ok && result.value?.result.ok === true;
+}
+
 export function liveStateSucceeded(
   results: readonly CountyIngestResult<LiveJobExecution>[]
 ): boolean {
-  return (
-    results.length > 0 && results.every((result) => result.ok && result.value?.result.ok === true)
-  );
+  return results.length > 0 && results.every(countySucceeded);
 }
 
 /**
@@ -162,27 +173,42 @@ export function liveStateSucceeded(
 export async function executeLiveState(
   config: WorkerConfig,
   state: LiveState,
-  dependencies: LiveJobDependencies
+  dependencies: LiveJobDependencies,
+  retry: LiveStateRetryOptions = {}
 ): Promise<LiveStateExecution> {
   const sources = LIVE_STATE_SOURCES[state];
   if (sources.length === 0) {
     throw new Error(`No live source adapters are configured for state: ${state}`);
   }
 
-  const results = await runCountySequence(
-    sources.map((source) => ({
-      countySlug: source.countySlug,
-      run: () =>
-        executeLiveSource(
-          {
-            ...config,
-            liveSourceAdapterKey: source.adapterKey,
-            sourceHostAllowlist: [source.sourceHost]
-          },
-          dependencies
-        )
-    }))
-  );
+  const task = (source: LiveStateSource) => ({
+    countySlug: source.countySlug,
+    run: () =>
+      executeLiveSource(
+        {
+          ...config,
+          liveSourceAdapterKey: source.adapterKey,
+          sourceHostAllowlist: [source.sourceHost]
+        },
+        dependencies
+      )
+  });
 
-  return { state, results };
+  const firstPass = await runCountySequence(sources.map(task));
+  const failedSources = sources.filter((_, index) => {
+    const result = firstPass[index];
+    return result === undefined || !countySucceeded(result);
+  });
+  if (failedSources.length === 0) return { state, results: firstPass };
+
+  const sleep =
+    retry.sleep ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
+  await sleep(retry.retryDelayMs ?? COUNTY_RETRY_DELAY_MS);
+  const retried = await runCountySequence(failedSources.map(task));
+  const retriedBySlug = new Map(retried.map((result) => [result.countySlug, result]));
+
+  return {
+    state,
+    results: firstPass.map((result) => retriedBySlug.get(result.countySlug) ?? result)
+  };
 }

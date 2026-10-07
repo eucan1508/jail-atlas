@@ -2,11 +2,13 @@ name: Approved live ingest
 
 on:
   schedule:
-    # Iowa runs at midnight UTC; Minnesota six hours later; Texas at noon UTC; Arkansas at 18:00.
-    - cron: "0 0 * * *"
-    - cron: "0 6 * * *"
-    - cron: "0 12 * * *"
-    - cron: "0 18 * * *"
+    # Each state refreshes twice a day, 12 hours apart, so one failed or delayed run is covered by
+    # the next one well inside the 30-hour page freshness window. Iowa runs at 00:00 and 12:00 UTC,
+    # Minnesota at 06:00 and 18:00, Texas at 03:00 and 15:00, and Arkansas at 09:00 and 21:00.
+    - cron: "0 0,12 * * *"
+    - cron: "0 6,18 * * *"
+    - cron: "0 3,15 * * *"
+    - cron: "0 9,21 * * *"
   workflow_dispatch:
     inputs:
       state:
@@ -77,8 +79,9 @@ jobs:
       SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,opendata.ramseycountymn.gov,jailroster.stearnscountymn.gov,incustodysearch.co.anoka.mn.us,mower-sftp.co.mower.mn.us,www.wrightcountymn.gov,jailroster.co.carlton.mn.us,www.douglascountymn.gov,www.stlouiscountymn.gov,www.steelecountymn.gov,www3.crowwing.us,custody.renvillecountymn.gov,www.milamcountysherifftx.org,www.kendallcountysheriff.com,www.klebergcoso.org,www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       INGEST_STATE:
-        ${{ inputs.state || (github.event.schedule == '0 18 * * *' && 'AR' || github.event.schedule
-        == '0 12 * * *' && 'TX' || github.event.schedule == '0 6 * * *' && 'MN' || 'IA') }}
+        ${{ inputs.state || (github.event.schedule == '0 9,21 * * *' && 'AR' ||
+        github.event.schedule == '0 3,15 * * *' && 'TX' || github.event.schedule == '0 6,18 * * *'
+        && 'MN' || 'IA') }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
