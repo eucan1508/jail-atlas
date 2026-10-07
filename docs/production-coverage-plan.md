@@ -51,6 +51,7 @@ also run the same roster software but were left out because their sites do not p
 | Cleburne   | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1)          | Adapter tested; production approval pending |
 | Faulkner   | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)               | Adapter tested; production approval pending |
 | Hot Spring | [Hot Spring County Sheriff current roster](https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Baxter     | [Baxter County Sheriff current roster](https://www.baxtercountysheriff.com/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

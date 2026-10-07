@@ -1120,6 +1120,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/baxter-county": {
+    facilityName: "Baxter County Detention Center",
+    address: "904 Hwy 62 W., Mountain Home, AR 72653",
+    phone: "870-425-7000",
+    operatedBy: "Baxter County Sheriff's Office",
+    reviewedAt: "October 7, 2026",
+    overview:
+      "Everyone arrested in Baxter County is booked into the Sheriff's Office detention center in Mountain Home, which has separate housing for low- and medium-risk men, high-risk men, and women. It holds people awaiting trial and people serving sentences or waiting to go to the Arkansas Department of Corrections; in 2025 it booked 2,008 people, with a daily count between 83 and 131.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.baxtercountysheriff.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting days depend on the inmate: men with last names A-I on Tuesdays, J-R on Wednesdays, and S-Z on Saturdays; all women on Fridays. Each visiting day has three sessions: 7 to 9:30 a.m., 1 to 4 p.m., and 6:30 to 9:30 p.m. There are no visits on Sunday, Monday, or Thursday. Bring a government photo ID; children 6 and under cannot visit, visitors 7 to 17 need an adult, and no more than two people can see an inmate at once.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.baxtercountysheriff.com/faq"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary money is added at the kiosk in the detention center's main lobby, which is open at all hours, including nights, weekends, and holidays. Follow the touch-screen prompts to pick the inmate. Credit and debit cards are not accepted for commissary at this time.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.baxtercountysheriff.com/faq"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's Office is at 904 Hwy 62 W., Mountain Home, AR 72653, and its main line, 870-425-7000, is answered 24 hours a day. The office does not post letter rules or inmate phone instructions online, so call before mailing anything to someone in the jail. Phones and cameras are not allowed in the visiting room.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://www.baxtercountysheriff.com/contact-us"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond can be posted in cash or through a licensed bail bonding company; the Sheriff's Office does not accept so-called Sheriff's Bonds, generally does not accept property bonds, and staff cannot recommend a bondsman. A warrant usually lists its bond amount, though some are No Bond and the person waits to see a judge. Call 870-425-7000 to ask about a warrant's charge, bond, and issuing court.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.baxtercountysheriff.com/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone in the Baxter County jail?",
+        answer:
+          "It depends on the inmate's last name and sex: men A-I on Tuesdays, J-R on Wednesdays, S-Z on Saturdays, and all women on Fridays, in sessions at 7 to 9:30 a.m., 1 to 4 p.m., and 6:30 to 9:30 p.m. There are no visits on Sunday, Monday, or Thursday."
+      },
+      {
+        question: "How do I put money on an inmate's account in Baxter County?",
+        answer:
+          "Use the commissary kiosk in the main lobby of the detention center in Mountain Home. It is available at all hours, but it does not take credit or debit cards."
+      },
+      {
+        question: "Who cannot visit an inmate at Baxter County Detention Center?",
+        answer:
+          "Children 6 and under, anyone without a government photo ID, people awaiting court on felony charges, and anyone with a protection or no-contact order involving the inmate. A visitor with a felony conviction may visit only immediate family, with advance approval from the jail administrator."
+      },
+      {
+        question: "How is bond posted in Baxter County?",
+        answer:
+          "In cash, or as a surety bond through a licensed bail bonding company. The Sheriff's Office does not take Sheriff's Bonds and generally does not accept property bonds or release on recognizance. Call 870-425-7000 for a specific bond amount."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

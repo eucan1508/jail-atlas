@@ -138,6 +138,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "hot-spring",
       adapterKey: "hot-spring-county-ar-current-roster",
       sourceHost: "www.hotspringcountysoar.gov"
+    },
+    {
+      countySlug: "baxter",
+      adapterKey: "baxter-county-ar-current-roster",
+      sourceHost: "www.baxtercountysheriff.com"
     }
   ]
 };

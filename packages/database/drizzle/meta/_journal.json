@@ -148,6 +148,13 @@
       "when": 1791480000000,
       "tag": "0020_arkansas_hot_spring_source",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1791560000000,
+      "tag": "0021_arkansas_baxter_source",
+      "breakpoints": true
     }
   ]
 }
