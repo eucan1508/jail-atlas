@@ -155,6 +155,13 @@
       "when": 1791560000000,
       "tag": "0021_arkansas_baxter_source",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1791640000000,
+      "tag": "0022_arkansas_st_francis_source",
+      "breakpoints": true
     }
   ]
 }

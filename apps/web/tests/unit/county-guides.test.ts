@@ -26,7 +26,8 @@ const liveCountyKeys = [
   "arkansas/cleburne-county",
   "arkansas/faulkner-county",
   "arkansas/hot-spring-county",
-  "arkansas/baxter-county"
+  "arkansas/baxter-county",
+  "arkansas/st-francis-county"
 ] as const;
 
 describe("verified county guides", () => {

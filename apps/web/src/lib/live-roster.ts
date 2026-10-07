@@ -44,7 +44,8 @@ const liveAdapterKeys: Record<string, string> = {
   "cleburne-county": "cleburne-county-ar-current-roster",
   "faulkner-county": "faulkner-county-ar-current-roster",
   "hot-spring-county": "hot-spring-county-ar-current-roster",
-  "baxter-county": "baxter-county-ar-current-roster"
+  "baxter-county": "baxter-county-ar-current-roster",
+  "st-francis-county": "st-francis-county-ar-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
