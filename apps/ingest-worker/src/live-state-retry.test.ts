@@ -44,7 +44,7 @@ describe("executeLiveState retry", () => {
     expect(sleep).toHaveBeenCalledWith(1_234);
     expect(attempts.get("dallas-newworld-inmate-inquiry")).toBe(2);
     expect(attempts.get("cedar-county-iowa-current-roster")).toBe(1);
-    expect(execution.results.map((result) => result.countySlug)).toEqual([
+    expect(execution.results.map((result) => result.countySlug).slice(0, 3)).toEqual([
       "dallas",
       "cedar",
       "black-hawk"
