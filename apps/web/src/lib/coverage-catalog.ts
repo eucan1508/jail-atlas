@@ -337,6 +337,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Randolph County",
+    slug: "randolph-county",
+    publishedAt: "2026-10-08",
+    seatCity: "Pocahontas",
+    h1: "Randolph County Jail Roster & Inmate Search",
+    title: "Randolph County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Randolph County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Randolph County Sheriff's Office publishes an Inmate Roster for its detention center in Pocahontas. This page reads the current roster, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.randolphcountysheriff.org/roster.php",
+    officialSourceLabel: "Randolph County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

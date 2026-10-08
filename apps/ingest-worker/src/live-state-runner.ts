@@ -153,6 +153,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "mississippi",
       adapterKey: "mississippi-county-ar-current-roster",
       sourceHost: "www.mississippicountysheriffar.org"
+    },
+    {
+      countySlug: "randolph",
+      adapterKey: "randolph-county-ar-current-roster",
+      sourceHost: "www.randolphcountysheriff.org"
     }
   ]
 };

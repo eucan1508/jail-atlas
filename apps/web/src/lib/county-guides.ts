@@ -1296,6 +1296,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/randolph-county": {
+    facilityName: "Randolph County Detention Center",
+    address: "1510 Pace Road, Pocahontas, AR 72455",
+    phone: "870-892-8888",
+    operatedBy: "Randolph County Sheriff's Office",
+    reviewedAt: "October 8, 2026",
+    overview:
+      "The Randolph County Sheriff's Office and Detention Center share a building at 1510 Pace Road in Pocahontas, and the office answers 870-892-8888 around the clock. Since May 2025, inmates have used wall phones and handheld tablets from NCIC Inmate Communications for calls, video visits, messages, and education programs.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.randolphcountysheriff.org/faqs",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Families can video visit from home through a prepaid NCIC account, at $0.30 a minute; set one up at ncic.com or by calling 1-800-943-2189. The Sheriff's Office does not post on-site visiting hours, so call 870-892-8888 to ask whether in-person visits are available.",
+        sourceLabel: "Official jail communications page",
+        sourceUrl: "https://www.randolphcountysheriff.org/jail-communications"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for calls, video visits, and messages goes on a prepaid NCIC account, which can be funded online or by phone at any hour. The Sheriff's Office does not post how to put money on an inmate's commissary account, so call the jail at 870-892-8888 before bringing or mailing funds.",
+        sourceLabel: "Official jail communications page",
+        sourceUrl: "https://www.randolphcountysheriff.org/jail-communications"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates cannot receive calls, only voicemail; their calls cost $0.20 a minute in the U.S., and three-way calls are not allowed. Letters go to the inmate's name and inmate number, Randolph County Detention Center AR, PO Box 591, Longview, TX 75606, where they are scanned to the inmate's tablet and destroyed. Keep letters to 5 pages, one side, letter size, with no more than one photo. Legal mail goes to 1510 Pace Road, Pocahontas, AR 72455.",
+        sourceLabel: "Official inmate mail guidelines",
+        sourceUrl: "https://www.randolphcountysheriff.org/jail-communications"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bond instructions online. Call 870-892-8888, answered 24 hours a day, for the bond amount and how it can be paid. For child-support body attachments, the order itself may list a cash amount that secures release; others require seeing the judge first.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.randolphcountysheriff.org/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "Where do I send a letter to someone in the Randolph County jail?",
+        answer:
+          "To the inmate's name and inmate number, Randolph County Detention Center AR, PO Box 591, Longview, TX 75606. Letters are scanned and delivered to the inmate's tablet, and the paper is destroyed, so do not send originals you want back."
+      },
+      {
+        question: "Can I video visit an inmate in Randolph County from home?",
+        answer:
+          "Yes. Set up a prepaid NCIC account at ncic.com or by calling 1-800-943-2189. Video visits cost $0.30 a minute, and the same account pays for calls and messages."
+      },
+      {
+        question: "Can I call someone in the Randolph County Detention Center?",
+        answer:
+          "No. Inmates can only make outgoing calls, but you can leave voicemail for approved inmates through NCIC. Calls within the U.S. cost $0.20 a minute."
+      },
+      {
+        question: "What are the mail rules at Randolph County Detention Center?",
+        answer:
+          "Each envelope needs the inmate's name, inmate number, and a return address. Letters can be up to 5 pages, letter size, written on one side only, with at most one photo; more than one photo and the whole letter is returned. Magazines, newspapers, and books are not accepted at the Longview address."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

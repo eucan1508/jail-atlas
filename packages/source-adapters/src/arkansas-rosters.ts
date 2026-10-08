@@ -88,6 +88,15 @@ export const MISSISSIPPI_COUNTY_AR_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const RANDOLPH_COUNTY_AR_ROSTER = {
+  adapterKey: "randolph-county-ar-current-roster",
+  countyName: "Randolph County",
+  diagnosticPrefix: "RANDOLPH_COUNTY_AR",
+  sourceUrl: "https://www.randolphcountysheriff.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ARKANSAS_ROSTER_SITES = [
   JEFFERSON_COUNTY_AR_ROSTER,
   LOGAN_COUNTY_AR_ROSTER,
@@ -97,7 +106,8 @@ export const ARKANSAS_ROSTER_SITES = [
   HOT_SPRING_COUNTY_AR_ROSTER,
   BAXTER_COUNTY_AR_ROSTER,
   ST_FRANCIS_COUNTY_AR_ROSTER,
-  MISSISSIPPI_COUNTY_AR_ROSTER
+  MISSISSIPPI_COUNTY_AR_ROSTER,
+  RANDOLPH_COUNTY_AR_ROSTER
 ] as const;
 
 export type ArkansasRosterAdapterKey = (typeof ARKANSAS_ROSTER_SITES)[number]["adapterKey"];
