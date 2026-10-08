@@ -111,6 +111,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Cerro Gordo County",
+    slug: "cerro-gordo-county",
+    publishedAt: "2026-10-08",
+    seatCity: "Mason City",
+    h1: "Cerro Gordo County Jail Roster & Inmate Search",
+    title: "Cerro Gordo County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cerro Gordo County, Iowa current-custody information for the jail in Mason City from the official population report, with Iowa Code citations and capture time.",
+    article:
+      "The Cerro Gordo County Sheriff's Office publishes an online population report for its jail in Mason City. This page keeps each person's name and charges with their Iowa Code citations, and leaves out photos, ages, housing units, jail ID numbers, and bond figures.",
+    officialSourceUrl: "https://sofiles.cerrogordo.gov/inmate_report/",
+    officialSourceLabel: "Cerro Gordo County Sheriff's Office jail population report",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",

@@ -5,6 +5,7 @@ const liveCountyKeys = [
   "iowa/dallas-county",
   "iowa/cedar-county",
   "iowa/black-hawk-county",
+  "iowa/cerro-gordo-county",
   "minnesota/mower-county",
   "minnesota/ramsey-county",
   "minnesota/stearns-county",

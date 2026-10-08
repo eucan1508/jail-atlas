@@ -48,7 +48,7 @@ with the adapter records disabled and publication approval off.
    This transaction marks the source healthy, enables its adapter, and publishes the county. Only
    run it after the source-specific dry-run and human review have passed.
 
-   For the three audited Iowa sources, the worker can also run the checks sequentially in county
+   For the four audited Iowa sources, the worker can also run the checks sequentially in county
    order:
 
    ```text
@@ -56,7 +56,7 @@ with the adapter records disabled and publication approval off.
    INGEST_NETWORK_ACCESS=enabled
    INGEST_DATABASE_WRITES=disabled
    ALLOW_LIVE_SOURCE_FETCHES=true
-   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org
+   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov
    DATABASE_URL=<customer Neon URL>
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```

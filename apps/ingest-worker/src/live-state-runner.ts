@@ -30,6 +30,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "black-hawk",
       adapterKey: "black-hawk-county-iowa-current-roster",
       sourceHost: "www.bhcso.org"
+    },
+    {
+      countySlug: "cerro-gordo",
+      adapterKey: "cerro-gordo-county-iowa-current-roster",
+      sourceHost: "sofiles.cerrogordo.gov"
     }
   ],
   MN: [

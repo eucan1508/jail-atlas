@@ -23,6 +23,7 @@ const liveAdapterKeys: Record<string, string> = {
   "dallas-county": "dallas-newworld-inmate-inquiry",
   "cedar-county": "cedar-county-iowa-current-roster",
   "black-hawk-county": "black-hawk-county-iowa-current-roster",
+  "cerro-gordo-county": "cerro-gordo-county-iowa-current-roster",
   "ramsey-county": "ramsey-county-mn-current-roster",
   "stearns-county": "stearns-county-mn-current-roster",
   "anoka-county": "anoka-county-mn-current-roster",

@@ -27,6 +27,8 @@ import {
   RENVILLE_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
+  createCerroGordoCountySourceAdapter,
+  CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
   ST_LOUIS_COUNTY_ADAPTER_KEY,
   createDouglasCountySourceAdapter,
@@ -122,9 +124,10 @@ export function createLiveSourceAdapter(
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
     userAgent: "JailAtlas/1.0 (+official-source-ingest)",
-    // The St. Louis County report is a ~50-page PDF of about 3 MB; every other source stays at
-    // the 1 MB default.
-    ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 6_000_000 } : {})
+    // The St. Louis County report is a ~50-page PDF of about 3 MB, and the Cerro Gordo County
+    // report grows by about 7 KB per person; every other source stays at the 1 MB default.
+    ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 6_000_000 } : {}),
+    ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 3_000_000 } : {})
   });
 
   if (source.adapterKey === DALLAS_COUNTY_ADAPTER_KEY) {
@@ -176,6 +179,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === RENVILLE_COUNTY_ADAPTER_KEY) {
     return createRenvilleCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY) {
+    return createCerroGordoCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

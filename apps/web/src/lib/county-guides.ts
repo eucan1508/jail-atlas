@@ -123,6 +123,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/cerro-gordo-county": {
+    facilityName: "Cerro Gordo County Jail",
+    address: "17262 Lark Ave., Mason City, IA 50401",
+    phone: "641-421-3019",
+    operatedBy: "Cerro Gordo County Sheriff's Office",
+    reviewedAt: "October 8, 2026",
+    overview:
+      "The Cerro Gordo County Sheriff's Office runs the county jail inside the Law Enforcement Center at 17262 Lark Ave. in Mason City. Bond can be posted at any hour, and the jail's online population report lists each person's charges with their Iowa Code citations and bond type.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://cerrogordo.gov/sheriff/jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "In-person visits are Wednesdays 6:30 to 8:30 p.m. and Sundays 1 to 3 p.m., and must be scheduled 24 hours ahead through Prodigy. Visits last 15 minutes; each inmate gets two a day, with up to two people per visit. Visitors must be 18 or older and show a government ID. Video visits from home are started by the inmate, who sends you a link by text or email once your Prodigy account is approved.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://cerrogordo.gov/sheriff/jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Family and friends can add money to an inmate's commissary account 24 hours a day, at the kiosk in the jail lobby (cash, debit, or credit) or online through JailATM (cards only). Inmates can move commissary money to the jail phone system to pay for calls. Money left at release is returned on a debit card.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://cerrogordo.gov/sheriff/jail/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Write to the inmate's name, Cerro Gordo County Law Enforcement Center, 17262 Lark Ave., Mason City, IA 50401, with your full name and address on the envelope. Packages are not accepted, and newspapers must come straight from the publisher. Inmates call out collect or with commissary funds; for problems with the inmate phone system, call 866-797-5778.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://cerrogordo.gov/sheriff/jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond can be posted 24 hours a day, 7 days a week. The jail's population report shows the bond for each charge; when it reads cash/surety (sometimes c/s), a bail bondsman can be used. For court dates and times, call the Clerk of Court at 641-424-6431.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://cerrogordo.gov/sheriff/jail/"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visiting hours at the Cerro Gordo County Jail?",
+        answer:
+          "Wednesdays from 6:30 to 8:30 p.m. and Sundays from 1 to 3 p.m. Book the visit at least 24 hours ahead through Prodigy. Visits are 15 minutes, visitors must be 18 or older, and no one under 18 is allowed in the building."
+      },
+      {
+        question: "How do I put money on an inmate's account in Cerro Gordo County?",
+        answer:
+          "Use the kiosk in the jail lobby in Mason City, which takes cash, debit, and credit cards, or deposit online through JailATM with a card. Both are available 24 hours a day."
+      },
+      {
+        question: "What is the mailing address for the Cerro Gordo County Jail?",
+        answer:
+          "Write the inmate's name, then Cerro Gordo County Law Enforcement Center, 17262 Lark Ave., Mason City, IA 50401. Your full name and address must be on the envelope, or the mail is held in the inmate's property."
+      },
+      {
+        question: "Can I use a bail bondsman in Cerro Gordo County?",
+        answer:
+          "Yes, when the charge or warrant lists the bond as cash/surety (c/s). Bonds can be posted at the jail at any hour. Call the jail at 641-421-3019 to confirm the amount."
+      }
+    ]
+  },
   "iowa/black-hawk-county": {
     facilityName: "Black Hawk County Jail",
     address: "225 E. 6th St., Waterloo, IA 50703",
