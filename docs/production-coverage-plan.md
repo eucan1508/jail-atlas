@@ -59,11 +59,12 @@ the same roster software but were left out because their sites do not publish al
 
 ## Oklahoma
 
-Oklahoma was added on 2026-10-09 with one county.
+Oklahoma was added on 2026-10-09.
 
-| County  | Official source                                                                       | Status                                      |
-| ------- | ------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Wagoner | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search) | Adapter tested; production approval pending |
+| County  | Official source                                                                          | Status                                      |
+| ------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Wagoner | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search)    | Adapter tested; production approval pending |
+| Lincoln | [Lincoln County Sheriff inmate search](https://lincolncountysheriffok.gov/inmate-search) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
