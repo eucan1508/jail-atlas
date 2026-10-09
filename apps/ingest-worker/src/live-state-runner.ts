@@ -170,6 +170,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "wagoner",
       adapterKey: "wagoner-county-ok-current-roster",
       sourceHost: "www.wagonercountyso.org"
+    },
+    {
+      countySlug: "lincoln",
+      adapterKey: "lincoln-county-ok-current-roster",
+      sourceHost: "lincolncountysheriffok.gov"
     }
   ]
 };

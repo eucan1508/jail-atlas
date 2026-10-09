@@ -389,6 +389,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Lincoln County",
+    slug: "lincoln-county",
+    publishedAt: "2026-10-09",
+    seatCity: "Chandler",
+    h1: "Lincoln County Jail Roster & Inmate Search",
+    title: "Lincoln County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Lincoln County, Oklahoma current-custody information from the sheriff's official inmate search, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Lincoln County Sheriff's Office in Chandler publishes an inmate search for its detention center. This page lists the people the search shows as in custody, with each booking number and the charges as the sheriff lists them, and leaves out photos, birth dates, home addresses, and classification.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://lincolncountysheriffok.gov/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Lincoln County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

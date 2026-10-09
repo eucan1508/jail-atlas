@@ -1473,6 +1473,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/lincoln-county": {
+    facilityName: "Lincoln County Detention Center",
+    address: "811 Manvel Ave., Chandler, OK 74834",
+    phone: "405-258-1191",
+    operatedBy: "Lincoln County Sheriff's Office",
+    reviewedAt: "October 9, 2026",
+    overview:
+      "The Lincoln County Sheriff's Office runs the county detention center in Chandler; its office is at 811 Manvel Ave., Suite 14, and the jail's lobby kiosk is where deposits are made in person. The main line, 405-258-1191, handles jail questions, visit scheduling problems, and records requests.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://lincolncountysheriffok.gov/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits run through Prodigy. Remote video visits are available from 6 a.m. to 10 p.m. On-site visits must be scheduled 24 hours ahead and last 20 minutes, up to two a day per inmate, any day of the week; limited Saturday kiosk visits in the detention center lobby are kept for families without internet access. Up to three visitors, counting children, with a government photo ID; visitors under 18 must come with a parent. Visits are recorded.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://lincolncountysheriffok.gov/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Prodigy Solutions. Funds can be added in person at the jail from 8:30 a.m. to 4:30 p.m., Monday to Friday, at the lobby kiosk with cash or a card, or by bringing a money order made out to the inmate. Phone money goes on a separate prepaid collect or PIN debit account; PIN debit funds belong to the inmate and are not refunded.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://lincolncountysheriffok.gov/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates call out from phones inside the jail, either collect to a prepaid account in your name or from their own PIN debit account. Set up an account through Prodigy at 866-797-5578 (8 a.m. to 8 p.m. weekdays, 2 to 6 p.m. Saturdays) or with cash or a card at the lobby kiosk. The Sheriff's Office does not post letter rules online, so call 405-258-1191 before mailing anything to an inmate.",
+        sourceLabel: "Official visitation and phones page",
+        sourceUrl: "https://lincolncountysheriffok.gov/visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bond instructions online. Call the main line at 405-258-1191 for the bond amount on a booking and how it can be posted.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://lincolncountysheriffok.gov/contact-us"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I schedule a visit at the Lincoln County jail?",
+        answer:
+          "Set up a Prodigy account. Remote video visits run 6 a.m. to 10 p.m.; on-site visits must be scheduled at least 24 hours ahead and last 20 minutes, up to two a day. If scheduling fails, call the detention center at 405-258-1191."
+      },
+      {
+        question: "How do I put money on an inmate's account in Lincoln County?",
+        answer:
+          "Come to the jail in Chandler between 8:30 a.m. and 4:30 p.m. on a weekday and use the lobby kiosk (cash or card), or bring a money order made out to the inmate."
+      },
+      {
+        question: "Who can visit an inmate at the Lincoln County Detention Center?",
+        answer:
+          "Up to three visitors at a time, including children, each adult with a state or federal photo ID. Visitors under 18 must be with a biological parent. Anyone with a protection or no-contact order involving the inmate cannot visit."
+      },
+      {
+        question: "Can I call an inmate at the Lincoln County jail?",
+        answer:
+          "No; inmates call out. Fund a prepaid collect account in your name through Prodigy (866-797-5578) so their calls to you go through, or add money to their PIN debit account."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",
