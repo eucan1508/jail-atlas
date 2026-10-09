@@ -16,6 +16,7 @@ on:
           - MN
           - TX
           - AR
+          - OK
       county_slug:
         description: "County slug"
         required: true

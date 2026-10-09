@@ -1,6 +1,6 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
-export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas";
+export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -368,6 +368,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "The Randolph County Sheriff's Office publishes an Inmate Roster for its detention center in Pocahontas. This page reads the current roster, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
     officialSourceUrl: "https://www.randolphcountysheriff.org/roster.php",
     officialSourceLabel: "Randolph County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Wagoner County",
+    slug: "wagoner-county",
+    publishedAt: "2026-10-09",
+    seatCity: "Wagoner",
+    h1: "Wagoner County Jail Roster & Inmate Search",
+    title: "Wagoner County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Wagoner County, Oklahoma current-custody information from the sheriff's official inmate search, with booking IDs, source-listed charges, and capture time.",
+    article:
+      "The Wagoner County Sheriff's Office publishes an inmate search for its jail in Wagoner. This page lists the people the search shows as in custody, with each booking ID and the charges as the sheriff lists them, and leaves out photos, birth dates, home addresses, and bond amounts.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.wagonercountyso.org/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Wagoner County Sheriff's Office inmate search",
     sourceStatus: "audit_pending"
   },
   {

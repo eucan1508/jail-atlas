@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX" | "AR";
+export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK";
 
 type LiveStateSource = Readonly<{
   countySlug: string;
@@ -163,6 +163,13 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "randolph",
       adapterKey: "randolph-county-ar-current-roster",
       sourceHost: "www.randolphcountysheriff.org"
+    }
+  ],
+  OK: [
+    {
+      countySlug: "wagoner",
+      adapterKey: "wagoner-county-ok-current-roster",
+      sourceHost: "www.wagonercountyso.org"
     }
   ]
 };

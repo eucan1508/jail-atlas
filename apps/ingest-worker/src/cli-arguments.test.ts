@@ -60,6 +60,13 @@ describe("parseLiveCliArguments", () => {
     });
   });
 
+  it("accepts the Oklahoma state batch", () => {
+    expect(parseLiveCliArguments(["run", "--state=ok", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "OK"
+    });
+  });
+
   it("rejects an unsupported state", () => {
     expect(() => parseLiveCliArguments(["run", "--state=WI", "--dry-run"])).toThrow(
       CliArgumentError
