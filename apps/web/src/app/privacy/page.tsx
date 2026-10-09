@@ -34,8 +34,8 @@ export default function PrivacyPage() {
         {
           heading: "Correction requests",
           paragraphs: [
-            "A correction request asks only for contact details needed to reply, the affected county or page, a category, and a concise explanation. A honeypot, signed form time, rate limit, size limit, and server-side schema reduce spam without sending the narrative to an advertising service.",
-            "Correction details are restricted to reviewers, used to investigate the reported concern, and deleted after resolution plus the documented audit period. A request does not itself alter an official record; source discrepancies are checked against the official institution."
+            "Correction reports arrive by email. We use the details only to check the reported page against the official source and to reply, and we do not pass them to advertisers or other third parties.",
+            "A report does not itself change an official record; discrepancies are checked against the institution that publishes the record."
           ]
         },
         {

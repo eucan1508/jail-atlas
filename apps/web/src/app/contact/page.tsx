@@ -33,9 +33,9 @@ export default function ContactPage() {
           <h2>What to include</h2>
           <p>
             Tell us which county page you are writing about and what you noticed. If something on a
-            roster looks wrong or out of date, the <Link href="/corrections/">correction form</Link>{" "}
-            is the fastest route, because it records the page and the details a reviewer needs to
-            check it against the official source.
+            roster looks wrong or out of date, see the{" "}
+            <Link href="/corrections/">corrections page</Link> for the details that help us check it
+            against the official source.
           </p>
         </section>
         <section className="content-section">
