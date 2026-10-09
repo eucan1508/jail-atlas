@@ -1,4 +1,5 @@
 import { TrustPage } from "@/components/trust-page";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -14,7 +15,7 @@ export default function TermsPage() {
       eyebrow="Use of this service"
       path="/terms/"
       title="Terms of use"
-      summary="These Phase 1 terms describe the intended public-information service and its limits. Production legal review, operator details, effective date, and jurisdiction must be approved before launch."
+      summary="These terms describe what this public-information service is, how it may be used, and its limits."
       sections={[
         {
           heading: "Informational purpose",
@@ -38,9 +39,10 @@ export default function TermsPage() {
           ]
         },
         {
-          heading: "Availability and future legal review",
+          heading: "Availability and contact",
           paragraphs: [
-            "The service may be unavailable during source failures, parser review, security events, or maintenance. No guarantee of uninterrupted access or completeness is made. Before production, an authorized operator must approve enforceable limitation, governing-law, contact, and effective-date language; Phase 1 deliberately leaves those facts unclaimed."
+            "The service may be unavailable during source failures, parser review, security events, or maintenance. No guarantee of uninterrupted access or completeness is made.",
+            `Questions about these terms can be sent to ${CONTACT_EMAIL}.`
           ]
         }
       ]}

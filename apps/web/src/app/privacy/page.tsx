@@ -1,4 +1,5 @@
 import { TrustPage } from "@/components/trust-page";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -27,7 +28,7 @@ export default function PrivacyPage() {
           heading: "Logs and operational data",
           paragraphs: [
             "Structured logs use run, source, adapter, outcome, duration, and aggregate-count identifiers. Names, booking identifiers, charge text, contact-form narratives, raw source bodies, cookies, authorization values, and secrets are redacted or omitted. Logs have a separate, time-limited operational retention policy.",
-            "No advertising or blocking third-party analytics scripts are included in the MVP. Production analytics, if later approved, must be documented, minimized, and reviewed before activation."
+            "The site does not currently run advertising or third-party analytics scripts. If either is added, this policy will be updated first to say what is collected, by whom, and how to opt out."
           ]
         },
         {
@@ -40,7 +41,8 @@ export default function PrivacyPage() {
         {
           heading: "Security and requests",
           paragraphs: [
-            "Data is separated by purpose, credentials remain server-side, database connections use least privilege, and backups follow the same deletion windows. A production operator contact and applicable privacy-request procedure must be configured and reviewed before launch; Phase 1 does not fabricate either."
+            "Data is separated by purpose, credentials remain server-side, database connections use least privilege, and backups follow the same deletion windows.",
+            `For a privacy question or request, email ${CONTACT_EMAIL} and name the county page involved. An official record can only be changed by the county that publishes it; when the county's roster changes, the page here follows.`
           ]
         }
       ]}

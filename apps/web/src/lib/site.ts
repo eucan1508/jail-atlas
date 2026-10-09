@@ -10,6 +10,7 @@ export const publicPaths = [
   "/coverage/arkansas/",
   "/iowa/scott-county/custody/",
   "/about/",
+  "/contact/",
   "/methodology/",
   "/source-policy/",
   "/corrections/",
@@ -21,6 +22,7 @@ export const publicPaths = [
 
 export const trustPaths = [
   "/about/",
+  "/contact/",
   "/methodology/",
   "/source-policy/",
   "/corrections/",

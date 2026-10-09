@@ -1,4 +1,5 @@
 import { TrustPage } from "@/components/trust-page";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { readEnvironment } from "@/lib/env";
 import { createPageMetadata } from "@/lib/site";
 
@@ -30,7 +31,7 @@ export default function AboutPage() {
           heading: "Who operates it",
           paragraphs: [
             `${BRAND_NAME} is the configured publisher identity. The product is not operated by a government agency, jail, sheriff, court, law firm, or notification service. It does not claim government affiliation, endorsement, authority, professional credentials, or access beyond the same approved public sources described on each county page.`,
-            "No staff biographies or credentials are presented in Phase 1 because none are required to understand the publication method. A future operator disclosure must be accurate, reviewed, and consistent with the configured publisher identity before launch."
+            `Questions about the site can be sent to ${CONTACT_EMAIL}. Questions about a specific person in custody should go to the jail itself; its phone number is on each county page.`
           ]
         },
         {
@@ -41,9 +42,10 @@ export default function AboutPage() {
           ]
         },
         {
-          heading: "Phase 1 boundary",
+          heading: "How the rosters stay current",
           paragraphs: [
-            "The current implementation is a private foundation and design checkpoint. Its Scott County, Iowa records are synthetic and fictional; no live source is connected. Runtime guards, noindex controls, and sitemap exclusion prevent that prototype from being published as custody information. Official integration and production readiness require separate approvals."
+            "Each county page reads one official roster published by the county or its sheriff's office. Every state is refreshed twice a day. If a roster cannot be read in full, or fails the checks set for that source, the page keeps its last complete copy instead of showing a partial list, and the page shows when that copy was taken.",
+            "If a county's roster has not been read successfully for more than 30 hours, its page is taken down until a fresh copy is available, so the site never presents an old list as current."
           ]
         }
       ]}

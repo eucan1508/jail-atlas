@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const footerLinks = [
   ["About", "/about/"],
+  ["Contact", "/contact/"],
   ["Methodology", "/methodology/"],
   ["Source policy", "/source-policy/"],
   ["Corrections", "/corrections/"],
@@ -35,7 +36,7 @@ export function SiteFooter({ brandName }: { brandName: string }) {
             <p className="site-footer__label">Explore</p>
             <nav aria-label="Product information">
               <ul className="footer-nav">
-                {footerLinks.slice(0, 4).map(([label, href]) => (
+                {footerLinks.slice(0, 5).map(([label, href]) => (
                   <li key={href}>
                     <Link href={href}>{label}</Link>
                   </li>
@@ -47,7 +48,7 @@ export function SiteFooter({ brandName }: { brandName: string }) {
             <p className="site-footer__label">Policies</p>
             <nav aria-label="Policies">
               <ul className="footer-nav">
-                {footerLinks.slice(4).map(([label, href]) => (
+                {footerLinks.slice(5).map(([label, href]) => (
                   <li key={href}>
                     <Link href={href}>{label}</Link>
                   </li>

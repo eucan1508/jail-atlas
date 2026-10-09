@@ -45,6 +45,7 @@ test.describe("county indexation contract", () => {
       "/",
       "/coverage/",
       "/about/",
+      "/contact/",
       "/methodology/",
       "/source-policy/",
       "/corrections/",

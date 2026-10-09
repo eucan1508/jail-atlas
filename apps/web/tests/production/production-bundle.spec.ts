@@ -5,6 +5,7 @@ const approvedIndexablePaths = [
   "/",
   "/coverage/",
   "/about/",
+  "/contact/",
   "/methodology/",
   "/source-policy/",
   "/corrections/",
