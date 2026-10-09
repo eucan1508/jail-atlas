@@ -1,4 +1,5 @@
 import { TrustPage } from "@/components/trust-page";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -14,7 +15,7 @@ export default function CookiesPage() {
       eyebrow="Storage and consent"
       path="/cookies/"
       title="Cookie policy"
-      summary="The MVP is designed to work without advertising cookies or cross-site tracking. This policy explains the small amount of browser storage the service may use and what changes if optional analytics are approved later."
+      summary="The site is designed to work without advertising cookies or cross-site tracking. This policy explains the small amount of browser storage the service may use and what changes if optional analytics are approved later."
       sections={[
         {
           heading: "Essential operation",
@@ -26,13 +27,14 @@ export default function CookiesPage() {
         {
           heading: "Optional measurement",
           paragraphs: [
-            "No advertising or third-party analytics cookies are part of the current MVP. If optional measurement is added, it must be documented here, remain disabled until consent where required, and collect aggregated product-use signals rather than custody-record content."
+            "The site does not currently set advertising or third-party analytics cookies. If optional measurement is added, it must be documented here, remain disabled until consent where required, and collect aggregated product-use signals rather than custody-record content."
           ]
         },
         {
           heading: "Managing storage",
           paragraphs: [
-            "You can clear or block cookies in your browser settings. Clearing essential values can reset a security check or preference; it does not delete an official county record. For privacy questions, use the operator contact published on the production site."
+            "You can clear or block cookies in your browser settings. Clearing essential values can reset a security check or preference; it does not delete an official county record.",
+            `For privacy questions, email ${CONTACT_EMAIL}.`
           ]
         }
       ]}
