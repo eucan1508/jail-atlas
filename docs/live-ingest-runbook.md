@@ -40,7 +40,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, TX, or AR>
+   state=<IA, MN, TX, AR, or OK>
    county_slug=<county slug>
    confirm=APPROVE
    ```
@@ -102,6 +102,16 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 
+   Oklahoma runs Wagoner, which reads the JSON endpoints behind the sheriff's inmate search
+   (`/dmxConnect/api/Booking/`). The list total must match its rows, a second booking-ID list must
+   name the same bookings, and each booking's detail must match its list entry; otherwise the crawl
+   restarts (up to three times) and then fails closed:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
@@ -109,7 +119,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, TX, or AR>
+   state=<IA, MN, TX, AR, or OK>
    county_slug=<county slug>
    confirm=APPROVE
    ```
@@ -133,9 +143,9 @@ with the adapter records disabled and publication approval off.
 The worker records a failed run without replacing the last successful snapshot. It runs only the
 adapter named by `LIVE_SOURCE_ADAPTER_KEY`; scheduling Iowa counties one by one is therefore a
 workflow concern. Each state runs twice a day, 12 hours apart: Iowa at 00:00 and 12:00 UTC,
-Minnesota at 06:00 and 18:00, Texas at 03:00 and 15:00, and Arkansas at 09:00 and 21:00. The
-approved county adapters run sequentially inside each slot, and a county that fails is tried once
-more, three minutes after the first pass, before the run is reported.
+Minnesota at 06:00 and 18:00, Texas at 03:00 and 15:00, Arkansas at 09:00 and 21:00, and Oklahoma at
+01:00 and 13:00. The approved county adapters run sequentially inside each slot, and a county that
+fails is tried once more, three minutes after the first pass, before the run is reported.
 
 ## Failure log
 

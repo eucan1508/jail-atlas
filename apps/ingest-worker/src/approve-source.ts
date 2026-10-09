@@ -5,7 +5,7 @@ import { z } from "zod";
 const ArgumentsSchema = z.object({
   adapterKey: z.string().regex(/^[a-z0-9-]+$/),
   countySlug: z.string().regex(/^[a-z0-9-]+$/),
-  state: z.enum(["IA", "MN", "TX", "AR"]),
+  state: z.enum(["IA", "MN", "TX", "AR", "OK"]),
   confirm: z.literal("APPROVE")
 });
 

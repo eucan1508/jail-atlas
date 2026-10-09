@@ -1414,6 +1414,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/wagoner-county": {
+    facilityName: "Wagoner County Detention Center",
+    address: "307 E. Cherokee St., Wagoner, OK 74467",
+    phone: "918-485-7730",
+    operatedBy: "Wagoner County Sheriff's Office",
+    reviewedAt: "October 9, 2026",
+    overview:
+      "The Wagoner County Sheriff's Office runs the county jail at 307 E. Cherokee St. in Wagoner, in the same building as the Sheriff's Office. The jail line is 918-485-7730, and the Sheriff's Office main line, 918-485-3124, is answered 24 hours a day. The jail passed its 2024 Health Department inspection with no infractions.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.wagonercountyso.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video through Cidnet, the same service used for inmate phone calls. Create a Cidnet account to set up visits and add funds. Visitors must be 18 or older unless a parent or legal guardian is present, and every visit is monitored and recorded. The jail can end a visit at any time, and visiting privileges can be suspended for rule violations.",
+        sourceLabel: "Official visitation and mail page",
+        sourceUrl: "https://www.wagonercountyso.org/visitation-mail-policies"
+      },
+      {
+        title: "Money and commissary",
+        body: "Each inmate has a commissary account through Tiger Commissary, and family can add money or order commissary online. Weekly commissary orders are placed on Thursday and must be in by 8 a.m. that day. Money for calls and video visits goes on a Cidnet account instead.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.wagonercountyso.org/commissary-web-deposits"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, c/o Wagoner County Detention Center, 307 E Cherokee, Wagoner OK 74467, with your first and last name and return address, or the letter comes back. All mail is opened and checked. Only items that can be scanned are processed: no newspapers, magazines, Polaroids, stamps, envelopes, blank paper, or musical cards, and no more than 3 to 5 photos per letter. Inmate phone calls also run through Cidnet.",
+        sourceLabel: "Official visitation and mail page",
+        sourceUrl: "https://www.wagonercountyso.org/visitation-mail-policies"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office keeps a list of registered bail bondsmen in the Wagoner County area. A bond must be filled in and notarized correctly and carry the case number once a case is filed; the court clerk will not accept one that is not, and the person can be re-arrested. Call the jail at 918-485-7730 for the bond amount on a specific booking.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.wagonercountyso.org/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit an inmate at the Wagoner County jail?",
+        answer:
+          "Visits are by video through Cidnet. Set up a Cidnet account and add funds; visits are managed from there. Visitors under 18 need a parent or legal guardian with them, and all visits are recorded."
+      },
+      {
+        question: "What is the mailing address for the Wagoner County jail?",
+        answer:
+          "Write the inmate's name, then c/o Wagoner County Detention Center, 307 E Cherokee, Wagoner OK 74467. Put your full name and return address on the envelope, and send only paper that can be scanned."
+      },
+      {
+        question: "How do I put money on an inmate's account in Wagoner County?",
+        answer:
+          "Deposit online through Tiger Commissary, which also takes commissary orders. Orders are placed each Thursday, with an 8 a.m. cutoff. Calls and video visits are paid through a separate Cidnet account."
+      },
+      {
+        question: "Why was a bond refused in Wagoner County?",
+        answer:
+          "Bonds that are not filled in or notarized correctly, or that lack a case number once a case is filed, are not accepted by the court clerk, and the person can be re-arrested. Bondsmen are responsible for their own paperwork."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

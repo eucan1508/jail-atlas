@@ -54,7 +54,11 @@ export function CountyFinder({
               key={county.slug}
             >
               <span className="county-finder__result-state">
-                {{ iowa: "IA", minnesota: "MN", texas: "TX", arkansas: "AR" }[county.state]}
+                {
+                  { iowa: "IA", minnesota: "MN", texas: "TX", arkansas: "AR", oklahoma: "OK" }[
+                    county.state
+                  ]
+                }
               </span>
               <span className="county-finder__result-copy">
                 <strong>{county.county}</strong>

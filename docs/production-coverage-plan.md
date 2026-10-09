@@ -57,6 +57,14 @@ the same roster software but were left out because their sites do not publish al
 | Mississippi | [Mississippi County Sheriff inmate roster](https://www.mississippicountysheriffar.org/roster.php)                                     | Adapter tested; production approval pending |
 | Randolph    | [Randolph County Sheriff inmate roster](https://www.randolphcountysheriff.org/roster.php)                                             | Adapter tested; production approval pending |
 
+## Oklahoma
+
+Oklahoma was added on 2026-10-09 with one county.
+
+| County  | Official source                                                                       | Status                                      |
+| ------- | ------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Wagoner | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search) | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,

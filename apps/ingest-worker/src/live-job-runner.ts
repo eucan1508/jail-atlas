@@ -28,6 +28,8 @@ import {
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createCerroGordoCountySourceAdapter,
+  createWagonerCountySourceAdapter,
+  WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
   ST_LOUIS_COUNTY_ADAPTER_KEY,
@@ -114,9 +116,11 @@ export function createLiveSourceAdapter(
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
       ? ["/resource"]
-      : arkansasSite?.layout === "inmate-roster-path"
-        ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-        : [sourceUrl.pathname];
+      : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY
+        ? ["/dmxConnect/api/Booking"]
+        : arkansasSite?.layout === "inmate-roster-path"
+          ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+          : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -179,6 +183,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === RENVILLE_COUNTY_ADAPTER_KEY) {
     return createRenvilleCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY) {
+    return createWagonerCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
