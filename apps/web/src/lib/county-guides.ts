@@ -1591,6 +1591,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/burleson-county": {
+    facilityName: "Burleson County Jail",
+    address: "1334 State Highway 21 East, Caldwell, TX 77836",
+    phone: "979-567-4343",
+    operatedBy: "Burleson County Sheriff's Office",
+    reviewedAt: "October 10, 2026",
+    overview:
+      "The Burleson County Sheriff's Office runs the county jail at 1334 State Highway 21 East in Caldwell. The jail is overseen by a jail administrator and a jail lieutenant, and the office's main line, 979-567-4343, handles jail questions. Its fax number is 979-567-0615.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.burlesoncountysherifftx.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "In-person visits are held only on Thursdays and Sundays, 1 to 5 p.m. Every visit must be booked on HomeWAV at least 24 hours ahead, and the inmate has to accept the requested time. Each inmate gets one 20-minute visit, and all visitors must come to that same session. You can visit only one inmate per visiting day. Bring a current state photo ID, driver's license, or passport, and arrive before your time; late visitors are turned away. Children 16 and under must be the inmate's dependents and come with an adult. Only car keys and ID may be brought in. The dress code is strict, and shoulders must be covered. Anyone released from a jail or from TDCJ in the last six months cannot visit.",
+        sourceLabel: "Official visitation and commissary page",
+        sourceUrl: "https://www.burlesoncountysherifftx.org/visitation-and-commissary"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary money is added through Tiger (tigersnack.com). Choose Texas, then Burleson County, then find the inmate. You can add money or order commissary for them there, and the commissary menu is posted on the Sheriff's site. Money orders have not been accepted since January 1, 2022.",
+        sourceLabel: "Official visitation and commissary page",
+        sourceUrl: "https://www.burlesoncountysherifftx.org/visitation-and-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone time can be added through HomeWAV, and inmates can also buy phone time from commissary. The Sheriff's Office does not post mail rules online, so call 979-567-4343 before you send a letter.",
+        sourceLabel: "Official visitation and commissary page",
+        sourceUrl: "https://www.burlesoncountysherifftx.org/visitation-and-commissary"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond labels appear on the roster as the Sheriff's Office lists them. For how to post a bond, call 979-567-4343. For records, fill out the Sheriff's Office open records form and mail, fax, or email it; every request has a fee, and the fees are listed on the form.",
+        sourceLabel: "Official records request page",
+        sourceUrl: "https://www.burlesoncountysherifftx.org/records-request"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visits at the Burleson County jail?",
+        answer:
+          "In-person visits are on Thursdays and Sundays from 1 to 5 p.m. Schedule the visit on HomeWAV at least 24 hours ahead; it only goes on the calendar once the inmate accepts it."
+      },
+      {
+        question: "Can I send a money order to someone in the Burleson County jail?",
+        answer:
+          "No. The jail stopped accepting money orders on January 1, 2022. Add money through Tiger (tigersnack.com) under Texas, Burleson County."
+      },
+      {
+        question: "What can I bring to a visit in Burleson County?",
+        answer:
+          "Only your car keys and ID. Purses, wallets, bags, phones and other electronics, pens, lighters, liquids, and food are all prohibited in the visiting area."
+      },
+      {
+        question: "Can someone who was recently released visit an inmate?",
+        answer:
+          "No. Anyone released from a jail or from the Texas Department of Criminal Justice has to wait 180 days from their release date before visiting an inmate in the Burleson County Jail."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

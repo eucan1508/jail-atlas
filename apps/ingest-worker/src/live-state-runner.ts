@@ -111,6 +111,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "kleberg",
       adapterKey: "kleberg-county-tx-current-roster",
       sourceHost: "www.klebergcoso.org"
+    },
+    {
+      countySlug: "burleson",
+      adapterKey: "burleson-county-tx-current-roster",
+      sourceHost: "www.burlesoncountysherifftx.org"
     }
   ],
   AR: [

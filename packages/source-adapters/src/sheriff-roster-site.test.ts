@@ -8,6 +8,7 @@ import {
 import type { AdapterContext } from "./contracts.js";
 import { runSourceAdapter } from "./runner.js";
 import { sourceAdapterRegistry } from "./registry.js";
+import { TEXAS_ROSTER_SITES } from "./texas-rosters.js";
 import {
   createSheriffRosterSiteAdapter,
   type SheriffRosterIdFactory,
@@ -157,8 +158,8 @@ const cleburnePage = (page: number) =>
   `https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/${page}`;
 
 describe("sheriff roster site adapter", () => {
-  it("keeps every Arkansas roster out of the default registry", () => {
-    for (const site of ARKANSAS_ROSTER_SITES) {
+  it("keeps every Arkansas and Texas roster out of the default registry", () => {
+    for (const site of [...ARKANSAS_ROSTER_SITES, ...TEXAS_ROSTER_SITES]) {
       expect(sourceAdapterRegistry.has(site.adapterKey)).toBe(false);
     }
   });
