@@ -32,7 +32,8 @@ const liveCountyKeys = [
   "arkansas/mississippi-county",
   "arkansas/randolph-county",
   "oklahoma/wagoner-county",
-  "oklahoma/lincoln-county"
+  "oklahoma/lincoln-county",
+  "oklahoma/pawnee-county"
 ] as const;
 
 describe("verified county guides", () => {

@@ -50,7 +50,8 @@ const liveAdapterKeys: Record<string, string> = {
   "mississippi-county": "mississippi-county-ar-current-roster",
   "randolph-county": "randolph-county-ar-current-roster",
   "wagoner-county": "wagoner-county-ok-current-roster",
-  "lincoln-county": "lincoln-county-ok-current-roster"
+  "lincoln-county": "lincoln-county-ok-current-roster",
+  "pawnee-county": "pawnee-county-ok-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

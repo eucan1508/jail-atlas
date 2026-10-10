@@ -175,6 +175,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "lincoln",
       adapterKey: "lincoln-county-ok-current-roster",
       sourceHost: "lincolncountysheriffok.gov"
+    },
+    {
+      countySlug: "pawnee",
+      adapterKey: "pawnee-county-ok-current-roster",
+      sourceHost: "www.pawneecountysook.gov"
     }
   ]
 };
