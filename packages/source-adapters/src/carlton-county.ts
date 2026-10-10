@@ -29,6 +29,8 @@ const ROW_TOLERANCE = 3;
 const COLUMN_TOLERANCE = 6;
 // Every roster entry ends with this deposit notice, which gives a reliable record boundary.
 const RECORD_SEPARATOR = /^\*\*\*Money can be deposited/;
+// Some entries list a masked number ahead of the roster number, e.g. "XXXXX; 68118".
+const ROSTER_NUMBER = /^(?:X+;\s*)*(\d+)$/;
 
 // A new charge starts at a Minnesota statute citation ("609.19.1 - ..."). The first line of the
 // Charges column is the booking basis ("BENCH WARRANT", "HOLD FOR ANOTHER AGENCY", ...), which
@@ -192,7 +194,9 @@ function parseRosterPages(pages: readonly CarltonPdfPage[]): CarltonRoster {
     // The unlabeled number in the mugshot column opens each entry. Long charge lists can run
     // below the entry's deposit notice, so an entry extends down to the next opener.
     const openers = page
-      .filter((item) => item.x < demographicsStart && item.y < bodyTop && /^\d+$/.test(item.text))
+      .filter(
+        (item) => item.x < demographicsStart && item.y < bodyTop && ROSTER_NUMBER.test(item.text)
+      )
       .sort((left, right) => right.y - left.y);
     const separatorCount = page.filter((item) => RECORD_SEPARATOR.test(item.text)).length;
     if (openers.length !== separatorCount) throw new Error("RECORD_BOUNDARY_MISMATCH");
@@ -228,15 +232,16 @@ function parseRosterPages(pages: readonly CarltonPdfPage[]): CarltonRoster {
           .join(" ")
       );
       if (!displayName) throw new Error("INVALID_RECORD_IDENTITY");
-      if (seenRosterNumbers.has(opener.text)) throw new Error("DUPLICATE_ROSTER_NUMBER");
-      seenRosterNumbers.add(opener.text);
+      const rosterNumber = opener.text.match(ROSTER_NUMBER)?.[1] ?? opener.text;
+      if (seenRosterNumbers.has(rosterNumber)) throw new Error("DUPLICATE_ROSTER_NUMBER");
+      seenRosterNumbers.add(rosterNumber);
       const chargeItems = block
         .filter((item) => item.x >= chargesStart && item.x < courtStart)
         .sort((left, right) => right.y - left.y || left.x - right.x);
       records.push(
         CarltonRecordSchema.parse({
           displayName,
-          rosterNumber: opener.text,
+          rosterNumber,
           charges: splitCharges(chargeItems)
         })
       );

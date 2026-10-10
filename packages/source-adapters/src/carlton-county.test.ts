@@ -252,6 +252,21 @@ describe("Carlton County source adapter", () => {
     expect(result.failure.diagnosticCode).toContain("RECORD_SPLIT_ACROSS_PAGES");
   });
 
+  it("reads an entry whose roster number follows a masked number", async () => {
+    const result = await runSourceAdapter(
+      adapter([
+        firstPage,
+        lastPage.map((item) => (item.text === "1003" ? { ...item, text: "XXXXX; 1003" } : item))
+      ]),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(3);
+    expect(result.snapshot.bookings[2]?.person.displayName).toBe("TESTER, GAMMA — TEST ONLY");
+    expect(JSON.stringify(result.snapshot)).not.toContain("XXXXX");
+  });
+
   it("fails closed when an entry has no deposit notice or no name", async () => {
     const noNotice = await runSourceAdapter(
       adapter([
