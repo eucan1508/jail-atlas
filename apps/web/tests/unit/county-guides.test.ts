@@ -21,6 +21,7 @@ const liveCountyKeys = [
   "texas/hutchinson-county",
   "texas/kendall-county",
   "texas/kleberg-county",
+  "texas/burleson-county",
   "arkansas/jefferson-county",
   "arkansas/logan-county",
   "arkansas/greene-county",

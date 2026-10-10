@@ -39,6 +39,7 @@ const liveAdapterKeys: Record<string, string> = {
   "hutchinson-county": "hutchinson-county-tx-current-roster",
   "kendall-county": "kendall-county-tx-current-roster",
   "kleberg-county": "kleberg-county-tx-current-roster",
+  "burleson-county": "burleson-county-tx-current-roster",
   "jefferson-county": "jefferson-county-ar-current-roster",
   "logan-county": "logan-county-ar-current-roster",
   "greene-county": "greene-county-ar-current-roster",

@@ -18,6 +18,7 @@ export * from "./runner.js";
 export * from "./source-url-policy.js";
 export * from "./sheriff-roster-site.js";
 export * from "./arkansas-rosters.js";
+export * from "./texas-rosters.js";
 export * from "./douglas-county.js";
 export * from "./st-louis-county.js";
 export * from "./steele-county.js";
