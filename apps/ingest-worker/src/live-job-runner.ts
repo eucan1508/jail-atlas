@@ -31,6 +31,8 @@ import {
   createWagonerCountySourceAdapter,
   createLincolnCountyOkSourceAdapter,
   LINCOLN_COUNTY_OK_ADAPTER_KEY,
+  createPawneeCountySourceAdapter,
+  PAWNEE_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -119,7 +121,8 @@ export function createLiveSourceAdapter(
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
       ? ["/resource"]
       : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-          source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY
+          source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+          source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY
         ? ["/dmxConnect/api/Booking"]
         : arkansasSite?.layout === "inmate-roster-path"
           ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
@@ -186,6 +189,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === RENVILLE_COUNTY_ADAPTER_KEY) {
     return createRenvilleCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY) {
+    return createPawneeCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

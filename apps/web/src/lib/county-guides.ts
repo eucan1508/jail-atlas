@@ -1532,6 +1532,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/pawnee-county": {
+    facilityName: "Pawnee County Jail",
+    address: "500 Harrison Street, Pawnee, OK 74058",
+    phone: "918-762-2565, ext. 2",
+    operatedBy: "Pawnee County Sheriff's Office",
+    reviewedAt: "October 10, 2026",
+    overview:
+      "The Pawnee County Sheriff's Office runs the county jail from its office at 500 Harrison Street in Pawnee. The main line, 918-762-2565, is answered around the clock by dispatch; the jail is extension 2. Administration keeps weekday hours, 8:30 a.m. to 4:30 p.m.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.pawneecountysook.gov/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits run through Prodigy. Set up a Prodigy account and fund it first. Remote video visits are available daily from 6 a.m. to 11 p.m., except 1:30 to 3:30 p.m. on Tuesdays and Thursdays. On-site visits use the Prodigy kiosk in the jail's visitation room, 8:30 a.m. to 4:15 p.m., Monday to Friday. Visitors under 18 need a parent or legal guardian with them. There is a dress code: no mini-skirts, halter tops, short shorts, see-through clothing, or swimwear. Anyone released from this jail cannot visit for six months.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.pawneecountysook.gov/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is handled by CTC Commissary. Web deposits go to the inmate's trust fund account, and commissary can also be ordered online and shipped to the inmate; orders placed by Thursday at midnight are delivered the following Tuesday. Cash or a card can be used at the Tiger kiosk in the lobby. Money orders are not accepted. Money left on the account at release goes only to the inmate.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.pawneecountysook.gov/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Letters go through the U.S. Postal Service with the inmate's full name and ID number clearly printed on the envelope. Do not send cash or anything the jail treats as contraband. Video calls come through Prodigy as a text message with a link to join. The Sheriff's Office does not post phone account rules online, so call the jail at 918-762-2565, ext. 2.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.pawneecountysook.gov/faqs"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bond instructions online. Call the jail at 918-762-2565, ext. 2 for the bond on a booking and how to post it. Reports and other records come from the Records Division; copies cost $1 for the first page and 50 cents for each page after.",
+        sourceLabel: "Official records page",
+        sourceUrl: "https://www.pawneecountysook.gov/records"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone in the Pawnee County jail?",
+        answer:
+          "Remote video visits through Prodigy run 6 a.m. to 11 p.m. every day, except 1:30 to 3:30 p.m. on Tuesdays and Thursdays. Visits at the jail's Prodigy kiosk are 8:30 a.m. to 4:15 p.m., Monday to Friday."
+      },
+      {
+        question: "Can I mail a money order to an inmate in Pawnee County?",
+        answer:
+          "No. The jail does not accept money orders. Use a CTC web deposit, or pay with cash or a card at the Tiger kiosk in the lobby."
+      },
+      {
+        question: "How do I address a letter to a Pawnee County inmate?",
+        answer:
+          "Send it by U.S. mail with the inmate's full name and ID number clearly printed on the envelope. Leave out cash and anything the jail would treat as contraband."
+      },
+      {
+        question: "How often is the Pawnee County inmate search updated?",
+        answer:
+          "The Sheriff's Office says its inmate search is updated hourly and shows only people in custody. This page reads that list twice a day, so check the capture time at the top of the roster."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

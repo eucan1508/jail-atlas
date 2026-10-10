@@ -65,6 +65,7 @@ Oklahoma was added on 2026-10-09.
 | ------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
 | Wagoner | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search)    | Adapter tested; production approval pending |
 | Lincoln | [Lincoln County Sheriff inmate search](https://lincolncountysheriffok.gov/inmate-search) | Adapter tested; production approval pending |
+| Pawnee  | [Pawnee County Sheriff inmate search](https://www.pawneecountysook.gov/inmate-search)    | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
