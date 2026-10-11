@@ -18,6 +18,7 @@ const liveCountyKeys = [
   "minnesota/crow-wing-county",
   "minnesota/renville-county",
   "minnesota/otter-tail-county",
+  "minnesota/sherburne-county",
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county",

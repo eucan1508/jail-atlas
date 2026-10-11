@@ -28,6 +28,8 @@ import {
   RENVILLE_COUNTY_ADAPTER_KEY,
   createOtterTailCountySourceAdapter,
   OTTER_TAIL_COUNTY_ADAPTER_KEY,
+  createSherburneCountySourceAdapter,
+  SHERBURNE_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createCerroGordoCountySourceAdapter,
@@ -125,14 +127,16 @@ export function createLiveSourceAdapter(
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
       ? ["/resource"]
-      : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-          source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-          source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-          source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-        ? ["/dmxConnect/api/Booking"]
-        : rosterSite?.layout === "inmate-roster-path"
-          ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-          : [sourceUrl.pathname];
+      : source.adapterKey === SHERBURNE_COUNTY_ADAPTER_KEY
+        ? ["/InmateLocatorAPI/api/Inmates"]
+        : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+            source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+            source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+            source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+          ? ["/dmxConnect/api/Booking"]
+          : rosterSite?.layout === "inmate-roster-path"
+            ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+            : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -192,6 +196,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CROW_WING_COUNTY_ADAPTER_KEY) {
     return createCrowWingCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === SHERBURNE_COUNTY_ADAPTER_KEY) {
+    return createSherburneCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

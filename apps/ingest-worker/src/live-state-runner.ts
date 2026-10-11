@@ -97,6 +97,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "otter-tail",
       adapterKey: "otter-tail-county-mn-current-roster",
       sourceHost: "web1.co.ottertail.mn.us"
+    },
+    {
+      countySlug: "sherburne",
+      adapterKey: "sherburne-county-mn-current-roster",
+      sourceHost: "inmatelocatorext.co.sherburne.mn.us"
     }
   ],
   TX: [

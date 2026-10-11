@@ -1768,6 +1768,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/sherburne-county": {
+    facilityName: "Sherburne County Jail",
+    address: "13880 Business Center Drive, Elk River, MN 55330",
+    phone: "763-765-3800",
+    operatedBy: "Sherburne County Sheriff's Office",
+    reviewedAt: "October 11, 2026",
+    overview:
+      "The Sherburne County Jail in Elk River is a 732-bed regional jail. Besides people held by Sherburne County, it houses detainees for Immigration and Customs Enforcement, the U.S. Marshals, the Bureau of Indian Affairs, and other agencies, and holds more than 500 federal detainees on an average day. Call the jail at 763-765-3800.",
+    contactSourceLabel: "Official posting bail page",
+    contactSourceUrl: "https://www.co.sherburne.mn.us/906/Posting-Bail-Bond",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video and must be scheduled ahead through NCIC; walk-ins are not allowed. On-site video visits at Door I of the Sherburne County Government Center are free, one 30-minute visit a day, Monday to Friday at 8:30, 9:30, and 10:30 a.m., 12:30 p.m., and 3:30 p.m. Weekend and holiday times are currently unavailable. Bring a government photo ID, and leave phones, other electronics, and tobacco behind; no storage is provided. Remote visits cost $0.27 a minute, must be booked 24 hours ahead, and run 8:30 a.m. to 8:50 p.m., up to five a day.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.co.sherburne.mn.us/419/Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money goes on an inmate's account through Access Corrections: online, by phone at 866-345-1884, or with cash or a card at the kiosks in the jail lobby and the video visitation area. Each method charges a fee. Money orders and checks sent by mail are returned or placed in the inmate's property. The account pays for commissary items such as snacks, pop, haircuts, and stamps, and it is closed at release or transfer with a check or debit card issued to the inmate.",
+        sourceLabel: "Official inmate accounts page",
+        sourceUrl: "https://www.co.sherburne.mn.us/313/Inmate-Accounts"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates call out through NCIC prepaid accounts (account.ncic.com or 1-800-943-2189) at $0.16 a minute in the U.S.; they cannot receive calls. If an inmate has called you before, you can leave a voicemail at 800-943-2189 for $1.50. Mail must carry the inmate's name and SPN and your name and return address on the front. Each letter may hold up to five items, including at most four photos no larger than 4 by 6 inches, nothing larger than 8.5 by 11. Inmates receive copies, and originals are destroyed after 30 days. Do not send cash, checks, money orders, stamps, blank paper, books, newspapers, or magazines. NCIC messages cost $0.25, or $0.35 with a photo.",
+        sourceLabel: "Official phone and mail page",
+        sourceUrl: "https://www.co.sherburne.mn.us/314/Inmate-Phone-Email-Provider-Mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail can be paid 24 hours a day in the jail lobby at Door D. The Sheriff's Office takes only cash in the exact bail amount, with no checks or cards, and you must show a current government photo ID. To ask about bail by phone, call the jail at 763-765-3800 with the inmate's full name and date of birth ready.",
+        sourceLabel: "Official posting bail page",
+        sourceUrl: "https://www.co.sherburne.mn.us/906/Posting-Bail-Bond"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I post bail at the Sherburne County Jail?",
+        answer:
+          "Come to the jail lobby at Door D, open 24 hours, with cash in the exact amount and a current government photo ID. Checks and cards are not accepted. Call 763-765-3800 first to confirm the amount."
+      },
+      {
+        question: "When are on-site visits at the Sherburne County Jail?",
+        answer:
+          "Free 30-minute video visits are held Monday to Friday at 8:30, 9:30, and 10:30 a.m., 12:30 p.m., and 3:30 p.m., at Door I of the Government Center. Schedule through NCIC; walk-ins are not allowed."
+      },
+      {
+        question: "Can I mail money to an inmate in Sherburne County?",
+        answer:
+          "No. Money orders and checks sent by mail are returned or put in the inmate's property. Use Access Corrections online, by phone at 866-345-1884, or at the jail lobby kiosk."
+      },
+      {
+        question: "How do I find someone held by ICE at the Sherburne County Jail?",
+        answer:
+          "The jail houses ICE detainees. The Sheriff's Office points families to ICE's online detainee locator, which shows people currently in ICE custody and those released from it in the past 60 days."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

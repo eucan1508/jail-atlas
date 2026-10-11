@@ -225,6 +225,13 @@
       "when": 1792385600000,
       "tag": "0031_minnesota_otter_tail_source",
       "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1792472000000,
+      "tag": "0032_minnesota_sherburne_source",
+      "breakpoints": true
     }
   ]
 }

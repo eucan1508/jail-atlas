@@ -37,6 +37,7 @@ source-specific parser contract and a human review packet.
 | Crow Wing  | [Crow Wing County in-custody list](https://www.crowwing.gov/1747/In-Custody-List)                                                                   | Adapter tested; production approval pending      |
 | Renville   | [Renville County inmate list](https://www.renvillecountymn.gov/sheriff/divisions/jail/)                                                             | Adapter tested; production approval pending      |
 | Otter Tail | [Otter Tail County Jail In Custody List](https://ottertailcounty.gov/public-safety-law/detention/jail-in-custody-list/)                             | Adapter tested; production approval pending      |
+| Sherburne  | [Sherburne County Jail inmate search](https://www.co.sherburne.mn.us/903/Inmate-Search)                                                             | Adapter tested; production approval pending      |
 | TBD        | An additional official Minnesota county source will be selected after audit                                                                         | Intentionally unselected                         |
 
 ## Arkansas
