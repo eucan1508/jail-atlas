@@ -26,6 +26,8 @@ import {
   CROW_WING_COUNTY_ADAPTER_KEY,
   createRenvilleCountySourceAdapter,
   RENVILLE_COUNTY_ADAPTER_KEY,
+  createOtterTailCountySourceAdapter,
+  OTTER_TAIL_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createCerroGordoCountySourceAdapter,
@@ -138,9 +140,13 @@ export function createLiveSourceAdapter(
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
     userAgent: "JailAtlas/1.0 (+official-source-ingest)",
-    // The St. Louis County report is a ~50-page PDF of about 3 MB, and the Cerro Gordo County
-    // report grows by about 7 KB per person; every other source stays at the 1 MB default.
-    ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 6_000_000 } : {}),
+    // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
+    // report grows by about 7 KB per person, and the Otter Tail County list carries a ~30 KB
+    // photo per person; every other source stays at the 1 MB default.
+    ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY
+      ? { maxResponseBytes: 6_000_000 }
+      : {}),
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 3_000_000 } : {})
   });
 
@@ -186,6 +192,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CROW_WING_COUNTY_ADAPTER_KEY) {
     return createCrowWingCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY) {
+    return createOtterTailCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

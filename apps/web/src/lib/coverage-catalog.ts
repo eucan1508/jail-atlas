@@ -599,6 +599,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Otter Tail County",
+    slug: "otter-tail-county",
+    publishedAt: "2026-10-11",
+    seatCity: "Fergus Falls",
+    h1: "Otter Tail County Jail Roster & Inmate Search",
+    title: "Otter Tail County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Otter Tail County, Minnesota current-custody information for the jail in Fergus Falls from the official In Custody List, with booking numbers, statute codes, and capture time.",
+    article:
+      "Otter Tail County publishes a Jail In Custody List for its 111-bed jail in Fergus Falls and says the list is updated every two hours. This page keeps names, booking numbers, and each charge's statute code with the source's charge text, and leaves out photos, MNI numbers, ages, intake dates, bail figures, and projected release dates.",
+    officialSourceUrl: "https://web1.co.ottertail.mn.us/sheriff/report/custody%20list.rpt.pdf",
+    officialSourceLabel: "Otter Tail County Jail In Custody List",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

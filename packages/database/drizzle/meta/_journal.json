@@ -218,6 +218,13 @@
       "when": 1792299200000,
       "tag": "0030_oklahoma_seminole_source",
       "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1792385600000,
+      "tag": "0031_minnesota_otter_tail_source",
+      "breakpoints": true
     }
   ]
 }
