@@ -92,6 +92,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "renville",
       adapterKey: "renville-county-mn-current-roster",
       sourceHost: "custody.renvillecountymn.gov"
+    },
+    {
+      countySlug: "otter-tail",
+      adapterKey: "otter-tail-county-mn-current-roster",
+      sourceHost: "web1.co.ottertail.mn.us"
     }
   ],
   TX: [

@@ -1709,6 +1709,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/otter-tail-county": {
+    facilityName: "Otter Tail County Jail",
+    address: "416 South Mill Street, Fergus Falls, MN 56537",
+    phone: "218-998-8556",
+    operatedBy: "Otter Tail County Sheriff's Office",
+    reviewedAt: "October 11, 2026",
+    overview:
+      "The Otter Tail County Jail in Fergus Falls was built in 1987 and holds up to 111 people. Besides the county's own sentenced and unsentenced inmates, it houses people for other counties, the Department of Corrections, Immigration, and the U.S. Marshals. The jail's line is 218-998-8556; the Sheriff's Office is at 218-998-8555.",
+    contactSourceLabel: "Official county jail page",
+    contactSourceUrl: "https://ottertailcounty.gov/public-safety-law/detention/county-jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video and are scheduled through an NCIC account, which has to be approved before you can visit. On-site video visits at the jail are free: Wednesday and Thursday 2 to 4:30 p.m. and 6:30 to 10:30 p.m., and Saturday 9:30 to 11:30 a.m. and 2 to 4:30 p.m. Off-site video visits run daily from 8 to 11:30 a.m., 12:30 to 4:30 p.m., and 6:30 to 10:30 p.m.",
+        sourceLabel: "Official county jail page",
+        sourceUrl: "https://ottertailcounty.gov/public-safety-law/detention/county-jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Nothing may be brought in for an inmate. Canteen money buys snacks, pop, writing materials, and extra hygiene items from vending machines. Add it with cash or a card at the kiosk in the jail's public lobby, with a card online through Inmate Canteen, or by mailing a money order. People convicted of a crime are billed $20 a day for their stay after release and have 90 days to pay or set up payments.",
+        sourceLabel: "Official jail FAQ page",
+        sourceUrl: "https://ottertailcounty.gov/public-safety-law/detention/jail-faqs/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates use wall phones and tablets from NCIC; fund a prepaid account at 1-800-943-2189 or through NCIC. Since July 21, 2025, regular mail goes to a scanning center: Inmate Name and PIN#, Otter Tail County Jail, PO Box 591, Longview, Texas 75606. Include the inmate's name, jail or booking number, and your return address. Letters can be up to 5 pages, letter size, written on the front only, with one photo per mailing. Mail sent to Longview is scanned, then destroyed and never returned. Legal and medical mail, magazines, newspapers, and books go to the jail in Fergus Falls instead. NCIC messages cost $0.25, and photo messages $0.35.",
+        sourceLabel: "Official mail guidelines",
+        sourceUrl: "https://ottertailcounty.gov/wp-content/uploads/2018/07/New-Mail-Guidelines.pdf"
+      },
+      {
+        title: "Bail and court records",
+        body: "Within 48 hours of arrest, a judge sees the inmate or reviews the arrest at a first appearance hearing. These hearings are held at 11 a.m. on business days in the Courthouse and are open to the public. The judge can release the inmate, set bail or bond, or keep them in custody. Court Administration schedules first appearances, and you can call the jail at 218-998-8556 before 11 a.m. to ask whether the inmate is going to court that day.",
+        sourceLabel: "Official jail FAQ page",
+        sourceUrl: "https://ottertailcounty.gov/public-safety-law/detention/jail-faqs/"
+      }
+    ],
+    faq: [
+      {
+        question: "Where do I mail a letter to an Otter Tail County inmate?",
+        answer:
+          "Regular mail goes to Inmate Name and PIN#, Otter Tail County Jail, PO Box 591, Longview, Texas 75606, where it is scanned and delivered electronically. Legal and medical mail goes to the jail itself in Fergus Falls."
+      },
+      {
+        question: "When can I visit someone in the Otter Tail County Jail?",
+        answer:
+          "Free on-site video visits run Wednesday and Thursday 2 to 4:30 p.m. and 6:30 to 10:30 p.m., and Saturday 9:30 to 11:30 a.m. and 2 to 4:30 p.m. Off-site video visits run daily in three blocks between 8 a.m. and 10:30 p.m. Schedule either kind through NCIC."
+      },
+      {
+        question: "How do I put money on an inmate's canteen account in Otter Tail County?",
+        answer:
+          "Use the kiosk in the jail's public lobby (cash or card), pay online through Inmate Canteen, or mail a money order."
+      },
+      {
+        question: "When does a new arrestee see a judge in Otter Tail County?",
+        answer:
+          "Within 48 hours, at a first appearance hearing held at 11 a.m. on business days in the Courthouse. Call the jail at 218-998-8556 before 11 a.m. to ask whether the inmate is on that day's list."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",
