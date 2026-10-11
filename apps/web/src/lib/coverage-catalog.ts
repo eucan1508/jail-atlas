@@ -616,6 +616,25 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Sherburne County",
+    slug: "sherburne-county",
+    publishedAt: "2026-10-11",
+    seatCity: "Elk River",
+    h1: "Sherburne County Jail Roster & Inmate Search",
+    title: "Sherburne County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Sherburne County, Minnesota current-custody information for the jail in Elk River from the official inmate search, with booking numbers, statute codes, and capture time.",
+    article:
+      "The Sherburne County Sheriff's Office runs a 732-bed regional jail in Elk River that also holds people for ICE, the U.S. Marshals, and other agencies, and it publishes a search of everyone currently in custody. This page lists that search in full, with each booking number and the statute and description of every charge, and leaves out birth dates, SPN numbers, physical descriptions, bail figures, and court details.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl:
+      "https://inmatelocatorext.co.sherburne.mn.us/InmateLocatorAPI/api/Inmates/search",
+    officialSourceLabel: "Sherburne County Jail inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",
