@@ -185,6 +185,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "pawnee",
       adapterKey: "pawnee-county-ok-current-roster",
       sourceHost: "www.pawneecountysook.gov"
+    },
+    {
+      countySlug: "seminole",
+      adapterKey: "seminole-county-ok-current-roster",
+      sourceHost: "www.seminolecosheriff.com"
     }
   ]
 };
