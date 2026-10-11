@@ -211,6 +211,13 @@
       "when": 1792212800000,
       "tag": "0029_texas_burleson_source",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1792299200000,
+      "tag": "0030_oklahoma_seminole_source",
+      "breakpoints": true
     }
   ]
 }

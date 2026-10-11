@@ -1650,6 +1650,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/seminole-county": {
+    facilityName: "Seminole County Jail",
+    address: "211 E. 2nd Street, Wewoka, OK 74884",
+    phone: "405-257-5445",
+    operatedBy: "Seminole County Sheriff's Office",
+    reviewedAt: "October 11, 2026",
+    overview:
+      "The Seminole County Sheriff's Office runs the county jail from its office at 211 E. 2nd Street in Wewoka, which is also the jail's mailing address. The main number is 405-257-5445, and the contact page lists the jail at 405-257-6235.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.seminolecosheriff.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All personal visits go through NCIC Inmate Communication Systems. Create an NCIC account, select the Seminole County facility, then the inmate, and pick a date and time. The Sheriff's Office does not post visiting hours, so the open times are the ones NCIC shows when you book. Attorneys and counsel schedule their visits with the jail administrator.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.seminolecosheriff.com/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Benchmark Commissary Services, and orders must be in by 4 p.m. on Friday. Money goes on an inmate's account as an online deposit with a credit or debit card. Money orders are not accepted. Money left on the account at release goes only to the inmate; after a weekend release it can be picked up Tuesday to Friday, 8:30 a.m. to 4:30 p.m.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.seminolecosheriff.com/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, care of the Seminole County Sheriff's Office, 211 E. 2nd, Wewoka, OK 74884. Put your own first and last name and return address on every letter, or it will be sent back. All mail is opened and checked for contraband, and only items that can be scanned are processed. Do not send newspapers, magazines, Polaroids, more than 3 to 5 photos, pens, pencils, stamps, envelopes, blank paper, or musical cards. Inmates cannot write to other inmates. The Sheriff's Office does not post phone rules online, so call 405-257-5445.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.seminolecosheriff.com/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bond instructions online. Call 405-257-5445 for the bond on a booking and how to post it. Report requests go to the administrative assistant, by email or in person during business hours. Some reports can be emailed, some need a subpoena, and the first copy is free to victims.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.seminolecosheriff.com/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I schedule a visit at the Seminole County jail?",
+        answer:
+          "Make an account with NCIC Inmate Communication Systems, choose the Seminole County facility and the inmate, and book an open date and time. Attorneys schedule through the jail administrator instead."
+      },
+      {
+        question: "How do I address a letter to a Seminole County inmate?",
+        answer:
+          "Write the inmate's name, then c/o Seminole County Sheriff's Office, 211 E. 2nd, Wewoka, OK 74884. Your first and last name and return address must be on it, or it will be returned."
+      },
+      {
+        question: "Can I send a money order to an inmate in Seminole County?",
+        answer:
+          "No. The jail does not accept money orders. Add money online with a credit or debit card instead."
+      },
+      {
+        question: "When is the commissary order deadline in Seminole County?",
+        answer:
+          "Commissary orders through Benchmark Commissary Services must be placed by 4 p.m. on Friday."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",
