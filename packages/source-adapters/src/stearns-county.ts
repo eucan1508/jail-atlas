@@ -20,6 +20,10 @@ export const STEARNS_COUNTY_CURRENT_SOURCE_URL =
   "https://jailroster.stearnscountymn.gov/Current" as const;
 const MAX_PAGES = 20;
 const MAX_PAGE_BYTES = 3_000_000;
+// The default order is by name, and names tie, so pages can shift between requests. Booking time
+// rarely ties; a shifted crawl shows up as a repeated booking and is read again from page 1.
+const SORT_ORDER = "booking_desc";
+const MAX_CRAWL_ATTEMPTS = 3;
 
 const textValue = z.string().trim().min(1).max(250);
 const StearnsRecordSchema = z.object({
@@ -139,12 +143,27 @@ async function requestRoster(
   if (context.source.sourceUrl !== STEARNS_COUNTY_CURRENT_SOURCE_URL) {
     throw new Error("SOURCE_URL_MISMATCH");
   }
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      return await crawlRoster(options, context);
+    } catch (error) {
+      const shifted = error instanceof Error && error.message === "DUPLICATE_BOOKING_NUMBER";
+      if (!shifted || attempt >= MAX_CRAWL_ATTEMPTS) throw error;
+    }
+  }
+}
+
+async function crawlRoster(
+  options: StearnsRosterAdapterOptions,
+  context: AdapterContext
+): Promise<StearnsRoster> {
   const allRecords: StearnsRoster["records"] = [];
   let sourceLastUpdatedAt: string | null = null;
   let lastPage = 1;
   for (let page = 1; page <= lastPage; page += 1) {
     const url = new URL(STEARNS_COUNTY_CURRENT_SOURCE_URL);
     url.searchParams.set("page", String(page));
+    url.searchParams.set("sortOrder", SORT_ORDER);
     const response = await options.fetch(url.toString(), {
       method: "GET",
       redirect: "error",

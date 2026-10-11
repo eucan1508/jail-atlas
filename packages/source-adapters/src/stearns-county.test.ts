@@ -98,6 +98,42 @@ describe("Stearns County roster adapter", () => {
     expect(normalized.value.bookings[0]?.bondEntries).toEqual([]);
   });
 
+  it("requests the roster in booking order", async () => {
+    const urls: string[] = [];
+    await adapter(async (input) => {
+      urls.push(input);
+      return response(page(Number(new URL(input).searchParams.get("page") ?? "1")));
+    }).fetch(context);
+    expect(urls.map((url) => new URL(url).searchParams.get("sortOrder"))).toEqual([
+      "booking_desc",
+      "booking_desc"
+    ]);
+  });
+
+  it("reads the roster again when a booking repeats across pages", async () => {
+    let crawl = 0;
+    const result = await adapter(async (input) => {
+      const pageNumber = Number(new URL(input).searchParams.get("page") ?? "1");
+      if (pageNumber === 1) crawl += 1;
+      // On the first crawl, page 2 repeats page 1's booking, as a shifted roster does.
+      return response(page(crawl === 1 ? 1 : pageNumber));
+    }).fetch(context);
+    expect(crawl).toBe(2);
+    expect(result.ok).toBe(true);
+  });
+
+  it("fails closed when every crawl repeats a booking", async () => {
+    let crawl = 0;
+    const result = await adapter(async (input) => {
+      if (new URL(input).searchParams.get("page") === "1") crawl += 1;
+      return response(page(1));
+    }).fetch(context);
+    expect(crawl).toBe(3);
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toContain("DUPLICATE_BOOKING_NUMBER");
+  });
+
   it("rejects a non-Stearns source document", async () => {
     const result = await adapter(async () =>
       response("<html><title>Other county</title></html>")
