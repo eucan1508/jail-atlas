@@ -1827,6 +1827,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/kandiyohi-county": {
+    facilityName: "Kandiyohi County Jail",
+    address: "2201 23rd St. NE, Willmar, MN 56201",
+    phone: "320-214-6700",
+    operatedBy: "Kandiyohi County Sheriff's Office",
+    reviewedAt: "October 12, 2026",
+    overview:
+      "The Kandiyohi County Sheriff's Office runs the county jail at 2201 23rd St. NE in Willmar, which also houses ICE detainees for the St. Paul field office. The jail's main line is 320-214-6700; inmate information is extension 3600, and programs staff are at extensions 3616, 3665, and 3633.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.kcmn.us/departments/sheriff/departments/jail.php",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Family and friends visit by video after registering at team3.inmatecanteen.com with an email address and ID number; visitors must be 18 or older, and anyone on probation needs written approval from their probation officer. Visits run daily, including weekends and holidays, from 8 a.m. to 9 p.m., except 11 a.m. to 12:30 p.m. and 4:30 to 6:30 p.m. Each inmate gets 30 minutes every 8 hours. From home it costs $0.39 a minute; at the stations in the jail lobby it is free, but there are no lobby visits after 4:30 p.m. on Fridays. ICE detainees and state prison inmates can also have at least one-hour, behind-the-glass visits on Saturdays and Sundays, one a day, with ID.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kcmn.us/departments/sheriff/departments/jail.php"
+      },
+      {
+        title: "Money and commissary",
+        body: "Bring cash to the money kiosk at the jail entrance; it takes bills only, no coins, and the deposit reaches the inmate's account right away. Money can also be added online at inmatecanteen.com. Do not choose the Communications Account if the money is meant for the inmate's own account. Inmates can buy phone cards through the canteen.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kcmn.us/departments/sheriff/departments/jail.php"
+      },
+      {
+        title: "Phone and mail",
+        body: "The jail does not take phone calls for inmates and relays only emergency messages, at 320-214-6700 ext. 3600. To receive calls, set up a prepaid account with Securus at 1-800-844-6591, or buy prepaid phone cards from Securus or Inmate Canteen. Inmates can also send a limited number of text messages and receive non-confidential messages on tablets through Securus. The mail rules the jail posts are written for ICE detainees: include the last four digits of the detainee's A-number and your name and address, and do not mail cash. All incoming mail is opened and inspected for contraband.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kcmn.us/departments/sheriff/departments/jail.php"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bail steps for county inmates online, so call the jail at 320-214-6700. For ICE detainees, delivery bonds are posted at ICE bond acceptance offices, Monday to Friday from 9 a.m. to 3 p.m., by money order, cashier's check, or certified check; bonds of $10,000 or more need a single cashier's or certified check payable to the U.S. Department of Homeland Security or Immigration and Customs Enforcement.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kcmn.us/departments/sheriff/departments/jail.php"
+      }
+    ],
+    faq: [
+      {
+        question: "When are video visits at the Kandiyohi County Jail?",
+        answer:
+          "Every day from 8 a.m. to 9 p.m., except 11 a.m. to 12:30 p.m. and 4:30 to 6:30 p.m. Register first at team3.inmatecanteen.com. Lobby visits are free; visits from home cost $0.39 a minute."
+      },
+      {
+        question: "How do I put money on a Kandiyohi County inmate's account?",
+        answer:
+          "Use the bills-only kiosk at the jail entrance in Willmar, or deposit online at inmatecanteen.com. Avoid the Communications Account if the money should go to the inmate."
+      },
+      {
+        question: "Can I call an inmate at the Kandiyohi County Jail?",
+        answer:
+          "No. The jail does not take calls for inmates and passes on emergency messages only, at 320-214-6700 ext. 3600. Fund a Securus prepaid account (1-800-844-6591) so the inmate can call you."
+      },
+      {
+        question: "Does the Kandiyohi County Jail hold ICE detainees?",
+        answer:
+          "Yes. The jail houses ICE detainees for the St. Paul field office. For an ICE detainee's case, ICE asks callers to use (612) 843-8600 with the person's full name, date of birth, and country of birth ready."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

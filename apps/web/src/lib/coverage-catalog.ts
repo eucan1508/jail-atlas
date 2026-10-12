@@ -635,6 +635,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Kandiyohi County",
+    slug: "kandiyohi-county",
+    publishedAt: "2026-10-12",
+    seatCity: "Willmar",
+    h1: "Kandiyohi County Jail Roster & Inmate Search",
+    title: "Kandiyohi County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Kandiyohi County, Minnesota current-custody information for the jail in Willmar from the official In Custody List, with booking numbers, statute codes, and capture time.",
+    article:
+      "The Kandiyohi County Sheriff's Office publishes an In Custody List for its jail in Willmar, which also holds ICE detainees. This page keeps names, booking numbers, and each charge's statute code with the source's charge text, and leaves out photos, MNI numbers, ages, intake dates, case status, and bail figures.",
+    officialSourceUrl: "https://www2.kcmn.us/LETG/custody/custody.html",
+    officialSourceLabel: "Kandiyohi County Jail In Custody List",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Ramsey County",
     slug: "ramsey-county",
     publishedAt: "2026-09-26",

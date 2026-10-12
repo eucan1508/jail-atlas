@@ -19,6 +19,7 @@ const liveCountyKeys = [
   "minnesota/renville-county",
   "minnesota/otter-tail-county",
   "minnesota/sherburne-county",
+  "minnesota/kandiyohi-county",
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county",

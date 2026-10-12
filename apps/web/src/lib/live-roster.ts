@@ -37,6 +37,7 @@ const liveAdapterKeys: Record<string, string> = {
   "renville-county": "renville-county-mn-current-roster",
   "otter-tail-county": "otter-tail-county-mn-current-roster",
   "sherburne-county": "sherburne-county-mn-current-roster",
+  "kandiyohi-county": "kandiyohi-county-mn-current-roster",
   "milam-county": "milam-county-tx-current-roster",
   "hutchinson-county": "hutchinson-county-tx-current-roster",
   "kendall-county": "kendall-county-tx-current-roster",

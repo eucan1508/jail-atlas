@@ -232,6 +232,13 @@
       "when": 1792472000000,
       "tag": "0032_minnesota_sherburne_source",
       "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1792558400000,
+      "tag": "0033_minnesota_kandiyohi_source",
+      "breakpoints": true
     }
   ]
 }

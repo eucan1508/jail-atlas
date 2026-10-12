@@ -102,6 +102,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "sherburne",
       adapterKey: "sherburne-county-mn-current-roster",
       sourceHost: "inmatelocatorext.co.sherburne.mn.us"
+    },
+    {
+      countySlug: "kandiyohi",
+      adapterKey: "kandiyohi-county-mn-current-roster",
+      sourceHost: "www2.kcmn.us"
     }
   ],
   TX: [

@@ -30,6 +30,8 @@ import {
   OTTER_TAIL_COUNTY_ADAPTER_KEY,
   createSherburneCountySourceAdapter,
   SHERBURNE_COUNTY_ADAPTER_KEY,
+  createKandiyohiCountySourceAdapter,
+  KANDIYOHI_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createCerroGordoCountySourceAdapter,
@@ -196,6 +198,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CROW_WING_COUNTY_ADAPTER_KEY) {
     return createCrowWingCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === KANDIYOHI_COUNTY_ADAPTER_KEY) {
+    return createKandiyohiCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
