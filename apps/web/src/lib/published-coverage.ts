@@ -1,6 +1,6 @@
 import "server-only";
 
-import { getLiveCountySource } from "./live-roster";
+import { getCountyRosterStatus, getLiveCountySource } from "./live-roster";
 import {
   countyCoverageCatalog,
   countyCoveragePath,
@@ -37,4 +37,21 @@ export async function getPublishedCountyCoverage(
   );
 
   return results.filter((result): result is PublishedCountyCoverage => result !== null);
+}
+
+/**
+ * Counties whose pages stay public: live ones and approved ones paused because their latest
+ * snapshot is too old. A paused page keeps its guide and drops only the roster.
+ */
+export async function getIndexedCountyCoverage(): Promise<readonly CountyCoverageBrief[]> {
+  const results = await Promise.all(
+    countyCoverageCatalog.map(async (entry) => {
+      try {
+        return (await getCountyRosterStatus(entry)) ? entry : null;
+      } catch {
+        return null;
+      }
+    })
+  );
+  return results.filter((entry): entry is CountyCoverageBrief => entry !== null);
 }
