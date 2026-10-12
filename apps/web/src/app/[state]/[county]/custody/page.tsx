@@ -14,6 +14,7 @@ import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { readEnvironment } from "@/lib/env";
 import { findCountyGuide, type CountyGuideProfile } from "@/lib/county-guides";
 import { countyAnswerSummary, reviewedDateIso } from "@/lib/county-summary";
+import { countySearchDescription, countySearchTitle } from "@/lib/county-search-snippet";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
 import { getCountyRosterStatus, getLiveRosterPage } from "@/lib/live-roster";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
@@ -71,15 +72,20 @@ export async function generateMetadata({
   if (!entry) return { title: "County custody information" };
   const rosterStatus =
     readEnvironment().DATA_MODE === "official" ? await getCountyRosterStatus(entry) : null;
+  const title = countySearchTitle(entry);
   const metadata = createPageMetadata({
     path: countyCoveragePath(entry),
-    title: entry.title,
-    description: entry.description,
+    title,
+    description: countySearchDescription({
+      entry,
+      profile: findCountyGuide(entry.state, entry.slug),
+      recordCount: rosterStatus?.kind === "live" ? rosterStatus.source.recordCount : null
+    }),
     index: rosterStatus !== null
   });
   // County pages use a complete, search-focused title. Use an absolute title
   // here so the root layout's generic site-name suffix is not duplicated.
-  return { ...metadata, title: { absolute: entry.title } };
+  return { ...metadata, title: { absolute: title } };
 }
 
 export default async function CountyCustodyBriefPage({
