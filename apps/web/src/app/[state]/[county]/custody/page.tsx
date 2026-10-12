@@ -15,7 +15,7 @@ import { readEnvironment } from "@/lib/env";
 import { findCountyGuide, type CountyGuideProfile } from "@/lib/county-guides";
 import { countyAnswerSummary, reviewedDateIso } from "@/lib/county-summary";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
-import { getLiveCountySource, getLiveRosterPage } from "@/lib/live-roster";
+import { getCountyRosterStatus, getLiveRosterPage } from "@/lib/live-roster";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
 type CountyPageParams = { state: string; county: string };
@@ -69,13 +69,13 @@ export async function generateMetadata({
   const { state, county } = await params;
   const entry = findCountyCoverage(state, county);
   if (!entry) return { title: "County custody information" };
-  const liveSource =
-    readEnvironment().DATA_MODE === "official" ? await getLiveCountySource(entry) : null;
+  const rosterStatus =
+    readEnvironment().DATA_MODE === "official" ? await getCountyRosterStatus(entry) : null;
   const metadata = createPageMetadata({
     path: countyCoveragePath(entry),
     title: entry.title,
     description: entry.description,
-    index: liveSource !== null
+    index: rosterStatus !== null
   });
   // County pages use a complete, search-focused title. Use an absolute title
   // here so the root layout's generic site-name suffix is not duplicated.
@@ -91,11 +91,66 @@ export default async function CountyCustodyBriefPage({
   const entry = findCountyCoverage(state, county);
   if (!entry) notFound();
 
-  const liveSource =
-    readEnvironment().DATA_MODE === "official" ? await getLiveCountySource(entry) : null;
-  if (!liveSource && !coveragePreviewAllowed()) notFound();
+  const rosterStatus =
+    readEnvironment().DATA_MODE === "official" ? await getCountyRosterStatus(entry) : null;
+  const liveSource = rosterStatus?.kind === "live" ? rosterStatus.source : null;
+  if (!rosterStatus && !coveragePreviewAllowed()) notFound();
 
   const path = countyCoveragePath(entry);
+  const pausedProfile =
+    rosterStatus?.kind === "paused" ? findCountyGuide(entry.state, entry.slug) : undefined;
+  if (rosterStatus?.kind === "paused" && pausedProfile) {
+    const stateCoverage = await getPublishedCountyCoverage(entry.state);
+    return (
+      <main id="main-content" className="page-main site-shell county-page county-page--live">
+        <Breadcrumbs
+          currentPath={path}
+          items={[
+            { href: "/", label: "Home" },
+            { href: "/coverage/", label: "Coverage" },
+            { href: `/coverage/${entry.state}/`, label: entry.stateName },
+            { label: entry.county }
+          ]}
+        />
+        <header className="county-live-header">
+          <div className="county-live-header__copy">
+            <p className="eyebrow">
+              {entry.stateName} · {entry.county}
+            </p>
+            <h1>{entry.h1}</h1>
+            <p>{entry.description}</p>
+          </div>
+        </header>
+        <section className="content-section roster-section" aria-labelledby="roster-heading">
+          <h2 id="roster-heading">Who is currently held at {pausedProfile.facilityName}?</h2>
+          <Alert heading="Roster temporarily unavailable" tone="warning">
+            The official {entry.county} roster could not be refreshed recently, so JailAtlas is not
+            showing the last list it captured. It returns here after the next successful refresh. To
+            confirm whether someone is held now, call {pausedProfile.facilityName} at{" "}
+            {pausedProfile.phone}.
+          </Alert>
+        </section>
+        <CountyGuide
+          capturedAt={null}
+          entry={entry}
+          recordCount={null}
+          related={stateCoverage.filter(({ entry: county }) => county.slug !== entry.slug)}
+          rosterPaused
+        />
+        <JsonLd
+          data={countyArticle({
+            entry,
+            path,
+            profile: pausedProfile,
+            summary: null,
+            capturedAt: null
+          })}
+        />
+      </main>
+    );
+  }
+  // Every published county has a guide; without one a paused page would have nothing to show.
+  if (rosterStatus?.kind === "paused") notFound();
   if (liveSource) {
     const [initialPage, stateCoverage] = await Promise.all([
       getLiveRosterPage({

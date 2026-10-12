@@ -106,10 +106,25 @@ function getDatabase() {
   return databaseHandle.db;
 }
 
+/**
+ * An approved county is "live" while its latest snapshot is fresh and "paused" once that snapshot
+ * is too old to show. A paused county keeps its page and guide but never shows the old roster.
+ */
+export type CountyRosterStatus =
+  { kind: "live"; source: LiveSource } | { kind: "paused"; lastCapturedAt: Date };
+
 async function readSource(
   db: Pick<Database, "execute">,
   selector: { sourceId: string } | { adapterKey: string }
 ): Promise<LiveSource | null> {
+  const status = await readSourceStatus(db, selector);
+  return status?.kind === "live" ? status.source : null;
+}
+
+async function readSourceStatus(
+  db: Pick<Database, "execute">,
+  selector: { sourceId: string } | { adapterKey: string }
+): Promise<CountyRosterStatus | null> {
   const result = await db.execute(sql`
     SELECT os.id AS source_id, st.code AS state_code, os.source_url, os.adapter_key,
       latest.id AS snapshot_id, latest.captured_at, latest.record_count,
@@ -153,30 +168,43 @@ async function readSource(
   const entry = countyCoverageCatalog.find(
     (county) => county.state === expectedState && liveAdapterKeys[county.slug] === row.adapter_key
   );
-  const age = Date.now() - row.captured_at.getTime();
   if (
     !entry ||
     entry.officialSourceUrl !== row.source_url ||
-    row.stale ||
-    age < 0 ||
-    age > maximumSnapshotAgeMs ||
-    (row.expires_at !== null && row.expires_at.getTime() <= Date.now()) ||
     (row.record_count === 0) !== row.valid_empty_result
   )
     return null;
+  const age = Date.now() - row.captured_at.getTime();
+  if (
+    row.stale ||
+    age < 0 ||
+    age > maximumSnapshotAgeMs ||
+    (row.expires_at !== null && row.expires_at.getTime() <= Date.now())
+  )
+    return { kind: "paused", lastCapturedAt: row.captured_at };
   return {
-    sourceId: row.source_id,
-    sourceUrl: row.source_url,
-    snapshotId: row.snapshot_id,
-    capturedAt: row.captured_at,
-    recordCount: row.record_count
+    kind: "live",
+    source: {
+      sourceId: row.source_id,
+      sourceUrl: row.source_url,
+      snapshotId: row.snapshot_id,
+      capturedAt: row.captured_at,
+      recordCount: row.record_count
+    }
   };
 }
 
 export async function getLiveCountySource(entry: CountyCoverageBrief): Promise<LiveSource | null> {
+  const status = await getCountyRosterStatus(entry);
+  return status?.kind === "live" ? status.source : null;
+}
+
+export async function getCountyRosterStatus(
+  entry: CountyCoverageBrief
+): Promise<CountyRosterStatus | null> {
   if (readEnvironment().DATA_MODE !== "official" || !process.env.DATABASE_URL) return null;
   const adapterKey = liveAdapterKeys[entry.slug];
-  return adapterKey ? readSource(getDatabase(), { adapterKey }) : null;
+  return adapterKey ? readSourceStatus(getDatabase(), { adapterKey }) : null;
 }
 
 export async function getLiveRosterPage({

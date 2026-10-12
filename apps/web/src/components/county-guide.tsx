@@ -12,14 +12,17 @@ function countyFaqItems(
   facility: string,
   operatedBy: string,
   phone: string,
-  rosterPublished: boolean
+  rosterPublished: boolean,
+  rosterPaused: boolean
 ): readonly FaqItem[] {
   return [
     {
       question: `How do I find out if someone is in ${facility}?`,
       answer: rosterPublished
         ? `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
-        : `The current-custody search is not published yet. Contact ${facility} at ${phone} until the source audit is complete.`
+        : rosterPaused
+          ? `The current-custody list is not shown right now because the official roster could not be refreshed recently. Call ${facility} at ${phone} to confirm whether someone is held there.`
+          : `The current-custody search is not published yet. Contact ${facility} at ${phone} until the source audit is complete.`
     },
     {
       question: `Who operates ${facility}?`,
@@ -34,7 +37,9 @@ function countyFaqItems(
       question: `How current is the ${entry.county} roster?`,
       answer: rosterPublished
         ? "The page shows the latest successful capture time above the roster. Booking, transfer, release, and charge information can change, so confirm urgent details with the responsible official institution."
-        : "JailAtlas has not published a current roster snapshot for this county yet. Confirm urgent details with the responsible institution."
+        : rosterPaused
+          ? "JailAtlas does not show a roster once it is too old to rely on. The list returns here after the next successful refresh from the official source; until then, confirm urgent details with the facility."
+          : "JailAtlas has not published a current roster snapshot for this county yet. Confirm urgent details with the responsible institution."
     },
     {
       question: `How do I correct information shown for ${entry.county}?`,
@@ -103,12 +108,14 @@ export function CountyGuide({
   entry,
   capturedAt,
   recordCount,
-  related
+  related,
+  rosterPaused = false
 }: {
   entry: CountyCoverageBrief;
   capturedAt: Date | null;
   recordCount: number | null;
   related: readonly PublishedCountyCoverage[];
+  rosterPaused?: boolean;
 }) {
   const profile = findCountyGuide(entry.state, entry.slug);
   if (!profile) {
@@ -118,7 +125,14 @@ export function CountyGuide({
   const rosterPublished = capturedAt !== null && recordCount !== null;
   const faqItems = [
     ...profile.faq,
-    ...countyFaqItems(entry, facility, profile.operatedBy, profile.phone, rosterPublished)
+    ...countyFaqItems(
+      entry,
+      facility,
+      profile.operatedBy,
+      profile.phone,
+      rosterPublished,
+      rosterPaused
+    )
   ];
   const capturedLabel = capturedAt?.toLocaleString("en-US", {
     timeZone: "America/Chicago",
@@ -171,6 +185,8 @@ export function CountyGuide({
                     {recordCount} on the official roster · captured{" "}
                     <time dateTime={capturedAt.toISOString()}>{capturedLabel}</time>
                   </>
+                ) : rosterPaused ? (
+                  "Roster temporarily unavailable · waiting for the next official refresh"
                 ) : (
                   "Verified facility guidance available · roster publication pending"
                 )}
