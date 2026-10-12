@@ -56,6 +56,20 @@ export default function MethodologyPage() {
             "A reviewer confirms the source relationship, source health, parser fixtures, empty and failure states, field provenance, contact evidence, custody and retention scope, county-specific usefulness, accessibility checks, and correction path. The review record identifies the decision and time without inventing a public staff identity.",
             "Automation can fetch, validate, parse, normalize, compare timestamps, and raise health alerts. It cannot approve a county, infer absent legal meaning, certify a contact, or replace the recorded human publication decision."
           ]
+        },
+        {
+          heading: "6. How to read a county roster page",
+          paragraphs: [
+            "The search on a county page covers the whole current snapshot, not only the rows on screen. Names appear as the official source publishes them; where the source gives a booking number, use it to tell similar names apart. A name that does not appear may mean the person is not in that snapshot, is recorded under a different spelling, or was booked after the capture time shown on the page.",
+            "A jail roster is a custody record, not a court docket or proof of guilt. Charges keep the source's own wording and labels and are never turned into an outcome. For filings, hearings, dispositions, and current bail decisions, use the court that handles the case.",
+            "To report a display or source problem, use the corrections page. Changes to the official record itself have to go to the agency that publishes the roster."
+          ],
+          bullets: [
+            "Visits: confirm the day, time, ID, age, and dress rules with the facility before traveling.",
+            "Money: send funds only by a method the county publishes, and check fees and limits first.",
+            "Mail and phone: check the required identifier, prohibited items, and provider rates.",
+            "Bail: confirm the amount, accepted payment, and where to pay before going to the jail."
+          ]
         }
       ]}
     />
