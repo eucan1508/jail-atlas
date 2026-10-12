@@ -2,105 +2,48 @@ import Link from "next/link";
 import { FaqList, type FaqItem } from "./faq-list";
 import { JsonLd } from "./json-ld";
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
-import { findCountyGuide } from "@/lib/county-guides";
+import { findCountyGuide, type CountyGuideProfile } from "@/lib/county-guides";
 import { guidanceQuestion, reviewedDateIso } from "@/lib/county-summary";
 import type { PublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl } from "@/lib/site";
 
-function countyFaqItems(
-  entry: CountyCoverageBrief,
-  facility: string,
-  operatedBy: string,
-  phone: string,
-  rosterPublished: boolean,
-  rosterPaused: boolean
-): readonly FaqItem[] {
+function countyFaqItems({
+  entry,
+  profile,
+  recordCount,
+  capturedLabel,
+  rosterPaused
+}: {
+  entry: CountyCoverageBrief;
+  profile: CountyGuideProfile;
+  recordCount: number | null;
+  capturedLabel: string | undefined;
+  rosterPaused: boolean;
+}): readonly FaqItem[] {
+  const facility = profile.facilityName;
+  const listed =
+    recordCount === null ? null : `${recordCount} ${recordCount === 1 ? "person" : "people"}`;
   return [
     {
       question: `How do I find out if someone is in ${facility}?`,
-      answer: rosterPublished
-        ? `Use the current-custody search at the top of this page. Search by name and review the latest successful capture time before relying on a result.`
-        : rosterPaused
-          ? `The current-custody list is not shown right now because the official roster could not be refreshed recently. Call ${facility} at ${phone} to confirm whether someone is held there.`
-          : `The current-custody search is not published yet. Contact ${facility} at ${phone} until the source audit is complete.`
-    },
-    {
-      question: `Who operates ${facility}?`,
-      answer: `${facility} is operated by ${operatedBy}. For current facility procedures, call ${phone}.`
-    },
-    {
-      question: `Is the ${entry.county} jail roster a court record?`,
       answer:
-        "No. A jail roster is a custody record, not a court docket or proof of guilt. Use the appropriate court for filings, hearings, dispositions, judgments, and current bail decisions."
+        listed && capturedLabel
+          ? `Search the ${listed} on the ${entry.officialSourceLabel} at the top of this page, captured ${capturedLabel}. Anyone booked after that time will not appear yet, so call ${facility} at ${profile.phone} if the person is not listed.`
+          : rosterPaused
+            ? `The ${entry.officialSourceLabel} is not shown right now because it could not be refreshed recently. Call ${facility} at ${profile.phone} to confirm whether someone is held there.`
+            : `The ${entry.officialSourceLabel} is not published on this page yet. Call ${facility} at ${profile.phone} to confirm whether someone is held there.`
+    },
+    {
+      question: `Who runs ${facility}?`,
+      answer: `${facility}, at ${profile.address}, is run by the ${profile.operatedBy}. Call ${profile.phone} for current procedures.`
     },
     {
       question: `How current is the ${entry.county} roster?`,
-      answer: rosterPublished
-        ? "The page shows the latest successful capture time above the roster. Booking, transfer, release, and charge information can change, so confirm urgent details with the responsible official institution."
-        : rosterPaused
-          ? "JailAtlas does not show a roster once it is too old to rely on. The list returns here after the next successful refresh from the official source; until then, confirm urgent details with the facility."
-          : "JailAtlas has not published a current roster snapshot for this county yet. Confirm urgent details with the responsible institution."
-    },
-    {
-      question: `How do I correct information shown for ${entry.county}?`,
       answer:
-        "Use the JailAtlas correction process for display or source concerns. For changes to the underlying official record, contact the agency that publishes the roster."
+        listed && capturedLabel
+          ? `JailAtlas reads the ${entry.officialSourceLabel} twice a day. The copy on this page was captured ${capturedLabel} and lists ${listed}.`
+          : `JailAtlas reads the ${entry.officialSourceLabel} twice a day and shows it here only while the latest copy is fresh. The list returns after the next successful refresh.`
     }
-  ];
-}
-
-function guidanceChecklist(title: string): readonly string[] {
-  const normalizedTitle = title.toLocaleLowerCase("en-US");
-
-  if (normalizedTitle.includes("visit")) {
-    return [
-      "Confirm the current day and time before traveling.",
-      "Check identification, approval, age, dress, and arrival rules.",
-      "Use the official scheduling service when an appointment is required."
-    ];
-  }
-
-  if (
-    normalizedTitle.includes("money") ||
-    normalizedTitle.includes("commissary") ||
-    normalizedTitle.includes("canteen")
-  ) {
-    return [
-      "Match the recipient's full name and booking identifier.",
-      "Use only the deposit method published by the county.",
-      "Review transaction fees, limits, delivery time, and refund rules."
-    ];
-  }
-
-  if (
-    normalizedTitle.includes("mail") ||
-    normalizedTitle.includes("phone") ||
-    normalizedTitle.includes("communication") ||
-    normalizedTitle.includes("message")
-  ) {
-    return [
-      "Verify the current mailing format and required booking identifier.",
-      "Review prohibited-item, photo, publication, and package rules.",
-      "Confirm provider registration, rates, and service availability."
-    ];
-  }
-
-  if (
-    normalizedTitle.includes("bail") ||
-    normalizedTitle.includes("bond") ||
-    normalizedTitle.includes("court")
-  ) {
-    return [
-      "Confirm the case number, current amount, and bond type.",
-      "Ask which payment methods and locations are currently accepted.",
-      "Use the court for hearings, filings, dispositions, and legal status."
-    ];
-  }
-
-  return [
-    "Confirm the procedure with the responsible facility.",
-    "Ask the facility for the latest instructions.",
-    "Keep the person's booking identifier available when contacting the agency."
   ];
 }
 
@@ -123,21 +66,21 @@ export function CountyGuide({
   }
   const facility = profile.facilityName;
   const rosterPublished = capturedAt !== null && recordCount !== null;
-  const faqItems = [
-    ...profile.faq,
-    ...countyFaqItems(
-      entry,
-      facility,
-      profile.operatedBy,
-      profile.phone,
-      rosterPublished,
-      rosterPaused
-    )
-  ];
   const capturedLabel = capturedAt?.toLocaleString("en-US", {
     timeZone: "America/Chicago",
     timeZoneName: "short"
   });
+  const faqItems = [
+    ...profile.faq,
+    ...countyFaqItems({
+      entry,
+      profile,
+      recordCount: rosterPublished ? recordCount : null,
+      capturedLabel: rosterPublished ? capturedLabel : undefined,
+      rosterPaused
+    })
+  ];
+  const guidanceSources = [...new Set(profile.sections.map((section) => section.sourceLabel))];
   const pagePath = `/${entry.state}/${entry.slug}/custody/`;
   const reviewedIso = reviewedDateIso(profile.reviewedAt);
 
@@ -206,32 +149,6 @@ export function CountyGuide({
         </table>
       </section>
 
-      {rosterPublished ? (
-        <section
-          className="content-section county-guide__panel county-guide__search"
-          aria-labelledby="search-guide-heading"
-        >
-          <div className="section-heading-row">
-            <div>
-              <p className="eyebrow">Using this page</p>
-              <h2 id="search-guide-heading">How does the {entry.county} inmate search work?</h2>
-            </div>
-          </div>
-          <div className="county-guide__split">
-            <p>
-              The roster above searches the complete current snapshot, not only the records visible
-              on screen. Search names as published by the official source and use the booking number
-              to distinguish similar names when that identifier is available.
-            </p>
-            <p>
-              JailAtlas preserves source labels and does not turn a listed charge into a court
-              outcome. A missing result can mean the person is not in the current snapshot, the name
-              is recorded differently, or the official source has changed since the last capture.
-            </p>
-          </div>
-        </section>
-      ) : null}
-
       <section
         className="content-section county-guide__panel county-guide__guidance"
         aria-labelledby="local-guidance-heading"
@@ -243,8 +160,8 @@ export function CountyGuide({
               How do you visit, call, or send money to someone at {facility}?
             </h2>
             <p className="section-lede">
-              Procedures vary by facility. JailAtlas publishes a local instruction only after it is
-              confirmed on an official page.
+              From the {profile.operatedBy}: {guidanceSources.join("; ")}. Checked{" "}
+              {profile.reviewedAt}.
             </p>
           </div>
         </div>
@@ -256,14 +173,6 @@ export function CountyGuide({
                 <h3>{guidanceQuestion(section.title, facility)}</h3>
               </header>
               <p className="guidance-card__body">{section.body}</p>
-              <div className="guidance-card__checklist">
-                <h4>Before you use this information</h4>
-                <ul>
-                  {guidanceChecklist(section.title).map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
               <p className="guidance-source">Source: {section.sourceLabel}</p>
             </article>
           ))}
@@ -312,6 +221,7 @@ export function CountyGuide({
         <FaqList items={faqItems} />
         <p className="faq-correction-link">
           See something that needs attention? <Link href="/corrections/">Report a concern</Link>.
+          How these rosters are read and checked: <Link href="/methodology/">methodology</Link>.
         </p>
       </section>
 
