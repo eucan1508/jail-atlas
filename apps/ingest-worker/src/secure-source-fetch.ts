@@ -11,8 +11,12 @@ const SecureSourceFetchOptionsSchema = z.object({
   allowedPathPrefixes: z.array(z.string().startsWith("/").min(1)).min(1),
   userAgent: z.string().trim().min(8).max(300),
   timeoutMs: z.number().int().min(1_000).max(60_000).default(15_000),
-  maxResponseBytes: z.number().int().min(16_384).max(8_000_000).default(1_000_000)
+  maxResponseBytes: z.number().int().min(16_384).max(8_000_000).default(1_000_000),
+  allowFormPost: z.boolean().default(false)
 });
+
+// ASP.NET rosters page through form posts that carry the page's view state back to the server.
+const MAX_FORM_BODY_BYTES = 262_144;
 
 export class SecureSourceFetchError extends Error {
   readonly code:
@@ -38,6 +42,8 @@ export interface ConnectionBoundSourceFetchOptions {
   readonly userAgent: string;
   readonly timeoutMs?: number;
   readonly maxResponseBytes?: number;
+  /** Lets an adapter send URL-encoded form posts to the approved paths; GET-only otherwise. */
+  readonly allowFormPost?: boolean;
   readonly dnsLookup?: DnsLookup;
   readonly request?: typeof defaultHttpsRequest;
 }
@@ -150,7 +156,13 @@ export function createConnectionBoundSourceFetch(
 
   return async (input, init = {}): Promise<Response> => {
     const method = (init.method ?? "GET").toUpperCase();
-    if (method !== "GET" || init.body !== undefined) {
+    let formBody: Buffer | undefined;
+    if (method === "POST" && options.allowFormPost && init.body instanceof URLSearchParams) {
+      formBody = Buffer.from(init.body.toString());
+      if (formBody.byteLength > MAX_FORM_BODY_BYTES) {
+        throw new SecureSourceFetchError("METHOD_FORBIDDEN", "The form post body is too large");
+      }
+    } else if (method !== "GET" || init.body !== undefined) {
       throw new SecureSourceFetchError("METHOD_FORBIDDEN", "Source transport permits GET only");
     }
     if (init.redirect !== undefined && init.redirect !== "error") {
@@ -193,14 +205,20 @@ export function createConnectionBoundSourceFetch(
         );
       };
       const requestOptions: RequestOptions = {
-        method: "GET",
+        method: formBody ? "POST" : "GET",
         lookup,
         signal: init.signal ?? undefined,
         headers: {
           accept: requestedAccept(init),
           "accept-encoding": "identity",
           "cache-control": "no-cache",
-          "user-agent": options.userAgent
+          "user-agent": options.userAgent,
+          ...(formBody
+            ? {
+                "content-type": "application/x-www-form-urlencoded",
+                "content-length": String(formBody.byteLength)
+              }
+            : {})
         }
       };
       const request = httpsRequest(validated.url, requestOptions, (incoming) => {
@@ -320,7 +338,7 @@ export function createConnectionBoundSourceFetch(
         request.destroy();
         fail(new SecureSourceFetchError("TIMEOUT", "The source request exceeded its total time"));
       }, options.timeoutMs);
-      request.end();
+      request.end(formBody);
     });
   };
 }

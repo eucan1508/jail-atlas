@@ -406,6 +406,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Sharp County",
+    slug: "sharp-county",
+    publishedAt: "2026-10-14",
+    seatCity: "Ash Flat",
+    h1: "Sharp County Jail Roster & Inmate Search",
+    title: "Sharp County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Sharp County, Arkansas current-inmate information from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Sharp County Sheriff's Office posts the jail roster for its detention center in Ash Flat on its Inmate Roster page. This page reads every current inmate on that roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/sharpcoroster/",
+    officialSourceLabel: "Sharp County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "oklahoma",
     stateName: "Oklahoma",
     county: "Wagoner County",

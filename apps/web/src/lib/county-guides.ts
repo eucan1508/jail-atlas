@@ -2180,6 +2180,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           "Only for a short time. The Cleburne County Detention Center holds men long term; women held long term are housed at the White County Jail in Searcy."
       }
     ]
+  },
+  "arkansas/sharp-county": {
+    facilityName: "Sharp County Detention Center",
+    address: "84 Arnhart Street, Ash Flat, AR 72513",
+    phone: "870-994-7329",
+    operatedBy: "Sharp County Sheriff's Office",
+    reviewedAt: "October 14, 2026",
+    overview:
+      "The Sharp County Detention Center sits directly behind the county courthouse on Arnhart Street in Ash Flat. About 1,100 people were booked there last year, and it holds about 72 on an average day. Ten full-time and four part-time officers staff the jail, and medical staff handle inmates' health care.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.sharpcountysheriff.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits take place in the Sheriff's Office lobby, Monday through Friday from 8 a.m. to 4 p.m., except holidays, and have to be scheduled at least 24 hours ahead. Every inmate gets one free kiosk visit a week. Visitors and their vehicles can be searched while on the property, and passing prohibited items to an inmate is a felony.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.sharpcountysheriff.com/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits for an inmate's commissary account have to be cash, a cashier's check, or an approved money order. The money goes into the inmate trust fund, and any balance left is paid out by check at release. Food, hygiene items, and clothing can also be ordered for an inmate through Tiger Commissary by choosing the Sharp County Detention Center. Current prescription medicine is accepted only in its original bottle with the directions on it.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.sharpcountysheriff.com/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Write to the inmate by name, c/o Sharp County Detention Center, P.O. Box 157, Ash Flat, AR 72513. Phone calls, video calls, messages, and movies go through NCIC Inmate Communications; the family sets up the account at ncic.com.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.sharpcountysheriff.com/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Most warrants carry a bond set by the court, and it has to be posted before release; on a \"No Bond\" warrant the person stays in until seeing a judge. The Sheriff's Office takes cash or a surety bond from a licensed bail bonding company, and generally does not accept own-recognizance or property bonds. Traffic tickets are paid at the District Court Clerk's Office next to the jail, weekdays 8 a.m. to 4 p.m., or by mail to P.O. Box 2, Ash Flat, AR 72513.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.sharpcountysheriff.com/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Sharp County Jail?",
+        answer:
+          "Monday through Friday, 8 a.m. to 4 p.m., except holidays, in the Sheriff's Office lobby in Ash Flat. Schedule the visit at least 24 hours ahead. Each inmate also gets one free kiosk visit a week."
+      },
+      {
+        question: "How do I put money on an inmate's account in Sharp County?",
+        answer:
+          "Bring cash, a cashier's check, or an approved money order to the detention center at 84 Arnhart Street. To order food, hygiene items, or clothing instead, use Tiger Commissary and pick the Sharp County Detention Center."
+      },
+      {
+        question: "What is the mailing address for Sharp County Jail?",
+        answer:
+          "Inmate's name, c/o Sharp County Detention Center, P.O. Box 157, Ash Flat, AR 72513."
+      },
+      {
+        question: "What kind of bond does the Sharp County Sheriff accept?",
+        answer:
+          'Cash, or a surety bond written by a licensed bail bonding company. The Sheriff\'s Office generally does not accept own-recognizance or property bonds, and a "No Bond" warrant means waiting to see a judge.'
+      }
+    ]
   }
 };
 

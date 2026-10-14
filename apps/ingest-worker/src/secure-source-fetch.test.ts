@@ -167,6 +167,57 @@ describe("connection-bound source transport", () => {
     expect(fake.captured).toHaveLength(0);
   });
 
+  it("sends URL-encoded form posts only when the source opts in", async () => {
+    const options = {
+      allowlist,
+      allowedPathPrefixes: ["/approved"],
+      userAgent: "SyntheticCustodyResearch/1.0 (+https://example.test/source-policy)",
+      dnsLookup: publicLookup
+    };
+    const form = new URLSearchParams({ __VIEWSTATE: "synthetic", page: "2" });
+
+    const closed = fakeHttpsRequest("unused");
+    const getOnly = createConnectionBoundSourceFetch({
+      ...options,
+      request: closed.implementation
+    });
+    await expect(
+      getOnly(sourceUrl, { method: "POST", body: form, redirect: "error" })
+    ).rejects.toMatchObject({ code: "METHOD_FORBIDDEN" });
+    expect(closed.captured).toHaveLength(0);
+
+    const open = fakeHttpsRequest("<html>posted</html>");
+    const formPost = createConnectionBoundSourceFetch({
+      ...options,
+      allowFormPost: true,
+      request: open.implementation
+    });
+    for (const init of [
+      { method: "POST", body: "raw=body" },
+      { method: "PUT", body: form },
+      { method: "POST", body: new URLSearchParams({ big: "x".repeat(300_000) }) }
+    ]) {
+      await expect(formPost(sourceUrl, { ...init, redirect: "error" })).rejects.toMatchObject({
+        code: "METHOD_FORBIDDEN"
+      });
+    }
+    expect(open.captured).toHaveLength(0);
+
+    const response = await formPost(sourceUrl, {
+      method: "POST",
+      body: form,
+      redirect: "error",
+      headers: { cookie: "session=synthetic", "content-type": "text/plain" }
+    });
+    await expect(response.text()).resolves.toBe("<html>posted</html>");
+    expect(open.captured[0]).toMatchObject({ method: "POST" });
+    expect(open.captured[0]?.headers).toMatchObject({
+      "content-type": "application/x-www-form-urlencoded",
+      "content-length": String(form.toString().length)
+    });
+    expect(open.captured[0]?.headers).not.toHaveProperty("cookie");
+  });
+
   it("never follows a source redirect", async () => {
     const fake = fakeHttpsRequest("", 302);
     const fetchSource = createConnectionBoundSourceFetch({
