@@ -32,6 +32,8 @@ import {
   SHERBURNE_COUNTY_ADAPTER_KEY,
   createKandiyohiCountySourceAdapter,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
+  createJohnsonCountySourceAdapter,
+  JOHNSON_COUNTY_ADAPTER_KEY,
   createSteeleCountySourceAdapter,
   STEELE_COUNTY_ADAPTER_KEY,
   createCerroGordoCountySourceAdapter,
@@ -131,14 +133,16 @@ export function createLiveSourceAdapter(
       ? ["/resource"]
       : source.adapterKey === SHERBURNE_COUNTY_ADAPTER_KEY
         ? ["/InmateLocatorAPI/api/Inmates"]
-        : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-            source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-            source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-            source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-          ? ["/dmxConnect/api/Booking"]
-          : rosterSite?.layout === "inmate-roster-path"
-            ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-            : [sourceUrl.pathname];
+        : source.adapterKey === JOHNSON_COUNTY_ADAPTER_KEY
+          ? ["/Sheriff/jailroster"]
+          : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+              source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+              source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+              source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+            ? ["/dmxConnect/api/Booking"]
+            : rosterSite?.layout === "inmate-roster-path"
+              ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+              : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -198,6 +202,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CROW_WING_COUNTY_ADAPTER_KEY) {
     return createCrowWingCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === JOHNSON_COUNTY_ADAPTER_KEY) {
+    return createJohnsonCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

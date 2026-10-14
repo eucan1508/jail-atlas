@@ -56,7 +56,7 @@ with the adapter records disabled and publication approval off.
    INGEST_NETWORK_ACCESS=enabled
    INGEST_DATABASE_WRITES=disabled
    ALLOW_LIVE_SOURCE_FETCHES=true
-   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov
+   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov,ww1.johnsoncountyiowa.gov
    DATABASE_URL=<customer Neon URL>
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```

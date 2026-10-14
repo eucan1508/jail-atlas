@@ -35,6 +35,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cerro-gordo",
       adapterKey: "cerro-gordo-county-iowa-current-roster",
       sourceHost: "sofiles.cerrogordo.gov"
+    },
+    {
+      countySlug: "johnson",
+      adapterKey: "johnson-county-iowa-current-roster",
+      sourceHost: "ww1.johnsoncountyiowa.gov"
     }
   ],
   MN: [

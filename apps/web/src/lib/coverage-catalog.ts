@@ -128,6 +128,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Johnson County",
+    slug: "johnson-county",
+    publishedAt: "2026-10-14",
+    seatCity: "Iowa City",
+    h1: "Johnson County Jail Roster & Inmate Search",
+    title: "Johnson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Johnson County, Iowa current-custody information for the jail in Iowa City from the official sheriff roster, with pending charges, Iowa Code sections, and capture time.",
+    article:
+      "The Johnson County Sheriff's Office publishes a jail roster of people in its custody, including some it boards in other counties' jails. This page lists only the people the roster shows at the Johnson County Jail in Iowa City, with each pending charge and its Iowa Code section, and leaves out ages, home addresses, physical descriptions, cause numbers, and bond amounts.",
+    officialSourceUrl: "https://ww1.johnsoncountyiowa.gov/Sheriff/jailroster/list",
+    officialSourceLabel: "Johnson County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",
