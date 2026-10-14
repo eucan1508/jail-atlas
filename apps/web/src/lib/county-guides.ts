@@ -1886,6 +1886,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/johnson-county": {
+    facilityName: "Johnson County Jail",
+    address: "511 S. Capitol St., Iowa City, IA 52240",
+    phone: "319-356-6025",
+    operatedBy: "Johnson County Sheriff's Office",
+    reviewedAt: "October 14, 2026",
+    overview:
+      "The Johnson County Sheriff's Office runs the county jail at 511 S. Capitol St. in Iowa City; its mailing address is PO Box 2540, Iowa City, IA 52244. Jail staff answer questions about an inmate at 319-356-6025, and the jail division's line is 319-356-6020, ext. 5. The Sheriff's roster also includes people boarded in other counties' jails; this page shows only those held at the Johnson County Jail.",
+    contactSourceLabel: "Official jail division page",
+    contactSourceUrl: "https://johnsoncountyiowa.gov/sheriff/jail-division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting days depend on the first letter of the inmate's last name: A through L on Monday, Wednesday, and Friday; M through Z on Tuesday, Thursday, and Sunday. Visits run 1 to 3 p.m. or 6 to 9 p.m., last 20 minutes in total, and an inmate can have one session a day. Bring a photo ID and sign the log; anyone under 18 must come with a parent or legal guardian. Video visits from home are set up through TEAM3.InmateCanteen.com.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://johnsoncountyiowa.gov/sheriff/jail-division"
+      },
+      {
+        title: "Money and commissary",
+        body: "Canteen accounts run through Inmate Canteen at team3.inmatecanteen.com. Create a user with a valid email address and a password of at least 10 characters; the mobile app no longer works. Anyone with an old inmatecanteen.com account can log in there and is moved to the new site with their balance. Someone reporting to serve a sentence should bring cash only for the accommodation fee.",
+        sourceLabel: "Official inmate canteen guide",
+        sourceUrl: "https://johnsoncountyiowa.gov/sheriff/jail-division"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name at PO Box 2540, Iowa City, IA 52244, with your full name and address as the return address. Letters with stickers, lipstick, perfume, or anything else applied to them are refused. The jail does not accept packages, and books or magazines must come directly from the publisher. For questions about an inmate, call jail staff at 319-356-6025.",
+        sourceLabel: "Official jail FAQ",
+        sourceUrl: "https://johnsoncountyiowa.gov/sheriff/jail-division-faq"
+      },
+      {
+        title: "Bail and court records",
+        body: "Jail staff at 319-356-6025 can tell you whether someone is in custody, what charges they are held on, the bond required for release, and any scheduled release date. They cannot give court information; for that, ask the inmate's attorney or use Iowa Courts Online. People reporting for a sentence bring four sets of all-white underwear, socks, T-shirts, and bras without underwire, cash for the accommodation fee, and medication only in its prescribed bottles; piercings must be removed.",
+        sourceLabel: "Official jail FAQ",
+        sourceUrl: "https://johnsoncountyiowa.gov/sheriff/jail-division-faq"
+      }
+    ],
+    faq: [
+      {
+        question: "What day can I visit an inmate at the Johnson County Jail?",
+        answer:
+          "It depends on the inmate's last name: A through L on Monday, Wednesday, and Friday; M through Z on Tuesday, Thursday, and Sunday. Visits run 1 to 3 p.m. or 6 to 9 p.m. and last 20 minutes."
+      },
+      {
+        question: "Where do I mail a letter to a Johnson County inmate?",
+        answer:
+          "Write the inmate's name, then PO Box 2540, Iowa City, IA 52244, and put your full name and address on the return address. No stickers, lipstick, or perfume on the letter or envelope."
+      },
+      {
+        question: "What should I bring when reporting to serve a sentence in Johnson County?",
+        answer:
+          "Four sets of all-white underwear, socks, T-shirts, and bras without underwire, cash for the accommodation fee, and any medication in its prescribed bottles. Piercings must be removed before you arrive."
+      },
+      {
+        question: "What can Johnson County jail staff tell me about an inmate?",
+        answer:
+          "Call 319-356-6025. Staff can say whether the person is in custody, what charges they are held on, the bond required for release, and any scheduled release date, but not court information."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

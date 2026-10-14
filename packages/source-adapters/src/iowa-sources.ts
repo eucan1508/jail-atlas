@@ -7,6 +7,7 @@ import {
   CEDAR_COUNTY_CURRENT_SOURCE_URL
 } from "./iowa-current-roster.js";
 import { DALLAS_COUNTY_ADAPTER_KEY, DALLAS_COUNTY_CURRENT_SOURCE_URL } from "./dallas-county.js";
+import { JOHNSON_COUNTY_ADAPTER_KEY, JOHNSON_COUNTY_CURRENT_SOURCE_URL } from "./johnson-county.js";
 
 export type IowaSourceStatus = "adapter_ready" | "blocked" | "pending_endpoint_audit";
 
@@ -94,12 +95,13 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     countySlug: "johnson",
     countyName: "Johnson County",
     officialInstitutionUrl: "https://johnsoncountyiowa.gov/office-of-sheriff",
-    sourceUrl: "https://ww1.johnsoncountyiowa.gov/Sheriff/JailRoster/index",
+    sourceUrl: JOHNSON_COUNTY_CURRENT_SOURCE_URL,
     sourceType: "official_sheriff",
     relationshipKind: "official_link",
-    adapterKey: null,
-    status: "blocked",
-    reason: "The linked roster returned access denied during unattended verification."
+    adapterKey: JOHNSON_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason:
+      "Official sheriff roster lists current custody with per-booking charge details; people housed in other counties' jails are not kept."
   },
   {
     state: "IA",

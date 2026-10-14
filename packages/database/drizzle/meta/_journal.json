@@ -239,6 +239,13 @@
       "when": 1792558400000,
       "tag": "0033_minnesota_kandiyohi_source",
       "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1792644800000,
+      "tag": "0034_iowa_johnson_source",
+      "breakpoints": true
     }
   ]
 }
