@@ -30,6 +30,7 @@ const liveCountyKeys = [
   "arkansas/logan-county",
   "arkansas/greene-county",
   "arkansas/cleburne-county",
+  "arkansas/sharp-county",
   "arkansas/faulkner-county",
   "arkansas/hot-spring-county",
   "arkansas/baxter-county",

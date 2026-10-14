@@ -15,6 +15,8 @@ import {
   ANOKA_COUNTY_ADAPTER_KEY,
   arkansasRosterSite,
   texasRosterSite,
+  myr2mRosterSite,
+  createMyr2mRosterAdapter,
   createSheriffRosterSiteAdapter,
   CARLTON_COUNTY_ADAPTER_KEY,
   createCarltonCountySourceAdapter,
@@ -127,6 +129,7 @@ export function createLiveSourceAdapter(
   // The transport already enforces path-segment boundaries. Keep the exact list
   // path so sources without a trailing slash can fetch their list and details.
   const rosterSite = arkansasRosterSite(source.adapterKey) ?? texasRosterSite(source.adapterKey);
+  const myr2mSite = myr2mRosterSite(source.adapterKey);
   // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
@@ -150,6 +153,8 @@ export function createLiveSourceAdapter(
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
     userAgent: "JailAtlas/1.0 (+official-source-ingest)",
+    // myr2m rosters page through ASP.NET form posts back to the roster's own path.
+    ...(myr2mSite ? { allowFormPost: true } : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
     // report grows by about 7 KB per person, and the Otter Tail County list carries a ~30 KB
     // photo per person; every other source stays at the 1 MB default.
@@ -188,6 +193,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === MILAM_COUNTY_ADAPTER_KEY) {
     return createMilamCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (myr2mSite) {
+    return createMyr2mRosterAdapter(myr2mSite, {
       fetch,
       facilityId,
       createId: createAdapterId

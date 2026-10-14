@@ -97,10 +97,13 @@ with the adapter records disabled and publication approval off.
    `arkansas-rosters.ts`). Jefferson, Logan, Mississippi, and Randolph use the `roster.php?grp=`
    layout; Greene, Cleburne, Faulkner, Hot Spring, Baxter, and St. Francis use
    `/inmate-roster/filters/current/...` paths and only the current view is read. Every crawl must
-   collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed:
+   collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed.
+   Sharp County's roster is hosted by its roster service at `www.myr2m.com` and read by
+   `myr2m-roster.ts`, which pages with ASP.NET form posts (the only source allowed to POST) and must
+   match both the "shown out of N total" line and the roster's name list:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.myr2m.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 

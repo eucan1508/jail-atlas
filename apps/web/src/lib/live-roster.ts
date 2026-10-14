@@ -48,6 +48,7 @@ const liveAdapterKeys: Record<string, string> = {
   "logan-county": "logan-county-ar-current-roster",
   "greene-county": "greene-county-ar-current-roster",
   "cleburne-county": "cleburne-county-ar-current-roster",
+  "sharp-county": "sharp-county-ar-current-roster",
   "faulkner-county": "faulkner-county-ar-current-roster",
   "hot-spring-county": "hot-spring-county-ar-current-roster",
   "baxter-county": "baxter-county-ar-current-roster",

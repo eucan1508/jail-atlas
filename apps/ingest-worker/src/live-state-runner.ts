@@ -160,6 +160,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "www.cleburnearso.gov"
     },
     {
+      countySlug: "sharp",
+      adapterKey: "sharp-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
+    },
+    {
       countySlug: "faulkner",
       adapterKey: "faulkner-county-ar-current-roster",
       sourceHost: "www.fcso.ar.gov"
