@@ -20,6 +20,7 @@ const liveCountyKeys = [
   "minnesota/otter-tail-county",
   "minnesota/sherburne-county",
   "minnesota/kandiyohi-county",
+  "minnesota/washington-county",
   "iowa/johnson-county",
   "texas/milam-county",
   "texas/hutchinson-county",

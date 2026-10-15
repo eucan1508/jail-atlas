@@ -741,16 +741,17 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     stateName: "Minnesota",
     county: "Washington County",
     slug: "washington-county",
-    publishedAt: "2026-09-26",
+    publishedAt: "2026-10-15",
     seatCity: "Stillwater",
     h1: "Washington County Jail Roster & Inmate Search",
     title: "Washington County Jail Roster & Inmate Search - JailAtlas.com",
     description:
-      "Review Washington County, Minnesota custody information with the official jail list, source date, and verified facility contacts.",
+      "Search Washington County, Minnesota current-inmate information for the jail in Stillwater from the official Adult Inmate Roster Report, with booking numbers and capture time.",
     article:
-      "Washington County publishes jail-list information through the Sheriff's Office. The county article will identify the official list date, explain its current-custody scope, and avoid treating a published entry as a court outcome.",
-    officialSourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information",
-    officialSourceLabel: "Washington County inmate information",
+      "The Washington County Sheriff's Office publishes an Adult Inmate Roster Report for its 228-bed jail in Stillwater. This page keeps each listed name and booking number, and leaves out JID numbers, booking dates, and estimated release dates. The report does not list charges or bail.",
+    officialSourceUrl:
+      "https://web1.washingtoncountymn.gov/ImageShare/Images/reports/inmateroster/InmateRosterReport.pdf",
+    officialSourceLabel: "Washington County Jail Adult Inmate Roster Report",
     sourceStatus: "audit_pending"
   }
 ];

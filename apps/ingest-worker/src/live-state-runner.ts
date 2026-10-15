@@ -112,6 +112,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "kandiyohi",
       adapterKey: "kandiyohi-county-mn-current-roster",
       sourceHost: "www2.kcmn.us"
+    },
+    {
+      countySlug: "washington",
+      adapterKey: "washington-county-mn-current-roster",
+      sourceHost: "web1.washingtoncountymn.gov"
     }
   ],
   TX: [
