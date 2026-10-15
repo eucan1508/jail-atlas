@@ -231,6 +231,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Tom Green County",
+    slug: "tom-green-county",
+    publishedAt: "2026-10-15",
+    seatCity: "San Angelo",
+    h1: "Tom Green County Jail Roster & Inmate Search",
+    title: "Tom Green County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Tom Green County, Texas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Tom Green County Sheriff's Office posts a Current Inmates roster for its detention center in San Angelo, separate from its list of people released in the last 48 hours. This page reads only the current list, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.tomgreencountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Tom Green County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "arkansas",
     stateName: "Arkansas",
     county: "Jefferson County",
