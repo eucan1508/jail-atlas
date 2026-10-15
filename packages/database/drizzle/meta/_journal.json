@@ -253,6 +253,13 @@
       "when": 1792731200000,
       "tag": "0035_arkansas_sharp_source",
       "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1792817600000,
+      "tag": "0036_minnesota_washington_source",
+      "breakpoints": true
     }
   ]
 }

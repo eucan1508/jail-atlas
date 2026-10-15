@@ -1886,6 +1886,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/washington-county": {
+    facilityName: "Washington County Jail",
+    address: "15015 62nd St. N., Stillwater, MN 55082",
+    phone: "651-430-7900",
+    operatedBy: "Washington County Sheriff's Office",
+    reviewedAt: "October 15, 2026",
+    overview:
+      "The Washington County Jail is a 228-bed direct-supervision jail in the Law Enforcement Center in Stillwater, open since June 1993. It holds men and women, both awaiting trial and sentenced, and runs a separate eight-day holding unit for juveniles. The jail has its own kitchen, laundry, and medical unit with a dentist's office.",
+    contactSourceLabel: "Official inmate information page",
+    contactSourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "You have to be on the inmate's visiting list, and staff cannot tell you who is on it. In-person visits are Friday through Monday from 6 to 10 p.m., and Saturday and Sunday from 8:30 to 10:30 a.m.; families with children get priority on weekend visits. Bring a government photo ID with your date of birth and expect a metal detector. Video visits through InmateCanteen.com cost $0.39 a minute and need approval from Jail Administration. Call 651-430-7900 before you go to make sure visiting has not been canceled.",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information"
+      },
+      {
+        title: "Money and commissary",
+        body: "Put money on an inmate's account at the kiosk in the jail lobby, with cash ($2.00 fee, no monthly limit) or a credit card ($8.95 fee, $150 per card each month), or online at InmateCanteen.com ($8.95 fee). Deposits for one inmate are capped at $300 every 14 days. Do not mail money. Prescription medication can be dropped off with jail staff once the jail nurse approves it.",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's full name, Washington County Jail, 15015 62nd St. N., P.O. Box 3801, Stillwater, MN 55082. Mail is opened, scanned, and delivered electronically; the originals go into the inmate's property. Inmates cannot make collect calls. Calls are paid from a debit account that friends and family fund at InmateCanteen.com, which also handles emails ($0.16) and photos ($0.32).",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail on Washington County cases is posted at Court Administration in the courthouse on weekdays from 8 a.m. to 4:15 p.m., and at the Jail Administration window in the Law Enforcement Center after hours and on weekends. The lobby kiosk takes bail around the clock, with a $1,000 limit on credit cards. In person, bring cash or a certified cashier's check for the exact amount; approved bonding agents can also post bonds. Receiving the court update, processing, and release can take four to six hours.",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://washingtoncountymn.gov/3214/Inmate-Information"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Washington County Jail?",
+        answer:
+          "In person, Friday through Monday from 6 to 10 p.m. and weekends from 8:30 to 10:30 a.m. You must be on the inmate's visiting list. Video visits are available through InmateCanteen.com at $0.39 a minute."
+      },
+      {
+        question: "How do I put money on an inmate's account in Washington County?",
+        answer:
+          "Use the lobby kiosk at the Law Enforcement Center in Stillwater (cash or card) or InmateCanteen.com. No more than $300 can go to one inmate every 14 days, and money sent by mail is not accepted."
+      },
+      {
+        question: "What is the mailing address for Washington County Jail?",
+        answer:
+          "Inmate's full name, Washington County Jail, 15015 62nd St. N., P.O. Box 3801, Stillwater, MN 55082. Letters are scanned and delivered to the inmate electronically."
+      },
+      {
+        question: "Where do I post bail in Washington County?",
+        answer:
+          "At Court Administration in the courthouse on weekdays until 4:15 p.m., or at the jail's lobby kiosk and Jail Administration window after hours. Call 651-430-7900 first on weekends or after 4 p.m."
+      }
+    ]
+  },
   "iowa/johnson-county": {
     facilityName: "Johnson County Jail",
     address: "511 S. Capitol St., Iowa City, IA 52240",
