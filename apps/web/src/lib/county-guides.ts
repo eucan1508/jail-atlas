@@ -1650,6 +1650,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/tom-green-county": {
+    facilityName: "Tom Green County Detention Center",
+    address: "4382 N US Highway 277, San Angelo, TX 76905",
+    phone: "325-659-6597",
+    operatedBy: "Tom Green County Sheriff's Office",
+    reviewedAt: "October 15, 2026",
+    overview:
+      "The Tom Green County Sheriff's Office runs the detention center at 4382 N US Highway 277 in San Angelo. Shannon Medical Center provides inmates' medical care, and the jail's medical department takes calls at 325-659-6434.",
+    contactSourceLabel: "Official jail information page",
+    contactSourceUrl: "https://www.tomgreencountysheriff.org/jail-information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Face-to-face visits go by the first letter of the inmate's last name: A-E on Monday, F-J on Tuesday, K-O on Wednesday, P-R on Thursday, and S-Z on Friday. Sign up from 8:30 to 9:30 a.m. or 6:30 to 7:30 p.m.; visits run 9 to 11 a.m. and 7 to 9 p.m. and last 20 minutes. Bring a driver's license, state ID, or military ID. Visitors under 17 come only to the evening session with an adult. Shorts, sleeveless tops, and phones are not allowed. Video visits from home are booked through NCIC at $0.35 a minute.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.tomgreencountysheriff.org/jail-information"
+      },
+      {
+        title: "Money and commissary",
+        body: 'Commissary orders are processed on Monday, so money has to be on the account by 10 p.m. Sunday. Deposit online through TouchPay (choose Tom Green, facility 276903), by phone at 866-204-1603 with a Visa or Mastercard, at the kiosk in the jail lobby, or by mailing a money order made out to "Inmate Trust Fund." Care packages can be ordered through iCare. Current prescription medication in its original container can be dropped off at the lobby information window; call 325-659-6434 first.',
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.tomgreencountysheriff.org/jail-information"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to a scanning center, not the jail: the inmate's name and SO number, Tom Green County Jail, PO Box 591, Longview, Texas 75606. Letters are scanned and shown on the kiosk in the inmate's cell. Keep it to 5 pages, one side only, and one photo per envelope, with a return address. Legal and medical mail goes to the detention center itself. Holding-cell phones are collect-call only; NCIC (1-844-724-2076) runs inmate calls and can block a number.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.tomgreencountysheriff.org/jail-information"
+      },
+      {
+        title: "Bail and court records",
+        body: "A cash bond has to be paid in full at the bonding window in the jail lobby; amounts over $5,000 must be a cashier's check. The lobby kiosk also takes cash, credit, and debit cards for bonds. A surety bond is posted through a bonding company approved by the Tom Green County Bail Bond Board, which charges a fee. Cash bond money is returned only after the case ends and the judge orders it.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.tomgreencountysheriff.org/jail-information"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting days at Tom Green County Jail?",
+        answer:
+          "It depends on the inmate's last name: A-E Monday, F-J Tuesday, K-O Wednesday, P-R Thursday, S-Z Friday. Sign up 8:30-9:30 a.m. or 6:30-7:30 p.m.; visits are 20 minutes."
+      },
+      {
+        question: "How do I put money on an inmate's account in Tom Green County?",
+        answer:
+          'Use TouchPay online (facility 276903), call 866-204-1603, use the lobby kiosk, or mail a money order payable to "Inmate Trust Fund." Deposit by 10 p.m. Sunday for that week\'s commissary.'
+      },
+      {
+        question: "What is the mailing address for Tom Green County Jail?",
+        answer:
+          "Inmate name and SO number, Tom Green County Jail, PO Box 591, Longview, Texas 75606. Legal and medical mail goes directly to 4382 N US Highway 277, San Angelo, TX 76905."
+      },
+      {
+        question: "How do I post bond at the Tom Green County jail?",
+        answer:
+          "Pay a cash bond in full at the lobby bonding window (cashier's check over $5,000) or at the lobby kiosk, or hire a bonding company approved by the Tom Green County Bail Bond Board."
+      }
+    ]
+  },
   "oklahoma/seminole-county": {
     facilityName: "Seminole County Jail",
     address: "211 E. 2nd Street, Wewoka, OK 74884",

@@ -141,6 +141,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "burleson",
       adapterKey: "burleson-county-tx-current-roster",
       sourceHost: "www.burlesoncountysherifftx.org"
+    },
+    {
+      countySlug: "tom-green",
+      adapterKey: "tom-green-county-tx-current-roster",
+      sourceHost: "www.tomgreencountysheriff.org"
     }
   ],
   AR: [
