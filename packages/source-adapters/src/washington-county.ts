@@ -67,7 +67,10 @@ export interface WashingtonRosterAdapterOptions {
 }
 
 function normalizeText(value: string): string {
-  return value.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
+  return value
+    .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function classify(
