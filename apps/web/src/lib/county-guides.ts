@@ -2004,6 +2004,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/dakota-county": {
+    facilityName: "Dakota County Jail",
+    address: "1580 Highway 55, Hastings, MN 55033",
+    phone: "651-438-4800",
+    operatedBy: "Dakota County Sheriff's Office",
+    reviewedAt: "October 16, 2026",
+    overview:
+      "The Dakota County Jail is a 263-bed direct-supervision jail in the Law Enforcement Center at 1580 Highway 55 in Hastings. Correctional deputies staff each housing unit around the clock. Jail information is at 651-438-4800, and the Sheriff's Office main line is 651-438-4700.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://dakotacountymn.gov/residents/public-safety-justice/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video at the kiosks in the Law Enforcement Center in Hastings, daily from 7:30 to 9:45 a.m., 3 to 4:45 p.m., and 7 to 9:45 p.m. A visit lasts up to 20 minutes and can't start after the end time. Visitors must be 18 or older, or come with an adult, and may be asked for photo ID. Video visits from home and email messages are set up through Inmate Canteen. All visits can be monitored or recorded.",
+        sourceLabel: "Official jail visitation page",
+        sourceUrl: "https://dakotacountymn.gov/residents/public-safety-justice/jail/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposit cash or a credit card at the kiosk in the jail lobby at 1580 Highway 55, which is open 24 hours and credits the account right away, or deposit online through Inmate Canteen. Money orders made out to the inmate can also be mailed to the jail's P.O. box. Inmates use their funds for canteen orders such as postage-paid envelopes and snacks, and for calls, texts, and email. Turnkey Corrections handles account questions at 715-952-9622.",
+        sourceLabel: "Official mail and money page",
+        sourceUrl: "https://dakotacountymn.gov/residents/public-safety-justice/jail/mail-money"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, Dakota County Law Enforcement Center, P.O. Box 247J, Hastings, MN 55033. Letters, photos, and plain greeting cards are accepted. Stamps, envelopes, blank paper, newspapers, books, magazines, cash, checks, and cards with glitter, glue, or music are not. Calls, texts, and email run through accounts that family funds at Inmate Canteen.",
+        sourceLabel: "Official mail and money page",
+        sourceUrl: "https://dakotacountymn.gov/residents/public-safety-justice/jail/mail-money"
+      },
+      {
+        title: "Bail and court records",
+        body: "Cash bail on Dakota County charges is paid at District Court, 1560 Highway 55 in Hastings, weekdays from 8 a.m. to 4:30 p.m. After 4:30 p.m. and on weekends and holidays, the jail lobby takes bail in cash, in the exact amount. Bail on another county's warrant is taken only while the person is held in the Dakota County Jail. A bonding agent can post a bond instead of cash bail.",
+        sourceLabel: "Official posting bail page",
+        sourceUrl: "https://dakotacountymn.gov/residents/public-safety-justice/jail/posting-bail"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Dakota County Jail?",
+        answer:
+          "Video visits at the Law Enforcement Center in Hastings run daily from 7:30 to 9:45 a.m., 3 to 4:45 p.m., and 7 to 9:45 p.m., up to 20 minutes each. Visits from home are set up through Inmate Canteen."
+      },
+      {
+        question: "How do I put money on an inmate's account in Dakota County?",
+        answer:
+          "Use the 24-hour kiosk in the jail lobby at 1580 Highway 55 in Hastings (cash or card), deposit online through Inmate Canteen, or mail a money order made out to the inmate."
+      },
+      {
+        question: "What is the mailing address for Dakota County Jail?",
+        answer:
+          "Inmate's name, Dakota County Law Enforcement Center, P.O. Box 247J, Hastings, MN 55033. Do not send stamps, envelopes, blank paper, books, magazines, or cash."
+      },
+      {
+        question: "Where do I post bail in Dakota County?",
+        answer:
+          "At District Court, 1560 Highway 55 in Hastings, on weekdays from 8 a.m. to 4:30 p.m. After hours and on weekends, the jail lobby takes exact-amount cash bail. A bonding agent can post a bond instead."
+      }
+    ]
+  },
   "iowa/johnson-county": {
     facilityName: "Johnson County Jail",
     address: "511 S. Capitol St., Iowa City, IA 52240",

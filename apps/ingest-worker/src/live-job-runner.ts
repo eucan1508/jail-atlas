@@ -34,6 +34,8 @@ import {
   SHERBURNE_COUNTY_ADAPTER_KEY,
   createKandiyohiCountySourceAdapter,
   createWashingtonCountyMnSourceAdapter,
+  createDakotaCountySourceAdapter,
+  DAKOTA_COUNTY_ADAPTER_KEY,
   WASHINGTON_COUNTY_MN_ADAPTER_KEY,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
   createJohnsonCountySourceAdapter,
@@ -223,6 +225,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === JOHNSON_COUNTY_ADAPTER_KEY) {
     return createJohnsonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === DAKOTA_COUNTY_ADAPTER_KEY) {
+    return createDakotaCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

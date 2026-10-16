@@ -117,6 +117,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "washington",
       adapterKey: "washington-county-mn-current-roster",
       sourceHost: "web1.washingtoncountymn.gov"
+    },
+    {
+      countySlug: "dakota",
+      adapterKey: "dakota-county-mn-current-roster",
+      sourceHost: "dakotacountymn.gov"
     }
   ],
   TX: [
