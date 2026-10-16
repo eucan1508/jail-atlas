@@ -29,6 +29,7 @@ const COLUMN_TOLERANCE = 6;
 const MAX_REPORT_AGE_MS = 48 * 60 * 60 * 1_000;
 // "as of" is printed in Central time; allow for the offset when comparing to UTC.
 const TIMEZONE_ALLOWANCE_MS = 6 * 60 * 60 * 1_000;
+const MAX_PAGE_STAMP_SPREAD_MS = 2 * 60 * 1_000;
 
 const JID = /^J\d{8}$/;
 const BOOKING_NUMBER = /^\d{7}$/;
@@ -202,13 +203,20 @@ export function parseWashingtonRosterPages(pages: readonly WashingtonPdfPage[]):
     if (counts.length !== 1 || stamps.length !== 1) throw new Error("TOTAL_RECORDS_MISSING");
     const count = Number(counts[0]);
     if (declaredTotal !== undefined && declaredTotal !== count) {
-      throw new Error("ROSTER_CHANGED_DURING_PRINT");
+      throw new Error("INMATE_COUNT_DIFFERS_BY_PAGE");
     }
-    if (asOfText !== undefined && asOfText !== stamps[0]) {
-      throw new Error("ROSTER_CHANGED_DURING_PRINT");
+    // Pages of one report can be stamped a second or two apart; a gap beyond that means two
+    // different reports. Keep the earliest stamp.
+    const stamp = stamps[0]!;
+    if (asOfText !== undefined) {
+      if (Math.abs(asOfMs(stamp) - asOfMs(asOfText)) > MAX_PAGE_STAMP_SPREAD_MS) {
+        throw new Error("TIMESTAMP_DIFFERS_BY_PAGE");
+      }
+      if (asOfMs(stamp) < asOfMs(asOfText)) asOfText = stamp;
+    } else {
+      asOfText = stamp;
     }
     declaredTotal = count;
-    asOfText = stamps[0];
 
     // The footer prints "PAGE i OF n" as separate words; read the numbers that follow the labels.
     const pageWord = page.find((item) => item.text === "PAGE");
