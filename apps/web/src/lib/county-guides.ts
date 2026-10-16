@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/polk-county": {
+    facilityName: "Polk County Jail",
+    address: "1985 NE 51st Place, Des Moines, IA 50313",
+    phone: "515-323-5400",
+    operatedBy: "Polk County Sheriff's Office",
+    reviewedAt: "October 16, 2026",
+    overview:
+      "The Polk County Jail opened in November 2008 on 40 acres just north of Des Moines. It is the largest jail in Iowa, a 1,500-bed direct-supervision facility with its own kitchen, laundry, and medical services, built so it can add another 1,000 beds. Inmates with federal charges are left off the Sheriff's public listing.",
+    contactSourceLabel: "Official detention page",
+    contactSourceUrl: "https://www.polkcountyiowa.gov/county-sheriff/detention/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Every visitor has to register with ICSolutions at least 24 hours before the first visit. On-site visits are Sunday from 8:30 to 10:30 a.m. and 12:30 to 2:30 p.m., and Monday through Thursday from 8:30 to 10:30 a.m. and 1 to 2:30 p.m.; there are no on-site public visits Friday or Saturday. Remote video visits run daily from 8:30 a.m. to 9:30 p.m., except 11 a.m. to noon, 3 to 4 p.m., and 5 to 6 p.m., cost $0.25 a minute, and last up to 25 minutes. All visits are recorded.",
+        sourceLabel: "Official visiting page",
+        sourceUrl: "https://www.polkcountyiowa.gov/county-sheriff/how-do-i/visiting-an-inmate/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits to an inmate's commissary account, and CarePack orders, are made through Access Corrections at accesscatalog.com. Money for phone calls goes into a separate ICSolutions account. The Sheriff's Office does not accept packages or other property for inmates, and property for people in custody is released only Monday through Friday, 8 a.m. to 3:45 p.m.",
+        sourceLabel: "Official jail how-do-I page",
+        sourceUrl: "https://www.polkcountyiowa.gov/county-sheriff/how-do-i/jail-how-do-i/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail has to come through the U.S. Postal Service with the sender's full name and address on the envelope, addressed to the inmate's complete name, Polk County Jail, 1985 NE 51st Place, Des Moines, IA 50313-2517. Each inmate may keep up to five photos, 4 by 6 inches or smaller, sent by mail; Polaroids are not accepted. Family can leave a 30-second voicemail for an inmate through ICSolutions for $0.25.",
+        sourceLabel: "Official jail how-do-I page",
+        sourceUrl: "https://www.polkcountyiowa.gov/county-sheriff/how-do-i/jail-how-do-i/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post bail steps on its jail pages. Pretrial release can be reached at 515-875-5750, and court dates, times, and rooms come from the Clerk of Court at 515-286-3765. Jail court hearings can be watched on closed-circuit television in the jail lobby. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official jail how-do-I page",
+        sourceUrl: "https://www.polkcountyiowa.gov/county-sheriff/how-do-i/jail-how-do-i/"
+      }
+    ],
+    faq: [
+      {
+        question: "What are the visiting hours at Polk County Jail?",
+        answer:
+          "On-site visits are Sunday through Thursday mornings and early afternoons; remote video visits run daily from 8:30 a.m. to 9:30 p.m. with three one-hour breaks. Register with ICSolutions at least 24 hours ahead."
+      },
+      {
+        question: "How do I put money on an inmate's account in Polk County?",
+        answer:
+          "Commissary deposits and CarePacks go through Access Corrections at accesscatalog.com. Money for phone calls is added separately through ICSolutions."
+      },
+      {
+        question: "What is the mailing address for Polk County Jail?",
+        answer:
+          "Inmate's complete name, Polk County Jail, 1985 NE 51st Place, Des Moines, IA 50313-2517. Include your full name and return address, or the letter is sent back."
+      },
+      {
+        question: "Who do I call about a Polk County inmate's court date or release?",
+        answer:
+          "Call the Clerk of Court at 515-286-3765 for court dates, times, and rooms, and Pretrial Release at 515-875-5750. The jail's main line is 515-323-5400."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

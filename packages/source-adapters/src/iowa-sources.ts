@@ -8,6 +8,7 @@ import {
 } from "./iowa-current-roster.js";
 import { DALLAS_COUNTY_ADAPTER_KEY, DALLAS_COUNTY_CURRENT_SOURCE_URL } from "./dallas-county.js";
 import { JOHNSON_COUNTY_ADAPTER_KEY, JOHNSON_COUNTY_CURRENT_SOURCE_URL } from "./johnson-county.js";
+import { POLK_COUNTY_ADAPTER_KEY, POLK_COUNTY_CURRENT_SOURCE_URL } from "./polk-county.js";
 
 export type IowaSourceStatus = "adapter_ready" | "blocked" | "pending_endpoint_audit";
 
@@ -71,12 +72,13 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     countyName: "Polk County",
     officialInstitutionUrl:
       "https://www.polkcountyiowa.gov/county-sheriff/detention/jail-and-arrest-information/",
-    sourceUrl: "https://polkinmates.polkcountyiowa.gov/Inmates/Current",
-    sourceType: "officially_linked_vendor",
+    sourceUrl: POLK_COUNTY_CURRENT_SOURCE_URL,
+    sourceType: "official_sheriff",
     relationshipKind: "official_link",
-    adapterKey: null,
-    status: "blocked",
-    reason: "Unattended verification received access denied; endpoint contract is not approved."
+    adapterKey: POLK_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason:
+      "Official sheriff Current Inmate Listing with per-person detail pages; only people held at the Polk County Jail are kept, with charges from open cases."
   },
   {
     state: "IA",

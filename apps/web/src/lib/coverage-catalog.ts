@@ -63,17 +63,16 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     stateName: "Iowa",
     county: "Polk County",
     slug: "polk-county",
-    publishedAt: "2026-09-25",
+    publishedAt: "2026-10-16",
     seatCity: "Des Moines",
     h1: "Polk County Jail Roster & Inmate Search",
     title: "Polk County Jail Roster & Inmate Search - JailAtlas.com",
     description:
-      "Find Polk County, Iowa jail and arrest information with the official source, update time, and clear custody-data limits.",
+      "Search Polk County, Iowa current-inmate information for the jail in Des Moines from the official Current Inmate Listing, with booking numbers, open charges, Iowa Code sections, and capture time.",
     article:
-      "Polk County's official jail and arrest information explains its current listing and the limits of the published data. The county page will keep those distinctions visible instead of presenting a roster as a court record or a conviction record.",
-    officialSourceUrl:
-      "https://www.polkcountyiowa.gov/county-sheriff/detention/jail-and-arrest-information/",
-    officialSourceLabel: "Polk County Jail and Arrest Information",
+      "The Polk County Sheriff's Office publishes a Current Inmate Listing of people in its custody, leaving out inmates with federal charges. This page lists only the people the listing shows held at the Polk County Jail in Des Moines, with booking numbers and charges from open cases with their Iowa Code sections, and leaves out ages, physical descriptions, case numbers, arresting agencies, bail, and cleared cases.",
+    officialSourceUrl: "https://polkinmates.polkcountyiowa.gov/Inmates/Current",
+    officialSourceLabel: "Polk County Sheriff Current Inmate Listing",
     sourceStatus: "audit_pending"
   },
   {
