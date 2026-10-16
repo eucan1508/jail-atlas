@@ -21,6 +21,7 @@ const liveCountyKeys = [
   "minnesota/sherburne-county",
   "minnesota/kandiyohi-county",
   "minnesota/washington-county",
+  "minnesota/dakota-county",
   "iowa/johnson-county",
   "texas/milam-county",
   "texas/hutchinson-county",

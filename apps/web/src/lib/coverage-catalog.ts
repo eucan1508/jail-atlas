@@ -788,6 +788,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://web1.washingtoncountymn.gov/ImageShare/Images/reports/inmateroster/InmateRosterReport.pdf",
     officialSourceLabel: "Washington County Jail Adult Inmate Roster Report",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Dakota County",
+    slug: "dakota-county",
+    publishedAt: "2026-10-16",
+    seatCity: "Hastings",
+    h1: "Dakota County Jail Roster & Inmate Search",
+    title: "Dakota County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Dakota County, Minnesota current-inmate information for the jail in Hastings from the official jail inmate search, with booking numbers, open charges, statute codes, and capture time.",
+    article:
+      "The Dakota County Sheriff's Office publishes a Jail Inmate Search for its 263-bed jail at the Law Enforcement Center in Hastings. This page lists everyone the search shows in jail, with booking numbers and each open charge with its Minnesota statute, and leaves out birth dates, demographics, arrest locations, court numbers, and charges the county has already cleared.",
+    officialSourceUrl:
+      "https://dakotacountymn.gov/content/mndakotacountywebsite/api/search.json?method=JailInmateSearch",
+    officialSourceLabel: "Dakota County Jail Inmate Search",
+    sourceStatus: "audit_pending"
   }
 ];
 
