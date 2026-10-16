@@ -40,11 +40,6 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "johnson",
       adapterKey: "johnson-county-iowa-current-roster",
       sourceHost: "ww1.johnsoncountyiowa.gov"
-    },
-    {
-      countySlug: "polk",
-      adapterKey: "polk-county-iowa-current-roster",
-      sourceHost: "polkinmates.polkcountyiowa.gov"
     }
   ],
   MN: [

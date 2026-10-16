@@ -76,9 +76,9 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     sourceType: "official_sheriff",
     relationshipKind: "official_link",
     adapterKey: POLK_COUNTY_ADAPTER_KEY,
-    status: "adapter_ready",
+    status: "blocked",
     reason:
-      "Official sheriff Current Inmate Listing with per-person detail pages; only people held at the Polk County Jail are kept, with charges from open cases."
+      "The adapter works from other networks, but the listing's Akamai edge returns HTTP 403 to GitHub Actions runners within seconds of the detail requests, so it cannot be refreshed on schedule."
   },
   {
     state: "IA",
