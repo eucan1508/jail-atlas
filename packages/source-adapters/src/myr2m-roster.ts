@@ -44,7 +44,19 @@ export const SHARP_COUNTY_AR_ROSTER = {
   parserVersion: "1.0.0"
 } as const satisfies Myr2mRosterConfig;
 
-const MYR2M_ROSTERS: readonly Myr2mRosterConfig[] = [SHARP_COUNTY_AR_ROSTER];
+export const STONE_COUNTY_AR_ROSTER = {
+  adapterKey: "stone-county-ar-current-roster",
+  agencyHeading: "Stone County Sheriffs Office",
+  countyLabel: "Stone County, Arkansas",
+  diagnosticPrefix: "STONE_COUNTY_AR",
+  sourceUrl: "https://www.myr2m.com/stonecoroster/",
+  parserVersion: "1.0.0"
+} as const satisfies Myr2mRosterConfig;
+
+const MYR2M_ROSTERS: readonly Myr2mRosterConfig[] = [
+  SHARP_COUNTY_AR_ROSTER,
+  STONE_COUNTY_AR_ROSTER
+];
 
 export function myr2mRosterSite(adapterKey: string): Myr2mRosterConfig | undefined {
   return MYR2M_ROSTERS.find((config) => config.adapterKey === adapterKey);
