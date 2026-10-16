@@ -23,6 +23,7 @@ const liveCountyKeys = [
   "minnesota/washington-county",
   "minnesota/dakota-county",
   "iowa/johnson-county",
+  "iowa/polk-county",
   "texas/milam-county",
   "texas/hutchinson-county",
   "texas/kendall-county",

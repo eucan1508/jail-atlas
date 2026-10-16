@@ -35,6 +35,8 @@ import {
   createKandiyohiCountySourceAdapter,
   createWashingtonCountyMnSourceAdapter,
   createDakotaCountySourceAdapter,
+  createPolkCountySourceAdapter,
+  POLK_COUNTY_ADAPTER_KEY,
   DAKOTA_COUNTY_ADAPTER_KEY,
   WASHINGTON_COUNTY_MN_ADAPTER_KEY,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
@@ -166,7 +168,11 @@ export function createLiveSourceAdapter(
     source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
-    ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ? { maxResponseBytes: 3_000_000 } : {})
+    // The Polk County current list is a single page of about 1 MB.
+    ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === POLK_COUNTY_ADAPTER_KEY
+      ? { maxResponseBytes: 3_000_000 }
+      : {})
   });
 
   if (source.adapterKey === DALLAS_COUNTY_ADAPTER_KEY) {
@@ -225,6 +231,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === JOHNSON_COUNTY_ADAPTER_KEY) {
     return createJohnsonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === POLK_COUNTY_ADAPTER_KEY) {
+    return createPolkCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
