@@ -203,14 +203,14 @@ describe("Washington County, Minnesota source adapter", () => {
       [[firstPage, page([], 2, 2, 4)], "RECORD_COUNT_MISMATCH"],
       [
         [firstPage, page([row(583, "X", "Y", "", "J00000004", "0000004")], 2, 2, 5)],
-        "ROSTER_CHANGED_DURING_PRINT"
+        "INMATE_COUNT_DIFFERS_BY_PAGE"
       ],
       [
         [
           firstPage,
           page([row(583, "X", "Y", "", "J00000004", "0000004")], 2, 2, 4, "01/02/2000 1:00:00 PM")
         ],
-        "ROSTER_CHANGED_DURING_PRINT"
+        "TIMESTAMP_DIFFERS_BY_PAGE"
       ],
       [
         [firstPage, page([row(583, "X", "Y", "", "J00000004", "0000001")], 2, 2, 4)],
@@ -235,6 +235,25 @@ describe("Washington County, Minnesota source adapter", () => {
       if (result.ok) continue;
       expect(result.failure.diagnosticCode).toBe(`WASHINGTON_COUNTY_MN_${code}`);
     }
+  });
+
+  it("accepts pages stamped a second apart and keeps the earliest stamp", async () => {
+    const result = await runSourceAdapter(
+      adapter([
+        firstPage,
+        page(
+          [row(583, "EXAMPLE", "Delta", ["Longmiddle", "name"], "J00000004", "0000004")],
+          2,
+          2,
+          4,
+          "01/02/2000 12:00:06 PM"
+        )
+      ]),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(4);
   });
 
   it("refuses a report that has not been regenerated for days", async () => {
