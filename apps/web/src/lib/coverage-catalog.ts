@@ -441,6 +441,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Stone County",
+    slug: "stone-county",
+    publishedAt: "2026-10-16",
+    seatCity: "Mountain View",
+    h1: "Stone County Jail Roster & Inmate Search",
+    title: "Stone County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Stone County, Arkansas current-inmate information from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Stone County Sheriff's Office links its Inmate Roster to the jail roster for its 40-bed detention center in Mountain View. This page reads every current inmate on that roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/stonecoroster/",
+    officialSourceLabel: "Stone County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "oklahoma",
     stateName: "Oklahoma",
     county: "Wagoner County",

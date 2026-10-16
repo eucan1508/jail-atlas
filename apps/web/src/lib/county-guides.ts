@@ -2357,6 +2357,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
           'Cash, or a surety bond written by a licensed bail bonding company. The Sheriff\'s Office generally does not accept own-recognizance or property bonds, and a "No Bond" warrant means waiting to see a judge.'
       }
     ]
+  },
+  "arkansas/stone-county": {
+    facilityName: "Stone County Detention Center",
+    address: "1009 Sheriffs Drive, Mountain View, AR 72560",
+    phone: "870-269-3825",
+    operatedBy: "Stone County Sheriff's Office",
+    reviewedAt: "October 16, 2026",
+    overview:
+      "The Stone County Detention Center is part of the Sheriff's Office complex at 1009 Sheriffs Drive in Mountain View. Built in 1994 and since expanded, it holds up to 40 people in four housing units, one of them for women, both awaiting trial and waiting to be moved to the Arkansas Department of Corrections. Ten full-time detention officers staff the jail.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.stonecountysheriff.com/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through the CTC video visitation system. The inmate starts the visit by sending a request from the jail kiosk to the person they want to see, so the jail cannot set one up for you.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stonecountysheriff.com/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Since February 4, 2025, the jail no longer takes cash for commissary. Money goes on an inmate's account through City Tele-Coin (citytelecoin.com, 318-746-1114, open 7 a.m. to 7 p.m.), and questions about deposits go to City Tele-Coin directly. The jail does not accept clothing, hygiene items, or anything else brought in; those are bought through commissary. Phone cards can also be bought.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stonecountysheriff.com/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates call out with phone cards bought through commissary, and video visits run through CTC. The Sheriff's Office does not post mail rules for inmates, so call 870-269-3825 before sending anything. The office is open Monday through Friday, 8 a.m. to 4:30 p.m., and the non-emergency line is answered 24 hours.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.stonecountysheriff.com/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "Most arrest warrants carry a bond set by the judge. The Sheriff's Office accepts cash, money orders, or a surety bond posted by a licensed bonding company. Some warrants only require a court appearance with no bond. To ask about a warrant, call the Sheriff's Office or the District or Circuit Clerk's office.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.stonecountysheriff.com/frequently-asked-questions"
+      }
+    ],
+    faq: [
+      {
+        question: "Can I visit an inmate at Stone County Jail in person?",
+        answer:
+          "No. All visits are by CTC video, and the inmate has to send you the visit request from the jail kiosk."
+      },
+      {
+        question: "How do I put money on an inmate's account in Stone County?",
+        answer:
+          "Use City Tele-Coin at citytelecoin.com or 318-746-1114. The jail stopped taking cash for commissary on February 4, 2025."
+      },
+      {
+        question: "Can I drop off clothes or hygiene items at the Stone County jail?",
+        answer:
+          "No. The jail does not accept items brought in for inmates; clothing and hygiene items have to be bought through commissary."
+      },
+      {
+        question: "What kind of bond does the Stone County Sheriff accept?",
+        answer:
+          "Cash, money orders, or a surety bond from a licensed bonding company. Call 870-269-3825 for the bond on a specific warrant."
+      }
+    ]
   }
 };
 
