@@ -61,6 +61,12 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```
 
+   Polk County is paused: its Current Inmate Listing answers from other networks, but its Akamai
+   edge returns HTTP 403 to GitHub Actions runners within seconds of the per-person detail requests,
+   and then refuses the list too. The adapter (`polk-county.ts`) and its source row stay in place
+   and can be re-enabled in `live-state-runner.ts` if the refresh moves to a network the county
+   accepts.
+
    The state command is intentionally limited to Dallas, Cedar, Black Hawk, and the Ramsey, Stearns,
    Anoka, Mower, Wright, and Carlton Minnesota adapters until the remaining Iowa and Minnesota
    source contracts have approved adapters. A dry-run is allowed while the source rows are

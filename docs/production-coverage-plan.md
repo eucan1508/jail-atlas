@@ -12,7 +12,7 @@ official source passes the same audit.
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | Dallas      | [Dallas County Inmate Inquiry](https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True)               | Existing adapter prepared; live execution still gated |
 | Cedar       | [Cedar County Sheriff inmate roster](https://cedarcounty.iowa.gov/sheriff/inmate_roster/)                                       | Source audit pending                                  |
-| Polk        | [Polk County Jail and Arrest Information](https://www.polkcountyiowa.gov/county-sheriff/detention/jail-and-arrest-information/) | Adapter tested; production approval pending           |
+| Polk        | [Polk County Jail and Arrest Information](https://www.polkcountyiowa.gov/county-sheriff/detention/jail-and-arrest-information/) | Paused: blocks GitHub runners (HTTP 403)              |
 | Linn        | [Linn County Law and Public Safety](https://www.linncountyiowa.gov/160/9061/Law-Public-Safety)                                  | Source audit pending                                  |
 | Black Hawk  | [Black Hawk County Who's In Jail](https://www.bhcso.org/whos-in-jail)                                                           | Source audit pending                                  |
 | Cerro Gordo | [Cerro Gordo County jail population report](https://sofiles.cerrogordo.gov/inmate_report/)                                      | Adapter tested; production approval pending           |
