@@ -28,7 +28,15 @@ export default function PrivacyPage() {
           heading: "Logs and operational data",
           paragraphs: [
             "Structured logs use run, source, adapter, outcome, duration, and aggregate-count identifiers. Names, booking identifiers, charge text, contact-form narratives, raw source bodies, cookies, authorization values, and secrets are redacted or omitted. Logs have a separate, time-limited operational retention policy.",
-            "The site does not currently run advertising or third-party analytics scripts. If either is added, this policy will be updated first to say what is collected, by whom, and how to opt out."
+            "The site does not run third-party analytics scripts."
+          ]
+        },
+        {
+          heading: "Advertising",
+          paragraphs: [
+            "The site shows ads through Google AdSense. Google and other third-party vendors use cookies to serve ads based on a visitor's prior visits to this site and other sites. Google's advertising cookies let it and its partners show ads based on visits here and elsewhere on the internet.",
+            "You can opt out of personalized advertising in Google's Ads Settings (adssettings.google.com). You can also opt out of some third-party vendors' use of cookies for personalized advertising at aboutads.info.",
+            "Google reads a page's public content to choose ads for it, as it does on any site that shows its ads. We do not send Google or any advertiser custody records, correction reports, or anything beyond what the public page itself shows."
           ]
         },
         {
