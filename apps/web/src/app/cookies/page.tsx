@@ -6,7 +6,7 @@ export const metadata = createPageMetadata({
   path: "/cookies/",
   title: "Cookie Policy",
   description:
-    "Learn how Jail Atlas uses browser storage for essential functions, its approach to optional analytics, and how to manage cookies in your browser."
+    "Learn how Jail Atlas uses browser storage for essential functions, how Google AdSense uses advertising cookies, and how to manage cookies in your browser."
 });
 
 export default function CookiesPage() {
@@ -15,7 +15,7 @@ export default function CookiesPage() {
       eyebrow="Storage and consent"
       path="/cookies/"
       title="Cookie policy"
-      summary="The site is designed to work without advertising cookies or cross-site tracking. This policy explains the small amount of browser storage the service may use and what changes if optional analytics are approved later."
+      summary="This policy explains the small amount of browser storage the service itself uses and the advertising cookies Google AdSense sets when it shows ads on the site."
       sections={[
         {
           heading: "Essential operation",
@@ -25,9 +25,10 @@ export default function CookiesPage() {
           ]
         },
         {
-          heading: "Optional measurement",
+          heading: "Advertising cookies",
           paragraphs: [
-            "The site does not currently set advertising or third-party analytics cookies. If optional measurement is added, it must be documented here, remain disabled until consent where required, and collect aggregated product-use signals rather than custody-record content."
+            "The site shows ads through Google AdSense. Google and other third-party vendors set cookies to serve ads based on a visitor's prior visits to this site and other sites, and to measure how ads perform.",
+            "You can opt out of personalized advertising in Google's Ads Settings (adssettings.google.com), or opt out of some third-party vendors' cookies at aboutads.info. The site does not set third-party analytics cookies."
           ]
         },
         {
