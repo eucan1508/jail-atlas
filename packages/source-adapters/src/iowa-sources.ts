@@ -9,6 +9,10 @@ import {
 import { DALLAS_COUNTY_ADAPTER_KEY, DALLAS_COUNTY_CURRENT_SOURCE_URL } from "./dallas-county.js";
 import { JOHNSON_COUNTY_ADAPTER_KEY, JOHNSON_COUNTY_CURRENT_SOURCE_URL } from "./johnson-county.js";
 import { POLK_COUNTY_ADAPTER_KEY, POLK_COUNTY_CURRENT_SOURCE_URL } from "./polk-county.js";
+import {
+  WOODBURY_COUNTY_ADAPTER_KEY,
+  WOODBURY_COUNTY_CURRENT_SOURCE_URL
+} from "./woodbury-county.js";
 
 export type IowaSourceStatus = "adapter_ready" | "blocked" | "pending_endpoint_audit";
 
@@ -79,6 +83,18 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     status: "blocked",
     reason:
       "The adapter works from other networks, but the listing's Akamai edge returns HTTP 403 to GitHub Actions runners within seconds of the detail requests, so it cannot be refreshed on schedule."
+  },
+  {
+    state: "IA",
+    countySlug: "woodbury",
+    countyName: "Woodbury County",
+    officialInstitutionUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/",
+    sourceUrl: WOODBURY_COUNTY_CURRENT_SOURCE_URL,
+    sourceType: "official_sheriff",
+    relationshipKind: "official_link",
+    adapterKey: WOODBURY_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason: "The Sheriff's In Jail Search lists everyone held at the county jail on one page."
   },
   {
     state: "IA",

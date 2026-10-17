@@ -17,6 +17,7 @@ official source passes the same audit.
 | Black Hawk  | [Black Hawk County Who's In Jail](https://www.bhcso.org/whos-in-jail)                                                           | Source audit pending                                  |
 | Cerro Gordo | [Cerro Gordo County jail population report](https://sofiles.cerrogordo.gov/inmate_report/)                                      | Adapter tested; production approval pending           |
 | Johnson     | [Johnson County Sheriff jail roster](https://ww1.johnsoncountyiowa.gov/Sheriff/jailroster/list)                                 | Adapter tested; production approval pending           |
+| Woodbury    | [Woodbury County In Jail Search](https://injail.wcicc.com/)                                                                     | Adapter tested; production approval pending           |
 
 ## Minnesota
 

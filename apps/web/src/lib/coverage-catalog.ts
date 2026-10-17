@@ -144,6 +144,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Woodbury County",
+    slug: "woodbury-county",
+    publishedAt: "2026-10-17",
+    seatCity: "Sioux City",
+    h1: "Woodbury County Jail Roster & Inmate Search",
+    title: "Woodbury County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Woodbury County, Iowa current-inmate information for the jail in Sioux City from the official In Jail Search, with charges, bond amounts, and capture time.",
+    article:
+      "The Woodbury County Sheriff's Office publishes an In Jail Search of everyone held at the Woodbury County Jail in Sioux City. This page lists each person with the charges and bond amount exactly as the search shows them, and leaves out booking dates and times.",
+    officialSourceUrl: "https://injail.wcicc.com/",
+    officialSourceLabel: "Woodbury County In Jail Search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",

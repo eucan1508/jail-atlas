@@ -37,6 +37,8 @@ import {
   createDakotaCountySourceAdapter,
   createPolkCountySourceAdapter,
   POLK_COUNTY_ADAPTER_KEY,
+  createWoodburyCountySourceAdapter,
+  WOODBURY_COUNTY_ADAPTER_KEY,
   DAKOTA_COUNTY_ADAPTER_KEY,
   WASHINGTON_COUNTY_MN_ADAPTER_KEY,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
@@ -162,8 +164,11 @@ export function createLiveSourceAdapter(
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
     userAgent: "JailAtlas/1.0 (+official-source-ingest)",
-    // myr2m rosters page through ASP.NET form posts back to the roster's own path.
-    ...(myr2mSite ? { allowFormPost: true } : {}),
+    // myr2m rosters page through ASP.NET form posts back to the roster's own path, and the
+    // Woodbury County search posts its "All" rows request the same way.
+    ...(myr2mSite || source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
+      ? { allowFormPost: true }
+      : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
     // report grows by about 7 KB per person, and the Otter Tail County list carries a ~30 KB
     // photo per person; every other source stays at the 1 MB default.
@@ -171,9 +176,11 @@ export function createLiveSourceAdapter(
     source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
-    // The Polk County current list is a single page of about 1 MB.
+    // The Polk County current list is a single page of about 1 MB, and the Woodbury County
+    // "All" search runs about 1.4 KB per person.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === POLK_COUNTY_ADAPTER_KEY
+    source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 3_000_000 }
       : {})
   });
@@ -241,6 +248,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === POLK_COUNTY_ADAPTER_KEY) {
     return createPolkCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY) {
+    return createWoodburyCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
