@@ -2181,6 +2181,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/woodbury-county": {
+    facilityName: "Woodbury County Jail",
+    address: "3701 28th Street, Sioux City, IA 51105",
+    phone: "712-279-6040",
+    operatedBy: "Woodbury County Sheriff's Office",
+    reviewedAt: "October 17, 2026",
+    overview:
+      "The Woodbury County Jail sits inside the Law Enforcement Center in Sioux City, which was finished in 2024. It holds up to 498 people, both awaiting trial and serving sentences, along with federal prisoners kept under a contract with the U.S. Marshals Service. Jail Administration is open 8 a.m. to 3 p.m., Monday through Friday.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video, Monday through Friday, from 10 to 11 a.m. and from 12:30 to 3:15 p.m. Check in at Jail Administration between 9:45 and 10:25 a.m. for the morning block, or between noon and 2:40 p.m. for the afternoon. There are no visits on holidays. Someone who was recently arrested has to wait 90 days after a serious or aggravated misdemeanor arrest and one year after a felony arrest; after a simple misdemeanor, they can visit the next day.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Jail Administration no longer takes cash. Deposits go through the ATM in the Law Enforcement Center vestibule, open around the clock, or online through Inmate Canteen. Property from home is not accepted either; inmates buy what they need through their commissary account. Soft-cover Bibles are taken weekdays from 8 a.m. to 3:15 p.m., and on Wednesdays you can drop off up to two new soft-cover books with a receipt. Bring ID to the Jail Administration window.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate calls are collect through NCIC; set up an account by calling 1-800-943-2189. Personal mail goes to PO Box 591, Longview, TX 75606, where it is scanned for the inmate and then destroyed, photos included. Mail sent anywhere else is returned, and mail without a return name and address is destroyed. Verified attorneys send legal mail, marked as legal mail, to the inmate's name, Woodbury County Jail, PO Box 3083, Sioux City, IA 51102.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "Call 712-279-6040 to confirm a bond amount and the conditions of release. A cash bond is posted with the Woodbury County Clerk of Court, Monday through Friday from 8 a.m. to 4:30 p.m., and at the jail after hours. Approved bondsmen are listed in the local yellow pages. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.woodburycountyiowa.gov/sheriff/jail/"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Woodbury County Jail?",
+        answer:
+          "Video visits run Monday through Friday from 10 to 11 a.m. and 12:30 to 3:15 p.m. Check in at Jail Administration from 9:45 to 10:25 a.m. or noon to 2:40 p.m. No visits on holidays."
+      },
+      {
+        question: "How do I put money on a Woodbury County inmate's account?",
+        answer:
+          "Use the ATM in the Law Enforcement Center vestibule, which is open 24/7, or deposit online through Inmate Canteen. Jail Administration does not take money."
+      },
+      {
+        question: "Where do I send a letter to a Woodbury County inmate?",
+        answer:
+          "PO Box 591, Longview, TX 75606. The letter is scanned for the inmate and then destroyed, so do not send originals you want back. Include your name and return address."
+      },
+      {
+        question: "How do I post bond in Woodbury County?",
+        answer:
+          "Call 712-279-6040 to confirm the amount. Pay a cash bond at the Clerk of Court on weekdays from 8 a.m. to 4:30 p.m., or at the jail after hours."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

@@ -40,6 +40,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "johnson",
       adapterKey: "johnson-county-iowa-current-roster",
       sourceHost: "ww1.johnsoncountyiowa.gov"
+    },
+    {
+      countySlug: "woodbury",
+      adapterKey: "woodbury-county-iowa-current-roster",
+      sourceHost: "injail.wcicc.com"
     }
   ],
   MN: [
