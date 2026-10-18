@@ -33,6 +33,7 @@ source-specific parser contract and a human review packet.
 | Washington | [Washington County Adult Inmate Roster Report](https://washingtoncountymn.gov/3214/Inmate-Information)                                              | Adapter tested; production approval pending      |
 | Dakota     | [Dakota County Jail Inmate Search](https://dakotacountymn.gov/residents/public-safety-justice/jail/inmate-search)                                   | Adapter tested; production approval pending      |
 | Clay       | [Clay County Inmate Roster](https://claycountymn.gov/1454/Inmate-Roster)                                                                            | Adapter tested; production approval pending      |
+| Winona     | [Winona County Detention Center](https://www.winonacounty.gov/314/Jail)                                                                             | Adapter tested; production approval pending      |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |

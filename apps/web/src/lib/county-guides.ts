@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/winona-county": {
+    facilityName: "Winona County Detention Center",
+    address: "203 W. 3rd St., Winona, MN 55987",
+    phone: "507-457-6503",
+    operatedBy: "Winona County Sheriff's Office",
+    reviewedAt: "October 18, 2026",
+    overview:
+      "The Winona County Detention Center is the county's new jail at 203 W. 3rd St. in Winona, next to the Sheriff's Office at 201 W. 3rd St. It has 53 cells with 80 beds and runs a Sentence-to-Serve program, with Huber work release still being set up. The detention center's phone number is 507-457-6503.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.winonacounty.gov/314/Jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "On-site visiting is Tuesday from noon to 4 p.m., Saturday from 8 a.m. to noon, and Sunday from 6 to 10 p.m. at 203 W. 3rd St. Each person in custody can have two 20-minute visits per visiting day, and the two visits cannot be from the same person. Bring a photo ID, keep children supervised, dress appropriately, and leave electronic devices out of the visiting rooms. Staff can end a visit at any time for safety.",
+        sourceLabel: "Official visiting and mailing page",
+        sourceUrl: "https://www.winonacounty.gov/316/Inmate-Visiting-Mailing-Procedures"
+      },
+      {
+        title: "Money and commissary",
+        body: "The county does not post how to put money on an inmate's account. People in custody can send five free pre-set texts a day from a rented device to ask family and friends for funds. Call the detention center at 507-457-6503 to ask how deposits are made.",
+        sourceLabel: "Official visiting and mailing page",
+        sourceUrl: "https://www.winonacounty.gov/316/Inmate-Visiting-Mailing-Procedures"
+      },
+      {
+        title: "Phone and mail",
+        body: "Send mail to the inmate's name, Winona County Detention Center, 203 W. 3rd Street, Winona, MN 55987. Calls go through Reliance Telephone and are collect, and every call except one to an attorney may be recorded. To set up a phone account or buy a phone card, contact Reliance Telephone at 800-896-3201. Staff do not transfer personal calls to inmates or pass along messages.",
+        sourceLabel: "Official visiting and mailing page",
+        sourceUrl: "https://www.winonacounty.gov/316/Inmate-Visiting-Mailing-Procedures"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail is posted at the courthouse reception desk, 171 West 3rd Street, Monday through Friday from 8 a.m. to 4 p.m., or at the jail's North Lobby, 203 West 3rd Street, on nights and weekends. Questions about court dates and fines go to Winona County Court Administration at 507-615-5183. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Sheriff's Office FAQ",
+        sourceUrl: "https://www.winonacounty.gov/Faq.aspx?QID=152"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Winona County jail?",
+        answer:
+          "Tuesday noon to 4 p.m., Saturday 8 a.m. to noon, and Sunday 6 to 10 p.m. Each person in custody gets two 20-minute visits per visiting day. Bring a photo ID."
+      },
+      {
+        question: "What is the mailing address for the Winona County jail?",
+        answer:
+          "The inmate's name, Winona County Detention Center, 203 W. 3rd Street, Winona, MN 55987."
+      },
+      {
+        question: "How do I set up phone calls with a Winona County inmate?",
+        answer:
+          "Calls are collect through Reliance Telephone. Set up an account or buy a phone card at 800-896-3201."
+      },
+      {
+        question: "Where do I post bail in Winona County?",
+        answer:
+          "At the courthouse reception desk, 171 West 3rd Street, weekdays 8 a.m. to 4 p.m., or at the jail's North Lobby, 203 West 3rd Street, on nights and weekends."
+      }
+    ]
+  },
   "minnesota/clay-county": {
     facilityName: "Clay County Correctional Facility",
     address: "800 9th St. N., Moorhead, MN 56560",

@@ -132,6 +132,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "clay",
       adapterKey: "clay-county-mn-current-roster",
       sourceHost: "files.claycountymn.gov"
+    },
+    {
+      countySlug: "winona",
+      adapterKey: "winona-county-mn-current-roster",
+      sourceHost: "www.winonaco.com"
     }
   ],
   TX: [

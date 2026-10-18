@@ -37,6 +37,8 @@ import {
   createDakotaCountySourceAdapter,
   createClayCountySourceAdapter,
   CLAY_COUNTY_ADAPTER_KEY,
+  createWinonaCountySourceAdapter,
+  WINONA_COUNTY_ADAPTER_KEY,
   createPolkCountySourceAdapter,
   POLK_COUNTY_ADAPTER_KEY,
   createWoodburyCountySourceAdapter,
@@ -262,6 +264,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY) {
     return createWoodburyCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WINONA_COUNTY_ADAPTER_KEY) {
+    return createWinonaCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
