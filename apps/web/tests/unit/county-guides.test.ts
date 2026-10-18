@@ -23,6 +23,7 @@ const liveCountyKeys = [
   "minnesota/washington-county",
   "minnesota/dakota-county",
   "minnesota/clay-county",
+  "minnesota/winona-county",
   "iowa/johnson-county",
   "iowa/polk-county",
   "iowa/woodbury-county",

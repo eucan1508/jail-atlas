@@ -873,6 +873,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://files.claycountymn.gov/InmateRoster/index.htm",
     officialSourceLabel: "Clay County Inmate Roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Winona County",
+    slug: "winona-county",
+    publishedAt: "2026-10-18",
+    seatCity: "Winona",
+    h1: "Winona County Jail Roster & Inmate Search",
+    title: "Winona County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Winona County, Minnesota current-inmate information for the detention center in Winona from the official Sheriff's roster, with charges, statute codes, bail amounts, and capture time.",
+    article:
+      "The Winona County Sheriff's Office prints a daily Inmate Roster of everyone held at the Winona County Detention Center. This page lists each person with every charge and its Minnesota statute and the bail amount when one is set, and leaves out ages, arresting agencies, hold reasons, court dates, and mugshots.",
+    officialSourceUrl: "https://www.winonaco.com/Sheriff/Reports/Inmate_Roster_.pdf",
+    officialSourceLabel: "Winona County Sheriff's Office Inmate Roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

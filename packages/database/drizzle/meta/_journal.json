@@ -316,6 +316,13 @@
       "when": 1793508800000,
       "tag": "0044_arkansas_hempstead_source",
       "breakpoints": true
+    },
+    {
+      "idx": 45,
+      "version": "7",
+      "when": 1793595200000,
+      "tag": "0045_minnesota_winona_source",
+      "breakpoints": true
     }
   ]
 }
