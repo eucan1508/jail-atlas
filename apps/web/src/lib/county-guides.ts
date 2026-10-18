@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/clay-county": {
+    facilityName: "Clay County Correctional Facility",
+    address: "800 9th St. N., Moorhead, MN 56560",
+    phone: "218-299-5163",
+    operatedBy: "Clay County Sheriff's Office",
+    reviewedAt: "October 18, 2026",
+    overview:
+      "The Clay County Correctional Facility in Moorhead is a 220-bed jail that holds men and women at minimum, medium, and maximum custody levels, with an 18-bed behavioral and mental health unit. It is licensed by the Minnesota Department of Corrections. The public lobby is Door 1, open 8 a.m. to 4:30 p.m., and the facility's phone number is 218-299-5163.",
+    contactSourceLabel: "Official Correctional Facility page",
+    contactSourceUrl: "https://claycountymn.gov/223/Correctional-Facility",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Public visits are by video only, on Reliance kiosks, and must be booked with Reliance Telephone at least 20 hours ahead and by 10 p.m. the night before. Visiting runs Monday through Thursday from 9 a.m. to 7:30 p.m. and Friday from 9 a.m. to 4:30 p.m., with time slots set by floor and by odd or even day. Each visit lasts about 20 minutes, and most inmates get two a week. Check in at the public lobby at least 10 minutes early with a photo ID if you are 18 or older. Two adults, or one adult with a child in their care, can visit together.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://claycountymn.gov/1501/Schedule-an-Inmate-Visit-or-Video-Visita"
+      },
+      {
+        title: "Money and commissary",
+        body: "Inmate accounts are run by Turnkey. You can add money online through Inmate Canteen or at the Turnkey kiosk in the public lobby, which charges $2 for a cash deposit and 10% for a card. Money orders can be mailed, but checks are not accepted. Deposits first pay any fees the inmate owes before they can be spent on commissary or phone time.",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://claycountymn.gov/1498/Find-Inmate-Contact-Funds-Visiting-and-P"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail goes through the U.S. Postal Service to the inmate's full name, C/O Clay County Correctional Facility, 800 9th St. N., Moorhead, MN 56560, with a return address. Soft-cover books have to come straight from a retailer, and Polaroids, clippings, and scented mail are not allowed. Calls run through Reliance Telephone, which sells phone time at 800-896-3201. Inmates can call out from 7:30 a.m. to 10:15 p.m. and can check a free voicemail line at 218-303-1674.",
+        sourceLabel: "Official inmate information page",
+        sourceUrl: "https://claycountymn.gov/1498/Find-Inmate-Contact-Funds-Visiting-and-P"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail is posted in the public lobby. Press the intercom, say who you are bailing out and how much, and wait for staff before you put money into the Turnkey kiosk. If the court order allows it, a bail bondsman can post the bond instead. Release takes several steps after bail is paid, so the person may not walk out right away. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official bail page",
+        sourceUrl: "https://claycountymn.gov/1493/How-to-Post-Bail-at-the-Correctional-Fac"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Clay County jail?",
+        answer:
+          "Book a video visit with Reliance Telephone at least 20 hours ahead. Visits run Monday through Thursday 9 a.m. to 7:30 p.m. and Friday 9 a.m. to 4:30 p.m. Check in at the lobby 10 minutes early with a photo ID."
+      },
+      {
+        question: "How do I put money on a Clay County inmate's account?",
+        answer:
+          "Deposit online through Inmate Canteen or at the Turnkey kiosk in the jail lobby, or mail a money order. Checks are not accepted."
+      },
+      {
+        question: "What is the mailing address for the Clay County jail?",
+        answer:
+          "Inmate's full name, C/O Clay County Correctional Facility, 800 9th St. N., Moorhead, MN 56560. Every letter needs a return address."
+      },
+      {
+        question: "How do I post bail in Clay County?",
+        answer:
+          "Come to the jail's public lobby, press the intercom, and say who you are bailing out and the amount. Staff will tell you when to pay at the Turnkey kiosk."
+      }
+    ]
+  },
   "iowa/johnson-county": {
     facilityName: "Johnson County Jail",
     address: "511 S. Capitol St., Iowa City, IA 52240",

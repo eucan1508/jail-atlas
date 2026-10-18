@@ -39,3 +39,4 @@ export * from "./pawnee-county.js";
 export * from "./seminole-county.js";
 export * from "./woodbury-county.js";
 export * from "./angelina-county.js";
+export * from "./clay-county.js";

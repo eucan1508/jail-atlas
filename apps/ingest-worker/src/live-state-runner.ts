@@ -127,6 +127,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "dakota",
       adapterKey: "dakota-county-mn-current-roster",
       sourceHost: "dakotacountymn.gov"
+    },
+    {
+      countySlug: "clay",
+      adapterKey: "clay-county-mn-current-roster",
+      sourceHost: "files.claycountymn.gov"
     }
   ],
   TX: [

@@ -40,6 +40,7 @@ const liveAdapterKeys: Record<string, string> = {
   "kandiyohi-county": "kandiyohi-county-mn-current-roster",
   "washington-county": "washington-county-mn-current-roster",
   "dakota-county": "dakota-county-mn-current-roster",
+  "clay-county": "clay-county-mn-current-roster",
   "johnson-county": "johnson-county-iowa-current-roster",
   "polk-county": "polk-county-iowa-current-roster",
   "woodbury-county": "woodbury-county-iowa-current-roster",
