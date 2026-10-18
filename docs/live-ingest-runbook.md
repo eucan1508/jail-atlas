@@ -99,9 +99,9 @@ with the adapter records disabled and publication approval off.
    repository and can be re-enabled in `live-state-runner.ts` if a reliable roster returns.
 
    Arkansas runs Jefferson, Logan, Greene, Cleburne, Faulkner, Hot Spring, Baxter, St. Francis,
-   Mississippi, and Randolph through one shared adapter (`sheriff-roster-site.ts`, configured in
-   `arkansas-rosters.ts`). Jefferson, Logan, Mississippi, and Randolph use the `roster.php?grp=`
-   layout; Greene, Cleburne, Faulkner, Hot Spring, Baxter, and St. Francis use
+   Mississippi, Randolph, and Hempstead through one shared adapter (`sheriff-roster-site.ts`,
+   configured in `arkansas-rosters.ts`). Jefferson, Logan, Mississippi, Randolph, and Hempstead use
+   the `roster.php?grp=` layout; Greene, Cleburne, Faulkner, Hot Spring, Baxter, and St. Francis use
    `/inmate-roster/filters/current/...` paths and only the current view is read. Every crawl must
    collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed.
    The Sharp and Stone County rosters are hosted by their roster service at `www.myr2m.com` and read
@@ -109,7 +109,7 @@ with the adapter records disabled and publication approval off.
    must match both the "shown out of N total" line and the roster's name list:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.myr2m.com
+   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.hempsteadcountysheriff.org,www.myr2m.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 

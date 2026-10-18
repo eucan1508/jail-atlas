@@ -228,6 +228,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "randolph",
       adapterKey: "randolph-county-ar-current-roster",
       sourceHost: "www.randolphcountysheriff.org"
+    },
+    {
+      countySlug: "hempstead",
+      adapterKey: "hempstead-county-ar-current-roster",
+      sourceHost: "www.hempsteadcountysheriff.org"
     }
   ],
   OK: [

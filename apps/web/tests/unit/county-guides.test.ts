@@ -45,6 +45,7 @@ const liveCountyKeys = [
   "arkansas/st-francis-county",
   "arkansas/mississippi-county",
   "arkansas/randolph-county",
+  "arkansas/hempstead-county",
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",
