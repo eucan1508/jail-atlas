@@ -839,6 +839,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://dakotacountymn.gov/content/mndakotacountywebsite/api/search.json?method=JailInmateSearch",
     officialSourceLabel: "Dakota County Jail Inmate Search",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Clay County",
+    slug: "clay-county",
+    publishedAt: "2026-10-18",
+    seatCity: "Moorhead",
+    h1: "Clay County Jail Roster & Inmate Search",
+    title: "Clay County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Clay County, Minnesota current-inmate information for the correctional facility in Moorhead from the official inmate roster, with charges and capture time.",
+    article:
+      "Clay County posts an inmate roster of everyone held at the Clay County Correctional Facility in Moorhead, rebuilt from the jail system through the day. This page lists each person with the charges shown for them, and leaves out ages, booking dates, arresting agencies, mugshots, and hold notes.",
+    officialSourceUrl: "https://files.claycountymn.gov/InmateRoster/index.htm",
+    officialSourceLabel: "Clay County Inmate Roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

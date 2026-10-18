@@ -302,6 +302,13 @@
       "when": 1793336000000,
       "tag": "0042_texas_angelina_source",
       "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "7",
+      "when": 1793422400000,
+      "tag": "0043_minnesota_clay_source",
+      "breakpoints": true
     }
   ]
 }

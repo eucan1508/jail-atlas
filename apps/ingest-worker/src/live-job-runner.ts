@@ -35,6 +35,8 @@ import {
   createKandiyohiCountySourceAdapter,
   createWashingtonCountyMnSourceAdapter,
   createDakotaCountySourceAdapter,
+  createClayCountySourceAdapter,
+  CLAY_COUNTY_ADAPTER_KEY,
   createPolkCountySourceAdapter,
   POLK_COUNTY_ADAPTER_KEY,
   createWoodburyCountySourceAdapter,
@@ -260,6 +262,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY) {
     return createWoodburyCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CLAY_COUNTY_ADAPTER_KEY) {
+    return createClayCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
