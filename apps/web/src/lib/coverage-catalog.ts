@@ -265,6 +265,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Angelina County",
+    slug: "angelina-county",
+    publishedAt: "2026-10-18",
+    seatCity: "Lufkin",
+    h1: "Angelina County Jail Roster & Inmate Search",
+    title: "Angelina County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Angelina County, Texas current-inmate information for the jail in Lufkin from the official Jail Roster, with charges, offense degrees, bond amounts, and capture time.",
+    article:
+      "Angelina County posts a Jail Roster of everyone held at the county jail in Lufkin, with a detail page for each person. This page lists each person with every offense and its degree and the bond set on each charge, and leaves out ages, races, physical descriptions, mugshots, hold reasons, and arresting agencies.",
+    officialSourceUrl: "https://www.angelinacounty.net/injail/",
+    officialSourceLabel: "Angelina County Jail Roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "arkansas",
     stateName: "Arkansas",
     county: "Jefferson County",

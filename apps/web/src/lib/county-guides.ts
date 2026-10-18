@@ -1650,6 +1650,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/angelina-county": {
+    facilityName: "Angelina County Jail",
+    address: "2311 E. Lufkin Ave., Lufkin, TX 75901",
+    phone: "936-634-2724",
+    operatedBy: "Angelina County Sheriff's Office",
+    reviewedAt: "October 18, 2026",
+    overview:
+      "The Angelina County Sheriff's Office runs the county jail at 2311 E. Lufkin Ave. in Lufkin, which opened in 2003. It holds people charged with everything from Class C misdemeanors to capital murder. The jail division's main line is 936-634-2724, and the Sheriff's Office can be reached at 936-634-3331 or by mail at P.O. Box 114, Lufkin, TX 75902.",
+    contactSourceLabel: "Official Sheriff's Office page",
+    contactSourceUrl: "https://www.angelinacounty.net/sheriff/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are split by housing. Men visit Tuesday and Thursday from 7 to 10 p.m., Wednesday from 2 to 5:30 p.m., and Sunday from 8 to 11 a.m. Women visit Tuesday and Thursday from 6 to 7 p.m., Wednesday from 12:30 to 2 p.m., and Sunday from 1 to 2:30 p.m. Sign-up opens 30 minutes before each period and closes 30 minutes before it ends, first come, first served. Visits last 30 minutes, with no more than two visits a week and two visitors in the room at once. Visitors 17 and older need a state-issued ID or driver's license, and anyone younger must come with an adult. There are no contact visits.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.angelinacounty.net/jailvisit/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Inmates buy food, hygiene items, clothing, and shoes from the commissary instead of receiving them from home. Money has to reach an inmate's account before 8 a.m. on Tuesday, orders are placed by phone before 10 a.m. Tuesday, and they are handed out on Wednesday. Money found in a letter is taken out and put on the inmate's commissary account. Inmates with less than $50 who buy nothing from commissary can ask for an indigent order.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.angelinacounty.net/jailinfo/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to the inmate's name and SO number, Angelina County Jail, PO Box 591, Longview, TX 75606, where it is scanned and sent to the inmate's kiosk. Letters can be no more than five pages, written on the front only, with one photo per mailing, and need a return address. Packages are not accepted, except a Bible mailed directly from a church. Inmates cannot receive incoming calls, only voicemail. Their outgoing calls cost $0.16 a minute with no connection fee. Prepaid collect accounts are set up with NCIC at 1-800-943-2189.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.angelinacounty.net/jailinfo/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Angelina County Bail Bond Board licenses the bondsmen who can write bonds in the county; its page lists the licensed companies and their phone numbers, most of them on E. Lufkin Ave. near the jail. The bond on each charge appears on the roster, and jail staff at 936-634-2724 can answer questions about a release. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Bail Bond Board page",
+        sourceUrl: "https://www.angelinacounty.net/bailbond/"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visiting hours at the Angelina County Jail?",
+        answer:
+          "Men visit Tuesday and Thursday 7 to 10 p.m., Wednesday 2 to 5:30 p.m., and Sunday 8 to 11 a.m. Women visit Tuesday and Thursday 6 to 7 p.m., Wednesday 12:30 to 2 p.m., and Sunday 1 to 2:30 p.m."
+      },
+      {
+        question: "Where do I mail a letter to an Angelina County inmate?",
+        answer:
+          "Write the inmate's name and SO number, then Angelina County Jail, PO Box 591, Longview, TX 75606. Keep it to five pages, front side only, with one photo and a return address."
+      },
+      {
+        question: "When does money need to be on an Angelina County inmate's account?",
+        answer:
+          "Before 8 a.m. on Tuesday. Inmates order commissary by phone before 10 a.m. that day, and orders are handed out on Wednesday."
+      },
+      {
+        question: "How do I find a bondsman in Angelina County?",
+        answer:
+          "The Angelina County Bail Bond Board lists every licensed bond company with its phone number. Each charge's bond amount is shown on the jail roster."
+      }
+    ]
+  },
   "texas/tom-green-county": {
     facilityName: "Tom Green County Detention Center",
     address: "4382 N US Highway 277, San Angelo, TX 76905",

@@ -91,12 +91,12 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=TX --dry-run
    ```
 
-   The Texas sequence runs Milam, Kendall, Kleberg, Burleson, and Tom Green. Burleson and Tom Green
-   use the shared `sheriff-roster-site.ts` adapter, configured in `texas-rosters.ts`. Hutchinson is
-   paused: its sheriff domain stopped resolving on 2026-09-30, and the county's replacement page is
-   a hand-typed list headed "Recently Released Inmates", so it cannot be read as current custody.
-   Its adapter and guide stay in the repository and can be re-enabled in `live-state-runner.ts` if a
-   reliable roster returns.
+   The Texas sequence runs Milam, Kendall, Kleberg, Burleson, Tom Green, and Angelina
+   (`www.angelinacounty.net`). Burleson and Tom Green use the shared `sheriff-roster-site.ts`
+   adapter, configured in `texas-rosters.ts`. Hutchinson is paused: its sheriff domain stopped
+   resolving on 2026-09-30, and the county's replacement page is a hand-typed list headed "Recently
+   Released Inmates", so it cannot be read as current custody. Its adapter and guide stay in the
+   repository and can be re-enabled in `live-state-runner.ts` if a reliable roster returns.
 
    Arkansas runs Jefferson, Logan, Greene, Cleburne, Faulkner, Hot Spring, Baxter, St. Francis,
    Mississippi, and Randolph through one shared adapter (`sheriff-roster-site.ts`, configured in
