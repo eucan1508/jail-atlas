@@ -67,6 +67,8 @@ import {
   KENDALL_COUNTY_ADAPTER_KEY,
   createKlebergCountySourceAdapter,
   KLEBERG_COUNTY_ADAPTER_KEY,
+  createAngelinaCountySourceAdapter,
+  ANGELINA_COUNTY_ADAPTER_KEY,
   createIowaCurrentRosterAdapter,
   createMilamCountySourceAdapter,
   MILAM_COUNTY_ADAPTER_KEY,
@@ -367,6 +369,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === KENDALL_COUNTY_ADAPTER_KEY) {
     return createKendallCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY) {
+    return createAngelinaCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

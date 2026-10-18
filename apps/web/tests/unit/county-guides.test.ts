@@ -31,6 +31,7 @@ const liveCountyKeys = [
   "texas/kleberg-county",
   "texas/burleson-county",
   "texas/tom-green-county",
+  "texas/angelina-county",
   "arkansas/jefferson-county",
   "arkansas/logan-county",
   "arkansas/greene-county",

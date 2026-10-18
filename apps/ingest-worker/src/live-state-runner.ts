@@ -156,6 +156,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "tom-green",
       adapterKey: "tom-green-county-tx-current-roster",
       sourceHost: "www.tomgreencountysheriff.org"
+    },
+    {
+      countySlug: "angelina",
+      adapterKey: "angelina-county-tx-current-roster",
+      sourceHost: "www.angelinacounty.net"
     }
   ],
   AR: [
