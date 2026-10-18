@@ -459,6 +459,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Hempstead County",
+    slug: "hempstead-county",
+    publishedAt: "2026-10-18",
+    seatCity: "Hope",
+    h1: "Hempstead County Jail Roster & Inmate Search",
+    title: "Hempstead County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Hempstead County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Hempstead County Sheriff's Office publishes a Current Inmates roster for its detention center in Hope, separate from its list of people released in the last 48 hours. This page reads only the current list, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.hempsteadcountysheriff.org/roster.php",
+    officialSourceLabel: "Hempstead County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",

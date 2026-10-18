@@ -63,6 +63,7 @@ the same roster software but were left out because their sites do not publish al
 | St. Francis | [St. Francis County Sheriff current roster](https://www.stfranciscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 | Mississippi | [Mississippi County Sheriff inmate roster](https://www.mississippicountysheriffar.org/roster.php)                                     | Adapter tested; production approval pending |
 | Randolph    | [Randolph County Sheriff inmate roster](https://www.randolphcountysheriff.org/roster.php)                                             | Adapter tested; production approval pending |
+| Hempstead   | [Hempstead County Sheriff inmate roster](https://www.hempsteadcountysheriff.org/roster.php)                                           | Adapter tested; production approval pending |
 | Sharp       | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
 | Stone       | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
 

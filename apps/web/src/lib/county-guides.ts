@@ -2653,6 +2653,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/hempstead-county": {
+    facilityName: "Hempstead County Detention Center",
+    address: "312 South Washington, Hope, AR 71801",
+    phone: "870-777-6727",
+    operatedBy: "Hempstead County Sheriff's Office",
+    reviewedAt: "October 18, 2026",
+    overview:
+      "The Hempstead County Detention Center in Hope is a 100-bed jail run by the Sheriff's Office and staffed by 21 full-time jailers. It holds people awaiting trial, people arrested on warrants, people serving county sentences, and state inmates waiting for a bed with the Arkansas Department of Corrections, with separate housing for men by security level and for women. The Sheriff's Office is at 312 South Washington, and its phone number is 870-777-6727.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.hempsteadcountysheriff.org/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video. Each housing pod has a video kiosk, and family members can visit from home seven days a week from 8 a.m. to 8 p.m. through the jail's CTC video visitation service at hempsteadar.citytelecoin.com. Video visits also let relatives under 18 see someone in the jail, which the old in-person rules did not allow.",
+        sourceLabel: "Official video visitation page",
+        sourceUrl: "https://www.hempsteadcountysheriff.org/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's Office does not post how to put money on an inmate's account. Call the Sheriff's Office at 870-777-6727 and ask the jail before sending or dropping off money.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.hempsteadcountysheriff.org/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "CTC Communications of Bossier City, Louisiana runs both the jail's inmate phone system and its video visits. The Sheriff's Office does not post mail rules for inmates, so call 870-777-6727 before sending a letter or package.",
+        sourceLabel: "Official video visitation page",
+        sourceUrl: "https://www.hempsteadcountysheriff.org/visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster shows the bond listed for each booking, but the Sheriff's Office does not post how bonds are paid. Call 870-777-6727 to confirm the amount and how to post it. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official inmate roster",
+        sourceUrl: "https://www.hempsteadcountysheriff.org/roster-choose"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit an inmate at the Hempstead County jail?",
+        answer:
+          "Visits are by video, seven days a week from 8 a.m. to 8 p.m., through CTC at hempsteadar.citytelecoin.com. You can visit from home."
+      },
+      {
+        question: "Can someone under 18 visit an inmate in Hempstead County?",
+        answer:
+          "Yes, by video. The Sheriff's Office says video visits let family members under 18 see an inmate, which in-person visits did not allow."
+      },
+      {
+        question: "Who runs inmate phone calls at the Hempstead County jail?",
+        answer: "CTC Communications, the same company that runs the jail's video visits."
+      },
+      {
+        question: "How do I find out an inmate's bond in Hempstead County?",
+        answer:
+          "The bond for each booking is shown on the roster. Call the Sheriff's Office at 870-777-6727 to confirm it and ask how to post it."
+      }
+    ]
+  },
   "arkansas/stone-county": {
     facilityName: "Stone County Detention Center",
     address: "1009 Sheriffs Drive, Mountain View, AR 72560",

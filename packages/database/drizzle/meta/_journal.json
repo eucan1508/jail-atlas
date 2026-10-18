@@ -309,6 +309,13 @@
       "when": 1793422400000,
       "tag": "0043_minnesota_clay_source",
       "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "7",
+      "when": 1793508800000,
+      "tag": "0044_arkansas_hempstead_source",
+      "breakpoints": true
     }
   ]
 }
