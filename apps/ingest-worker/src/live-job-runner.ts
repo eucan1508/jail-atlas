@@ -151,14 +151,17 @@ export function createLiveSourceAdapter(
           : source.adapterKey === POLK_COUNTY_ADAPTER_KEY
             ? // The current list and each person's detail page share the /Inmates folder.
               ["/Inmates"]
-            : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-                source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-                source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-                source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-              ? ["/dmxConnect/api/Booking"]
-              : rosterSite?.layout === "inmate-roster-path"
-                ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-                : [sourceUrl.pathname];
+            : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
+              ? // The list is /injail/ and each detail page /injail/inmate/.
+                ["/injail"]
+              : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+                  source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+                  source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+                  source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+                ? ["/dmxConnect/api/Booking"]
+                : rosterSite?.layout === "inmate-roster-path"
+                  ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                  : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
