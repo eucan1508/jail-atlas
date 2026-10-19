@@ -330,6 +330,13 @@
       "when": 1793681600000,
       "tag": "0046_minnesota_hennepin_source",
       "breakpoints": true
+    },
+    {
+      "idx": 47,
+      "version": "7",
+      "when": 1793768000000,
+      "tag": "0047_arkansas_izard_source",
+      "breakpoints": true
     }
   ]
 }

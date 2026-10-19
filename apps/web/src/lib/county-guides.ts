@@ -2771,6 +2771,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/izard-county": {
+    facilityName: "Izard County Detention Facility",
+    address: "300 Circle Drive, Melbourne, AR 72556",
+    phone: "870-368-4203",
+    operatedBy: "Izard County Sheriff's Department",
+    reviewedAt: "October 19, 2026",
+    overview:
+      "The Izard County Detention Facility and Dispatch Center at 300 Circle Drive in Melbourne opened in 2003 and also houses the Sheriff's Department and the District Clerk. The jail holds up to 34 inmates plus four state Act 309 inmates, separated by sex and by violent or non-violent charges. People are held there until they post bond or are sentenced, and those sentenced to the Arkansas Department of Correction wait there for a bed.",
+    contactSourceLabel: "Official detention and dispatch page",
+    contactSourceUrl: "https://www.izardcountysheriff.org/detention-dispatch-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting is on Sunday from 8 a.m. to 4 p.m., by appointment only. Call 870-368-4203 by 5 p.m. on Wednesday to book. Each inmate gets one 15-minute visit with up to four visitors, and every visitor needs a valid photo ID, such as an Arkansas driver's license or ID card. Property is not released during visiting hours.",
+        sourceLabel: "Official detention and dispatch page",
+        sourceUrl: "https://www.izardcountysheriff.org/detention-dispatch-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's Department does not post how to put money on an inmate's account. Call the jail at 870-368-4203 before sending or dropping off money.",
+        sourceLabel: "Official detention and dispatch page",
+        sourceUrl: "https://www.izardcountysheriff.org/detention-dispatch-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's Department does not post mail or phone rules for inmates. For questions about an inmate's property or anything else at the jail, call 870-368-4203 and ask for the jail.",
+        sourceLabel: "Official detention and dispatch page",
+        sourceUrl: "https://www.izardcountysheriff.org/detention-dispatch-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster shows the bond listed for each booking, but the Sheriff's Department does not post how bonds are paid. Call 870-368-4203 to confirm the amount and how to post it. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official inmate roster",
+        sourceUrl: "https://www.izardcountysheriff.org/roster-choose"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit an inmate at the Izard County jail?",
+        answer:
+          "Sunday from 8 a.m. to 4 p.m., by appointment only. Call 870-368-4203 by 5 p.m. on Wednesday to book a visit."
+      },
+      {
+        question: "How long is a visit at the Izard County jail?",
+        answer:
+          "One 15-minute visit per inmate, with up to four visitors. Every visitor needs a valid photo ID."
+      },
+      {
+        question: "Where is the Izard County jail?",
+        answer:
+          "At the Izard County Detention Facility and Dispatch Center, 300 Circle Drive, Melbourne, AR 72556. The phone number is 870-368-4203."
+      },
+      {
+        question: "How do I find out an inmate's bond in Izard County?",
+        answer:
+          "The bond for each booking is shown on the roster. Call the Sheriff's Department at 870-368-4203 to confirm it and ask how to post it."
+      }
+    ]
+  },
   "arkansas/hempstead-county": {
     facilityName: "Hempstead County Detention Center",
     address: "312 South Washington, Hope, AR 71801",
