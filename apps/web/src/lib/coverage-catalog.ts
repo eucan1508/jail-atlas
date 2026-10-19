@@ -890,6 +890,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.winonaco.com/Sheriff/Reports/Inmate_Roster_.pdf",
     officialSourceLabel: "Winona County Sheriff's Office Inmate Roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Hennepin County",
+    slug: "hennepin-county",
+    publishedAt: "2026-10-19",
+    seatCity: "Minneapolis",
+    h1: "Hennepin County Jail Roster & Inmate Search",
+    title: "Hennepin County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Hennepin County, Minnesota current-inmate information for the jail in downtown Minneapolis from the Sheriff's official jail roster, with booking numbers, open charges, statute codes, and capture time.",
+    article:
+      "The Hennepin County Sheriff's Office publishes a jail roster, updated hourly, of people held at the Adult Detention Center in downtown Minneapolis. This page lists everyone the roster shows housed in the jail's two buildings, the Public Safety Facility and City Hall, with booking numbers and each open charge with its Minnesota statute, and leaves out ages, arresting agencies, case numbers, bail options, court dates, and cases the county has already cleared.",
+    officialSourceUrl:
+      "https://api.hennepincounty.gov/hcso-public-services-api/v1/JailRoster/Search",
+    officialSourceLabel: "Hennepin County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

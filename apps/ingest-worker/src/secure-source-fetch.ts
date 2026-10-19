@@ -12,11 +12,14 @@ const SecureSourceFetchOptionsSchema = z.object({
   userAgent: z.string().trim().min(8).max(300),
   timeoutMs: z.number().int().min(1_000).max(60_000).default(15_000),
   maxResponseBytes: z.number().int().min(16_384).max(8_000_000).default(1_000_000),
-  allowFormPost: z.boolean().default(false)
+  allowFormPost: z.boolean().default(false),
+  allowJsonPost: z.boolean().default(false)
 });
 
 // ASP.NET rosters page through form posts that carry the page's view state back to the server.
 const MAX_FORM_BODY_BYTES = 262_144;
+// JSON search APIs take a small query object; anything larger is not a search.
+const MAX_JSON_BODY_BYTES = 16_384;
 
 export class SecureSourceFetchError extends Error {
   readonly code:
@@ -44,6 +47,8 @@ export interface ConnectionBoundSourceFetchOptions {
   readonly maxResponseBytes?: number;
   /** Lets an adapter send URL-encoded form posts to the approved paths; GET-only otherwise. */
   readonly allowFormPost?: boolean;
+  /** Lets an adapter send a small JSON object as a POST body to the approved paths. */
+  readonly allowJsonPost?: boolean;
   readonly dnsLookup?: DnsLookup;
   readonly request?: typeof defaultHttpsRequest;
 }
@@ -140,6 +145,15 @@ const ALLOWED_ACCEPT_VALUES = new Set([
   "application/pdf"
 ]);
 
+function isJsonObject(text: string): boolean {
+  try {
+    const value: unknown = JSON.parse(text);
+    return typeof value === "object" && value !== null && !Array.isArray(value);
+  } catch {
+    return false;
+  }
+}
+
 function requestedAccept(init: RequestInit): string {
   const accept = new Headers(init.headers).get("accept")?.trim().toLowerCase();
   return accept && ALLOWED_ACCEPT_VALUES.has(accept) ? accept : "text/html";
@@ -157,10 +171,16 @@ export function createConnectionBoundSourceFetch(
   return async (input, init = {}): Promise<Response> => {
     const method = (init.method ?? "GET").toUpperCase();
     let formBody: Buffer | undefined;
+    let jsonBody: Buffer | undefined;
     if (method === "POST" && options.allowFormPost && init.body instanceof URLSearchParams) {
       formBody = Buffer.from(init.body.toString());
       if (formBody.byteLength > MAX_FORM_BODY_BYTES) {
         throw new SecureSourceFetchError("METHOD_FORBIDDEN", "The form post body is too large");
+      }
+    } else if (method === "POST" && options.allowJsonPost && typeof init.body === "string") {
+      jsonBody = Buffer.from(init.body);
+      if (jsonBody.byteLength > MAX_JSON_BODY_BYTES || !isJsonObject(init.body)) {
+        throw new SecureSourceFetchError("METHOD_FORBIDDEN", "The JSON post body is not allowed");
       }
     } else if (method !== "GET" || init.body !== undefined) {
       throw new SecureSourceFetchError("METHOD_FORBIDDEN", "Source transport permits GET only");
@@ -205,7 +225,7 @@ export function createConnectionBoundSourceFetch(
         );
       };
       const requestOptions: RequestOptions = {
-        method: formBody ? "POST" : "GET",
+        method: formBody || jsonBody ? "POST" : "GET",
         lookup,
         signal: init.signal ?? undefined,
         headers: {
@@ -217,6 +237,12 @@ export function createConnectionBoundSourceFetch(
             ? {
                 "content-type": "application/x-www-form-urlencoded",
                 "content-length": String(formBody.byteLength)
+              }
+            : {}),
+          ...(jsonBody
+            ? {
+                "content-type": "application/json",
+                "content-length": String(jsonBody.byteLength)
               }
             : {})
         }
@@ -338,7 +364,7 @@ export function createConnectionBoundSourceFetch(
         request.destroy();
         fail(new SecureSourceFetchError("TIMEOUT", "The source request exceeded its total time"));
       }, options.timeoutMs);
-      request.end(formBody);
+      request.end(formBody ?? jsonBody);
     });
   };
 }
