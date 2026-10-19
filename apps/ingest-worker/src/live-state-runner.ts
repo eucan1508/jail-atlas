@@ -247,6 +247,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "hempstead",
       adapterKey: "hempstead-county-ar-current-roster",
       sourceHost: "www.hempsteadcountysheriff.org"
+    },
+    {
+      countySlug: "izard",
+      adapterKey: "izard-county-ar-current-roster",
+      sourceHost: "www.izardcountysheriff.org"
     }
   ],
   OK: [

@@ -476,6 +476,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Izard County",
+    slug: "izard-county",
+    publishedAt: "2026-10-19",
+    seatCity: "Melbourne",
+    h1: "Izard County Jail Roster & Inmate Search",
+    title: "Izard County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Izard County, Arkansas current-inmate information from the official sheriff roster, with booking numbers, source-listed charges, bond labels, and capture time.",
+    article:
+      "The Izard County Sheriff's Department publishes a Current Inmates roster for its detention facility in Melbourne, separate from its list of recent releases. This page reads only the current list, keeps booking numbers, source-listed charges, and bond labels, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.izardcountysheriff.org/roster.php",
+    officialSourceLabel: "Izard County Sheriff's Department inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",
