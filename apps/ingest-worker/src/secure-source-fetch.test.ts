@@ -218,6 +218,61 @@ describe("connection-bound source transport", () => {
     expect(open.captured[0]?.headers).not.toHaveProperty("cookie");
   });
 
+  it("sends small JSON object posts only when the source opts in", async () => {
+    const options = {
+      allowlist,
+      allowedPathPrefixes: ["/approved"],
+      userAgent: "SyntheticCustodyResearch/1.0 (+https://example.test/source-policy)",
+      dnsLookup: publicLookup
+    };
+    const query = JSON.stringify({ custodyStatus: 1, pagination: { activePage: 1 } });
+
+    const closed = fakeHttpsRequest("unused");
+    const formOnly = createConnectionBoundSourceFetch({
+      ...options,
+      allowFormPost: true,
+      request: closed.implementation
+    });
+    await expect(
+      formOnly(sourceUrl, { method: "POST", body: query, redirect: "error" })
+    ).rejects.toMatchObject({ code: "METHOD_FORBIDDEN" });
+    expect(closed.captured).toHaveLength(0);
+
+    const open = fakeHttpsRequest('{"data":[]}');
+    const jsonPost = createConnectionBoundSourceFetch({
+      ...options,
+      allowJsonPost: true,
+      request: open.implementation
+    });
+    for (const init of [
+      { method: "POST", body: "not json" },
+      { method: "POST", body: "[1,2]" },
+      { method: "POST", body: new URLSearchParams({ page: "2" }) },
+      { method: "PUT", body: query },
+      { method: "POST", body: JSON.stringify({ big: "x".repeat(20_000) }) }
+    ]) {
+      await expect(jsonPost(sourceUrl, { ...init, redirect: "error" })).rejects.toMatchObject({
+        code: "METHOD_FORBIDDEN"
+      });
+    }
+    expect(open.captured).toHaveLength(0);
+
+    const response = await jsonPost(sourceUrl, {
+      method: "POST",
+      body: query,
+      redirect: "error",
+      headers: { accept: "application/json", cookie: "session=synthetic" }
+    });
+    await expect(response.text()).resolves.toBe('{"data":[]}');
+    expect(open.captured[0]).toMatchObject({ method: "POST" });
+    expect(open.captured[0]?.headers).toMatchObject({
+      accept: "application/json",
+      "content-type": "application/json",
+      "content-length": String(query.length)
+    });
+    expect(open.captured[0]?.headers).not.toHaveProperty("cookie");
+  });
+
   it("never follows a source redirect", async () => {
     const fake = fakeHttpsRequest("", 302);
     const fetchSource = createConnectionBoundSourceFetch({

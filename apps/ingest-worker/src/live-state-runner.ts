@@ -12,6 +12,8 @@ type LiveStateSource = Readonly<{
   countySlug: string;
   adapterKey: string;
   sourceHost: string;
+  /** Other hosts the adapter reads from, such as a roster site's settings file. */
+  extraSourceHosts?: readonly string[];
 }>;
 
 const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>> = {
@@ -137,6 +139,13 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "winona",
       adapterKey: "winona-county-mn-current-roster",
       sourceHost: "www.winonaco.com"
+    },
+    {
+      countySlug: "hennepin",
+      adapterKey: "hennepin-county-mn-current-roster",
+      sourceHost: "api.hennepincounty.gov",
+      // The roster site's config.json carries the API key the site sends.
+      extraSourceHosts: ["jailroster.hennepin.us"]
     }
   ],
   TX: [
@@ -310,7 +319,7 @@ export async function executeLiveState(
         {
           ...config,
           liveSourceAdapterKey: source.adapterKey,
-          sourceHostAllowlist: [source.sourceHost]
+          sourceHostAllowlist: [source.sourceHost, ...(source.extraSourceHosts ?? [])]
         },
         dependencies
       )

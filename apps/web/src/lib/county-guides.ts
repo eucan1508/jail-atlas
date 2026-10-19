@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/hennepin-county": {
+    facilityName: "Hennepin County Adult Detention Center",
+    address: "401 South 4th Avenue, Suite 100, Minneapolis, MN 55415",
+    phone: "612-348-5112",
+    operatedBy: "Hennepin County Sheriff's Office",
+    reviewedAt: "October 19, 2026",
+    overview:
+      "The Hennepin County jail, also called the Adult Detention Center, holds adults accused of crimes before trial in downtown Minneapolis. It is split between two buildings across the street from each other: the Public Safety Facility at 401 South 4th Avenue and Minneapolis City Hall at 350 South 5th Street, both just north of the Government Plaza light rail station. The jail information line is 612-348-5112. The Sheriff's Office warns that it never calls families asking for payment.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.hennepinsheriff.org/jail-warrants/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are 20 minutes by video monitor in room 235 on the second floor of the Public Safety Facility, seven days a week from 7 to 11:30 a.m., 2:30 to 5:30 p.m., and 7:30 to 9:30 p.m. On-site visits are free. Create a visitor profile with Securus Friends & Family, wait for jail staff to approve it, and book at least 24 hours ahead. A detainee can have visitors once a day and up to three times a week. Arrive 10 minutes early with a photo ID; visitors under 18 must come with an adult. Detainees can also make paid video calls to approved Securus accounts.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hennepinsheriff.org/jail-warrants/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Cash can go into the deposit machine in the Public Safety Facility lobby at any hour, or in the City Hall visiting area weekdays from 7 a.m. to 5 p.m. You need the detainee's exact name and personal identification number (PAK), which is on the roster posted in each lobby. Online deposits go through Access Corrections (choose Hennepin County Adult Detention Center in Downtown Minneapolis). Cash or a money order can also be mailed to 401 S. 4th Ave., Suite 100, Minneapolis, MN 55415. Detainees pay 10% of each withdrawal, up to $10.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hennepinsheriff.org/jail-warrants/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Detainees can call out, but you cannot call in to them. Questions about collect-call bills, or to block calls, go to Correctional Billing Services. Mail goes through the U.S. Postal Service to the detainee's full name, Hennepin County Public Safety Facility, 401 South 4th Avenue, Minneapolis, MN 55415. Packages have to come straight from a publisher, mail-order bookseller, attorney, or court official, unless they hold something the detainee needs for court or release, such as clothing.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hennepinsheriff.org/jail-warrants/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail is posted 24 hours a day at the in-custody records window in the Public Safety Facility, after weapons screening. Bring the case or warrant number and the exact amount in cash; the jail makes no change, has no cash machine, and does not take checks or cards. A bonding agency can post a bond instead, but the jail will not refer you to one. For bail information by phone, call 612-348-5112 with the detainee's full name and date of birth. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.hennepinsheriff.org/jail-warrants/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone in the Hennepin County jail?",
+        answer:
+          "Set up a Securus Friends & Family visitor profile, wait for jail approval, and book a 20-minute video visit at least 24 hours ahead. Visits are in room 235 of the Public Safety Facility, 401 South 4th Avenue."
+      },
+      {
+        question: "How do I put money on a Hennepin County detainee's account?",
+        answer:
+          "Use the cash deposit machine at the Public Safety Facility (any hour) or City Hall (weekdays 7 a.m. to 5 p.m.), deposit online through Access Corrections, or mail cash or a money order to 401 S. 4th Ave., Suite 100, Minneapolis, MN 55415."
+      },
+      {
+        question: "Where do I post bail in Hennepin County?",
+        answer:
+          "At the in-custody records window in the Public Safety Facility, 24 hours a day. Bring the exact amount in cash and the case or warrant number."
+      },
+      {
+        question: "What is the mailing address for the Hennepin County jail?",
+        answer:
+          "The detainee's full name, Hennepin County Public Safety Facility, 401 South 4th Avenue, Minneapolis, MN 55415."
+      }
+    ]
+  },
   "minnesota/winona-county": {
     facilityName: "Winona County Detention Center",
     address: "203 W. 3rd St., Winona, MN 55987",

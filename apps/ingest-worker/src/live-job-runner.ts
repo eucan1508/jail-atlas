@@ -39,6 +39,8 @@ import {
   CLAY_COUNTY_ADAPTER_KEY,
   createWinonaCountySourceAdapter,
   WINONA_COUNTY_ADAPTER_KEY,
+  createHennepinCountySourceAdapter,
+  HENNEPIN_COUNTY_ADAPTER_KEY,
   createPolkCountySourceAdapter,
   POLK_COUNTY_ADAPTER_KEY,
   createWoodburyCountySourceAdapter,
@@ -155,17 +157,21 @@ export function createLiveSourceAdapter(
           : source.adapterKey === POLK_COUNTY_ADAPTER_KEY
             ? // The current list and each person's detail page share the /Inmates folder.
               ["/Inmates"]
-            : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
-              ? // The list is /injail/ and each detail page /injail/inmate/.
-                ["/injail"]
-              : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-                  source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-                  source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-                  source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-                ? ["/dmxConnect/api/Booking"]
-                : rosterSite?.layout === "inmate-roster-path"
-                  ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-                  : [sourceUrl.pathname];
+            : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
+              ? // The in-custody search and each person's detail share the JailRoster path; the
+                // roster site's config.json carries the API key.
+                ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
+              : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
+                ? // The list is /injail/ and each detail page /injail/inmate/.
+                  ["/injail"]
+                : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+                    source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+                    source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+                    source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+                  ? ["/dmxConnect/api/Booking"]
+                  : rosterSite?.layout === "inmate-roster-path"
+                    ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                    : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -178,6 +184,8 @@ export function createLiveSourceAdapter(
     ...(myr2mSite || source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
       ? { allowFormPost: true }
       : {}),
+    // The Hennepin County roster API takes its in-custody search as a small JSON post.
+    ...(source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY ? { allowJsonPost: true } : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
     // report grows by about 7 KB per person, and the Otter Tail County list carries a ~30 KB
     // photo per person; every other source stays at the 1 MB default.
@@ -264,6 +272,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY) {
     return createWoodburyCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY) {
+    return createHennepinCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
