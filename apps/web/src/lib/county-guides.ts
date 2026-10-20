@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/nobles-county": {
+    facilityName: "Nobles County Jail",
+    address: "1530 Airport Ste 200, Worthington, MN 56187",
+    phone: "507-295-5290",
+    operatedBy: "Nobles County Sheriff's Office",
+    reviewedAt: "October 20, 2026",
+    overview:
+      "The Nobles County Jail is in the Prairie Justice Center in Worthington. The jail's phone number is 507-295-5290, and other questions go to the Sheriff's Office at 507-295-5400. Jail staff will not share anything about an inmate's account with anyone but the inmate, and the jail does not take messages for inmates.",
+    contactSourceLabel: "Official jail information guide",
+    contactSourceUrl: "https://www.co.nobles.mn.us/departments/sheriff/nobles-county-jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are Sunday from 9 to 11 a.m. and 7 to 10 p.m., Tuesday from 7 to 10 p.m., and Thursday from 9 to 11 a.m. Every visitor has to register with Reliance Telephone first and book at least four hours before the visiting period, online or at 507-295-5378. Visits last 20 minutes, up to twice a day and four times a week. Bring photo ID. A child under 18 may visit only a parent or legal guardian, must come with a parent or guardian, and needs a birth certificate or guardianship papers; siblings under 18 cannot visit.",
+        sourceLabel: "Official jail information guide",
+        sourceUrl: "https://www.co.nobles.mn.us/departments/sheriff/nobles-county-jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits can be made online at jailatm.com or at the kiosk in the main entrance of the Prairie Justice Center, which takes cash and credit cards. The jail also takes money orders and cashier's checks payable to the Nobles County Jail with the inmate's name on them, during visitation or by mail. Personal checks are not accepted.",
+        sourceLabel: "Official jail information guide",
+        sourceUrl: "https://www.co.nobles.mn.us/departments/sheriff/nobles-county-jail/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Leave a message for an inmate at 507-407-2017; these messages are not confidential. Inmates call out with Reliance phone cards of $10 or $20, sold at the jail or at reliancetelephone.com, and collect calls can be set up at 800-896-3201. Mail must come through the U.S. Postal Service to the inmate's name, Nobles County Jail, 1530 Airport Ste 200, Worthington, MN 56187. Personal mail is copied for the inmate and the original destroyed. Photos, books, and magazines are not allowed.",
+        sourceLabel: "Official jail information guide",
+        sourceUrl: "https://www.co.nobles.mn.us/departments/sheriff/nobles-county-jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office does not post how to post bail. Call the jail at 507-295-5290 to ask about an inmate's bail and how to pay it. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official jail information guide",
+        sourceUrl: "https://www.co.nobles.mn.us/departments/sheriff/nobles-county-jail/"
+      }
+    ],
+    faq: [
+      {
+        question: "When are visiting hours at the Nobles County Jail?",
+        answer:
+          "Sunday 9 to 11 a.m. and 7 to 10 p.m., Tuesday 7 to 10 p.m., and Thursday 9 to 11 a.m. Register with Reliance Telephone and book at least four hours ahead."
+      },
+      {
+        question: "How do I put money on a Nobles County inmate's account?",
+        answer:
+          "Online at jailatm.com, at the kiosk in the Prairie Justice Center entrance, or with a money order or cashier's check payable to the Nobles County Jail. Personal checks are not accepted."
+      },
+      {
+        question: "What is the mailing address for the Nobles County Jail?",
+        answer:
+          "The inmate's name, Nobles County Jail, 1530 Airport Ste 200, Worthington, MN 56187. Mail is copied and the originals destroyed."
+      },
+      {
+        question: "Can I leave a message for a Nobles County inmate?",
+        answer:
+          "Yes, through the inmate message line at 507-407-2017. Messages are not confidential, and jail staff do not take messages."
+      }
+    ]
+  },
   "minnesota/hennepin-county": {
     facilityName: "Hennepin County Adult Detention Center",
     address: "401 South 4th Avenue, Suite 100, Minneapolis, MN 55415",

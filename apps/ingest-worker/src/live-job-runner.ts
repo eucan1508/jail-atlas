@@ -39,6 +39,8 @@ import {
   CLAY_COUNTY_ADAPTER_KEY,
   createWinonaCountySourceAdapter,
   WINONA_COUNTY_ADAPTER_KEY,
+  createNoblesCountySourceAdapter,
+  NOBLES_COUNTY_ADAPTER_KEY,
   createHennepinCountySourceAdapter,
   HENNEPIN_COUNTY_ADAPTER_KEY,
   createPolkCountySourceAdapter,
@@ -279,6 +281,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY) {
     return createHennepinCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === NOBLES_COUNTY_ADAPTER_KEY) {
+    return createNoblesCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

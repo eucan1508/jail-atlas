@@ -925,6 +925,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://api.hennepincounty.gov/hcso-public-services-api/v1/JailRoster/Search",
     officialSourceLabel: "Hennepin County Sheriff's Office jail roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Nobles County",
+    slug: "nobles-county",
+    publishedAt: "2026-10-20",
+    seatCity: "Worthington",
+    h1: "Nobles County Jail Roster & Inmate Search",
+    title: "Nobles County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Nobles County, Minnesota current-inmate information for the jail in Worthington from the Sheriff's official Inmate Listing, with charges, offense levels, and capture time.",
+    article:
+      "The Nobles County Sheriff's Office posts an Inmate Listing of everyone held at the Nobles County Jail in the Prairie Justice Center in Worthington, refreshed through the day. This page lists each person with every charge and its level, and leaves out photos, booking dates, and arresting agencies.",
+    officialSourceUrl: "https://ftp.co.nobles.mn.us/jail/Inmate_listing/inmate_listing.html",
+    officialSourceLabel: "Nobles County Sheriff's Office Inmate Listing",
+    sourceStatus: "audit_pending"
   }
 ];
 
