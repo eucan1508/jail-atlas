@@ -146,6 +146,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "api.hennepincounty.gov",
       // The roster site's config.json carries the API key the site sends.
       extraSourceHosts: ["jailroster.hennepin.us"]
+    },
+    {
+      countySlug: "nobles",
+      adapterKey: "nobles-county-mn-current-roster",
+      sourceHost: "ftp.co.nobles.mn.us"
     }
   ],
   TX: [
