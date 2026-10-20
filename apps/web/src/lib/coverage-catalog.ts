@@ -942,6 +942,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://ftp.co.nobles.mn.us/jail/Inmate_listing/inmate_listing.html",
     officialSourceLabel: "Nobles County Sheriff's Office Inmate Listing",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Benton County",
+    slug: "benton-county",
+    publishedAt: "2026-10-20",
+    seatCity: "Foley",
+    h1: "Benton County Jail Roster & Inmate Search",
+    title: "Benton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Benton County, Minnesota current-inmate information for the jail in Foley from the Sheriff's official Current Inmate List, with charges, offense levels, bonds, and capture time.",
+    article:
+      "The Benton County Sheriff's Office links a Current Inmate List of people held at the Benton County Jail in Foley. This page lists each person with every charge and its level and the bonds listed for them, and leaves out ages, physical descriptions, photos, arresting agencies, and arrest dates.",
+    officialSourceUrl:
+      "https://api.correctionsrecordssearch.com/instances/lookup?alias=bentoncountymn",
+    officialSourceLabel: "Benton County Sheriff's Office Current Inmate List",
+    sourceStatus: "audit_pending"
   }
 ];
 

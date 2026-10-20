@@ -2122,6 +2122,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/benton-county": {
+    facilityName: "Benton County Jail",
+    address: "581 Highway 23, Foley, MN 56329",
+    phone: "320-968-8180",
+    operatedBy: "Benton County Sheriff's Office",
+    reviewedAt: "October 20, 2026",
+    overview:
+      "The Benton County Sheriff's Office Jail Division holds up to 102 inmates in Foley, and its staff also provide court security and transport prisoners. The Sheriff's Office is at 581 Highway 23 in Foley. Jail administration can be reached at 320-968-8180, Monday through Friday from 8 a.m. to 4 p.m.",
+    contactSourceLabel: "Official Jail Division page",
+    contactSourceUrl: "https://www.bentoncountymn.gov/220/Jail-Division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting is Tuesday from 8 to 10 p.m., Thursday from 1 to 4 p.m., and Saturday from 8:30 to 11:30 a.m., by appointment only. Call 320-968-8180 on a weekday between 8 a.m. and 4 p.m., at least 24 hours ahead. You must already be on the inmate's approved visitor list, which the inmate requests with your full name, date of birth, address, and phone number. Visits last 20 minutes, and no visits start in the last 15 minutes of a period. Adults need government ID; anyone under 18 must come with a parent or legal guardian, who brings a birth certificate.",
+        sourceLabel: "Official Jail Division page",
+        sourceUrl: "https://www.bentoncountymn.gov/220/Jail-Division"
+      },
+      {
+        title: "Money and commissary",
+        body: "A TurnKey Corrections kiosk in the jail lobby takes cash and credit card deposits to an inmate's account. Deposits can also be made online through the Inmate Canteen website, which requires an account.",
+        sourceLabel: "Official Jail Division page",
+        sourceUrl: "https://www.bentoncountymn.gov/220/Jail-Division"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to Benton County Jail, the inmate's name, P.O. Box 159, Foley, MN 56329. Letters, cards, and drawings must come through the U.S. Postal Service and cannot be dropped off at visits. To leave a phone message, call 320-818-0338, enter the first three letters of the inmate's last name, and speak for up to 20 seconds.",
+        sourceLabel: "Official Jail Division page",
+        sourceUrl: "https://www.bentoncountymn.gov/220/Jail-Division"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster shows the bonds set for each person, including when none is allowed. The county does not post how bonds are paid, so call jail administration at 320-968-8180 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Jail Division page",
+        sourceUrl: "https://www.bentoncountymn.gov/220/Jail-Division"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Benton County Jail?",
+        answer:
+          "Tuesday 8 to 10 p.m., Thursday 1 to 4 p.m., and Saturday 8:30 to 11:30 a.m., by appointment. Call 320-968-8180 at least 24 hours ahead; you must be on the inmate's approved visitor list."
+      },
+      {
+        question: "How do I put money on a Benton County inmate's account?",
+        answer:
+          "Use the TurnKey kiosk in the jail lobby (cash or credit card) or deposit online through the Inmate Canteen website."
+      },
+      {
+        question: "What is the mailing address for the Benton County Jail?",
+        answer:
+          "Benton County Jail, the inmate's name, P.O. Box 159, Foley, MN 56329. Mail must come through the U.S. Postal Service."
+      },
+      {
+        question: "Can I leave a message for a Benton County inmate?",
+        answer:
+          "Yes. Call 320-818-0338, enter the first three letters of the inmate's last name, and leave a message of up to 20 seconds."
+      }
+    ]
+  },
   "minnesota/nobles-county": {
     facilityName: "Nobles County Jail",
     address: "1530 Airport Ste 200, Worthington, MN 56187",

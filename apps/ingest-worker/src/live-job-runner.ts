@@ -41,6 +41,8 @@ import {
   WINONA_COUNTY_ADAPTER_KEY,
   createNoblesCountySourceAdapter,
   NOBLES_COUNTY_ADAPTER_KEY,
+  createBentonCountySourceAdapter,
+  BENTON_COUNTY_ADAPTER_KEY,
   createHennepinCountySourceAdapter,
   HENNEPIN_COUNTY_ADAPTER_KEY,
   createPolkCountySourceAdapter,
@@ -159,21 +161,24 @@ export function createLiveSourceAdapter(
           : source.adapterKey === POLK_COUNTY_ADAPTER_KEY
             ? // The current list and each person's detail page share the /Inmates folder.
               ["/Inmates"]
-            : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
-              ? // The in-custody search and each person's detail share the JailRoster path; the
-                // roster site's config.json carries the API key.
-                ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
-              : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
-                ? // The list is /injail/ and each detail page /injail/inmate/.
-                  ["/injail"]
-                : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-                    source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-                    source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-                    source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-                  ? ["/dmxConnect/api/Booking"]
-                  : rosterSite?.layout === "inmate-roster-path"
-                    ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-                    : [sourceUrl.pathname];
+            : source.adapterKey === BENTON_COUNTY_ADAPTER_KEY
+              ? // The instance lookup and the inmate list share the /instances path.
+                ["/instances"]
+              : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
+                ? // The in-custody search and each person's detail share the JailRoster path; the
+                  // roster site's config.json carries the API key.
+                  ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
+                : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
+                  ? // The list is /injail/ and each detail page /injail/inmate/.
+                    ["/injail"]
+                  : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+                      source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+                      source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+                      source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+                    ? ["/dmxConnect/api/Booking"]
+                    : rosterSite?.layout === "inmate-roster-path"
+                      ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                      : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -281,6 +286,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY) {
     return createHennepinCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
+    return createBentonCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

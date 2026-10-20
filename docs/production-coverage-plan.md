@@ -36,6 +36,7 @@ source-specific parser contract and a human review packet.
 | Winona     | [Winona County Detention Center](https://www.winonacounty.gov/314/Jail)                                                                             | Adapter tested; production approval pending      |
 | Hennepin   | [Hennepin County Jail Roster](https://jailroster.hennepin.us/)                                                                                      | Adapter tested; production approval pending      |
 | Nobles     | [Nobles County Inmate Listing](https://www.co.nobles.mn.us/departments/sheriff/inmate-listing/)                                                     | Adapter tested; production approval pending      |
+| Benton     | [Benton County Jail Division](https://www.bentoncountymn.gov/220/Jail-Division)                                                                     | Adapter tested; production approval pending      |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |

@@ -151,6 +151,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "nobles",
       adapterKey: "nobles-county-mn-current-roster",
       sourceHost: "ftp.co.nobles.mn.us"
+    },
+    {
+      countySlug: "benton",
+      adapterKey: "benton-county-mn-current-roster",
+      sourceHost: "api.correctionsrecordssearch.com"
     }
   ],
   TX: [
