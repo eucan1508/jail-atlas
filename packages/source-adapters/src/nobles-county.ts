@@ -14,6 +14,7 @@ import type {
   SourceHealth,
   ValidationResult
 } from "./contracts.js";
+import { assertFewWithoutCharges } from "./charge-gaps.js";
 
 export const NOBLES_COUNTY_ADAPTER_KEY = "nobles-county-mn-current-roster" as const;
 export const NOBLES_COUNTY_CURRENT_SOURCE_URL =
@@ -37,7 +38,7 @@ const CHARGE_TYPES = new Set(["Felony", "Gross Misdemeanor", "Misdemeanor", "Unk
 const NoblesRecordSchema = z.object({
   recordKey: z.string().min(1).max(400),
   displayName: z.string().trim().min(2).max(250),
-  charges: z.array(z.string().trim().min(1).max(1_000)).min(1).max(100)
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(100)
 });
 const NoblesRosterSchema = z.object({
   records: z.array(NoblesRecordSchema).max(MAX_RECORDS),
@@ -135,13 +136,16 @@ export function parseNoblesListing(html: string): NoblesRoster {
         if (!description || !CHARGE_TYPES.has(type)) throw new Error("CHARGE_ROW_UNREADABLE");
         return type === "Unknown" ? description : `${description} (${type})`;
       });
-    if (charges.length === 0) throw new Error("CHARGES_MISSING");
     return { recordKey: `${displayName}|${bookingDate}`, displayName, charges };
   });
 
   if (new Set(records.map((record) => record.recordKey)).size !== records.length) {
     throw new Error("DUPLICATE_LISTING_ENTRY");
   }
+  assertFewWithoutCharges(
+    records.filter((record) => record.charges.length === 0).length,
+    records.length
+  );
   // The county jail is never empty; a listing without people means the export broke.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
   return NoblesRosterSchema.parse({

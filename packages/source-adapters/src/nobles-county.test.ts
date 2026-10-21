@@ -143,6 +143,16 @@ describe("Nobles County source adapter", () => {
     ]);
   });
 
+  it("keeps a new booking listed before its charges are entered", async () => {
+    const result = await runSourceAdapter(
+      adapter(listing([inmates[0]!, { ...inmates[1]!, charges: [] }])),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.charges.length)).toEqual([2, 0]);
+  });
+
   it("drops photos, booking dates, and arresting agencies", async () => {
     const result = await runSourceAdapter(adapter(listing()), context());
     expect(result.ok).toBe(true);
@@ -170,7 +180,16 @@ describe("Nobles County source adapter", () => {
         listing([{ ...inmates[1]!, charges: [["X", "Petty", "Synthetic"]] }]),
         "CHARGE_ROW_UNREADABLE"
       ],
-      [listing([{ ...inmates[1]!, charges: [] }]), "CHARGES_MISSING"],
+      [
+        listing(
+          ["A", "B", "C"].map((letter) => ({
+            ...inmates[1]!,
+            name: `Tester, ${letter}`,
+            charges: []
+          }))
+        ),
+        "CHARGES_MISSING"
+      ],
       [listing([inmates[0]!, inmates[0]!]), "DUPLICATE_LISTING_ENTRY"],
       [listing([]), "ROSTER_EMPTY"]
     ];

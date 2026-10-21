@@ -146,6 +146,16 @@ describe("Clay County source adapter", () => {
     ]);
   });
 
+  it("keeps a new booking listed before its charges are entered", async () => {
+    const result = await runSourceAdapter(
+      adapter(page([inmates[0]!, { ...inmates[1]!, holds: [], groups: [] }])),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.charges.length)).toEqual([3, 0]);
+  });
+
   it("drops ages, booking dates, agencies, mugshots, and holds outside a charge list", async () => {
     const result = await runSourceAdapter(adapter(page()), context());
     expect(result.ok).toBe(true);
@@ -169,7 +179,16 @@ describe("Clay County source adapter", () => {
       [page().replace(/<!--Page last generated[^>]*-->/, ""), "SOURCE_IDENTITY_MISMATCH"],
       [page().replace("TESTER , ALPHA TEST", "TESTER ALPHA TEST"), "NAME_UNREADABLE"],
       [page().replace("01/02/2000 03:04:05 PM", "January 2"), "BOOKING_DATE_UNREADABLE"],
-      [page([{ ...inmates[0]!, groups: [] }]), "CHARGES_MISSING"],
+      [
+        page(
+          ["A", "B", "C"].map((letter) => ({
+            ...inmates[0]!,
+            name: `TESTER , ${letter}`,
+            groups: []
+          }))
+        ),
+        "CHARGES_MISSING"
+      ],
       [page([inmates[0]!, inmates[0]!]), "DUPLICATE_ROSTER_ENTRY"],
       [page([]), "ROSTER_EMPTY"]
     ];
