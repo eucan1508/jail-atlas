@@ -19,6 +19,7 @@ import type {
   SourceHealth,
   ValidationResult
 } from "./contracts.js";
+import { assertFewWithoutCharges } from "./charge-gaps.js";
 
 /**
  * Sheriff's offices that publish their jail roster through the myr2m.com roster service (an
@@ -201,10 +202,8 @@ export function parseMyr2mPage(config: Myr2mRosterConfig, html: string): Myr2mPa
       if (displayName.length < 2 || !ARRESTED_TEXT.test(arrested)) {
         throw new Error("INVALID_RECORD_IDENTITY");
       }
-      const charges = gridValues($, card, "charge");
-      if (charges.length === 0 || charges.some((charge) => !charge)) {
-        throw new Error("CHARGE_STRUCTURE_CHANGED");
-      }
+      // A new booking can show an empty charge list until its charges are entered.
+      const charges = gridValues($, card, "charge").filter((charge) => charge !== "");
       return {
         displayName,
         arrested,
@@ -306,6 +305,10 @@ async function crawlRoster(
       bondAmountsMinor: card.bondAmountsMinor
     };
   });
+  assertFewWithoutCharges(
+    records.filter((record) => record.charges.length === 0).length,
+    records.length
+  );
   return Myr2mRosterSchema.parse({ records, listedTotal: first.total, validEmptyMarker: false });
 }
 

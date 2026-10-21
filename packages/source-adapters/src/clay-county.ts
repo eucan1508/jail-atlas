@@ -13,6 +13,7 @@ import type {
   SourceHealth,
   ValidationResult
 } from "./contracts.js";
+import { assertFewWithoutCharges } from "./charge-gaps.js";
 
 export const CLAY_COUNTY_ADAPTER_KEY = "clay-county-mn-current-roster" as const;
 export const CLAY_COUNTY_CURRENT_SOURCE_URL =
@@ -40,7 +41,7 @@ const NAME = /^([^,<>]+?) , ([^,<>]+)$/;
 const ClayRecordSchema = z.object({
   recordKey: z.string().min(1).max(400),
   displayName: z.string().trim().min(2).max(250),
-  charges: z.array(z.string().trim().min(1).max(1_000)).min(1).max(100)
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(100)
 });
 const ClayRosterSchema = z.object({
   records: z.array(ClayRecordSchema).max(MAX_RECORDS),
@@ -124,14 +125,12 @@ export function parseClayRoster(html: string): ClayRoster {
 
     let bookingDate: string | null = null;
     let inCharges = false;
-    let groups = 0;
     const charges: string[] = [];
     for (const line of lines.slice(1)) {
       const label = line.match(LABEL_LINE);
       if (label) {
         const [, key, value] = label;
         if (key === "Booking Date") bookingDate = normalizeText(value ?? "");
-        if (key === "Charges") groups += 1;
         inCharges = key === "Charges";
         continue;
       }
@@ -142,13 +141,17 @@ export function parseClayRoster(html: string): ClayRoster {
       }
     }
     if (!bookingDate || !BOOKING_DATE.test(bookingDate)) throw new Error("BOOKING_DATE_UNREADABLE");
-    if (groups === 0 || charges.length === 0) throw new Error("CHARGES_MISSING");
+    // A new booking can be listed before its charges are entered; see assertFewWithoutCharges.
     return { recordKey: `${displayName}|${bookingDate}`, displayName, charges };
   });
 
   if (new Set(records.map((record) => record.recordKey)).size !== records.length) {
     throw new Error("DUPLICATE_ROSTER_ENTRY");
   }
+  assertFewWithoutCharges(
+    records.filter((record) => record.charges.length === 0).length,
+    records.length
+  );
   // The county jail is never empty; a page without people means the export broke.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
   return ClayRosterSchema.parse({
