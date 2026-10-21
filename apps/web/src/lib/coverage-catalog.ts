@@ -493,6 +493,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Cross County",
+    slug: "cross-county",
+    publishedAt: "2026-10-21",
+    seatCity: "Wynne",
+    h1: "Cross County Jail Roster & Inmate Search",
+    title: "Cross County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cross County, Arkansas current-inmate information for the jail in Wynne from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Cross County Sheriff's Office publishes a current inmate roster for the Cross County Jail and Detention Center in Wynne. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.crosscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Cross County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",

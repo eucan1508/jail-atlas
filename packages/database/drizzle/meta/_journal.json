@@ -358,6 +358,13 @@
       "when": 1794027200000,
       "tag": "0050_minnesota_freeborn_source",
       "breakpoints": true
+    },
+    {
+      "idx": 51,
+      "version": "7",
+      "when": 1794113600000,
+      "tag": "0051_arkansas_cross_source",
+      "breakpoints": true
     }
   ]
 }

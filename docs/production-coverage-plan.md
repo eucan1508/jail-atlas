@@ -70,6 +70,7 @@ the same roster software but were left out because their sites do not publish al
 | Randolph    | [Randolph County Sheriff inmate roster](https://www.randolphcountysheriff.org/roster.php)                                             | Adapter tested; production approval pending |
 | Hempstead   | [Hempstead County Sheriff inmate roster](https://www.hempsteadcountysheriff.org/roster.php)                                           | Adapter tested; production approval pending |
 | Izard       | [Izard County Sheriff inmate roster](https://www.izardcountysheriff.org/roster.php)                                                   | Adapter tested; production approval pending |
+| Cross       | [Cross County Sheriff inmate roster](https://www.crosscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
 | Sharp       | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
 | Stone       | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
 

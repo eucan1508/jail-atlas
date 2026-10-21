@@ -267,6 +267,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "izard",
       adapterKey: "izard-county-ar-current-roster",
       sourceHost: "www.izardcountysheriff.org"
+    },
+    {
+      countySlug: "cross",
+      adapterKey: "cross-county-ar-current-roster",
+      sourceHost: "www.crosscountysheriff.org"
     }
   ],
   OK: [

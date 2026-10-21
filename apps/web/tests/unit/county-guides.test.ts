@@ -52,6 +52,7 @@ const liveCountyKeys = [
   "arkansas/randolph-county",
   "arkansas/hempstead-county",
   "arkansas/izard-county",
+  "arkansas/cross-county",
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",
