@@ -35,7 +35,10 @@ const inmates: readonly SyntheticInmate[] = [
   {
     soNumber: "00J0002",
     fullName: "TESTER, BETA",
-    charges: [["Synthetic Offense Gamma", "M"]],
+    charges: [
+      ["Synthetic Offense Gamma", "M"],
+      ["SYNTHETIC WRIT", "U"]
+    ],
     bonds: []
   }
 ];
@@ -174,7 +177,7 @@ describe("Benton County source adapter", () => {
         ["Synthetic Offense Alpha (Felony)", "Synthetic Offense Beta (Gross Misdemeanor)"],
         [["monetary", 300_000, "Conditional"], ["no_bond"]]
       ],
-      ["TESTER, BETA", ["Synthetic Offense Gamma (Misdemeanor)"], []]
+      ["TESTER, BETA", ["Synthetic Offense Gamma (Misdemeanor)", "SYNTHETIC WRIT"], []]
     ]);
     expect(source.requests[1]).toContain(
       `/instances/${INSTANCE}/inmates?page-size=100&page-number=1`
