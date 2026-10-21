@@ -351,6 +351,13 @@
       "when": 1793940800000,
       "tag": "0049_minnesota_benton_source",
       "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "7",
+      "when": 1794027200000,
+      "tag": "0050_minnesota_freeborn_source",
+      "breakpoints": true
     }
   ]
 }

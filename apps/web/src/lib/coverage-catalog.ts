@@ -960,6 +960,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://api.correctionsrecordssearch.com/instances/lookup?alias=bentoncountymn",
     officialSourceLabel: "Benton County Sheriff's Office Current Inmate List",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Freeborn County",
+    slug: "freeborn-county",
+    publishedAt: "2026-10-21",
+    seatCity: "Albert Lea",
+    h1: "Freeborn County Jail Roster & Inmate Search",
+    title: "Freeborn County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Freeborn County, Minnesota current-inmate information for the Adult Detention Center in Albert Lea from the Sheriff's official In Custody List, with charges and capture time.",
+    article:
+      "The Freeborn County Sheriff's Office posts an In Custody List for the Adult Detention Center in Albert Lea each weekday morning. This page lists each person with every charge on that list, and leaves out photos and intake dates. ICE detainees held at the center are not on the county's list.",
+    officialSourceUrl: "https://www.freeborncountymn.gov/438/Jail-Roster",
+    officialSourceLabel: "Freeborn County Sheriff's Office In Custody List",
+    sourceStatus: "audit_pending"
   }
 ];
 

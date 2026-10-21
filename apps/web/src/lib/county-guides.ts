@@ -2181,6 +2181,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/freeborn-county": {
+    facilityName: "Freeborn County Adult Detention Center",
+    address: "411 Broadway S, Albert Lea, MN 56007",
+    phone: "507-377-4683",
+    operatedBy: "Freeborn County Sheriff's Office",
+    reviewedAt: "October 21, 2026",
+    overview:
+      "The Freeborn County Adult Detention Center is a 138-bed direct supervision jail in the Freeborn County Government Center at 411 Broadway S in Albert Lea. It is run by the Sheriff's Office and also holds federal ICE detainees. Master Control answers at 507-377-4683 and the Intake Unit at 507-377-4681.",
+    contactSourceLabel: "Official Adult Detention Center page",
+    contactSourceUrl: "https://www.freeborncountymn.gov/296/Adult-Detention-Center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video. Visiting is free from the stations in the Law Enforcement Center lobby of the Government Center, open Monday through Friday until 4:30 p.m. You can also visit from home through Inmate Canteen (inmatecanteen.com) for a fee. To see someone in the Intake/Release or Segregation units, use the lobby phone to reach Master Control, or call the Intake Unit at 507-377-4681 to set up a remote visit. People in the Intake Unit can't have visits until they have made a first appearance before a Freeborn County judge. Minors must be supervised the whole time, cell phones are not allowed in the visiting rooms, and there is a dress code: no sleeveless or tank tops, hats, shorts, miniskirts, see-through clothing, or camouflage.",
+        sourceLabel: "Official Detainee Visitation sheet",
+        sourceUrl: "https://www.freeborncountymn.gov/DocumentCenter/View/9666/Detainee-Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "The TurnKey kiosk in the Law Enforcement Center lobby takes cash and credit cards; it does not take personal checks or coins. Money orders made out to the detainee can be mailed in. Card deposits can also be made online through Inmate Canteen (secure.inmatecanteen.com), which charges a processing fee.",
+        sourceLabel: "Official Detainee Money sheet",
+        sourceUrl: "https://www.freeborncountymn.gov/DocumentCenter/View/7335/Detainee-Money"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the detainee's name, PO Box 170, Albert Lea, MN 56007. Mail must come through the U.S. Postal Service and is checked for contraband. Detainees can get letters, plain greeting cards, and up to three photos, but no Polaroids. Phone cards are sold through Reliance Telephone (reliancetelephone.com); to accept collect calls, call 800-896-3201 to set up your number. The jail's inmate voicemail line is 507-391-9296.",
+        sourceLabel: "Official Adult Detention Center page",
+        sourceUrl: "https://www.freeborncountymn.gov/296/Adult-Detention-Center"
+      },
+      {
+        title: "Bail and court records",
+        body: "New arrests go to court Monday through Friday at 11 a.m., usually the day after the arrest and sometimes the second day. There is no court on weekends, holidays, or evenings. People released after their first appearance usually leave between 2 and 3 p.m. The county does not post how bail is paid, so call Master Control at 507-377-4683 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Adult Detention Center page",
+        sourceUrl: "https://www.freeborncountymn.gov/296/Adult-Detention-Center"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Freeborn County jail?",
+        answer:
+          "Visits are by video only. Use the free stations in the Law Enforcement Center lobby, Monday through Friday until 4:30 p.m., or visit from home through Inmate Canteen for a fee."
+      },
+      {
+        question: "How do I put money on a Freeborn County detainee's account?",
+        answer:
+          "Use the TurnKey kiosk in the Law Enforcement Center lobby (cash or credit card), mail a money order made out to the detainee, or deposit online through Inmate Canteen."
+      },
+      {
+        question: "What is the mailing address for the Freeborn County jail?",
+        answer:
+          "The detainee's name, PO Box 170, Albert Lea, MN 56007. Send it by U.S. mail; Polaroid photos are not accepted."
+      },
+      {
+        question: "Why isn't someone on the Freeborn County list?",
+        answer:
+          "The county posts a new list on weekday mornings, so people booked since then won't show yet. ICE detainees are not on the county's list; the county points to the ICE online detainee locator for them."
+      }
+    ]
+  },
   "minnesota/nobles-county": {
     facilityName: "Nobles County Jail",
     address: "1530 Airport Ste 200, Worthington, MN 56187",
