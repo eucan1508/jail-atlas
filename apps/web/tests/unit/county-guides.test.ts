@@ -27,6 +27,7 @@ const liveCountyKeys = [
   "minnesota/hennepin-county",
   "minnesota/nobles-county",
   "minnesota/benton-county",
+  "minnesota/freeborn-county",
   "iowa/johnson-county",
   "iowa/polk-county",
   "iowa/woodbury-county",

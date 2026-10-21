@@ -156,6 +156,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "benton",
       adapterKey: "benton-county-mn-current-roster",
       sourceHost: "api.correctionsrecordssearch.com"
+    },
+    {
+      countySlug: "freeborn",
+      adapterKey: "freeborn-county-mn-current-roster",
+      sourceHost: "www.freeborncountymn.gov"
     }
   ],
   TX: [

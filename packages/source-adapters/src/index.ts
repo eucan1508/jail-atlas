@@ -44,3 +44,4 @@ export * from "./winona-county.js";
 export * from "./hennepin-county.js";
 export * from "./nobles-county.js";
 export * from "./benton-county.js";
+export * from "./freeborn-county.js";

@@ -39,6 +39,8 @@ import {
   CLAY_COUNTY_ADAPTER_KEY,
   createWinonaCountySourceAdapter,
   WINONA_COUNTY_ADAPTER_KEY,
+  createFreebornCountySourceAdapter,
+  FREEBORN_COUNTY_ADAPTER_KEY,
   createNoblesCountySourceAdapter,
   NOBLES_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
@@ -161,24 +163,27 @@ export function createLiveSourceAdapter(
           : source.adapterKey === POLK_COUNTY_ADAPTER_KEY
             ? // The current list and each person's detail page share the /Inmates folder.
               ["/Inmates"]
-            : source.adapterKey === BENTON_COUNTY_ADAPTER_KEY
-              ? // The instance lookup and the inmate list share the /instances path.
-                ["/instances"]
-              : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
-                ? // The in-custody search and each person's detail share the JailRoster path; the
-                  // roster site's config.json carries the API key.
-                  ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
-                : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
-                  ? // The list is /injail/ and each detail page /injail/inmate/.
-                    ["/injail"]
-                  : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-                      source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-                      source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-                      source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
-                    ? ["/dmxConnect/api/Booking"]
-                    : rosterSite?.layout === "inmate-roster-path"
-                      ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-                      : [sourceUrl.pathname];
+            : source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY
+              ? // The Jail Roster page links the day's list, uploaded under /DocumentCenter/View.
+                ["/438/Jail-Roster", "/DocumentCenter/View"]
+              : source.adapterKey === BENTON_COUNTY_ADAPTER_KEY
+                ? // The instance lookup and the inmate list share the /instances path.
+                  ["/instances"]
+                : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
+                  ? // The in-custody search and each person's detail share the JailRoster path; the
+                    // roster site's config.json carries the API key.
+                    ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
+                  : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
+                    ? // The list is /injail/ and each detail page /injail/inmate/.
+                      ["/injail"]
+                    : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+                        source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
+                      ? ["/dmxConnect/api/Booking"]
+                      : rosterSite?.layout === "inmate-roster-path"
+                        ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                        : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -194,10 +199,11 @@ export function createLiveSourceAdapter(
     // The Hennepin County roster API takes its in-custody search as a small JSON post.
     ...(source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY ? { allowJsonPost: true } : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
-    // report grows by about 7 KB per person, and the Otter Tail County list carries a ~30 KB
-    // photo per person; every other source stays at the 1 MB default.
+    // report grows by about 7 KB per person, and the Otter Tail County and Freeborn County
+    // lists carry a ~30 KB photo per person; every other source stays at the 1 MB default.
     ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY
+    source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
     // The Polk County current list is a single page of about 1 MB, and the Woodbury County
@@ -300,6 +306,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === NOBLES_COUNTY_ADAPTER_KEY) {
     return createNoblesCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY) {
+    return createFreebornCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
