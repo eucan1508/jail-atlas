@@ -154,7 +154,8 @@ export function cleanBentonDescription(description: string): string {
 function readCharge(item: z.infer<typeof StatuteSchema>): string {
   const description = cleanBentonDescription(item.statute.description);
   if (!description) throw new Error("CHARGE_UNREADABLE");
-  const degree = normalizeText(item.statute.degree);
+  // "U" marks holds with no offense level, such as a writ of habeas corpus.
+  const degree = normalizeText(item.statute.degree).replace(/^U$/, "");
   if (degree && !DEGREES[degree]) throw new Error("CHARGE_DEGREE_UNKNOWN");
   return degree ? `${description} (${DEGREES[degree]})` : description;
 }
