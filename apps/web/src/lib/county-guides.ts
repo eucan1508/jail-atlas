@@ -3007,6 +3007,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/cross-county": {
+    facilityName: "Cross County Jail and Detention Center",
+    address: "1600 South Falls Blvd, Wynne, AR 72396",
+    phone: "870-238-5700",
+    operatedBy: "Cross County Sheriff's Office",
+    reviewedAt: "October 21, 2026",
+    overview:
+      "The Cross County Sheriff's Office runs the county jail and detention center in Wynne, with 14 jailers and 10 dispatcher/matrons under Jail Administrator L.N. Hagler. Men are housed by security risk, women separately, and there are isolation and holding cells. The jail holds people awaiting trial, people serving sentences, and people waiting for transport to the Arkansas Department of Corrections. The Sheriff's Office is at 1600 South Falls Blvd in Wynne, and its non-emergency line, 870-238-5700, is answered 24 hours a day.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.crosscountysheriff.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting hours or rules. Call 870-238-5700 before you go to ask whether and when you can visit.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.crosscountysheriff.org/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for an inmate's account and commissary orders go through City Tele Coin (citytelecoin.com), the service the jail page points to.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.crosscountysheriff.org/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's Office does not post mail or phone rules for inmates. Call 870-238-5700 before sending anything to the jail.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.crosscountysheriff.org/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Most warrants carry a bond set by the court, which has to be posted before release. The Sheriff's Office takes cash or a surety bond from a licensed bail bonding company; it does not accept release on own recognizance or property bonds. Someone held on a no-bond warrant stays in jail until they see a judge. The roster does not show bond amounts, so call 870-238-5700 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official frequently asked questions",
+        sourceUrl: "https://www.crosscountysheriff.org/frequently-asked-questions"
+      }
+    ],
+    faq: [
+      {
+        question: "Where is the Cross County jail?",
+        answer:
+          "In Wynne. The Cross County Sheriff's Office is at 1600 South Falls Blvd, Wynne, AR 72396, and its non-emergency line, 870-238-5700, is answered 24 hours a day."
+      },
+      {
+        question: "How do I put money on a Cross County inmate's account?",
+        answer:
+          "Through City Tele Coin, which handles both account deposits and commissary orders for the jail."
+      },
+      {
+        question: "How is bail posted in Cross County?",
+        answer:
+          "With cash or a surety bond from a licensed bail bonding company. The Sheriff's Office does not take property bonds or release on own recognizance."
+      },
+      {
+        question: "Can I visit an inmate at the Cross County jail?",
+        answer:
+          "The Sheriff's Office does not post visiting rules. Call 870-238-5700 to ask before you go."
+      }
+    ]
+  },
   "arkansas/hempstead-county": {
     facilityName: "Hempstead County Detention Center",
     address: "312 South Washington, Hope, AR 71801",
