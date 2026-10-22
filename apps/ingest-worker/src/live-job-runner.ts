@@ -522,20 +522,22 @@ export function createLiveSourceAdapter(
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);
 }
 
-// A jail that held people at the last refresh does not empty out between two runs; a source
-// that suddenly reports nobody is mid-update, so the last list stays up instead.
-const SUDDEN_EMPTY_MIN_PREVIOUS = 5;
+// A jail's population does not fall to a fraction of itself between two runs (twice a day).
+// When a source suddenly lists far fewer people, its system is mid-update, so the last list
+// stays up instead.
+const SUDDEN_DROP_MIN_PREVIOUS = 5;
+const SUDDEN_DROP_FACTOR = 4;
 
-export function rejectSuddenEmpty(
+export function rejectSuddenDrop(
   result: AdapterExecutionResult,
   previousRecordCount: number | null,
   requestedAt: string
 ): AdapterExecutionResult {
   if (
     !result.ok ||
-    result.snapshot.recordCount !== 0 ||
     previousRecordCount === null ||
-    previousRecordCount < SUDDEN_EMPTY_MIN_PREVIOUS
+    previousRecordCount < SUDDEN_DROP_MIN_PREVIOUS ||
+    result.snapshot.recordCount * SUDDEN_DROP_FACTOR >= previousRecordCount
   ) {
     return result;
   }
@@ -544,10 +546,10 @@ export function rejectSuddenEmpty(
     failure: {
       stage: "empty_interpretation",
       classification: "validation",
-      publicMessage: "The official roster reported no one right after listing people.",
+      publicMessage: "The official roster suddenly listed far fewer people than the last refresh.",
       retryable: true,
       occurredAt: requestedAt,
-      diagnosticCode: "ROSTER_SUDDENLY_EMPTY"
+      diagnosticCode: "ROSTER_SUDDENLY_SHRANK"
     }
   };
 }
@@ -628,7 +630,7 @@ export async function executeLiveSource(
       .where(eq(custodySnapshots.sourceId, source.id))
       .orderBy(desc(custodySnapshots.capturedAt))
       .limit(1);
-    const result = rejectSuddenEmpty(
+    const result = rejectSuddenDrop(
       await runSourceAdapter(adapter, context),
       previous?.recordCount ?? null,
       context.requestedAt

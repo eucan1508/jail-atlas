@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { AdapterExecutionResult } from "@jail-atlas/source-adapters";
 
-import { rejectSuddenEmpty } from "./live-job-runner.ts";
+import { rejectSuddenDrop } from "./live-job-runner.ts";
 
 const REQUESTED_AT = "2000-01-01T12:00:00.000Z";
 
@@ -17,22 +17,30 @@ function run(recordCount: number): AdapterExecutionResult {
   } as AdapterExecutionResult;
 }
 
-describe("rejectSuddenEmpty", () => {
-  it("refuses an empty roster right after one that listed people", () => {
-    const result = rejectSuddenEmpty(run(0), 81, REQUESTED_AT);
-    expect(result.ok).toBe(false);
-    if (result.ok) return;
-    expect(result.failure.diagnosticCode).toBe("ROSTER_SUDDENLY_EMPTY");
-  });
-
-  it("keeps an empty roster for a jail that was already empty or nearly so", () => {
-    for (const previous of [null, 0, 4]) {
-      expect(rejectSuddenEmpty(run(0), previous, REQUESTED_AT).ok).toBe(true);
+describe("rejectSuddenDrop", () => {
+  it("refuses a roster that suddenly lists nobody or a small fraction of the last count", () => {
+    for (const [current, previous] of [
+      [0, 81],
+      [1, 111],
+      [24, 100]
+    ] as const) {
+      const result = rejectSuddenDrop(run(current), previous, REQUESTED_AT);
+      expect(result.ok, `${current} after ${previous}`).toBe(false);
+      if (result.ok) continue;
+      expect(result.failure.diagnosticCode).toBe("ROSTER_SUDDENLY_SHRANK");
     }
   });
 
-  it("leaves rosters that list people alone", () => {
-    const listed = run(12);
-    expect(rejectSuddenEmpty(listed, 81, REQUESTED_AT)).toBe(listed);
+  it("keeps ordinary changes and rosters for jails that were already empty or nearly so", () => {
+    for (const [current, previous] of [
+      [0, null],
+      [0, 0],
+      [0, 4],
+      [25, 100],
+      [79, 81],
+      [130, 120]
+    ] as const) {
+      expect(rejectSuddenDrop(run(current), previous, REQUESTED_AT).ok).toBe(true);
+    }
   });
 });
