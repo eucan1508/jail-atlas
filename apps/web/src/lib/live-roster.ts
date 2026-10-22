@@ -46,6 +46,7 @@ const liveAdapterKeys: Record<string, string> = {
   "nobles-county": "nobles-county-mn-current-roster",
   "benton-county": "benton-county-mn-current-roster",
   "freeborn-county": "freeborn-county-mn-current-roster",
+  "cottonwood-county": "cottonwood-county-mn-current-roster",
   "johnson-county": "johnson-county-iowa-current-roster",
   "polk-county": "polk-county-iowa-current-roster",
   "woodbury-county": "woodbury-county-iowa-current-roster",

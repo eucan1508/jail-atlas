@@ -2240,6 +2240,66 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/cottonwood-county": {
+    facilityName: "Cottonwood County Jail",
+    address: "902 5th Avenue, Windom, MN 56101",
+    phone: "507-831-1375",
+    operatedBy: "Cottonwood County Sheriff's Office",
+    reviewedAt: "October 22, 2026",
+    overview:
+      "The Cottonwood County Jail is part of the Sheriff's Office building at 902 5th Avenue in Windom. Enter the Sheriff's Office lobby and go to the front window, where jail staff can help. Jail administration, including Jail Administrator Jason Rupp, can be reached at 507-831-1375.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl:
+      "https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are free video visits from a kiosk in the Law Enforcement Center: Sunday 8 to 11 a.m. and 1 to 4 p.m., Thursday 1 to 4 p.m. and 7 to 9 p.m., and Saturday 8 to 10 a.m. Sign up at least 24 hours ahead through the Reliance Telephone visitation scheduler. Visitors must be family members 18 or older, though an inmate may also ask for two visitors who aren't family; immediate family means parents, siblings, spouse, children, and grandparents, not in-laws. An inmate's underage children can visit with an adult on the visiting list and must bring a birth certificate. Everyone over 18 needs a government photo ID; work, school, and check-cashing IDs are not accepted. Each visitor gets 20 minutes per visiting day.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php"
+      },
+      {
+        title: "Money and commissary",
+        body: "The kiosk at the jail takes cash and credit cards for deposits to an inmate's account. Money orders and cashier's checks made out to the inmate can be mailed in; personal checks are not accepted. Online deposits go through JailATM. Staff can't discuss an inmate's account with anyone but the inmate.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address mail to the inmate's name, Cottonwood County Jail, 902 5th Avenue, Windom, MN 56101. Only U.S. Postal Service mail is delivered, and all of it is inspected. The jail doesn't accept stamps or envelopes dropped off by visitors; inmates buy them through commissary. Inmate phones only take $10 Reliance phone cards, sold online through Reliance Telephone, and collect calls can be set up at 1-800-896-3201. Staff don't take messages, but you can leave one on the inmate message line at 507-407-2026; those messages are not confidential.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php"
+      },
+      {
+        title: "Bail and court records",
+        body: 'The roster lists each bail amount set by the court or a warrant, and "ROR" means release on recognizance. The Sheriff\'s Office does not post how bail is paid, so call the jail at 507-831-1375 to ask. A roster entry is a record of arrest, not a finding of guilt.',
+        sourceLabel: "Official Jail Roster page",
+        sourceUrl:
+          "https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail_roster.php"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Cottonwood County Jail?",
+        answer:
+          "Free video visits run Sunday 8 to 11 a.m. and 1 to 4 p.m., Thursday 1 to 4 p.m. and 7 to 9 p.m., and Saturday 8 to 10 a.m. Sign up at least 24 hours ahead."
+      },
+      {
+        question: "What is the mailing address for the Cottonwood County Jail?",
+        answer:
+          "The inmate's name, Cottonwood County Jail, 902 5th Avenue, Windom, MN 56101. Send it through the U.S. Postal Service."
+      },
+      {
+        question: "How do I put money on a Cottonwood County inmate's account?",
+        answer:
+          "Use the kiosk at the jail (cash or credit card), mail a money order or cashier's check made out to the inmate, or deposit online through JailATM."
+      },
+      {
+        question: "Can I leave a message for a Cottonwood County inmate?",
+        answer: "Yes. Call the inmate message line at 507-407-2026. Messages are not confidential."
+      }
+    ]
+  },
   "minnesota/nobles-county": {
     facilityName: "Nobles County Jail",
     address: "1530 Airport Ste 200, Worthington, MN 56187",

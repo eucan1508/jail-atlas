@@ -41,6 +41,8 @@ import {
   WINONA_COUNTY_ADAPTER_KEY,
   createFreebornCountySourceAdapter,
   FREEBORN_COUNTY_ADAPTER_KEY,
+  createCottonwoodCountySourceAdapter,
+  COTTONWOOD_COUNTY_ADAPTER_KEY,
   createNoblesCountySourceAdapter,
   NOBLES_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
@@ -206,9 +208,10 @@ export function createLiveSourceAdapter(
     source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
-    // The Polk County current list is a single page of about 1 MB, and the Woodbury County
-    // "All" search runs about 1.4 KB per person.
+    // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
+    // search runs about 1.4 KB per person, and the Cottonwood County report about 15 KB.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === COTTONWOOD_COUNTY_ADAPTER_KEY ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
     source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 3_000_000 }
@@ -306,6 +309,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === NOBLES_COUNTY_ADAPTER_KEY) {
     return createNoblesCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === COTTONWOOD_COUNTY_ADAPTER_KEY) {
+    return createCottonwoodCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

@@ -161,6 +161,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "freeborn",
       adapterKey: "freeborn-county-mn-current-roster",
       sourceHost: "www.freeborncountymn.gov"
+    },
+    {
+      countySlug: "cottonwood",
+      adapterKey: "cottonwood-county-mn-current-roster",
+      sourceHost: "cms5.revize.com"
     }
   ],
   TX: [

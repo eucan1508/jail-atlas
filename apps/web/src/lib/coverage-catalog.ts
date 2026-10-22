@@ -995,6 +995,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.freeborncountymn.gov/438/Jail-Roster",
     officialSourceLabel: "Freeborn County Sheriff's Office In Custody List",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Cottonwood County",
+    slug: "cottonwood-county",
+    publishedAt: "2026-10-22",
+    seatCity: "Windom",
+    h1: "Cottonwood County Jail Roster & Inmate Search",
+    title: "Cottonwood County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cottonwood County, Minnesota current-inmate information for the jail in Windom from the Sheriff's official Jail Roster, with charges, statute codes, bail amounts, and capture time.",
+    article:
+      "The Cottonwood County Sheriff's Office prints a Jail Roster of everyone held at the county jail in Windom twice a day, at 6 a.m. and 6 p.m. This page lists each person with every charge and its statute code and the bail amounts on the roster, and leaves out the agency holding them, hold reasons, booking dates, and projected release dates.",
+    officialSourceUrl:
+      "https://cms5.revize.com/revize/cottonwoodmn/Photo%20Gallery/Sheriff/Jail%20Roster.pdf",
+    officialSourceLabel: "Cottonwood County Sheriff's Office Jail Roster",
+    sourceStatus: "audit_pending"
   }
 ];
 
