@@ -223,6 +223,17 @@ describe("Angelina County source adapter", () => {
     expect(failed.failure.diagnosticCode).toBe("ANGELINA_COUNTY_ROSTER_CHANGED_DURING_CRAWL");
   });
 
+  it("keeps a booking listed with a blank booking date", async () => {
+    const blank = listPage(inmates).replace("<td>01/02/2000</td>", "<td></td>");
+    const result = await runSourceAdapter(
+      adapter(server(inmates, { list: () => blank })),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(2);
+  });
+
   it("fails closed on a changed page, a wrong total, a mismatched name, or an empty roster", async () => {
     const cases: [Server, string][] = [
       [
@@ -230,6 +241,12 @@ describe("Angelina County source adapter", () => {
         "SOURCE_IDENTITY_MISMATCH"
       ],
       [server(inmates, { list: () => listPage(inmates, 3) }), "ROSTER_TOTAL_MISMATCH"],
+      [
+        server(inmates, {
+          list: () => listPage(inmates).replace("<td>01/02/2000</td>", "<td>soon</td>")
+        }),
+        "ROW_STRUCTURE_CHANGED"
+      ],
       [server([inmates[0]!, inmates[0]!]), "DUPLICATE_JAIL_ID"],
       [
         server(inmates, {
