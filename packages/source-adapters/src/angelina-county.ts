@@ -129,8 +129,8 @@ export function parseAngelinaList(html: string): AngelinaListedInmate[] {
         cells.length !== LIST_COLUMNS.length ||
         !displayName ||
         !displayName.includes(",") ||
-        !bookingDate ||
-        !BOOKING_DATE.test(bookingDate)
+        // A booking still being entered can be listed with its date left blank.
+        (bookingDate !== "" && !BOOKING_DATE.test(bookingDate ?? ""))
       ) {
         throw new Error("ROW_STRUCTURE_CHANGED");
       }
