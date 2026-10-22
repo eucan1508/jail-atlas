@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 
 import {
   createDatabase,
+  custodySnapshots,
   facilities,
   officialSources,
   parseDatabaseEnvironment,
@@ -100,7 +101,7 @@ import {
   type AnySourceAdapter,
   type SourceHealth
 } from "@jail-atlas/source-adapters";
-import { and, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 
 import type { WorkerConfig } from "./config.ts";
 import { createConnectionBoundSourceFetch } from "./secure-source-fetch.ts";
@@ -521,6 +522,38 @@ export function createLiveSourceAdapter(
   throw new Error(`Live adapter is not approved: ${source.adapterKey}`);
 }
 
+// A jail's population does not fall to a fraction of itself between two runs (twice a day).
+// When a source suddenly lists far fewer people, its system is mid-update, so the last list
+// stays up instead.
+const SUDDEN_DROP_MIN_PREVIOUS = 5;
+const SUDDEN_DROP_FACTOR = 4;
+
+export function rejectSuddenDrop(
+  result: AdapterExecutionResult,
+  previousRecordCount: number | null,
+  requestedAt: string
+): AdapterExecutionResult {
+  if (
+    !result.ok ||
+    previousRecordCount === null ||
+    previousRecordCount < SUDDEN_DROP_MIN_PREVIOUS ||
+    result.snapshot.recordCount * SUDDEN_DROP_FACTOR >= previousRecordCount
+  ) {
+    return result;
+  }
+  return {
+    ok: false,
+    failure: {
+      stage: "empty_interpretation",
+      classification: "validation",
+      publicMessage: "The official roster suddenly listed far fewer people than the last refresh.",
+      retryable: true,
+      occurredAt: requestedAt,
+      diagnosticCode: "ROSTER_SUDDENLY_SHRANK"
+    }
+  };
+}
+
 function requireLiveSource(source: OfficialSource, dryRun: boolean): void {
   if (!dryRun && !source.publicationApproved) {
     throw new Error("The source is not publication-approved for live ingestion");
@@ -591,7 +624,17 @@ export async function executeLiveSource(
     const adapter = createLiveSourceAdapter(source, facility.id, config, createId);
     dependencies.logger.info("ingest.live.started", { adapterKey, sourceId: source.id, runId });
     const health = await adapter.healthCheck(context);
-    const result = await runSourceAdapter(adapter, context);
+    const [previous] = await database.db
+      .select({ recordCount: custodySnapshots.recordCount })
+      .from(custodySnapshots)
+      .where(eq(custodySnapshots.sourceId, source.id))
+      .orderBy(desc(custodySnapshots.capturedAt))
+      .limit(1);
+    const result = rejectSuddenDrop(
+      await runSourceAdapter(adapter, context),
+      previous?.recordCount ?? null,
+      context.requestedAt
+    );
     const finishedAt = (dependencies.now ?? (() => new Date()))();
     let persisted = false;
     if (result.ok && config.databaseWrites === "enabled" && !dependencies.dryRun) {
