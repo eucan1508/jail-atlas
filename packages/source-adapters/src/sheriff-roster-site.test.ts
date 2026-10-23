@@ -291,6 +291,51 @@ describe("sheriff roster site adapter", () => {
     expect(JSON.stringify(result.snapshot)).not.toContain("01-01-2000");
   });
 
+  it("reads cards that word the booking, date, and charge fields differently", async () => {
+    // Robertson County, TX labels the same fields "Booking Number", "Booking Time", and "Charge",
+    // and adds commissary and VINE ids that must not leak into charges.
+    const config = CLEBURNE_COUNTY_AR_ROSTER;
+    const html = rosterPathPage("Cleburne County", 1, [
+      {
+        bookingNumber: "1234",
+        name: "TESTER, DELTA",
+        profileId: "0123456789abcdef0123456a",
+        charges: ["SYNTHETIC OFFENSE DELTA"],
+        bond: "$1,500.00"
+      }
+    ])
+      .replace("Booking #: ", "Booking Number: ")
+      .replace("Booking Date: ", "Booking Time: ")
+      .replace("Charges: ", "Charge: ")
+      .replace(
+        '<div class="inmate_data_content">01-01-2000 12:00 PM</div></div>',
+        `<div class="inmate_data_content">01-01-2000 12:00 PM</div></div>
+            <div><div class="inmate_data_bold"><strong>Inmate ID (Commissary): </strong></div>
+              <div class="inmate_data_content">999001</div></div>
+            <div><div class="inmate_data_bold"><strong>Vine ID: </strong></div>
+              <div class="inmate_data_content">999002</div></div>`
+      );
+    const result = await runSourceAdapter(
+      createSheriffRosterSiteAdapter(config, {
+        fetch: async (input) =>
+          input === cleburnePage(1) ? new Response(html) : new Response("missing", { status: 404 }),
+        facilityId: "00000000-0000-4000-8000-000000000084",
+        createId: idFactory()
+      }),
+      context(config)
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    const [delta] = result.snapshot.bookings;
+    expect(delta?.person.displayName).toBe("TESTER, DELTA");
+    expect(delta?.bookingIdentifier?.value).toBe("1234");
+    expect(delta?.charges.map((charge) => charge.description)).toEqual(["SYNTHETIC OFFENSE DELTA"]);
+    expect(delta?.bondEntries[0]?.amountMinor).toBe(150_000);
+    expect(JSON.stringify(result.snapshot)).not.toContain("999001");
+    expect(JSON.stringify(result.snapshot)).not.toContain("999002");
+  });
+
   it("starts the crawl again when the roster changes between pages", async () => {
     const config = JEFFERSON_COUNTY_AR_ROSTER;
     let firstPageRequests = 0;
