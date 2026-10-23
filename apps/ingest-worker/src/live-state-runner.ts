@@ -282,6 +282,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cross",
       adapterKey: "cross-county-ar-current-roster",
       sourceHost: "www.crosscountysheriff.org"
+    },
+    {
+      countySlug: "lonoke",
+      adapterKey: "lonoke-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
     }
   ],
   OK: [

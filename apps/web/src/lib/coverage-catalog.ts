@@ -511,6 +511,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Lonoke County",
+    slug: "lonoke-county",
+    publishedAt: "2026-10-23",
+    seatCity: "Lonoke",
+    h1: "Lonoke County Jail Roster & Inmate Search",
+    title: "Lonoke County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Lonoke County, Arkansas current-inmate information from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Lonoke County Sheriff's Office shows its jail roster for the Lonoke County Jail in Lonoke on its Jail Roster page. This page reads every current inmate on that roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/lonokecoroster/",
+    officialSourceLabel: "Lonoke County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",

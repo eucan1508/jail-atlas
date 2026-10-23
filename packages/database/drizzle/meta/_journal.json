@@ -379,6 +379,13 @@
       "when": 1794286400000,
       "tag": "0053_minnesota_redwood_source",
       "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "7",
+      "when": 1794372800000,
+      "tag": "0054_arkansas_lonoke_source",
+      "breakpoints": true
     }
   ]
 }

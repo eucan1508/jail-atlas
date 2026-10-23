@@ -275,6 +275,16 @@ describe("myr2m roster adapter (Sharp County, Arkansas)", () => {
     expect(failed.failure.diagnosticCode).toBe("SHARP_COUNTY_AR_CHARGES_MISSING");
   });
 
+  it("reads a card whose arrest date has no time", async () => {
+    const people = PEOPLE.map((person, index) =>
+      index === 3 ? { ...person, arrested: "1/4/2000" } : person
+    );
+    const result = await runSourceAdapter(adapter(rosterServer(people).fetch), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(PEOPLE.length);
+  });
+
   it("fails closed on a card count, charge, or bond it cannot read", async () => {
     const cases: [(html: string) => string, string][] = [
       [(html) => html.replace("10 inmates shown", "11 inmates shown"), "RECORD_COUNT_MISMATCH"],
