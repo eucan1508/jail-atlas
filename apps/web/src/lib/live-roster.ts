@@ -73,6 +73,7 @@ const liveAdapterKeys: Record<string, string> = {
   "hempstead-county": "hempstead-county-ar-current-roster",
   "izard-county": "izard-county-ar-current-roster",
   "cross-county": "cross-county-ar-current-roster",
+  "lonoke-county": "lonoke-county-ar-current-roster",
   "wagoner-county": "wagoner-county-ok-current-roster",
   "lincoln-county": "lincoln-county-ok-current-roster",
   "pawnee-county": "pawnee-county-ok-current-roster",

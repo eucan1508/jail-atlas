@@ -54,9 +54,19 @@ export const STONE_COUNTY_AR_ROSTER = {
   parserVersion: "1.0.0"
 } as const satisfies Myr2mRosterConfig;
 
+export const LONOKE_COUNTY_AR_ROSTER = {
+  adapterKey: "lonoke-county-ar-current-roster",
+  agencyHeading: "Lonoke County Sheriffs Office",
+  countyLabel: "Lonoke County, Arkansas",
+  diagnosticPrefix: "LONOKE_COUNTY_AR",
+  sourceUrl: "https://www.myr2m.com/lonokecoroster/",
+  parserVersion: "1.0.0"
+} as const satisfies Myr2mRosterConfig;
+
 const MYR2M_ROSTERS: readonly Myr2mRosterConfig[] = [
   SHARP_COUNTY_AR_ROSTER,
-  STONE_COUNTY_AR_ROSTER
+  STONE_COUNTY_AR_ROSTER,
+  LONOKE_COUNTY_AR_ROSTER
 ];
 
 export function myr2mRosterSite(adapterKey: string): Myr2mRosterConfig | undefined {
@@ -71,7 +81,8 @@ const SORT_BY_ARRESTED = "A";
 const FIELD = "ctl00$ContentPlaceHolder1$";
 const STATE_FIELDS = ["__VIEWSTATE", "__VIEWSTATEGENERATOR", "__EVENTVALIDATION"] as const;
 const SHOWN_TEXT = /^(\d+) inmates shown out of (\d+) total$/;
-const ARRESTED_TEXT = /^\d{1,2}\/\d{1,2}\/\d{4} \d{1,2}:\d{2}:\d{2} [AP]M$/;
+// Some cards print the arrest date without a time.
+const ARRESTED_TEXT = /^\d{1,2}\/\d{1,2}\/\d{4}(?: \d{1,2}:\d{2}:\d{2} [AP]M)?$/;
 const BOND_TEXT = /^\$(\d{1,3}(?:,\d{3})*|\d+)\.(\d{2})$/;
 const RETRYABLE_CRAWL_ERRORS = new Set(["ROSTER_CHANGED_DURING_CRAWL"]);
 

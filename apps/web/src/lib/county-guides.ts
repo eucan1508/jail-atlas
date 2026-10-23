@@ -3185,6 +3185,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/lonoke-county": {
+    facilityName: "Lonoke County Jail",
+    address: "440 Dee Dee Lane, Lonoke, AR 72086",
+    phone: "501-676-6494",
+    operatedBy: "Lonoke County Sheriff's Office",
+    reviewedAt: "October 23, 2026",
+    overview:
+      "The Lonoke County Jail is at 440 Dee Dee Lane in Lonoke, run by the Sheriff's Office. It holds people awaiting trial, people serving sentences, and people waiting for transport to the Arkansas Department of Corrections, with separate housing for men by security level, for women, and for isolation. The jail's number is 501-676-6494; the Sheriff's Office answers 501-676-3001 around the clock.",
+    contactSourceLabel: "Official Detention page",
+    contactSourceUrl: "https://www.lonokeso.org/styled-2/Detention.html",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through the jail's kiosk system; there are no in-person visits. Visits are set up through Smart Jail (smartjail.com), which also handles emails and photos sent to inmates.",
+        sourceLabel: "Official Detention page",
+        sourceUrl: "https://www.lonokeso.org/styled-2/Detention.html"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for an inmate's account can be deposited through City Tele Coin (citytelecoin.com) or at the kiosk in the jail lobby, which takes cash and credit cards. Hygiene items, food, calling cards, and mail supplies are bought through commissary.",
+        sourceLabel: "Official Detention page",
+        sourceUrl: "https://www.lonokeso.org/styled-2/Detention.html"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calling cards are sold through commissary, and emails and photos can be sent through Smart Jail. The Sheriff's Office does not post a mailing address format for letters, so call the jail at 501-676-6494 before sending mail.",
+        sourceLabel: "Official Detention page",
+        sourceUrl: "https://www.lonokeso.org/styled-2/Detention.html"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster shows the bond amounts listed for each person. The Sheriff's Office does not post how bonds are paid, so call the jail at 501-676-6494 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Jail Roster page",
+        sourceUrl: "https://www.lonokeso.org/JailLog/JailLog.html"
+      }
+    ],
+    faq: [
+      {
+        question: "Can I visit someone in person at the Lonoke County Jail?",
+        answer:
+          "No. All visits are by video through the jail's kiosk system, set up through Smart Jail."
+      },
+      {
+        question: "How do I put money on a Lonoke County inmate's account?",
+        answer:
+          "Deposit through City Tele Coin online, or use the kiosk in the jail lobby, which takes cash and credit cards."
+      },
+      {
+        question: "Where is the Lonoke County Jail?",
+        answer:
+          "At 440 Dee Dee Lane, Lonoke, AR 72086. The jail's number is 501-676-6494, and the Sheriff's Office answers 501-676-3001 24 hours a day."
+      },
+      {
+        question: "Can I send an email or photo to a Lonoke County inmate?",
+        answer: "Yes, through Smart Jail, the same service used to set up video visits."
+      }
+    ]
+  },
   "arkansas/hempstead-county": {
     facilityName: "Hempstead County Detention Center",
     address: "312 South Washington, Hope, AR 71801",
