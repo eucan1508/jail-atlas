@@ -205,6 +205,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "angelina",
       adapterKey: "angelina-county-tx-current-roster",
       sourceHost: "www.angelinacounty.net"
+    },
+    {
+      countySlug: "robertson",
+      adapterKey: "robertson-county-tx-current-roster",
+      sourceHost: "www.robertsoncountysherifftx.org"
     }
   ],
   AR: [

@@ -1650,6 +1650,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/robertson-county": {
+    facilityName: "Robertson County Jail",
+    address: "1006 W US Hwy 79, Franklin, TX 77856",
+    phone: "979-828-3299",
+    operatedBy: "Robertson County Sheriff's Office",
+    reviewedAt: "October 23, 2026",
+    overview:
+      "The Robertson County Jail is run by the Sheriff's Office at 1006 W US Hwy 79 in Franklin. The Sheriff's Office answers 979-828-3299 around the clock, and jail questions can also go to jailinfo@robertsoncountysherifftx.org with \"Jail Info\" in the subject.",
+    contactSourceLabel: "Official Jail Information page",
+    contactSourceUrl: "https://www.robertsoncountysherifftx.org/jail-information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Women can be visited Wednesday and Sunday from 9 to 11 a.m., and men Wednesday and Sunday from 12:30 to 3:30 p.m. You must be on the inmate's visitor list, sign the visitation log on the counter, and you may be asked for photo ID. Each inmate gets one 20-minute visit per visiting day, which can be split among up to five approved visitors, one at a time. Nothing can be brought into the jail, including purses, packages, food, or drinks, and children must be kept under control.",
+        sourceLabel: "Official Jail Information page",
+        sourceUrl: "https://www.robertsoncountysherifftx.org/jail-information"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail no longer accepts money orders. Deposits and commissary orders go through Lone Star Commissary online (credit or debit card) or the kiosk in the Sheriff's Office front lobby. Over-the-counter medications are not accepted for inmates either.",
+        sourceLabel: "Official Jail Information page",
+        sourceUrl: "https://www.robertsoncountysherifftx.org/jail-information"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail other than legal or medical mail goes to Robertson County Jail, the inmate's name, SO#, PO Box 591, Longview, Texas 75606, where it is scanned and delivered to the inmate's kiosk; the originals are destroyed and never returned. Letters must fit 8.5 by 11 inches, run no more than 5 pages written on one side only, and hold at most one photo. Legal and medical mail goes to the jail itself. Messages and photos can also be sent through NCIC (ncic.com), and phone accounts are set up through NCIC Inmate Communications.",
+        sourceLabel: "Official Jail Information page",
+        sourceUrl: "https://www.robertsoncountysherifftx.org/jail-information"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster shows the bond listed for each booking. The Sheriff's Office does not post how bonds are paid, so call 979-828-3299 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Jail Information page",
+        sourceUrl: "https://www.robertsoncountysherifftx.org/jail-information"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Robertson County Jail?",
+        answer:
+          "Women: Wednesday and Sunday, 9 to 11 a.m. Men: Wednesday and Sunday, 12:30 to 3:30 p.m. You must be on the inmate's visitor list."
+      },
+      {
+        question: "Where do I send mail to a Robertson County inmate?",
+        answer:
+          "Robertson County Jail, the inmate's name, SO#, PO Box 591, Longview, Texas 75606. Legal and medical mail goes to the jail instead."
+      },
+      {
+        question: "How do I put money on a Robertson County inmate's account?",
+        answer:
+          "Through Lone Star Commissary online or the kiosk in the Sheriff's Office lobby. Money orders are no longer accepted."
+      },
+      {
+        question: "How do I set up phone calls with a Robertson County inmate?",
+        answer: "Create an account through NCIC Inmate Communications."
+      }
+    ]
+  },
   "texas/angelina-county": {
     facilityName: "Angelina County Jail",
     address: "2311 E. Lufkin Ave., Lufkin, TX 75901",

@@ -20,7 +20,21 @@ export const TOM_GREEN_COUNTY_TX_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
-export const TEXAS_ROSTER_SITES = [BURLESON_COUNTY_TX_ROSTER, TOM_GREEN_COUNTY_TX_ROSTER] as const;
+export const ROBERTSON_COUNTY_TX_ROSTER = {
+  adapterKey: "robertson-county-tx-current-roster",
+  countyName: "Robertson County",
+  diagnosticPrefix: "ROBERTSON_COUNTY_TX",
+  sourceUrl:
+    "https://www.robertsoncountysherifftx.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
+export const TEXAS_ROSTER_SITES = [
+  BURLESON_COUNTY_TX_ROSTER,
+  TOM_GREEN_COUNTY_TX_ROSTER,
+  ROBERTSON_COUNTY_TX_ROSTER
+] as const;
 
 export function texasRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
   return TEXAS_ROSTER_SITES.find((site) => site.adapterKey === adapterKey) ?? null;

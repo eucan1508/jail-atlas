@@ -164,19 +164,38 @@ function cardLines($: CheerioAPI, cardInput: ReturnType<CheerioAPI>): string[] {
   return card.text().split(/\n+/).map(normalizeText).filter(Boolean);
 }
 
-function labelIndex(lines: readonly string[], label: string): number {
-  return lines.findIndex((line) => line.toLowerCase() === label.toLowerCase());
+// Some sites word the same fields differently ("Booking Number:", "Booking Time:", "Charge:").
+const BOOKING_LABELS = ["Booking #:", "Booking Number:"];
+const BOOKING_DATE_LABELS = ["Booking Date:", "Booking Time:"];
+const CHARGE_LABELS = ["Charges:", "Charge:"];
+const BOOKING_LABEL = /Booking (?:#|Number):/g;
+
+function labelIndex(lines: readonly string[], label: string | readonly string[]): number {
+  const labels = (typeof label === "string" ? [label] : label).map((value) => value.toLowerCase());
+  return lines.findIndex((line) => labels.includes(line.toLowerCase()));
 }
 
-function valueAfter(lines: readonly string[], label: string): string | null {
+function valueAfter(lines: readonly string[], label: string | readonly string[]): string | null {
   const index = labelIndex(lines, label);
   const value = index >= 0 ? (lines[index + 1] ?? null) : null;
-  return value !== null && /^[A-Za-z #]+:$/.test(value) ? null : value;
+  return value !== null && /^[A-Za-z #()]+:$/.test(value) ? null : value;
 }
 
-const CARD_LABELS = ["Booking #:", "Age:", "Booking Date:", "Charges:", "Bond:", "SO #:"];
+const CARD_LABELS = [
+  ...BOOKING_LABELS,
+  "Age:",
+  ...BOOKING_DATE_LABELS,
+  ...CHARGE_LABELS,
+  "Bond:",
+  "SO #:",
+  "Inmate ID (Commissary):",
+  "Vine ID:"
+];
 
-function valuesBetween(lines: readonly string[], startLabel: string): readonly string[] {
+function valuesBetween(
+  lines: readonly string[],
+  startLabel: string | readonly string[]
+): readonly string[] {
   const start = labelIndex(lines, startLabel);
   if (start < 0) return [];
   const end = lines.findIndex(
@@ -193,8 +212,9 @@ function findRecordCard(profileLink: ReturnType<CheerioAPI>) {
   for (let depth = 0; depth < 10 && node.length > 0; depth += 1) {
     const text = normalizeText(node.text());
     // Some cards leave out Booking Date, so the booking label alone marks the card boundary.
-    if (text.includes("Booking #:")) {
-      if (text.split("Booking #:").length !== 2) throw new Error("RECORD_CARD_AMBIGUOUS");
+    const bookingLabels = text.match(BOOKING_LABEL)?.length ?? 0;
+    if (bookingLabels > 0) {
+      if (bookingLabels !== 1) throw new Error("RECORD_CARD_AMBIGUOUS");
       return node;
     }
     node = node.parent();
@@ -230,7 +250,7 @@ function parsePage(
 
     const card = findRecordCard($(profileLink));
     const lines = cardLines($, card);
-    const bookingNumber = normalizeText(valueAfter(lines, "Booking #:") ?? "");
+    const bookingNumber = normalizeText(valueAfter(lines, BOOKING_LABELS) ?? "");
     if (!bookingNumber) throw new Error("MISSING_BOOKING_NUMBER");
     if (
       config.layout === "roster-php" &&
@@ -246,7 +266,7 @@ function parsePage(
       .find((alt) => /^Mugshot of /i.test(alt))
       ?.replace(/^Mugshot of /i, "");
     const sheriffOfficeLabelIndex = labelIndex(lines, "SO #:");
-    const bookingLabelIndex = labelIndex(lines, "Booking #:");
+    const bookingLabelIndex = labelIndex(lines, BOOKING_LABELS);
     const nameBoundaryIndex =
       sheriffOfficeLabelIndex >= 0 ? sheriffOfficeLabelIndex : bookingLabelIndex;
     const displayName = normalizeText(
@@ -269,8 +289,8 @@ function parsePage(
     const record = SheriffRosterRecordSchema.parse({
       displayName,
       bookingNumber,
-      bookingDateText: valueAfter(lines, "Booking Date:"),
-      charges: valuesBetween(lines, "Charges:"),
+      bookingDateText: valueAfter(lines, BOOKING_DATE_LABELS),
+      charges: valuesBetween(lines, CHARGE_LABELS),
       bondText: valueAfter(lines, "Bond:")
     });
     const previous = recordsByBooking.get(bookingNumber);

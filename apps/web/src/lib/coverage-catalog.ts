@@ -282,6 +282,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Robertson County",
+    slug: "robertson-county",
+    publishedAt: "2026-10-23",
+    seatCity: "Franklin",
+    h1: "Robertson County Jail Roster & Inmate Search",
+    title: "Robertson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Robertson County, Texas current-inmate information for the jail in Franklin from the official sheriff roster, with booking numbers, source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Robertson County Sheriff's Office publishes a current inmate roster for the Robertson County Jail in Franklin. This page reads only the current list, keeps booking numbers, source-listed charges, and bond amounts, and does not republish mugshots, ages, commissary IDs, or VINE IDs.",
+    officialSourceUrl:
+      "https://www.robertsoncountysherifftx.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Robertson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "arkansas",
     stateName: "Arkansas",
     county: "Jefferson County",
