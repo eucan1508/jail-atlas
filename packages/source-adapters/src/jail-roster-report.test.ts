@@ -4,14 +4,15 @@ import type { AdapterContext } from "./contracts.js";
 import { runSourceAdapter } from "./runner.js";
 import { sourceAdapterRegistry } from "./registry.js";
 import {
-  COTTONWOOD_COUNTY_ADAPTER_KEY,
-  COTTONWOOD_COUNTY_CURRENT_SOURCE_URL,
-  createCottonwoodCountySourceAdapter,
-  parseCottonwoodBail,
-  type CottonwoodPdfPage,
-  type CottonwoodPdfTextItem,
-  type CottonwoodRosterIdFactory
-} from "./cottonwood-county.js";
+  COTTONWOOD_COUNTY_ROSTER_REPORT,
+  REDWOOD_COUNTY_ROSTER_REPORT,
+  createJailRosterReportAdapter,
+  parseJailRosterBail,
+  type JailRosterReportConfig,
+  type JailRosterReportPdfPage,
+  type JailRosterReportPdfTextItem,
+  type JailRosterReportIdFactory
+} from "./jail-roster-report.js";
 
 type SyntheticInmate = Readonly<{
   // A long name wraps onto a second line.
@@ -44,7 +45,7 @@ const inmates: readonly SyntheticInmate[] = [
 ];
 
 const PRINTED = "Printed on January 4, 2000";
-const HEADERS: CottonwoodPdfTextItem[] = [
+const HEADERS: JailRosterReportPdfTextItem[] = [
   { text: "Inmate", x: 67.2, y: 558.4 },
   { text: "Charges", x: 235.2, y: 558.4 },
   { text: "Held For", x: 433.2, y: 558.4 },
@@ -54,8 +55,8 @@ const HEADERS: CottonwoodPdfTextItem[] = [
 ];
 
 /** Lays each person out as the county's report does, starting at the booking date row. */
-function block(person: SyntheticInmate, top: number): CottonwoodPdfTextItem[] {
-  const items: CottonwoodPdfTextItem[] = [
+function block(person: SyntheticInmate, top: number): JailRosterReportPdfTextItem[] {
+  const items: JailRosterReportPdfTextItem[] = [
     { text: "Synthetic Police", x: 421.2, y: top },
     { text: "Department", x: 421.2, y: top - 9.6 },
     { text: person.bookingDate, x: 517.2, y: top },
@@ -79,7 +80,7 @@ function block(person: SyntheticInmate, top: number): CottonwoodPdfTextItem[] {
 function pages(
   people: readonly SyntheticInmate[] = inmates,
   options: { printed?: string; total?: number; title?: string } = {}
-): CottonwoodPdfPage[] {
+): JailRosterReportPdfPage[] {
   const report = people.map((person, index) => [
     { text: `Page ${index + 1} of ${people.length}`, x: 686.3, y: 39 },
     ...HEADERS,
@@ -94,7 +95,10 @@ function pages(
   return report;
 }
 
-function context(sourceUrl: string = COTTONWOOD_COUNTY_CURRENT_SOURCE_URL): AdapterContext {
+function context(
+  sourceUrl: string = COTTONWOOD_COUNTY_ROSTER_REPORT.sourceUrl,
+  config: JailRosterReportConfig = COTTONWOOD_COUNTY_ROSTER_REPORT
+): AdapterContext {
   return {
     runId: "00000000-0000-4000-8000-000000000901",
     source: {
@@ -115,7 +119,7 @@ function context(sourceUrl: string = COTTONWOOD_COUNTY_CURRENT_SOURCE_URL): Adap
       sourceStatus: "verification_pending",
       custodyDataScope: ["current_custody"],
       retentionScope: { kind: "current_only", description: "Synthetic current-only scope." },
-      adapterKey: COTTONWOOD_COUNTY_ADAPTER_KEY,
+      adapterKey: config.adapterKey,
       publicationApproved: false
     },
     requestedAt: "2000-01-04T18:00:00.000Z",
@@ -125,7 +129,7 @@ function context(sourceUrl: string = COTTONWOOD_COUNTY_CURRENT_SOURCE_URL): Adap
   };
 }
 
-function idFactory(): CottonwoodRosterIdFactory {
+function idFactory(): JailRosterReportIdFactory {
   const ids = new Map<string, string>();
   let sequence = 910;
   return (kind, sourceKey) => {
@@ -140,8 +144,12 @@ function idFactory(): CottonwoodRosterIdFactory {
 
 const PDF_BYTES = new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d]);
 
-function adapter(report: readonly CottonwoodPdfPage[], body: Uint8Array = PDF_BYTES) {
-  return createCottonwoodCountySourceAdapter({
+function adapter(
+  report: readonly JailRosterReportPdfPage[],
+  body: Uint8Array = PDF_BYTES,
+  config: JailRosterReportConfig = COTTONWOOD_COUNTY_ROSTER_REPORT
+) {
+  return createJailRosterReportAdapter(config, {
     fetch: async () => new Response(body),
     facilityId: "00000000-0000-4000-8000-000000000904",
     createId: idFactory(),
@@ -150,9 +158,9 @@ function adapter(report: readonly CottonwoodPdfPage[], body: Uint8Array = PDF_BY
   });
 }
 
-describe("Cottonwood County source adapter", () => {
+describe("Minnesota jail roster report adapter", () => {
   it("is reviewable but not enabled in the default registry", () => {
-    expect(sourceAdapterRegistry.has(COTTONWOOD_COUNTY_ADAPTER_KEY)).toBe(false);
+    expect(sourceAdapterRegistry.has(COTTONWOOD_COUNTY_ROSTER_REPORT.adapterKey)).toBe(false);
   });
 
   it("reads each person with wrapped names, joined charges, and every bail entry", async () => {
@@ -184,6 +192,27 @@ describe("Cottonwood County source adapter", () => {
     ]);
   });
 
+  it("reads a county whose charges start on the block's first row", async () => {
+    // Redwood County prints no hold reason; the first charge sits on the booking date row.
+    const report = pages(inmates, { title: REDWOOD_COUNTY_ROSTER_REPORT.title }).map((page) =>
+      page
+        .filter(
+          (item) => item.text !== inmates[0]!.holdReason && item.text !== inmates[1]!.holdReason
+        )
+        .map((item) => (item.x === 127.2 ? { ...item, y: item.y + 24 } : item))
+    );
+    const result = await runSourceAdapter(
+      adapter(report, PDF_BYTES, REDWOOD_COUNTY_ROSTER_REPORT),
+      context(REDWOOD_COUNTY_ROSTER_REPORT.sourceUrl, REDWOOD_COUNTY_ROSTER_REPORT)
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.charges.length)).toEqual([2, 1]);
+    expect(result.snapshot.bookings[0]!.charges[0]!.description).toBe(
+      "Synthetic Offense Alpha - Arrest of Adult"
+    );
+  });
+
   it("drops agencies, hold reasons, booking dates, and release dates", async () => {
     const result = await runSourceAdapter(adapter(pages()), context());
     expect(result.ok).toBe(true);
@@ -201,11 +230,11 @@ describe("Cottonwood County source adapter", () => {
   });
 
   it("splits bail entries that wrap across lines and refuses one it cannot read", () => {
-    expect(parseCottonwoodBail("Bail/Bond - $250000.00 Bail/Bond - $1000.00")).toEqual([
+    expect(parseJailRosterBail("Bail/Bond - $250000.00 Bail/Bond - $1000.00")).toEqual([
       { label: "Bail/Bond", amountMinor: 25_000_000, note: null },
       { label: "Bail/Bond", amountMinor: 100_000, note: null }
     ]);
-    expect(() => parseCottonwoodBail("No Bail")).toThrow("BAIL_UNREADABLE");
+    expect(() => parseJailRosterBail("No Bail")).toThrow("BAIL_UNREADABLE");
   });
 
   it("fails closed on a stale, mismatched, changed, duplicate, or empty report", async () => {
@@ -213,7 +242,7 @@ describe("Cottonwood County source adapter", () => {
     moved[0] = [...moved[0]!, { text: "Synthetic new column", x: 300, y: 500 }];
     const split = pages();
     split[1] = [...split[1]!, { text: "999.44 - Synthetic continued", x: 127.2, y: 545 }];
-    const cases: [readonly CottonwoodPdfPage[], string][] = [
+    const cases: [readonly JailRosterReportPdfPage[], string][] = [
       [pages(inmates, { printed: "Printed on December 30, 1999" }), "SOURCE_REPORT_STALE"],
       [pages(inmates, { total: 3 }), "ROSTER_TOTAL_MISMATCH"],
       [

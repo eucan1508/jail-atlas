@@ -1013,6 +1013,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://cms5.revize.com/revize/cottonwoodmn/Photo%20Gallery/Sheriff/Jail%20Roster.pdf",
     officialSourceLabel: "Cottonwood County Sheriff's Office Jail Roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Redwood County",
+    slug: "redwood-county",
+    publishedAt: "2026-10-23",
+    seatCity: "Redwood Falls",
+    h1: "Redwood County Jail Roster & Inmate Search",
+    title: "Redwood County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Redwood County, Minnesota current-inmate information for the jail in Redwood Falls from the Sheriff's official In Custody roster, with charges, statute codes, bail amounts, and capture time.",
+    article:
+      "The Redwood County Sheriff's Office posts an In Custody roster of everyone held at the Redwood County Jail in Redwood Falls. This page lists each person with every charge and its statute code and the bail amounts on the roster, and leaves out the agency holding them, booking dates, and projected release dates.",
+    officialSourceUrl: "https://redwoodcounty-mn.gov/download/17042/",
+    officialSourceLabel: "Redwood County Sheriff's Office In Custody roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

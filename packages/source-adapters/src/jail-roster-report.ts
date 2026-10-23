@@ -21,12 +21,50 @@ import type {
 } from "./contracts.js";
 import { assertFewWithoutCharges } from "./charge-gaps.js";
 
-export const COTTONWOOD_COUNTY_ADAPTER_KEY = "cottonwood-county-mn-current-roster" as const;
-// The Sheriff's Jail Roster page links this file on the county website; the county's site host
-// (Revize) serves it from this address.
-export const COTTONWOOD_COUNTY_CURRENT_SOURCE_URL =
-  "https://cms5.revize.com/revize/cottonwoodmn/Photo%20Gallery/Sheriff/Jail%20Roster.pdf" as const;
-export const COTTONWOOD_COUNTY_PARSER_VERSION = "1.0.0" as const;
+/**
+ * Minnesota sheriff's offices that print the same "Jail Roster" report (Inmate, Charges, Held For,
+ * Booking Date, Projected Release, Bail Amount) as a PDF on the county website.
+ */
+export interface JailRosterReportConfig {
+  readonly adapterKey: string;
+  readonly countyName: string;
+  readonly diagnosticPrefix: string;
+  readonly sourceUrl: string;
+  // The report's first-page heading.
+  readonly title: string;
+  readonly parserVersion: string;
+}
+
+export const COTTONWOOD_COUNTY_ROSTER_REPORT = {
+  adapterKey: "cottonwood-county-mn-current-roster",
+  countyName: "Cottonwood County",
+  diagnosticPrefix: "COTTONWOOD_COUNTY",
+  // The Sheriff's Jail Roster page links this file on the county website; the county's site host
+  // (Revize) serves it from this address.
+  sourceUrl:
+    "https://cms5.revize.com/revize/cottonwoodmn/Photo%20Gallery/Sheriff/Jail%20Roster.pdf",
+  title: "Jail Roster",
+  parserVersion: "1.0.0"
+} as const satisfies JailRosterReportConfig;
+
+export const REDWOOD_COUNTY_ROSTER_REPORT = {
+  adapterKey: "redwood-county-mn-current-roster",
+  countyName: "Redwood County",
+  diagnosticPrefix: "REDWOOD_COUNTY",
+  // The Sheriff's In Custody page links this download on the county website.
+  sourceUrl: "https://redwoodcounty-mn.gov/download/17042/",
+  title: "Redwood County Jail Roster",
+  parserVersion: "1.0.0"
+} as const satisfies JailRosterReportConfig;
+
+const JAIL_ROSTER_REPORTS: readonly JailRosterReportConfig[] = [
+  COTTONWOOD_COUNTY_ROSTER_REPORT,
+  REDWOOD_COUNTY_ROSTER_REPORT
+];
+
+export function jailRosterReport(adapterKey: string): JailRosterReportConfig | undefined {
+  return JAIL_ROSTER_REPORTS.find((config) => config.adapterKey === adapterKey);
+}
 
 const MAX_RECORDS = 1_000;
 const MAX_RESPONSE_BYTES = 3_000_000;
@@ -44,9 +82,9 @@ const HELD_FOR_X = 421.2;
 const BOOKING_DATE_X = 517.2;
 const RELEASE_X = 583.2;
 const BAIL_X = 661.2;
-// The hold reason prints 6 points below the block's first row and the first charge 24 points
-// below it; anything in the charge column above this line is the hold reason.
-const HOLD_REASON_DEPTH = 12;
+// Some counties print a hold reason ("Bench Warrant") 6 points below the block's first row, with
+// the first charge 24 points down; others start the charges on the first row.
+const HOLD_REASON_OFFSET = 6;
 const SAME_ROW = 2;
 
 const PRINTED_ON = /^Printed on ([A-Z][a-z]+) (\d{1,2}), (\d{4})$/;
@@ -83,44 +121,44 @@ const MONTHS = [
   "December"
 ];
 
-const CottonwoodChargeSchema = z.object({
+const JailRosterReportChargeSchema = z.object({
   statuteCode: z.string().trim().min(1).max(100),
   description: z.string().trim().min(1).max(1_000)
 });
-const CottonwoodBailSchema = z.object({
+const JailRosterReportBailSchema = z.object({
   label: z.string().trim().min(1).max(100),
   amountMinor: z.number().int().nonnegative().max(100_000_000_000),
   note: z.string().trim().min(1).max(200).nullable()
 });
-const CottonwoodRecordSchema = z.object({
+const JailRosterReportRecordSchema = z.object({
   recordKey: z.string().min(1).max(400),
   displayName: z.string().trim().min(2).max(250),
-  charges: z.array(CottonwoodChargeSchema).max(100),
-  bail: z.array(CottonwoodBailSchema).max(100)
+  charges: z.array(JailRosterReportChargeSchema).max(100),
+  bail: z.array(JailRosterReportBailSchema).max(100)
 });
-const CottonwoodRosterSchema = z.object({
-  records: z.array(CottonwoodRecordSchema).max(MAX_RECORDS),
+const JailRosterReportSchema = z.object({
+  records: z.array(JailRosterReportRecordSchema).max(MAX_RECORDS),
   printedOnText: z.string().regex(PRINTED_ON),
   validEmptyMarker: z.boolean()
 });
 
-export type CottonwoodRoster = z.infer<typeof CottonwoodRosterSchema>;
-export type CottonwoodRosterFetch = (input: string, init?: RequestInit) => Promise<Response>;
-export type CottonwoodRosterIdFactory = (
+export type JailRosterReport = z.infer<typeof JailRosterReportSchema>;
+export type JailRosterReportFetch = (input: string, init?: RequestInit) => Promise<Response>;
+export type JailRosterReportIdFactory = (
   kind: "snapshot" | "person" | "booking" | "charge" | "bond",
   sourceKey: string
 ) => string;
-export type CottonwoodPdfTextItem = Readonly<{ text: string; x: number; y: number }>;
-export type CottonwoodPdfPage = readonly CottonwoodPdfTextItem[];
-export type CottonwoodRosterPdfExtractor = (
+export type JailRosterReportPdfTextItem = Readonly<{ text: string; x: number; y: number }>;
+export type JailRosterReportPdfPage = readonly JailRosterReportPdfTextItem[];
+export type JailRosterReportPdfExtractor = (
   bytes: Uint8Array
-) => Promise<readonly CottonwoodPdfPage[]>;
+) => Promise<readonly JailRosterReportPdfPage[]>;
 
-export interface CottonwoodRosterAdapterOptions {
-  readonly fetch: CottonwoodRosterFetch;
+export interface JailRosterReportAdapterOptions {
+  readonly fetch: JailRosterReportFetch;
   readonly facilityId: string;
-  readonly createId: CottonwoodRosterIdFactory;
-  readonly extractPdfPages?: CottonwoodRosterPdfExtractor;
+  readonly createId: JailRosterReportIdFactory;
+  readonly extractPdfPages?: JailRosterReportPdfExtractor;
   readonly nowMs?: () => number;
 }
 
@@ -132,6 +170,7 @@ function normalizeText(value: string): string {
 }
 
 function classify(
+  config: JailRosterReportConfig,
   context: AdapterContext,
   stage: AdapterStage,
   error: unknown
@@ -141,22 +180,21 @@ function classify(
   return {
     stage,
     classification: stage === "fetch" || stage === "health_check" ? "network" : "parser",
-    publicMessage:
-      "The approved Cottonwood County, Minnesota jail roster could not be processed safely.",
+    publicMessage: `The approved ${config.countyName}, Minnesota jail roster could not be processed safely.`,
     retryable: true,
     occurredAt: context.requestedAt,
-    diagnosticCode: `COTTONWOOD_COUNTY_${code}`.slice(0, 100)
+    diagnosticCode: `${config.diagnosticPrefix}_${code}`.slice(0, 100)
   };
 }
 
-async function extractPdfPages(bytes: Uint8Array): Promise<readonly CottonwoodPdfPage[]> {
+async function extractPdfPages(bytes: Uint8Array): Promise<readonly JailRosterReportPdfPage[]> {
   const loadingTask = getDocument({
     data: bytes,
     stopAtErrors: true,
     useSystemFonts: true
   });
   const document = await loadingTask.promise;
-  const pages: CottonwoodPdfPage[] = [];
+  const pages: JailRosterReportPdfPage[] = [];
   try {
     for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
       const page = await document.getPage(pageNumber);
@@ -193,12 +231,12 @@ function printedOnMs(text: string): number {
   return Date.UTC(Number(match[3]), month, Number(match[2]));
 }
 
-function inColumn(item: CottonwoodPdfTextItem, x: number): boolean {
+function inColumn(item: JailRosterReportPdfTextItem, x: number): boolean {
   return Math.abs(item.x - x) <= COLUMN_SLACK;
 }
 
 /** Reads the bail column, whose entries wrap freely across lines, back into separate entries. */
-export function parseCottonwoodBail(text: string): CottonwoodRoster["records"][number]["bail"] {
+export function parseJailRosterBail(text: string): JailRosterReport["records"][number]["bail"] {
   if (!text) return [];
   const entries = [...text.matchAll(BAIL_ENTRY)];
   // Every character must belong to an entry; leftovers mean a format this reader doesn't know.
@@ -212,7 +250,7 @@ export function parseCottonwoodBail(text: string): CottonwoodRoster["records"][n
   });
 }
 
-type Block = { top: number; bookingDate: string; items: CottonwoodPdfTextItem[] };
+type Block = { top: number; bookingDate: string; items: JailRosterReportPdfTextItem[] };
 
 /**
  * Reads the printed roster: one block per person that starts on the row with the agency the
@@ -220,9 +258,12 @@ type Block = { top: number; bookingDate: string; items: CottonwoodPdfTextItem[] 
  * and the name at the left margin. Agencies, hold reasons, booking dates, and projected release
  * dates are read past and never kept.
  */
-export function parseCottonwoodRosterPages(pages: readonly CottonwoodPdfPage[]): CottonwoodRoster {
+export function parseJailRosterReportPages(
+  config: JailRosterReportConfig,
+  pages: readonly JailRosterReportPdfPage[]
+): JailRosterReport {
   const first = pages[0] ?? [];
-  if (!first.some((item) => item.text === "Jail Roster")) {
+  if (!first.some((item) => item.text === config.title)) {
     throw new Error("SOURCE_IDENTITY_MISMATCH");
   }
   const printedOnText = first.find((item) => PRINTED_ON.test(item.text))?.text;
@@ -238,7 +279,7 @@ export function parseCottonwoodRosterPages(pages: readonly CottonwoodPdfPage[]):
       (item) =>
         item.y < headerY - SAME_ROW &&
         !PAGE_NUMBER.test(item.text) &&
-        !(pageIndex === 0 && (item.text === "Jail Roster" || PRINTED_ON.test(item.text)))
+        !(pageIndex === 0 && (item.text === config.title || PRINTED_ON.test(item.text)))
     );
     const totalItem = body.find((item) => TOTAL_RECORDS.test(item.text));
     if (totalItem) {
@@ -284,8 +325,8 @@ export function parseCottonwoodRosterPages(pages: readonly CottonwoodPdfPage[]):
 
     const charges: { statuteCode: string; description: string }[] = [];
     for (const line of byColumn(CHARGE_X)) {
-      if (line.y > block.top - HOLD_REASON_DEPTH) continue;
       const charge = line.text.match(CHARGE_LINE);
+      if (!charge && Math.abs(block.top - HOLD_REASON_OFFSET - line.y) <= SAME_ROW) continue;
       if (charge) {
         charges.push({ statuteCode: charge[1]!, description: charge[2]! });
         continue;
@@ -295,7 +336,7 @@ export function parseCottonwoodRosterPages(pages: readonly CottonwoodPdfPage[]):
       previous.description = `${previous.description} ${line.text}`;
     }
 
-    const bail = parseCottonwoodBail(
+    const bail = parseJailRosterBail(
       byColumn(BAIL_X)
         .map((item) => item.text)
         .join(" ")
@@ -316,17 +357,18 @@ export function parseCottonwoodRosterPages(pages: readonly CottonwoodPdfPage[]):
   );
   // The county jail is never empty; a print without people means the report broke.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
-  return CottonwoodRosterSchema.parse({ records, printedOnText, validEmptyMarker: false });
+  return JailRosterReportSchema.parse({ records, printedOnText, validEmptyMarker: false });
 }
 
 async function requestRoster(
-  options: CottonwoodRosterAdapterOptions,
+  config: JailRosterReportConfig,
+  options: JailRosterReportAdapterOptions,
   context: AdapterContext
-): Promise<CottonwoodRoster> {
-  if (context.source.sourceUrl !== COTTONWOOD_COUNTY_CURRENT_SOURCE_URL) {
+): Promise<JailRosterReport> {
+  if (context.source.sourceUrl !== config.sourceUrl) {
     throw new Error("SOURCE_URL_MISMATCH");
   }
-  const response = await options.fetch(COTTONWOOD_COUNTY_CURRENT_SOURCE_URL, {
+  const response = await options.fetch(config.sourceUrl, {
     method: "GET",
     redirect: "error",
     signal: context.signal,
@@ -340,7 +382,8 @@ async function requestRoster(
   if (bytes[0] !== 0x25 || bytes[1] !== 0x50 || bytes[2] !== 0x44 || bytes[3] !== 0x46) {
     throw new Error("INVALID_PDF_SIGNATURE");
   }
-  const roster = parseCottonwoodRosterPages(
+  const roster = parseJailRosterReportPages(
+    config,
     await (options.extractPdfPages ?? extractPdfPages)(bytes)
   );
   const ageMs = Date.parse(context.requestedAt) - printedOnMs(roster.printedOnText);
@@ -348,35 +391,36 @@ async function requestRoster(
   return roster;
 }
 
-export function createCottonwoodCountySourceAdapter(
-  options: CottonwoodRosterAdapterOptions
-): SourceAdapter<CottonwoodRoster, CottonwoodRoster, CottonwoodRoster> {
+export function createJailRosterReportAdapter(
+  config: JailRosterReportConfig,
+  options: JailRosterReportAdapterOptions
+): SourceAdapter<JailRosterReport, JailRosterReport, JailRosterReport> {
   const nowMs = options.nowMs ?? (() => Date.now());
   return {
-    key: COTTONWOOD_COUNTY_ADAPTER_KEY,
+    key: config.adapterKey,
     adapterVersion: "1.0.0",
-    parserVersion: COTTONWOOD_COUNTY_PARSER_VERSION,
-    async fetch(context): Promise<FetchResult<CottonwoodRoster>> {
+    parserVersion: config.parserVersion,
+    async fetch(context): Promise<FetchResult<JailRosterReport>> {
       try {
-        return { ok: true, value: await requestRoster(options, context) };
+        return { ok: true, value: await requestRoster(config, options, context) };
       } catch (error) {
-        return { ok: false, failure: classify(context, "fetch", error) };
+        return { ok: false, failure: classify(config, context, "fetch", error) };
       }
     },
-    validate(payload, context): Promise<ValidationResult<CottonwoodRoster>> {
-      const result = CottonwoodRosterSchema.safeParse(payload);
+    validate(payload, context): Promise<ValidationResult<JailRosterReport>> {
+      const result = JailRosterReportSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "validate", result.error) }
+          : { ok: false, failure: classify(config, context, "validate", result.error) }
       );
     },
-    parse(payload, context): Promise<ParseResult<CottonwoodRoster>> {
-      const result = CottonwoodRosterSchema.safeParse(payload);
+    parse(payload, context): Promise<ParseResult<JailRosterReport>> {
+      const result = JailRosterReportSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "parse", result.error) }
+          : { ok: false, failure: classify(config, context, "parse", result.error) }
       );
     },
     interpretEmptyResult(payload): Promise<EmptyResultInterpretation> {
@@ -385,7 +429,7 @@ export function createCottonwoodCountySourceAdapter(
           ? {
               kind: "valid_empty",
               recordCount: 0,
-              evidence: "The official Cottonwood County jail roster listed no one."
+              evidence: `The official ${config.countyName} jail roster listed no one.`
             }
           : { kind: "not_empty", recordCount: payload.records.length }
       );
@@ -465,13 +509,16 @@ export function createCottonwoodCountySourceAdapter(
           })
         });
       } catch (error) {
-        return Promise.resolve({ ok: false, failure: classify(context, "normalize", error) });
+        return Promise.resolve({
+          ok: false,
+          failure: classify(config, context, "normalize", error)
+        });
       }
     },
     async healthCheck(context): Promise<SourceHealth> {
       const started = nowMs();
       try {
-        await requestRoster(options, context);
+        await requestRoster(config, options, context);
         return {
           status: "healthy",
           checkedAt: context.requestedAt,
@@ -483,12 +530,12 @@ export function createCottonwoodCountySourceAdapter(
           status: "unavailable",
           checkedAt: context.requestedAt,
           latencyMs: Math.max(0, nowMs() - started),
-          failure: classify(context, "health_check", error)
+          failure: classify(config, context, "health_check", error)
         };
       }
     },
     classifyFailure(error, stage, context) {
-      return classify(context, stage, error);
+      return classify(config, context, stage, error);
     }
   };
 }

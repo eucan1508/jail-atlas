@@ -372,6 +372,13 @@
       "when": 1794200000000,
       "tag": "0052_minnesota_cottonwood_source",
       "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "7",
+      "when": 1794286400000,
+      "tag": "0053_minnesota_redwood_source",
+      "breakpoints": true
     }
   ]
 }
