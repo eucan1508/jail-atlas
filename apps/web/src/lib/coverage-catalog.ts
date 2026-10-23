@@ -528,6 +528,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Independence County",
+    slug: "independence-county",
+    publishedAt: "2026-10-23",
+    seatCity: "Batesville",
+    h1: "Independence County Jail Roster & Inmate Search",
+    title: "Independence County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Independence County, Arkansas current-inmate information for the jail in Batesville from the official sheriff roster, with source-listed charges and capture time.",
+    article:
+      "The Independence County Sheriff's Office links its Jail Roster for the Independence County Jail in Batesville from its website. This page reads every current inmate on that roster with source-listed charges, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/IndependenceCoRoster/",
+    officialSourceLabel: "Independence County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",

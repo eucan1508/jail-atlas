@@ -3243,6 +3243,62 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/independence-county": {
+    facilityName: "Independence County Jail",
+    address: "569 W Main St., Batesville, AR 72501",
+    phone: "870-612-6880",
+    operatedBy: "Independence County Sheriff's Office",
+    reviewedAt: "October 23, 2026",
+    overview:
+      "The Independence County Jail is at 569 W Main St. in Batesville and is run by the Sheriff's Office, which handles law enforcement for the county and the City of Southside. The jail's number is 870-612-6880; Jail Administrator Jennifer Sanders can be reached at jailadmin@independencesheriff.org.",
+    contactSourceLabel: "Official visitation and jail page",
+    contactSourceUrl: "https://www.independencesheriff.org/visitationRulesAndSchedule",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting hours online. Call the jail at 870-612-6880 to ask about visiting before you go.",
+        sourceLabel: "Official visitation and jail page",
+        sourceUrl: "https://www.independencesheriff.org/visitationRulesAndSchedule"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's Office points to JailATM (deposits.jailatm.com) for deposits to an inmate's account.",
+        sourceLabel: "Official Sheriff's Office website",
+        sourceUrl: "https://www.independencesheriff.org/"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's Office does not post mail or phone rules for inmates. The jail does not accept property for an inmate unless jail administration has approved it. Property is released to approved people on Monday, Thursday, and Friday from 8 a.m. to 3 p.m., once the inmate has filled out a release form; bring a photo ID. Property left more than 30 days after release is destroyed.",
+        sourceLabel: "Official visitation and jail page",
+        sourceUrl: "https://www.independencesheriff.org/visitationRulesAndSchedule"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster does not list bond amounts, and the Sheriff's Office does not post how bonds are paid. Call the jail at 870-612-6880 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official visitation and jail page",
+        sourceUrl: "https://www.independencesheriff.org/visitationRulesAndSchedule"
+      }
+    ],
+    faq: [
+      {
+        question: "Where is the Independence County Jail?",
+        answer: "At 569 W Main St., Batesville, AR 72501. The jail's number is 870-612-6880."
+      },
+      {
+        question: "How do I put money on an Independence County inmate's account?",
+        answer: "The Sheriff's Office points to JailATM for deposits."
+      },
+      {
+        question: "How do I pick up an inmate's property?",
+        answer:
+          "The inmate must fill out a property release form naming you. Property is released Monday, Thursday, and Friday from 8 a.m. to 3 p.m., and you need a photo ID."
+      },
+      {
+        question: "Can I drop off items for an Independence County inmate?",
+        answer: "No, not unless jail administration has approved it first."
+      }
+    ]
+  },
   "arkansas/hempstead-county": {
     facilityName: "Hempstead County Detention Center",
     address: "312 South Washington, Hope, AR 71801",

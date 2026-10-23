@@ -386,6 +386,13 @@
       "when": 1794372800000,
       "tag": "0054_arkansas_lonoke_source",
       "breakpoints": true
+    },
+    {
+      "idx": 55,
+      "version": "7",
+      "when": 1794459200000,
+      "tag": "0055_arkansas_independence_source",
+      "breakpoints": true
     }
   ]
 }

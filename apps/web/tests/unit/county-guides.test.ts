@@ -56,6 +56,7 @@ const liveCountyKeys = [
   "arkansas/izard-county",
   "arkansas/cross-county",
   "arkansas/lonoke-county",
+  "arkansas/independence-county",
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",
