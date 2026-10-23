@@ -42,8 +42,8 @@ import {
   WINONA_COUNTY_ADAPTER_KEY,
   createFreebornCountySourceAdapter,
   FREEBORN_COUNTY_ADAPTER_KEY,
-  createCottonwoodCountySourceAdapter,
-  COTTONWOOD_COUNTY_ADAPTER_KEY,
+  createJailRosterReportAdapter,
+  jailRosterReport,
   createNoblesCountySourceAdapter,
   NOBLES_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
@@ -155,6 +155,7 @@ export function createLiveSourceAdapter(
   // path so sources without a trailing slash can fetch their list and details.
   const rosterSite = arkansasRosterSite(source.adapterKey) ?? texasRosterSite(source.adapterKey);
   const myr2mSite = myr2mRosterSite(source.adapterKey);
+  const rosterReport = jailRosterReport(source.adapterKey);
   // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
@@ -210,9 +211,10 @@ export function createLiveSourceAdapter(
       ? { maxResponseBytes: 6_000_000 }
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
-    // search runs about 1.4 KB per person, and the Cottonwood County report about 15 KB.
+    // search runs about 1.4 KB per person, and the Cottonwood and Redwood County jail roster
+    // reports about 10-15 KB.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === COTTONWOOD_COUNTY_ADAPTER_KEY ||
+    rosterReport !== undefined ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
     source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 3_000_000 }
@@ -315,8 +317,8 @@ export function createLiveSourceAdapter(
       createId: createAdapterId
     });
   }
-  if (source.adapterKey === COTTONWOOD_COUNTY_ADAPTER_KEY) {
-    return createCottonwoodCountySourceAdapter({
+  if (rosterReport) {
+    return createJailRosterReportAdapter(rosterReport, {
       fetch,
       facilityId,
       createId: createAdapterId

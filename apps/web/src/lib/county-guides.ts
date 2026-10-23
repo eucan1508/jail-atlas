@@ -2300,6 +2300,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/redwood-county": {
+    facilityName: "Redwood County Jail",
+    address: "303 E 3rd Street, Redwood Falls, MN 56283",
+    phone: "507-637-1313",
+    operatedBy: "Redwood County Sheriff's Office",
+    reviewedAt: "October 23, 2026",
+    overview:
+      "The Redwood County Jail is at 303 East 3rd Street in Redwood Falls, connected to the Redwood County Law Enforcement Center; use the entrance on the east side of the building. The jail's number is 507-637-1313, and the Jail Administrator can be reached at 507-637-1343.",
+    contactSourceLabel: "Official Sheriff's Office page",
+    contactSourceUrl: "https://redwoodcounty-mn.gov/departments/sheriffs-office/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are Saturday 1:30 to 4:30 p.m., Monday 6 to 9 p.m., Tuesday 1:30 to 4:30 p.m., and Friday 1:30 to 4:30 p.m. Visits are by video in the jail lobby and last up to 20 minutes, once a day with any one visitor, and each inmate can have two adult visitors a day. Children under 18 can visit immediate family only during the Saturday period, and children 15 and younger must come with an adult family member. Visitors are registered, may be asked for ID, and are subject to a frisk search; anyone who appears to be under the influence is turned away.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://redwoodcounty-mn.gov/departments/sheriffs-office/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits for an inmate can be made day or night at the kiosk in the jail entrance, or online through JailATM (deposits.jailatm.com).",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://redwoodcounty-mn.gov/departments/sheriffs-office/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone cards for inmates are sold online through Reliance Telephone. Letters, pictures, and anything else for an inmate must come through the U.S. Postal Service; personal items and food can't be dropped off. The Sheriff's Office mailing address is P.O. Box 47, Redwood Falls, MN 56283; call the jail at 507-637-1313 to confirm how to address mail to an inmate.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://redwoodcounty-mn.gov/departments/sheriffs-office/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster lists the bail set for each person when there is one. The Sheriff's Office does not post how bail is paid, so call the jail at 507-637-1313 to ask. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official In Custody page",
+        sourceUrl: "https://redwoodcounty-mn.gov/departments/sheriffs-office/in-custody/"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Redwood County Jail?",
+        answer:
+          "Saturday 1:30 to 4:30 p.m., Monday 6 to 9 p.m., Tuesday 1:30 to 4:30 p.m., and Friday 1:30 to 4:30 p.m. Visits are by video in the jail lobby, up to 20 minutes."
+      },
+      {
+        question: "Can children visit an inmate at the Redwood County Jail?",
+        answer:
+          "Only during the Saturday visiting period, and only to visit immediate family. Children 15 and younger must come with an adult family member."
+      },
+      {
+        question: "How do I put money on a Redwood County inmate's account?",
+        answer:
+          "Use the kiosk in the jail entrance, open day and night, or deposit online through JailATM."
+      },
+      {
+        question: "Where is the Redwood County Jail?",
+        answer:
+          "At 303 East 3rd Street in Redwood Falls, connected to the Law Enforcement Center. Use the east entrance. The jail's number is 507-637-1313."
+      }
+    ]
+  },
   "minnesota/nobles-county": {
     facilityName: "Nobles County Jail",
     address: "1530 Airport Ste 200, Worthington, MN 56187",

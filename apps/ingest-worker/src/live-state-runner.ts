@@ -166,6 +166,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cottonwood",
       adapterKey: "cottonwood-county-mn-current-roster",
       sourceHost: "cms5.revize.com"
+    },
+    {
+      countySlug: "redwood",
+      adapterKey: "redwood-county-mn-current-roster",
+      sourceHost: "redwoodcounty-mn.gov"
     }
   ],
   TX: [

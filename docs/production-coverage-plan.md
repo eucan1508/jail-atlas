@@ -39,6 +39,7 @@ source-specific parser contract and a human review packet.
 | Benton     | [Benton County Jail Division](https://www.bentoncountymn.gov/220/Jail-Division)                                                                     | Adapter tested; production approval pending      |
 | Freeborn   | [Freeborn County Adult Detention Center](https://www.freeborncountymn.gov/296/Adult-Detention-Center)                                               | Adapter tested; production approval pending      |
 | Cottonwood | [Cottonwood County Jail](https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php)                                            | Adapter tested; production approval pending      |
+| Redwood    | [Redwood County Sheriff's Office](https://redwoodcounty-mn.gov/departments/sheriffs-office/)                                                        | Adapter tested; production approval pending      |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |
