@@ -287,6 +287,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "lonoke",
       adapterKey: "lonoke-county-ar-current-roster",
       sourceHost: "www.myr2m.com"
+    },
+    {
+      countySlug: "independence",
+      adapterKey: "independence-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
     }
   ],
   OK: [

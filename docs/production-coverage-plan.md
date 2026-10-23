@@ -58,24 +58,25 @@ Arkansas was added on 2026-10-04. Each county below has an official sheriff rost
 pages covering visiting, deposits, mail, and bonds. Arkansas County, Hempstead, and Izard also run
 the same roster software but were left out because their sites do not publish all four.
 
-| County      | Official source                                                                                                                       | Status                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Jefferson   | [Jefferson County Sheriff inmate roster](https://www.jeffcoso.org/roster.php)                                                         | Adapter tested; production approval pending |
-| Logan       | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                              | Adapter tested; production approval pending |
-| Greene      | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)                  | Adapter tested; production approval pending |
-| Cleburne    | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
-| Faulkner    | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)                   | Adapter tested; production approval pending |
-| Hot Spring  | [Hot Spring County Sheriff current roster](https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
-| Baxter      | [Baxter County Sheriff current roster](https://www.baxtercountysheriff.com/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
-| St. Francis | [St. Francis County Sheriff current roster](https://www.stfranciscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
-| Mississippi | [Mississippi County Sheriff inmate roster](https://www.mississippicountysheriffar.org/roster.php)                                     | Adapter tested; production approval pending |
-| Randolph    | [Randolph County Sheriff inmate roster](https://www.randolphcountysheriff.org/roster.php)                                             | Adapter tested; production approval pending |
-| Hempstead   | [Hempstead County Sheriff inmate roster](https://www.hempsteadcountysheriff.org/roster.php)                                           | Adapter tested; production approval pending |
-| Izard       | [Izard County Sheriff inmate roster](https://www.izardcountysheriff.org/roster.php)                                                   | Adapter tested; production approval pending |
-| Cross       | [Cross County Sheriff inmate roster](https://www.crosscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
-| Sharp       | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
-| Stone       | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
-| Lonoke      | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
+| County       | Official source                                                                                                                       | Status                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Jefferson    | [Jefferson County Sheriff inmate roster](https://www.jeffcoso.org/roster.php)                                                         | Adapter tested; production approval pending |
+| Logan        | [Logan County Sheriff inmate roster](https://www.loganso.com/roster.php)                                                              | Adapter tested; production approval pending |
+| Greene       | [Greene County Sheriff current roster](https://www.greenesoar.gov/inmate-roster/filters/current/booking_time=desc/1)                  | Adapter tested; production approval pending |
+| Cleburne     | [Cleburne County Sheriff current roster](https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
+| Faulkner     | [Faulkner County Sheriff current roster](https://www.fcso.ar.gov/inmate-roster/filters/current/booking_time=desc/1)                   | Adapter tested; production approval pending |
+| Hot Spring   | [Hot Spring County Sheriff current roster](https://www.hotspringcountysoar.gov/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+| Baxter       | [Baxter County Sheriff current roster](https://www.baxtercountysheriff.com/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
+| St. Francis  | [St. Francis County Sheriff current roster](https://www.stfranciscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Mississippi  | [Mississippi County Sheriff inmate roster](https://www.mississippicountysheriffar.org/roster.php)                                     | Adapter tested; production approval pending |
+| Randolph     | [Randolph County Sheriff inmate roster](https://www.randolphcountysheriff.org/roster.php)                                             | Adapter tested; production approval pending |
+| Hempstead    | [Hempstead County Sheriff inmate roster](https://www.hempsteadcountysheriff.org/roster.php)                                           | Adapter tested; production approval pending |
+| Izard        | [Izard County Sheriff inmate roster](https://www.izardcountysheriff.org/roster.php)                                                   | Adapter tested; production approval pending |
+| Cross        | [Cross County Sheriff inmate roster](https://www.crosscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
+| Sharp        | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
+| Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
+| Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
+| Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
 
 ## Oklahoma
 
