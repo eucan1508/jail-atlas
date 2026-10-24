@@ -19,67 +19,69 @@ import {
 import { PublicRosterRecordSchema, RosterPageSchema, type RosterPage } from "./roster-contract";
 import { countyCoverageCatalog, type CountyCoverageBrief } from "./coverage-catalog";
 
+// Keyed by "state/county" because county names repeat across states (Dallas County, IA and AR).
 const liveAdapterKeys: Record<string, string> = {
-  "dallas-county": "dallas-newworld-inmate-inquiry",
-  "cedar-county": "cedar-county-iowa-current-roster",
-  "black-hawk-county": "black-hawk-county-iowa-current-roster",
-  "cerro-gordo-county": "cerro-gordo-county-iowa-current-roster",
-  "ramsey-county": "ramsey-county-mn-current-roster",
-  "stearns-county": "stearns-county-mn-current-roster",
-  "anoka-county": "anoka-county-mn-current-roster",
-  "mower-county": "mower-county-mn-current-roster",
-  "wright-county": "wright-county-mn-current-roster",
-  "carlton-county": "carlton-county-mn-current-roster",
-  "douglas-county": "douglas-county-mn-current-roster",
-  "st-louis-county": "st-louis-county-mn-current-roster",
-  "steele-county": "steele-county-mn-current-roster",
-  "crow-wing-county": "crow-wing-county-mn-current-roster",
-  "renville-county": "renville-county-mn-current-roster",
-  "otter-tail-county": "otter-tail-county-mn-current-roster",
-  "sherburne-county": "sherburne-county-mn-current-roster",
-  "kandiyohi-county": "kandiyohi-county-mn-current-roster",
-  "washington-county": "washington-county-mn-current-roster",
-  "dakota-county": "dakota-county-mn-current-roster",
-  "clay-county": "clay-county-mn-current-roster",
-  "winona-county": "winona-county-mn-current-roster",
-  "hennepin-county": "hennepin-county-mn-current-roster",
-  "nobles-county": "nobles-county-mn-current-roster",
-  "benton-county": "benton-county-mn-current-roster",
-  "freeborn-county": "freeborn-county-mn-current-roster",
-  "cottonwood-county": "cottonwood-county-mn-current-roster",
-  "redwood-county": "redwood-county-mn-current-roster",
-  "johnson-county": "johnson-county-iowa-current-roster",
-  "polk-county": "polk-county-iowa-current-roster",
-  "woodbury-county": "woodbury-county-iowa-current-roster",
-  "milam-county": "milam-county-tx-current-roster",
-  "hutchinson-county": "hutchinson-county-tx-current-roster",
-  "kendall-county": "kendall-county-tx-current-roster",
-  "kleberg-county": "kleberg-county-tx-current-roster",
-  "burleson-county": "burleson-county-tx-current-roster",
-  "tom-green-county": "tom-green-county-tx-current-roster",
-  "angelina-county": "angelina-county-tx-current-roster",
-  "robertson-county": "robertson-county-tx-current-roster",
-  "jefferson-county": "jefferson-county-ar-current-roster",
-  "logan-county": "logan-county-ar-current-roster",
-  "greene-county": "greene-county-ar-current-roster",
-  "cleburne-county": "cleburne-county-ar-current-roster",
-  "sharp-county": "sharp-county-ar-current-roster",
-  "stone-county": "stone-county-ar-current-roster",
-  "faulkner-county": "faulkner-county-ar-current-roster",
-  "hot-spring-county": "hot-spring-county-ar-current-roster",
-  "baxter-county": "baxter-county-ar-current-roster",
-  "st-francis-county": "st-francis-county-ar-current-roster",
-  "mississippi-county": "mississippi-county-ar-current-roster",
-  "randolph-county": "randolph-county-ar-current-roster",
-  "hempstead-county": "hempstead-county-ar-current-roster",
-  "izard-county": "izard-county-ar-current-roster",
-  "cross-county": "cross-county-ar-current-roster",
-  "lonoke-county": "lonoke-county-ar-current-roster",
-  "independence-county": "independence-county-ar-current-roster",
-  "wagoner-county": "wagoner-county-ok-current-roster",
-  "lincoln-county": "lincoln-county-ok-current-roster",
-  "pawnee-county": "pawnee-county-ok-current-roster",
-  "seminole-county": "seminole-county-ok-current-roster"
+  "iowa/dallas-county": "dallas-newworld-inmate-inquiry",
+  "iowa/cedar-county": "cedar-county-iowa-current-roster",
+  "iowa/black-hawk-county": "black-hawk-county-iowa-current-roster",
+  "iowa/cerro-gordo-county": "cerro-gordo-county-iowa-current-roster",
+  "minnesota/ramsey-county": "ramsey-county-mn-current-roster",
+  "minnesota/stearns-county": "stearns-county-mn-current-roster",
+  "minnesota/anoka-county": "anoka-county-mn-current-roster",
+  "minnesota/mower-county": "mower-county-mn-current-roster",
+  "minnesota/wright-county": "wright-county-mn-current-roster",
+  "minnesota/carlton-county": "carlton-county-mn-current-roster",
+  "minnesota/douglas-county": "douglas-county-mn-current-roster",
+  "minnesota/st-louis-county": "st-louis-county-mn-current-roster",
+  "minnesota/steele-county": "steele-county-mn-current-roster",
+  "minnesota/crow-wing-county": "crow-wing-county-mn-current-roster",
+  "minnesota/renville-county": "renville-county-mn-current-roster",
+  "minnesota/otter-tail-county": "otter-tail-county-mn-current-roster",
+  "minnesota/sherburne-county": "sherburne-county-mn-current-roster",
+  "minnesota/kandiyohi-county": "kandiyohi-county-mn-current-roster",
+  "minnesota/washington-county": "washington-county-mn-current-roster",
+  "minnesota/dakota-county": "dakota-county-mn-current-roster",
+  "minnesota/clay-county": "clay-county-mn-current-roster",
+  "minnesota/winona-county": "winona-county-mn-current-roster",
+  "minnesota/hennepin-county": "hennepin-county-mn-current-roster",
+  "minnesota/nobles-county": "nobles-county-mn-current-roster",
+  "minnesota/benton-county": "benton-county-mn-current-roster",
+  "minnesota/freeborn-county": "freeborn-county-mn-current-roster",
+  "minnesota/cottonwood-county": "cottonwood-county-mn-current-roster",
+  "minnesota/redwood-county": "redwood-county-mn-current-roster",
+  "iowa/johnson-county": "johnson-county-iowa-current-roster",
+  "iowa/polk-county": "polk-county-iowa-current-roster",
+  "iowa/woodbury-county": "woodbury-county-iowa-current-roster",
+  "texas/milam-county": "milam-county-tx-current-roster",
+  "texas/hutchinson-county": "hutchinson-county-tx-current-roster",
+  "texas/kendall-county": "kendall-county-tx-current-roster",
+  "texas/kleberg-county": "kleberg-county-tx-current-roster",
+  "texas/burleson-county": "burleson-county-tx-current-roster",
+  "texas/tom-green-county": "tom-green-county-tx-current-roster",
+  "texas/angelina-county": "angelina-county-tx-current-roster",
+  "texas/robertson-county": "robertson-county-tx-current-roster",
+  "arkansas/jefferson-county": "jefferson-county-ar-current-roster",
+  "arkansas/logan-county": "logan-county-ar-current-roster",
+  "arkansas/greene-county": "greene-county-ar-current-roster",
+  "arkansas/cleburne-county": "cleburne-county-ar-current-roster",
+  "arkansas/sharp-county": "sharp-county-ar-current-roster",
+  "arkansas/stone-county": "stone-county-ar-current-roster",
+  "arkansas/faulkner-county": "faulkner-county-ar-current-roster",
+  "arkansas/hot-spring-county": "hot-spring-county-ar-current-roster",
+  "arkansas/baxter-county": "baxter-county-ar-current-roster",
+  "arkansas/st-francis-county": "st-francis-county-ar-current-roster",
+  "arkansas/mississippi-county": "mississippi-county-ar-current-roster",
+  "arkansas/randolph-county": "randolph-county-ar-current-roster",
+  "arkansas/hempstead-county": "hempstead-county-ar-current-roster",
+  "arkansas/izard-county": "izard-county-ar-current-roster",
+  "arkansas/cross-county": "cross-county-ar-current-roster",
+  "arkansas/lonoke-county": "lonoke-county-ar-current-roster",
+  "arkansas/independence-county": "independence-county-ar-current-roster",
+  "arkansas/dallas-county": "dallas-county-ar-current-roster",
+  "oklahoma/wagoner-county": "wagoner-county-ok-current-roster",
+  "oklahoma/lincoln-county": "lincoln-county-ok-current-roster",
+  "oklahoma/pawnee-county": "pawnee-county-ok-current-roster",
+  "oklahoma/seminole-county": "seminole-county-ok-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
@@ -190,7 +192,9 @@ async function readSourceStatus(
   } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(
-    (county) => county.state === expectedState && liveAdapterKeys[county.slug] === row.adapter_key
+    (county) =>
+      county.state === expectedState &&
+      liveAdapterKeys[`${county.state}/${county.slug}`] === row.adapter_key
   );
   if (
     !entry ||
@@ -227,7 +231,7 @@ export async function getCountyRosterStatus(
   entry: CountyCoverageBrief
 ): Promise<CountyRosterStatus | null> {
   if (readEnvironment().DATA_MODE !== "official" || !process.env.DATABASE_URL) return null;
-  const adapterKey = liveAdapterKeys[entry.slug];
+  const adapterKey = liveAdapterKeys[`${entry.state}/${entry.slug}`];
   return adapterKey ? readSourceStatus(getDatabase(), { adapterKey }) : null;
 }
 

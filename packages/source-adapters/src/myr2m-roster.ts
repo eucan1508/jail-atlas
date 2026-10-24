@@ -72,11 +72,21 @@ export const INDEPENDENCE_COUNTY_AR_ROSTER = {
   parserVersion: "1.0.0"
 } as const satisfies Myr2mRosterConfig;
 
+export const DALLAS_COUNTY_AR_ROSTER = {
+  adapterKey: "dallas-county-ar-current-roster",
+  agencyHeading: "DALLAS COUNTY SHERIFF",
+  countyLabel: "Dallas County, Arkansas",
+  diagnosticPrefix: "DALLAS_COUNTY_AR",
+  sourceUrl: "https://www.myr2m.com/DallasCoRoster/",
+  parserVersion: "1.0.0"
+} as const satisfies Myr2mRosterConfig;
+
 const MYR2M_ROSTERS: readonly Myr2mRosterConfig[] = [
   SHARP_COUNTY_AR_ROSTER,
   STONE_COUNTY_AR_ROSTER,
   LONOKE_COUNTY_AR_ROSTER,
-  INDEPENDENCE_COUNTY_AR_ROSTER
+  INDEPENDENCE_COUNTY_AR_ROSTER,
+  DALLAS_COUNTY_AR_ROSTER
 ];
 
 export function myr2mRosterSite(adapterKey: string): Myr2mRosterConfig | undefined {

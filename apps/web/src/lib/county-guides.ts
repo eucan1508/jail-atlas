@@ -3357,6 +3357,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/dallas-county": {
+    facilityName: "Dallas County Jail",
+    address: "106 South Charlotte, Fordyce, AR 71742",
+    phone: "870-352-2002",
+    operatedBy: "Dallas County Sheriff's Office",
+    reviewedAt: "October 24, 2026",
+    overview:
+      "The Dallas County Jail in Fordyce opened in October 1999 and can hold 125 inmates. It holds men only; the county does not house women. The Sheriff's Office answers 870-352-2002, Monday through Friday from 8 a.m. to 4:30 p.m.",
+    contactSourceLabel: "Official Jail page",
+    contactSourceUrl: "https://www.dallascosoar.gov/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visits can be made from home through NCIC Inmate Communications (account.ncic.com) for $0.30 a minute, using the same account as phone calls and messages. The Sheriff's Office says in-person visiting hours vary, so call 870-352-2002 to ask before you go.",
+        sourceLabel: "Official Inmate Phone and Visitation page",
+        sourceUrl: "https://www.dallascosoar.gov/general-5"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money can be put on an inmate's books at the kiosk in the jail lobby, which may not always be available, or by mailing a money order or cashier's check to the inmate in care of the Dallas County Jail at 106 South Charlotte, Fordyce, AR 71742.",
+        sourceLabel: "Official frequently asked questions",
+        sourceUrl: "https://www.dallascosoar.gov/faq-s"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to the inmate's name, SO#, Dallas County Jail, PO Box 591, Longview, Texas 75606, where it is scanned for the inmate. Envelopes need the inmate's name and booking number and a return address; letters must fit 8.5 by 11 inches, run no more than 5 pages written on the front only, and hold at most one photo. Money orders and legal and medical mail go to the inmate's name, 106 South Charlotte, Fordyce, AR 71742. Inmate calls, messages, and photos go through a prepaid NCIC account (1-800-943-2189); inmates cannot receive incoming calls except voicemail.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://www.dallascosoar.gov/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "A person can be released on their own recognizance, through a private bonding company, or by posting a property bond or a cash bond, depending on the charge. Call the jail at 870-352-2002 to find out the bond required for a particular person. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official frequently asked questions",
+        sourceUrl: "https://www.dallascosoar.gov/faq-s"
+      }
+    ],
+    faq: [
+      {
+        question: "Where do I send mail to a Dallas County, Arkansas inmate?",
+        answer:
+          "Personal mail: the inmate's name, SO#, Dallas County Jail, PO Box 591, Longview, Texas 75606. Money orders and legal or medical mail: the inmate's name, 106 South Charlotte, Fordyce, AR 71742."
+      },
+      {
+        question: "How do I put money on a Dallas County inmate's account?",
+        answer:
+          "Use the kiosk in the jail lobby, or mail a money order or cashier's check to the inmate in care of the Dallas County Jail."
+      },
+      {
+        question: "Can I video visit someone at the Dallas County Jail?",
+        answer: "Yes, from home through NCIC Inmate Communications, at $0.30 a minute."
+      },
+      {
+        question: "Does the Dallas County Jail hold women?",
+        answer: "No. The Dallas County Jail holds men only."
+      }
+    ]
+  },
   "arkansas/hempstead-county": {
     facilityName: "Hempstead County Detention Center",
     address: "312 South Washington, Hope, AR 71801",

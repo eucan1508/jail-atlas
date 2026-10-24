@@ -297,6 +297,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "independence",
       adapterKey: "independence-county-ar-current-roster",
       sourceHost: "www.myr2m.com"
+    },
+    {
+      countySlug: "dallas",
+      adapterKey: "dallas-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
     }
   ],
   OK: [
