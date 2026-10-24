@@ -77,6 +77,7 @@ the same roster software but were left out because their sites do not publish al
 | Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
 | Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
 | Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
+| Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |
 
 ## Oklahoma
 

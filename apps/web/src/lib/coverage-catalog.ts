@@ -563,6 +563,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Dallas County",
+    slug: "dallas-county",
+    publishedAt: "2026-10-24",
+    seatCity: "Fordyce",
+    h1: "Dallas County Jail Roster & Inmate Search",
+    title: "Dallas County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Dallas County, Arkansas current-inmate information for the jail in Fordyce from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Dallas County Sheriff's Office links its Inmate Roster for the Dallas County Jail in Fordyce from its website. This page reads every current inmate on that roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/DallasCoRoster/",
+    officialSourceLabel: "Dallas County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",

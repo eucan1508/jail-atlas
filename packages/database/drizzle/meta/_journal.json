@@ -400,6 +400,13 @@
       "when": 1794545600000,
       "tag": "0056_texas_robertson_source",
       "breakpoints": true
+    },
+    {
+      "idx": 57,
+      "version": "7",
+      "when": 1794632000000,
+      "tag": "0057_arkansas_dallas_source",
+      "breakpoints": true
     }
   ]
 }
