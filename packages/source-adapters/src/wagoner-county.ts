@@ -14,6 +14,7 @@ import type {
   SourceHealth,
   ValidationResult
 } from "./contracts.js";
+import { assertFewWithoutCharges } from "./charge-gaps.js";
 
 export const WAGONER_COUNTY_ADAPTER_KEY = "wagoner-county-ok-current-roster" as const;
 export const WAGONER_COUNTY_CURRENT_SOURCE_URL =
@@ -118,6 +119,8 @@ function displayName(lastName: string, firstName: string): string {
 export function parseWagonerCharges(fragment: string | null): string[] {
   if (!fragment || !normalizeText(fragment)) return [];
   const $ = load(`<ul>${fragment}</ul>`);
+  // A new booking can carry an empty item ("<li></li>") until its charges are entered.
+  if (!normalizeText($.root().text())) return [];
   const items = $("li")
     .toArray()
     .map((item) => normalizeText($(item).text()))
@@ -216,6 +219,10 @@ async function crawlRoster(
     );
   }
 
+  assertFewWithoutCharges(
+    records.filter((record) => record.charges.length === 0).length,
+    records.length
+  );
   // The jail is never empty; an empty list means the search broke.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
   return WagonerRosterSchema.parse({ records, validEmptyMarker: false });

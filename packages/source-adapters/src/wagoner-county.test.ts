@@ -218,6 +218,10 @@ describe("Wagoner County source adapter", () => {
   it("treats a blank charge field as no charges and rejects unreadable markup", () => {
     expect(parseWagonerCharges(null)).toEqual([]);
     expect(parseWagonerCharges("  ")).toEqual([]);
-    expect(() => parseWagonerCharges("<li></li>")).toThrow("CHARGE_LIST_UNREADABLE");
+    // A new booking can list one empty item before its charges are entered.
+    expect(parseWagonerCharges("<li></li>")).toEqual([]);
+    expect(() => parseWagonerCharges("SYNTHETIC CHARGE WITHOUT LIST MARKUP")).toThrow(
+      "CHARGE_LIST_UNREADABLE"
+    );
   });
 });
