@@ -175,6 +175,23 @@ describe("Washington County, Minnesota source adapter", () => {
     expect(result.snapshot.bookings[0]?.bookingIdentifier?.sourceLabel).toBe("Booking#");
   });
 
+  it("splits a JID that prints joined to a long middle name", async () => {
+    // "Gebremicael J00024641" arrives as one item in the middle-name column.
+    const merged = row(565, "EXAMPLE", "Epsilon", "", "J00000005", "0000005").map((item) =>
+      item.text === "J00000005" ? { ...item, text: "Longmiddlename J00000005", x: 226 } : item
+    );
+    const report = [
+      page([row(583, "TESTER", "Alpha", "Test", "J00000001", "0000001"), merged], 1, 1, 2)
+    ];
+    const result = await runSourceAdapter(adapter(report), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.person.displayName)).toEqual([
+      "TESTER, Alpha Test",
+      "EXAMPLE, Epsilon Longmiddlename"
+    ]);
+  });
+
   it("drops JIDs, booking dates, release estimates, and day counts", async () => {
     const result = await runSourceAdapter(adapter([firstPage, lastPage]), context());
     expect(result.ok).toBe(true);

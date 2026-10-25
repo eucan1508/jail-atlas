@@ -32,6 +32,7 @@ const TIMEZONE_ALLOWANCE_MS = 6 * 60 * 60 * 1_000;
 const MAX_PAGE_STAMP_SPREAD_MS = 2 * 60 * 1_000;
 
 const JID = /^J\d{8}$/;
+const MERGED_JID = /^(.*\S) (J\d{8})$/;
 const BOOKING_NUMBER = /^\d{7}$/;
 const BOOKING_DATE = /^\d{2}\/\d{2}\/\d{2}$/;
 const AS_OF = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/;
@@ -244,7 +245,19 @@ export function parseWashingtonRosterPages(pages: readonly WashingtonPdfPage[]):
     const jidStart = jidHeader.x - COLUMN_TOLERANCE;
     const bookingStart = bookingHeader.x - COLUMN_TOLERANCE;
     const releaseStart = releaseHeader.x - COLUMN_TOLERANCE;
-    const body = page.filter((item) => item.y < bodyTop && item.y > bodyBottom);
+    const body = page
+      .filter((item) => item.y < bodyTop && item.y > bodyBottom)
+      // A long middle name can run into the JID column and print as one item
+      // ("Gebremicael J00024641"); split the JID back into its own column.
+      .flatMap((item) => {
+        const merged = item.x < jidStart ? item.text.match(MERGED_JID) : null;
+        return merged
+          ? [
+              { ...item, text: merged[1]! },
+              { ...item, text: merged[2]!, x: jidHeader.x }
+            ]
+          : [item];
+      });
 
     // Each row opens with the inmate's JID in its own column.
     const anchors = body

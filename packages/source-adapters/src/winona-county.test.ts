@@ -171,6 +171,21 @@ describe("Winona County source adapter", () => {
     ]);
   });
 
+  it("joins a charge that wraps onto a second line", async () => {
+    const report = pages([
+      {
+        ...inmates[1]!,
+        charges: ["999.44.1a - Synthetic Offense Delta - Arrest of", "Adult"]
+      }
+    ]);
+    const result = await runSourceAdapter(adapter(report), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]!.charges.map((charge) => charge.description)).toEqual([
+      "Synthetic Offense Delta - Arrest of Adult"
+    ]);
+  });
+
   it("drops ages, agencies, hold reasons, court dates, and mugshot dates", async () => {
     const result = await runSourceAdapter(adapter(pages()), context());
     expect(result.ok).toBe(true);

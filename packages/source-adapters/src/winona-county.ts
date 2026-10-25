@@ -235,8 +235,14 @@ export function parseWinonaRosterPages(pages: readonly WinonaPdfPage[]): WinonaR
     }
     if (current.inCharges && item.x >= CHARGE_MIN_X && item.x <= CHARGE_MAX_X) {
       const charge = item.text.match(CHARGE_LINE);
-      if (!charge) throw new Error("CHARGE_UNREADABLE");
-      current.charges.push({ statuteCode: charge[1]!, description: charge[2]! });
+      if (charge) {
+        current.charges.push({ statuteCode: charge[1]!, description: charge[2]! });
+        continue;
+      }
+      // A long charge wraps onto a line without a statute; it continues the charge above.
+      const previous = current.charges.at(-1);
+      if (!previous) throw new Error("CHARGE_UNREADABLE");
+      previous.description = `${previous.description} ${item.text}`;
     }
   }
 
