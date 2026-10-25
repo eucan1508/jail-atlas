@@ -119,15 +119,15 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 
-   Oklahoma runs Wagoner, Lincoln, Pawnee, and Seminole, which read the JSON endpoints behind each
-   sheriff's inmate search (`/dmxConnect/api/Booking/`). For all four, the list total must match its
-   rows and a second official ID list must name the same people. Wagoner also fetches each booking's
-   detail for its charges and checks it against the list entry; the Lincoln, Pawnee, and Seminole
-   lists already carry the charges and must show no release dates. On a mismatch the crawl restarts
-   (up to three times) and then fails closed:
+   Oklahoma runs Wagoner, Lincoln, Pawnee, Seminole, and Carter, which read the JSON endpoints
+   behind each sheriff's inmate search (`/dmxConnect/api/Booking/`). For all five, the list total
+   must match its rows and a second official ID list must name the same people. Wagoner also fetches
+   each booking's detail for its charges and checks it against the list entry; the Lincoln, Pawnee,
+   Seminole, and Carter lists already carry the charges and must show no release dates. On a
+   mismatch the crawl restarts (up to three times) and then fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 

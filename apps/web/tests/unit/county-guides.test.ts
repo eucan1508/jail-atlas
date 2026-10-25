@@ -64,7 +64,8 @@ const liveCountyKeys = [
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",
-  "oklahoma/seminole-county"
+  "oklahoma/seminole-county",
+  "oklahoma/carter-county"
 ] as const;
 
 describe("verified county guides", () => {
