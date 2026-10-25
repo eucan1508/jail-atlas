@@ -2,7 +2,12 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   BLACK_HAWK_COUNTY_CURRENT_SOURCE_URL
 } from "./iowa-current-roster.js";
-import { CLINTON_COUNTY_ADAPTER_KEY, CLINTON_COUNTY_CURRENT_SOURCE_URL } from "./clinton-county.js";
+import {
+  CLINTON_COUNTY_ADAPTER_KEY,
+  CLINTON_COUNTY_CURRENT_SOURCE_URL,
+  MARSHALL_COUNTY_ADAPTER_KEY,
+  MARSHALL_COUNTY_CURRENT_SOURCE_URL
+} from "./jail-portal.js";
 import {
   CEDAR_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_CURRENT_SOURCE_URL
@@ -109,6 +114,19 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     status: "adapter_ready",
     reason:
       "The Sheriff's Jail page links the county's jail portal, which lists everyone held today with each hold reason and bond."
+  },
+  {
+    state: "IA",
+    countySlug: "marshall",
+    countyName: "Marshall County",
+    officialInstitutionUrl: "https://www.marshallcountysheriff.com/jail/",
+    sourceUrl: MARSHALL_COUNTY_CURRENT_SOURCE_URL,
+    sourceType: "officially_linked_vendor",
+    relationshipKind: "official_link",
+    adapterKey: MARSHALL_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason:
+      "The Sheriff's Jail page links the county's jail portal as its Inmate List, which lists everyone held today with each hold reason and bond."
   },
   {
     state: "IA",

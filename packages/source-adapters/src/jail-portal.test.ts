@@ -4,14 +4,18 @@ import type { AdapterContext } from "./contracts.js";
 import { runSourceAdapter } from "./runner.js";
 import { sourceAdapterRegistry } from "./registry.js";
 import {
-  CLINTON_COUNTY_ADAPTER_KEY,
-  CLINTON_COUNTY_CURRENT_SOURCE_URL,
-  CLINTON_COUNTY_LIST_URL,
-  CLINTON_COUNTY_TOKEN_URL,
-  createClintonCountySourceAdapter,
-  parseClintonHoldReason,
-  type ClintonRosterIdFactory
-} from "./clinton-county.js";
+  CLINTON_COUNTY_JAIL_PORTAL,
+  MARSHALL_COUNTY_JAIL_PORTAL,
+  createJailPortalAdapter,
+  jailPortal,
+  jailPortalInitUrl,
+  jailPortalListUrl,
+  jailPortalSourceUrl,
+  jailPortalTokenUrl,
+  parseJailPortalHoldReason,
+  type JailPortalConfig,
+  type JailPortalIdFactory
+} from "./jail-portal.js";
 
 type SyntheticRecord = {
   name: string;
@@ -61,7 +65,10 @@ const roster: SyntheticRecord[] = [
   record({ name: "TESTER, JUVENILE", is_juvenile: true })
 ];
 
-function context(sourceUrl: string = CLINTON_COUNTY_CURRENT_SOURCE_URL): AdapterContext {
+function context(
+  config: JailPortalConfig = CLINTON_COUNTY_JAIL_PORTAL,
+  sourceUrl: string = jailPortalSourceUrl(config)
+): AdapterContext {
   return {
     runId: "00000000-0000-4000-8000-000000000a01",
     source: {
@@ -69,9 +76,9 @@ function context(sourceUrl: string = CLINTON_COUNTY_CURRENT_SOURCE_URL): Adapter
       officialInstitutionId: "00000000-0000-4000-8000-000000000a03",
       sourceUrl,
       sourceType: "officially_linked_vendor",
-      officialInstitutionUrl: "https://www.clintoncounty-ia.gov/sheriff/jail",
-      relationshipEvidenceUrl: "https://www.clintoncounty-ia.gov/sheriff/jail",
-      evidenceDescription: "Synthetic Clinton County adapter test evidence.",
+      officialInstitutionUrl: "https://sheriff.example.test/jail",
+      relationshipEvidenceUrl: "https://sheriff.example.test/jail",
+      evidenceDescription: "Synthetic jail portal adapter test evidence.",
       verifiedAt: "2000-01-01T12:00:00.000Z",
       lastCheckedAt: null,
       lastSuccessAt: null,
@@ -80,18 +87,18 @@ function context(sourceUrl: string = CLINTON_COUNTY_CURRENT_SOURCE_URL): Adapter
       sourceStatus: "verification_pending",
       custodyDataScope: ["current_custody"],
       retentionScope: { kind: "current_only", description: "Synthetic current-only scope." },
-      adapterKey: CLINTON_COUNTY_ADAPTER_KEY,
+      adapterKey: config.adapterKey,
       publicationApproved: false
     },
-    // 03:00 UTC is still the evening before in Clinton, Iowa.
+    // 03:00 UTC is still the evening before in Iowa.
     requestedAt: "2000-01-05T03:00:00.000Z",
-    traceId: "synthetic-clinton-adapter-test",
+    traceId: "synthetic-jail-portal-adapter-test",
     signal: new AbortController().signal,
     logger: { debug() {}, info() {}, warn() {}, error() {} }
   };
 }
 
-function idFactory(): ClintonRosterIdFactory {
+function idFactory(): JailPortalIdFactory {
   const ids = new Map<string, string>();
   let sequence = 0xa10;
   return (kind, sourceKey) => {
@@ -108,13 +115,24 @@ type Request = { url: string; init: RequestInit | undefined };
 
 function adapter(
   records: unknown[] = roster,
-  options: { total?: number; token?: unknown; requests?: Request[] } = {}
+  options: {
+    config?: JailPortalConfig;
+    total?: number;
+    setup?: unknown;
+    requests?: Request[];
+  } = {}
 ) {
-  return createClintonCountySourceAdapter({
+  const config = options.config ?? CLINTON_COUNTY_JAIL_PORTAL;
+  return createJailPortalAdapter(config, {
     fetch: async (input, init) => {
       options.requests?.push({ url: input, init });
-      if (input === CLINTON_COUNTY_TOKEN_URL) {
-        return new Response(JSON.stringify(options.token ?? { message: "CSRF token set" }));
+      if (input === jailPortalTokenUrl(config)) {
+        return new Response(JSON.stringify(options.setup ?? { message: "CSRF token set" }));
+      }
+      if (input === jailPortalInitUrl(config)) {
+        return new Response(
+          JSON.stringify(options.setup ?? { page_config: { dob_format: "age" } })
+        );
       }
       return new Response(
         JSON.stringify({ records, total_record_count: options.total ?? records.length })
@@ -126,24 +144,55 @@ function adapter(
   });
 }
 
-describe("Clinton County source adapter", () => {
+describe("jail portal source adapter", () => {
   it("is reviewable but not enabled in the default registry", () => {
-    expect(sourceAdapterRegistry.has(CLINTON_COUNTY_ADAPTER_KEY)).toBe(false);
+    for (const config of [CLINTON_COUNTY_JAIL_PORTAL, MARSHALL_COUNTY_JAIL_PORTAL]) {
+      expect(sourceAdapterRegistry.has(config.adapterKey)).toBe(false);
+      expect(jailPortal(config.adapterKey)).toBe(config);
+    }
+    expect(jailPortal("woodbury-county-iowa-current-roster")).toBeUndefined();
   });
 
-  it("asks for today's custody list after setting the session token", async () => {
+  it("asks a session portal for today's custody list after setting the session token", async () => {
     const requests: Request[] = [];
     const result = await runSourceAdapter(adapter(roster, { requests }), context());
     expect(result.ok).toBe(true);
     expect(requests.map((request) => request.url)).toEqual([
-      CLINTON_COUNTY_TOKEN_URL,
-      CLINTON_COUNTY_LIST_URL
+      jailPortalTokenUrl(CLINTON_COUNTY_JAIL_PORTAL),
+      jailPortalListUrl(CLINTON_COUNTY_JAIL_PORTAL)
     ]);
     expect(requests[1]?.init?.method).toBe("POST");
     expect(JSON.parse(String(requests[1]?.init?.body))).toEqual({
       paging: { start: 0, count: 900 },
       sorting: { sort_by_column_tag: "name", sort_descending: false },
       in_custody: "2000-01-04"
+    });
+  });
+
+  it("asks an older portal with its full filter set and the current time", async () => {
+    const requests: Request[] = [];
+    const result = await runSourceAdapter(
+      adapter(
+        roster.map((item) => ({ ...item, release_date: item.release_date ?? "" })),
+        { config: MARSHALL_COUNTY_JAIL_PORTAL, requests }
+      ),
+      context(MARSHALL_COUNTY_JAIL_PORTAL)
+    );
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.snapshot.recordCount).toBe(2);
+    expect(requests.map((request) => request.url)).toEqual([
+      jailPortalInitUrl(MARSHALL_COUNTY_JAIL_PORTAL),
+      jailPortalListUrl(MARSHALL_COUNTY_JAIL_PORTAL)
+    ]);
+    expect(JSON.parse(String(requests[1]?.init?.body))).toEqual({
+      name: "",
+      race: "all",
+      sex: "all",
+      cell_block: "all",
+      held_for_agency: "any",
+      in_custody: "2000-01-05T03:00:00.000Z",
+      paging: { start: 0, count: 900 },
+      sorting: { sort_by_column_tag: "name", sort_descending: false }
     });
   });
 
@@ -179,7 +228,7 @@ describe("Clinton County source adapter", () => {
           ["Bench warrant", "908.11", "Violation Of Probation - 1985"],
           ["Arrest warrant", "321J.2(2)(a)", "Synthetic Operating (SRMS)"],
           ["Sentenced", null, "Serving 4 days - Concurrent"],
-          ["Hold", null, "Held for SYNTHETIC COUNTY SHERIFF'S OFFICE"]
+          ["Hold", null, "Hold-Out of County for SYNTHETIC COUNTY SHERIFF'S OFFICE"]
         ],
         [
           [0, "no_bond", null, null],
@@ -213,7 +262,7 @@ describe("Clinton County source adapter", () => {
 
   it("reads each kind of hold reason and refuses one it does not know", () => {
     expect(
-      parseClintonHoldReason(
+      parseJailPortalHoldReason(
         "Warrant: Failure to Appear warrant W2600576 issued by Clinton, IA (321.561 - DRIVING WHILE BARRED); Arrest Date 10/24/2026; Bond - Cash/Surety, $2000.00; Set By Judge;"
       )
     ).toEqual({
@@ -223,21 +272,48 @@ describe("Clinton County source adapter", () => {
       bond: { type: "Cash/Surety", noBond: false, amountMinor: 200_000 }
     });
     expect(
-      parseClintonHoldReason("Charge: 453B.12 - Synthetic Stamp (Completed) - 4 Counts")
+      parseJailPortalHoldReason(
+        "Warrant: Arrest warrant AGCR000001 issued by SYNTHETIC, IA; Arrest Date 10/05/2026; Bond - Cash/Surety, $2000.00; Set By Judge;"
+      )
+    ).toMatchObject({ label: "Arrest warrant", statuteCode: null, description: "Arrest warrant" });
+    expect(
+      parseJailPortalHoldReason("Charge: 453B.12 - Synthetic Stamp (Completed) - 4 Counts")
     ).toEqual({
       label: "Charge",
       statuteCode: "453B.12",
       description: "Synthetic Stamp (Completed) - 4 Counts",
       bond: null
     });
+    expect(
+      parseJailPortalHoldReason(
+        "Charge: 708.2A(2)(b) - Synthetic Assault; 1st Off; Arrest Date 08/15/2026; Bond - Cash (in defendant's name only), $0.00; Set By Scheduled"
+      )
+    ).toEqual({
+      label: "Charge",
+      statuteCode: "708.2A(2)(b)",
+      description: "Synthetic Assault; 1st Off",
+      bond: { type: "Cash (in defendant's name only)", noBond: false, amountMinor: 0 }
+    });
+    expect(
+      parseJailPortalHoldReason(
+        "Mittimus: Serving 60 days - Concurrent; Arrest Date 07/27/2026; Bond - No Bond; Set By Scheduled;"
+      )
+    ).toMatchObject({ label: "Mittimus", description: "Serving 60 days - Concurrent" });
+    expect(
+      parseJailPortalHoldReason(
+        "Additional Hold for Synthetic County Court; Arrest Date 10/02/2025;"
+      )
+    ).toMatchObject({ label: "Hold", description: "Additional Hold for Synthetic County Court" });
+    expect(
+      parseJailPortalHoldReason("Federal for Federal; Arrest Date 11/07/2024; Bond - No Bond;")
+    ).toMatchObject({ label: "Hold", description: "Federal hold" });
     for (const entry of [
       "Detainer: Synthetic; Bond - No Bond;",
       "Charge: Synthetic without a statute;",
-      "Charge: 714.2(5) - Synthetic; Court Date 01/02/2000;",
       "Charge: 714.2(5) - Synthetic; Bond - No Bond, $500.00;",
       "Charge: 714.2(5) - Synthetic; Bond - Cash Only, $1,000.00;"
     ]) {
-      expect(() => parseClintonHoldReason(entry), entry).toThrow();
+      expect(() => parseJailPortalHoldReason(entry), entry).toThrow();
     }
   });
 
@@ -256,7 +332,7 @@ describe("Clinton County source adapter", () => {
         ),
         "HOLD_REASONS_MISSING"
       ],
-      [adapter(roster, { token: { message: "Something else" } }), "SESSION_TOKEN_MISSING"]
+      [adapter(roster, { setup: { message: "Something else" } }), "PORTAL_SETUP_MISSING"]
     ];
     for (const [source, code] of cases) {
       const result = await runSourceAdapter(source, context());
@@ -264,12 +340,21 @@ describe("Clinton County source adapter", () => {
       if (result.ok) continue;
       expect(result.failure.diagnosticCode).toBe(`CLINTON_COUNTY_${code}`);
     }
+
+    const marshall = await runSourceAdapter(
+      adapter(roster, { config: MARSHALL_COUNTY_JAIL_PORTAL, setup: { page_config: {} } }),
+      context(MARSHALL_COUNTY_JAIL_PORTAL)
+    );
+    expect(marshall.ok).toBe(false);
+    if (!marshall.ok) {
+      expect(marshall.failure.diagnosticCode).toBe("MARSHALL_COUNTY_PORTAL_SETUP_MISSING");
+    }
   });
 
   it("refuses a source URL other than the approved portal page", async () => {
     const result = await runSourceAdapter(
       adapter(),
-      context("https://www.clintoncounty-ia.gov/sheriff/jail")
+      context(CLINTON_COUNTY_JAIL_PORTAL, jailPortalSourceUrl(MARSHALL_COUNTY_JAIL_PORTAL))
     );
     expect(result.ok).toBe(false);
     if (!result.ok) {

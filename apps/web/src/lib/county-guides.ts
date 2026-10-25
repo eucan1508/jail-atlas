@@ -2889,6 +2889,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/marshall-county": {
+    facilityName: "Marshall County Jail",
+    address: "2369 Jessup Avenue, Marshalltown, IA 50158",
+    phone: "641-754-6380",
+    operatedBy: "Marshall County Sheriff's Office",
+    reviewedAt: "October 25, 2026",
+    overview:
+      "The Marshall County Jail is a direct-supervision jail with 200 beds, opened in July 2000 on the former Marshall County Care Facility site in Marshalltown. Besides people arrested in the county, it holds people for other agencies, such as neighboring sheriff's offices and federal authorities. The Sheriff's business office is open 8 a.m. to 4:30 p.m., Monday through Friday.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.marshallcountysheriff.com/jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video only, either from the jail lobby or remotely through the CIDNET system, which needs data bought by someone outside the jail. Every visitor has to be approved first by sending a copy of a state photo ID through the CIDNET public portal; approval can take 3 to 5 business days. Book a visit at least 24 hours ahead through the portal or by calling 641-754-6380. Visits run 1 to 9 p.m. daily, except during meals and other jail services, last up to 30 minutes, and are recorded. Children under 16 must be the inmate's child, stepchild, sibling, or grandchild, with proof, and come with a parent or legal guardian.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.marshallcountysheriff.com/jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary orders go out once a week. Money for an inmate's commissary account can be put in the kiosk in the front lobby, which takes cash, Mastercard, and Visa, or deposited online at jailatm.com. Visitors may not bring packages or parcels into the jail building.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.marshallcountysheriff.com/jail/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Staff will not pass on messages to inmates; the Sheriff's Office suggests writing the inmate a letter instead. Call the jail at 641-754-6380 to confirm the mailing address and any mail rules before you send anything. To get a notice when someone is moved or released, register with the Iowa VINELink network.",
+        sourceLabel: "Official FAQ",
+        sourceUrl: "https://www.marshallcountysheriff.com/faq/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail portal lists each charge, warrant, or hold with its bond: cash only, cash or surety, cash in the defendant's name only, or no bond. Call the jail at 641-754-6380 to confirm an amount and how to post it. A listing is a record of a hold, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.marshallcountysheriff.com/jail/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Marshall County Jail?",
+        answer:
+          "Get approved first by sending a copy of your state photo ID through the CIDNET public portal, which can take 3 to 5 business days. Then book a video visit at least 24 hours ahead online or at 641-754-6380. Visits run 1 to 9 p.m. daily and last up to 30 minutes."
+      },
+      {
+        question: "How do I put money on a Marshall County inmate's account?",
+        answer:
+          "Use the kiosk in the jail's front lobby, which takes cash, Mastercard, and Visa, or deposit online at jailatm.com. Commissary orders go out once a week."
+      },
+      {
+        question: "Can I leave a message for a Marshall County inmate?",
+        answer:
+          "No. Staff do not pass on messages, so write the inmate a letter. Call 641-754-6380 to confirm the address first."
+      },
+      {
+        question: "How do I find out a bond amount in Marshall County?",
+        answer:
+          "The roster shows the bond listed for each charge or hold. Call the jail at 641-754-6380 to confirm it and ask how to post it."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

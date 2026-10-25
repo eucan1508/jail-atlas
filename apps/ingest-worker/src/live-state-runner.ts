@@ -47,6 +47,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "woodbury",
       adapterKey: "woodbury-county-iowa-current-roster",
       sourceHost: "injail.wcicc.com"
+    },
+    {
+      countySlug: "marshall",
+      adapterKey: "marshall-county-iowa-current-roster",
+      sourceHost: "marshall-so-ia.zuercherportal.com"
     }
   ],
   MN: [
