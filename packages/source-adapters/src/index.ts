@@ -38,7 +38,7 @@ export * from "./lincoln-county-ok.js";
 export * from "./pawnee-county.js";
 export * from "./seminole-county.js";
 export * from "./woodbury-county.js";
-export * from "./clinton-county.js";
+export * from "./jail-portal.js";
 export * from "./angelina-county.js";
 export * from "./clay-county.js";
 export * from "./winona-county.js";

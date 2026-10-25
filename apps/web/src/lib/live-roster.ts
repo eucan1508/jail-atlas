@@ -53,6 +53,7 @@ const liveAdapterKeys: Record<string, string> = {
   "iowa/polk-county": "polk-county-iowa-current-roster",
   "iowa/woodbury-county": "woodbury-county-iowa-current-roster",
   "iowa/clinton-county": "clinton-county-iowa-current-roster",
+  "iowa/marshall-county": "marshall-county-iowa-current-roster",
   "texas/milam-county": "milam-county-tx-current-roster",
   "texas/hutchinson-county": "hutchinson-county-tx-current-roster",
   "texas/kendall-county": "kendall-county-tx-current-roster",

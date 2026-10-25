@@ -54,9 +54,10 @@ import {
   POLK_COUNTY_ADAPTER_KEY,
   createWoodburyCountySourceAdapter,
   WOODBURY_COUNTY_ADAPTER_KEY,
-  createClintonCountySourceAdapter,
-  CLINTON_COUNTY_ADAPTER_KEY,
-  CLINTON_COUNTY_PORTAL_ORIGIN,
+  createJailPortalAdapter,
+  jailPortal,
+  jailPortalPaths,
+  jailPortalSourceUrl,
   DAKOTA_COUNTY_ADAPTER_KEY,
   WASHINGTON_COUNTY_MN_ADAPTER_KEY,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
@@ -159,6 +160,7 @@ export function createLiveSourceAdapter(
   const rosterSite = arkansasRosterSite(source.adapterKey) ?? texasRosterSite(source.adapterKey);
   const myr2mSite = myr2mRosterSite(source.adapterKey);
   const rosterReport = jailRosterReport(source.adapterKey);
+  const portal = jailPortal(source.adapterKey);
   // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
@@ -188,10 +190,10 @@ export function createLiveSourceAdapter(
                         source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
-                      : source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
-                        ? // The portal hands out its session token, then takes the custody list
-                          // query as a JSON post.
-                          ["/api/portal/config/xsrf_token", "/api/portal/inmates/load"]
+                      : portal
+                        ? // The portal is opened (its session token or setup), then takes the
+                          // custody list query as a JSON post.
+                          jailPortalPaths(portal)
                         : rosterSite?.layout === "inmate-roster-path"
                           ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
                           : [sourceUrl.pathname];
@@ -209,14 +211,15 @@ export function createLiveSourceAdapter(
       : {}),
     // The Hennepin County roster API takes its in-custody search as a small JSON post.
     ...(source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY ? { allowJsonPost: true } : {}),
-    // The Clinton County jail portal guards its custody list with a session-bound CSRF token.
-    ...(source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
+    // Jail portals take the custody list query as a JSON post; the newer ones guard it with a
+    // session-bound CSRF token.
+    ...(portal ? { allowJsonPost: true } : {}),
+    ...(portal?.sessionToken
       ? {
-          allowJsonPost: true,
           sessionCsrf: {
             cookieName: "XSRF-TOKEN",
             headerName: "X-CSRF-TOKEN",
-            referer: `${CLINTON_COUNTY_PORTAL_ORIGIN}/inmates`
+            referer: jailPortalSourceUrl(portal)
           }
         }
       : {}),
@@ -230,12 +233,12 @@ export function createLiveSourceAdapter(
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
     // search runs about 1.4 KB per person, the Cottonwood and Redwood County jail roster
-    // reports about 10-15 KB, and the Clinton County portal list carries a ~5 KB photo per person.
+    // reports about 10-15 KB, and a jail portal list carries a ~4 KB photo per person.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
     rosterReport !== undefined ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
     source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
+    portal !== undefined
       ? { maxResponseBytes: 3_000_000 }
       : {})
   });
@@ -315,8 +318,8 @@ export function createLiveSourceAdapter(
       createId: createAdapterId
     });
   }
-  if (source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY) {
-    return createClintonCountySourceAdapter({
+  if (portal) {
+    return createJailPortalAdapter(portal, {
       fetch,
       facilityId,
       createId: createAdapterId

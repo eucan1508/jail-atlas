@@ -178,6 +178,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Marshall County",
+    slug: "marshall-county",
+    publishedAt: "2026-10-25",
+    seatCity: "Marshalltown",
+    h1: "Marshall County Jail Roster & Inmate Search",
+    title: "Marshall County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Marshall County, Iowa current-inmate information for the jail in Marshalltown from the official jail portal, with charges, warrants, holds, bond amounts, and capture time.",
+    article:
+      "The Marshall County Sheriff's Office links a jail portal as the Inmate List for the Marshall County Jail in Marshalltown. This page shows each person still in custody with every charge, warrant, or hold and its bond as the portal lists them, and leaves out ages, photos, and arrest dates.",
+    officialSourceUrl: "https://marshall-so-ia.zuercherportal.com/#/inmates",
+    officialSourceLabel: "Marshall County Jail portal",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",

@@ -19,30 +19,96 @@ import type {
   ValidationResult
 } from "./contracts.js";
 
-export const CLINTON_COUNTY_ADAPTER_KEY = "clinton-county-iowa-current-roster" as const;
-export const CLINTON_COUNTY_PORTAL_ORIGIN =
-  "https://portal.ia-clinton-so.centralsquarecloud.com" as const;
-export const CLINTON_COUNTY_CURRENT_SOURCE_URL = `${CLINTON_COUNTY_PORTAL_ORIGIN}/inmates` as const;
-export const CLINTON_COUNTY_TOKEN_URL =
-  `${CLINTON_COUNTY_PORTAL_ORIGIN}/api/portal/config/xsrf_token` as const;
-export const CLINTON_COUNTY_LIST_URL =
-  `${CLINTON_COUNTY_PORTAL_ORIGIN}/api/portal/inmates/load` as const;
-export const CLINTON_COUNTY_PARSER_VERSION = "1.0.0" as const;
+/**
+ * A sheriff's jail portal of the kind several Iowa counties run (Zuercher, now CentralSquare).
+ * The Inmates page posts a JSON query for everyone in custody on a date and gets back each
+ * person with their hold reasons: charges, warrants, sentences, and holds for other agencies.
+ */
+export type JailPortalConfig = Readonly<{
+  adapterKey: string;
+  /** "Clinton County"; used in the failure message. */
+  countyName: string;
+  diagnosticPrefix: string;
+  origin: string;
+  /**
+   * Newer CentralSquare-hosted portals guard the list with a session-bound CSRF token, handed out
+   * by a token endpoint before the list is asked for.
+   */
+  sessionToken: boolean;
+  /**
+   * Newer portals take the "in custody on" filter as a local date; older Zuercher-hosted ones
+   * take the browser's full filter set with a timestamp.
+   */
+  inCustodyFilter: "local_date" | "timestamp_with_filters";
+}>;
+
+export const CLINTON_COUNTY_JAIL_PORTAL: JailPortalConfig = {
+  adapterKey: "clinton-county-iowa-current-roster",
+  countyName: "Clinton County",
+  diagnosticPrefix: "CLINTON_COUNTY",
+  origin: "https://portal.ia-clinton-so.centralsquarecloud.com",
+  sessionToken: true,
+  inCustodyFilter: "local_date"
+};
+
+export const MARSHALL_COUNTY_JAIL_PORTAL: JailPortalConfig = {
+  adapterKey: "marshall-county-iowa-current-roster",
+  countyName: "Marshall County",
+  diagnosticPrefix: "MARSHALL_COUNTY",
+  origin: "https://marshall-so-ia.zuercherportal.com",
+  sessionToken: false,
+  inCustodyFilter: "timestamp_with_filters"
+};
+
+const JAIL_PORTALS = [CLINTON_COUNTY_JAIL_PORTAL, MARSHALL_COUNTY_JAIL_PORTAL] as const;
+
+/** The portal configuration for an adapter key, or undefined when the key is not a jail portal. */
+export function jailPortal(adapterKey: string | null | undefined): JailPortalConfig | undefined {
+  return JAIL_PORTALS.find((portal) => portal.adapterKey === adapterKey);
+}
+
+export const CLINTON_COUNTY_ADAPTER_KEY = CLINTON_COUNTY_JAIL_PORTAL.adapterKey;
+export const MARSHALL_COUNTY_ADAPTER_KEY = MARSHALL_COUNTY_JAIL_PORTAL.adapterKey;
+export const CLINTON_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(CLINTON_COUNTY_JAIL_PORTAL);
+export const MARSHALL_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(MARSHALL_COUNTY_JAIL_PORTAL);
+export const JAIL_PORTAL_PARSER_VERSION = "1.0.0" as const;
+
+/** The Inmates page a sheriff's site links; the source row records this URL. */
+export function jailPortalSourceUrl(config: JailPortalConfig): string {
+  return `${config.origin}/inmates`;
+}
+export function jailPortalTokenUrl(config: JailPortalConfig): string {
+  return `${config.origin}/api/portal/config/xsrf_token`;
+}
+export function jailPortalInitUrl(config: JailPortalConfig): string {
+  return `${config.origin}/api/portal/inmates/init`;
+}
+export function jailPortalListUrl(config: JailPortalConfig): string {
+  return `${config.origin}/api/portal/inmates/load`;
+}
+/** The API paths the transport must allow for a portal. */
+export function jailPortalPaths(config: JailPortalConfig): string[] {
+  return config.sessionToken
+    ? ["/api/portal/config/xsrf_token", "/api/portal/inmates/load"]
+    : ["/api/portal/inmates/init", "/api/portal/inmates/load"];
+}
 
 const MAX_RECORDS = 900;
 const MAX_HOLD_REASONS = 40;
-// The jail sits in Clinton, Iowa; the portal's "in custody on" filter takes the local date.
+// Both jails sit in Iowa; the "in custody on" filter takes the local date.
 const JAIL_TIME_ZONE = "America/Chicago";
 const SET_CSRF_MESSAGE = "CSRF token set";
 const STATUTE = String.raw`\d{1,3}[A-Z]?\.\d+[A-Z]?(?:\([0-9A-Za-z]+\))*`;
 const CHARGE_TEXT = new RegExp(String.raw`^Charge: (${STATUTE}) - (.+)$`);
 // "Bench warrant W2600586 issued by Clinton, IA (908.11 - Violation Of Probation - 1985)"; the
-// warrant number and issuing court are sometimes blank.
+// warrant number, the issuing court, and the charge in parentheses are each sometimes left out.
 const WARRANT_TEXT = new RegExp(
-  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: [A-Za-z0-9-]+)?(?: issued by [^()]+)? \((${STATUTE}) - (.+)\)$`
+  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: [A-Za-z0-9-]+)?(?: issued by [^()]+)?(?: \((${STATUTE}) - (.+)\))?$`
 );
-const SENTENCE_TEXT = /^Sentenced: (Serving .+)$/;
-const HOLD_TEXT = /^Hold-Out of County for (.+)$/;
+const SENTENCE_TEXT = /^(Sentenced|Mittimus): (Serving .+)$/;
+// "Hold-Out of County for Scott County Sheriff's Office", "Additional Hold for State of Iowa",
+// "Hold For Court for Marshall County Court", "Federal for Federal".
+const HOLD_TEXT = /^([A-Z][A-Za-z -]{0,40}) for (.+)$/;
 const ARREST_DATE = /^Arrest Date \d{2}\/\d{2}\/\d{4}$/;
 const SET_BY = /^Set By [A-Za-z ]+$/;
 // "Bond - Cash Only, $5000.00", "Bond - No Bond", "Bond - Cash / Multiple Cases", "Bond - $0.00".
@@ -61,40 +127,40 @@ const PortalListSchema = z.object({
   total_record_count: z.number().int().nonnegative()
 });
 
-const ClintonBondSchema = z.object({
+const JailPortalBondSchema = z.object({
   type: z.string().min(1).max(100).nullable(),
   noBond: z.boolean(),
   amountMinor: z.number().int().nonnegative().max(100_000_000_000).nullable()
 });
-const ClintonHoldReasonSchema = z.object({
+const JailPortalHoldReasonSchema = z.object({
   label: z.string().min(1).max(150),
   statuteCode: z.string().min(1).max(100).nullable(),
   description: z.string().min(1).max(1_000),
-  bond: ClintonBondSchema.nullable()
+  bond: JailPortalBondSchema.nullable()
 });
-const ClintonRecordSchema = z.object({
+const JailPortalRecordSchema = z.object({
   recordKey: z.string().min(1).max(400),
   displayName: z.string().trim().min(2).max(250),
-  holdReasons: z.array(ClintonHoldReasonSchema).max(MAX_HOLD_REASONS)
+  holdReasons: z.array(JailPortalHoldReasonSchema).max(MAX_HOLD_REASONS)
 });
-const ClintonRosterSchema = z.object({
-  records: z.array(ClintonRecordSchema).max(MAX_RECORDS),
+const JailPortalRosterSchema = z.object({
+  records: z.array(JailPortalRecordSchema).max(MAX_RECORDS),
   validEmptyMarker: z.boolean()
 });
 
-export type ClintonRoster = z.infer<typeof ClintonRosterSchema>;
-type ClintonHoldReason = z.infer<typeof ClintonHoldReasonSchema>;
-type ClintonBond = z.infer<typeof ClintonBondSchema>;
-export type ClintonRosterFetch = (input: string, init?: RequestInit) => Promise<Response>;
-export type ClintonRosterIdFactory = (
+export type JailPortalRoster = z.infer<typeof JailPortalRosterSchema>;
+type JailPortalHoldReason = z.infer<typeof JailPortalHoldReasonSchema>;
+type JailPortalBond = z.infer<typeof JailPortalBondSchema>;
+export type JailPortalFetch = (input: string, init?: RequestInit) => Promise<Response>;
+export type JailPortalIdFactory = (
   kind: "snapshot" | "person" | "booking" | "charge" | "bond",
   sourceKey: string
 ) => string;
 
-export interface ClintonRosterAdapterOptions {
-  readonly fetch: ClintonRosterFetch;
+export interface JailPortalAdapterOptions {
+  readonly fetch: JailPortalFetch;
   readonly facilityId: string;
-  readonly createId: ClintonRosterIdFactory;
+  readonly createId: JailPortalIdFactory;
   readonly nowMs?: () => number;
 }
 
@@ -109,6 +175,7 @@ function normalizeText(value: string): string {
 }
 
 function classify(
+  config: JailPortalConfig,
   context: AdapterContext,
   stage: AdapterStage,
   error: unknown
@@ -118,14 +185,14 @@ function classify(
   return {
     stage,
     classification: stage === "fetch" || stage === "health_check" ? "network" : "parser",
-    publicMessage: "The approved Clinton County, Iowa jail portal could not be processed safely.",
+    publicMessage: `The approved ${config.countyName}, Iowa jail portal could not be processed safely.`,
     retryable: true,
     occurredAt: context.requestedAt,
-    diagnosticCode: `CLINTON_COUNTY_${code}`.slice(0, 100)
+    diagnosticCode: `${config.diagnosticPrefix}_${code}`.slice(0, 100)
   };
 }
 
-function parseBond(text: string): ClintonBond {
+function parseBond(text: string): JailPortalBond {
   const match = text.match(BOND_TEXT);
   if (!match || (match[1] === undefined && match[2] === undefined)) {
     throw new Error("BOND_UNREADABLE");
@@ -142,23 +209,28 @@ function parseBond(text: string): ClintonBond {
 
 /**
  * One hold reason reads "<what>; Arrest Date mm/dd/yyyy; Bond - <type>, $<amount>; Set By <who>;".
- * The arrest date is left out; anything else the portal adds fails closed.
+ * The trailing parts are read from the end, so a semicolon inside a charge name stays with the
+ * charge. The arrest date is left out; anything else the portal adds fails closed.
  */
-export function parseClintonHoldReason(entry: string): ClintonHoldReason {
+export function parseJailPortalHoldReason(entry: string): JailPortalHoldReason {
   // Entities are decoded first so an apostrophe's "&#39;" is not read as a separator.
-  const [head = "", ...parts] = normalizeText(entry)
+  const parts = normalizeText(entry)
     .split(";")
-    .map((part) => part.trim())
-    .filter((part) => part.length > 0);
-  let bond: ClintonBond | null = null;
-  for (const part of parts) {
-    if (ARREST_DATE.test(part) || SET_BY.test(part)) continue;
-    if (part.startsWith("Bond - ") && bond === null) {
+    .map((part) => part.trim());
+  while (parts.length > 1 && parts.at(-1) === "") parts.pop();
+  let bond: JailPortalBond | null = null;
+  while (parts.length > 1) {
+    const part = parts.at(-1)!;
+    if (ARREST_DATE.test(part) || SET_BY.test(part)) {
+      parts.pop();
+    } else if (part.startsWith("Bond - ") && bond === null) {
       bond = parseBond(part);
-      continue;
+      parts.pop();
+    } else {
+      break;
     }
-    throw new Error("HOLD_REASON_UNREADABLE");
   }
+  const head = parts.join("; ");
 
   const charge = head.match(CHARGE_TEXT);
   if (charge) {
@@ -167,15 +239,21 @@ export function parseClintonHoldReason(entry: string): ClintonHoldReason {
   const warrant = head.match(WARRANT_TEXT);
   if (warrant) {
     const label = `${warrant[1]![0]!.toUpperCase()}${warrant[1]!.slice(1)}`;
-    return { label, statuteCode: warrant[2]!, description: warrant[3]!, bond };
+    return {
+      label,
+      statuteCode: warrant[2] ?? null,
+      description: warrant[3] ?? label,
+      bond
+    };
   }
   const sentence = head.match(SENTENCE_TEXT);
   if (sentence) {
-    return { label: "Sentenced", statuteCode: null, description: sentence[1]!, bond };
+    return { label: sentence[1]!, statuteCode: null, description: sentence[2]!, bond };
   }
   const hold = head.match(HOLD_TEXT);
-  if (hold) {
-    return { label: "Hold", statuteCode: null, description: `Held for ${hold[1]!}`, bond };
+  if (hold && !head.includes(":")) {
+    const description = hold[1] === "Federal" && hold[2] === "Federal" ? "Federal hold" : head;
+    return { label: "Hold", statuteCode: null, description, bond };
   }
   throw new Error("HOLD_REASON_UNREADABLE");
 }
@@ -200,44 +278,51 @@ async function readJson(response: Response): Promise<unknown> {
   }
 }
 
-async function requestToken(
-  options: ClintonRosterAdapterOptions,
+/** Opens the portal: takes the session token where the portal uses one, else reads its setup. */
+async function openPortal(
+  config: JailPortalConfig,
+  options: JailPortalAdapterOptions,
   context: AdapterContext
 ): Promise<void> {
   const answer = await readJson(
-    await options.fetch(CLINTON_COUNTY_TOKEN_URL, {
-      method: "GET",
-      redirect: "error",
-      signal: context.signal,
-      headers: { accept: "application/json" }
-    })
+    await options.fetch(
+      config.sessionToken ? jailPortalTokenUrl(config) : jailPortalInitUrl(config),
+      {
+        method: "GET",
+        redirect: "error",
+        signal: context.signal,
+        headers: { accept: "application/json" }
+      }
+    )
   );
-  const parsed = z.object({ message: z.literal(SET_CSRF_MESSAGE) }).safeParse(answer);
-  if (!parsed.success) throw new Error("SESSION_TOKEN_MISSING");
+  const parsed = config.sessionToken
+    ? z.object({ message: z.literal(SET_CSRF_MESSAGE) }).safeParse(answer)
+    : z.object({ page_config: z.object({ dob_format: z.string() }) }).safeParse(answer);
+  if (!parsed.success) throw new Error("PORTAL_SETUP_MISSING");
 }
 
-export function parseClintonList(answer: unknown): ClintonRoster {
+export function parseJailPortalList(answer: unknown): JailPortalRoster {
   const list = PortalListSchema.safeParse(answer);
   if (!list.success) throw new Error("LIST_SHAPE_CHANGED");
   if (list.data.records.length !== list.data.total_record_count) {
     throw new Error("ROSTER_COUNT_MISMATCH");
   }
 
-  const records: ClintonRoster["records"] = [];
+  const records: JailPortalRoster["records"] = [];
   for (const raw of list.data.records) {
     const parsed = PortalRecordSchema.safeParse(raw);
     if (!parsed.success) throw new Error("RECORD_SHAPE_CHANGED");
     const record = parsed.data;
     // The list covers everyone held at any point today; anyone already released is left out,
     // and the portal withholds juveniles.
-    if (record.release_date !== null || record.is_juvenile) continue;
+    if (record.release_date || record.is_juvenile) continue;
     const displayName = normalizeText(record.name);
     if (!NAME_TEXT.test(displayName)) throw new Error("NAME_UNREADABLE");
     const holdReasons = record.hold_reasons
       .split(/<br\s*\/?>/i)
       .map((entry) => entry.trim())
       .filter((entry) => entry.length > 0)
-      .map((entry) => parseClintonHoldReason(entry));
+      .map((entry) => parseJailPortalHoldReason(entry));
     records.push({
       recordKey: `${displayName}|${record.arrest_date ?? ""}`,
       displayName,
@@ -248,44 +333,57 @@ export function parseClintonList(answer: unknown): ClintonRoster {
   if (new Set(records.map((record) => record.recordKey)).size !== records.length) {
     throw new Error("DUPLICATE_ROSTER_ENTRY");
   }
-  // A jail of this size is never empty; an empty answer is the portal failing.
+  // A county jail is never empty; an empty answer is the portal failing.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
   if (records.filter((record) => record.holdReasons.length === 0).length > 2) {
     throw new Error("HOLD_REASONS_MISSING");
   }
-  return ClintonRosterSchema.parse({ records, validEmptyMarker: false });
+  return JailPortalRosterSchema.parse({ records, validEmptyMarker: false });
+}
+
+function listQuery(config: JailPortalConfig, requestedAt: string): Record<string, unknown> {
+  const paging = { start: 0, count: MAX_RECORDS };
+  const sorting = { sort_by_column_tag: "name", sort_descending: false };
+  return config.inCustodyFilter === "local_date"
+    ? { paging, sorting, in_custody: localDate(requestedAt) }
+    : {
+        name: "",
+        race: "all",
+        sex: "all",
+        cell_block: "all",
+        held_for_agency: "any",
+        in_custody: new Date(requestedAt).toISOString(),
+        paging,
+        sorting
+      };
 }
 
 async function requestRoster(
-  options: ClintonRosterAdapterOptions,
+  config: JailPortalConfig,
+  options: JailPortalAdapterOptions,
   context: AdapterContext
-): Promise<ClintonRoster> {
-  if (context.source.sourceUrl !== CLINTON_COUNTY_CURRENT_SOURCE_URL) {
+): Promise<JailPortalRoster> {
+  if (context.source.sourceUrl !== jailPortalSourceUrl(config)) {
     throw new Error("SOURCE_URL_MISMATCH");
   }
-  await requestToken(options, context);
-  const query = {
-    paging: { start: 0, count: MAX_RECORDS },
-    sorting: { sort_by_column_tag: "name", sort_descending: false },
-    in_custody: localDate(context.requestedAt)
-  };
+  await openPortal(config, options, context);
   const answer = await readJson(
-    await options.fetch(CLINTON_COUNTY_LIST_URL, {
+    await options.fetch(jailPortalListUrl(config), {
       method: "POST",
       redirect: "error",
       signal: context.signal,
       headers: { accept: "application/json" },
-      body: JSON.stringify(query)
+      body: JSON.stringify(listQuery(config, context.requestedAt))
     })
   );
-  return parseClintonList(answer);
+  return parseJailPortalList(answer);
 }
 
 function bondEntry(
-  options: ClintonRosterAdapterOptions,
+  options: JailPortalAdapterOptions,
   bookingId: string,
   sequence: number,
-  bond: ClintonBond
+  bond: JailPortalBond
 ): BondEntry {
   const id = options.createId(
     "bond",
@@ -314,35 +412,38 @@ function bondEntry(
   };
 }
 
-export function createClintonCountySourceAdapter(
-  options: ClintonRosterAdapterOptions
-): SourceAdapter<ClintonRoster, ClintonRoster, ClintonRoster> {
+export function createJailPortalAdapter(
+  config: JailPortalConfig,
+  options: JailPortalAdapterOptions
+): SourceAdapter<JailPortalRoster, JailPortalRoster, JailPortalRoster> {
   const nowMs = options.nowMs ?? (() => Date.now());
+  const fail = (context: AdapterContext, stage: AdapterStage, error: unknown) =>
+    classify(config, context, stage, error);
   return {
-    key: CLINTON_COUNTY_ADAPTER_KEY,
+    key: config.adapterKey,
     adapterVersion: "1.0.0",
-    parserVersion: CLINTON_COUNTY_PARSER_VERSION,
-    async fetch(context): Promise<FetchResult<ClintonRoster>> {
+    parserVersion: JAIL_PORTAL_PARSER_VERSION,
+    async fetch(context): Promise<FetchResult<JailPortalRoster>> {
       try {
-        return { ok: true, value: await requestRoster(options, context) };
+        return { ok: true, value: await requestRoster(config, options, context) };
       } catch (error) {
-        return { ok: false, failure: classify(context, "fetch", error) };
+        return { ok: false, failure: fail(context, "fetch", error) };
       }
     },
-    validate(payload, context): Promise<ValidationResult<ClintonRoster>> {
-      const result = ClintonRosterSchema.safeParse(payload);
+    validate(payload, context): Promise<ValidationResult<JailPortalRoster>> {
+      const result = JailPortalRosterSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "validate", result.error) }
+          : { ok: false, failure: fail(context, "validate", result.error) }
       );
     },
-    parse(payload, context): Promise<ParseResult<ClintonRoster>> {
-      const result = ClintonRosterSchema.safeParse(payload);
+    parse(payload, context): Promise<ParseResult<JailPortalRoster>> {
+      const result = JailPortalRosterSchema.safeParse(payload);
       return Promise.resolve(
         result.success
           ? { ok: true, value: result.data }
-          : { ok: false, failure: classify(context, "parse", result.error) }
+          : { ok: false, failure: fail(context, "parse", result.error) }
       );
     },
     interpretEmptyResult(payload): Promise<EmptyResultInterpretation> {
@@ -351,7 +452,7 @@ export function createClintonCountySourceAdapter(
           ? {
               kind: "valid_empty",
               recordCount: 0,
-              evidence: "The official Clinton County jail portal listed 0 people in custody."
+              evidence: `The official ${config.countyName} jail portal listed 0 people in custody.`
             }
           : { kind: "not_empty", recordCount: payload.records.length }
       );
@@ -413,13 +514,13 @@ export function createClintonCountySourceAdapter(
           })
         });
       } catch (error) {
-        return Promise.resolve({ ok: false, failure: classify(context, "normalize", error) });
+        return Promise.resolve({ ok: false, failure: fail(context, "normalize", error) });
       }
     },
     async healthCheck(context): Promise<SourceHealth> {
       const started = nowMs();
       try {
-        await requestToken(options, context);
+        await openPortal(config, options, context);
         return {
           status: "healthy",
           checkedAt: context.requestedAt,
@@ -431,12 +532,12 @@ export function createClintonCountySourceAdapter(
           status: "unavailable",
           checkedAt: context.requestedAt,
           latencyMs: Math.max(0, nowMs() - started),
-          failure: classify(context, "health_check", error)
+          failure: fail(context, "health_check", error)
         };
       }
     },
     classifyFailure(error, stage, context) {
-      return classify(context, stage, error);
+      return fail(context, stage, error);
     }
   };
 }
