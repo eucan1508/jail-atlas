@@ -2,6 +2,7 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   BLACK_HAWK_COUNTY_CURRENT_SOURCE_URL
 } from "./iowa-current-roster.js";
+import { CLINTON_COUNTY_ADAPTER_KEY, CLINTON_COUNTY_CURRENT_SOURCE_URL } from "./clinton-county.js";
 import {
   CEDAR_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_CURRENT_SOURCE_URL
@@ -95,6 +96,19 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     adapterKey: WOODBURY_COUNTY_ADAPTER_KEY,
     status: "adapter_ready",
     reason: "The Sheriff's In Jail Search lists everyone held at the county jail on one page."
+  },
+  {
+    state: "IA",
+    countySlug: "clinton",
+    countyName: "Clinton County",
+    officialInstitutionUrl: "https://www.clintoncounty-ia.gov/sheriff/jail",
+    sourceUrl: CLINTON_COUNTY_CURRENT_SOURCE_URL,
+    sourceType: "officially_linked_vendor",
+    relationshipKind: "official_link",
+    adapterKey: CLINTON_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason:
+      "The Sheriff's Jail page links the county's jail portal, which lists everyone held today with each hold reason and bond."
   },
   {
     state: "IA",

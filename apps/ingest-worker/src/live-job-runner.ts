@@ -54,6 +54,9 @@ import {
   POLK_COUNTY_ADAPTER_KEY,
   createWoodburyCountySourceAdapter,
   WOODBURY_COUNTY_ADAPTER_KEY,
+  createClintonCountySourceAdapter,
+  CLINTON_COUNTY_ADAPTER_KEY,
+  CLINTON_COUNTY_PORTAL_ORIGIN,
   DAKOTA_COUNTY_ADAPTER_KEY,
   WASHINGTON_COUNTY_MN_ADAPTER_KEY,
   KANDIYOHI_COUNTY_ADAPTER_KEY,
@@ -185,9 +188,13 @@ export function createLiveSourceAdapter(
                         source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
-                      : rosterSite?.layout === "inmate-roster-path"
-                        ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
-                        : [sourceUrl.pathname];
+                      : source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
+                        ? // The portal hands out its session token, then takes the custody list
+                          // query as a JSON post.
+                          ["/api/portal/config/xsrf_token", "/api/portal/inmates/load"]
+                        : rosterSite?.layout === "inmate-roster-path"
+                          ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                          : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -202,6 +209,17 @@ export function createLiveSourceAdapter(
       : {}),
     // The Hennepin County roster API takes its in-custody search as a small JSON post.
     ...(source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY ? { allowJsonPost: true } : {}),
+    // The Clinton County jail portal guards its custody list with a session-bound CSRF token.
+    ...(source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
+      ? {
+          allowJsonPost: true,
+          sessionCsrf: {
+            cookieName: "XSRF-TOKEN",
+            headerName: "X-CSRF-TOKEN",
+            referer: `${CLINTON_COUNTY_PORTAL_ORIGIN}/inmates`
+          }
+        }
+      : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
     // report grows by about 7 KB per person, and the Otter Tail County and Freeborn County
     // lists carry a ~30 KB photo per person; every other source stays at the 1 MB default.
@@ -211,12 +229,13 @@ export function createLiveSourceAdapter(
       ? { maxResponseBytes: 6_000_000 }
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
-    // search runs about 1.4 KB per person, and the Cottonwood and Redwood County jail roster
-    // reports about 10-15 KB.
+    // search runs about 1.4 KB per person, the Cottonwood and Redwood County jail roster
+    // reports about 10-15 KB, and the Clinton County portal list carries a ~5 KB photo per person.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
     rosterReport !== undefined ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
+    source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 3_000_000 }
       : {})
   });
@@ -291,6 +310,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY) {
     return createWoodburyCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CLINTON_COUNTY_ADAPTER_KEY) {
+    return createClintonCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

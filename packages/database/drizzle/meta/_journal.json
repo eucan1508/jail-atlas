@@ -407,6 +407,13 @@
       "when": 1794632000000,
       "tag": "0057_arkansas_dallas_source",
       "breakpoints": true
+    },
+    {
+      "idx": 58,
+      "version": "7",
+      "when": 1794718400000,
+      "tag": "0058_iowa_clinton_source",
+      "breakpoints": true
     }
   ]
 }
