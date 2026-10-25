@@ -172,19 +172,40 @@ describe("Seminole County, Oklahoma source adapter", () => {
     expect(result.failure.diagnosticCode).toBe("SEMINOLE_COUNTY_RELEASED_BOOKING_LISTED");
   });
 
-  it("fails closed on an empty roster or a duplicate booking number", async () => {
+  it("fails closed on an empty roster or a person listed twice", async () => {
     const empty = await runSourceAdapter(adapter([]).source, context());
     expect(empty.ok).toBe(false);
     if (!empty.ok) expect(empty.failure.diagnosticCode).toBe("SEMINOLE_COUNTY_ROSTER_EMPTY");
 
-    const duplicate = await runSourceAdapter(
+    const twice = await runSourceAdapter(
+      adapter([bookings[0]!, { ...bookings[1]!, inmateId: bookings[0]!.inmateId }], {
+        idList: [bookings[0]!.inmateId, bookings[1]!.inmateId]
+      }).source,
+      context()
+    );
+    expect(twice.ok).toBe(false);
+    if (!twice.ok) {
+      expect(twice.failure.diagnosticCode).toBe("SEMINOLE_COUNTY_DUPLICATE_INMATE_ID");
+    }
+  });
+
+  it("keeps two people the jail printed with one booking number, without that number", async () => {
+    const shared = await runSourceAdapter(
       adapter([bookings[0]!, { ...bookings[1]!, bookingNum: "00-000001" }]).source,
       context()
     );
-    expect(duplicate.ok).toBe(false);
-    if (!duplicate.ok) {
-      expect(duplicate.failure.diagnosticCode).toBe("SEMINOLE_COUNTY_DUPLICATE_BOOKING_NUMBER");
-    }
+    expect(shared.ok).toBe(true);
+    if (!shared.ok) return;
+    expect(
+      shared.snapshot.bookings.map((booking) => [
+        booking.person.displayName,
+        booking.bookingIdentifier
+      ])
+    ).toEqual([
+      ["TESTER, ALPHA ONLY", null],
+      ["TESTER, BETA", null]
+    ]);
+    expect(new Set(shared.snapshot.bookings.map((booking) => booking.id)).size).toBe(2);
   });
 
   it("refuses a source URL other than the approved inmate search", async () => {

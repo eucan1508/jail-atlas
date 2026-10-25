@@ -30,11 +30,14 @@ const SeminoleChargeSchema = z.object({
   statuteCode: z.null()
 });
 const SeminoleRecordSchema = z.object({
+  inmateId: z.string().trim().min(1).max(50),
   displayName: z.string().trim().min(1).max(250),
   bookingNumber: z
     .string()
     .trim()
     .regex(/^\d{2}-\d{3,6}$/),
+  // True when the jail printed this booking number for more than one person.
+  bookingNumberShared: z.boolean(),
   charges: z.array(SeminoleChargeSchema).max(100)
 });
 const SeminoleRosterSchema = z.object({
@@ -168,16 +171,24 @@ async function crawlRoster(
     throw new Error("ROSTER_CHANGED_DURING_CRAWL");
   }
 
-  const seen = new Set<string>();
+  if (new Set(listed).size !== listed.length) throw new Error("DUPLICATE_INMATE_ID");
+  // The jail now and then prints one booking number for two different people. Both are still
+  // held, so both are kept, but neither is shown with a booking number that may not be theirs.
+  const bookingNumberCounts = new Map<string, number>();
+  for (const row of rows) {
+    const bookingNumber = normalizeText(row.BookingNum);
+    bookingNumberCounts.set(bookingNumber, (bookingNumberCounts.get(bookingNumber) ?? 0) + 1);
+  }
   const records = rows.map((row) => {
+    const inmateId = normalizeText(row.InmateID);
     const bookingNumber = normalizeText(row.BookingNum);
     const displayName = normalizeText(row.FullName);
     if (!displayName || !bookingNumber) throw new Error("INVALID_RECORD_IDENTITY");
-    if (seen.has(bookingNumber)) throw new Error("DUPLICATE_BOOKING_NUMBER");
-    seen.add(bookingNumber);
     return SeminoleRecordSchema.parse({
+      inmateId,
       displayName,
       bookingNumber,
+      bookingNumberShared: (bookingNumberCounts.get(bookingNumber) ?? 0) > 1,
       charges: parseSeminoleCharges(row.Charges).map((description) => ({
         description,
         statuteCode: null
@@ -266,12 +277,10 @@ export function createSeminoleCountySourceAdapter(
       try {
         const snapshotId = options.createId("snapshot", `${context.source.id}|${context.runId}`);
         const bookings: Booking[] = payload.records.map((record, sourceOrder) => {
-          const bookingId = options.createId("booking", record.bookingNumber);
+          const recordKey = `${record.inmateId}|${record.bookingNumber}`;
+          const bookingId = options.createId("booking", recordKey);
           const charges: Charge[] = record.charges.map((charge, sequence) => ({
-            id: options.createId(
-              "charge",
-              `${record.bookingNumber}|${sequence}|${charge.description}`
-            ),
+            id: options.createId("charge", `${recordKey}|${sequence}|${charge.description}`),
             bookingId,
             sequence,
             description: charge.description,
@@ -283,16 +292,18 @@ export function createSeminoleCountySourceAdapter(
             id: bookingId,
             snapshotId,
             person: {
-              id: options.createId("person", `${record.bookingNumber}|${record.displayName}`),
+              id: options.createId("person", `${recordKey}|${record.displayName}`),
               snapshotId,
               displayName: record.displayName,
               sourceDisplayText: record.displayName
             },
-            bookingIdentifier: {
-              value: record.bookingNumber,
-              sourceLabel: "Booking #",
-              sourceIdentifiesAsBookingIdentifier: true
-            },
+            bookingIdentifier: record.bookingNumberShared
+              ? null
+              : {
+                  value: record.bookingNumber,
+                  sourceLabel: "Booking #",
+                  sourceIdentifiesAsBookingIdentifier: true
+                },
             custodyScope: "current_custody" as const,
             bookedAt: null,
             releasedAt: null,
