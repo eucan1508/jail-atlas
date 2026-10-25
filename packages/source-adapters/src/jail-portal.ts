@@ -31,6 +31,11 @@ export type JailPortalConfig = Readonly<{
   diagnosticPrefix: string;
   origin: string;
   /**
+   * The Inmates page path the sheriff's site links, which the source row records. Older portals
+   * route it in the browser ("/#/inmates"); the bare path answers 404 there.
+   */
+  sourcePath: string;
+  /**
    * Newer CentralSquare-hosted portals guard the list with a session-bound CSRF token, handed out
    * by a token endpoint before the list is asked for.
    */
@@ -47,6 +52,7 @@ export const CLINTON_COUNTY_JAIL_PORTAL: JailPortalConfig = {
   countyName: "Clinton County",
   diagnosticPrefix: "CLINTON_COUNTY",
   origin: "https://portal.ia-clinton-so.centralsquarecloud.com",
+  sourcePath: "/inmates",
   sessionToken: true,
   inCustodyFilter: "local_date"
 };
@@ -56,6 +62,7 @@ export const MARSHALL_COUNTY_JAIL_PORTAL: JailPortalConfig = {
   countyName: "Marshall County",
   diagnosticPrefix: "MARSHALL_COUNTY",
   origin: "https://marshall-so-ia.zuercherportal.com",
+  sourcePath: "/#/inmates",
   sessionToken: false,
   inCustodyFilter: "timestamp_with_filters"
 };
@@ -75,7 +82,7 @@ export const JAIL_PORTAL_PARSER_VERSION = "1.0.0" as const;
 
 /** The Inmates page a sheriff's site links; the source row records this URL. */
 export function jailPortalSourceUrl(config: JailPortalConfig): string {
-  return `${config.origin}/inmates`;
+  return `${config.origin}${config.sourcePath}`;
 }
 export function jailPortalTokenUrl(config: JailPortalConfig): string {
   return `${config.origin}/api/portal/config/xsrf_token`;

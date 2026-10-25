@@ -151,6 +151,13 @@ describe("jail portal source adapter", () => {
       expect(jailPortal(config.adapterKey)).toBe(config);
     }
     expect(jailPortal("woodbury-county-iowa-current-roster")).toBeUndefined();
+    // The source rows record the Inmates page each sheriff's site links.
+    expect(jailPortalSourceUrl(CLINTON_COUNTY_JAIL_PORTAL)).toBe(
+      "https://portal.ia-clinton-so.centralsquarecloud.com/inmates"
+    );
+    expect(jailPortalSourceUrl(MARSHALL_COUNTY_JAIL_PORTAL)).toBe(
+      "https://marshall-so-ia.zuercherportal.com/#/inmates"
+    );
   });
 
   it("asks a session portal for today's custody list after setting the session token", async () => {
