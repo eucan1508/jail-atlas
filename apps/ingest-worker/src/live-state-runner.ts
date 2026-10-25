@@ -47,11 +47,6 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "woodbury",
       adapterKey: "woodbury-county-iowa-current-roster",
       sourceHost: "injail.wcicc.com"
-    },
-    {
-      countySlug: "clinton",
-      adapterKey: "clinton-county-iowa-current-roster",
-      sourceHost: "portal.ia-clinton-so.centralsquarecloud.com"
     }
   ],
   MN: [

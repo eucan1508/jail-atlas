@@ -56,7 +56,7 @@ with the adapter records disabled and publication approval off.
    INGEST_NETWORK_ACCESS=enabled
    INGEST_DATABASE_WRITES=disabled
    ALLOW_LIVE_SOURCE_FETCHES=true
-   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov,ww1.johnsoncountyiowa.gov,polkinmates.polkcountyiowa.gov,injail.wcicc.com,portal.ia-clinton-so.centralsquarecloud.com
+   SOURCE_HOST_ALLOWLIST=inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov,ww1.johnsoncountyiowa.gov,polkinmates.polkcountyiowa.gov,injail.wcicc.com
    DATABASE_URL=<customer Neon URL>
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=IA --dry-run
    ```
@@ -66,6 +66,10 @@ with the adapter records disabled and publication approval off.
    and then refuses the list too. The adapter (`polk-county.ts`) and its source row stay in place
    and can be re-enabled in `live-state-runner.ts` if the refresh moves to a network the county
    accepts.
+
+   Clinton County is paused the same way: its jail portal answers from other networks, but returns
+   HTTP 403 to GitHub Actions runners on the first request, before any list is read. The adapter
+   (`clinton-county.ts`) and its source row stay in place, unapproved.
 
    The state command is intentionally limited to Dallas, Cedar, Black Hawk, and the Ramsey, Stearns,
    Anoka, Mower, Wright, and Carlton Minnesota adapters until the remaining Iowa and Minnesota
