@@ -91,6 +91,7 @@ Oklahoma was added on 2026-10-09.
 | Lincoln  | [Lincoln County Sheriff inmate search](https://lincolncountysheriffok.gov/inmate-search) | Adapter tested; production approval pending |
 | Pawnee   | [Pawnee County Sheriff inmate search](https://www.pawneecountysook.gov/inmate-search)    | Adapter tested; production approval pending |
 | Seminole | [Seminole County Sheriff inmate search](https://www.seminolecosheriff.com/inmate-search) | Adapter tested; production approval pending |
+| Carter   | [Carter County Sheriff inmate search](https://www.cartercountysheriff.us/inmate-search)  | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

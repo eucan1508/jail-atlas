@@ -329,6 +329,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "seminole",
       adapterKey: "seminole-county-ok-current-roster",
       sourceHost: "www.seminolecosheriff.com"
+    },
+    {
+      countySlug: "carter",
+      adapterKey: "carter-county-ok-current-roster",
+      sourceHost: "www.cartercountysheriff.us"
     }
   ]
 };

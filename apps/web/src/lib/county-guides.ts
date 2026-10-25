@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/carter-county": {
+    facilityName: "Carter County Jail",
+    address: "100 South Washington, Ardmore, OK 73401",
+    phone: "580-223-6014",
+    operatedBy: "Carter County Sheriff's Office",
+    reviewedAt: "October 25, 2026",
+    overview:
+      "The Carter County Sheriff's Office in Ardmore runs the county jail. Its administration office is open 9 a.m. to 4 p.m., Monday through Friday, and dispatch answers around the clock at the main line, 580-223-6014.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.cartercountysheriff.us/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Personal visits and inmate phone service both go through NCIC Inmate Communication Systems. Create an account on the NCIC website, choose the Carter County facility and the inmate, then pick a date and time for a video visit. The same account is used for calls and to add money to an inmate's phone account. Attorney and counsel visits are scheduled with the jail administrator.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.cartercountysheriff.us/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Tiger Commissary, which sells food, clothing, and hygiene items. Family and friends order online from the Tiger website by searching the inmate's last name; orders have to be in by Sunday at 4:30 p.m. and are handed out on Wednesday. Tiger also takes online deposits to an inmate's account.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.cartercountysheriff.us/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Every envelope needs the full first and last name and full address of both the sender and the inmate. Photos are accepted on photo paper up to 4 by 6 inches, as long as they are not graphic or suggestive. Do not send blank paper, envelopes, or stamps, stickers or anything metallic, printed social media pages or newspaper clippings, or anything with lipstick or scent. Mail that breaks these rules gets a rejection notice. For questions, or to confirm the mailing address, contact the jail administrator through the main line.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.cartercountysheriff.us/inmate-phones-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office posts a list of licensed bondsmen registered in Carter County. A bond that is not filled out or notarized properly will not be accepted or filed by the court clerk, and the defendant can be arrested again; bonds also need case numbers once charges are filed. The inmate search does not show bond amounts, so call 580-223-6014 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.cartercountysheriff.us/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Carter County Jail?",
+        answer:
+          "Set up an account with NCIC Inmate Communication Systems, choose the Carter County facility and the inmate, and book a video visit. Attorneys schedule visits with the jail administrator."
+      },
+      {
+        question: "How do I put money on a Carter County inmate's account?",
+        answer:
+          "Use Tiger Commissary online. You can order commissary items, due by Sunday at 4:30 p.m. and delivered Wednesday, or make a deposit. Phone money goes through NCIC."
+      },
+      {
+        question: "What can I mail to a Carter County inmate?",
+        answer:
+          "Letters with full names and addresses for sender and inmate, and photos on photo paper no bigger than 4 by 6. No blank paper, stamps, stickers, clippings, or scented items."
+      },
+      {
+        question: "How do I find out a bond amount in Carter County?",
+        answer:
+          "The roster does not list bond amounts. Call the Sheriff's Office at 580-223-6014, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/seminole-county": {
     facilityName: "Seminole County Jail",
     address: "211 E. 2nd Street, Wewoka, OK 74884",
