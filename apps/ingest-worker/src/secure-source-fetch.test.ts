@@ -36,7 +36,11 @@ function runLookup(
   });
 }
 
-function fakeHttpsRequest(body: string, statusCode = 200) {
+function fakeHttpsRequest(
+  body: string,
+  statusCode = 200,
+  setCookie: string[] = ["SYNTHETIC_COOKIE=must-not-propagate"]
+) {
   const captured: RequestOptions[] = [];
   const implementation = ((
     _url: URL,
@@ -54,7 +58,7 @@ function fakeHttpsRequest(body: string, statusCode = 200) {
       incoming.headers = {
         "content-type": "text/html; charset=utf-8",
         "content-length": String(Buffer.byteLength(body)),
-        "set-cookie": ["SYNTHETIC_COOKIE=must-not-propagate"]
+        "set-cookie": setCookie
       };
       onResponse(incoming);
       stream.end(body);
@@ -271,6 +275,69 @@ describe("connection-bound source transport", () => {
       "content-length": String(query.length)
     });
     expect(open.captured[0]?.headers).not.toHaveProperty("cookie");
+  });
+
+  it("returns a session portal's cookies and CSRF token only when the source is set up for it", async () => {
+    const options = {
+      allowlist,
+      allowedPathPrefixes: ["/approved"],
+      userAgent: "SyntheticCustodyResearch/1.0 (+https://example.test/source-policy)",
+      dnsLookup: publicLookup
+    };
+    const cookies = [
+      "XSRF-TOKEN=synthetic-token.abc_1; Path=/",
+      "session=synthetic-session; Secure; HttpOnly; Path=/",
+      `huge=${"x".repeat(2_000)}; Path=/`,
+      "bad name=ignored"
+    ];
+
+    const plain = fakeHttpsRequest("{}", 200, cookies);
+    const plainFetch = createConnectionBoundSourceFetch({
+      ...options,
+      request: plain.implementation
+    });
+    await plainFetch(sourceUrl, { redirect: "error" });
+    await plainFetch(sourceUrl, { redirect: "error" });
+    expect(plain.captured[1]?.headers).not.toHaveProperty("cookie");
+    expect(plain.captured[1]?.headers).not.toHaveProperty("referer");
+
+    const portal = fakeHttpsRequest("{}", 200, cookies);
+    const portalFetch = createConnectionBoundSourceFetch({
+      ...options,
+      allowJsonPost: true,
+      sessionCsrf: {
+        cookieName: "XSRF-TOKEN",
+        headerName: "X-CSRF-TOKEN",
+        referer: "https://roster.example.test/approved/"
+      },
+      request: portal.implementation
+    });
+    const first = await portalFetch(sourceUrl, { redirect: "error" });
+    expect(first.headers.get("set-cookie")).toBeNull();
+    expect(portal.captured[0]?.headers).not.toHaveProperty("cookie");
+    expect(portal.captured[0]?.headers).not.toHaveProperty("x-csrf-token");
+
+    await portalFetch(sourceUrl, { method: "POST", body: "{}", redirect: "error" });
+    expect(portal.captured[1]?.headers).toMatchObject({
+      cookie: "XSRF-TOKEN=synthetic-token.abc_1; session=synthetic-session",
+      "x-csrf-token": "synthetic-token.abc_1",
+      referer: "https://roster.example.test/approved/"
+    });
+
+    const elsewhere = fakeHttpsRequest("{}", 200, cookies);
+    const elsewhereFetch = createConnectionBoundSourceFetch({
+      ...options,
+      sessionCsrf: {
+        cookieName: "XSRF-TOKEN",
+        headerName: "X-CSRF-TOKEN",
+        referer: "https://other.example.test/"
+      },
+      request: elsewhere.implementation
+    });
+    await elsewhereFetch(sourceUrl, { redirect: "error" });
+    await elsewhereFetch(sourceUrl, { redirect: "error" });
+    expect(elsewhere.captured[1]?.headers).not.toHaveProperty("cookie");
+    expect(elsewhere.captured[1]?.headers).not.toHaveProperty("referer");
   });
 
   it("never follows a source redirect", async () => {

@@ -2830,6 +2830,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/clinton-county": {
+    facilityName: "Clinton County Jail",
+    address: "241 Seventh Avenue North, Clinton, IA 52732",
+    phone: "563-242-9211",
+    operatedBy: "Clinton County Sheriff's Office",
+    reviewedAt: "October 25, 2026",
+    overview:
+      "The Clinton County Jail is in the Law Center on Seventh Avenue North in Clinton, the same building as the Sheriff's Office. Besides people arrested in the county, it holds people for other agencies, such as neighboring sheriff's offices. The business office is open 8 a.m. to 4 p.m., Monday through Friday, and stays open over lunch.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.clintoncounty-ia.gov/sheriff/jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video and are recorded. They run Monday through Friday from 1 to 3:30 p.m., first come, first served, with no visits on holidays. An inmate has to be in general population first and gets two 30-minute visits a week. Create an account on inmatecanteen.com, then sign in at the lobby kiosk and pick the inmate. Adults need a valid state ID, children must come with a parent, grandparent, or legal guardian, and no more than four people can visit at once. Phones and other electronic devices stay in the car, and staff can end a visit over clothing they consider inappropriate.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.clintoncounty-ia.gov/sheriff/visitation/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Staff do not take cash or personal checks. Put money on an inmate's account at the cashier machine in the Law Center lobby, which takes debit and credit cards and cash (no $1 bills) for a small fee, or online at inmatecanteen.com. The jail accepts only legal documents and up to five photos no larger than 3 by 5 inches, with no Polaroids; hygiene items are bought through commissary. Money in the account is released only for attorney fees, the inmate's own fines or bond, commissary, and work release payments.",
+        sourceLabel: "Official inmate property page",
+        sourceUrl: "https://www.clintoncounty-ia.gov/sheriff/inmate_property/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates make audio and video calls, texts, and email from tablets between 5 a.m. and 9:45 p.m., every day, and calls may be monitored. Calls are person to person only; three-way calls can cost an inmate phone privileges for good. Staff will not take messages for inmates, so write a letter instead. To block collect calls or sort out a billing problem, call 715-952-9622. Address mail to Clinton County Jail, the inmate's name, P.O. Box 2957, Clinton, IA 52733, with your full name and address on the envelope. Letters without a return address are sent back, and greeting cards larger than 6 by 9 inches go into the inmate's property until release.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.clintoncounty-ia.gov/sheriff/jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail portal lists each charge, warrant, or hold with its bond: cash only, cash or surety, or no bond. Call the Sheriff's Office at 563-242-9211 to confirm an amount and how to post it. An inmate can also have money from their own account released to post their own bond. A listing is a record of a hold, not a finding of guilt.",
+        sourceLabel: "Official inmate money page",
+        sourceUrl: "https://www.clintoncounty-ia.gov/sheriff/inmate_money/"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Clinton County Jail?",
+        answer:
+          "Video visits run Monday through Friday from 1 to 3:30 p.m., first come, first served, except holidays. You need an inmatecanteen.com account to sign in at the lobby kiosk, and each inmate gets two 30-minute visits a week."
+      },
+      {
+        question: "How do I put money on a Clinton County inmate's account?",
+        answer:
+          "Use the cashier machine in the Law Center lobby, which takes cards and cash but not $1 bills, or deposit online at inmatecanteen.com. Staff do not accept cash or personal checks."
+      },
+      {
+        question: "Where do I send a letter to a Clinton County inmate?",
+        answer:
+          "Clinton County Jail, the inmate's name, P.O. Box 2957, Clinton, IA 52733. Put your full name and return address on the envelope, or the letter is sent back."
+      },
+      {
+        question: "How do I find out a bond amount in Clinton County?",
+        answer:
+          "The roster shows the bond listed for each charge or hold. Call the Sheriff's Office at 563-242-9211 to confirm it and ask how to post it."
+      }
+    ]
+  },
   "arkansas/jefferson-county": {
     facilityName: 'W.C. "Dub" Brassell Adult Detention Center',
     address: "300 East 2nd Avenue, Pine Bluff, AR 71601",

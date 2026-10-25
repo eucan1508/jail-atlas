@@ -13,13 +13,24 @@ const SecureSourceFetchOptionsSchema = z.object({
   timeoutMs: z.number().int().min(1_000).max(60_000).default(15_000),
   maxResponseBytes: z.number().int().min(16_384).max(8_000_000).default(1_000_000),
   allowFormPost: z.boolean().default(false),
-  allowJsonPost: z.boolean().default(false)
+  allowJsonPost: z.boolean().default(false),
+  sessionCsrf: z
+    .object({
+      cookieName: z.string().regex(/^[A-Za-z0-9_.-]{1,64}$/),
+      headerName: z.string().regex(/^[A-Za-z0-9-]{1,64}$/),
+      referer: z.string().url()
+    })
+    .optional()
 });
 
 // ASP.NET rosters page through form posts that carry the page's view state back to the server.
 const MAX_FORM_BODY_BYTES = 262_144;
 // JSON search APIs take a small query object; anything larger is not a search.
 const MAX_JSON_BODY_BYTES = 16_384;
+// A session portal sets a handful of short cookies; anything beyond this is not kept.
+const MAX_SESSION_COOKIES = 8;
+const MAX_SESSION_COOKIE_BYTES = 1_024;
+const SET_COOKIE_PAIR = /^([A-Za-z0-9_.-]{1,64})=([^;\s",\\]*)/;
 
 export class SecureSourceFetchError extends Error {
   readonly code:
@@ -49,6 +60,12 @@ export interface ConnectionBoundSourceFetchOptions {
   readonly allowFormPost?: boolean;
   /** Lets an adapter send a small JSON object as a POST body to the approved paths. */
   readonly allowJsonPost?: boolean;
+  /**
+   * Keeps the cookies the source sets and sends them back on later requests, with the named
+   * cookie echoed in a header and a same-origin Referer, for portals that guard their search
+   * with a session-bound CSRF token.
+   */
+  readonly sessionCsrf?: Readonly<{ cookieName: string; headerName: string; referer: string }>;
   readonly dnsLookup?: DnsLookup;
   readonly request?: typeof defaultHttpsRequest;
 }
@@ -167,6 +184,32 @@ export function createConnectionBoundSourceFetch(
     inputOptions.dnsLookup ??
     (async (hostname) => defaultLookup(hostname, { all: true, verbatim: true }));
   const httpsRequest = inputOptions.request ?? defaultHttpsRequest;
+  const sessionCookies = new Map<string, string>();
+
+  const keepSessionCookies = (setCookie: string | readonly string[] | undefined): void => {
+    if (!options.sessionCsrf || setCookie === undefined) return;
+    for (const line of typeof setCookie === "string" ? [setCookie] : setCookie) {
+      const pair = line.match(SET_COOKIE_PAIR);
+      if (!pair || pair[2]!.length > MAX_SESSION_COOKIE_BYTES) continue;
+      if (!sessionCookies.has(pair[1]!) && sessionCookies.size >= MAX_SESSION_COOKIES) continue;
+      sessionCookies.set(pair[1]!, pair[2]!);
+    }
+  };
+
+  const sessionHeaders = (url: URL): Record<string, string> => {
+    const session = options.sessionCsrf;
+    if (!session || new URL(session.referer).origin !== url.origin) return {};
+    const token = sessionCookies.get(session.cookieName);
+    return {
+      referer: session.referer,
+      ...(sessionCookies.size > 0
+        ? {
+            cookie: [...sessionCookies].map(([name, value]) => `${name}=${value}`).join("; ")
+          }
+        : {}),
+      ...(token ? { [session.headerName.toLowerCase()]: token } : {})
+    };
+  };
 
   return async (input, init = {}): Promise<Response> => {
     const method = (init.method ?? "GET").toUpperCase();
@@ -233,6 +276,7 @@ export function createConnectionBoundSourceFetch(
           "accept-encoding": "identity",
           "cache-control": "no-cache",
           "user-agent": options.userAgent,
+          ...sessionHeaders(validated.url),
           ...(formBody
             ? {
                 "content-type": "application/x-www-form-urlencoded",
@@ -249,6 +293,7 @@ export function createConnectionBoundSourceFetch(
       };
       const request = httpsRequest(validated.url, requestOptions, (incoming) => {
         const status = incoming.statusCode ?? 0;
+        keepSessionCookies(incoming.headers["set-cookie"]);
         if (status < 200 || status > 599) {
           incoming.resume();
           fail(

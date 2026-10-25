@@ -18,6 +18,7 @@ official source passes the same audit.
 | Cerro Gordo | [Cerro Gordo County jail population report](https://sofiles.cerrogordo.gov/inmate_report/)                                      | Adapter tested; production approval pending           |
 | Johnson     | [Johnson County Sheriff jail roster](https://ww1.johnsoncountyiowa.gov/Sheriff/jailroster/list)                                 | Adapter tested; production approval pending           |
 | Woodbury    | [Woodbury County In Jail Search](https://injail.wcicc.com/)                                                                     | Adapter tested; production approval pending           |
+| Clinton     | [Clinton County Jail portal](https://portal.ia-clinton-so.centralsquarecloud.com/inmates)                                       | Adapter tested; production approval pending           |
 
 ## Minnesota
 
