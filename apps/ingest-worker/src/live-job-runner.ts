@@ -75,6 +75,8 @@ import {
   SEMINOLE_COUNTY_ADAPTER_KEY,
   createCarterCountySourceAdapter,
   CARTER_COUNTY_ADAPTER_KEY,
+  createCanadianCountySourceAdapter,
+  CANADIAN_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -191,7 +193,8 @@ export function createLiveSourceAdapter(
                         source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
                         source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CARTER_COUNTY_ADAPTER_KEY
+                        source.adapterKey === CARTER_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
                       : portal
                         ? // The portal is opened (its session token or setup), then takes the
@@ -428,6 +431,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CARTER_COUNTY_ADAPTER_KEY) {
     return createCarterCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY) {
+    return createCanadianCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

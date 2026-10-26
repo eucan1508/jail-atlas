@@ -84,7 +84,8 @@ const liveAdapterKeys: Record<string, string> = {
   "oklahoma/lincoln-county": "lincoln-county-ok-current-roster",
   "oklahoma/pawnee-county": "pawnee-county-ok-current-roster",
   "oklahoma/seminole-county": "seminole-county-ok-current-roster",
-  "oklahoma/carter-county": "carter-county-ok-current-roster"
+  "oklahoma/carter-county": "carter-county-ok-current-roster",
+  "oklahoma/canadian-county": "canadian-county-ok-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
