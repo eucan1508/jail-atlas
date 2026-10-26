@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/canadian-county": {
+    facilityName: "Canadian County Jail",
+    address: "304 N. Evans, El Reno, OK 73036",
+    phone: "405-422-3188",
+    operatedBy: "Canadian County Sheriff's Office",
+    reviewedAt: "October 26, 2026",
+    overview:
+      "The Canadian County Jail in El Reno has 194 beds and holds both people awaiting trial and people serving sentences. It has long held more people than it has beds for, so some inmates are housed in other counties' jails, such as Grant, Dewey, Washita, Ellis, and Pottawatomie. The Sheriff's Office main line, 405-262-3434, is at 208 West Rogers.",
+    contactSourceLabel: "Official jail information page",
+    contactSourceUrl: "https://ccsheriff.net/jail-information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Family and friends visit by video through Prodigy: create your own account at prodigysales.com, or call Prodigy support at 866-700-4545 for help. Remote visits are not allowed from 11 a.m. to 1 p.m., 5 to 7 p.m., or 10 p.m. to 7 a.m. Visitors must be 18 or come with a parent or legal guardian, and the dress code bars things like short shorts, halter tops, and see-through clothing. Anyone released from this jail cannot visit for six months. Out-of-state family can ask the Jail Administrator for a one-time special visit with at least 24 hours' notice. Attorneys schedule visits through Judicial Services at 405-295-6216 or 405-434-2829.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://ccsheriff.net/inmate-mail-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary and deposits are handled by Prodigy Solutions, and orders are due each Tuesday. Money orders are not accepted. Add money online with a debit or credit card, or use the kiosk in the jail lobby, which takes cash and cards. Money left on the account at release can only be collected by the inmate.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://ccsheriff.net/inmate-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to Canadian County Jail, the inmate's name and PID number, 304 N. Evans, El Reno, Oklahoma 73036. Mail is scanned and read on the Prodigy kiosk, except legal mail, and originals are not returned. Up to three photos per envelope, none larger than 4 by 6 inches and no Polaroids; no stamps, stickers, blank paper or envelopes, staples, clippings, perfume, or anything printed from the internet. Each adult mails their own signed letter. Inmates can get two paperback books a month shipped straight from an online bookseller. Anyone released from the jail cannot write to an inmate for six months without the Jail Administrator's approval.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://ccsheriff.net/inmate-mail-visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the jail at 405-422-3188 to ask about a bond and how to post it; the Sheriff's Office also keeps a list of licensed bondsmen. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://ccsheriff.net/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Canadian County Jail?",
+        answer:
+          "Set up your own video visitation account with Prodigy at prodigysales.com. Remote visits are blocked from 11 a.m. to 1 p.m., 5 to 7 p.m., and 10 p.m. to 7 a.m."
+      },
+      {
+        question: "How do I put money on a Canadian County inmate's account?",
+        answer:
+          "Deposit online through Prodigy with a debit or credit card, or use the kiosk in the jail lobby, which takes cash and cards. Money orders are not accepted."
+      },
+      {
+        question: "Where do I send a letter to a Canadian County inmate?",
+        answer:
+          "Canadian County Jail, the inmate's name and PID number, 304 N. Evans, El Reno, Oklahoma 73036. Mail is scanned for the inmate and originals are not returned."
+      },
+      {
+        question: "How do I find out a bond amount in Canadian County?",
+        answer:
+          "The roster does not list bond amounts. Call the jail at 405-422-3188, and see the Sheriff's list of licensed bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/carter-county": {
     facilityName: "Carter County Jail",
     address: "100 South Washington, Ardmore, OK 73401",

@@ -334,6 +334,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "carter",
       adapterKey: "carter-county-ok-current-roster",
       sourceHost: "www.cartercountysheriff.us"
+    },
+    {
+      countySlug: "canadian",
+      adapterKey: "canadian-county-ok-current-roster",
+      sourceHost: "ccsheriff.net"
     }
   ]
 };

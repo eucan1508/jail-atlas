@@ -92,6 +92,7 @@ Oklahoma was added on 2026-10-09.
 | Pawnee   | [Pawnee County Sheriff inmate search](https://www.pawneecountysook.gov/inmate-search)    | Adapter tested; production approval pending |
 | Seminole | [Seminole County Sheriff inmate search](https://www.seminolecosheriff.com/inmate-search) | Adapter tested; production approval pending |
 | Carter   | [Carter County Sheriff inmate search](https://www.cartercountysheriff.us/inmate-search)  | Adapter tested; production approval pending |
+| Canadian | [Canadian County Sheriff inmate search](https://ccsheriff.net/inmate-search)             | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

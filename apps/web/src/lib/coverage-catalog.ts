@@ -736,6 +736,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Canadian County",
+    slug: "canadian-county",
+    publishedAt: "2026-10-26",
+    seatCity: "El Reno",
+    h1: "Canadian County Jail Roster & Inmate Search",
+    title: "Canadian County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Canadian County, Oklahoma current-custody information from the sheriff's official inmate search, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Canadian County Sheriff's Office in El Reno runs the county jail and posts an inmate search of the people it holds. This page lists everyone that search shows as in custody, with each booking number and the charges as the sheriff lists them, and leaves out photos, birth dates, home addresses, and classification.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://ccsheriff.net/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Canadian County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",
