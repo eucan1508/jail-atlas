@@ -33,7 +33,8 @@ const MAX_PRINT_AGE_DAYS = 2;
 const RECORD_NUMBER = /^\d{12}$/;
 // Each charge opens with its level, status, and Minnesota statute ("F - Active 609.582.1(c)");
 // the lines under it are the offense description.
-const CHARGE_HEADER = /^([A-Z]{1,2}) - ([A-Za-z]+) (\d[0-9A-Za-z.()~]*)$/;
+// "F - Active 609.205(1)"; the status can run to several words, as in "RPR/Chg Dismiss".
+const CHARGE_HEADER = /^([A-Z]{1,2}) - ([A-Za-z][A-Za-z/ ]*?) (\d[0-9A-Za-z.()~]*)$/;
 const PRINTED_TEXT = /^In Custody (\d{2})\/(\d{2})\/(\d{4}) (\d{1,2}:\d{2})$/;
 
 const OtterTailChargeSchema = z.object({
