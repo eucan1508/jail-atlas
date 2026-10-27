@@ -339,6 +339,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "canadian",
       adapterKey: "canadian-county-ok-current-roster",
       sourceHost: "ccsheriff.net"
+    },
+    {
+      countySlug: "sequoyah",
+      adapterKey: "sequoyah-county-ok-current-roster",
+      sourceHost: "scsok.org"
     }
   ]
 };

@@ -66,7 +66,8 @@ const liveCountyKeys = [
   "oklahoma/pawnee-county",
   "oklahoma/seminole-county",
   "oklahoma/carter-county",
-  "oklahoma/canadian-county"
+  "oklahoma/canadian-county",
+  "oklahoma/sequoyah-county"
 ] as const;
 
 describe("verified county guides", () => {
