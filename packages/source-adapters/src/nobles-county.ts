@@ -33,7 +33,13 @@ const STAMP = /^(\d{1,2})\/(\d{1,2})\/(\d{4}) (\d{1,2}):(\d{2}) ([AP]M)$/;
 const BOOKING_DATE = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 const NAME = /^[^,]+, \S.*$/;
 const CHARGE_COLUMNS = ["Agency", "Type", "Description"];
-const CHARGE_TYPES = new Set(["Felony", "Gross Misdemeanor", "Misdemeanor", "Unknown"]);
+const CHARGE_TYPES = new Set([
+  "Felony",
+  "Gross Misdemeanor",
+  "Misdemeanor",
+  "Petty Misdemeanor",
+  "Unknown"
+]);
 
 const NoblesRecordSchema = z.object({
   recordKey: z.string().min(1).max(400),

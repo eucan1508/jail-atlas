@@ -29,7 +29,10 @@ const inmates: readonly SyntheticInmate[] = [
   {
     name: "Tester-Doe, Beta",
     bookingDate: "1/3/2000",
-    charges: [["SYNTHETIC POLICE DEPARTMENT", "Gross Misdemeanor", "Synthetic Offense Beta"]]
+    charges: [
+      ["SYNTHETIC POLICE DEPARTMENT", "Gross Misdemeanor", "Synthetic Offense Beta"],
+      ["SYNTHETIC POLICE DEPARTMENT", "Petty Misdemeanor", "Synthetic Offense Gamma"]
+    ]
   }
 ];
 
@@ -139,7 +142,13 @@ describe("Nobles County source adapter", () => {
       ])
     ).toEqual([
       ["Tester, Alpha Test", ["Synthetic Offense Alpha (Felony)", "Holding for Another Agency"]],
-      ["Tester-Doe, Beta", ["Synthetic Offense Beta (Gross Misdemeanor)"]]
+      [
+        "Tester-Doe, Beta",
+        [
+          "Synthetic Offense Beta (Gross Misdemeanor)",
+          "Synthetic Offense Gamma (Petty Misdemeanor)"
+        ]
+      ]
     ]);
   });
 

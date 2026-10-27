@@ -115,7 +115,8 @@ const firstPage: OtterTailPdfPage = [
   ...header(483, true),
   ...row(450, "Tester, Alpha", "000000000001", [
     ["F - Active 999.11(1)", "Synthetic Offense Alpha"],
-    ["GM - Sentenced 999.22.1(a)~1", "Synthetic Offense Beta"]
+    ["GM - Sentenced 999.22.1(a)~1", "Synthetic Offense Beta"],
+    ["GM - RPR/Chg Dismiss 999.24.5", "Synthetic Offense Epsilon"]
   ]),
   ...row(294, "Tester, Beta", "000000000002", [["M - Active 999.33", "Synthetic Offense Gamma"]]),
   { text: "Page 1 of 2", x: 287, y: 16 }
@@ -141,7 +142,8 @@ describe("Otter Tail County source adapter", () => {
     expect(alpha?.bookingIdentifier?.value).toBe("000000000001");
     expect(alpha?.charges.map((charge) => [charge.statuteCode, charge.description])).toEqual([
       ["999.11(1)", "Synthetic Offense Alpha"],
-      ["999.22.1(a)~1", "Synthetic Offense Beta"]
+      ["999.22.1(a)~1", "Synthetic Offense Beta"],
+      ["999.24.5", "Synthetic Offense Epsilon"]
     ]);
     expect(beta?.person.displayName).toBe("Tester, Beta");
     expect(gamma?.charges).toHaveLength(1);
