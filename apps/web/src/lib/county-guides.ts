@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/sequoyah-county": {
+    facilityName: "Sequoyah County Jail",
+    address: "119 South Oak Street, Sallisaw, OK 74955",
+    phone: "918-776-9028",
+    operatedBy: "Sequoyah County Sheriff's Office",
+    reviewedAt: "October 27, 2026",
+    overview:
+      "The Sequoyah County Sheriff's Office in Sallisaw runs the county jail. The jail's own line is 918-776-9028; the Sheriff's Office main number is 918-775-1214 and dispatch is 918-775-9155.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://scsok.org/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visits are open seven days a week from 8 a.m. to 10:30 p.m. through City Tele Coin: set up a direct-pay account on the City Tele Coin website or app and choose the Sequoyah County facility; the live hotline is 318-746-1114. For visits at the jail, register in the lobby with a passport or government photo ID. Only one adult visits at a time, juveniles need a parent, guardian, or custodian with them, and each visit lasts 15 minutes. Food, drinks, bags, phones, and cameras are not allowed in the visitation area, and visitors may be searched.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://scsok.org/inmate-mail-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Benchmark Commissary Services, and orders are due by Friday at 4 p.m. Money orders are not accepted: add money online with a debit or credit card, or use the kiosk in the jail lobby, the only way to leave money at the jail. Money left on the account at release can only be collected by the inmate; after a weekend release, it can be picked up Tuesday through Friday, 8:30 a.m. to 4:30 p.m.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://scsok.org/inmate-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate calls go through City Tele Coin; set up a prepaid account online or at 318-746-1114. Staff open and inspect general mail and may read it, and mail can be returned, kept with the inmate's property, or sent to the District Attorney if it breaks the rules. Photos must be 4 by 6 inches or smaller, unframed, not from an instant camera, and not sexual or gang-related. Legal mail is opened only in front of the inmate. Call the jail at 918-776-9028 to confirm the mailing address.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://scsok.org/inmate-mail-visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the jail at 918-776-9028 to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://scsok.org/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Sequoyah County Jail?",
+        answer:
+          "Video visits run daily from 8 a.m. to 10:30 p.m. through a City Tele Coin account. At the jail, register in the lobby with a photo ID; visits last 15 minutes and one adult visits at a time."
+      },
+      {
+        question: "How do I put money on a Sequoyah County inmate's account?",
+        answer:
+          "Deposit online with a debit or credit card, or use the kiosk in the jail lobby. Money orders are not accepted. Commissary orders are due by Friday at 4 p.m."
+      },
+      {
+        question: "How do inmates make phone calls in Sequoyah County?",
+        answer:
+          "Calls go through City Tele Coin. Set up a prepaid account online or by calling 318-746-1114."
+      },
+      {
+        question: "How do I find out a bond amount in Sequoyah County?",
+        answer:
+          "The roster does not list bond amounts. Call the jail at 918-776-9028, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/canadian-county": {
     facilityName: "Canadian County Jail",
     address: "304 N. Evans, El Reno, OK 73036",

@@ -442,6 +442,13 @@
       "when": 1795064000000,
       "tag": "0062_oklahoma_canadian_source",
       "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "7",
+      "when": 1795150400000,
+      "tag": "0063_oklahoma_sequoyah_source",
+      "breakpoints": true
     }
   ]
 }
