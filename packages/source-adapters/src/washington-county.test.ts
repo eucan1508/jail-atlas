@@ -192,6 +192,27 @@ describe("Washington County, Minnesota source adapter", () => {
     ]);
   });
 
+  it("splits a booking date joined to its number and skips a day count that drifts left", async () => {
+    const merged = row(565, "EXAMPLE", "Epsilon", "", "J00000005", "0000005")
+      .filter((item) => item.text !== "0000005")
+      .map((item) => (item.text === "01/01/00" ? { ...item, text: "01/01/00 0000005" } : item));
+    const drifted = [
+      ...row(547, "EXAMPLE", "Zeta", "", "J00000006", "0000006"),
+      { text: "1234", x: 440, y: 547 }
+    ];
+    const report = [
+      page([row(583, "TESTER", "Alpha", "Test", "J00000001", "0000001"), merged, drifted], 1, 1, 3)
+    ];
+    const result = await runSourceAdapter(adapter(report), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.bookingIdentifier?.value)).toEqual([
+      "0000001",
+      "0000005",
+      "0000006"
+    ]);
+  });
+
   it("drops JIDs, booking dates, release estimates, and day counts", async () => {
     const result = await runSourceAdapter(adapter([firstPage, lastPage]), context());
     expect(result.ok).toBe(true);
@@ -236,6 +257,18 @@ describe("Washington County, Minnesota source adapter", () => {
       [
         [firstPage, page([row(583, "X", "Y", "", "J00000004", "BOOKING")], 2, 2, 4)],
         "INVALID_RECORD_IDENTITY"
+      ],
+      [
+        [
+          firstPage,
+          page(
+            [row(583, "X", "Y", "", "J00000004", "0000004").filter((item) => item.text !== "X")],
+            2,
+            2,
+            4
+          )
+        ],
+        "LAST_NAME_MISSING"
       ],
       [
         [firstPage, [...lastPage, { text: "orphaned", x: 40, y: 594 }]],

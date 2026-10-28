@@ -35,6 +35,10 @@ const JID = /^J\d{8}$/;
 const MERGED_JID = /^(.*\S) (J\d{8})$/;
 const BOOKING_NUMBER = /^\d{7}$/;
 const BOOKING_DATE = /^\d{2}\/\d{2}\/\d{2}$/;
+// The booking date and number can print as one item ("10/18/26 2610267").
+const MERGED_BOOKING = /^(\d{2}\/\d{2}\/\d{2}) (\d{7})$/;
+// A wide "Release Est. # Days" value can start left of its header and land in the booking column.
+const RELEASE_DAYS = /^-?\d{1,4}$/;
 const AS_OF = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/;
 const UPPERCASE_TOKEN = /^[A-Z][A-Z'.-]*$/;
 
@@ -288,9 +292,14 @@ export function parseWashingtonRosterPages(pages: readonly WashingtonPdfPage[]):
       ]
         .filter(Boolean)
         .join(" ");
-      const bookingCells = column(bookingStart, releaseStart);
+      const bookingCells = column(bookingStart, releaseStart)
+        .flatMap((text) => {
+          const merged = text.match(MERGED_BOOKING);
+          return merged ? [merged[1]!, merged[2]!] : [text];
+        })
+        .filter((text) => !RELEASE_DAYS.test(text));
+      if (!last) throw new Error("LAST_NAME_MISSING");
       if (
-        !last ||
         bookingCells.length !== 2 ||
         !BOOKING_DATE.test(bookingCells[0]!) ||
         !BOOKING_NUMBER.test(bookingCells[1]!)
