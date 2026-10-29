@@ -8,7 +8,7 @@ import type { WorkerConfig } from "./config.ts";
 
 export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK";
 
-type LiveStateSource = Readonly<{
+export type LiveStateSource = Readonly<{
   countySlug: string;
   adapterKey: string;
   sourceHost: string;
@@ -352,6 +352,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
     }
   ]
 };
+
+/** Every county each state's live run refreshes, for checks that cover the whole list. */
+export function liveStateSources(state: LiveState): readonly LiveStateSource[] {
+  return LIVE_STATE_SOURCES[state];
+}
 
 // Source sites sometimes change mid-read or publish a half-updated record; a short pause usually
 // clears it, so a failed county gets one more attempt before the run is reported.
