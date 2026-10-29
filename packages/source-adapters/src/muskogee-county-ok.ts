@@ -15,7 +15,7 @@ import type {
   ValidationResult
 } from "./contracts.js";
 
-export const MUSKOGEE_COUNTY_ADAPTER_KEY = "muskogee-county-ok-ok-current-roster" as const;
+export const MUSKOGEE_COUNTY_ADAPTER_KEY = "muskogee-county-ok-current-roster" as const;
 export const MUSKOGEE_COUNTY_CURRENT_SOURCE_URL =
   "https://www.muskogeeso.org/dmxConnect/api/Booking/Read.php" as const;
 export const MUSKOGEE_COUNTY_PARSER_VERSION = "1.0.0" as const;
