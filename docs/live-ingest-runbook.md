@@ -119,17 +119,17 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 
-   Oklahoma runs Wagoner, Lincoln, Pawnee, Seminole, Carter, Canadian, and Sequoyah, which read the
-   JSON endpoints behind each sheriff's inmate search (`/dmxConnect/api/Booking/`). For all seven,
-   the list total must match its rows and a second official ID list must name the same people.
-   Wagoner, Canadian, and Sequoyah also fetch each booking's detail for its charges and check it
-   against the list entry (the Canadian and Sequoyah details also carry the booking number and must
-   show no release date); the Lincoln, Pawnee, Seminole, and Carter lists already carry the charges
-   and must show no release dates. On a mismatch the crawl restarts (up to three times) and then
-   fails closed:
+   Oklahoma runs Wagoner, Lincoln, Pawnee, Seminole, Carter, Canadian, Sequoyah, and Muskogee, which
+   read the JSON endpoints behind each sheriff's inmate search (`/dmxConnect/api/Booking/`). For all
+   eight, the list total must match its rows and a second official ID list must name the same
+   people. Wagoner, Canadian, and Sequoyah also fetch each booking's detail for its charges and
+   check it against the list entry (the Canadian and Sequoyah details also carry the booking number
+   and must show no release date); the Lincoln, Pawnee, Seminole, Carter, and Muskogee lists already
+   carry the charges and must show no release dates. On a mismatch the crawl restarts (up to three
+   times) and then fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 

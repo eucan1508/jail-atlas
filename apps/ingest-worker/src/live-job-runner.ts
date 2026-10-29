@@ -79,6 +79,8 @@ import {
   CANADIAN_COUNTY_ADAPTER_KEY,
   createSequoyahCountySourceAdapter,
   SEQUOYAH_COUNTY_ADAPTER_KEY,
+  createMuskogeeCountySourceAdapter,
+  MUSKOGEE_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -197,7 +199,8 @@ export function createLiveSourceAdapter(
                         source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === CARTER_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY
+                        source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
                       : portal
                         ? // The portal is opened (its session token or setup), then takes the
@@ -448,6 +451,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY) {
     return createSequoyahCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY) {
+    return createMuskogeeCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

@@ -1826,6 +1826,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/muskogee-county": {
+    facilityName: "Muskogee County Jail",
+    address: "122 South 3rd Street, Muskogee, OK 74401",
+    phone: "918-682-7851",
+    operatedBy: "Muskogee County Sheriff's Office",
+    reviewedAt: "October 29, 2026",
+    overview:
+      "The Muskogee County Sheriff's Office runs the county jail on South 3rd Street in Muskogee. The jail's line is 918-682-7851; the Sheriff's Office at 220 State Street answers at 918-687-0202, with administration open 8:30 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.muskogeeso.org/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Family and friends visit online only, through NCIC Inmate Communications; there are no in-person visits for personal visitors, so do not come to the jail to visit. Create an account on the NCIC website and follow its steps to schedule a visit. Visits can be restricted or suspended for security or discipline. In-person visits are limited to attorneys and other approved professionals, who should call the jail to arrange access.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.muskogeeso.org/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary orders close at lockdown on Wednesday night and are usually delivered on Friday, or the next business day after a holiday. Add money at the lobby kiosk, which takes cash or credit cards, online through the commissary company's website, or by mailing a money order with the inmate's name.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.muskogeeso.org/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Since September 24, 2026, mail sent straight to the jail is returned. Send letters to the inmate's name and SO number, Muskogee County Jail, PO Box 591, Longview, Texas 75606, with a full return address. Each letter is scanned for the inmate: no more than five pages up to 8.5 by 11 inches, writing on the front only, and one photo per mailing, or the whole letter is sent back. Do not send legal or medical mail, magazines, books, or money orders to Longview. Messages, photos, and documents can also be sent through the NCIC messaging system for 25 to 35 cents each.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.muskogeeso.org/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts, and the Sheriff's site does not explain how to post bond. Call the jail at 918-682-7851 to ask about a bond and how to post it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://www.muskogeeso.org/contact-us"
+      }
+    ],
+    faq: [
+      {
+        question: "Can I visit someone at the Muskogee County Jail in person?",
+        answer:
+          "No. Family and friends visit online only through NCIC. In-person visits are limited to attorneys and approved professionals."
+      },
+      {
+        question: "How do I put money on a Muskogee County inmate's account?",
+        answer:
+          "Use the lobby kiosk (cash or card), deposit online through the commissary company, or mail a money order with the inmate's name. Commissary orders close Wednesday night."
+      },
+      {
+        question: "Where do I send a letter to a Muskogee County inmate?",
+        answer:
+          "Inmate's name and SO number, Muskogee County Jail, PO Box 591, Longview, Texas 75606. Mail sent directly to the jail is returned."
+      },
+      {
+        question: "How do I find out a bond amount in Muskogee County?",
+        answer: "The roster does not list bond amounts. Call the jail at 918-682-7851."
+      }
+    ]
+  },
   "oklahoma/sequoyah-county": {
     facilityName: "Sequoyah County Jail",
     address: "119 South Oak Street, Sallisaw, OK 74955",

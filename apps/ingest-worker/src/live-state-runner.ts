@@ -344,6 +344,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "sequoyah",
       adapterKey: "sequoyah-county-ok-current-roster",
       sourceHost: "scsok.org"
+    },
+    {
+      countySlug: "muskogee",
+      adapterKey: "muskogee-county-ok-current-roster",
+      sourceHost: "www.muskogeeso.org"
     }
   ]
 };
