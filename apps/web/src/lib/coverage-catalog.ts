@@ -772,6 +772,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Muskogee County",
+    slug: "muskogee-county",
+    publishedAt: "2026-10-29",
+    seatCity: "Muskogee",
+    h1: "Muskogee County Jail Roster & Inmate Search",
+    title: "Muskogee County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Muskogee County, Oklahoma current-custody information from the sheriff's official inmate search, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Muskogee County Sheriff's Office runs the county jail in Muskogee and posts an inmate search of the people it holds. This page lists everyone that search shows as in custody, with each booking number and the charges as the sheriff lists them, and leaves out photos, birth dates, home addresses, and classification.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.muskogeeso.org/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Muskogee County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

@@ -94,6 +94,7 @@ Oklahoma was added on 2026-10-09.
 | Carter   | [Carter County Sheriff inmate search](https://www.cartercountysheriff.us/inmate-search)  | Adapter tested; production approval pending |
 | Canadian | [Canadian County Sheriff inmate search](https://ccsheriff.net/inmate-search)             | Adapter tested; production approval pending |
 | Sequoyah | [Sequoyah County Sheriff inmate search](https://scsok.org/inmate-search)                 | Adapter tested; production approval pending |
+| Muskogee | [Muskogee County Sheriff inmate search](https://www.muskogeeso.org/inmate-search)        | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
