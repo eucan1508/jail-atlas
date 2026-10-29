@@ -239,6 +239,36 @@ describe("Dallas County source adapter", () => {
     expect(result.failure.diagnosticCode).toBe("DALLAS_ACTIVE_BOOKING_AMBIGUOUS");
   });
 
+  it("leaves out someone released between the list read and their detail read", async () => {
+    const released = syntheticDallasAlphaDetail.replace(
+      "<dt>Release Date</dt><dd></dd>",
+      "<dt>Release Date</dt><dd>01/03/2000 09:00 AM</dd>"
+    );
+    const result = await runSourceAdapter(adapter(fixtureMap({ [alphaUrl]: released })), context());
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.person.displayName)).toEqual([
+      "SYNTHETIC BETA — TEST ONLY"
+    ]);
+
+    const everyoneReleased = await runSourceAdapter(
+      adapter(
+        fixtureMap({
+          [alphaUrl]: released,
+          [betaUrl]: syntheticDallasBetaDetail.replace(
+            "<dt>Release Date</dt><dd></dd>",
+            "<dt>Release Date</dt><dd>01/03/2000 09:00 AM</dd>"
+          )
+        })
+      ),
+      context()
+    );
+    expect(everyoneReleased.ok).toBe(false);
+    if (everyoneReleased.ok) return;
+    expect(everyoneReleased.failure.diagnosticCode).toBe("DALLAS_ACTIVE_BOOKING_MISSING");
+  });
+
   it("ignores optional bond rows, including contradictory values", async () => {
     const unknownType = syntheticDallasAlphaDetail.replace("CASH ONLY", "UNREVIEWED TYPE");
     const zeroMonetary = syntheticDallasAlphaDetail.replace("$125.00", "$0.00");
