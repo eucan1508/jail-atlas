@@ -26,6 +26,7 @@ export const DALLAS_COUNTY_CURRENT_SOURCE_URL =
   "https://inmates.dallascountyiowa.gov/NewWorld.InmateInquiry/dallas?InCustody=True" as const;
 export const DALLAS_COUNTY_SOURCE_HOST = "inmates.dallascountyiowa.gov" as const;
 export const DALLAS_COUNTY_SOURCE_PATH = "/NewWorld.InmateInquiry/dallas" as const;
+const MAX_RELEASED_DURING_READ = 2;
 
 const expectedListHeaders = [
   "Photo",
@@ -526,10 +527,13 @@ function parseDetailDocument(
     const housingFacility = labeledValue($, container, "Housing Facility");
     return releaseDate === "" && housingFacility !== null && housingFacility.length > 0;
   });
-  if (active.length !== 1) {
+  // Someone released between the list read and their detail read shows no active booking; they
+  // are no longer in custody and are left out.
+  if (active.length === 0) return null;
+  if (active.length > 1) {
     throw adapterError(
       "DALLAS_ACTIVE_BOOKING_AMBIGUOUS",
-      "The detail response did not identify exactly one active booking."
+      "The detail response showed more than one active booking."
     );
   }
 
@@ -830,7 +834,7 @@ export function createDallasCountySourceAdapter(
     }
 
     const details = new Map(fetched.detailDocuments.map((document) => [document.url, document]));
-    const parsedRecords = records.map((record, sourceOrder) => {
+    const stillHeld = records.flatMap((record) => {
       const detail = details.get(record.detailUrl);
       if (detail === undefined) {
         throw adapterError(
@@ -838,11 +842,19 @@ export function createDallasCountySourceAdapter(
           "A list record had no matching detail response."
         );
       }
-      return ParsedRecordSchema.parse({
-        ...parseDetailDocument(detail, record),
-        sourceOrder
-      });
+      const parsed = parseDetailDocument(detail, record);
+      return parsed === null ? [] : [parsed];
     });
+    // A release or two during the read is ordinary; more means the detail pages changed shape.
+    if (stillHeld.length === 0 || records.length - stillHeld.length > MAX_RELEASED_DURING_READ) {
+      throw adapterError(
+        "DALLAS_ACTIVE_BOOKING_MISSING",
+        "Too many detail responses showed no active booking."
+      );
+    }
+    const parsedRecords = stillHeld.map((record, sourceOrder) =>
+      ParsedRecordSchema.parse({ ...record, sourceOrder })
+    );
     if (new Set(parsedRecords.map((record) => record.detailUrl)).size !== parsedRecords.length) {
       throw adapterError(
         "DALLAS_DETAIL_DUPLICATE",
