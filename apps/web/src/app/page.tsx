@@ -40,6 +40,15 @@ const homeFaqItems: readonly FaqItem[] = [
   }
 ];
 
+const numberFormat = new Intl.NumberFormat("en-US");
+
+function updatedAgo(capturedAt: Date): string {
+  const minutes = Math.max(1, Math.round((Date.now() - capturedAt.getTime()) / 60_000));
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+}
+
 export default async function HomePage() {
   const prototypeAvailable = canRenderSyntheticScottCounty();
   const published = await getPublishedCountyCoverage();
@@ -64,6 +73,17 @@ export default async function HomePage() {
         state.published > 0 ||
         coveragePreviewAllowed()
     );
+  // Totals come from each live county's latest successful capture, the same rows its page shows.
+  const listedPeople = published.reduce(
+    (total, { liveSource }) => total + liveSource.recordCount,
+    0
+  );
+  const liveStates = new Set(published.map(({ entry }) => entry.state)).size;
+  const latestCapture = published.reduce<Date | null>(
+    (latest, { liveSource }) =>
+      latest === null || liveSource.capturedAt > latest ? liveSource.capturedAt : latest,
+    null
+  );
   const recentlyAdded = [...published]
     .sort((left, right) => right.entry.publishedAt.localeCompare(left.entry.publishedAt))
     .slice(0, 9);
@@ -86,6 +106,28 @@ export default async function HomePage() {
               <i aria-hidden="true" /> Freshness shown
             </span>
           </div>
+          {latestCapture ? (
+            <dl className="hero-stats" aria-label="Directory totals">
+              <div>
+                <dt>States</dt>
+                <dd>{liveStates}</dd>
+              </div>
+              <div>
+                <dt>Counties</dt>
+                <dd>{published.length}</dd>
+              </div>
+              <div>
+                <dt>People listed</dt>
+                <dd>{numberFormat.format(listedPeople)}</dd>
+              </div>
+              <div>
+                <dt>Last update</dt>
+                <dd>
+                  <time dateTime={latestCapture.toISOString()}>{updatedAgo(latestCapture)}</time>
+                </dd>
+              </div>
+            </dl>
+          ) : null}
         </div>
         <div className="home-hero__finder">
           <h2>Find a county jail roster</h2>

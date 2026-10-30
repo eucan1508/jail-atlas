@@ -2307,6 +2307,36 @@ h2 {
   height: 0.42rem;
   width: 0.42rem;
 }
+.hero-stats {
+  border-top: 1px solid rgb(214 246 233 / 0.15);
+  display: grid;
+  gap: 1rem 1.6rem;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  margin: 1.6rem 0 0;
+  padding-top: 1.4rem;
+}
+.hero-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2rem;
+}
+.hero-stats dt {
+  color: #a9cfc3;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hero-stats dd {
+  color: #f7fffb;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
 .home-hero__finder {
   align-self: center;
 }
@@ -2666,6 +2696,9 @@ textarea {
   .hero-proof-row {
     align-items: start;
     flex-direction: column;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(2, auto);
   }
   .county-live-header {
     padding-bottom: 1.8rem;
