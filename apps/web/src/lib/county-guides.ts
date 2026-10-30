@@ -1826,6 +1826,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/ottawa-county": {
+    facilityName: "Ottawa County Jail",
+    address: "28 B St SE, Miami, OK 74354",
+    phone: "918-542-2806",
+    operatedBy: "Ottawa County Sheriff's Office",
+    reviewedAt: "October 30, 2026",
+    overview:
+      "The Ottawa County Sheriff's Office runs the county jail in Miami. The Sheriff's main line is 918-542-2806 and the non-emergency number is 918-542-5585. Administration is open Monday through Thursday from 9 a.m. to 5 p.m. and Friday from 9 a.m. to 3 p.m.; dispatch answers around the clock.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.ottawacountysook.gov/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video and are recorded, through Prodigy Solutions. Sign up on the Prodigy website with a valid ID and a plain headshot photo, and book every visit, online or on-site, at least 24 hours ahead. Each inmate gets one 15-minute visit a week. On-site visits use the lobby kiosk, Monday through Friday from 9 a.m. to 5 p.m., two visitors per machine, and are free. Phones, cameras, lighters, tobacco, and e-cigarettes are not allowed, and anyone released from this jail cannot visit for 90 days.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.ottawacountysook.gov/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary and deposits go through Prodigy. Money orders are not accepted: add money online with a credit or debit card, or use the Prodigy kiosk in the lobby, which also takes cash. Orders must be in by Tuesday at 10 a.m.; later orders wait until the next week. Money left on the account at release can only be collected by the inmate.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.ottawacountysook.gov/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail goes to Prodigy Solutions, then the inmate's name, PO Box 1498, Chickasha, OK 73018, with the full name and address of both sender and inmate on the envelope. Photos must be on photo paper and no larger than 4 by 6 inches. No lipstick, scents, stickers, or metal, and no printed social media posts or newspaper clippings. Former inmates cannot write to anyone in the jail for six months after release. The site does not explain inmate phone calls; call the jail at 918-542-2806.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.ottawacountysook.gov/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the jail at 918-542-2806 to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.ottawacountysook.gov/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Ottawa County Jail?",
+        answer:
+          "Visits are by video through Prodigy and must be booked 24 hours ahead. On-site visits at the lobby kiosk run Monday through Friday, 9 a.m. to 5 p.m., and are free."
+      },
+      {
+        question: "How do I put money on an Ottawa County inmate's account?",
+        answer:
+          "Deposit online through Prodigy with a card, or use the lobby kiosk, which takes cash and cards. Money orders are not accepted."
+      },
+      {
+        question: "Where do I send a letter to an Ottawa County inmate?",
+        answer: "Prodigy Solutions, inmate's name, PO Box 1498, Chickasha, OK 73018."
+      },
+      {
+        question: "How do I find out a bond amount in Ottawa County?",
+        answer:
+          "The roster does not list bond amounts. Call the jail at 918-542-2806, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/muskogee-county": {
     facilityName: "Muskogee County Jail",
     address: "122 South 3rd Street, Muskogee, OK 74401",

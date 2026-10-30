@@ -790,6 +790,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Ottawa County",
+    slug: "ottawa-county",
+    publishedAt: "2026-10-30",
+    seatCity: "Miami",
+    h1: "Ottawa County Jail Roster & Inmate Search",
+    title: "Ottawa County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Ottawa County, Oklahoma current-custody information from the sheriff's official inmate search, with source-listed charges and capture time.",
+    article:
+      "The Ottawa County Sheriff's Office runs the county jail in Miami and posts an inmate search of the people it holds. This page lists everyone that search shows as in custody, with the charges as the sheriff lists them. The search shows no booking numbers, and photos, birth dates, home towns, and the holding agency are left out.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.ottawacountysook.gov/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Ottawa County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

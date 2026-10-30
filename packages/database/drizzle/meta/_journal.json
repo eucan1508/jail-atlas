@@ -456,6 +456,13 @@
       "when": 1795236800000,
       "tag": "0064_oklahoma_muskogee_source",
       "breakpoints": true
+    },
+    {
+      "idx": 65,
+      "version": "7",
+      "when": 1795323200000,
+      "tag": "0065_oklahoma_ottawa_source",
+      "breakpoints": true
     }
   ]
 }

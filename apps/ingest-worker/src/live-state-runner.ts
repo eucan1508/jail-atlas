@@ -349,6 +349,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "muskogee",
       adapterKey: "muskogee-county-ok-current-roster",
       sourceHost: "www.muskogeeso.org"
+    },
+    {
+      countySlug: "ottawa",
+      adapterKey: "ottawa-county-ok-current-roster",
+      sourceHost: "www.ottawacountysook.gov"
     }
   ]
 };
