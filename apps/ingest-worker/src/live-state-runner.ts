@@ -354,6 +354,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "ottawa",
       adapterKey: "ottawa-county-ok-current-roster",
       sourceHost: "www.ottawacountysook.gov"
+    },
+    {
+      countySlug: "love",
+      adapterKey: "love-county-ok-current-roster",
+      sourceHost: "www.lovecosheriff.com"
     }
   ]
 };

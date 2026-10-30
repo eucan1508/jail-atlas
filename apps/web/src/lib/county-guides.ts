@@ -1826,6 +1826,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/love-county": {
+    facilityName: "Love County Justice Center",
+    address: "8339 US Highway 77, Marietta, OK 73448",
+    phone: "580-276-3150",
+    operatedBy: "Love County Sheriff's Office",
+    reviewedAt: "October 30, 2026",
+    overview:
+      "The Love County Sheriff's Office runs the Love County Justice Center, the county jail on US Highway 77 in Marietta. The main line is 580-276-3150; press 2 for the jail. Dispatch answers around the clock at 580-276-5898, and administration is open 8:30 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.lovecosheriff.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video and are recorded, through Prodigy Solutions. Sign up on the Prodigy website with a valid ID and a plain headshot photo, and book every visit, online or on-site, at least 24 hours ahead. Each inmate gets one 15-minute visit a week. On-site visits use the kiosk in the visitation room, two visitors per machine, and are free: weekdays from 2 to 6:30 p.m., and Saturday and Sunday from 8:30 a.m. to 6:30 p.m. Laptops, tablets, lighters, tobacco, and e-cigarettes are not allowed.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.lovecosheriff.com/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Benchmark. Add money with cash or a card at the lobby kiosk, open 24 hours a day, or online. Orders must be in by Monday at 8 a.m. for that week's delivery. For questions, call 580-276-3150, option 2, from 8:30 a.m. to 4:30 p.m. on weekdays.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.lovecosheriff.com/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, Love County Justice Center, 8339 US-77, Marietta, OK 73448, with the full name and address of both sender and inmate. Photos can be no larger than 4 by 6 inches, and Polaroids are not accepted. No greeting cards, stickers, staples, scents, blank paper, envelopes, stamps, or printed social media posts. Softcover books must come new from a publisher or a store such as Amazon or Barnes & Noble. The site does not explain inmate phone calls; call the jail at 580-276-3150, option 2.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.lovecosheriff.com/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the jail at 580-276-3150, option 2, to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.lovecosheriff.com/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Love County jail?",
+        answer:
+          "Visits are by video through Prodigy and must be booked 24 hours ahead. On-site kiosk visits are free, weekdays 2 to 6:30 p.m. and weekends 8:30 a.m. to 6:30 p.m."
+      },
+      {
+        question: "How do I put money on a Love County inmate's account?",
+        answer:
+          "Use the lobby kiosk, which takes cash and cards and is open 24 hours, or deposit online. Commissary orders are due Monday at 8 a.m."
+      },
+      {
+        question: "Where do I send a letter to a Love County inmate?",
+        answer: "Inmate's name, Love County Justice Center, 8339 US-77, Marietta, OK 73448."
+      },
+      {
+        question: "How do I find out a bond amount in Love County?",
+        answer:
+          "The roster does not list bond amounts. Call the jail at 580-276-3150, option 2, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/ottawa-county": {
     facilityName: "Ottawa County Jail",
     address: "28 B St SE, Miami, OK 74354",
