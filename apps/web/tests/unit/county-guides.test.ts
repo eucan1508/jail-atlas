@@ -68,7 +68,8 @@ const liveCountyKeys = [
   "oklahoma/carter-county",
   "oklahoma/canadian-county",
   "oklahoma/sequoyah-county",
-  "oklahoma/muskogee-county"
+  "oklahoma/muskogee-county",
+  "oklahoma/ottawa-county"
 ] as const;
 
 describe("verified county guides", () => {
