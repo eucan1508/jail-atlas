@@ -83,6 +83,8 @@ import {
   MUSKOGEE_COUNTY_ADAPTER_KEY,
   createOttawaCountySourceAdapter,
   OTTAWA_COUNTY_ADAPTER_KEY,
+  createLoveCountySourceAdapter,
+  LOVE_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -203,7 +205,8 @@ export function createLiveSourceAdapter(
                         source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === OTTAWA_COUNTY_ADAPTER_KEY
+                        source.adapterKey === OTTAWA_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === LOVE_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
                       : portal
                         ? // The portal is opened (its session token or setup), then takes the
@@ -461,6 +464,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY) {
     return createMuskogeeCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === LOVE_COUNTY_ADAPTER_KEY) {
+    return createLoveCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

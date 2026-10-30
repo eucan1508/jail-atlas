@@ -69,7 +69,8 @@ const liveCountyKeys = [
   "oklahoma/canadian-county",
   "oklahoma/sequoyah-county",
   "oklahoma/muskogee-county",
-  "oklahoma/ottawa-county"
+  "oklahoma/ottawa-county",
+  "oklahoma/love-county"
 ] as const;
 
 describe("verified county guides", () => {

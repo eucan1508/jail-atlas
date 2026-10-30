@@ -463,6 +463,13 @@
       "when": 1795323200000,
       "tag": "0065_oklahoma_ottawa_source",
       "breakpoints": true
+    },
+    {
+      "idx": 66,
+      "version": "7",
+      "when": 1795409600000,
+      "tag": "0066_oklahoma_love_source",
+      "breakpoints": true
     }
   ]
 }
