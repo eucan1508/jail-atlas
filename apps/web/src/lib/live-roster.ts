@@ -91,7 +91,8 @@ const liveAdapterKeys: Record<string, string> = {
   "oklahoma/ottawa-county": "ottawa-county-ok-current-roster",
   "oklahoma/love-county": "love-county-ok-current-roster",
   "oklahoma/greer-county": "greer-county-ok-current-roster",
-  "oklahoma/major-county": "major-county-ok-current-roster"
+  "oklahoma/major-county": "major-county-ok-current-roster",
+  "oklahoma/jackson-county": "jackson-county-ok-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

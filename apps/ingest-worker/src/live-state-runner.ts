@@ -369,6 +369,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "major",
       adapterKey: "major-county-ok-current-roster",
       sourceHost: "www.majorcosheriff.com"
+    },
+    {
+      countySlug: "jackson",
+      adapterKey: "jackson-county-ok-current-roster",
+      sourceHost: "www.jacksoncountyso.com"
     }
   ]
 };

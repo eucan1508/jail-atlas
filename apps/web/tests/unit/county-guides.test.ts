@@ -72,7 +72,8 @@ const liveCountyKeys = [
   "oklahoma/ottawa-county",
   "oklahoma/love-county",
   "oklahoma/greer-county",
-  "oklahoma/major-county"
+  "oklahoma/major-county",
+  "oklahoma/jackson-county"
 ] as const;
 
 describe("verified county guides", () => {

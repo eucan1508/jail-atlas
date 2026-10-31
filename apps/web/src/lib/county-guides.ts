@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/jackson-county": {
+    facilityName: "Jackson County Jail",
+    address: "600 S Main St., Altus, OK 73521",
+    phone: "580-482-0408",
+    operatedBy: "Jackson County Sheriff's Office",
+    reviewedAt: "October 31, 2026",
+    overview:
+      "The Jackson County Sheriff's Office runs the county jail on South Main Street in Altus. The Sheriff's main line is 580-482-0408, and administrative hours are 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.jacksoncountyso.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through Prodigy; there are no in-person visits. Set up a Prodigy account, verify your identity with a copy of your driver's license and a profile photo, and add money to a prepaid account. Approval takes 3 to 5 business days, and every visit must be booked at least 24 hours ahead. Visitors must be 18 or come with a parent or legal guardian, and all visits are monitored and recorded. Prodigy support is at 866-700-4545.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://www.jacksoncountyso.com/inmate-mail-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary and deposits go through Prodigy Solutions. Add money online, or at the lobby kiosk at the jail, open 24 hours, with cash or a card. Orders must be in by Monday at 5 a.m. for Tuesday delivery.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.jacksoncountyso.com/commissary-web-deposits"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to c/o Jackson County Sheriff's Office, the inmate's name, 600 S Main St., Altus, OK 73521, with your first and last name and return address, or the letter is sent back. All mail is opened and checked. No newspapers, magazines, Polaroids, pens, stamps, envelopes, blank paper, or musical cards, and no more than 3 to 5 photos per letter; only items that can be scanned are processed. For phone calls, call the jail at 580-482-0408.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://www.jacksoncountyso.com/inmate-mail-visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the Sheriff's Office at 580-482-0408 to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.jacksoncountyso.com/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "Can I visit someone at the Jackson County Jail in person?",
+        answer:
+          "No. All visits are by video through Prodigy, need approval first, and must be booked at least 24 hours ahead."
+      },
+      {
+        question: "How do I put money on a Jackson County inmate's account?",
+        answer:
+          "Deposit online through Prodigy, or use the lobby kiosk at the jail, which takes cash and cards. Commissary orders are due Monday at 5 a.m."
+      },
+      {
+        question: "Where do I send a letter to a Jackson County inmate?",
+        answer:
+          "c/o Jackson County Sheriff's Office, inmate's name, 600 S Main St., Altus, OK 73521."
+      },
+      {
+        question: "How do I find out a bond amount in Jackson County?",
+        answer:
+          "The roster does not list bond amounts. Call the Sheriff's Office at 580-482-0408, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/major-county": {
     facilityName: "Major County Jail",
     address: "500 E Broadway #4, Fairview, OK 73737",
