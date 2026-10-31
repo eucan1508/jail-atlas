@@ -844,6 +844,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Major County",
+    slug: "major-county",
+    publishedAt: "2026-10-31",
+    seatCity: "Fairview",
+    h1: "Major County Jail Roster & Inmate Search",
+    title: "Major County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Major County, Oklahoma current-custody information from the sheriff's official inmate search, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Major County Sheriff's Office runs the county jail in Fairview and posts an inmate search of the people it holds. This page lists everyone that search shows as in custody, with each booking number and the charges as the sheriff lists them, and leaves out photos, birth dates, home addresses, and classification.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.majorcosheriff.com/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Major County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

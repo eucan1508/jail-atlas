@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/major-county": {
+    facilityName: "Major County Jail",
+    address: "500 E Broadway #4, Fairview, OK 73737",
+    phone: "580-227-4471",
+    operatedBy: "Major County Sheriff's Office",
+    reviewedAt: "October 31, 2026",
+    overview:
+      "The Major County Sheriff's Office runs the county jail in Fairview. The main line is 580-227-4471; press 2 for the jail. Administration is open 8:30 a.m. to 4:30 p.m. on weekdays, and dispatch answers around the clock.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.majorcosheriff.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video through City Tele Coin, either online from home or at the jail's kiosk. Visits at the jail are by appointment only on Sundays from 2 to 4 p.m., closed on holidays, and last 15 minutes, with one visit every seven days per inmate. Visitors must be 18 with a state photo ID, or come with an adult who has one, and each visitor gets a records and warrant check. Phones, cameras, food, drinks, and tobacco are not allowed past the lobby. Inmates who cannot pay may ask for a free online visit.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.majorcosheriff.com/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Each inmate has a commissary account through Jail ATM, and family can add money or order commissary online. An inmate can spend up to $200 a week. Orders are placed on Thursdays and must be called in by 9 a.m. that day.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.majorcosheriff.com/inmate-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Every envelope needs the first and last name and full address of both sender and inmate. Photos must be printed on paper and no larger than 4 by 6 inches. No greeting cards, stickers, metal, scents, blank paper, envelopes, stamps, or printed social media posts or clippings. The site does not list a separate mailing address or explain inmate phone calls; call the jail at 580-227-4471, option 2, before sending mail. Messages can also be sent through City Tele Coin.",
+        sourceLabel: "Official visitation and mail page",
+        sourceUrl: "https://www.majorcosheriff.com/visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the jail at 580-227-4471, option 2, to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.majorcosheriff.com/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Major County Jail?",
+        answer:
+          "Visits are by video through City Tele Coin. At the jail, visits are by appointment on Sundays from 2 to 4 p.m. and last 15 minutes."
+      },
+      {
+        question: "How do I put money on a Major County inmate's account?",
+        answer:
+          "Add money or order commissary online through Jail ATM. Orders must be called in by 9 a.m. on Thursday, up to $200 a week."
+      },
+      {
+        question: "How do I send mail to a Major County inmate?",
+        answer:
+          "Put the full name and address of both sender and inmate on the envelope, and call the jail at 580-227-4471, option 2, to confirm where to send it."
+      },
+      {
+        question: "How do I find out a bond amount in Major County?",
+        answer:
+          "The roster does not list bond amounts. Call the jail at 580-227-4471, option 2, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/greer-county": {
     facilityName: "Greer County Jail",
     address: "105 S. Pennsylvania Ave., Mangum, OK 73554",

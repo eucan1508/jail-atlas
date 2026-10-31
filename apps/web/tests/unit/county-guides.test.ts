@@ -71,7 +71,8 @@ const liveCountyKeys = [
   "oklahoma/muskogee-county",
   "oklahoma/ottawa-county",
   "oklahoma/love-county",
-  "oklahoma/greer-county"
+  "oklahoma/greer-county",
+  "oklahoma/major-county"
 ] as const;
 
 describe("verified county guides", () => {

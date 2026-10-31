@@ -364,6 +364,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "greer",
       adapterKey: "greer-county-ok-current-roster",
       sourceHost: "www.greercountysheriff.org"
+    },
+    {
+      countySlug: "major",
+      adapterKey: "major-county-ok-current-roster",
+      sourceHost: "www.majorcosheriff.com"
     }
   ]
 };
