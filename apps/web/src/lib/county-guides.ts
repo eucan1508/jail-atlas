@@ -2944,6 +2944,67 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/clearwater-county": {
+    facilityName: "Clearwater County Jail",
+    address: "213 Main Ave. N., Bagley, MN 56621",
+    phone: "218-694-6226",
+    operatedBy: "Clearwater County Sheriff's Office",
+    reviewedAt: "October 31, 2026",
+    overview:
+      "The Clearwater County Sheriff's Office runs the county jail in Bagley, which holds adult men and women, both awaiting trial and sentenced. The Sheriff's Office is at 213 Main Avenue North and answers at 218-694-6226.",
+    contactSourceLabel: "Official Sheriff's Office page",
+    contactSourceUrl: "https://clearwatercountymn.gov/sheriff",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are non-contact and last 15 to 20 minutes. Visiting hours are Tuesday 6:30 to 8:30 p.m., Friday 8 to 10 a.m., and Saturday 12:30 to 4:30 p.m. Call to book a visit by noon the day before. Bring a photo ID; visitors get a warrant check, a dress code applies, and minors must come with a parent or guardian. Each inmate can have up to four visits a week. People on felony probation or felony release conditions, and anyone held at this jail in the last six months, cannot visit.",
+        sourceLabel: "Official jail page",
+        sourceUrl:
+          "https://clearwatercountymn.gov/index.asp?SEC=4EDE8BC4-9827-4EA4-A98B-0F31978FDB51"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposit money online through Inmate Canteen, or in person at the TurnKey kiosk in the jail lobby, which takes cash and credit cards.",
+        sourceLabel: "Official jail page",
+        sourceUrl:
+          "https://clearwatercountymn.gov/index.asp?SEC=4EDE8BC4-9827-4EA4-A98B-0F31978FDB51"
+      },
+      {
+        title: "Phone and mail",
+        body: "Leave a voicemail for an inmate at 218-214-7070 with your name, call-back number, and the inmate's name; inmates hear messages during their phone time. Phone cards of $20, $50, or $100 can be bought through Reliance Telephone. Address letters to Clearwater County Jail, the inmate's full name, 213 Main Ave. N., Dept. 101, Bagley, MN 56621.",
+        sourceLabel: "Official jail page",
+        sourceUrl:
+          "https://clearwatercountymn.gov/index.asp?SEC=4EDE8BC4-9827-4EA4-A98B-0F31978FDB51"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate list does not show bail amounts, and the county site does not explain how to post bail. Call the Sheriff's Office at 218-694-6226 to ask about bail. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://clearwatercountymn.gov/sheriff"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Clearwater County Jail?",
+        answer:
+          "Tuesday 6:30 to 8:30 p.m., Friday 8 to 10 a.m., and Saturday 12:30 to 4:30 p.m. Call to book by noon the day before and bring a photo ID."
+      },
+      {
+        question: "How do I put money on a Clearwater County inmate's account?",
+        answer:
+          "Deposit online through Inmate Canteen, or use the TurnKey kiosk in the jail lobby, which takes cash and credit cards."
+      },
+      {
+        question: "Where do I send a letter to a Clearwater County inmate?",
+        answer:
+          "Clearwater County Jail, inmate's full name, 213 Main Ave. N., Dept. 101, Bagley, MN 56621."
+      },
+      {
+        question: "How do I find out about bail in Clearwater County?",
+        answer: "The inmate list does not show bail. Call the Sheriff's Office at 218-694-6226."
+      }
+    ]
+  },
   "minnesota/redwood-county": {
     facilityName: "Redwood County Jail",
     address: "303 E 3rd Street, Redwood Falls, MN 56283",

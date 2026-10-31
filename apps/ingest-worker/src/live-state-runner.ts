@@ -176,6 +176,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "redwood",
       adapterKey: "redwood-county-mn-current-roster",
       sourceHost: "redwoodcounty-mn.gov"
+    },
+    {
+      countySlug: "clearwater",
+      adapterKey: "clearwater-county-mn-current-roster",
+      sourceHost: "map.co.clearwater.mn.us"
     }
   ],
   TX: [

@@ -30,6 +30,7 @@ const liveCountyKeys = [
   "minnesota/freeborn-county",
   "minnesota/cottonwood-county",
   "minnesota/redwood-county",
+  "minnesota/clearwater-county",
   "iowa/johnson-county",
   "iowa/polk-county",
   "iowa/woodbury-county",

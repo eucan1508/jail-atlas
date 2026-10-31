@@ -1300,6 +1300,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Clearwater County",
+    slug: "clearwater-county",
+    publishedAt: "2026-10-31",
+    seatCity: "Bagley",
+    h1: "Clearwater County Jail Roster & Inmate Search",
+    title: "Clearwater County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Clearwater County, Minnesota current-inmate information for the jail in Bagley from the Sheriff's official Inmate List, with charges, statute codes, and capture time.",
+    article:
+      "The Clearwater County Sheriff's Office posts an Inmate List of the people held at the county jail in Bagley and updates it about every hour. This page lists each person with every charge and its statute code, and leaves out age, sex, booking times, and inmate numbers.",
+    // The Inmate List page loads its list from this county file, which is what is read.
+    officialSourceUrl: "https://map.co.clearwater.mn.us/inmate-list/inmate-data/inmates.json",
+    officialSourceLabel: "Clearwater County Sheriff's Office Inmate List",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Redwood County",
     slug: "redwood-county",
     publishedAt: "2026-10-23",
