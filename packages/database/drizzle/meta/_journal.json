@@ -484,6 +484,13 @@
       "when": 1795582400000,
       "tag": "0068_oklahoma_major_source",
       "breakpoints": true
+    },
+    {
+      "idx": 69,
+      "version": "7",
+      "when": 1795668800000,
+      "tag": "0069_oklahoma_jackson_source",
+      "breakpoints": true
     }
   ]
 }
