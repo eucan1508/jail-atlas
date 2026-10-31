@@ -103,8 +103,10 @@ const HEADERS = [
 const CHARGE_LINE = /^(\d{1,4}[A-Z]?(?:\.[0-9A-Za-z()]+)+) - (\S.*)$/;
 // "Bail/Bond - $20000.00 - Court Order", "ROR - $0.00 - Court Order", "Bail/Bond - $1000.00".
 // The type is a single word, so a wrapped note ("Court Order") never runs into the next type.
+// Labels are one word, except "Cash Only". Other multi-word labels stay unreadable on purpose:
+// a note such as "Court Order" can sit right before the next label, so only known ones split.
 const BAIL_ENTRY =
-  /([A-Za-z][A-Za-z/]*) - \$(\d+)\.(\d{2})(?: - ([A-Za-z][A-Za-z ]*?))?(?= [A-Za-z][A-Za-z/]* - \$|$)/g;
+  /(Cash Only|[A-Za-z][A-Za-z/]*) - \$(\d+)\.(\d{2})(?: - ([A-Za-z][A-Za-z ]*?))?(?= (?:Cash Only|[A-Za-z][A-Za-z/]*) - \$|$)/g;
 const NAME = /^\p{L}[\p{L}' ().-]*, \p{L}[\p{L}' ().-]*$/u;
 const MONTHS = [
   "January",
