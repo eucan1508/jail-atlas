@@ -93,6 +93,8 @@ import {
   JACKSON_COUNTY_ADAPTER_KEY,
   createCusterCountySourceAdapter,
   CUSTER_COUNTY_ADAPTER_KEY,
+  createClearwaterCountySourceAdapter,
+  CLEARWATER_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
   CERRO_GORDO_COUNTY_ADAPTER_KEY,
   createStLouisCountySourceAdapter,
@@ -476,6 +478,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY) {
     return createMuskogeeCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CLEARWATER_COUNTY_ADAPTER_KEY) {
+    return createClearwaterCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

@@ -498,6 +498,13 @@
       "when": 1795755200000,
       "tag": "0070_oklahoma_custer_source",
       "breakpoints": true
+    },
+    {
+      "idx": 71,
+      "version": "7",
+      "when": 1795841600000,
+      "tag": "0071_minnesota_clearwater_source",
+      "breakpoints": true
     }
   ]
 }
