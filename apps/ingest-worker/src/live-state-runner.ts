@@ -359,6 +359,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "love",
       adapterKey: "love-county-ok-current-roster",
       sourceHost: "www.lovecosheriff.com"
+    },
+    {
+      countySlug: "greer",
+      adapterKey: "greer-county-ok-current-roster",
+      sourceHost: "www.greercountysheriff.org"
     }
   ]
 };

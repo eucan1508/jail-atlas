@@ -97,6 +97,7 @@ Oklahoma was added on 2026-10-09.
 | Muskogee | [Muskogee County Sheriff inmate search](https://www.muskogeeso.org/inmate-search)        | Adapter tested; production approval pending |
 | Ottawa   | [Ottawa County Sheriff inmate search](https://www.ottawacountysook.gov/inmate-search)    | Adapter tested; production approval pending |
 | Love     | [Love County Sheriff inmate search](https://www.lovecosheriff.com/inmate-search)         | Adapter tested; production approval pending |
+| Greer    | [Greer County Sheriff inmate search](https://www.greercountysheriff.org/inmate-search)   | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

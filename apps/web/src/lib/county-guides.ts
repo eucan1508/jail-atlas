@@ -1826,6 +1826,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/greer-county": {
+    facilityName: "Greer County Jail",
+    address: "105 S. Pennsylvania Ave., Mangum, OK 73554",
+    phone: "580-782-3065",
+    operatedBy: "Greer County Sheriff's Office",
+    reviewedAt: "October 31, 2026",
+    overview:
+      "The Greer County Sheriff's Office runs the county jail in Mangum, in use since 1920. It holds men and women and has room for up to 43 people. The Sheriff's main line is 580-782-3065, and the office is open 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.greercountysheriff.org/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through City Tele Coin; there are no in-person visits. Create an account on the City Tele Coin website or app and choose the Greer County facility. Visitors must be 18 or come with a parent or legal guardian. Every visit is monitored and recorded, and the jail can end a visit at any time or take away visiting privileges for breaking the rules.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://www.greercountysheriff.org/mail-visitation-rules"
+      },
+      {
+        title: "Money and commissary",
+        body: "Each inmate has a commissary account through JailATM. Family can add money or order commissary online through JailATM. Orders are due by Tuesday at 7 a.m.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.greercountysheriff.org/commissary-web-deposits"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to c/o Greer County Sheriff's Office, the inmate's name, 105 S. Pennsylvania Ave., Mangum, OK 73554, with your first and last name and return address, or the letter is sent back. All mail is opened and checked. No newspapers, magazines, Polaroids, stamps, envelopes, blank paper, or musical cards, and no more than 3 to 5 photos per letter; only items that can be scanned are processed. Messages can also be sent through City Tele Coin. For phone calls, call the jail at 580-782-3065.",
+        sourceLabel: "Official mail and visitation page",
+        sourceUrl: "https://www.greercountysheriff.org/mail-visitation-rules"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts. Call the Sheriff's Office at 580-782-3065 to ask about a bond. The Sheriff's Office lists registered bondsmen; a bond that is not filled out or notarized properly will not be accepted by the court clerk, and the defendant can be arrested again. Bonds need case numbers once charges are filed. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.greercountysheriff.org/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "Can I visit someone at the Greer County Jail in person?",
+        answer:
+          "No. All visits are by video through City Tele Coin. Visitors must be 18 or come with a parent or legal guardian."
+      },
+      {
+        question: "How do I put money on a Greer County inmate's account?",
+        answer:
+          "Add money or order commissary online through JailATM. Commissary orders are due Tuesday by 7 a.m."
+      },
+      {
+        question: "Where do I send a letter to a Greer County inmate?",
+        answer:
+          "c/o Greer County Sheriff's Office, inmate's name, 105 S. Pennsylvania Ave., Mangum, OK 73554."
+      },
+      {
+        question: "How do I find out a bond amount in Greer County?",
+        answer:
+          "The roster does not list bond amounts. Call the Sheriff's Office at 580-782-3065, and see the Sheriff's list of registered bondsmen if you plan to use one."
+      }
+    ]
+  },
   "oklahoma/love-county": {
     facilityName: "Love County Justice Center",
     address: "8339 US Highway 77, Marietta, OK 73448",
