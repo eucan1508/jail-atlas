@@ -374,6 +374,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "jackson",
       adapterKey: "jackson-county-ok-current-roster",
       sourceHost: "www.jacksoncountyso.com"
+    },
+    {
+      countySlug: "custer",
+      adapterKey: "custer-county-ok-current-roster",
+      sourceHost: "www.custercountysheriff.com"
     }
   ]
 };

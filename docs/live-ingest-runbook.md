@@ -120,17 +120,17 @@ with the adapter records disabled and publication approval off.
    ```
 
    Oklahoma runs Wagoner, Lincoln, Pawnee, Seminole, Carter, Canadian, Sequoyah, Muskogee, Ottawa,
-   Love, Greer, Major, and Jackson, which read the JSON endpoints behind each sheriff's inmate
-   search (`/dmxConnect/api/Booking/`). For all thirteen, the list total must match its rows and a
-   second official ID list must name the same people. Wagoner, Canadian, Sequoyah, and Jackson also
-   fetch each booking's detail for its charges and check it against the list entry (the Canadian,
-   Sequoyah, and Jackson details also carry the booking number and must show no release date); the
-   Lincoln, Pawnee, Seminole, Carter, Muskogee, Ottawa, Love, Greer, and Major lists already carry
-   the charges and must show no release dates. On a mismatch the crawl restarts (up to three times)
-   and then fails closed:
+   Love, Greer, Major, Jackson, and Custer, which read the JSON endpoints behind each sheriff's
+   inmate search (`/dmxConnect/api/Booking/`). For all fourteen, the list total must match its rows
+   and a second official ID list must name the same people. Wagoner, Canadian, Sequoyah, and Jackson
+   also fetch each booking's detail for its charges and check it against the list entry (the
+   Canadian, Sequoyah, and Jackson details also carry the booking number and must show no release
+   date); the Lincoln, Pawnee, Seminole, Carter, Muskogee, Ottawa, Love, Greer, Major, and Custer
+   lists already carry the charges and must show no release dates. On a mismatch the crawl restarts
+   (up to three times) and then fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 

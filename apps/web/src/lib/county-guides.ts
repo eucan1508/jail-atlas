@@ -1826,6 +1826,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/custer-county": {
+    facilityName: "Custer County Jail",
+    address: "300 North 7th Ave., Arapaho, OK 73620",
+    phone: "580-323-1616",
+    operatedBy: "Custer County Sheriff's Office",
+    reviewedAt: "October 31, 2026",
+    overview:
+      "The Custer County Sheriff's Office runs the county jail in Arapaho. The Sheriff's Office is at 580-323-1616, administration is open 8:30 a.m. to 4:30 p.m. on weekdays, and dispatch answers around the clock.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.custercountysheriff.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video and are recorded, through Prodigy Solutions. Sign up on the Prodigy website with a valid ID and a plain headshot photo, and book every visit, online or on-site, at least 24 hours ahead. Each inmate gets one 15-minute visit a week. On-site visits use the kiosk in the visitation room, two visitors per machine, and are free: weekdays from 4:30 to 6:30 p.m. and Saturday from 9 a.m. to 5 p.m. Phones, cameras, lighters, tobacco, and e-cigarettes are not allowed, and anyone released from this jail cannot visit for six months.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.custercountysheriff.com/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money at the kiosk in the Sheriff's Office lobby, open 24 hours; before 8 a.m., after 4 p.m., or on weekends, push the button at the door to be let in. Money can also be added online with a credit card, or by mailing a money order with the inmate's name on it to PO Box 40, Arapaho, OK 73620, addressed to the inmate. Money orders are not accepted at the front desk. For questions, call 580-323-1616 from 8:30 a.m. to 4:30 p.m. on weekdays.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.custercountysheriff.com/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to Custer County Jail, the inmate's name, 300 North 7th Ave., Arapaho, OK 73620, with the full name and address of both sender and inmate. Use a #10 envelope or smaller with no more than 50 cents of postage, and no drawings, stickers, or perfume on it, or the letter is sent back. Photos can be no larger than 4 by 6 inches, and Polaroids are not accepted. No greeting cards, staples, blank paper, envelopes, stamps, or printed social media posts. The site does not explain inmate phone calls; call the jail at 580-323-1616.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.custercountysheriff.com/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The inmate search does not show bond amounts, and the Sheriff's site does not explain how to post bond. Call the Sheriff's Office at 580-323-1616 to ask about a bond and how to post it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://www.custercountysheriff.com/contact-us"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Custer County Jail?",
+        answer:
+          "Visits are by video through Prodigy and must be booked 24 hours ahead. On-site kiosk visits are free, weekdays 4:30 to 6:30 p.m. and Saturday 9 a.m. to 5 p.m."
+      },
+      {
+        question: "How do I put money on a Custer County inmate's account?",
+        answer:
+          "Use the 24-hour lobby kiosk, deposit online with a credit card, or mail a money order with the inmate's name to PO Box 40, Arapaho, OK 73620."
+      },
+      {
+        question: "Where do I send a letter to a Custer County inmate?",
+        answer:
+          "Custer County Jail, inmate's name, 300 North 7th Ave., Arapaho, OK 73620, in a #10 envelope or smaller."
+      },
+      {
+        question: "How do I find out a bond amount in Custer County?",
+        answer: "The roster does not list bond amounts. Call the Sheriff's Office at 580-323-1616."
+      }
+    ]
+  },
   "oklahoma/jackson-county": {
     facilityName: "Jackson County Jail",
     address: "600 S Main St., Altus, OK 73521",

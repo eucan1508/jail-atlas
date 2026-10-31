@@ -100,6 +100,7 @@ Oklahoma was added on 2026-10-09.
 | Greer    | [Greer County Sheriff inmate search](https://www.greercountysheriff.org/inmate-search)   | Adapter tested; production approval pending |
 | Major    | [Major County Sheriff inmate search](https://www.majorcosheriff.com/inmate-search)       | Adapter tested; production approval pending |
 | Jackson  | [Jackson County Sheriff inmate search](https://www.jacksoncountyso.com/inmate-search)    | Adapter tested; production approval pending |
+| Custer   | [Custer County Sheriff inmate search](https://www.custercountysheriff.com/inmate-search) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
