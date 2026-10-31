@@ -470,6 +470,13 @@
       "when": 1795409600000,
       "tag": "0066_oklahoma_love_source",
       "breakpoints": true
+    },
+    {
+      "idx": 67,
+      "version": "7",
+      "when": 1795496000000,
+      "tag": "0067_oklahoma_greer_source",
+      "breakpoints": true
     }
   ]
 }
