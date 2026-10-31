@@ -477,6 +477,13 @@
       "when": 1795496000000,
       "tag": "0067_oklahoma_greer_source",
       "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1795582400000,
+      "tag": "0068_oklahoma_major_source",
+      "breakpoints": true
     }
   ]
 }
