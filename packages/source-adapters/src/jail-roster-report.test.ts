@@ -234,6 +234,13 @@ describe("Minnesota jail roster report adapter", () => {
       { label: "Bail/Bond", amountMinor: 25_000_000, note: null },
       { label: "Bail/Bond", amountMinor: 100_000, note: null }
     ]);
+    expect(
+      parseJailRosterBail("Bail/Bond - $0.00 - Court Cash Only - $400.00 ROR - $0.00 - Court")
+    ).toEqual([
+      { label: "Bail/Bond", amountMinor: 0, note: "Court" },
+      { label: "Cash Only", amountMinor: 40_000, note: null },
+      { label: "ROR", amountMinor: 0, note: "Court" }
+    ]);
     expect(() => parseJailRosterBail("No Bail")).toThrow("BAIL_UNREADABLE");
   });
 
