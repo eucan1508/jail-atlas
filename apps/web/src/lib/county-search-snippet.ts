@@ -6,7 +6,8 @@ const stateCodes: Record<CoverageState, string> = {
   minnesota: "MN",
   texas: "TX",
   arkansas: "AR",
-  oklahoma: "OK"
+  oklahoma: "OK",
+  missouri: "MO"
 };
 
 /**

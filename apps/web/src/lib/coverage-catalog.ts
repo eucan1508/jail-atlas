@@ -1,6 +1,6 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
-export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma";
+export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -947,6 +947,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     // The inmate search page loads its list from this official endpoint, which is what is read.
     officialSourceUrl: "https://www.custercountysheriff.com/dmxConnect/api/Booking/Read.php",
     officialSourceLabel: "Custer County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Crawford County",
+    slug: "crawford-county",
+    publishedAt: "2026-11-01",
+    seatCity: "Steelville",
+    h1: "Crawford County Jail Roster & Inmate Search",
+    title: "Crawford County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Crawford County, Missouri current-inmate information for the detention center in Steelville from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Crawford County Sheriff's Office publishes a current inmate roster for the Crawford County Detention Center in Steelville. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.crawfordcountyso.org/roster.php",
+    officialSourceLabel: "Crawford County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

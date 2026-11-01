@@ -9,6 +9,7 @@ export const publicPaths = [
   "/coverage/texas/",
   "/coverage/arkansas/",
   "/coverage/oklahoma/",
+  "/coverage/missouri/",
   "/iowa/scott-county/custody/",
   "/about/",
   "/contact/",

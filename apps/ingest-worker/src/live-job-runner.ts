@@ -16,6 +16,7 @@ import {
   ANOKA_COUNTY_ADAPTER_KEY,
   arkansasRosterSite,
   texasRosterSite,
+  missouriRosterSite,
   myr2mRosterSite,
   createMyr2mRosterAdapter,
   createSheriffRosterSiteAdapter,
@@ -179,7 +180,10 @@ export function createLiveSourceAdapter(
   const sourceUrl = new URL(source.sourceUrl);
   // The transport already enforces path-segment boundaries. Keep the exact list
   // path so sources without a trailing slash can fetch their list and details.
-  const rosterSite = arkansasRosterSite(source.adapterKey) ?? texasRosterSite(source.adapterKey);
+  const rosterSite =
+    arkansasRosterSite(source.adapterKey) ??
+    texasRosterSite(source.adapterKey) ??
+    missouriRosterSite(source.adapterKey);
   const myr2mSite = myr2mRosterSite(source.adapterKey);
   const rosterReport = jailRosterReport(source.adapterKey);
   const portal = jailPortal(source.adapterKey);

@@ -1886,6 +1886,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/crawford-county": {
+    facilityName: "Crawford County Detention Center",
+    address: "212 Third Street, Steelville, MO 65565",
+    phone: "573-775-2825",
+    operatedBy: "Crawford County Sheriff's Office",
+    reviewedAt: "November 1, 2026",
+    overview:
+      "The Crawford County Sheriff's Office runs the Crawford County Detention Center in Steelville, which holds up to 126 people, including state, city, and federal pretrial detainees. The Sheriff's Office answers at 573-775-2825 around the clock; office hours are 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.crawfordcountyso.org/contact",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Free video visits are offered in the main lobby every day from 10 a.m. to 4 p.m., first come, first served.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.crawfordcountyso.org/jail-division"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money to a detainee's account through City Tele Coin, online or in its iOS or Android app. Detainees can move the money between phone, media, and commissary, and once deposited it belongs to them; the jail does not give out account details.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.crawfordcountyso.org/jail-division"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phones run through City Tele Coin; buy calling or media time on its website or app. New detainees get two free calls a calendar year, and pod phones are on 9 a.m. to 10 p.m. Monday through Thursday and 9 a.m. to 11 p.m. on weekends and holiday eves. Personal mail must be a pre-stamped postcard no larger than 4 by 6 inches, with no perfume, liquids, or glossy pictures; letters and greeting cards are not accepted. Up to ten 4-by-6 photos can be on file at a time. Books must be paperbacks shipped straight from a bookstore. Send mail to the jail at 212 Third Street, Steelville, MO 65565.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.crawfordcountyso.org/jail-division"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond can be posted 24 hours a day, and every bond condition, including a working GPS monitor, must be met before release. Cash-only bonds take cash or a cashier's check, never a personal check; surety bonds need a professional bond agent. Bonds for people in custody can also be paid online at allpaid.com with the case number and bond amount, for a service fee, and every bond carries a $10 fee. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.crawfordcountyso.org/jail-division"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Crawford County jail?",
+        answer:
+          "Free video visits run in the main lobby every day from 10 a.m. to 4 p.m., first come, first served."
+      },
+      {
+        question: "How do I put money on a Crawford County detainee's account?",
+        answer:
+          "Deposit through City Tele Coin online or in its app. The money can be used for phone, media, and commissary."
+      },
+      {
+        question: "Can I send a letter to someone in the Crawford County jail?",
+        answer:
+          "Only pre-stamped postcards up to 4 by 6 inches are accepted for personal mail; letters and greeting cards are not."
+      },
+      {
+        question: "How do I post bond in Crawford County?",
+        answer:
+          "Bond can be posted around the clock with cash or a cashier's check, through a bond agent, or online at allpaid.com with the case number."
+      }
+    ]
+  },
   "oklahoma/custer-county": {
     facilityName: "Custer County Jail",
     address: "300 North 7th Ave., Arapaho, OK 73620",

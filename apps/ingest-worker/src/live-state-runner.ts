@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK";
+export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO";
 
 export type LiveStateSource = Readonly<{
   countySlug: string;
@@ -399,6 +399,13 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "custer",
       adapterKey: "custer-county-ok-current-roster",
       sourceHost: "www.custercountysheriff.com"
+    }
+  ],
+  MO: [
+    {
+      countySlug: "crawford",
+      adapterKey: "crawford-county-mo-current-roster",
+      sourceHost: "www.crawfordcountyso.org"
     }
   ]
 };

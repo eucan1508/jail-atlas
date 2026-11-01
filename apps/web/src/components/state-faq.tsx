@@ -31,6 +31,11 @@ const stateDetails: Record<
     name: "Oklahoma",
     correctionsName: "Oklahoma Department of Corrections",
     path: "/coverage/oklahoma/"
+  },
+  missouri: {
+    name: "Missouri",
+    correctionsName: "Missouri Department of Corrections",
+    path: "/coverage/missouri/"
   }
 };
 

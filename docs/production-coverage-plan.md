@@ -105,6 +105,15 @@ Oklahoma was added on 2026-10-09.
 | Jackson  | [Jackson County Sheriff inmate search](https://www.jacksoncountyso.com/inmate-search)    | Adapter tested; production approval pending |
 | Custer   | [Custer County Sheriff inmate search](https://www.custercountysheriff.com/inmate-search) | Adapter tested; production approval pending |
 
+## Missouri
+
+Missouri counties run on the same sheriff roster software as several Arkansas and Texas counties, so
+they read through the shared `sheriff-roster-site.ts` adapter.
+
+| County   | Official source                                                                      | Status                                      |
+| -------- | ------------------------------------------------------------------------------------ | ------------------------------------------- |
+| Crawford | [Crawford County Sheriff inmate roster](https://www.crawfordcountyso.org/roster.php) | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,
