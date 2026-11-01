@@ -6,7 +6,9 @@ import {
   CLINTON_COUNTY_ADAPTER_KEY,
   CLINTON_COUNTY_CURRENT_SOURCE_URL,
   MARSHALL_COUNTY_ADAPTER_KEY,
-  MARSHALL_COUNTY_CURRENT_SOURCE_URL
+  MARSHALL_COUNTY_CURRENT_SOURCE_URL,
+  WAPELLO_COUNTY_ADAPTER_KEY,
+  WAPELLO_COUNTY_CURRENT_SOURCE_URL
 } from "./jail-portal.js";
 import {
   CEDAR_COUNTY_ADAPTER_KEY,
@@ -127,6 +129,19 @@ export const IOWA_SOURCE_DEFINITIONS: readonly IowaSourceDefinition[] = Object.f
     status: "adapter_ready",
     reason:
       "The Sheriff's Jail page links the county's jail portal as its Inmate List, which lists everyone held today with each hold reason and bond."
+  },
+  {
+    state: "IA",
+    countySlug: "wapello",
+    countyName: "Wapello County",
+    officialInstitutionUrl: "https://www.wapellocounty.org/sheriff_and_jail/",
+    sourceUrl: WAPELLO_COUNTY_CURRENT_SOURCE_URL,
+    sourceType: "officially_linked_vendor",
+    relationshipKind: "official_link",
+    adapterKey: WAPELLO_COUNTY_ADAPTER_KEY,
+    status: "adapter_ready",
+    reason:
+      "The Sheriff and Jail page links the county's jail portal as Current Inmates, which lists everyone held today with each hold reason and bond."
   },
   {
     state: "IA",

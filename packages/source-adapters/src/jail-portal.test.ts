@@ -324,6 +324,40 @@ describe("jail portal source adapter", () => {
         "Mittimus: Serving 2 days - Concurrent; Arrest Date 01/02/2000; Bond - No Bond, $300.00;"
       ).bond
     ).toEqual({ type: "No Bond", noBond: false, conflicting: true, amountMinor: 30_000 });
+    // Wapello County's portal: city ordinances, lower-case code letters, detainers, intermittent
+    // sentences, several case numbers on one warrant, and the type printed with "warrant" twice.
+    expect(
+      parseJailPortalHoldReason(
+        "Charge: 25-76(a) - 25-76(a) Synthetic City Code- Public intoxication; Arrest Date 01/02/2000; Bond - Cash or Surety, $300.00;"
+      )
+    ).toMatchObject({ label: "Charge", statuteCode: "25-76(a)" });
+    expect(
+      parseJailPortalHoldReason(
+        "Detainer-Out of County Hold: 908.11 - Violation Of Probation - 1985; Arrest Date 01/02/2000; Bond - Cash Only, $500.00;"
+      )
+    ).toMatchObject({
+      label: "Detainer",
+      statuteCode: "908.11",
+      description: "Violation Of Probation - 1985"
+    });
+    expect(
+      parseJailPortalHoldReason(
+        "Intermittent Mittimus: Serving 30 days - Consecutive; Arrest Date 01/02/2000;"
+      )
+    ).toMatchObject({
+      label: "Intermittent Mittimus",
+      description: "Serving 30 days - Consecutive"
+    });
+    expect(
+      parseJailPortalHoldReason(
+        "Warrant: Failure to Appear warrant SYN0001 issued by Synthetic, IA (321j.21 - Synthetic Revocation); Bond - See First Charge;"
+      )
+    ).toMatchObject({ label: "Failure to Appear warrant", statuteCode: "321j.21" });
+    expect(
+      parseJailPortalHoldReason(
+        "Warrant: Arrest Warrant warrant SYN0001, SYN0002 issued by Synthetic, IA (714.2(2) - Synthetic Theft); Bond - No Bond;"
+      )
+    ).toMatchObject({ label: "Arrest warrant", statuteCode: "714.2(2)" });
     for (const entry of [
       "Detainer: Synthetic; Bond - No Bond;",
       "Charge: Synthetic without a statute;",

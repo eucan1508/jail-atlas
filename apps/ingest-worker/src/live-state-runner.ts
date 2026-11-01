@@ -52,6 +52,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "marshall",
       adapterKey: "marshall-county-iowa-current-roster",
       sourceHost: "marshall-so-ia.zuercherportal.com"
+    },
+    {
+      countySlug: "wapello",
+      adapterKey: "wapello-county-iowa-current-roster",
+      sourceHost: "wapello-so-ia.zuercherportal.com"
     }
   ],
   MN: [

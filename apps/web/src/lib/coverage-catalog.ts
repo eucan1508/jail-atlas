@@ -195,6 +195,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Wapello County",
+    slug: "wapello-county",
+    publishedAt: "2026-11-01",
+    seatCity: "Ottumwa",
+    h1: "Wapello County Jail Roster & Inmate Search",
+    title: "Wapello County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Wapello County, Iowa current-inmate information for the jail in Ottumwa from the official jail portal, with charges, warrants, holds, bond amounts, and capture time.",
+    article:
+      "The Wapello County Sheriff's Office links a jail portal as Current Inmates for the Wapello County Jail in Ottumwa. This page shows each person still in custody with every charge, warrant, or hold and its bond as the portal lists them, and leaves out ages, photos, and arrest dates.",
+    officialSourceUrl: "https://wapello-so-ia.zuercherportal.com/#/inmates",
+    officialSourceLabel: "Wapello County Jail portal",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",

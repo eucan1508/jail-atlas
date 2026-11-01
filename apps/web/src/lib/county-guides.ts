@@ -3536,6 +3536,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/wapello-county": {
+    facilityName: "Wapello County Jail",
+    address: "330 W 2nd St, Ottumwa, IA 52501",
+    phone: "641-684-4350",
+    operatedBy: "Wapello County Sheriff's Office",
+    reviewedAt: "November 1, 2026",
+    overview:
+      "The Wapello County Sheriff's Office runs the 148-bed county jail in the joint Wapello County and City of Ottumwa Law Enforcement Center at 330 W 2nd St in Ottumwa. The jail answers at 641-684-4350 around the clock.",
+    contactSourceLabel: "Official Sheriff and Jail page",
+    contactSourceUrl: "https://www.wapellocounty.org/sheriff_and_jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits at the jail are Monday through Thursday, 6:30 to 9 p.m., by phone and video monitor in the jail lobby. You must be on the inmate's visitor list and bring a state photo ID; to get on the list, write the inmate a letter asking to be added. Each inmate gets 30 minutes of visits a week in total, and children must be supervised. Remote video visits run through Prodigy; Prodigy's number is 866-700-4545.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.wapellocounty.org/sheriff_and_jail/jail/"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail does not take cash or personal checks, and nothing can be dropped off. Mail a money order or cashier's check to the inmate, send money by card through Smart Deposit (866-394-0490) or Western Union (800-634-3422), or use the kiosk in the jail lobby.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.wapellocounty.org/sheriff_and_jail/faq/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate calls go through Prodigy and cost 30 cents a minute, or 15 cents a text message. Inmates pay from their commissary account, and family can add phone money at 866-797-5578 or online. To block calls from the jail, call the jail or Prodigy. The site does not list a separate mailing address; mail to the jail at 330 W 2nd St, Ottumwa, IA 52501, and call 641-684-4350 to confirm.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.wapellocounty.org/sheriff_and_jail/jail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail portal lists each charge, warrant, or hold with its bond, but the county site does not explain how to post bond. Call the jail at 641-684-4350 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Sheriff and Jail page",
+        sourceUrl: "https://www.wapellocounty.org/sheriff_and_jail/"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Wapello County Jail?",
+        answer:
+          "Monday through Thursday, 6:30 to 9 p.m., by video in the jail lobby. You must be on the inmate's visitor list and bring a state photo ID."
+      },
+      {
+        question: "How do I put money on a Wapello County inmate's account?",
+        answer:
+          "Mail a money order or cashier's check, send money through Smart Deposit or Western Union, or use the lobby kiosk. Cash and personal checks are not accepted."
+      },
+      {
+        question: "How much do inmate phone calls cost in Wapello County?",
+        answer: "Calls through Prodigy cost 30 cents a minute, and text messages 15 cents each."
+      },
+      {
+        question: "How do I find out about bond in Wapello County?",
+        answer:
+          "The roster shows each bond the portal lists. For how to post it, call the jail at 641-684-4350."
+      }
+    ]
+  },
   "iowa/marshall-county": {
     facilityName: "Marshall County Jail",
     address: "2369 Jessup Avenue, Marshalltown, IA 50158",
