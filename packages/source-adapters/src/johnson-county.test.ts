@@ -167,6 +167,76 @@ describe("Johnson County, Iowa source adapter", () => {
     }
   });
 
+  it("leaves out a booking listed before its name is entered, but not more than two", async () => {
+    const pending = (id: string): SyntheticInmate => ({ id, name: "", charges: [] });
+    const one = adapter([...inmates, pending("900005")]);
+    const result = await runSourceAdapter(one.source, context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.recordCount).toBe(2);
+    expect(one.requested.some((url) => url.endsWith("/details/900005"))).toBe(false);
+
+    const many = await runSourceAdapter(
+      adapter([...inmates, pending("900005"), pending("900006"), pending("900007")]).source,
+      context()
+    );
+    expect(many.ok).toBe(false);
+    if (!many.ok) expect(many.failure.diagnosticCode).toBe("JOHNSON_COUNTY_NAMES_MISSING");
+  });
+
+  it("lists someone whose detail page errors by name only, but not more than two", async () => {
+    const failing = (ids: readonly string[]) =>
+      adapter(inmates, {
+        detail: (inmate) =>
+          ids.includes(inmate.id) ? html("Server Error", 500) : html(detailPage(inmate))
+      }).source;
+    const one = await runSourceAdapter(failing(["900001"]), context());
+    expect(one.ok).toBe(true);
+    if (one.ok) {
+      expect(one.snapshot.recordCount).toBe(2);
+      expect(one.snapshot.bookings[0]?.person.displayName).toBe("TESTER, ALPHA");
+      expect(one.snapshot.bookings[0]?.charges).toEqual([]);
+    }
+
+    const crowded = [
+      ...inmates,
+      { id: "900008", name: "TESTER, EPSILON", charges: [] },
+      { id: "900009", name: "TESTER, ZETA", charges: [] }
+    ];
+    const three = await runSourceAdapter(
+      adapter(crowded, {
+        detail: (inmate) =>
+          ["900001", "900008", "900009"].includes(inmate.id)
+            ? html("Server Error", 500)
+            : html(detailPage(inmate))
+      }).source,
+      context()
+    );
+    expect(three.ok).toBe(false);
+    if (!three.ok) expect(three.failure.diagnosticCode).toBe("JOHNSON_COUNTY_HTTP_500");
+  });
+
+  it("leaves out one blank open charge on a page, but fails closed on two", async () => {
+    const blank = ["", "", "PENDING"] as const;
+    const withBlank = (extra: number): SyntheticInmate[] =>
+      inmates.map((inmate) =>
+        inmate.id === "900001"
+          ? { ...inmate, charges: [...inmate.charges, ...Array(extra).fill(blank)] }
+          : inmate
+      );
+    const one = await runSourceAdapter(adapter(withBlank(1)).source, context());
+    expect(one.ok).toBe(true);
+    if (one.ok) {
+      expect(one.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
+        "SYNTHETIC OFFENSE ALPHA (SRMS)"
+      ]);
+    }
+
+    const two = await runSourceAdapter(adapter(withBlank(2)).source, context());
+    expect(two.ok).toBe(false);
+    if (!two.ok) expect(two.failure.diagnosticCode).toBe("JOHNSON_COUNTY_EMPTY_CHARGE");
+  });
+
   it("reads again, then fails closed, when the list keeps changing during the crawl", async () => {
     const changing = adapter(inmates, {
       listAfter: (call) => (call % 2 === 0 ? inmates.slice(0, 1) : inmates)

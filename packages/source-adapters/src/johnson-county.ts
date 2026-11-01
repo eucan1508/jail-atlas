@@ -28,6 +28,9 @@ const MAX_PAGE_BYTES = 3_000_000;
 const MAX_CRAWL_ATTEMPTS = 3;
 const DETAIL_CONCURRENCY = 4;
 const LIST_COLUMNS = ["Date Booked", "Name", "Age", "Date Released", "Housing Facility", "Details"];
+const MAX_NAMELESS_ROWS = 2;
+const MAX_PEOPLE_WITH_BLANK_CHARGES = 2;
+const MAX_UNAVAILABLE_DETAILS = 2;
 const BOOKED_TEXT = /^\d{1,2}\/\d{1,2}\/\d{4} \d{1,2}:\d{2}(?::\d{2})? [AP]M$/;
 
 const JohnsonChargeSchema = z.object({
@@ -136,6 +139,7 @@ export function parseJohnsonRosterList(html: string): {
   const kept: ListedInmate[] = [];
   const seen = new Set<string>();
   let listedTotal = 0;
+  let nameless = 0;
   for (const row of $(table).find("tr").toArray()) {
     const links = $(row).find("a[href*='/jailroster/details/']");
     if (links.length === 0) continue;
@@ -145,12 +149,19 @@ export function parseJohnsonRosterList(html: string): {
     }
     const [booked, name, , released, housing] = cells;
     const detailId = links.attr("href")?.match(/\/jailroster\/details\/(\d{1,12})$/)?.[1];
-    if (!detailId || !name || !booked || !BOOKED_TEXT.test(booked)) {
+    if (!detailId || !booked || !BOOKED_TEXT.test(booked)) {
       throw new Error("INVALID_RECORD_IDENTITY");
     }
     if (seen.has(detailId)) throw new Error("DUPLICATE_DETAIL_ID");
     seen.add(detailId);
     listedTotal += 1;
+    // A booking still being entered can be listed before its name, and its detail page errors.
+    // Such a row is left out; more than a couple means the list itself is broken.
+    if (!name) {
+      nameless += 1;
+      if (nameless > MAX_NAMELESS_ROWS) throw new Error("NAMES_MISSING");
+      continue;
+    }
     // The list also shows people released in the last 48 hours; a release date drops them.
     if (released) continue;
     if (housing === JOHNSON_COUNTY_JAIL_HOUSING) kept.push({ detailId, displayName: name });
@@ -178,6 +189,7 @@ export function parseJohnsonDetail(html: string, listed: ListedInmate) {
     throw new Error("ROSTER_CHANGED_DURING_CRAWL");
   }
   const charges: z.infer<typeof JohnsonChargeSchema>[] = [];
+  let blankCharges = 0;
   for (const element of tables) {
     const rows = $(element).find("tr").toArray();
     if (cellTexts($, rows[0])[0] !== "Offense") continue;
@@ -200,14 +212,23 @@ export function parseJohnsonDetail(html: string, listed: ListedInmate) {
     if (released !== "PENDING") continue;
     const statuteCode = offense[1] || null;
     const description = offense[0] || statuteCode;
-    if (!description) throw new Error("EMPTY_CHARGE");
+    // A charge still being entered prints an open table with no offense and no code section.
+    // It says nothing to publish, so it is left out; a second one on one page fails closed.
+    if (!description) {
+      blankCharges += 1;
+      if (blankCharges > 1) throw new Error("EMPTY_CHARGE");
+      continue;
+    }
     charges.push({ description, statuteCode });
   }
-  return JohnsonRecordSchema.parse({
-    recordKey: listed.detailId,
-    displayName: listed.displayName,
-    charges
-  });
+  return {
+    record: JohnsonRecordSchema.parse({
+      recordKey: listed.detailId,
+      displayName: listed.displayName,
+      charges
+    }),
+    blankCharges
+  };
 }
 
 async function crawlRoster(
@@ -219,6 +240,8 @@ async function crawlRoster(
   );
   const records = new Array<z.infer<typeof JohnsonRecordSchema>>(list.kept.length);
   let next = 0;
+  let peopleWithBlankCharges = 0;
+  let detailsUnavailable = 0;
   await Promise.all(
     Array.from({ length: Math.min(DETAIL_CONCURRENCY, list.kept.length) }, async () => {
       while (next < list.kept.length) {
@@ -228,7 +251,21 @@ async function crawlRoster(
         const response = await requestHtml(options, context, `${DETAIL_BASE}${listed.detailId}`);
         // A person released between the list and their detail request is no longer found.
         if (response.status === 404) throw new Error("ROSTER_CHANGED_DURING_CRAWL");
-        records[index] = parseJohnsonDetail(await readHtml(response), listed);
+        // A booking still being entered can make its detail page error. The person is still
+        // listed by name, with no charges, rather than dropped; more than a couple fails closed.
+        if (response.status === 500) {
+          detailsUnavailable += 1;
+          if (detailsUnavailable > MAX_UNAVAILABLE_DETAILS) throw new Error("HTTP_500");
+          records[index] = JohnsonRecordSchema.parse({
+            recordKey: listed.detailId,
+            displayName: listed.displayName,
+            charges: []
+          });
+          continue;
+        }
+        const detail = parseJohnsonDetail(await readHtml(response), listed);
+        records[index] = detail.record;
+        if (detail.blankCharges > 0) peopleWithBlankCharges += 1;
       }
     })
   );
@@ -245,6 +282,8 @@ async function crawlRoster(
     throw new Error("ROSTER_CHANGED_DURING_CRAWL");
   }
 
+  // A blank charge now and then is a booking in progress; many mean the charge tables broke.
+  if (peopleWithBlankCharges > MAX_PEOPLE_WITH_BLANK_CHARGES) throw new Error("EMPTY_CHARGE");
   // The jail is never empty; an empty list means the roster broke.
   if (records.length === 0) throw new Error("ROSTER_EMPTY");
   return JohnsonRosterSchema.parse({
