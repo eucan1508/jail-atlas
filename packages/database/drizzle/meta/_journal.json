@@ -533,6 +533,13 @@
       "when": 1796187200000,
       "tag": "0075_missouri_crawford_source",
       "breakpoints": true
+    },
+    {
+      "idx": 76,
+      "version": "7",
+      "when": 1796273600000,
+      "tag": "0076_missouri_camden_source",
+      "breakpoints": true
     }
   ]
 }
