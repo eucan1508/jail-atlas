@@ -20,6 +20,7 @@ official source passes the same audit.
 | Woodbury    | [Woodbury County In Jail Search](https://injail.wcicc.com/)                                                                     | Adapter tested; production approval pending           |
 | Clinton     | [Clinton County Jail portal](https://portal.ia-clinton-so.centralsquarecloud.com/inmates)                                       | Paused: blocks GitHub runners (HTTP 403)              |
 | Marshall    | [Marshall County Jail portal](https://marshall-so-ia.zuercherportal.com/#/inmates)                                              | Adapter tested; production approval pending           |
+| Wapello     | [Wapello County Jail portal](https://wapello-so-ia.zuercherportal.com/#/inmates)                                                | Adapter tested; production approval pending           |
 
 ## Minnesota
 

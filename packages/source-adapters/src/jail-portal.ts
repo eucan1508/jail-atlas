@@ -67,7 +67,21 @@ export const MARSHALL_COUNTY_JAIL_PORTAL: JailPortalConfig = {
   inCustodyFilter: "timestamp_with_filters"
 };
 
-const JAIL_PORTALS = [CLINTON_COUNTY_JAIL_PORTAL, MARSHALL_COUNTY_JAIL_PORTAL] as const;
+export const WAPELLO_COUNTY_JAIL_PORTAL: JailPortalConfig = {
+  adapterKey: "wapello-county-iowa-current-roster",
+  countyName: "Wapello County",
+  diagnosticPrefix: "WAPELLO_COUNTY",
+  origin: "https://wapello-so-ia.zuercherportal.com",
+  sourcePath: "/#/inmates",
+  sessionToken: false,
+  inCustodyFilter: "timestamp_with_filters"
+};
+
+const JAIL_PORTALS = [
+  CLINTON_COUNTY_JAIL_PORTAL,
+  MARSHALL_COUNTY_JAIL_PORTAL,
+  WAPELLO_COUNTY_JAIL_PORTAL
+] as const;
 
 /** The portal configuration for an adapter key, or undefined when the key is not a jail portal. */
 export function jailPortal(adapterKey: string | null | undefined): JailPortalConfig | undefined {
@@ -78,6 +92,8 @@ export const CLINTON_COUNTY_ADAPTER_KEY = CLINTON_COUNTY_JAIL_PORTAL.adapterKey;
 export const MARSHALL_COUNTY_ADAPTER_KEY = MARSHALL_COUNTY_JAIL_PORTAL.adapterKey;
 export const CLINTON_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(CLINTON_COUNTY_JAIL_PORTAL);
 export const MARSHALL_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(MARSHALL_COUNTY_JAIL_PORTAL);
+export const WAPELLO_COUNTY_ADAPTER_KEY = WAPELLO_COUNTY_JAIL_PORTAL.adapterKey;
+export const WAPELLO_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(WAPELLO_COUNTY_JAIL_PORTAL);
 export const JAIL_PORTAL_PARSER_VERSION = "1.0.0" as const;
 
 /** The Inmates page a sheriff's site links; the source row records this URL. */
@@ -102,17 +118,22 @@ export function jailPortalPaths(config: JailPortalConfig): string[] {
 
 const MAX_RECORDS = 900;
 const MAX_HOLD_REASONS = 40;
-// Both jails sit in Iowa; the "in custody on" filter takes the local date.
+// Every portal jail sits in Iowa; the "in custody on" filter takes the local date.
 const JAIL_TIME_ZONE = "America/Chicago";
 const SET_CSRF_MESSAGE = "CSRF token set";
-const STATUTE = String.raw`\d{1,3}[A-Z]?\.\d+[A-Z]?(?:\([0-9A-Za-z]+\))*`;
+// Iowa code sections ("321J.2(2)(a)"), Arkansas code ("5-64-443(a)(2)"), and city ordinances
+// ("25-76(a)"). Section letters are sometimes typed in lower case ("321j.21").
+const STATUTE = String.raw`(?:\d{1,3}[A-Za-z]?\.\d+[A-Za-z]?|\d{1,3}(?:-\d{1,4}[A-Z]?)+)(?:\([0-9A-Za-z]+\))*`;
 const CHARGE_TEXT = new RegExp(String.raw`^Charge: (${STATUTE}) - (.+)$`);
+// "Detainer-Out of County Hold: 908.11 - Violation Of Probation - 1985".
+const DETAINER_TEXT = new RegExp(String.raw`^Detainer-Out of County Hold: (${STATUTE}) - (.+)$`);
 // "Bench warrant W2600586 issued by Clinton, IA (908.11 - Violation Of Probation - 1985)"; the
 // warrant number, the issuing court, and the charge in parentheses are each sometimes left out.
 const WARRANT_TEXT = new RegExp(
-  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: [A-Za-z0-9-]+)?(?: issued by [^()]+)?(?: \((${STATUTE}) - (.+)\))?$`
+  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: +[A-Za-z0-9-]+,?)*?(?: issued by [^()]+)?(?: \((${STATUTE}) - (.+)\))?$`
 );
-const SENTENCE_TEXT = /^(Sentenced|Mittimus): (Serving .+)$/;
+const SENTENCE_TEXT =
+  /^(Sentenced|Mittimus|Intermittent Mittimus|Electronic Monitoring Program): (Serving .+)$/;
 // "Hold-Out of County for Scott County Sheriff's Office", "Additional Hold for State of Iowa",
 // "Hold For Court for Marshall County Court", "Federal for Federal".
 const HOLD_TEXT = /^([A-Z][A-Za-z -]{0,40}) for (.+)$/;
@@ -246,9 +267,15 @@ export function parseJailPortalHoldReason(entry: string): JailPortalHoldReason {
   if (charge) {
     return { label: "Charge", statuteCode: charge[1]!, description: charge[2]!, bond };
   }
+  const detainer = head.match(DETAINER_TEXT);
+  if (detainer) {
+    return { label: "Detainer", statuteCode: detainer[1]!, description: detainer[2]!, bond };
+  }
   const warrant = head.match(WARRANT_TEXT);
   if (warrant) {
-    const label = `${warrant[1]![0]!.toUpperCase()}${warrant[1]!.slice(1)}`;
+    // Some portals print the type with the word twice ("Arrest Warrant warrant").
+    const type = warrant[1]!.replace(/ warrant warrant$/i, " warrant");
+    const label = `${type[0]!.toUpperCase()}${type.slice(1)}`;
     return {
       label,
       statuteCode: warrant[2] ?? null,
