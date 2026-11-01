@@ -358,6 +358,27 @@ describe("jail portal source adapter", () => {
         "Warrant: Arrest Warrant warrant SYN0001, SYN0002 issued by Synthetic, IA (714.2(2) - Synthetic Theft); Bond - No Bond;"
       )
     ).toMatchObject({ label: "Arrest warrant", statuteCode: "714.2(2)" });
+    // Upshur County, TX: Texas code sections with the state offense code after the offense.
+    expect(
+      parseJailPortalHoldReason(
+        "Reportable Charge: PC 22.01(b-2) - SYNTHETIC ASSAULT-13990082 (Capias); Arrest Date 01/02/2000; Bond - Surety, $5000.00; Set By PCT 2 JP;"
+      )
+    ).toMatchObject({
+      label: "Charge",
+      statuteCode: "PC 22.01(b-2)",
+      description: "SYNTHETIC ASSAULT (Capias)"
+    });
+    expect(
+      parseJailPortalHoldReason("Non-reportable Charge: FD - Federal Detainer; Bond - No Bond;")
+    ).toMatchObject({ statuteCode: null, description: "Federal Detainer" });
+    expect(
+      parseJailPortalHoldReason("Non-reportable Charge: ICE DETAINER; Bond - No Bond;")
+    ).toMatchObject({ label: "Hold", description: "ICE DETAINER" });
+    expect(
+      parseJailPortalHoldReason(
+        "Out of County Charge: Unspecified warrant SYN-1 issued by SYNTHETIC, TX (HSC 481.115(b) - SYNTHETIC POSSESSION &lt;1G- 35990247); Bond - No Bond;"
+      )
+    ).toMatchObject({ statuteCode: "HSC 481.115(b)", description: "SYNTHETIC POSSESSION <1G" });
     for (const entry of [
       "Detainer: Synthetic; Bond - No Bond;",
       "Charge: Synthetic without a statute;",

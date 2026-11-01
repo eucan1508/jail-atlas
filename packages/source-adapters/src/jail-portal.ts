@@ -77,10 +77,21 @@ export const WAPELLO_COUNTY_JAIL_PORTAL: JailPortalConfig = {
   inCustodyFilter: "timestamp_with_filters"
 };
 
+export const UPSHUR_COUNTY_JAIL_PORTAL: JailPortalConfig = {
+  adapterKey: "upshur-county-tx-current-roster",
+  countyName: "Upshur County",
+  diagnosticPrefix: "UPSHUR_COUNTY",
+  origin: "https://upshur-so-tx.zuercherportal.com",
+  sourcePath: "/#/inmates",
+  sessionToken: false,
+  inCustodyFilter: "timestamp_with_filters"
+};
+
 const JAIL_PORTALS = [
   CLINTON_COUNTY_JAIL_PORTAL,
   MARSHALL_COUNTY_JAIL_PORTAL,
-  WAPELLO_COUNTY_JAIL_PORTAL
+  WAPELLO_COUNTY_JAIL_PORTAL,
+  UPSHUR_COUNTY_JAIL_PORTAL
 ] as const;
 
 /** The portal configuration for an adapter key, or undefined when the key is not a jail portal. */
@@ -94,6 +105,8 @@ export const CLINTON_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(CLINTON_COU
 export const MARSHALL_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(MARSHALL_COUNTY_JAIL_PORTAL);
 export const WAPELLO_COUNTY_ADAPTER_KEY = WAPELLO_COUNTY_JAIL_PORTAL.adapterKey;
 export const WAPELLO_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(WAPELLO_COUNTY_JAIL_PORTAL);
+export const UPSHUR_COUNTY_ADAPTER_KEY = UPSHUR_COUNTY_JAIL_PORTAL.adapterKey;
+export const UPSHUR_COUNTY_CURRENT_SOURCE_URL = jailPortalSourceUrl(UPSHUR_COUNTY_JAIL_PORTAL);
 export const JAIL_PORTAL_PARSER_VERSION = "1.0.0" as const;
 
 /** The Inmates page a sheriff's site links; the source row records this URL. */
@@ -118,19 +131,31 @@ export function jailPortalPaths(config: JailPortalConfig): string[] {
 
 const MAX_RECORDS = 900;
 const MAX_HOLD_REASONS = 40;
-// Every portal jail sits in Iowa; the "in custody on" filter takes the local date.
+// Every portal jail is on Central time; the "in custody on" filter takes the local date.
 const JAIL_TIME_ZONE = "America/Chicago";
 const SET_CSRF_MESSAGE = "CSRF token set";
-// Iowa code sections ("321J.2(2)(a)"), Arkansas code ("5-64-443(a)(2)"), and city ordinances
-// ("25-76(a)"). Section letters are sometimes typed in lower case ("321j.21").
-const STATUTE = String.raw`(?:\d{1,3}[A-Za-z]?\.\d+[A-Za-z]?|\d{1,3}(?:-\d{1,4}[A-Z]?)+)(?:\([0-9A-Za-z]+\))*`;
+// Iowa code sections ("321J.2(2)(a)"), Texas code sections ("PC 22.01(b-2)"), Arkansas code
+// ("5-64-443(a)(2)"), and city ordinances ("25-76(a)"). Section letters are sometimes typed in
+// lower case ("321j.21").
+const STATUTE = String.raw`(?:[A-Z]{1,4} )?(?:\d{1,3}[A-Za-z]?\.\d+[A-Za-z]?|\d{1,3}(?:-\d{1,4}[A-Z]?)+)(?:\([0-9A-Za-z,-]+\))*`;
 const CHARGE_TEXT = new RegExp(String.raw`^Charge: (${STATUTE}) - (.+)$`);
+// Texas portals: "Reportable Charge: PC 22.01(a)(1) - ASSAULT CAUSES BODILY INJURY-13990031",
+// with the code named before the section and the state offense code after the offense. Holds
+// with no section carry a short code ("FD - Federal Detainer") or only the offense code
+// ("50990056 - TAMPER W/ ELECTRONIC MONITORING DEVICE-50990056"); those keep no statute.
+// A Texas hold with no code at all: "Non-reportable Charge: ICE DETAINER".
+const TEXAS_HOLD_TEXT = /^(?:Reportable|Non-reportable) Charge: ([A-Za-z][A-Za-z ]{1,60})$/;
+// The state offense code Texas portals append to an offense ("ASSAULT-13990031").
+const TEXAS_OFFENSE_CODE = /[- ]\s?\d{8}$/;
+const TEXAS_CHARGE_TEXT =
+  /^(?:Reportable|Non-reportable) Charge: (?:([A-Z]{1,4} \d[0-9A-Za-z.]*(?:\([0-9A-Za-z,-]+\))*)|[A-Za-z]{1,10}|\d{8}) - (.+?)(?:[- ]\s?\d{8})?( \([A-Za-z ]+\))?$/;
 // "Detainer-Out of County Hold: 908.11 - Violation Of Probation - 1985".
 const DETAINER_TEXT = new RegExp(String.raw`^Detainer-Out of County Hold: (${STATUTE}) - (.+)$`);
 // "Bench warrant W2600586 issued by Clinton, IA (908.11 - Violation Of Probation - 1985)"; the
-// warrant number, the issuing court, and the charge in parentheses are each sometimes left out.
+// warrant number, the issuing court, and the charge in parentheses are each sometimes left out,
+// and the charge can carry a short code ("Blue - Blue Warrant") instead of a statute.
 const WARRANT_TEXT = new RegExp(
-  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: +[A-Za-z0-9-]+,?)*?(?: issued by [^()]+)?(?: \((${STATUTE}) - (.+)\))?$`
+  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: +[A-Za-z0-9,-]+)*?(?: +issued by [^()]+)?(?: \((?:(${STATUTE})|[A-Za-z]{1,10}|\d{8}) - (.+)\))?$`
 );
 const SENTENCE_TEXT =
   /^(Sentenced|Mittimus|Intermittent Mittimus|Electronic Monitoring Program): (Serving .+)$/;
@@ -138,14 +163,15 @@ const SENTENCE_TEXT =
 // "Hold For Court for Marshall County Court", "Federal for Federal".
 const HOLD_TEXT = /^([A-Z][A-Za-z -]{0,40}) for (.+)$/;
 const ARREST_DATE = /^Arrest Date \d{2}\/\d{2}\/\d{4}$/;
-const SET_BY = /^Set By [A-Za-z ]+$/;
+const SET_BY = /^Set By [A-Za-z0-9 .]+$/;
 // "Bond - Cash Only, $5000.00", "Bond - No Bond", "Bond - Cash / Multiple Cases", "Bond - $0.00".
 const BOND_TEXT = /^Bond - (?:([^$,][^,]*)(?:, (?=\$)|$))?(?:\$(\d+)\.(\d{2}))?$/;
 const NAME_TEXT = /^[^,]+, .+$/;
 
 const PortalRecordSchema = z.object({
   name: z.string(),
-  hold_reasons: z.string(),
+  // A booking still being entered can come back with no hold reasons at all.
+  hold_reasons: z.string().nullable(),
   is_juvenile: z.boolean(),
   release_date: z.string().nullable(),
   arrest_date: z.string().nullable()
@@ -195,13 +221,18 @@ export interface JailPortalAdapterOptions {
 }
 
 function normalizeText(value: string): string {
-  return value
-    .replace(/&amp;/g, "&")
-    .replace(/&#39;|&#x27;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/\u00a0/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return (
+    value
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&#39;|&#x27;/g, "'")
+      .replace(/&quot;/g, '"')
+      // "&amp;" last, so an escaped entity such as "&amp;lt;" stays literal text.
+      .replace(/&amp;/g, "&")
+      .replace(/\u00a0/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
 }
 
 function classify(
@@ -267,11 +298,25 @@ export function parseJailPortalHoldReason(entry: string): JailPortalHoldReason {
   if (charge) {
     return { label: "Charge", statuteCode: charge[1]!, description: charge[2]!, bond };
   }
+  const texasHold = head.match(TEXAS_HOLD_TEXT);
+  if (texasHold) {
+    return { label: "Hold", statuteCode: null, description: texasHold[1]!, bond };
+  }
+  const texas = head.match(TEXAS_CHARGE_TEXT);
+  if (texas) {
+    return {
+      label: "Charge",
+      statuteCode: texas[1] ?? null,
+      description: `${texas[2]!.trim()}${texas[3] ?? ""}`,
+      bond
+    };
+  }
   const detainer = head.match(DETAINER_TEXT);
   if (detainer) {
     return { label: "Detainer", statuteCode: detainer[1]!, description: detainer[2]!, bond };
   }
-  const warrant = head.match(WARRANT_TEXT);
+  // Texas portals file another county's warrant as "Out of County Charge: <warrant text>".
+  const warrant = head.replace(/^Out of County Charge: /, "Warrant: ").match(WARRANT_TEXT);
   if (warrant) {
     // Some portals print the type with the word twice ("Arrest Warrant warrant").
     const type = warrant[1]!.replace(/ warrant warrant$/i, " warrant");
@@ -279,7 +324,7 @@ export function parseJailPortalHoldReason(entry: string): JailPortalHoldReason {
     return {
       label,
       statuteCode: warrant[2] ?? null,
-      description: warrant[3] ?? label,
+      description: warrant[3]?.replace(TEXAS_OFFENSE_CODE, "").trim() ?? label,
       bond
     };
   }
@@ -355,7 +400,7 @@ export function parseJailPortalList(answer: unknown): JailPortalRoster {
     if (record.release_date || record.is_juvenile) continue;
     const displayName = normalizeText(record.name);
     if (!NAME_TEXT.test(displayName)) throw new Error("NAME_UNREADABLE");
-    const holdReasons = record.hold_reasons
+    const holdReasons = (record.hold_reasons ?? "")
       .split(/<br\s*\/?>/i)
       .map((entry) => entry.trim())
       .filter((entry) => entry.length > 0)

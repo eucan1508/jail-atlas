@@ -225,6 +225,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "robertson",
       adapterKey: "robertson-county-tx-current-roster",
       sourceHost: "www.robertsoncountysherifftx.org"
+    },
+    {
+      countySlug: "upshur",
+      adapterKey: "upshur-county-tx-current-roster",
+      sourceHost: "upshur-so-tx.zuercherportal.com"
     }
   ],
   AR: [
