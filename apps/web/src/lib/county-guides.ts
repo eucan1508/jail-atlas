@@ -3949,6 +3949,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/carroll-county": {
+    facilityName: "Carroll County Detention Center",
+    address: "205 Hailey Road, Berryville, AR 72616",
+    phone: "870-423-2901",
+    operatedBy: "Carroll County Sheriff's Office",
+    reviewedAt: "November 1, 2026",
+    overview:
+      "The Carroll County Sheriff's Office and its jail share a building off Highway 62 on Hailey Road in Berryville. Call 870-423-2901 around the clock and press 1 for the jail; administrative hours are 8 a.m. to 4:30 p.m. on weekdays. The jail's email is jail@carrollcountysheriff.net.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.carrollcountysheriffar.gov/frequently-asked-questions",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video through Smart Communications. Set up an account on the Smart Communications website to schedule a video visit with an inmate.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.carrollcountysheriffar.gov/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money online with a card through Tiger Commissary, or use the kiosk in the Sheriff's Office lobby, which takes cash and cards. The window also takes cash or money orders during regular business hours, but not on weekends or holidays. Family can order food, clothes, and other items for an inmate through Tiger Commissary.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.carrollcountysheriffar.gov/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate phone calls are paid for through a Smart Communications account. Letters do not go to the jail: address them to Smart Communications, Carroll County Detention Center, the inmate's name and booking number, P.O. Box 9119, Seminole, Florida 33775-9119. The booking number is on the inmate roster.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.carrollcountysheriffar.gov/frequently-asked-questions"
+      },
+      {
+        title: "Bail and court records",
+        body: 'Most warrants carry a bond set by the court; on a "No Bond" warrant the person stays in custody until seeing a judge. The Sheriff\'s Office takes cash or a surety bond from a licensed bail bonding company, and generally does not accept release on own recognizance or a property bond. Call 870-423-2901 for warrant and bond information. A listing is a record of a booking, not a finding of guilt.',
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.carrollcountysheriffar.gov/frequently-asked-questions"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Carroll County Detention Center?",
+        answer: "Visits are by video. Set up a Smart Communications account to schedule one."
+      },
+      {
+        question: "How do I put money on a Carroll County inmate's account?",
+        answer:
+          "Deposit online through Tiger Commissary, use the lobby kiosk, or bring cash or a money order to the window during business hours."
+      },
+      {
+        question: "Where do I send a letter to a Carroll County inmate?",
+        answer:
+          "Smart Communications, Carroll County Detention Center, inmate's name and booking number, P.O. Box 9119, Seminole, Florida 33775-9119."
+      },
+      {
+        question: "How is bond posted in Carroll County?",
+        answer:
+          "The Sheriff's Office takes cash or a surety bond from a licensed bail bonding company. Call 870-423-2901 for details."
+      }
+    ]
+  },
   "arkansas/cross-county": {
     facilityName: "Cross County Jail and Detention Center",
     address: "1600 South Falls Blvd, Wynne, AR 72396",

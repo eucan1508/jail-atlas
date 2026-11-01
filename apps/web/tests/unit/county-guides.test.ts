@@ -59,6 +59,7 @@ const liveCountyKeys = [
   "arkansas/hempstead-county",
   "arkansas/izard-county",
   "arkansas/cross-county",
+  "arkansas/carroll-county",
   "arkansas/lonoke-county",
   "arkansas/independence-county",
   "arkansas/dallas-county",

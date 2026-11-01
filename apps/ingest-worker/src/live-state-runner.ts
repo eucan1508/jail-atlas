@@ -299,6 +299,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "www.crosscountysheriff.org"
     },
     {
+      countySlug: "carroll",
+      adapterKey: "carroll-county-ar-current-roster",
+      sourceHost: "www.carrollcountysheriffar.gov"
+    },
+    {
       countySlug: "lonoke",
       adapterKey: "lonoke-county-ar-current-roster",
       sourceHost: "www.myr2m.com"

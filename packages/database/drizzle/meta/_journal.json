@@ -505,6 +505,13 @@
       "when": 1795841600000,
       "tag": "0071_minnesota_clearwater_source",
       "breakpoints": true
+    },
+    {
+      "idx": 72,
+      "version": "7",
+      "when": 1795928000000,
+      "tag": "0072_arkansas_carroll_source",
+      "breakpoints": true
     }
   ]
 }
