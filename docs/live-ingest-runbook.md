@@ -97,12 +97,13 @@ with the adapter records disabled and publication approval off.
    ```
 
    The Texas sequence runs Milam, Kendall, Kleberg, Burleson, Tom Green, Angelina
-   (`www.angelinacounty.net`), and Robertson. Burleson, Tom Green, and Robertson use the shared
-   `sheriff-roster-site.ts` adapter, configured in `texas-rosters.ts`. Hutchinson is paused: its
-   sheriff domain stopped resolving on 2026-09-30, and the county's replacement page is a hand-typed
-   list headed "Recently Released Inmates", so it cannot be read as current custody. Its adapter and
-   guide stay in the repository and can be re-enabled in `live-state-runner.ts` if a reliable roster
-   returns.
+   (`www.angelinacounty.net`), Robertson, and Upshur. Upshur reads its jail portal through
+   `jail-portal.ts`, shared with Marshall and Wapello Counties in Iowa. Burleson, Tom Green, and
+   Robertson use the shared `sheriff-roster-site.ts` adapter, configured in `texas-rosters.ts`.
+   Hutchinson is paused: its sheriff domain stopped resolving on 2026-09-30, and the county's
+   replacement page is a hand-typed list headed "Recently Released Inmates", so it cannot be read as
+   current custody. Its adapter and guide stay in the repository and can be re-enabled in
+   `live-state-runner.ts` if a reliable roster returns.
 
    Arkansas runs Jefferson, Logan, Greene, Cleburne, Faulkner, Hot Spring, Baxter, St. Francis,
    Mississippi, Randolph, Hempstead, Izard, Cross, and Carroll through one shared adapter

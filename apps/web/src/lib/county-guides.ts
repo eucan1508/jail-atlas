@@ -1650,6 +1650,66 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/upshur-county": {
+    facilityName: "Upshur County Jail",
+    address: "405 North Titus, Gilmer, TX 75644",
+    phone: "903-843-2541",
+    operatedBy: "Upshur County Sheriff's Office",
+    reviewedAt: "November 1, 2026",
+    overview:
+      "The Upshur County Sheriff's Office runs the county jail from the Upshur County Justice Center in Gilmer. The Sheriff's Office answers at 903-843-2541, and office hours are 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official Sheriff's Office page",
+    contactSourceUrl: "https://www.countyofupshur.com/page/sheriff",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The county site does not post visiting hours or rules for the jail. Call the Sheriff's Office at 903-843-2541 before you go.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://www.countyofupshur.com/page/sheriff"
+      },
+      {
+        title: "Money and commissary",
+        body: "The county site does not explain how to put money on an inmate's account. Call the Sheriff's Office at 903-843-2541 to ask.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://www.countyofupshur.com/page/sheriff"
+      },
+      {
+        title: "Phone and mail",
+        body: "Letters are scanned, not delivered on paper. Address them to the inmate's name and SO number, Upshur County Jail, P.O. Box 591, Longview, Texas 75606, with a return address. Pages must be no larger than 8.5 by 11 inches, five pages at most, writing on the front only, and one photo per letter, or the whole letter is sent back; mail sent to Longview is destroyed after scanning. Books, magazines, newspapers, legal mail, and medical mail go to the jail itself. Messages and photos can also be sent through an NCIC account (844-724-2076).",
+        sourceLabel: "Official NCIC mail rules",
+        sourceUrl:
+          "https://www.countyofupshur.com/page/open/1390/0/NCIC%20Mail%20Rules%20Upshur%20County%20Tx.pdf"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail portal lists each charge or warrant with its bond, but the county site does not explain how to post bond. Call the Sheriff's Office at 903-843-2541 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Sheriff's Office page",
+        sourceUrl: "https://www.countyofupshur.com/page/sheriff"
+      }
+    ],
+    faq: [
+      {
+        question: "Where do I send a letter to an Upshur County inmate?",
+        answer:
+          "Inmate's name and SO number, Upshur County Jail, P.O. Box 591, Longview, Texas 75606. Letters are scanned and delivered to the inmate electronically."
+      },
+      {
+        question: "Can I send photos to an Upshur County inmate?",
+        answer:
+          "One photo per letter by mail, or photos through an NCIC messaging account. A letter with more than one photo is sent back."
+      },
+      {
+        question: "How do I visit someone at the Upshur County Jail?",
+        answer:
+          "The county does not post visiting rules. Call the Sheriff's Office at 903-843-2541."
+      },
+      {
+        question: "How do I find out about bond in Upshur County?",
+        answer:
+          "The roster shows each bond the portal lists. For how to post it, call the Sheriff's Office at 903-843-2541."
+      }
+    ]
+  },
   "texas/robertson-county": {
     facilityName: "Robertson County Jail",
     address: "1006 W US Hwy 79, Franklin, TX 77856",

@@ -351,6 +351,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Upshur County",
+    slug: "upshur-county",
+    publishedAt: "2026-11-01",
+    seatCity: "Gilmer",
+    h1: "Upshur County Jail Roster & Inmate Search",
+    title: "Upshur County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Upshur County, Texas current-inmate information for the jail in Gilmer from the official jail portal, with charges, warrants, holds, bond amounts, and capture time.",
+    article:
+      "The Upshur County website links a jail portal as its inmate search for the Upshur County Jail in Gilmer. This page shows each person still in custody with every charge, warrant, or hold and its bond as the portal lists them, and leaves out ages, photos, and arrest dates.",
+    officialSourceUrl: "https://upshur-so-tx.zuercherportal.com/#/inmates",
+    officialSourceLabel: "Upshur County Jail portal",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "arkansas",
     stateName: "Arkansas",
     county: "Jefferson County",
