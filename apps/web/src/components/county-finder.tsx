@@ -55,9 +55,14 @@ export function CountyFinder({
             >
               <span className="county-finder__result-state">
                 {
-                  { iowa: "IA", minnesota: "MN", texas: "TX", arkansas: "AR", oklahoma: "OK" }[
-                    county.state
-                  ]
+                  {
+                    iowa: "IA",
+                    minnesota: "MN",
+                    texas: "TX",
+                    arkansas: "AR",
+                    oklahoma: "OK",
+                    missouri: "MO"
+                  }[county.state]
                 }
               </span>
               <span className="county-finder__result-copy">

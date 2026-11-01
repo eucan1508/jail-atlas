@@ -136,6 +136,15 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 
+   Missouri runs Crawford through the shared sheriff roster adapter (`sheriff-roster-site.ts`,
+   configured in `missouri-rosters.ts`) with the `roster.php?grp=` layout. Every crawl must collect
+   exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:

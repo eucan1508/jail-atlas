@@ -29,7 +29,7 @@ describe("liveStateSucceeded", () => {
 
 describe("live state sources", () => {
   it("names an adapter the live job runner can build for every county", () => {
-    const states = ["IA", "MN", "TX", "AR", "OK"] as const;
+    const states = ["IA", "MN", "TX", "AR", "OK", "MO"] as const;
     for (const state of states) {
       for (const source of liveStateSources(state)) {
         const adapter = createLiveSourceAdapter(

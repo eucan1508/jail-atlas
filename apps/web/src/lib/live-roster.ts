@@ -97,7 +97,8 @@ const liveAdapterKeys: Record<string, string> = {
   "oklahoma/greer-county": "greer-county-ok-current-roster",
   "oklahoma/major-county": "major-county-ok-current-roster",
   "oklahoma/jackson-county": "jackson-county-ok-current-roster",
-  "oklahoma/custer-county": "custer-county-ok-current-roster"
+  "oklahoma/custer-county": "custer-county-ok-current-roster",
+  "missouri/crawford-county": "crawford-county-mo-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
@@ -204,7 +205,8 @@ async function readSourceStatus(
     MN: "minnesota",
     TX: "texas",
     AR: "arkansas",
-    OK: "oklahoma"
+    OK: "oklahoma",
+    MO: "missouri"
   } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(

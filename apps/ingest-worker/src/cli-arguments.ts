@@ -11,7 +11,7 @@ const CliCommandSchema = z.literal("run");
 
 export const LiveExecutionRequestSchema = z.object({
   dryRun: z.boolean(),
-  state: z.enum(["IA", "MN", "TX", "AR", "OK"]).optional()
+  state: z.enum(["IA", "MN", "TX", "AR", "OK", "MO"]).optional()
 });
 export type LiveExecutionRequest = z.infer<typeof LiveExecutionRequestSchema>;
 
@@ -67,7 +67,7 @@ export function parseLiveCliArguments(arguments_: readonly string[]): LiveExecut
     throw new CliArgumentError("Expected command: run");
   }
   let dryRun = false;
-  let state: "IA" | "MN" | "TX" | "AR" | "OK" | undefined;
+  let state: "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | undefined;
   for (const flag of flags) {
     if (flag === "--dry-run") {
       if (dryRun) throw new CliArgumentError("--dry-run may be provided only once");
@@ -77,8 +77,15 @@ export function parseLiveCliArguments(arguments_: readonly string[]): LiveExecut
     if (flag.startsWith("--state=")) {
       if (state !== undefined) throw new CliArgumentError("--state may be provided only once");
       const value = flag.slice("--state=".length).toUpperCase();
-      if (value !== "IA" && value !== "MN" && value !== "TX" && value !== "AR" && value !== "OK") {
-        throw new CliArgumentError("--state must be IA, MN, TX, AR, or OK");
+      if (
+        value !== "IA" &&
+        value !== "MN" &&
+        value !== "TX" &&
+        value !== "AR" &&
+        value !== "OK" &&
+        value !== "MO"
+      ) {
+        throw new CliArgumentError("--state must be IA, MN, TX, AR, OK, or MO");
       }
       state = value;
       continue;

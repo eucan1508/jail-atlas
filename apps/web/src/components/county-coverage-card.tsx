@@ -12,9 +12,14 @@ export function CountyCoverageCard({
   published?: boolean;
   actionLabel?: string;
 }) {
-  const stateCode = { iowa: "IA", minnesota: "MN", texas: "TX", arkansas: "AR", oklahoma: "OK" }[
-    entry.state
-  ];
+  const stateCode = {
+    iowa: "IA",
+    minnesota: "MN",
+    texas: "TX",
+    arkansas: "AR",
+    oklahoma: "OK",
+    missouri: "MO"
+  }[entry.state];
 
   return (
     <article className="surface-card coverage-card">

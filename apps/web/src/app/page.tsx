@@ -61,7 +61,8 @@ export default async function HomePage() {
     },
     { code: "TX", name: "Texas", slug: "texas" },
     { code: "AR", name: "Arkansas", slug: "arkansas" },
-    { code: "OK", name: "Oklahoma", slug: "oklahoma" }
+    { code: "OK", name: "Oklahoma", slug: "oklahoma" },
+    { code: "MO", name: "Missouri", slug: "missouri" }
   ]
     .map((state) => ({
       ...state,
@@ -69,7 +70,10 @@ export default async function HomePage() {
     }))
     .filter(
       (state) =>
-        (state.slug !== "texas" && state.slug !== "arkansas" && state.slug !== "oklahoma") ||
+        (state.slug !== "texas" &&
+          state.slug !== "arkansas" &&
+          state.slug !== "oklahoma" &&
+          state.slug !== "missouri") ||
         state.published > 0 ||
         coveragePreviewAllowed()
     );
