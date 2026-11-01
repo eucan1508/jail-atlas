@@ -9,7 +9,16 @@ export const CRAWFORD_COUNTY_MO_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
-export const MISSOURI_ROSTER_SITES = [CRAWFORD_COUNTY_MO_ROSTER] as const;
+export const CAMDEN_COUNTY_MO_ROSTER = {
+  adapterKey: "camden-county-mo-current-roster",
+  countyName: "Camden County",
+  diagnosticPrefix: "CAMDEN_COUNTY_MO",
+  sourceUrl: "https://www.camdencountymosheriff.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
+export const MISSOURI_ROSTER_SITES = [CRAWFORD_COUNTY_MO_ROSTER, CAMDEN_COUNTY_MO_ROSTER] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
   return MISSOURI_ROSTER_SITES.find((site) => site.adapterKey === adapterKey) ?? null;

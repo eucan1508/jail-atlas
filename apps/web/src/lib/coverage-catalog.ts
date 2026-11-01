@@ -967,6 +967,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Camden County",
+    slug: "camden-county",
+    publishedAt: "2026-11-01",
+    seatCity: "Camdenton",
+    h1: "Camden County Jail Roster & Inmate Search",
+    title: "Camden County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Camden County, Missouri current-inmate information for the detention facility in Camdenton from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Camden County Sheriff's Office publishes a current inmate roster for the Camden County Adult Detention Facility in Camdenton. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.camdencountymosheriff.org/roster.php",
+    officialSourceLabel: "Camden County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

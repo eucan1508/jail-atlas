@@ -1886,6 +1886,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/camden-county": {
+    facilityName: "Camden County Adult Detention Facility",
+    address: "1 Court Circle Suite 13, Camdenton, MO 65020",
+    phone: "573-317-0981",
+    operatedBy: "Camden County Sheriff's Office",
+    reviewedAt: "November 1, 2026",
+    overview:
+      "The Camden County Sheriff's Office runs the Camden County Adult Detention Facility in Camdenton. The corrections line is 573-317-0981; the Sheriff's Office answers around the clock at 573-346-2243, with administrative hours of 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official detention facility page",
+    contactSourceUrl: "https://www.camdencountymosheriff.org/detention-facility",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video, seven days a week from 9 to 11 a.m. and 1 to 4 p.m., and must be booked 24 hours ahead, first come, first served. Each inmate can have two free on-site video visits a day and two remote visits a day, which cost $7.50 per 15 minutes. A flyer with details is available at the jail clerk window.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.camdencountymosheriff.org/detention-facility"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money online through Access Corrections, which covers commissary, phone, email, and more. ICSolutions takes money for the phone system and tablets only; that money cannot be used for commissary.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.camdencountymosheriff.org/detention-facility"
+      },
+      {
+        title: "Phone and mail",
+        body: "To leave a recorded message for an inmate, call 573-317-4038; each 30-second message costs $1. Phone and tablet time can be funded through ICSolutions. The site does not post mail rules or a mailing address; call the corrections line at 573-317-0981 before sending mail.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.camdencountymosheriff.org/detention-facility"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster does not explain how to post bond, and the Sheriff's site does not either. Call the corrections line at 573-317-0981 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.camdencountymosheriff.org/detention-facility"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Camden County jail?",
+        answer:
+          "Video visits run daily from 9 to 11 a.m. and 1 to 4 p.m. and must be booked 24 hours ahead. On-site visits are free; remote visits cost $7.50 per 15 minutes."
+      },
+      {
+        question: "How do I put money on a Camden County inmate's account?",
+        answer:
+          "Use Access Corrections for commissary and everything else, or ICSolutions for phone and tablet time only."
+      },
+      {
+        question: "Can I leave a message for a Camden County inmate?",
+        answer:
+          "Yes. Call 573-317-4038 to leave a recorded message; each 30-second message costs $1."
+      },
+      {
+        question: "How do I find out about bond in Camden County?",
+        answer: "Call the corrections line at 573-317-0981."
+      }
+    ]
+  },
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",

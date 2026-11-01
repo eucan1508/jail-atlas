@@ -406,6 +406,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "crawford",
       adapterKey: "crawford-county-mo-current-roster",
       sourceHost: "www.crawfordcountyso.org"
+    },
+    {
+      countySlug: "camden",
+      adapterKey: "camden-county-mo-current-roster",
+      sourceHost: "www.camdencountymosheriff.org"
     }
   ]
 };
