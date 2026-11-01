@@ -276,7 +276,7 @@ describe("jail portal source adapter", () => {
       label: "Failure to Appear warrant",
       statuteCode: "321.561",
       description: "DRIVING WHILE BARRED",
-      bond: { type: "Cash/Surety", noBond: false, amountMinor: 200_000 }
+      bond: { type: "Cash/Surety", noBond: false, conflicting: false, amountMinor: 200_000 }
     });
     expect(
       parseJailPortalHoldReason(
@@ -299,7 +299,12 @@ describe("jail portal source adapter", () => {
       label: "Charge",
       statuteCode: "708.2A(2)(b)",
       description: "Synthetic Assault; 1st Off",
-      bond: { type: "Cash (in defendant's name only)", noBond: false, amountMinor: 0 }
+      bond: {
+        type: "Cash (in defendant's name only)",
+        noBond: false,
+        conflicting: false,
+        amountMinor: 0
+      }
     });
     expect(
       parseJailPortalHoldReason(
@@ -314,10 +319,14 @@ describe("jail portal source adapter", () => {
     expect(
       parseJailPortalHoldReason("Federal for Federal; Arrest Date 11/07/2024; Bond - No Bond;")
     ).toMatchObject({ label: "Hold", description: "Federal hold" });
+    expect(
+      parseJailPortalHoldReason(
+        "Mittimus: Serving 2 days - Concurrent; Arrest Date 01/02/2000; Bond - No Bond, $300.00;"
+      ).bond
+    ).toEqual({ type: "No Bond", noBond: false, conflicting: true, amountMinor: 30_000 });
     for (const entry of [
       "Detainer: Synthetic; Bond - No Bond;",
       "Charge: Synthetic without a statute;",
-      "Charge: 714.2(5) - Synthetic; Bond - No Bond, $500.00;",
       "Charge: 714.2(5) - Synthetic; Bond - Cash Only, $1,000.00;"
     ]) {
       expect(() => parseJailPortalHoldReason(entry), entry).toThrow();

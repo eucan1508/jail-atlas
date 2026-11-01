@@ -137,6 +137,8 @@ const PortalListSchema = z.object({
 const JailPortalBondSchema = z.object({
   type: z.string().min(1).max(100).nullable(),
   noBond: z.boolean(),
+  // The portal printed "No Bond" next to a non-zero amount, so neither reading can be trusted.
+  conflicting: z.boolean(),
   amountMinor: z.number().int().nonnegative().max(100_000_000_000).nullable()
 });
 const JailPortalHoldReasonSchema = z.object({
@@ -208,10 +210,11 @@ function parseBond(text: string): JailPortalBond {
   const amountMinor = match[2] === undefined ? null : Number(match[2]) * 100 + Number(match[3]);
   if (amountMinor !== null && !Number.isSafeInteger(amountMinor))
     throw new Error("BOND_UNREADABLE");
-  const noBond = type === "No Bond";
-  // "No Bond, $0.00" is how the portal prints a hold with no bond; any other amount is a conflict.
-  if (noBond && amountMinor !== null && amountMinor !== 0) throw new Error("BOND_UNREADABLE");
-  return { type, noBond, amountMinor: noBond ? null : amountMinor };
+  // "No Bond, $0.00" is how the portal prints a hold with no bond. Any other amount beside
+  // "No Bond" contradicts it; that entry is kept as unknown and shown with both values.
+  const conflicting = type === "No Bond" && amountMinor !== null && amountMinor !== 0;
+  const noBond = type === "No Bond" && !conflicting;
+  return { type, noBond, conflicting, amountMinor: noBond ? null : amountMinor };
 }
 
 /**
@@ -398,6 +401,20 @@ function bondEntry(
   );
   if (bond.noBond) {
     return { id, bookingId, sequence, sourceLabel: "Bond", note: null, state: "no_bond" };
+  }
+  if (bond.conflicting && bond.amountMinor !== null) {
+    const amount = (bond.amountMinor / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+    return {
+      id,
+      bookingId,
+      sequence,
+      sourceLabel: "Bond",
+      note: `The source lists "No Bond" with ${amount}; contact the jail to confirm.`,
+      state: "unknown"
+    };
   }
   if (bond.amountMinor === null) {
     return { id, bookingId, sequence, sourceLabel: "Bond", note: bond.type, state: "unknown" };
