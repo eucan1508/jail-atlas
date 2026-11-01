@@ -124,6 +124,16 @@ export const CROSS_COUNTY_AR_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CARROLL_COUNTY_AR_ROSTER = {
+  adapterKey: "carroll-county-ar-current-roster",
+  countyName: "Carroll County",
+  diagnosticPrefix: "CARROLL_COUNTY_AR",
+  sourceUrl:
+    "https://www.carrollcountysheriffar.gov/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ARKANSAS_ROSTER_SITES = [
   JEFFERSON_COUNTY_AR_ROSTER,
   LOGAN_COUNTY_AR_ROSTER,
@@ -137,7 +147,8 @@ export const ARKANSAS_ROSTER_SITES = [
   RANDOLPH_COUNTY_AR_ROSTER,
   HEMPSTEAD_COUNTY_AR_ROSTER,
   IZARD_COUNTY_AR_ROSTER,
-  CROSS_COUNTY_AR_ROSTER
+  CROSS_COUNTY_AR_ROSTER,
+  CARROLL_COUNTY_AR_ROSTER
 ] as const;
 
 export type ArkansasRosterAdapterKey = (typeof ARKANSAS_ROSTER_SITES)[number]["adapterKey"];

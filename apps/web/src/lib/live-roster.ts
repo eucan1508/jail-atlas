@@ -78,6 +78,7 @@ const liveAdapterKeys: Record<string, string> = {
   "arkansas/hempstead-county": "hempstead-county-ar-current-roster",
   "arkansas/izard-county": "izard-county-ar-current-roster",
   "arkansas/cross-county": "cross-county-ar-current-roster",
+  "arkansas/carroll-county": "carroll-county-ar-current-roster",
   "arkansas/lonoke-county": "lonoke-county-ar-current-roster",
   "arkansas/independence-county": "independence-county-ar-current-roster",
   "arkansas/dallas-county": "dallas-county-ar-current-roster",

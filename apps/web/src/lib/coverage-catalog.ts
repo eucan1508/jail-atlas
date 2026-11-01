@@ -563,6 +563,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Carroll County",
+    slug: "carroll-county",
+    publishedAt: "2026-11-01",
+    seatCity: "Berryville",
+    h1: "Carroll County Jail Roster & Inmate Search",
+    title: "Carroll County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Carroll County, Arkansas current-inmate information for the detention center in Berryville from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Carroll County Sheriff's Office publishes a current inmate roster for the Carroll County Detention Center in Berryville. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.carrollcountysheriffar.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Carroll County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Lonoke County",
     slug: "lonoke-county",
     publishedAt: "2026-10-23",
