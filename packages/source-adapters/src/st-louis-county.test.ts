@@ -171,6 +171,26 @@ describe("St. Louis County source adapter", () => {
     }
   });
 
+  it("joins an entry whose charges run onto the next page", async () => {
+    const continued = page(2, 2, secondPageEntries);
+    continued.push(
+      { text: "1", x: 177, y: 727 },
+      { text: "SYNTHETIC OFFENSE F", x: 183, y: 727 },
+      { text: "Felony", x: 440, y: 727 }
+    );
+    const result = await runSourceAdapter(
+      adapter([page(1, 2, firstPageEntries), continued]),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    const delta = result.snapshot.bookings.find(
+      (booking) => booking.person.displayName === "Tester, Delta"
+    );
+    expect(delta?.charges.map((charge) => charge.description)).toEqual(["SYNTHETIC OFFENSE F"]);
+    expect(result.snapshot.recordCount).toBe(4);
+  });
+
   it("fails closed when the running numbers skip an entry", async () => {
     const result = await runSourceAdapter(
       adapter([

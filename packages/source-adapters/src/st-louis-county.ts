@@ -34,6 +34,8 @@ const CHARGE_NUMBER_X: readonly [number, number] = [170, 181];
 const CHARGE_TEXT_X: readonly [number, number] = [181, 430];
 const LOCATION_X: readonly [number, number] = [295, 475];
 const PAGE_HEADER_MIN_Y = 735;
+// Larger than any page height, so a page stacked below another never overlaps it.
+const PAGE_STACK_OFFSET = 10_000;
 
 const StLouisRecordSchema = z.object({
   sequence: z.number().int().positive(),
@@ -169,73 +171,75 @@ export function parseStLouisRosterPages(pages: readonly StLouisPdfPage[]): StLou
 
   const records: z.infer<typeof StLouisRecordSchema>[] = [];
   let expectedSequence = 1;
-  for (const page of pages) {
-    const body = page.filter((item) => item.y < PAGE_HEADER_MIN_Y);
-    const anchors = body
-      .filter((item) => item.x < SEQUENCE_MAX_X && /^\d{1,4}$/.test(item.text))
-      .sort((left, right) => right.y - left.y);
-    const firstAnchor = anchors[0];
-    if (body.some((item) => item.y > (firstAnchor?.y ?? -Infinity) + ROW_TOLERANCE * 2)) {
-      throw new Error("RECORD_SPLIT_ACROSS_PAGES");
+  // An entry can run past the bottom of a page and finish at the top of the next one. Stack the
+  // page bodies into one column, each page below the last, so such an entry reads as one block.
+  const body = pages.flatMap((page, index) =>
+    page
+      .filter((item) => item.y < PAGE_HEADER_MIN_Y)
+      .map((item) => ({ ...item, y: item.y - index * PAGE_STACK_OFFSET }))
+  );
+  const anchors = body
+    .filter((item) => item.x < SEQUENCE_MAX_X && /^\d{1,4}$/.test(item.text))
+    .sort((left, right) => right.y - left.y);
+  const firstAnchor = anchors[0];
+  // Only text above the very first entry has no entry to belong to.
+  if (body.some((item) => item.y > (firstAnchor?.y ?? -Infinity) + ROW_TOLERANCE * 2)) {
+    throw new Error("RECORD_SPLIT_ACROSS_PAGES");
+  }
+
+  anchors.forEach((anchor, index) => {
+    const sequence = Number(anchor.text);
+    if (sequence !== expectedSequence) throw new Error("SEQUENCE_GAP");
+    expectedSequence += 1;
+    const top = anchor.y + ROW_TOLERANCE * 2;
+    const bottom = (anchors[index + 1]?.y ?? -Infinity) + ROW_TOLERANCE * 2;
+    const entry = body.filter((item) => item.y <= top && item.y > bottom && item !== anchor);
+
+    const locationLabel = entry.find((item) => item.text === "Location:");
+    const chargesHeader = entry.find((item) => item.text === "Charges");
+    if (!locationLabel || !chargesHeader) throw new Error("ENTRY_STRUCTURE_MISSING");
+
+    // Name lines sit in the left column above the Charges header; the last token "#12345" is
+    // the jail's LID, which is not a booking number and is not kept.
+    const nameText = rowText(
+      entry.filter(
+        (item) => item.x >= SEQUENCE_MAX_X && item.x < NAME_MAX_X && item.y > chargesHeader.y
+      )
+    );
+    const displayName = normalizeText(nameText.replace(/\s*#\d+$/, ""));
+    if (!/#\d+$/.test(nameText) || displayName.length < 2) {
+      throw new Error("INVALID_RECORD_IDENTITY");
     }
 
-    anchors.forEach((anchor, index) => {
-      const sequence = Number(anchor.text);
-      if (sequence !== expectedSequence) throw new Error("SEQUENCE_GAP");
-      expectedSequence += 1;
-      const top = anchor.y + ROW_TOLERANCE * 2;
-      const bottom = (anchors[index + 1]?.y ?? -Infinity) + ROW_TOLERANCE * 2;
-      const entry = body.filter((item) => item.y <= top && item.y > bottom && item !== anchor);
+    const location = rowText(
+      entry.filter(
+        (item) => within(item.x, LOCATION_X) && Math.abs(item.y - locationLabel.y) <= ROW_TOLERANCE
+      )
+    );
+    if (!location) throw new Error("MISSING_LOCATION");
 
-      const locationLabel = entry.find((item) => item.text === "Location:");
-      const chargesHeader = entry.find((item) => item.text === "Charges");
-      if (!locationLabel || !chargesHeader) throw new Error("ENTRY_STRUCTURE_MISSING");
-
-      // Name lines sit in the left column above the Charges header; the last token "#12345" is
-      // the jail's LID, which is not a booking number and is not kept.
-      const nameText = rowText(
-        entry.filter(
-          (item) => item.x >= SEQUENCE_MAX_X && item.x < NAME_MAX_X && item.y > chargesHeader.y
-        )
-      );
-      const displayName = normalizeText(nameText.replace(/\s*#\d+$/, ""));
-      if (!/#\d+$/.test(nameText) || displayName.length < 2) {
-        throw new Error("INVALID_RECORD_IDENTITY");
-      }
-
-      const location = rowText(
-        entry.filter(
-          (item) =>
-            within(item.x, LOCATION_X) && Math.abs(item.y - locationLabel.y) <= ROW_TOLERANCE
-        )
-      );
-      if (!location) throw new Error("MISSING_LOCATION");
-
-      const chargeNumbers = entry
-        .filter(
-          (item) =>
-            within(item.x, CHARGE_NUMBER_X) &&
-            item.y < chargesHeader.y &&
-            /^\d{1,3}$/.test(item.text)
-        )
-        .sort((left, right) => right.y - left.y);
-      chargeNumbers.forEach((number, chargeIndex) => {
-        if (Number(number.text) !== chargeIndex + 1) throw new Error("CHARGE_SEQUENCE_GAP");
-      });
-      const charges = chargeNumbers.map((number, chargeIndex) => {
-        const chargeTop = number.y + ROW_TOLERANCE;
-        const chargeBottom = (chargeNumbers[chargeIndex + 1]?.y ?? bottom) + ROW_TOLERANCE;
-        return rowText(
-          entry.filter(
-            (item) => within(item.x, CHARGE_TEXT_X) && item.y <= chargeTop && item.y > chargeBottom
-          )
-        );
-      });
-      if (charges.some((charge) => !charge)) throw new Error("EMPTY_CHARGE");
-
-      records.push(StLouisRecordSchema.parse({ sequence, displayName, location, charges }));
+    const chargeNumbers = entry
+      .filter(
+        (item) =>
+          within(item.x, CHARGE_NUMBER_X) && item.y < chargesHeader.y && /^\d{1,3}$/.test(item.text)
+      )
+      .sort((left, right) => right.y - left.y);
+    chargeNumbers.forEach((number, chargeIndex) => {
+      if (Number(number.text) !== chargeIndex + 1) throw new Error("CHARGE_SEQUENCE_GAP");
     });
-  }
+    const charges = chargeNumbers.map((number, chargeIndex) => {
+      const chargeTop = number.y + ROW_TOLERANCE;
+      const chargeBottom = (chargeNumbers[chargeIndex + 1]?.y ?? bottom) + ROW_TOLERANCE;
+      return rowText(
+        entry.filter(
+          (item) => within(item.x, CHARGE_TEXT_X) && item.y <= chargeTop && item.y > chargeBottom
+        )
+      );
+    });
+    if (charges.some((charge) => !charge)) throw new Error("EMPTY_CHARGE");
+
+    records.push(StLouisRecordSchema.parse({ sequence, displayName, location, charges }));
+  });
 
   const listedTotal = expectedSequence - 1;
   const kept = records.filter((record) => record.location === ST_LOUIS_COUNTY_JAIL_LOCATION);

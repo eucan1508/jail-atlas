@@ -306,6 +306,28 @@ describe("Washington County, Minnesota source adapter", () => {
     expect(result.snapshot.recordCount).toBe(4);
   });
 
+  it("reads a timestamp printed without leading zeros on the month and day", async () => {
+    const stamp = "1/2/2000 12:00:05 PM";
+    const result = await runSourceAdapter(
+      adapter([
+        page(
+          [
+            row(583, "EXAMPLE", "Alpha", [], "J00000001", "0000001"),
+            row(560, "EXAMPLE", "Bravo", [], "J00000002", "0000002"),
+            row(537, "EXAMPLE", "Charlie", [], "J00000003", "0000003"),
+            row(514, "EXAMPLE", "Delta", [], "J00000004", "0000004")
+          ],
+          1,
+          1,
+          4,
+          stamp
+        )
+      ]),
+      context()
+    );
+    expect(result.ok).toBe(true);
+  });
+
   it("refuses a report that has not been regenerated for days", async () => {
     const result = await runSourceAdapter(
       adapter([firstPage, lastPage]),
