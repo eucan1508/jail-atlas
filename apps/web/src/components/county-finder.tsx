@@ -51,7 +51,7 @@ export function CountyFinder({
             <Link
               className="county-finder__result"
               href={countyCoveragePath(county)}
-              key={county.slug}
+              key={countyCoveragePath(county)}
             >
               <span className="county-finder__result-state">
                 {

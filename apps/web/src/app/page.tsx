@@ -188,7 +188,7 @@ export default async function HomePage() {
           </div>
           <div className="recent-county-grid">
             {recentlyAdded.map(({ entry, liveSource, path }) => (
-              <Link href={path} key={entry.slug}>
+              <Link href={path} key={path}>
                 <strong>{entry.county} jail roster</strong>
                 <span>
                   {entry.stateName} · Added{" "}

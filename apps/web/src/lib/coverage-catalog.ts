@@ -984,6 +984,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Polk County",
+    slug: "polk-county",
+    publishedAt: "2026-11-02",
+    seatCity: "Bolivar",
+    h1: "Polk County Jail Roster & Inmate Search",
+    title: "Polk County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Polk County, Missouri current-inmate information for the county jail in Bolivar from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Polk County Sheriff's Office publishes a current inmate roster for the Polk County Jail in Bolivar. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.polkcountymosheriff.org/roster.php",
+    officialSourceLabel: "Polk County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Benton County",
+    slug: "benton-county",
+    publishedAt: "2026-11-02",
+    seatCity: "Warsaw",
+    h1: "Benton County Jail Roster & Inmate Search",
+    title: "Benton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Benton County, Missouri current-inmate information for the detention facility in Warsaw from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Benton County Sheriff's Office publishes a current inmate roster for the Benton County Detention Facility in Warsaw. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Benton County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

@@ -110,10 +110,12 @@ Oklahoma was added on 2026-10-09.
 Missouri counties run on the same sheriff roster software as several Arkansas and Texas counties, so
 they read through the shared `sheriff-roster-site.ts` adapter.
 
-| County   | Official source                                                                         | Status                                      |
-| -------- | --------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Crawford | [Crawford County Sheriff inmate roster](https://www.crawfordcountyso.org/roster.php)    | Adapter tested; production approval pending |
-| Camden   | [Camden County Sheriff inmate roster](https://www.camdencountymosheriff.org/roster.php) | Adapter tested; production approval pending |
+| County   | Official source                                                                                                                | Status                                      |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| Crawford | [Crawford County Sheriff inmate roster](https://www.crawfordcountyso.org/roster.php)                                           | Adapter tested; production approval pending |
+| Camden   | [Camden County Sheriff inmate roster](https://www.camdencountymosheriff.org/roster.php)                                        | Adapter tested; production approval pending |
+| Polk     | [Polk County Sheriff inmate roster](https://www.polkcountymosheriff.org/roster.php)                                            | Adapter tested; production approval pending |
+| Benton   | [Benton County Sheriff inmate roster](https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
