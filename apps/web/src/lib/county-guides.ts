@@ -1886,6 +1886,120 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/polk-county": {
+    facilityName: "Polk County Jail",
+    address: "113 East Jefferson, Bolivar, MO 65613",
+    phone: "417-777-9020",
+    operatedBy: "Polk County Sheriff's Office",
+    reviewedAt: "November 2, 2026",
+    overview:
+      "The Polk County Sheriff's Office runs the county jail in Bolivar. The Sheriff's Office answers around the clock at 417-777-9020, and administrative hours are 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official corrections division page",
+    contactSourceUrl: "https://www.polkcountymosheriff.org/corrections-division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video and are scheduled on Sundays through the jail's video visitation company, CIDNET. Visiting from the lobby kiosk needs the Jail Administrator's approval first. No property or money is accepted for inmates during visits, and only the Sheriff or the Jail Administrator can approve an emergency visit.",
+        sourceLabel: "Official corrections division page",
+        sourceUrl: "https://www.polkcountymosheriff.org/corrections-division"
+      },
+      {
+        title: "Money and commissary",
+        body: "Family and friends can order commissary for an inmate through Tiger Online. For other ways to add money, call the Sheriff's Office at 417-777-9020.",
+        sourceLabel: "Official corrections division page",
+        sourceUrl: "https://www.polkcountymosheriff.org/corrections-division"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates use phones in the day rooms. Calls are collect or through a pre-approved account, last up to 15 minutes, and are recorded. The site does not post mail rules or a mailing address; call the Sheriff's Office at 417-777-9020 before sending mail.",
+        sourceLabel: "Official corrections division page",
+        sourceUrl: "https://www.polkcountymosheriff.org/corrections-division"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bond. Call the Sheriff's Office at 417-777-9020 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official corrections division page",
+        sourceUrl: "https://www.polkcountymosheriff.org/corrections-division"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Polk County Jail?",
+        answer:
+          "All visits are by video on Sundays, set up through CIDNET. Using the lobby kiosk needs the Jail Administrator's approval."
+      },
+      {
+        question: "How do I get commissary to a Polk County inmate?",
+        answer: "Order it through Tiger Online."
+      },
+      {
+        question: "How do phone calls work at the Polk County Jail?",
+        answer:
+          "Calls are collect or through a pre-approved account, limited to 15 minutes, and recorded."
+      },
+      {
+        question: "How do I find out about bond in Polk County?",
+        answer: "Call the Sheriff's Office at 417-777-9020."
+      }
+    ]
+  },
+  "missouri/benton-county": {
+    facilityName: "Benton County Detention Facility",
+    address: "1620 E. Main St., Warsaw, MO 65355",
+    phone: "660-438-6135",
+    operatedBy: "Benton County Sheriff's Office",
+    reviewedAt: "November 2, 2026",
+    overview:
+      "The Benton County Sheriff's Office runs the Benton County Detention Facility at 1620 E. Main St. in Warsaw. The detention facility answers at 660-438-6135; the Sheriff's Office line, 660-438-5252, is answered around the clock, and administrative hours are 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official detention facility page",
+    contactSourceUrl: "https://www.bentoncountysheriffmo.org/detention-facility",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are Sunday through Thursday, 9 a.m. to 5 p.m. and 7:30 to 9:45 p.m., and Friday and Saturday, 9 a.m. to 5 p.m. and 7:30 to 10:45 p.m. Visitors on probation or parole need written permission from their officer, and juveniles must come with a parent or legal guardian.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.bentoncountysheriffmo.org/detention-facility"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money to a detainee's account, or order commissary as a gift, through an account on JailATM.com.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.bentoncountysheriffmo.org/detention-facility"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail goes to 1620 E. Main St., Warsaw, MO 65355, with the detainee's name on the front of the envelope under the address. All mail except legal mail is opened and checked before delivery; legal mail is opened in front of the detainee. Up to six photos can be mailed, but no Polaroids. To stop unwanted calls from a detainee, contact the detention facility.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.bentoncountysheriffmo.org/detention-facility"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bond; call the detention facility at 660-438-6135. For court dates, contact the Benton County Circuit Court at 660-438-7712 or search Missouri Case.net. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official detention facility page",
+        sourceUrl: "https://www.bentoncountysheriffmo.org/detention-facility"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Benton County jail?",
+        answer:
+          "Sunday through Thursday 9 a.m. to 5 p.m. and 7:30 to 9:45 p.m.; Friday and Saturday 9 a.m. to 5 p.m. and 7:30 to 10:45 p.m."
+      },
+      {
+        question: "How do I put money on a Benton County detainee's account?",
+        answer: "Use an account on JailATM.com, which also takes commissary orders."
+      },
+      {
+        question: "Where do I send mail to a Benton County detainee?",
+        answer:
+          "1620 E. Main St., Warsaw, MO 65355, with the detainee's name on the envelope. Up to six photos, no Polaroids."
+      },
+      {
+        question: "How do I find a court date in Benton County?",
+        answer: "Call the Benton County Circuit Court at 660-438-7712 or search Missouri Case.net."
+      }
+    ]
+  },
   "missouri/camden-county": {
     facilityName: "Camden County Adult Detention Facility",
     address: "1 Court Circle Suite 13, Camdenton, MO 65020",

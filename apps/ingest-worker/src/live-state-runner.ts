@@ -411,6 +411,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "camden",
       adapterKey: "camden-county-mo-current-roster",
       sourceHost: "www.camdencountymosheriff.org"
+    },
+    {
+      countySlug: "polk",
+      adapterKey: "polk-county-mo-current-roster",
+      sourceHost: "www.polkcountymosheriff.org"
+    },
+    {
+      countySlug: "benton",
+      adapterKey: "benton-county-mo-current-roster",
+      sourceHost: "www.bentoncountysheriffmo.org"
     }
   ]
 };

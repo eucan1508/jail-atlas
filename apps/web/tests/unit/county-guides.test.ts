@@ -80,7 +80,9 @@ const liveCountyKeys = [
   "oklahoma/jackson-county",
   "oklahoma/custer-county",
   "missouri/crawford-county",
-  "missouri/camden-county"
+  "missouri/camden-county",
+  "missouri/polk-county",
+  "missouri/benton-county"
 ] as const;
 
 describe("verified county guides", () => {

@@ -196,7 +196,7 @@ export function CountyGuide({
           </div>
           <div className="related-county-grid">
             {related.slice(0, 6).map(({ entry: county, liveSource, path }) => (
-              <Link href={path} key={county.slug}>
+              <Link href={path} key={path}>
                 <strong>{county.county} jail roster</strong>
                 <span>
                   {liveSource.recordCount} visible{" "}
