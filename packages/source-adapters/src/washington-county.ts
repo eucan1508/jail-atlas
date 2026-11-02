@@ -39,7 +39,8 @@ const BOOKING_DATE = /^\d{2}\/\d{2}\/\d{2}$/;
 const MERGED_BOOKING = /^(\d{2}\/\d{2}\/\d{2}) (\d{7})$/;
 // A wide "Release Est. # Days" value can start left of its header and land in the booking column.
 const RELEASE_DAYS = /^-?\d{1,4}$/;
-const AS_OF = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/;
+// The report drops leading zeros on the month and day ("11/2/2026 2:00:04 PM").
+const AS_OF = /^(\d{1,2})\/(\d{1,2})\/(\d{4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)$/;
 const UPPERCASE_TOKEN = /^[A-Z][A-Z'.-]*$/;
 
 const WashingtonRecordSchema = z.object({
