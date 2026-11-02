@@ -117,6 +117,16 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Polk     | [Polk County Sheriff inmate roster](https://www.polkcountymosheriff.org/roster.php)                                            | Adapter tested; production approval pending |
 | Benton   | [Benton County Sheriff inmate roster](https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
+## Kansas
+
+Kansas was added on 2026-11-02. Its counties use the same sheriff roster software as the Missouri,
+Arkansas, and Texas counties above.
+
+| County  | Official source                                                                                                                  | Status                                      |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Bourbon | [Bourbon County Sheriff inmate roster](https://www.bourboncountysheriffks.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Coffey  | [Coffey County Sheriff inmate roster](https://www.coffeycountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,

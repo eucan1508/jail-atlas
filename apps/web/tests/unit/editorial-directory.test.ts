@@ -17,7 +17,8 @@ describe("editorial directory content", () => {
       "texas",
       "arkansas",
       "oklahoma",
-      "missouri"
+      "missouri",
+      "kansas"
     ] as const) {
       const items = stateFaqItems(state);
       expect(items).toHaveLength(4);

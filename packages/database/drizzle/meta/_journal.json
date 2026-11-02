@@ -554,6 +554,20 @@
       "when": 1796446400000,
       "tag": "0078_missouri_benton_source",
       "breakpoints": true
+    },
+    {
+      "idx": 79,
+      "version": "7",
+      "when": 1796532800000,
+      "tag": "0079_kansas_bourbon_source",
+      "breakpoints": true
+    },
+    {
+      "idx": 80,
+      "version": "7",
+      "when": 1796619200000,
+      "tag": "0080_kansas_coffey_source",
+      "breakpoints": true
     }
   ]
 }

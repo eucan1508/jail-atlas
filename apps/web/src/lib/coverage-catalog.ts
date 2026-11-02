@@ -1,6 +1,7 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
-export type CoverageState = "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri";
+export type CoverageState =
+  "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri" | "kansas";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -1016,6 +1017,42 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl:
       "https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Benton County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Bourbon County",
+    slug: "bourbon-county",
+    publishedAt: "2026-11-02",
+    seatCity: "Fort Scott",
+    h1: "Bourbon County Jail Roster & Inmate Search",
+    title: "Bourbon County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Bourbon County, Kansas current-inmate information for the jail in Fort Scott from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Bourbon County Sheriff's Office publishes a current inmate roster for the Bourbon County Jail in Fort Scott. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.bourboncountysheriffks.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Bourbon County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Coffey County",
+    slug: "coffey-county",
+    publishedAt: "2026-11-02",
+    seatCity: "Burlington",
+    h1: "Coffey County Jail Roster & Inmate Search",
+    title: "Coffey County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Coffey County, Kansas current-inmate information for the jail in Burlington from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Coffey County Sheriff's Office publishes a current inmate roster for the Coffey County Jail in Burlington. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.coffeycountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Coffey County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

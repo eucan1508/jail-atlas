@@ -2058,6 +2058,122 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/bourbon-county": {
+    facilityName: "Bourbon County Jail",
+    address: "293 E. 20th St., Fort Scott, KS 66701",
+    phone: "620-223-1440",
+    operatedBy: "Bourbon County Sheriff's Office",
+    reviewedAt: "November 2, 2026",
+    overview:
+      "The Bourbon County Sheriff's Office runs the county jail at 293 E. 20th St. in Fort Scott. The Sheriff's Office answers around the clock at 620-223-1440, and administrative hours are 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.bourboncountysheriffks.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video and are scheduled and held online through Inmate Sales (inmatesales.com), which also handles messages, emails, and text messaging through Chirping.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.bourboncountysheriffks.org/visitation-chirping-messaging-phone-time"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary can no longer be bought online. Put money on an inmate's books at the kiosk in the foyer of the Sheriff's Office at 293 E. 20th St. Phone money can be added through Inmate Sales, either for calls to your number or for calls to anyone.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.bourboncountysheriffks.org/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to the inmate's name and inmate ID, Bourbon County Jail, P.O. Box 76550, Highland Heights, KY 41076; mail sent anywhere else is rejected. Legal mail goes to Bourbon County Jail, Attn: inmate's name, 293 E. 20th St., Fort Scott, KS 66701. Every piece needs a return address and must be letter size or smaller, able to go through a scanner. Up to 10 photos on photo paper are allowed per package; no cash, checks, money orders, colored drawings, or internet printouts. Mail that breaks the rules is destroyed.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.bourboncountysheriffks.org/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office posts a list of approved bonding companies, which it updates as needed. Call 620-223-1440 to ask about a bond. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bonding companies page",
+        sourceUrl: "https://www.bourboncountysheriffks.org/bonding-companies"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Bourbon County Jail?",
+        answer: "Visits are by video, scheduled and held online through Inmate Sales."
+      },
+      {
+        question: "How do I put money on a Bourbon County inmate's account?",
+        answer:
+          "Use the kiosk in the Sheriff's Office foyer. Commissary can no longer be bought online."
+      },
+      {
+        question: "Where do I send a letter to a Bourbon County inmate?",
+        answer:
+          "Inmate's name and inmate ID, Bourbon County Jail, P.O. Box 76550, Highland Heights, KY 41076. Mail sent to the jail itself is rejected unless it is legal mail."
+      },
+      {
+        question: "How do I post bond in Bourbon County?",
+        answer:
+          "Use one of the bonding companies on the Sheriff's approved list, or call 620-223-1440."
+      }
+    ]
+  },
+  "kansas/coffey-county": {
+    facilityName: "Coffey County Jail",
+    address: "625 Neosho Street, Burlington, KS 66839",
+    phone: "620-364-3199",
+    operatedBy: "Coffey County Sheriff's Office",
+    reviewedAt: "November 2, 2026",
+    overview:
+      "The Coffey County Sheriff's Office runs the county jail in Burlington. The jail answers at 620-364-3199 and the Sheriff's Office at 620-364-2123; administrative hours are 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official detention page",
+    contactSourceUrl: "https://www.coffeycountysheriff.org/detention",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits run through NCIC InTouch; create an account on the NCIC website to schedule one, first come, first served. Remote visits from your own device last up to 30 minutes, cost 35 cents a minute, and can be booked any day. On-site visits at the lobby kiosk last up to 20 minutes, are free, and are limited to one a week on Sundays from 1 to 4 p.m. Call the jail at 620-364-3199 with questions.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.coffeycountysheriff.org/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money to an inmate's commissary account through JailATM: sign in, choose Send Money Now, pick the state and facility, find the inmate by last name or ID, and enter the amount.",
+        sourceLabel: "Official money for inmates page",
+        sourceUrl: "https://www.coffeycountysheriff.org/money-for-inmates"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates can request a text-messaging device called a Chirp; messages cost 10 cents to send or receive plus a monthly rental fee, and the account is funded through Inmate Sales. The site does not post mail rules or a mailing address; call the jail at 620-364-3199 before sending mail.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.coffeycountysheriff.org/visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office posts a list of approved bonding agencies, valid through December 31, 2026. Call the jail at 620-364-3199 to ask about a bond. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bonding agencies page",
+        sourceUrl: "https://www.coffeycountysheriff.org/bonding-agencies"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Coffey County Jail?",
+        answer:
+          "Schedule through NCIC InTouch. Remote visits cost 35 cents a minute; on-site lobby visits are free on Sundays from 1 to 4 p.m."
+      },
+      {
+        question: "How do I put money on a Coffey County inmate's account?",
+        answer: "Deposit through JailATM by choosing the state, the facility, and the inmate."
+      },
+      {
+        question: "Can I text someone in the Coffey County Jail?",
+        answer:
+          "Yes, if the inmate has a Chirp device. Messages cost 10 cents each way, funded through Inmate Sales."
+      },
+      {
+        question: "How do I post bond in Coffey County?",
+        answer:
+          "Use one of the Sheriff's approved bonding agencies, or call the jail at 620-364-3199."
+      }
+    ]
+  },
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",

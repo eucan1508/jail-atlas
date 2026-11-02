@@ -18,6 +18,7 @@ on:
           - AR
           - OK
           - MO
+          - KS
       county_slug:
         description: "County slug"
         required: true
