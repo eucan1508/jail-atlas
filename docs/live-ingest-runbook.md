@@ -147,6 +147,15 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
+   Kansas runs Bourbon and Coffey through the same shared sheriff roster adapter, configured in
+   `kansas-rosters.ts`; both use `/inmate-roster/filters/current/...` paths and must collect exactly
+   the "Inmate Roster (N)" count:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=KS --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:

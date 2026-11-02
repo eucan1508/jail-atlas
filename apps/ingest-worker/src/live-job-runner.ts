@@ -17,6 +17,7 @@ import {
   arkansasRosterSite,
   texasRosterSite,
   missouriRosterSite,
+  kansasRosterSite,
   myr2mRosterSite,
   createMyr2mRosterAdapter,
   createSheriffRosterSiteAdapter,
@@ -183,7 +184,8 @@ export function createLiveSourceAdapter(
   const rosterSite =
     arkansasRosterSite(source.adapterKey) ??
     texasRosterSite(source.adapterKey) ??
-    missouriRosterSite(source.adapterKey);
+    missouriRosterSite(source.adapterKey) ??
+    kansasRosterSite(source.adapterKey);
   const myr2mSite = myr2mRosterSite(source.adapterKey);
   const rosterReport = jailRosterReport(source.adapterKey);
   const portal = jailPortal(source.adapterKey);

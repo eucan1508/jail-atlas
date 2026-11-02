@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO";
+export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | "KS";
 
 export type LiveStateSource = Readonly<{
   countySlug: string;
@@ -421,6 +421,18 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "benton",
       adapterKey: "benton-county-mo-current-roster",
       sourceHost: "www.bentoncountysheriffmo.org"
+    }
+  ],
+  KS: [
+    {
+      countySlug: "bourbon",
+      adapterKey: "bourbon-county-ks-current-roster",
+      sourceHost: "www.bourboncountysheriffks.org"
+    },
+    {
+      countySlug: "coffey",
+      adapterKey: "coffey-county-ks-current-roster",
+      sourceHost: "www.coffeycountysheriff.org"
     }
   ]
 };

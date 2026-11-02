@@ -20,6 +20,7 @@ export * from "./sheriff-roster-site.js";
 export * from "./arkansas-rosters.js";
 export * from "./texas-rosters.js";
 export * from "./missouri-rosters.js";
+export * from "./kansas-rosters.js";
 export * from "./douglas-county.js";
 export * from "./st-louis-county.js";
 export * from "./steele-county.js";

@@ -101,7 +101,9 @@ const liveAdapterKeys: Record<string, string> = {
   "missouri/crawford-county": "crawford-county-mo-current-roster",
   "missouri/camden-county": "camden-county-mo-current-roster",
   "missouri/polk-county": "polk-county-mo-current-roster",
-  "missouri/benton-county": "benton-county-mo-current-roster"
+  "missouri/benton-county": "benton-county-mo-current-roster",
+  "kansas/bourbon-county": "bourbon-county-ks-current-roster",
+  "kansas/coffey-county": "coffey-county-ks-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
@@ -195,7 +197,7 @@ async function readSourceStatus(
       AND co.publication_status = 'published'
       AND st.publication_status = 'published'
       -- Keep in step with stateByCode below; a state missing here never shows any county page.
-      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO')
+      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO', 'KS')
       AND EXISTS (
         SELECT 1 FROM source_adapters sa
         WHERE sa.source_id = os.id AND sa.adapter_key = os.adapter_key
@@ -211,7 +213,8 @@ async function readSourceStatus(
     TX: "texas",
     AR: "arkansas",
     OK: "oklahoma",
-    MO: "missouri"
+    MO: "missouri",
+    KS: "kansas"
   } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(
