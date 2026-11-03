@@ -421,6 +421,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "benton",
       adapterKey: "benton-county-mo-current-roster",
       sourceHost: "www.bentoncountysheriffmo.org"
+    },
+    {
+      countySlug: "stone",
+      adapterKey: "stone-county-mo-current-roster",
+      sourceHost: "www.stonecountymosheriff.com"
     }
   ],
   KS: [
@@ -433,6 +438,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "coffey",
       adapterKey: "coffey-county-ks-current-roster",
       sourceHost: "www.coffeycountysheriff.org"
+    },
+    {
+      countySlug: "atchison",
+      adapterKey: "atchison-county-ks-current-roster",
+      sourceHost: "www.atcosheriffks.org"
     }
   ]
 };

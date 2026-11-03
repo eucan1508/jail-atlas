@@ -37,11 +37,21 @@ export const BENTON_COUNTY_MO_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const STONE_COUNTY_MO_ROSTER = {
+  adapterKey: "stone-county-mo-current-roster",
+  countyName: "Stone County",
+  diagnosticPrefix: "STONE_COUNTY_MO",
+  sourceUrl: "https://www.stonecountymosheriff.com/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
   POLK_COUNTY_MO_ROSTER,
-  BENTON_COUNTY_MO_ROSTER
+  BENTON_COUNTY_MO_ROSTER,
+  STONE_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

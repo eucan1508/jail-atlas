@@ -83,8 +83,10 @@ const liveCountyKeys = [
   "missouri/camden-county",
   "missouri/polk-county",
   "missouri/benton-county",
+  "missouri/stone-county",
   "kansas/bourbon-county",
-  "kansas/coffey-county"
+  "kansas/coffey-county",
+  "kansas/atchison-county"
 ] as const;
 
 describe("verified county guides", () => {
