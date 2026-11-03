@@ -2174,6 +2174,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/atchison-county": {
+    facilityName: "Atchison County Jail",
+    address: "518 Parallel Street, Atchison, KS 66002",
+    phone: "913-804-6080",
+    operatedBy: "Atchison County Sheriff's Office",
+    reviewedAt: "November 3, 2026",
+    overview:
+      "The Atchison County Sheriff's Office runs the 74-bed Atchison County Jail, which holds local, state, and federal detainees but no juveniles. The office and jail share one number, 913-804-6080; office hours are 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official jail division page",
+    contactSourceUrl: "https://www.atcosheriffks.org/jail-division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through HomeWAV, either at the kiosk in the lobby or from home after you set up an account at homewav.com or in the HomeWAV app. Visitors must be 18 or come with a parent or guardian. Two people can join a visit; a child under 6 on a lap does not count. A dress code applies, and food and drinks are not allowed.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.atcosheriffks.org/inmate-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by SUMMIT. Deposits can be made at the lobby kiosk with cash or a card, with no fee, or online through Correct Pay, where fees may apply. Staff do not take cash, checks, or money orders.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.atcosheriffks.org/inmate-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls, video visits, messaging, and tablets all go through HomeWAV; add money with HomeWAV funds or PayNearMe. Mail goes to the inmate's name, Atchison County Sheriff's Office, 518 Parallel Street, Atchison, KS 66002, by U.S. mail only. Letters and postcards need a readable return name and address; anything with marker, crayon, stickers, tape, or staples is turned away. Legal mail must be clearly marked.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.atcosheriffks.org/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Call the jail at 913-804-6080 before you come to post bond, then use the control tower window at the main entrance. Cash bonds must be the exact amount. Surety bonds have to come from a bondsman approved by the Atchison County District Court. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bond information page",
+        sourceUrl: "https://www.atcosheriffks.org/inmate-bond-information"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Atchison County Jail?",
+        answer:
+          "Visits are by video through HomeWAV, at the lobby kiosk or from home with a HomeWAV account."
+      },
+      {
+        question: "How do I put money on an Atchison County inmate's account?",
+        answer:
+          "Use the lobby kiosk, which takes cash or a card with no fee, or deposit online through Correct Pay."
+      },
+      {
+        question: "Where do I send a letter to an Atchison County inmate?",
+        answer:
+          "Inmate's name, Atchison County Sheriff's Office, 518 Parallel Street, Atchison, KS 66002, by U.S. mail with a return address."
+      },
+      {
+        question: "How do I post bond in Atchison County?",
+        answer:
+          "Call 913-804-6080 first, then go to the control tower window at the main entrance with the exact cash amount or an approved bondsman."
+      }
+    ]
+  },
+  "missouri/stone-county": {
+    facilityName: "Stone County Jail",
+    address: "110 S. Maple Street, Galena, MO 65656",
+    phone: "417-357-6652",
+    operatedBy: "Stone County Sheriff's Office",
+    reviewedAt: "November 3, 2026",
+    overview:
+      "The Stone County Sheriff's Office runs the county jail from its building on the southeast corner of the Galena town square. The jail answers at 417-357-6652 around the clock; the Sheriff's business office is at 417-357-6116.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.stonecountymosheriff.com/faqs",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting rules or hours online. Call the jail at 417-357-6652 before you go to ask how and when visits work.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.stonecountymosheriff.com/faqs"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Jail Division page points families to Smart Deposit for commissary money and to HomeWAV for phone time. Call the jail at 417-357-6652 if a deposit does not show up.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.stonecountymosheriff.com/jail-division"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, c/o Stone County Jail, PO Box 245, Galena, MO 65656, and include your name; mail with no sender name is refused. Write in blue or black ink. Up to 10 photos no larger than 4 by 6 inches are allowed, but no Polaroids. Packages, cards, magazines, and computer-printed pages are not accepted. Peel-and-stick stamps can be mailed in, up to 40 at a time.",
+        sourceLabel: "Official inmate mail guidelines",
+        sourceUrl: "https://www.stonecountymosheriff.com/jail-inmate-mail-guidelines"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call the jail at 417-357-6652 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.stonecountymosheriff.com/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Stone County Jail?",
+        answer: "Visiting rules are not posted online. Call the jail at 417-357-6652."
+      },
+      {
+        question: "How do I put money on a Stone County inmate's account?",
+        answer: "Use Smart Deposit for commissary and HomeWAV for phone time."
+      },
+      {
+        question: "Where do I send a letter to a Stone County inmate?",
+        answer:
+          "Inmate's name, c/o Stone County Jail, PO Box 245, Galena, MO 65656. Use blue or black ink and include your name."
+      },
+      {
+        question: "How do I post bond in Stone County?",
+        answer: "Call the jail at 417-357-6652; the site does not post bond steps."
+      }
+    ]
+  },
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",

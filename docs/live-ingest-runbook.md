@@ -136,23 +136,23 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 
-   Missouri runs Crawford, Camden, Polk, and Benton through the shared sheriff roster adapter
-   (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`). Crawford, Camden, and Polk use
-   the `roster.php?grp=` layout; Benton uses `/inmate-roster/filters/current/...` paths. Every crawl
-   must collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails
-   closed:
+   Missouri runs Crawford, Camden, Polk, Benton, and Stone through the shared sheriff roster adapter
+   (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`). Crawford, Camden, Polk, and
+   Stone use the `roster.php?grp=` layout; Benton uses `/inmate-roster/filters/current/...` paths.
+   Every crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the
+   county fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
-   Kansas runs Bourbon and Coffey through the same shared sheriff roster adapter, configured in
-   `kansas-rosters.ts`; both use `/inmate-roster/filters/current/...` paths and must collect exactly
-   the "Inmate Roster (N)" count:
+   Kansas runs Bourbon, Coffey, and Atchison through the same shared sheriff roster adapter,
+   configured in `kansas-rosters.ts`; all three use `/inmate-roster/filters/current/...` paths and
+   must collect exactly the "Inmate Roster (N)" count:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=KS --dry-run
    ```
 

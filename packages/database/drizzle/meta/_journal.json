@@ -568,6 +568,20 @@
       "when": 1796619200000,
       "tag": "0080_kansas_coffey_source",
       "breakpoints": true
+    },
+    {
+      "idx": 81,
+      "version": "7",
+      "when": 1796705600000,
+      "tag": "0081_missouri_stone_source",
+      "breakpoints": true
+    },
+    {
+      "idx": 82,
+      "version": "7",
+      "when": 1796792000000,
+      "tag": "0082_kansas_atchison_source",
+      "breakpoints": true
     }
   ]
 }

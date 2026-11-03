@@ -1020,6 +1020,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Stone County",
+    slug: "stone-county",
+    publishedAt: "2026-11-03",
+    seatCity: "Galena",
+    h1: "Stone County Jail Roster & Inmate Search",
+    title: "Stone County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Stone County, Missouri current-inmate information for the jail in Galena from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Stone County Sheriff's Office publishes a current inmate roster for the Stone County Jail in Galena. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.stonecountymosheriff.com/roster.php",
+    officialSourceLabel: "Stone County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "kansas",
     stateName: "Kansas",
     county: "Bourbon County",
@@ -1053,6 +1070,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl:
       "https://www.coffeycountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Coffey County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Atchison County",
+    slug: "atchison-county",
+    publishedAt: "2026-11-03",
+    seatCity: "Atchison",
+    h1: "Atchison County Jail Roster & Inmate Search",
+    title: "Atchison County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Atchison County, Kansas current-inmate information for the jail in Atchison from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Atchison County Sheriff's Office publishes a current inmate roster for the 74-bed Atchison County Jail. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.atcosheriffks.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Atchison County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

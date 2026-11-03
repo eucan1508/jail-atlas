@@ -102,8 +102,10 @@ const liveAdapterKeys: Record<string, string> = {
   "missouri/camden-county": "camden-county-mo-current-roster",
   "missouri/polk-county": "polk-county-mo-current-roster",
   "missouri/benton-county": "benton-county-mo-current-roster",
+  "missouri/stone-county": "stone-county-mo-current-roster",
   "kansas/bourbon-county": "bourbon-county-ks-current-roster",
-  "kansas/coffey-county": "coffey-county-ks-current-roster"
+  "kansas/coffey-county": "coffey-county-ks-current-roster",
+  "kansas/atchison-county": "atchison-county-ks-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
