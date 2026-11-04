@@ -130,7 +130,8 @@ export function jailPortalPaths(config: JailPortalConfig): string[] {
 }
 
 const MAX_RECORDS = 900;
-const MAX_HOLD_REASONS = 40;
+// Marshall County has listed one person with more than 90 hold reasons.
+const MAX_HOLD_REASONS = 200;
 // Every portal jail is on Central time; the "in custody on" filter takes the local date.
 const JAIL_TIME_ZONE = "America/Chicago";
 const SET_CSRF_MESSAGE = "CSRF token set";

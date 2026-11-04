@@ -247,6 +247,19 @@ describe("jail portal source adapter", () => {
     ]);
   });
 
+  it("keeps a person held on more than ninety separate hold reasons", async () => {
+    const holds = Array.from(
+      { length: 96 },
+      (_, index) =>
+        `Charge: 714.2(5) - Synthetic Theft ${index + 1}; Arrest Date 01/02/2000; Bond - Cash Only, $300.00; Set By Judge;`
+    ).join("<br />");
+    const result = await runSourceAdapter(adapter([record({ hold_reasons: holds })]), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]?.charges).toHaveLength(96);
+    expect(result.snapshot.bookings[0]?.charges.at(-1)?.description).toBe("Synthetic Theft 96");
+  });
+
   it("drops age, photo, arrest dates, and other personal fields", async () => {
     const result = await runSourceAdapter(adapter(), context());
     expect(result.ok).toBe(true);
