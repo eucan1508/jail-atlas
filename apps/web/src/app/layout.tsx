@@ -45,7 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1236438593546928"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9825120246638231"
           crossOrigin="anonymous"
         />
       </head>
