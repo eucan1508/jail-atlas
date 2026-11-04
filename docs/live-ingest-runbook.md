@@ -147,12 +147,13 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
-   Kansas runs Bourbon, Coffey, and Atchison through the same shared sheriff roster adapter,
-   configured in `kansas-rosters.ts`; all three use `/inmate-roster/filters/current/...` paths and
-   must collect exactly the "Inmate Roster (N)" count:
+   Kansas runs Bourbon, Coffey, Atchison, Leavenworth, and Jefferson through the same shared sheriff
+   roster adapter, configured in `kansas-rosters.ts`; all of them use
+   `/inmate-roster/filters/current/...` paths and must collect exactly the "Inmate Roster (N)"
+   count:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org
+   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=KS --dry-run
    ```
 

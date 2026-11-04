@@ -1091,6 +1091,42 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Leavenworth County",
+    slug: "leavenworth-county",
+    publishedAt: "2026-11-04",
+    seatCity: "Leavenworth",
+    h1: "Leavenworth County Jail Roster & Inmate Search",
+    title: "Leavenworth County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Leavenworth County, Kansas current-inmate information for the jail in Leavenworth from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Leavenworth County Sheriff's Office publishes a current inmate roster for the county jail at the Justice Center in Leavenworth. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.lvsheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Leavenworth County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Jefferson County",
+    slug: "jefferson-county",
+    publishedAt: "2026-11-04",
+    seatCity: "Oskaloosa",
+    h1: "Jefferson County Jail Roster & Inmate Search",
+    title: "Jefferson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Jefferson County, Kansas current-inmate information for the jail in Oskaloosa from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Jefferson County Sheriff's Office publishes a current inmate roster for the Jefferson County Jail in Oskaloosa. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Jefferson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

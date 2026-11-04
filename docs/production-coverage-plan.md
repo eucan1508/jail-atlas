@@ -123,11 +123,13 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 Kansas was added on 2026-11-02. Its counties use the same sheriff roster software as the Missouri,
 Arkansas, and Texas counties above.
 
-| County   | Official source                                                                                                                  | Status                                      |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Bourbon  | [Bourbon County Sheriff inmate roster](https://www.bourboncountysheriffks.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
-| Coffey   | [Coffey County Sheriff inmate roster](https://www.coffeycountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
-| Atchison | [Atchison County Sheriff inmate roster](https://www.atcosheriffks.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
+| County      | Official source                                                                                                                      | Status                                      |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| Bourbon     | [Bourbon County Sheriff inmate roster](https://www.bourboncountysheriffks.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+| Coffey      | [Coffey County Sheriff inmate roster](https://www.coffeycountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
+| Atchison    | [Atchison County Sheriff inmate roster](https://www.atcosheriffks.org/inmate-roster/filters/current/booking_time=desc/1)             | Adapter tested; production approval pending |
+| Leavenworth | [Leavenworth County Sheriff inmate roster](https://www.lvsheriff.org/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
+| Jefferson   | [Jefferson County Sheriff inmate roster](https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 
