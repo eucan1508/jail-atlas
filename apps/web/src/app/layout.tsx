@@ -42,13 +42,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
 
   return (
     <html lang={environment.DEFAULT_LOCALE}>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1236438593546928"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
         <a className="skip-link" href="#main-content">
           Skip to main content
