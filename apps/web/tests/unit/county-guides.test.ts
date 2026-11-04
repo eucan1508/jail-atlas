@@ -84,6 +84,8 @@ const liveCountyKeys = [
   "missouri/polk-county",
   "missouri/benton-county",
   "missouri/stone-county",
+  "missouri/lawrence-county",
+  "missouri/lewis-county",
   "kansas/bourbon-county",
   "kansas/coffey-county",
   "kansas/atchison-county",

@@ -80,6 +80,8 @@ the same roster software but were left out because their sites do not publish al
 | Carroll      | [Carroll County Sheriff inmate roster](https://www.carrollcountysheriffar.gov/inmate-roster/filters/current/booking_time=desc/1)      | Adapter tested; production approval pending |
 | Sharp        | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
 | Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
+| Lawrence     | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                                 | Adapter tested; production approval pending |
+| Lewis        | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 | Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
 | Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
 | Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |

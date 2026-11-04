@@ -136,14 +136,14 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 
-   Missouri runs Crawford, Camden, Polk, Benton, and Stone through the shared sheriff roster adapter
-   (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`). Crawford, Camden, Polk, and
-   Stone use the `roster.php?grp=` layout; Benton uses `/inmate-roster/filters/current/...` paths.
-   Every crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the
-   county fails closed:
+   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, and Lewis through the shared
+   sheriff roster adapter (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`). Crawford,
+   Camden, Polk, Stone, and Lawrence use the `roster.php?grp=` layout; Benton and Lewis use
+   `/inmate-roster/filters/current/...` paths. Every crawl must collect exactly the count in the
+   page's "Inmate Roster (N)" heading or the county fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 

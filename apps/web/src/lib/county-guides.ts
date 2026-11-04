@@ -2404,6 +2404,119 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/lawrence-county": {
+    facilityName: "Lawrence County Jail",
+    address: "1525 Missouri Drive, Mt. Vernon, MO 65712",
+    phone: "417-466-2131",
+    operatedBy: "Lawrence County Sheriff's Office",
+    reviewedAt: "November 4, 2026",
+    overview:
+      "The Lawrence County Sheriff's Office runs the county jail in Mt. Vernon. Everyone arrested in the county is booked there except on Aurora and Monett city charges. It holds men and women awaiting trial, serving sentences, or waiting for transfer to the Missouri Department of Corrections. The office answers at 417-466-2131 around the clock.",
+    contactSourceLabel: "Official jail division page",
+    contactSourceUrl: "https://www.lawrencecosheriff.com/jail-division",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting rules or hours online. Call 417-466-2131 before you go to ask how and when visits work.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.lawrencecosheriff.com/jail-division"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money with cash or a card at the ATM in the jail lobby, or online through Tiger Deposits, where you can also order commissary items. Jail staff cannot take money from the public, and items cannot be brought in. Any balance left at release goes onto a debit card.",
+        sourceLabel: "Official notice of commissary",
+        sourceUrl: "https://www.lawrencecosheriff.com/notice-of-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates call out on the jail phone system and can buy $5 and $10 phone cards from the jail, which cost 4 cents a minute less than collect or prepaid calls. Mail is postcards only, sent through the U.S. Postal Service.",
+        sourceLabel: "Official jail division page",
+        sourceUrl: "https://www.lawrencecosheriff.com/jail-division"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call 417-466-2131 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.lawrencecosheriff.com/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Lawrence County Jail?",
+        answer: "Visiting rules are not posted online. Call 417-466-2131."
+      },
+      {
+        question: "How do I put money on a Lawrence County inmate's account?",
+        answer:
+          "Use the ATM in the jail lobby or Tiger Deposits online. Jail staff cannot take money."
+      },
+      {
+        question: "Can I send a letter to a Lawrence County inmate?",
+        answer: "Only postcards are accepted, sent through the U.S. Postal Service."
+      },
+      {
+        question: "How do I post bond in Lawrence County?",
+        answer: "Call 417-466-2131; the site does not post bond steps."
+      }
+    ]
+  },
+  "missouri/lewis-county": {
+    facilityName: "Lewis County Jail",
+    address: "107 S. Washington, Monticello, MO 63457",
+    phone: "573-767-5287",
+    operatedBy: "Lewis County Sheriff's Office",
+    reviewedAt: "November 4, 2026",
+    overview:
+      "The Lewis County Sheriff's Office runs the Lewis County Jail in Monticello, open since 1997. It holds up to 18 people, usually 9 to 13, mostly on pretrial state charges, and also houses inmates for neighboring counties and towns. The office sits behind the courthouse and is open around the clock at 573-767-5287.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.lewiscosheriff.org/faq",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are video calls on Saturdays and Sundays from noon to 4:30 p.m. Call the jail at 573-767-5287 to set up a time.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.lewiscosheriff.org/faq"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Tiger Commissary, where family and friends can order items for an inmate.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.lewiscosheriff.org/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "The site does not post phone or mail rules. Call 573-767-5287 before sending mail or setting up calls.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.lewiscosheriff.org/faq"
+      },
+      {
+        title: "Bail and court records",
+        body: "The court sets the bond type. A cash or cash-only bond can be paid only in cash; a corporate surety bond can be posted by a bail bonding company; property and signature bonds need court approval. Money or property put up for bond can be applied to fines, costs, or restitution. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.lewiscosheriff.org/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Lewis County Jail?",
+        answer:
+          "By video call on Saturdays and Sundays from noon to 4:30 p.m. Call 573-767-5287 to book."
+      },
+      {
+        question: "How do I put money on a Lewis County inmate's account?",
+        answer: "Commissary items are ordered through Tiger Commissary."
+      },
+      {
+        question: "Where is the Lewis County Sheriff's Office?",
+        answer: "107 S. Washington in Monticello, behind the courthouse. It is open 24 hours a day."
+      },
+      {
+        question: "How do I post bond in Lewis County?",
+        answer:
+          "Cash bonds take cash only; corporate surety bonds can go through a bonding company. Call 573-767-5287 with questions."
+      }
+    ]
+  },
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",

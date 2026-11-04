@@ -46,12 +46,32 @@ export const STONE_COUNTY_MO_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const LAWRENCE_COUNTY_MO_ROSTER = {
+  adapterKey: "lawrence-county-mo-current-roster",
+  countyName: "Lawrence County",
+  diagnosticPrefix: "LAWRENCE_COUNTY_MO",
+  sourceUrl: "https://www.lawrencecosheriff.com/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
+export const LEWIS_COUNTY_MO_ROSTER = {
+  adapterKey: "lewis-county-mo-current-roster",
+  countyName: "Lewis County",
+  diagnosticPrefix: "LEWIS_COUNTY_MO",
+  sourceUrl: "https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
   POLK_COUNTY_MO_ROSTER,
   BENTON_COUNTY_MO_ROSTER,
-  STONE_COUNTY_MO_ROSTER
+  STONE_COUNTY_MO_ROSTER,
+  LAWRENCE_COUNTY_MO_ROSTER,
+  LEWIS_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
