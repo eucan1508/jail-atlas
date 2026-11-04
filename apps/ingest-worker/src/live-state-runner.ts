@@ -443,6 +443,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "atchison",
       adapterKey: "atchison-county-ks-current-roster",
       sourceHost: "www.atcosheriffks.org"
+    },
+    {
+      countySlug: "leavenworth",
+      adapterKey: "leavenworth-county-ks-current-roster",
+      sourceHost: "www.lvsheriff.org"
+    },
+    {
+      countySlug: "jefferson",
+      adapterKey: "jefferson-county-ks-current-roster",
+      sourceHost: "www.jeffersoncountykssheriff.com"
     }
   ]
 };

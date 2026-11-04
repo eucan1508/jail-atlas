@@ -2233,6 +2233,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/leavenworth-county": {
+    facilityName: "Leavenworth County Jail",
+    address: "601 South 3rd Street, Leavenworth, KS 66048",
+    phone: "913-682-5724",
+    operatedBy: "Leavenworth County Sheriff's Office",
+    reviewedAt: "November 4, 2026",
+    overview:
+      "The Leavenworth County Sheriff's Office runs the county jail at the Justice Center in Leavenworth. It holds people awaiting trial, people arrested on warrants, people serving county sentences, and people held for parole, probation, the state prison system, or other agencies. The office answers at 913-682-5724 around the clock.",
+    contactSourceLabel: "Official detention FAQ",
+    contactSourceUrl: "https://www.lvsheriff.org/faqs-detention",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Every visit is by video through HomeWAV. The kiosks in the Justice Center lobby are free from 8 a.m. to 4:30 p.m. on weekdays, except holidays; schedule an on-site visit through HomeWAV and wait for the inmate to confirm it. Visits from home run 8 a.m. to 9 p.m. every day and are paid by the visitor. HomeWAV support is 844-394-6639.",
+        sourceLabel: "Official detention FAQ",
+        sourceUrl: "https://www.lvsheriff.org/faqs-detention"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money through the jailATM website or at the kiosk at the front of the Justice Center. The jail does not take packages or commissary care packages; the inmate orders items from their own account. Money orders go by mail to 601 S. 3rd St., Attn: Jail Clerk, Leavenworth, KS 66048.",
+        sourceLabel: "Official detention FAQ",
+        sourceUrl: "https://www.lvsheriff.org/faqs-detention"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls cost 20 cents a minute for voice and 25 cents for video, and HomeWAV messages are 25 cents each. You can set up your own account so the inmate can call you without spending their own funds. Personal mail is scanned by TextBehind and goes to the inmate's first and last name and inmate ID, Leavenworth County Sheriff's Office, P.O. Box 247, Phoenix, MD 21131, with your full name and return address. Envelopes missing any of that are thrown away unopened.",
+        sourceLabel: "Official detention FAQ",
+        sourceUrl: "https://www.lvsheriff.org/faqs-detention"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bonds are posted in the Bonding Room on the east side of the Justice Center, off Second Street at the back of the sally port circle; do not park in the circle drive. Bring the exact cash amount, since staff cannot make change, or pay by card through GovPayNet at 877-392-2455. The Sheriff's Office lists the bonding companies authorized for the district and city courts. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official detention FAQ",
+        sourceUrl: "https://www.lvsheriff.org/faqs-detention"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Leavenworth County Jail?",
+        answer:
+          "Through HomeWAV video: free at the Justice Center lobby kiosks on weekdays, or paid from home from 8 a.m. to 9 p.m. daily."
+      },
+      {
+        question: "How do I put money on a Leavenworth County inmate's account?",
+        answer: "Use jailATM online or the kiosk at the front of the Justice Center."
+      },
+      {
+        question: "Where do I send a letter to a Leavenworth County inmate?",
+        answer:
+          "Inmate's full name and inmate ID, Leavenworth County Sheriff's Office, P.O. Box 247, Phoenix, MD 21131, with your full return address."
+      },
+      {
+        question: "How do I post bond in Leavenworth County?",
+        answer:
+          "Go to the Bonding Room on the east side of the Justice Center with the exact cash amount or an authorized bondsman, or pay by card at 877-392-2455."
+      }
+    ]
+  },
+  "kansas/jefferson-county": {
+    facilityName: "Jefferson County Jail",
+    address: "1360 Walnut, Oskaloosa, KS 66066",
+    phone: "785-863-2765",
+    operatedBy: "Jefferson County Sheriff's Office",
+    reviewedAt: "November 4, 2026",
+    overview:
+      "The Jefferson County Sheriff's Office runs the county jail in Oskaloosa, where everyone arrested in the county is booked. Men and women are housed apart. The Sheriff's Office answers at 785-863-2765 around the clock; office hours are 8 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.jeffersoncountykssheriff.com/contact",
+    sections: [
+      {
+        title: "Visitation",
+        body: "In-person visits are suspended, so all visits are by video. Register and get approved at inmatesales.com or at the kiosks in the Sheriff's Office; Inmate Sales support is 866-340-7879. Visits last 25 minutes and must be booked 24 hours ahead. Remote visits cost 20 cents a minute any day, and on-site kiosk visits are free every day but Monday and Friday. Each inmate gets two of each type a week.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.jeffersoncountykssheriff.com/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Put money on an inmate's account at the kiosk in the Sheriff's Office lobby or at JailATM.com. Money orders can also be mailed in; cash and personal checks are sent back. Families may drop off up to six pairs each of white socks, white T-shirts, and white underwear, and six white bras without underwire.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.jeffersoncountykssheriff.com/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Tablet accounts are funded through Combined Public Communications at inmatesales.com or 877-998-5678; the Sheriff's Office cannot add money or fix those accounts. Mail must come by U.S. mail with the inmate's full name and your full name and return address. No stamps, writing paper, magazines, glitter, or stickers; photos are allowed if they are not obscene.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.jeffersoncountykssheriff.com/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call the Sheriff's Office at 785-863-2765 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://www.jeffersoncountykssheriff.com/contact"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Jefferson County Jail?",
+        answer:
+          "By video only. Register at inmatesales.com or the lobby kiosk and book at least 24 hours ahead."
+      },
+      {
+        question: "How do I put money on a Jefferson County inmate's account?",
+        answer: "Use the lobby kiosk, JailATM.com, or mail a money order."
+      },
+      {
+        question: "Where do I send a letter to a Jefferson County inmate?",
+        answer:
+          "Use U.S. mail with the inmate's full name and your full return address. The jail page does not print a mailing address, so call 785-863-2765 to confirm it."
+      },
+      {
+        question: "How do I post bond in Jefferson County?",
+        answer: "Call the Sheriff's Office at 785-863-2765; the site does not post bond steps."
+      }
+    ]
+  },
   "missouri/stone-county": {
     facilityName: "Stone County Jail",
     address: "110 S. Maple Street, Galena, MO 65656",

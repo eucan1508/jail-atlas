@@ -86,7 +86,9 @@ const liveCountyKeys = [
   "missouri/stone-county",
   "kansas/bourbon-county",
   "kansas/coffey-county",
-  "kansas/atchison-county"
+  "kansas/atchison-county",
+  "kansas/leavenworth-county",
+  "kansas/jefferson-county"
 ] as const;
 
 describe("verified county guides", () => {
