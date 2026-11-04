@@ -103,6 +103,8 @@ const liveAdapterKeys: Record<string, string> = {
   "missouri/polk-county": "polk-county-mo-current-roster",
   "missouri/benton-county": "benton-county-mo-current-roster",
   "missouri/stone-county": "stone-county-mo-current-roster",
+  "missouri/lawrence-county": "lawrence-county-mo-current-roster",
+  "missouri/lewis-county": "lewis-county-mo-current-roster",
   "kansas/bourbon-county": "bourbon-county-ks-current-roster",
   "kansas/coffey-county": "coffey-county-ks-current-roster",
   "kansas/atchison-county": "atchison-county-ks-current-roster",

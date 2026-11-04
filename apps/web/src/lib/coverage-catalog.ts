@@ -1037,6 +1037,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Lawrence County",
+    slug: "lawrence-county",
+    publishedAt: "2026-11-04",
+    seatCity: "Mt. Vernon",
+    h1: "Lawrence County Jail Roster & Inmate Search",
+    title: "Lawrence County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Lawrence County, Missouri current-inmate information for the jail in Mt. Vernon from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Lawrence County Sheriff's Office publishes a current inmate roster for the Lawrence County Jail in Mt. Vernon. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.lawrencecosheriff.com/roster.php",
+    officialSourceLabel: "Lawrence County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Lewis County",
+    slug: "lewis-county",
+    publishedAt: "2026-11-04",
+    seatCity: "Monticello",
+    h1: "Lewis County Jail Roster & Inmate Search",
+    title: "Lewis County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Lewis County, Missouri current-inmate information for the jail in Monticello from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Lewis County Sheriff's Office publishes a current inmate roster for the 18-bed Lewis County Jail in Monticello. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Lewis County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "kansas",
     stateName: "Kansas",
     county: "Bourbon County",

@@ -426,6 +426,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "stone",
       adapterKey: "stone-county-mo-current-roster",
       sourceHost: "www.stonecountymosheriff.com"
+    },
+    {
+      countySlug: "lawrence",
+      adapterKey: "lawrence-county-mo-current-roster",
+      sourceHost: "www.lawrencecosheriff.com"
+    },
+    {
+      countySlug: "lewis",
+      adapterKey: "lewis-county-mo-current-roster",
+      sourceHost: "www.lewiscosheriff.org"
     }
   ],
   KS: [
