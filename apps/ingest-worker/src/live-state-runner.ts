@@ -483,6 +483,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "woodson",
       adapterKey: "woodson-county-ks-current-roster",
       sourceHost: "www.woodsonsheriff.com"
+    },
+    {
+      countySlug: "cherokee",
+      adapterKey: "cherokee-county-ks-current-roster",
+      sourceHost: "www.cherokeecountykssheriff.com"
+    },
+    {
+      countySlug: "jackson",
+      adapterKey: "jackson-county-ks-current-roster",
+      sourceHost: "www.jasoks.org"
     }
   ]
 };

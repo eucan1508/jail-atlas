@@ -638,6 +638,20 @@
       "when": 1797483200000,
       "tag": "0090_kansas_woodson_source",
       "breakpoints": true
+    },
+    {
+      "idx": 91,
+      "version": "7",
+      "when": 1797569600000,
+      "tag": "0091_kansas_cherokee_source",
+      "breakpoints": true
+    },
+    {
+      "idx": 92,
+      "version": "7",
+      "when": 1797656000000,
+      "tag": "0092_kansas_jackson_source",
+      "breakpoints": true
     }
   ]
 }

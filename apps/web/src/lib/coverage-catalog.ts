@@ -1232,6 +1232,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Cherokee County",
+    slug: "cherokee-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Columbus",
+    h1: "Cherokee County Jail Roster & Inmate Search",
+    title: "Cherokee County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cherokee County, Kansas current-inmate information for the jail in Columbus from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Cherokee County Sheriff's Office publishes a current inmate roster for the 106-bed Cherokee County Jail in Columbus. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.cherokeecountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Cherokee County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Jackson County",
+    slug: "jackson-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Holton",
+    h1: "Jackson County Jail Roster & Inmate Search",
+    title: "Jackson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Jackson County, Kansas current-inmate information for the jail in Holton from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Jackson County Sheriff's Office publishes a jail roster for the Jackson County Jail in Holton. This page reads every page of that list, keeps booking numbers and source-listed charges with their Kansas statute numbers, and does not republish photos, bond amounts, or ages.",
+    officialSourceUrl: "https://www.jasoks.org/agency-data/jail-roster/",
+    officialSourceLabel: "Jackson County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

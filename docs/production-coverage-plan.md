@@ -136,6 +136,8 @@ Arkansas, and Texas counties above.
 | Leavenworth | [Leavenworth County Sheriff inmate roster](https://www.lvsheriff.org/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
 | Jefferson   | [Jefferson County Sheriff inmate roster](https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 | Woodson     | [Woodson County Sheriff inmate roster](https://www.woodsonsheriff.com/roster.php)                                                    | Adapter tested; production approval pending |
+| Cherokee    | [Cherokee County Sheriff inmate roster](https://www.cherokeecountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1)   | Adapter tested; production approval pending |
+| Jackson     | [Jackson County Sheriff jail roster](https://www.jasoks.org/agency-data/jail-roster/)                                                | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

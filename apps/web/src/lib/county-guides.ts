@@ -2230,6 +2230,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/cherokee-county": {
+    facilityName: "Cherokee County Jail",
+    address: "915 East Country Road, Columbus, KS 66725",
+    phone: "620-429-3897",
+    operatedBy: "Cherokee County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Cherokee County Sheriff's Office runs a 106-bed jail in Columbus. It holds people awaiting trial and serving sentences, along with inmates for city police in the county, state agencies, other Kansas counties, and the Kansas Department of Corrections. The jail answers at 620-429-3897 and the Sheriff's Office at 620-429-3992.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.cherokeecountykssheriff.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video, seven days a week from 6 a.m. to 10 p.m. Schedule online through cidnet.net, subject to availability, or come to the Sheriff's Office for an on-site video visit during the same hours. Each visit lasts up to 30 minutes, and staff end a visit if anyone acts inappropriately.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cherokeecountykssheriff.com/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money to an inmate's account online at cidnet.net or at the kiosk in the entry of the Sheriff's Office.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cherokeecountykssheriff.com/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls, messages, and video run through the same CIDNet account used for visits. The site does not post mail rules; mail for the Sheriff's Office goes to P.O. Box 479, Columbus, KS 66725, so call 620-429-3897 to confirm how to address an inmate's mail.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cherokeecountykssheriff.com/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Ask the jail staff for the charges and bond amount, decide whether to pay a cash bond or use a bonding agent, and tell the staff at 620-429-3897. A bonding agent must be approved by the 11th Judicial District. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.cherokeecountykssheriff.com/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Cherokee County Jail?",
+        answer:
+          "By video through cidnet.net or on site at the Sheriff's Office, daily from 6 a.m. to 10 p.m."
+      },
+      {
+        question: "How do I put money on a Cherokee County inmate's account?",
+        answer: "Online at cidnet.net or at the kiosk in the Sheriff's Office entry."
+      },
+      {
+        question: "How do I post bond in Cherokee County?",
+        answer:
+          "Ask the jail for the bond amount, then pay cash or use a bonding agent approved by the 11th Judicial District. Call 620-429-3897."
+      },
+      {
+        question: "Where is the Cherokee County Jail?",
+        answer: "At the Sheriff's Office, 915 East Country Road, Columbus, KS 66725."
+      }
+    ]
+  },
+  "kansas/jackson-county": {
+    facilityName: "Jackson County Jail",
+    address: "210 US 75 Highway, Holton, KS 66436",
+    phone: "785-364-2251",
+    operatedBy: "Jackson County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Jackson County Sheriff's Office runs the county jail in Holton, which holds up to 121 people, including inmates from other counties. The Sheriff's Office answers at 785-364-2251, and jail staff at 785-364-4121.",
+    contactSourceLabel: "Official jail division page",
+    contactSourceUrl: "https://www.jasoks.org/divisions/jail-division/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through City Tele-Coin, seven days a week during daytime hours, either from the jail lobby or online from anywhere in the U.S. Register at citytelecoin.com. Visits last up to 30 minutes, and staff end a visit if anyone acts inappropriately.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.jasoks.org/divisions/jail-division/information/"
+      },
+      {
+        title: "Money and commissary",
+        body: "City Tele-Coin runs commissary. Add money any time at citytelecoin.com or at the kiosk in the jail lobby. To put up money for a bond, choose the BOND account.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.jasoks.org/divisions/jail-division/information/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates can call from 7 a.m. to 10 p.m. every day, directly from their inmate account or collect. Family and friends set up a phone account at citytelecoin.com or by calling 800-682-0707. The site does not post mail rules; call 785-364-4121 before sending mail.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.jasoks.org/divisions/jail-division/information/"
+      },
+      {
+        title: "Bail and court records",
+        body: "Ask the jail staff for the charges and bond amount, decide on a cash bond or a bonding agent approved by the 2nd Judicial District, and tell the staff at 785-364-4121. A cash bond is posted in the defendant's name only and is not refunded to the person who pays it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.jasoks.org/divisions/jail-division/information/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Jackson County Jail?",
+        answer:
+          "By video through City Tele-Coin, from the jail lobby or online. Register at citytelecoin.com."
+      },
+      {
+        question: "How do I put money on a Jackson County inmate's account?",
+        answer: "At citytelecoin.com or the jail lobby kiosk."
+      },
+      {
+        question: "How do I post bond in Jackson County?",
+        answer:
+          "Ask the jail for the bond amount, then pay cash or use a bonding agent approved by the 2nd Judicial District. Call 785-364-4121."
+      },
+      {
+        question: "Is a cash bond refunded to the person who paid it?",
+        answer:
+          "No. It is posted in the defendant's name, and any refund goes to the defendant after costs, fines, and restitution."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
