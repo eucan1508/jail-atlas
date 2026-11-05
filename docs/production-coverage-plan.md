@@ -21,6 +21,7 @@ official source passes the same audit.
 | Clinton     | [Clinton County Jail portal](https://portal.ia-clinton-so.centralsquarecloud.com/inmates)                                       | Paused: blocks GitHub runners (HTTP 403)              |
 | Marshall    | [Marshall County Jail portal](https://marshall-so-ia.zuercherportal.com/#/inmates)                                              | Adapter tested; production approval pending           |
 | Wapello     | [Wapello County Jail portal](https://wapello-so-ia.zuercherportal.com/#/inmates)                                                | Adapter tested; production approval pending           |
+| Ida         | [Ida County Sheriff inmate roster](https://www.idacountysheriff.us/inmate-roster/filters/current/booking_time=desc/1)           | Adapter tested; production approval pending           |
 
 ## Minnesota
 
@@ -78,6 +79,7 @@ the same roster software but were left out because their sites do not publish al
 | Izard        | [Izard County Sheriff inmate roster](https://www.izardcountysheriff.org/roster.php)                                                   | Adapter tested; production approval pending |
 | Cross        | [Cross County Sheriff inmate roster](https://www.crosscountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
 | Carroll      | [Carroll County Sheriff inmate roster](https://www.carrollcountysheriffar.gov/inmate-roster/filters/current/booking_time=desc/1)      | Adapter tested; production approval pending |
+| Poinsett     | [Poinsett County Sheriff inmate roster](https://www.poinsettsheriffar.gov/inmate-roster/filters/current/booking_time=desc/1)          | Adapter tested; production approval pending |
 | Sharp        | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
 | Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
 | Lawrence     | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                                 | Adapter tested; production approval pending |

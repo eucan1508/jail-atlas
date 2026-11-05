@@ -4286,6 +4286,61 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "iowa/ida-county": {
+    facilityName: "Ida County Jail",
+    address: "401 Moorehead Street, Ida Grove, IA 51445",
+    phone: "712-364-3146",
+    operatedBy: "Ida County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Ida County Sheriff's Office runs a small county jail in Ida Grove. The office answers at 712-364-3146, and jail staff can be reached by email at jail@idacountysheriff.us.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.idacountysheriff.us/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are Thursday afternoons from 2 to 4 p.m., with none when a holiday falls on Thursday. Any other day has to be cleared by the Sheriff or jail staff. Anyone held in the Ida County Jail in the last six months cannot visit. Clergy may visit Monday through Friday with 24 hours' notice.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.idacountysheriff.us/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money to an inmate's commissary account online at mycarepack.com; the jail does not take cash. Orders are collected on Tuesdays and delivered that Friday. The Sheriff's Office can use money in the account to pay what the inmate owes it, such as housing, towing, or medical charges.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.idacountysheriff.us/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Set up a collect-call account or buy phone cards through Reliance Telephone at reliancetelephone.com or 800-896-3201, which also handles texting and video calls. Mail goes to the inmate's name, Ida County Jail, 401 Moorehead Street, Ida Grove, IA 51445, and is inspected unless it is privileged. Books and magazines may be allowed but become jail property.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.idacountysheriff.us/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call 712-364-3146 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.idacountysheriff.us/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Ida County Jail?",
+        answer: "Thursday afternoons from 2 to 4 p.m., except holidays."
+      },
+      {
+        question: "How do I put money on an Ida County inmate's account?",
+        answer: "Online at mycarepack.com. The jail does not take cash."
+      },
+      {
+        question: "Where do I send a letter to an Ida County inmate?",
+        answer: "Inmate's name, Ida County Jail, 401 Moorehead Street, Ida Grove, IA 51445."
+      },
+      {
+        question: "How do I post bond in Ida County?",
+        answer: "Call 712-364-3146; the site does not post bond steps."
+      }
+    ]
+  },
   "iowa/wapello-county": {
     facilityName: "Wapello County Jail",
     address: "330 W 2nd St, Ottumwa, IA 52501",
@@ -4754,6 +4809,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         question: "How do I find out an inmate's bond in Izard County?",
         answer:
           "The bond for each booking is shown on the roster. Call the Sheriff's Department at 870-368-4203 to confirm it and ask how to post it."
+      }
+    ]
+  },
+  "arkansas/poinsett-county": {
+    facilityName: "Poinsett County Detention Center",
+    address: "1500 Justice Drive, Harrisburg, AR 72432",
+    phone: "870-578-2116",
+    operatedBy: "Poinsett County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Poinsett County Sheriff's Office runs the detention center in Harrisburg. It holds people awaiting trial, people arrested on warrants, people serving county or city sentences, and people waiting for a state prison bed or held for other agencies. The Sheriff's Office answers at 870-578-2116; office hours are 8:30 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.poinsettsheriffar.gov/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's Office does not post visiting rules or hours online. Call 870-578-2116 before you go to ask how and when visits work.",
+        sourceLabel: "Official detention center FAQ",
+        sourceUrl: "https://www.poinsettsheriffar.gov/detention-center-faqs"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money online at csgpay.com or at the kiosk in the front lobby of the detention center; you need facility ID 24082 and the inmate's ID number. Money can go on the phone account or the commissary account. Food commissary packages can be sent through Tiger Commissary. Only medications, Bibles, and eyeglasses or contacts can be dropped off.",
+        sourceLabel: "Official detention center FAQ",
+        sourceUrl: "https://www.poinsettsheriffar.gov/detention-center-faqs"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail is scanned by Smart Communications and shown to inmates on the kiosks. Send it to Smart Communications / Poinsett County Detention Center, the inmate's name and booking or ID number, PO Box 9201, Seminole, FL 33775-9201. Inappropriate content is rejected. Up to two softback books can be mailed to the inmate at 1500 Justice Drive, Harrisburg, AR 72432.",
+        sourceLabel: "Official detention center FAQ",
+        sourceUrl: "https://www.poinsettsheriffar.gov/detention-center-faqs"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call 870-578-2116 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.poinsettsheriffar.gov/detention-center"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Poinsett County Detention Center?",
+        answer: "Visiting rules are not posted online. Call 870-578-2116."
+      },
+      {
+        question: "How do I put money on a Poinsett County inmate's account?",
+        answer:
+          "Use csgpay.com or the lobby kiosk with facility ID 24082 and the inmate's ID number."
+      },
+      {
+        question: "Where do I send a letter to a Poinsett County inmate?",
+        answer:
+          "Smart Communications / Poinsett County Detention Center, inmate's name and ID number, PO Box 9201, Seminole, FL 33775-9201."
+      },
+      {
+        question: "How do I post bond in Poinsett County?",
+        answer: "Call 870-578-2116; the site does not post bond steps."
       }
     ]
   },
