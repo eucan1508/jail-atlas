@@ -2174,6 +2174,62 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/woodson-county": {
+    facilityName: "Woodson County Jail",
+    address: "105 West Rutledge Street, Yates Center, KS 66783",
+    phone: "620-625-8640",
+    operatedBy: "Woodson County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Woodson County Sheriff's Office runs the county jail in Yates Center. The office answers at 620-625-8640 around the clock; administrative hours are 8 a.m. to 5 p.m. on weekdays.",
+    contactSourceLabel: "Official FAQ page",
+    contactSourceUrl: "https://www.woodsonsheriff.com/faqs",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video. The visiting day depends on the inmate's cell, so call the jail at 620-625-8640 to find out which day applies. Requests must be made at least 24 hours ahead, and visits can also be set up by calling 877-398-7700.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.woodsonsheriff.com/faqs"
+      },
+      {
+        title: "Money and commissary",
+        body: "The site does not explain how to put money on an inmate's account. Call 620-625-8640 to ask.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.woodsonsheriff.com/faqs"
+      },
+      {
+        title: "Phone and mail",
+        body: "The site does not post phone or mail rules. Call 620-625-8640 before sending mail or setting up calls.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.woodsonsheriff.com/faqs"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call 620-625-8640 to ask about a bond amount and how to pay it. Victims can register with Kansas VINE at 866-574-8463 to be told when an offender is released. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.woodsonsheriff.com/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Woodson County Jail?",
+        answer:
+          "By video. Call 620-625-8640 to find the visiting day for the inmate's cell, and ask at least 24 hours ahead."
+      },
+      {
+        question: "Where is the Woodson County Sheriff's Office?",
+        answer: "105 West Rutledge Street, Yates Center, KS 66783. It answers at 620-625-8640."
+      },
+      {
+        question: "How can a victim know when someone is released?",
+        answer: "Register with Kansas VINE at 866-574-8463."
+      },
+      {
+        question: "How do I post bond in Woodson County?",
+        answer: "Call 620-625-8640; the site does not post bond steps."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
@@ -2514,6 +2570,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
         question: "How do I post bond in Lewis County?",
         answer:
           "Cash bonds take cash only; corporate surety bonds can go through a bonding company. Call 573-767-5287 with questions."
+      }
+    ]
+  },
+  "missouri/morgan-county": {
+    facilityName: "Morgan County Adult Detention Center",
+    address: "211 East Newton Street, Suite 2, Versailles, MO 65084",
+    phone: "573-378-5481",
+    operatedBy: "Morgan County Sheriff's Office",
+    reviewedAt: "November 5, 2026",
+    overview:
+      "The Morgan County Sheriff's Office runs the Adult Detention Center in Versailles. The office answers at 573-378-5481 around the clock; administrative hours are 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official adult detention center page",
+    contactSourceUrl: "https://www.morgancountymoso.org/adult-detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "There are no contact visits. Video visits are offered seven days a week and are scheduled through CIDNet. Call 573-378-5481 to confirm current visiting times.",
+        sourceLabel: "Official adult detention center page",
+        sourceUrl: "https://www.morgancountymoso.org/adult-detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposit money through Access Corrections at the lobby kiosk, by phone at 866-345-1884, or at accesscorrections.com. Over-the-counter medicine cannot be brought in and has to be ordered from commissary. Property is not accepted in the lobby unless the jail administrator approves it first.",
+        sourceLabel: "Official adult detention center page",
+        sourceUrl: "https://www.morgancountymoso.org/adult-detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls and video run through CIDNet; family members set up a profile at cidnet.com to add money. Address mail to the inmate's name and booking number, 211 East Newton Street, Suite 2, Versailles, MO 65084, with your full name and return address. All incoming and outgoing mail is searched for contraband.",
+        sourceLabel: "Official adult detention center page",
+        sourceUrl: "https://www.morgancountymoso.org/adult-detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call 573-378-5481 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official adult detention center page",
+        sourceUrl: "https://www.morgancountymoso.org/adult-detention-center"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Morgan County jail?",
+        answer: "By video through CIDNet, seven days a week. There are no contact visits."
+      },
+      {
+        question: "How do I put money on a Morgan County inmate's account?",
+        answer:
+          "Through Access Corrections: the lobby kiosk, 866-345-1884, or accesscorrections.com."
+      },
+      {
+        question: "Where do I send a letter to a Morgan County inmate?",
+        answer:
+          "Inmate's name and booking number, 211 East Newton Street, Suite 2, Versailles, MO 65084."
+      },
+      {
+        question: "How do I post bond in Morgan County?",
+        answer: "Call 573-378-5481; the site does not post bond steps."
       }
     ]
   },

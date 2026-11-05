@@ -64,6 +64,15 @@ export const LEWIS_COUNTY_MO_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const MORGAN_COUNTY_MO_ROSTER = {
+  adapterKey: "morgan-county-mo-current-roster",
+  countyName: "Morgan County",
+  diagnosticPrefix: "MORGAN_COUNTY_MO",
+  sourceUrl: "https://www.morgancountymoso.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -71,7 +80,8 @@ export const MISSOURI_ROSTER_SITES = [
   BENTON_COUNTY_MO_ROSTER,
   STONE_COUNTY_MO_ROSTER,
   LAWRENCE_COUNTY_MO_ROSTER,
-  LEWIS_COUNTY_MO_ROSTER
+  LEWIS_COUNTY_MO_ROSTER,
+  MORGAN_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

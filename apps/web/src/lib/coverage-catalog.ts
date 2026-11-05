@@ -1108,6 +1108,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Morgan County",
+    slug: "morgan-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Versailles",
+    h1: "Morgan County Jail Roster & Inmate Search",
+    title: "Morgan County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Morgan County, Missouri current-inmate information for the jail in Versailles from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Morgan County Sheriff's Office publishes a current inmate roster for the Morgan County Adult Detention Center in Versailles. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.morgancountymoso.org/roster.php",
+    officialSourceLabel: "Morgan County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "kansas",
     stateName: "Kansas",
     county: "Bourbon County",
@@ -1195,6 +1212,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl:
       "https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Jefferson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Woodson County",
+    slug: "woodson-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Yates Center",
+    h1: "Woodson County Jail Roster & Inmate Search",
+    title: "Woodson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Woodson County, Kansas current-inmate information for the jail in Yates Center from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Woodson County Sheriff's Office publishes a current inmate roster for the county jail in Yates Center. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.woodsonsheriff.com/roster.php",
+    officialSourceLabel: "Woodson County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

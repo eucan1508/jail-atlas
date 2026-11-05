@@ -446,6 +446,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "lewis",
       adapterKey: "lewis-county-mo-current-roster",
       sourceHost: "www.lewiscosheriff.org"
+    },
+    {
+      countySlug: "morgan",
+      adapterKey: "morgan-county-mo-current-roster",
+      sourceHost: "www.morgancountymoso.org"
     }
   ],
   KS: [
@@ -473,6 +478,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "jefferson",
       adapterKey: "jefferson-county-ks-current-roster",
       sourceHost: "www.jeffersoncountykssheriff.com"
+    },
+    {
+      countySlug: "woodson",
+      adapterKey: "woodson-county-ks-current-roster",
+      sourceHost: "www.woodsonsheriff.com"
     }
   ]
 };
