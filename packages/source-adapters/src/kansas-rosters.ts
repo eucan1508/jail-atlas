@@ -57,13 +57,24 @@ export const WOODSON_COUNTY_KS_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CHEROKEE_COUNTY_KS_ROSTER = {
+  adapterKey: "cherokee-county-ks-current-roster",
+  countyName: "Cherokee County",
+  diagnosticPrefix: "CHEROKEE_COUNTY_KS",
+  sourceUrl:
+    "https://www.cherokeecountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const KANSAS_ROSTER_SITES = [
   BOURBON_COUNTY_KS_ROSTER,
   COFFEY_COUNTY_KS_ROSTER,
   ATCHISON_COUNTY_KS_ROSTER,
   LEAVENWORTH_COUNTY_KS_ROSTER,
   JEFFERSON_COUNTY_KS_ROSTER,
-  WOODSON_COUNTY_KS_ROSTER
+  WOODSON_COUNTY_KS_ROSTER,
+  CHEROKEE_COUNTY_KS_ROSTER
 ] as const;
 
 export function kansasRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

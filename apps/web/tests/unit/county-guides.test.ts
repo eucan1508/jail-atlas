@@ -94,7 +94,9 @@ const liveCountyKeys = [
   "kansas/atchison-county",
   "kansas/leavenworth-county",
   "kansas/jefferson-county",
-  "kansas/woodson-county"
+  "kansas/woodson-county",
+  "kansas/cherokee-county",
+  "kansas/jackson-county"
 ] as const;
 
 describe("verified county guides", () => {

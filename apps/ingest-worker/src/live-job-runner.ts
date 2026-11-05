@@ -19,6 +19,8 @@ import {
   missouriRosterSite,
   kansasRosterSite,
   iowaRosterSite,
+  toolsetJailRoster,
+  createToolsetJailRosterAdapter,
   myr2mRosterSite,
   createMyr2mRosterAdapter,
   createSheriffRosterSiteAdapter,
@@ -191,6 +193,7 @@ export function createLiveSourceAdapter(
   const myr2mSite = myr2mRosterSite(source.adapterKey);
   const rosterReport = jailRosterReport(source.adapterKey);
   const portal = jailPortal(source.adapterKey);
+  const toolsetRoster = toolsetJailRoster(source.adapterKey);
   // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
@@ -381,6 +384,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === NOBLES_COUNTY_ADAPTER_KEY) {
     return createNoblesCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (toolsetRoster) {
+    return createToolsetJailRosterAdapter(toolsetRoster, {
       fetch,
       facilityId,
       createId: createAdapterId

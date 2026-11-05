@@ -148,15 +148,20 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
-   Kansas runs Bourbon, Coffey, Atchison, Leavenworth, Jefferson, and Woodson through the same
-   shared sheriff roster adapter, configured in `kansas-rosters.ts`; Woodson uses the
+   Kansas runs Bourbon, Coffey, Atchison, Leavenworth, Jefferson, Woodson, and Cherokee through the
+   same shared sheriff roster adapter, configured in `kansas-rosters.ts`; Woodson uses the
    `roster.php?grp=` layout and the rest use `/inmate-roster/filters/current/...` paths, and all
    must collect exactly the "Inmate Roster (N)" count:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com,www.woodsonsheriff.com
+   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com,www.woodsonsheriff.com,www.cherokeecountykssheriff.com,www.jasoks.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=KS --dry-run
    ```
+
+   Jackson County publishes its roster as a paged WordPress list at `www.jasoks.org`, read by
+   `toolset-jail-roster.ts`. The crawl follows the list's own Next links, and the people it collects
+   must match the page's "Number of Inmates" count, or the county fails closed. It runs in the same
+   Kansas batch.
 
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
