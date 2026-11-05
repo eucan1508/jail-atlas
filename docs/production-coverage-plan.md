@@ -84,6 +84,7 @@ the same roster software but were left out because their sites do not publish al
 | Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
 | Lawrence     | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                                 | Adapter tested; production approval pending |
 | Lewis        | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
+| Morgan       | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                                    | Adapter tested; production approval pending |
 | Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
 | Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
 | Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |
@@ -134,6 +135,7 @@ Arkansas, and Texas counties above.
 | Atchison    | [Atchison County Sheriff inmate roster](https://www.atcosheriffks.org/inmate-roster/filters/current/booking_time=desc/1)             | Adapter tested; production approval pending |
 | Leavenworth | [Leavenworth County Sheriff inmate roster](https://www.lvsheriff.org/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
 | Jefferson   | [Jefferson County Sheriff inmate roster](https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Woodson     | [Woodson County Sheriff inmate roster](https://www.woodsonsheriff.com/roster.php)                                                    | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

@@ -48,12 +48,22 @@ export const JEFFERSON_COUNTY_KS_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const WOODSON_COUNTY_KS_ROSTER = {
+  adapterKey: "woodson-county-ks-current-roster",
+  countyName: "Woodson County",
+  diagnosticPrefix: "WOODSON_COUNTY_KS",
+  sourceUrl: "https://www.woodsonsheriff.com/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const KANSAS_ROSTER_SITES = [
   BOURBON_COUNTY_KS_ROSTER,
   COFFEY_COUNTY_KS_ROSTER,
   ATCHISON_COUNTY_KS_ROSTER,
   LEAVENWORTH_COUNTY_KS_ROSTER,
-  JEFFERSON_COUNTY_KS_ROSTER
+  JEFFERSON_COUNTY_KS_ROSTER,
+  WOODSON_COUNTY_KS_ROSTER
 ] as const;
 
 export function kansasRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
