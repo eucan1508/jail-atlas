@@ -213,6 +213,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "iowa",
+    stateName: "Iowa",
+    county: "Ida County",
+    slug: "ida-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Ida Grove",
+    h1: "Ida County Jail Roster & Inmate Search",
+    title: "Ida County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Ida County, Iowa current-inmate information for the jail in Ida Grove from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Ida County Sheriff's Office publishes a current inmate roster for the Ida County Jail in Ida Grove. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.idacountysheriff.us/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Ida County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "texas",
     stateName: "Texas",
     county: "Milam County",
@@ -611,6 +629,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl:
       "https://www.carrollcountysheriffar.gov/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Carroll County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Poinsett County",
+    slug: "poinsett-county",
+    publishedAt: "2026-11-05",
+    seatCity: "Harrisburg",
+    h1: "Poinsett County Jail Roster & Inmate Search",
+    title: "Poinsett County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Poinsett County, Arkansas current-inmate information for the jail in Harrisburg from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Poinsett County Sheriff's Office publishes a current inmate roster for the Poinsett County Detention Center in Harrisburg. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.poinsettsheriffar.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Poinsett County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

@@ -57,6 +57,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "wapello",
       adapterKey: "wapello-county-iowa-current-roster",
       sourceHost: "wapello-so-ia.zuercherportal.com"
+    },
+    {
+      countySlug: "ida",
+      adapterKey: "ida-county-ia-current-roster",
+      sourceHost: "www.idacountysheriff.us"
     }
   ],
   MN: [
@@ -312,6 +317,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "carroll",
       adapterKey: "carroll-county-ar-current-roster",
       sourceHost: "www.carrollcountysheriffar.gov"
+    },
+    {
+      countySlug: "poinsett",
+      adapterKey: "poinsett-county-ar-current-roster",
+      sourceHost: "www.poinsettsheriffar.gov"
     },
     {
       countySlug: "lonoke",
