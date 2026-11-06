@@ -3983,6 +3983,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/watonwan-county": {
+    facilityName: "Watonwan County Jail",
+    address: "710 2nd Avenue S, St. James, MN 56081",
+    phone: "507-375-1206",
+    operatedBy: "Watonwan County Sheriff's Office",
+    reviewedAt: "November 6, 2026",
+    overview:
+      "The Watonwan County Sheriff's Office runs the county jail in the Law Enforcement Annex of the Watonwan County Courthouse in St. James. The jail is staffed around the clock and answers at 507-375-1206; the Sheriff's Office is at 507-375-3121.",
+    contactSourceLabel: "Official county jail page",
+    contactSourceUrl: "https://www.watonwancountymn.gov/204/The-County-Jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are Tuesday and Thursday from 6:30 to 8:30 p.m. Only visitors on the inmate's approved list may visit, and everyone must show a valid government photo ID. Visitors must be 18 or older except the inmate's children and siblings, and children must stay with a parent or guardian. Visits last 20 minutes, one per day with the same inmate, and are recorded. Anyone released from the jail cannot visit for 30 days.",
+        sourceLabel: "Official inmate visitation page",
+        sourceUrl: "https://www.watonwancountymn.gov/342/Inmate-Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposit money at the Lockdown kiosk in the lobby, which takes cash or a card, or at jailatm.com. Cash deposits cost $3.25, and card deposits $3.25 or 10 percent. Personal checks are not accepted, and officers do not take money directly unless the kiosk is down. Family and friends can also buy canteen items at jailatm.com.",
+        sourceLabel: "Official inmate funds sheet",
+        sourceUrl: "https://www.watonwancountymn.gov/DocumentCenter/View/6439"
+      },
+      {
+        title: "Phone and mail",
+        body: "Officers do not take messages; leave one on the Inmate Message System at 507-229-0122. The jail phones take only phone cards, which family can buy at jailatm.com or reliancetelephone.com; Reliance also handles texting to inmate iPods. Mail goes to the inmate's name, PO Box 168, St. James, MN 56081, by U.S. mail only, and all mail is inspected.",
+        sourceLabel: "Official inmate funds sheet",
+        sourceUrl: "https://www.watonwancountymn.gov/DocumentCenter/View/6439"
+      },
+      {
+        title: "Bail and court records",
+        body: "The roster lists each person's bail as the jail records it, such as a surety bond with or without conditions. The site does not explain how to post it; call the jail at 507-375-1206. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official county jail page",
+        sourceUrl: "https://www.watonwancountymn.gov/204/The-County-Jail"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Watonwan County Jail?",
+        answer:
+          "Tuesday and Thursday from 6:30 to 8:30 p.m., if you are on the inmate's approved visitor list."
+      },
+      {
+        question: "How do I put money on a Watonwan County inmate's account?",
+        answer:
+          "At the lobby kiosk or jailatm.com. Deposits carry a fee, and checks are not accepted."
+      },
+      {
+        question: "Where do I send a letter to a Watonwan County inmate?",
+        answer: "Inmate's name, PO Box 168, St. James, MN 56081, by U.S. mail."
+      },
+      {
+        question: "How do I post bail in Watonwan County?",
+        answer: "Call the jail at 507-375-1206; the site does not post bail steps."
+      }
+    ]
+  },
   "minnesota/redwood-county": {
     facilityName: "Redwood County Jail",
     address: "303 E 3rd Street, Redwood Falls, MN 56283",

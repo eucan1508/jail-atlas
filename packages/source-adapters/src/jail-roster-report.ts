@@ -57,9 +57,20 @@ export const REDWOOD_COUNTY_ROSTER_REPORT = {
   parserVersion: "1.0.0"
 } as const satisfies JailRosterReportConfig;
 
+export const WATONWAN_COUNTY_ROSTER_REPORT = {
+  adapterKey: "watonwan-county-mn-current-roster",
+  countyName: "Watonwan County",
+  diagnosticPrefix: "WATONWAN_COUNTY",
+  // The county website's Jail Roster link (Document Center item 67), on the county's current host.
+  sourceUrl: "https://www.watonwancountymn.gov/DocumentCenter/View/67/Jail-Roster",
+  title: "Watonwan Internet Jail Roster",
+  parserVersion: "1.0.0"
+} as const satisfies JailRosterReportConfig;
+
 const JAIL_ROSTER_REPORTS: readonly JailRosterReportConfig[] = [
   COTTONWOOD_COUNTY_ROSTER_REPORT,
-  REDWOOD_COUNTY_ROSTER_REPORT
+  REDWOOD_COUNTY_ROSTER_REPORT,
+  WATONWAN_COUNTY_ROSTER_REPORT
 ];
 
 export function jailRosterReport(adapterKey: string): JailRosterReportConfig | undefined {
@@ -99,13 +110,19 @@ const HEADERS = [
   "Projected Release",
   "Bail Amount"
 ];
-// "609.222.1 - Assault-2nd Degree-Dangerous Weapon"; a wrapped line has no statute in front.
-const CHARGE_LINE = /^(\d{1,4}[A-Z]?(?:\.[0-9A-Za-z()]+)+) - (\S.*)$/;
-// "Bail/Bond - $20000.00 - Court Order", "ROR - $0.00 - Court Order", "Cash Only - $400.00".
-// The type is a single word or the known "Cash Only", so a wrapped note ("Court Order") never
-// runs into the next type; any other multi-word type stays unreadable.
-const BAIL_ENTRY =
-  /(Cash Only|[A-Za-z][A-Za-z/]*) - \$(\d+)\.(\d{2})(?: - ([A-Za-z][A-Za-z ]*?))?(?= (?:Cash Only|[A-Za-z][A-Za-z/]*) - \$|$)/g;
+// "609.222.1 - Assault-2nd Degree-Dangerous Weapon", or a county's four-digit local code
+// ("5012 - Parole/Probation violation"); a wrapped line has no code in front.
+const CHARGE_LINE = /^(\d{1,4}[A-Z]?(?:\.[0-9A-Za-z()]+)+|\d{4}) - (\S.*)$/;
+// "Bail/Bond - $20000.00 - Court Order", "ROR - $0.00 - Court Order", "Cash Only - $400.00",
+// "Surety Bond w/conditions - $15000.00". The type is a single word or one of the known
+// multi-word types, so a wrapped note ("Court Order") never runs into the next type; any other
+// multi-word type stays unreadable.
+const BAIL_TYPE =
+  "Cash Only|Surety Bond w/conditions|Surety Bond w/o conditions|[A-Za-z][A-Za-z/]*";
+const BAIL_ENTRY = new RegExp(
+  `(${BAIL_TYPE}) - \\$(\\d+)\\.(\\d{2})(?: - ([A-Za-z][A-Za-z ]*?))?(?= (?:${BAIL_TYPE}) - \\$|$)`,
+  "g"
+);
 const NAME = /^\p{L}[\p{L}' ().-]*, \p{L}[\p{L}' ().-]*$/u;
 const MONTHS = [
   "January",

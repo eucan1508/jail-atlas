@@ -652,6 +652,13 @@
       "when": 1797656000000,
       "tag": "0092_kansas_jackson_source",
       "breakpoints": true
+    },
+    {
+      "idx": 93,
+      "version": "7",
+      "when": 1797742400000,
+      "tag": "0093_minnesota_watonwan_source",
+      "breakpoints": true
     }
   ]
 }

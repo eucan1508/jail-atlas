@@ -1700,6 +1700,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://redwoodcounty-mn.gov/download/17042/",
     officialSourceLabel: "Redwood County Sheriff's Office In Custody roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Watonwan County",
+    slug: "watonwan-county",
+    publishedAt: "2026-11-06",
+    seatCity: "St. James",
+    h1: "Watonwan County Jail Roster & Inmate Search",
+    title: "Watonwan County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Watonwan County, Minnesota current-inmate information for the jail in St. James from the official jail roster, with source-listed charges, bail entries, and capture time.",
+    article:
+      "Watonwan County posts a Jail Roster PDF for the county jail in the Law Enforcement Annex of the courthouse in St. James. This page reads every page of that roster, checks its Total Records count, keeps each person's charges and bail entries as printed, and leaves out agencies, booking dates, and release dates.",
+    officialSourceUrl: "https://www.watonwancountymn.gov/DocumentCenter/View/67/Jail-Roster",
+    officialSourceLabel: "Watonwan County Jail Roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

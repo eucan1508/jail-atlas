@@ -191,6 +191,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "clearwater",
       adapterKey: "clearwater-county-mn-current-roster",
       sourceHost: "map.co.clearwater.mn.us"
+    },
+    {
+      countySlug: "watonwan",
+      adapterKey: "watonwan-county-mn-current-roster",
+      sourceHost: "www.watonwancountymn.gov"
     }
   ],
   TX: [
