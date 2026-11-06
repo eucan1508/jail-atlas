@@ -192,6 +192,33 @@ describe("Washington County, Minnesota source adapter", () => {
     ]);
   });
 
+  it("reads someone booked before a JID was assigned as their own row", async () => {
+    // A new booking can print with an empty JID column, 18 points below the row above it.
+    const unassigned = row(565, "NEWLY", "Booked", "", "", "0000005").filter(
+      (item) => item.text !== ""
+    );
+    const report = [
+      page(
+        [row(583, ["TESTER", "SAMPLE"], "Alpha", "Test", "J00000001", "0000001"), unassigned],
+        1,
+        1,
+        2
+      )
+    ];
+    const result = await runSourceAdapter(adapter(report), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(
+      result.snapshot.bookings.map((booking) => [
+        booking.person.displayName,
+        booking.bookingIdentifier?.value
+      ])
+    ).toEqual([
+      ["TESTER SAMPLE, Alpha Test", "0000001"],
+      ["NEWLY, Booked", "0000005"]
+    ]);
+  });
+
   it("splits a booking date joined to its number and skips a day count that drifts left", async () => {
     const merged = row(565, "EXAMPLE", "Epsilon", "", "J00000005", "0000005")
       .filter((item) => item.text !== "0000005")

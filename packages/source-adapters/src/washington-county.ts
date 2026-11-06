@@ -264,12 +264,28 @@ export function parseWashingtonRosterPages(pages: readonly WashingtonPdfPage[]):
           : [item];
       });
 
-    // Each row opens with the inmate's JID in its own column.
+    // Each row opens with its booking number. Someone booked minutes before the report ran can be
+    // listed before a JID is assigned, so the JID column cannot mark where a row starts.
     const anchors = body
-      .filter((item) => item.x >= jidStart && item.x < bookingStart && JID.test(item.text))
+      .filter(
+        (item) =>
+          item.x >= bookingStart &&
+          item.x < releaseStart &&
+          (BOOKING_NUMBER.test(item.text) || MERGED_BOOKING.test(item.text))
+      )
       .sort((left, right) => right.y - left.y);
     if (body.some((item) => item.x >= jidStart && item.x < bookingStart && !JID.test(item.text))) {
       throw new Error("ROW_STRUCTURE_CHANGED");
+    }
+    // A JID always shares its row with a booking number; one without a readable booking number
+    // means the row itself is unreadable.
+    const jids = body.filter(
+      (item) => item.x >= jidStart && item.x < bookingStart && JID.test(item.text)
+    );
+    if (
+      jids.some((jid) => !anchors.some((anchor) => Math.abs(anchor.y - jid.y) <= ROW_TOLERANCE))
+    ) {
+      throw new Error("INVALID_RECORD_IDENTITY");
     }
     const firstAnchor = anchors[0];
     if (body.some((item) => item.y > (firstAnchor?.y ?? -Infinity) + ROW_TOLERANCE)) {
