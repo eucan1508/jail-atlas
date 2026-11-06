@@ -45,6 +45,7 @@ source-specific parser contract and a human review packet.
 | Cottonwood | [Cottonwood County Jail](https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php)                                            | Adapter tested; production approval pending      |
 | Redwood    | [Redwood County Sheriff's Office](https://redwoodcounty-mn.gov/departments/sheriffs-office/)                                                        | Adapter tested; production approval pending      |
 | Clearwater | [Clearwater County Inmate List](https://clearwatercountymn.gov/inmate-list)                                                                         | Adapter tested; production approval pending      |
+| Watonwan   | [Watonwan County Jail Roster](https://www.watonwancountymn.gov/DocumentCenter/View/67/Jail-Roster)                                                  | Adapter tested; production approval pending      |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
 | Douglas    | [Douglas County inmate roster](https://www.douglascountymn.gov/inmate-roster)                                                                       | Adapter tested; production approval pending      |
@@ -82,9 +83,6 @@ the same roster software but were left out because their sites do not publish al
 | Poinsett     | [Poinsett County Sheriff inmate roster](https://www.poinsettsheriffar.gov/inmate-roster/filters/current/booking_time=desc/1)          | Adapter tested; production approval pending |
 | Sharp        | [Sharp County Sheriff inmate roster](https://www.myr2m.com/sharpcoroster/)                                                            | Adapter tested; production approval pending |
 | Stone        | [Stone County Sheriff inmate roster](https://www.myr2m.com/stonecoroster/)                                                            | Adapter tested; production approval pending |
-| Lawrence     | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                                 | Adapter tested; production approval pending |
-| Lewis        | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
-| Morgan       | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                                    | Adapter tested; production approval pending |
 | Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
 | Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
 | Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |
@@ -122,6 +120,9 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Polk     | [Polk County Sheriff inmate roster](https://www.polkcountymosheriff.org/roster.php)                                            | Adapter tested; production approval pending |
 | Benton   | [Benton County Sheriff inmate roster](https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 | Stone    | [Stone County Sheriff inmate roster](https://www.stonecountymosheriff.com/roster.php)                                          | Adapter tested; production approval pending |
+| Lawrence | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                          | Adapter tested; production approval pending |
+| Lewis    | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
+| Morgan   | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                             | Adapter tested; production approval pending |
 
 ## Kansas
 

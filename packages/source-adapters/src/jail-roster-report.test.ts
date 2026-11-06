@@ -241,7 +241,28 @@ describe("Minnesota jail roster report adapter", () => {
       { label: "Cash Only", amountMinor: 40_000, note: null },
       { label: "ROR", amountMinor: 0, note: "Court" }
     ]);
+    expect(
+      parseJailRosterBail(
+        "Surety Bond w/conditions - $15000.00 Surety Bond w/o conditions - $60000.00"
+      )
+    ).toEqual([
+      { label: "Surety Bond w/conditions", amountMinor: 1_500_000, note: null },
+      { label: "Surety Bond w/o conditions", amountMinor: 6_000_000, note: null }
+    ]);
     expect(() => parseJailRosterBail("No Bail")).toThrow("BAIL_UNREADABLE");
+    expect(() => parseJailRosterBail("Surety Bond - $100.00")).toThrow("BAIL_UNREADABLE");
+  });
+
+  it("reads a county's four-digit local charge code like a statute", async () => {
+    const local: SyntheticInmate[] = [
+      { ...inmates[1]!, charges: [["5012 - Synthetic Local Violation"]] }
+    ];
+    const result = await runSourceAdapter(adapter(pages(local)), context());
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(
+      result.snapshot.bookings[0]!.charges.map((charge) => [charge.statuteCode, charge.description])
+    ).toEqual([["5012", "Synthetic Local Violation"]]);
   });
 
   it("fails closed on a stale, mismatched, changed, duplicate, or empty report", async () => {
