@@ -163,12 +163,13 @@ with the adapter records disabled and publication approval off.
    crawl follows the list's own Next links, and the people it collects must match the page's "Number
    of Inmates" count, or the county fails closed. It runs in the same Kansas batch.
 
-   Alabama runs Franklin County through the same shared sheriff roster adapter, configured in
-   `alabama-rosters.ts`, on the `roster.php?grp=` layout, and must collect exactly the "Inmate
-   Roster (N)" count:
+   Alabama runs Franklin, Chilton, and St. Clair counties through the same shared sheriff roster
+   adapter, configured in `alabama-rosters.ts`. Franklin and Chilton use the `roster.php?grp=`
+   layout and St. Clair the `/inmate-roster/filters/current/...` paths; each must collect exactly
+   the "Inmate Roster (N)" count:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 

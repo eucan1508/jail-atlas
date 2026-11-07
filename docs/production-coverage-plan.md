@@ -144,12 +144,14 @@ Arkansas, and Texas counties above.
 
 ## Alabama
 
-Alabama was added on 2026-11-07. Its first county uses the same sheriff roster software as the
-Missouri, Kansas, Arkansas, and Texas counties above.
+Alabama was added on 2026-11-07. Its counties use the same sheriff roster software as the Missouri,
+Kansas, Arkansas, and Texas counties above.
 
-| County   | Official source                                                                     | Status                                      |
-| -------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
-| Franklin | [Franklin County Sheriff inmate roster](https://www.franklinsheriff.org/roster.php) | Adapter tested; production approval pending |
+| County    | Official source                                                                                                            | Status                                      |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Franklin  | [Franklin County Sheriff inmate roster](https://www.franklinsheriff.org/roster.php)                                        | Adapter tested; production approval pending |
+| Chilton   | [Chilton County Sheriff inmate roster](https://www.chiltoncountyso.org/roster.php)                                         | Adapter tested; production approval pending |
+| St. Clair | [St. Clair County Sheriff inmate roster](https://www.stclairsheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

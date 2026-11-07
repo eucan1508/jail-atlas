@@ -515,6 +515,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "franklin",
       adapterKey: "franklin-county-al-current-roster",
       sourceHost: "www.franklinsheriff.org"
+    },
+    {
+      countySlug: "chilton",
+      adapterKey: "chilton-county-al-current-roster",
+      sourceHost: "www.chiltoncountyso.org"
+    },
+    {
+      countySlug: "st-clair",
+      adapterKey: "st-clair-county-al-current-roster",
+      sourceHost: "www.stclairsheriff.org"
     }
   ]
 };

@@ -1768,6 +1768,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.franklinsheriff.org/roster.php",
     officialSourceLabel: "Franklin County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Chilton County",
+    slug: "chilton-county",
+    publishedAt: "2026-11-07",
+    seatCity: "Clanton",
+    h1: "Chilton County Jail Roster & Inmate Search",
+    title: "Chilton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Chilton County, Alabama current-inmate information for the jail in Clanton from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Chilton County Sheriff's Office publishes a current inmate roster for the 232-bed Chilton County Jail in Clanton. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.chiltoncountyso.org/roster.php",
+    officialSourceLabel: "Chilton County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "St. Clair County",
+    slug: "st-clair-county",
+    publishedAt: "2026-11-07",
+    seatCity: "Pell City",
+    h1: "St. Clair County Jail Roster & Inmate Search",
+    title: "St. Clair County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search St. Clair County, Alabama current-inmate information for the jail in Pell City from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The St. Clair County Sheriff's Office publishes a current inmate roster for the St. Clair County Jail in Pell City. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.stclairsheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "St. Clair County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 
