@@ -2517,6 +2517,120 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/chilton-county": {
+    facilityName: "Chilton County Jail",
+    address: "301 City Street, Clanton, AL 35045",
+    phone: "205-755-1053",
+    operatedBy: "Chilton County Sheriff's Office",
+    reviewedAt: "November 7, 2026",
+    overview:
+      "The Chilton County Sheriff's Office runs the 232-bed Chilton County Jail in Clanton, which holds local, county, and state inmates awaiting trial or serving sentences, with on-site medical, dental, and mental health care. Call the jail at 205-755-1053 with questions; the Sheriff's Office is at 53 Robert Threlkeld Parkway.",
+    contactSourceLabel: "Official corrections page",
+    contactSourceUrl: "https://www.chiltoncountyso.org/corrections",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Family visits are by video from home, available daily from 8 a.m. to 10:30 p.m., with no visits between 11 a.m. and noon. Call 1-877-578-3658 for help with home visits. Discipline or classification can limit visits.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.chiltoncountyso.org/corrections"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money at the lobby kiosk, which takes cash, debit, or credit cards, or online at team3.inmatecanteen.com. Personal checks are not accepted. Orders are processed Monday night and delivered Wednesday, so deposits must be in by 5 a.m. Monday. Prescription medication (no controlled substances) can be dropped off with a photo ID.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.chiltoncountyso.org/corrections"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls are collect, prepaid, or by credit card through Securus, which also handles e-messaging; set up an account at 1-800-844-6591 with facility code 5500. Personal mail is scanned and shown on kiosks: send it to the inmate's full name, Chilton County Jail, C/O Securus DMC, PO Box 22706, Tampa, FL 33622. Legal mail, money orders, and reading materials go directly to the jail.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.chiltoncountyso.org/corrections"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bonds can be posted three ways: with the Circuit Clerk's Office on the third floor of the courthouse, weekdays 8 a.m. to 5 p.m. (205-755-4275); as a property bond at the jail any time, with property worth three times the bond and two owners for a felony; or through a bonding company approved by the Sheriff. Bonds over $1,000,000 need Circuit Court approval. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.chiltoncountyso.org/corrections"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Chilton County Jail?",
+        answer: "By video from home, daily from 8 a.m. to 10:30 p.m., except 11 a.m. to noon."
+      },
+      {
+        question: "How do I put money on a Chilton County inmate's account?",
+        answer: "Use the lobby kiosk or team3.inmatecanteen.com. Personal checks are not accepted."
+      },
+      {
+        question: "Where do I send a letter to a Chilton County inmate?",
+        answer:
+          "Inmate's full name, Chilton County Jail, C/O Securus DMC, PO Box 22706, Tampa, FL 33622."
+      },
+      {
+        question: "How do I post bond in Chilton County?",
+        answer:
+          "Through the Circuit Clerk (205-755-4275), a property bond at the jail, or an approved bonding company."
+      }
+    ]
+  },
+  "alabama/st-clair-county": {
+    facilityName: "St. Clair County Jail",
+    address: "100 18th St. North, Pell City, AL 35125",
+    phone: "205-814-3525",
+    operatedBy: "St. Clair County Sheriff's Office",
+    reviewedAt: "November 7, 2026",
+    overview:
+      "The St. Clair County Sheriff's Office runs one jail, in Pell City, for people awaiting sentencing and serving sentences. The jail lobby is open around the clock; call the jail at 205-814-3525 or booking at 205-814-3676.",
+    contactSourceLabel: "Official corrections page",
+    contactSourceUrl: "https://www.stclairsheriff.org/corrections",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visitation appointments are made at inmatesales.com through Combined Public Communications, the jail's phone provider. Call the jail at 205-814-3525 with questions.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.stclairsheriff.org/corrections"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail does not take cash or money orders. Deposit at the lobby kiosk at 100 18th St. N in Pell City, or online at jailatm.com, which also handles emails, video calls, and gift packs. Commissary orders are delivered on Fridays. Money deposited can be applied to debts an inmate owes the jail.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.stclairsheriff.org/corrections"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone deposits are made at inmatesales.com with Combined Public Communications. Mail goes to the inmate at 100 18th St. North, Pell City, AL 35125, and everything except legal mail is searched.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.stclairsheriff.org/corrections"
+      },
+      {
+        title: "Bail and court records",
+        body: "All bonds are made at the Sheriff's Office, at 48 6th St. in Ashville or 1610 Cogswell Ave. in Pell City. Property bonds are approved by the Sheriff and need two property owners on felony charges; a defendant cannot use their own property. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.stclairsheriff.org/corrections"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the St. Clair County Jail?",
+        answer: "Schedule a video visit at inmatesales.com."
+      },
+      {
+        question: "How do I put money on a St. Clair County inmate's account?",
+        answer:
+          "Use the lobby kiosk in Pell City or jailatm.com. Cash and money orders are not accepted."
+      },
+      {
+        question: "Where do I send a letter to a St. Clair County inmate?",
+        answer: "To the inmate at 100 18th St. North, Pell City, AL 35125."
+      },
+      {
+        question: "Where do I post bond in St. Clair County?",
+        answer:
+          "At the Sheriff's Office in Ashville (48 6th St.) or Pell City (1610 Cogswell Ave.)."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
