@@ -142,6 +142,15 @@ Arkansas, and Texas counties above.
 | Brown       | [Brown County Sheriff jail roster](https://www.brownso.org/agency-data/jail-roster/)                                                 | Adapter tested; production approval pending |
 | Nemaha      | [Nemaha County Sheriff jail roster](https://nemahasoks.gov/jail/jail-roster/)                                                        | Adapter tested; production approval pending |
 
+## Alabama
+
+Alabama was added on 2026-11-07. Its first county uses the same sheriff roster software as the
+Missouri, Kansas, Arkansas, and Texas counties above.
+
+| County   | Official source                                                                     | Status                                      |
+| -------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
+| Franklin | [Franklin County Sheriff inmate roster](https://www.franklinsheriff.org/roster.php) | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,

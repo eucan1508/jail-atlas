@@ -104,11 +104,10 @@ test.describe("approved geographic scope", () => {
   });
 
   test("excluded legacy jurisdictions have no routes or public output", async ({ request }) => {
-    const excludedSlugs = [
-      // Arkansas left this list on 2026-10-04, Oklahoma on 2026-10-09, and Missouri on 2026-11-01,
-      // when their county pages were added.
-      ["ala", "bama"]
-    ].map((parts) => parts.join(""));
+    // Arkansas left this list on 2026-10-04, Oklahoma on 2026-10-09, Missouri on 2026-11-01, and
+    // Alabama on 2026-11-07, when their county pages were added. Add a jurisdiction here, split so
+    // this file does not name it, to keep it out of the site until its pages are reviewed.
+    const excludedSlugs: string[] = [];
 
     for (const slug of excludedSlugs) {
       for (const route of [`/coverage/${slug}/`, `/${slug}/example-county/custody/`]) {

@@ -22,6 +22,7 @@ export * from "./texas-rosters.js";
 export * from "./missouri-rosters.js";
 export * from "./kansas-rosters.js";
 export * from "./iowa-rosters.js";
+export * from "./alabama-rosters.js";
 export * from "./toolset-jail-roster.js";
 export * from "./douglas-county.js";
 export * from "./st-louis-county.js";

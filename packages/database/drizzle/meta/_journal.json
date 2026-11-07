@@ -673,6 +673,13 @@
       "when": 1797915200000,
       "tag": "0095_kansas_nemaha_source",
       "breakpoints": true
+    },
+    {
+      "idx": 96,
+      "version": "7",
+      "when": 1798001600000,
+      "tag": "0096_alabama_franklin_source",
+      "breakpoints": true
     }
   ]
 }
