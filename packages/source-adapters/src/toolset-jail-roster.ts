@@ -38,7 +38,30 @@ export const JACKSON_COUNTY_KS_ROSTER = {
   parserVersion: "1.0.0"
 } as const satisfies ToolsetJailRosterConfig;
 
-export const TOOLSET_JAIL_ROSTERS = [JACKSON_COUNTY_KS_ROSTER] as const;
+export const BROWN_COUNTY_KS_ROSTER = {
+  adapterKey: "brown-county-ks-current-roster",
+  countyName: "Brown County",
+  diagnosticPrefix: "BROWN_COUNTY_KS",
+  sourceUrl: "https://www.brownso.org/agency-data/jail-roster/",
+  viewNumber: "3072",
+  parserVersion: "1.0.0"
+} as const satisfies ToolsetJailRosterConfig;
+
+export const NEMAHA_COUNTY_KS_ROSTER = {
+  adapterKey: "nemaha-county-ks-current-roster",
+  countyName: "Nemaha County",
+  diagnosticPrefix: "NEMAHA_COUNTY_KS",
+  // The Sheriff's site moved the roster under /jail/; the old /agency-data/ path now redirects.
+  sourceUrl: "https://nemahasoks.gov/jail/jail-roster/",
+  viewNumber: "285",
+  parserVersion: "1.0.0"
+} as const satisfies ToolsetJailRosterConfig;
+
+export const TOOLSET_JAIL_ROSTERS = [
+  JACKSON_COUNTY_KS_ROSTER,
+  BROWN_COUNTY_KS_ROSTER,
+  NEMAHA_COUNTY_KS_ROSTER
+] as const;
 
 export function toolsetJailRoster(adapterKey: string): ToolsetJailRosterConfig | null {
   return TOOLSET_JAIL_ROSTERS.find((site) => site.adapterKey === adapterKey) ?? null;
@@ -56,6 +79,7 @@ const BOOKING_NUMBER = /^B\d{8,14}$/;
 const NAME = /^[^,]+, \S.*$/;
 // "21-5915(a) Failure to appear: STAT": a Kansas statute, its title, and the roster's type tag.
 const STATUTE_CHARGE = /^(\d{1,2}-\d{3,5}[0-9A-Za-z()]*) (.+?)(?:: STAT)?$/;
+const TYPE_TAG = /: STAT$/;
 
 const ToolsetChargeSchema = z.object({
   statuteCode: z.string().min(1).max(100).nullable(),
@@ -147,7 +171,7 @@ function parseCharges(block: string): ToolsetRecord["charges"] {
     const statute = charge.match(STATUTE_CHARGE);
     return statute
       ? { statuteCode: statute[1]!, description: statute[2]!.trim() }
-      : { statuteCode: null, description: charge };
+      : { statuteCode: null, description: charge.replace(TYPE_TAG, "") };
   });
 }
 

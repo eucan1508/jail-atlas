@@ -498,6 +498,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "jackson",
       adapterKey: "jackson-county-ks-current-roster",
       sourceHost: "www.jasoks.org"
+    },
+    {
+      countySlug: "brown",
+      adapterKey: "brown-county-ks-current-roster",
+      sourceHost: "www.brownso.org"
+    },
+    {
+      countySlug: "nemaha",
+      adapterKey: "nemaha-county-ks-current-roster",
+      sourceHost: "nemahasoks.gov"
     }
   ]
 };

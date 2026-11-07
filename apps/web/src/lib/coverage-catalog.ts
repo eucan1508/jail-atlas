@@ -1267,6 +1267,40 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Brown County",
+    slug: "brown-county",
+    publishedAt: "2026-11-07",
+    seatCity: "Hiawatha",
+    h1: "Brown County Jail Roster & Inmate Search",
+    title: "Brown County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Brown County, Kansas current-inmate information for the jail in Hiawatha from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Brown County Sheriff's Office publishes a jail roster for the 50-bed Brown County Jail in Hiawatha. This page reads every page of that list, keeps booking numbers and source-listed charges with their Kansas statute numbers, and does not republish photos, bond amounts, or ages.",
+    officialSourceUrl: "https://www.brownso.org/agency-data/jail-roster/",
+    officialSourceLabel: "Brown County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Nemaha County",
+    slug: "nemaha-county",
+    publishedAt: "2026-11-07",
+    seatCity: "Seneca",
+    h1: "Nemaha County Jail Roster & Inmate Search",
+    title: "Nemaha County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Nemaha County, Kansas current-inmate information for the jail in Seneca from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Nemaha County Sheriff's Office publishes a jail roster for the Nemaha County Jail in Seneca. This page reads that list, keeps booking numbers and source-listed charges with their Kansas statute numbers, and does not republish photos, bond amounts, or ages.",
+    officialSourceUrl: "https://nemahasoks.gov/jail/jail-roster/",
+    officialSourceLabel: "Nemaha County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "minnesota",
     stateName: "Minnesota",
     county: "Mower County",

@@ -97,7 +97,9 @@ const liveCountyKeys = [
   "kansas/jefferson-county",
   "kansas/woodson-county",
   "kansas/cherokee-county",
-  "kansas/jackson-county"
+  "kansas/jackson-county",
+  "kansas/brown-county",
+  "kansas/nemaha-county"
 ] as const;
 
 describe("verified county guides", () => {

@@ -116,7 +116,9 @@ const liveAdapterKeys: Record<string, string> = {
   "kansas/jefferson-county": "jefferson-county-ks-current-roster",
   "kansas/woodson-county": "woodson-county-ks-current-roster",
   "kansas/cherokee-county": "cherokee-county-ks-current-roster",
-  "kansas/jackson-county": "jackson-county-ks-current-roster"
+  "kansas/jackson-county": "jackson-county-ks-current-roster",
+  "kansas/brown-county": "brown-county-ks-current-roster",
+  "kansas/nemaha-county": "nemaha-county-ks-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

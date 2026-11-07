@@ -83,7 +83,11 @@ const alpha = {
   charges:
     "21-5915(a) Synthetic failure to appear: STAT|21-5904(a4)(b6)(B) Synthetic interference.<br> knowingly flee for felony case: STAT|Hold for Synthetic Agency"
 };
-const beta = { name: "Tester-Doe, Beta", booking: "B00000000002", charges: "Serving 30 Days" };
+const beta = {
+  name: "Tester-Doe, Beta",
+  booking: "B00000000002",
+  charges: "Serving 30 Days|Commitment 24 months. 21-6421 Synthetic offense: STAT"
+};
 const gamma = {
   name: "Tester, Gamma",
   booking: "B00000000003",
@@ -150,7 +154,15 @@ describe("Toolset jail roster adapter (Jackson County, Kansas)", () => {
         ],
         0
       ],
-      ["Tester-Doe, Beta", "B00000000002", [[null, "Serving 30 Days"]], 0],
+      [
+        "Tester-Doe, Beta",
+        "B00000000002",
+        [
+          [null, "Serving 30 Days"],
+          [null, "Commitment 24 months. 21-6421 Synthetic offense"]
+        ],
+        0
+      ],
       ["Tester, Gamma", "B00000000003", [["8-1528", "Synthetic failure to yield & stop"]], 0]
     ]);
     const json = JSON.stringify(result.snapshot);
