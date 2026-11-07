@@ -12,6 +12,7 @@ import { TEXAS_ROSTER_SITES } from "./texas-rosters.js";
 import { MISSOURI_ROSTER_SITES } from "./missouri-rosters.js";
 import { KANSAS_ROSTER_SITES } from "./kansas-rosters.js";
 import { IOWA_ROSTER_SITES } from "./iowa-rosters.js";
+import { ALABAMA_ROSTER_SITES } from "./alabama-rosters.js";
 import {
   createSheriffRosterSiteAdapter,
   type SheriffRosterIdFactory,
@@ -161,13 +162,14 @@ const cleburnePage = (page: number) =>
   `https://www.cleburnearso.gov/inmate-roster/filters/current/booking_time=desc/${page}`;
 
 describe("sheriff roster site adapter", () => {
-  it("keeps every Arkansas, Texas, Missouri, Kansas, and Iowa roster out of the default registry", () => {
+  it("keeps every Arkansas, Texas, Missouri, Kansas, Iowa, and Alabama roster out of the default registry", () => {
     for (const site of [
       ...ARKANSAS_ROSTER_SITES,
       ...TEXAS_ROSTER_SITES,
       ...MISSOURI_ROSTER_SITES,
       ...KANSAS_ROSTER_SITES,
-      ...IOWA_ROSTER_SITES
+      ...IOWA_ROSTER_SITES,
+      ...ALABAMA_ROSTER_SITES
     ]) {
       expect(sourceAdapterRegistry.has(site.adapterKey)).toBe(false);
     }

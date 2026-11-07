@@ -1,7 +1,7 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
 export type CoverageState =
-  "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri" | "kansas";
+  "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri" | "kansas" | "alabama";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
@@ -1750,6 +1750,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "Watonwan County posts a Jail Roster PDF for the county jail in the Law Enforcement Annex of the courthouse in St. James. This page reads every page of that roster, checks its Total Records count, keeps each person's charges and bail entries as printed, and leaves out agencies, booking dates, and release dates.",
     officialSourceUrl: "https://www.watonwancountymn.gov/DocumentCenter/View/67/Jail-Roster",
     officialSourceLabel: "Watonwan County Jail Roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Franklin County",
+    slug: "franklin-county",
+    publishedAt: "2026-11-07",
+    seatCity: "Russellville",
+    h1: "Franklin County Jail Roster & Inmate Search",
+    title: "Franklin County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Franklin County, Alabama current-inmate information for the detention center in Russellville from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Franklin County Sheriff's Office publishes a current inmate roster for the Franklin County Detention Center in Russellville. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.franklinsheriff.org/roster.php",
+    officialSourceLabel: "Franklin County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   }
 ];

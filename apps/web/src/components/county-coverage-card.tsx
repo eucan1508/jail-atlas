@@ -19,7 +19,8 @@ export function CountyCoverageCard({
     arkansas: "AR",
     oklahoma: "OK",
     missouri: "MO",
-    kansas: "KS"
+    kansas: "KS",
+    alabama: "AL"
   }[entry.state];
 
   return (

@@ -118,7 +118,8 @@ const liveAdapterKeys: Record<string, string> = {
   "kansas/cherokee-county": "cherokee-county-ks-current-roster",
   "kansas/jackson-county": "jackson-county-ks-current-roster",
   "kansas/brown-county": "brown-county-ks-current-roster",
-  "kansas/nemaha-county": "nemaha-county-ks-current-roster"
+  "kansas/nemaha-county": "nemaha-county-ks-current-roster",
+  "alabama/franklin-county": "franklin-county-al-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
@@ -212,7 +213,7 @@ async function readSourceStatus(
       AND co.publication_status = 'published'
       AND st.publication_status = 'published'
       -- Keep in step with stateByCode below; a state missing here never shows any county page.
-      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO', 'KS')
+      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO', 'KS', 'AL')
       AND EXISTS (
         SELECT 1 FROM source_adapters sa
         WHERE sa.source_id = os.id AND sa.adapter_key = os.adapter_key
@@ -229,7 +230,8 @@ async function readSourceStatus(
     AR: "arkansas",
     OK: "oklahoma",
     MO: "missouri",
-    KS: "kansas"
+    KS: "kansas",
+    AL: "alabama"
   } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(

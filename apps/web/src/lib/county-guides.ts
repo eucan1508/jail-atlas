@@ -2458,6 +2458,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/franklin-county": {
+    facilityName: "Franklin County Detention Center",
+    address: "748 Walnut Gate Road, Russellville, AL 35654",
+    phone: "256-332-8425",
+    operatedBy: "Franklin County Sheriff's Office",
+    reviewedAt: "November 7, 2026",
+    overview:
+      "The Franklin County Sheriff's Office runs the Franklin County Detention Center in Russellville, opened in 2008, which holds about 220 people and has on-site medical care. The jail answers at 256-332-8425; the Sheriff's Office is open around the clock at 256-332-8820. Visitors and deposits use the Mike Green Center entrance, the double glass doors of the jail lobby.",
+    contactSourceLabel: "Official detention center page",
+    contactSourceUrl: "https://www.franklinsheriff.org/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Each inmate gets two free 30-minute visits a week. After those, a visit costs $7.50, paid at the Telmate kiosk in the jail lobby. Visits can be denied when an inmate or pod is locked down, and newly booked inmates cannot have visits until booking is finished. During the first 72 hours in holding, family can drop off new white clothing and a short list of clear-packaged hygiene items.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.franklinsheriff.org/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Kimble's Commissary Services. Add money with the kiosk in the jail lobby or by mailing a money order to 748 Walnut Gate Rd., Russellville, AL 35654. Inmates order on Tuesday and receive items on Wednesday.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.franklinsheriff.org/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phones are provided by Viapath (866-516-0115); add money by phone, at gettingout.com, or at the lobby kiosk. Mail goes to the inmate's name, 748 Walnut Gate Road, Russellville, AL 35654, with your name and return address. Cards, padded envelopes, stickers, marker or crayon, and cash or checks are rejected; only money orders payable to the inmate are accepted by mail.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.franklinsheriff.org/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "A bond can be made three ways: pay the full cash amount at the clerk's office in the courthouse and bring the receipt to the jail; use a property bond with a Revenue Commissioner assessment worth at least the bond; or use a bondsman licensed in Franklin County, who takes 10 percent. Every bond also needs a $35 filing fee by money order payable to the Franklin County Circuit Clerk. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official detention center page",
+        sourceUrl: "https://www.franklinsheriff.org/detention-center"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Franklin County Detention Center?",
+        answer:
+          "Inmates get two free 30-minute visits a week; more cost $7.50 each, paid at the lobby kiosk."
+      },
+      {
+        question: "How do I put money on a Franklin County inmate's account?",
+        answer:
+          "Use the jail lobby kiosk or mail a money order to 748 Walnut Gate Rd., Russellville, AL 35654."
+      },
+      {
+        question: "Where do I send a letter to a Franklin County inmate?",
+        answer:
+          "Inmate's name, 748 Walnut Gate Road, Russellville, AL 35654, with your return address."
+      },
+      {
+        question: "How do I post bond in Franklin County?",
+        answer:
+          "Pay cash at the courthouse clerk, use a property bond, or use a licensed bondsman, plus a $35 money-order filing fee. Call 256-332-8425 with questions."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",

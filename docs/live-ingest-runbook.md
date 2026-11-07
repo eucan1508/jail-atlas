@@ -163,6 +163,15 @@ with the adapter records disabled and publication approval off.
    crawl follows the list's own Next links, and the people it collects must match the page's "Number
    of Inmates" count, or the county fails closed. It runs in the same Kansas batch.
 
+   Alabama runs Franklin County through the same shared sheriff roster adapter, configured in
+   `alabama-rosters.ts`, on the `roster.php?grp=` layout, and must collect exactly the "Inmate
+   Roster (N)" count:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:

@@ -62,7 +62,8 @@ export function CountyFinder({
                     arkansas: "AR",
                     oklahoma: "OK",
                     missouri: "MO",
-                    kansas: "KS"
+                    kansas: "KS",
+                    alabama: "AL"
                   }[county.state]
                 }
               </span>
