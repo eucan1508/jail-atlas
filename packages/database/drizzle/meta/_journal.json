@@ -659,6 +659,20 @@
       "when": 1797742400000,
       "tag": "0093_minnesota_watonwan_source",
       "breakpoints": true
+    },
+    {
+      "idx": 94,
+      "version": "7",
+      "when": 1797828800000,
+      "tag": "0094_kansas_brown_source",
+      "breakpoints": true
+    },
+    {
+      "idx": 95,
+      "version": "7",
+      "when": 1797915200000,
+      "tag": "0095_kansas_nemaha_source",
+      "breakpoints": true
     }
   ]
 }

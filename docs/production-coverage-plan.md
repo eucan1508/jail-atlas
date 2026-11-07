@@ -139,6 +139,8 @@ Arkansas, and Texas counties above.
 | Woodson     | [Woodson County Sheriff inmate roster](https://www.woodsonsheriff.com/roster.php)                                                    | Adapter tested; production approval pending |
 | Cherokee    | [Cherokee County Sheriff inmate roster](https://www.cherokeecountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1)   | Adapter tested; production approval pending |
 | Jackson     | [Jackson County Sheriff jail roster](https://www.jasoks.org/agency-data/jail-roster/)                                                | Adapter tested; production approval pending |
+| Brown       | [Brown County Sheriff jail roster](https://www.brownso.org/agency-data/jail-roster/)                                                 | Adapter tested; production approval pending |
+| Nemaha      | [Nemaha County Sheriff jail roster](https://nemahasoks.gov/jail/jail-roster/)                                                        | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

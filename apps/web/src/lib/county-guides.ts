@@ -2345,6 +2345,119 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/brown-county": {
+    facilityName: "Brown County Jail",
+    address: "709 Utah Street, Hiawatha, KS 66434",
+    phone: "785-742-7125",
+    operatedBy: "Brown County Sheriff's Office",
+    reviewedAt: "November 7, 2026",
+    overview:
+      "The Brown County Sheriff's Office runs a 50-bed jail in Hiawatha, built in 2010, that usually holds about 24 people. It does not house inmates from other counties. The Sheriff's Office answers at 785-742-7125.",
+    contactSourceLabel: "Official jail operations page",
+    contactSourceUrl: "https://www.brownso.org/departments/jai/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video calls run through City Tele-Coin, the jail's phone provider. The site does not post visiting hours; call 785-742-7125 to ask about visits.",
+        sourceLabel: "Official jail operations page",
+        sourceUrl: "https://www.brownso.org/departments/jai/"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail gives every inmate basic hygiene items. Family and friends can order other personal items and commissary through City Tele-Coin, which also sells calling cards and media funds. City Tele-Coin support is 316-746-1114.",
+        sourceLabel: "Official jail operations page",
+        sourceUrl: "https://www.brownso.org/departments/jai/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls, video calls, and messaging are set up through a City Tele-Coin account. The site does not post mail rules; call 785-742-7125 before sending mail.",
+        sourceLabel: "Official jail operations page",
+        sourceUrl: "https://www.brownso.org/departments/jai/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office lists the bonding companies allowed to write bail bonds in Brown County, with each company's per-bond limit. Call 785-742-7125 to ask about a bond. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bail bonds page",
+        sourceUrl: "https://www.brownso.org/bail-bonds/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I contact someone in the Brown County Jail?",
+        answer: "Set up a City Tele-Coin account for calls, video calls, and messages."
+      },
+      {
+        question: "How do I get commissary to a Brown County inmate?",
+        answer: "Order items through City Tele-Coin. The jail supplies basic hygiene items."
+      },
+      {
+        question: "Who can write a bail bond in Brown County?",
+        answer:
+          "Only the bonding companies on the Sheriff's list. Call 785-742-7125 with questions."
+      },
+      {
+        question: "Where is the Brown County Jail?",
+        answer: "At the Sheriff's Office, 709 Utah Street, Hiawatha, KS 66434."
+      }
+    ]
+  },
+  "kansas/nemaha-county": {
+    facilityName: "Nemaha County Jail",
+    address: "212 N 6th Street, Seneca, KS 66538",
+    phone: "785-336-2311",
+    operatedBy: "Nemaha County Sheriff's Office",
+    reviewedAt: "November 7, 2026",
+    overview:
+      "The Nemaha County Sheriff's Office runs the county jail in Seneca, a pod-style facility opened in 2016 and supervised around the clock. The office is open 24 hours a day at 785-336-2311; administrative staff work 8 a.m. to 4 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://nemahasoks.gov/contact-us/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video through InmateSales: up to three 25-minute visits a week, scheduled any day from 10 a.m. to 8 p.m. Create an account at inmatesales.com, buy minutes for a remote or on-site visit, and schedule it, or use the kiosks in the Sheriff's Office lobby. Anyone with an active warrant, out on bond, or on probation or parole is not approved. Visits are recorded.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://nemahasoks.gov/jail/visitation-information/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Inmates can buy food, hygiene, and other items from commissary every week. Deposit cash at the machine inside the north entrance of the Sheriff's Office (minimum $5), or online through JailATM by choosing Kansas and the Nemaha County Jail.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://nemahasoks.gov/jail/commissary-information/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Mail goes to the inmate's full name, C/O Nemaha County Jail, 212 N 6th Street, Seneca, Kansas 66538, with a complete return address. Letters, cards, postcards, and 3x5 or 4x6 photos are allowed; everything except legal mail is opened and inspected. Emails to inmates can be bought through InmateSales.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://nemahasoks.gov/jail/inmate-mail/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call the Sheriff's Office at 785-336-2311 to ask about a bond amount and how to pay it. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official contact page",
+        sourceUrl: "https://nemahasoks.gov/contact-us/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Nemaha County Jail?",
+        answer:
+          "By video through InmateSales, up to three 25-minute visits a week, from 10 a.m. to 8 p.m."
+      },
+      {
+        question: "How do I put money on a Nemaha County inmate's account?",
+        answer: "Use the cash machine at the Sheriff's Office north entrance or JailATM online."
+      },
+      {
+        question: "Where do I send a letter to a Nemaha County inmate?",
+        answer:
+          "Inmate's full name, C/O Nemaha County Jail, 212 N 6th Street, Seneca, Kansas 66538."
+      },
+      {
+        question: "How do I post bond in Nemaha County?",
+        answer: "Call 785-336-2311; the site does not post bond steps."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
