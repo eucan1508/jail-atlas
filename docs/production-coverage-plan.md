@@ -154,6 +154,8 @@ Kansas, Arkansas, and Texas counties above.
 | St. Clair | [St. Clair County Sheriff inmate roster](https://www.stclairsheriff.org/inmate-roster/filters/current/booking_time=desc/1)       | Adapter tested; production approval pending |
 | Jackson   | [Jackson County Sheriff inmate roster](https://www.jacksoncountysheriffal.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 | Marshall  | [Marshall County Sheriff inmate roster](https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
+| Marion    | [Marion County Sheriff inmate roster](https://www.marionsoal.com/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
+| DeKalb    | [DeKalb County Sheriff inmate roster](https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

@@ -1839,6 +1839,42 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Marshall County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Marion County",
+    slug: "marion-county",
+    publishedAt: "2026-11-08",
+    seatCity: "Hamilton",
+    h1: "Marion County Jail Roster & Inmate Search",
+    title: "Marion County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Marion County, Alabama current-inmate information for the jail in Hamilton from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Marion County Sheriff's Office publishes a current inmate roster for the Marion County Jail in Hamilton. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.marionsoal.com/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Marion County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "DeKalb County",
+    slug: "dekalb-county",
+    publishedAt: "2026-11-08",
+    seatCity: "Fort Payne",
+    h1: "DeKalb County Jail Roster & Inmate Search",
+    title: "DeKalb County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search DeKalb County, Alabama current-inmate information for the jail in Fort Payne from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The DeKalb County Sheriff's Office publishes a current inmate roster for the DeKalb County Detention Center in Fort Payne. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "DeKalb County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 
