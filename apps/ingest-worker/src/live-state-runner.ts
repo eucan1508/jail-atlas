@@ -525,6 +525,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "st-clair",
       adapterKey: "st-clair-county-al-current-roster",
       sourceHost: "www.stclairsheriff.org"
+    },
+    {
+      countySlug: "jackson",
+      adapterKey: "jackson-county-al-current-roster",
+      sourceHost: "www.jacksoncountysheriffal.org"
+    },
+    {
+      countySlug: "marshall",
+      adapterKey: "marshall-county-al-current-roster",
+      sourceHost: "www.marshallso.org"
     }
   ]
 };

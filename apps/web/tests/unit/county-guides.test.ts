@@ -102,7 +102,9 @@ const liveCountyKeys = [
   "kansas/nemaha-county",
   "alabama/franklin-county",
   "alabama/chilton-county",
-  "alabama/st-clair-county"
+  "alabama/st-clair-county",
+  "alabama/jackson-county",
+  "alabama/marshall-county"
 ] as const;
 
 describe("verified county guides", () => {

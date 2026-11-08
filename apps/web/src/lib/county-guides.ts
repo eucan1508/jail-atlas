@@ -2631,6 +2631,120 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/jackson-county": {
+    facilityName: "Jackson County Jail",
+    address: "Scottsboro, AL 35768",
+    phone: "256-574-1884",
+    operatedBy: "Jackson County Sheriff's Office",
+    reviewedAt: "November 8, 2026",
+    overview:
+      "The Jackson County Sheriff's Office runs the county jail in Scottsboro, which holds up to 208 people, about 155 on an average day, awaiting trial, waiting for transfer to the Alabama Department of Corrections, or serving sentences under a year. The jail answers at 256-574-1884. The Sheriff's Office, at 102 East Laurel St. in the Jackson County Courthouse, is at 256-574-2610.",
+    contactSourceLabel: "Official jail staff page",
+    contactSourceUrl: "https://www.jacksoncountysheriffal.org/jail-staff",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video. They can be scheduled daily from 9 a.m. to 9 p.m., except Friday, when the hours are 4 to 9 p.m. Schedule at gettingout.com or at the kiosk in the jail lobby. Each inmate gets one free visit every seven days; more can be bought.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.jacksoncountysheriffal.org/faqs"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail lobby has two kiosks, one for visits and phone and one for commissary. Online, add visit and phone money through Viapath at gettingout.com, and commissary money through Legacy at jailatm.com.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.jacksoncountysheriffal.org/faqs"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone accounts are funded through Viapath at gettingout.com or the lobby kiosk. The site does not post mail rules or a mailing address for inmates; call the jail at 256-574-1884 before sending mail.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.jacksoncountysheriffal.org/faqs"
+      },
+      {
+        title: "Bail and court records",
+        body: "A person may be released on their own recognizance, through a private bonding company, on a property bond, or on a cash bond. Cash bonds cannot be paid at the jail; pay them at the Jackson County Clerk's Office or the city that is owed. Call the jail to learn the bond type for a specific person. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.jacksoncountysheriffal.org/faqs"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Jackson County Jail?",
+        answer:
+          "By video, scheduled at gettingout.com or the lobby kiosk, daily from 9 a.m. to 9 p.m. (Fridays 4 to 9 p.m.)."
+      },
+      {
+        question: "How do I put money on a Jackson County inmate's account?",
+        answer:
+          "Use the lobby kiosks, gettingout.com for phone and visits, or jailatm.com for commissary."
+      },
+      {
+        question: "Where do I pay a cash bond in Jackson County?",
+        answer: "At the Jackson County Clerk's Office or the city that is owed, not at the jail."
+      },
+      {
+        question: "Where is the Jackson County Sheriff's Office?",
+        answer: "In the Jackson County Courthouse, 102 East Laurel St., Scottsboro, AL 35768."
+      }
+    ]
+  },
+  "alabama/marshall-county": {
+    facilityName: "Marshall County Jail",
+    address: "423 Blount Ave., Guntersville, AL 35976",
+    phone: "256-582-2034",
+    operatedBy: "Marshall County Sheriff's Office",
+    reviewedAt: "November 8, 2026",
+    overview:
+      "The Marshall County Sheriff's Office runs the county jail at 423 Blount Ave. in Guntersville, which holds people awaiting sentencing and serving sentences. The Sheriff's Office answers around the clock at 256-582-2034.",
+    contactSourceLabel: "Official corrections page",
+    contactSourceUrl: "https://www.marshallso.org/corrections",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are remote and are monitored and recorded. Schedule at inmatesales.com or the visitation kiosk in the front lobby; visits cannot be scheduled by calling the Sheriff's Office. Remote visits cost 20 cents a minute, paid by the visitor. Video visit support is (859) 334-0959.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.marshallso.org/corrections"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary money can be deposited at jailatm.com, by phone at 866-516-0115, or at the kiosk in the Sheriff's Office lobby. Phone money goes through Inmate Sales, by phone at 877-998-5678, or the visitation lobby kiosk on Tuesdays and Thursdays.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.marshallso.org/corrections"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail is scanned into the inmate's JailATM account: send it to the inmate's name and number, PO Box 16060, Jonesboro, AR 72401. Mail sent to the jail itself is not accepted, except legal mail from an attorney of record marked \"Private Legal Mail\" and new books shipped from the vendor or publisher.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.marshallso.org/corrections"
+      },
+      {
+        title: "Bail and court records",
+        body: "Cash bonds are paid in full at the Circuit Clerk's office, weekdays 8 a.m. to 4:30 p.m., and the receipt brought to the Sheriff's Office. Property bond signers are approved by the Sheriff, and most felony bonds need two property owners. Every bond also carries a $35 transmittal fee paid to the Sheriff's Office in exact cash. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official corrections page",
+        sourceUrl: "https://www.marshallso.org/corrections"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Marshall County Jail?",
+        answer:
+          "Schedule a remote visit at inmatesales.com or the lobby kiosk; it costs 20 cents a minute."
+      },
+      {
+        question: "How do I put money on a Marshall County inmate's account?",
+        answer: "Use jailatm.com, 866-516-0115, or the Sheriff's Office lobby kiosk."
+      },
+      {
+        question: "Where do I send a letter to a Marshall County inmate?",
+        answer: "Inmate's name and number, PO Box 16060, Jonesboro, AR 72401."
+      },
+      {
+        question: "How do I post bond in Marshall County?",
+        answer:
+          "Pay cash bonds at the Circuit Clerk's office, or use an approved property bond, plus a $35 cash transmittal fee."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
