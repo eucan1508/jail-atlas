@@ -1803,6 +1803,42 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://www.stclairsheriff.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "St. Clair County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Jackson County",
+    slug: "jackson-county",
+    publishedAt: "2026-11-08",
+    seatCity: "Scottsboro",
+    h1: "Jackson County Jail Roster & Inmate Search",
+    title: "Jackson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Jackson County, Alabama current-inmate information for the jail in Scottsboro from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Jackson County Sheriff's Office publishes a current inmate roster for the 208-bed Jackson County Jail in Scottsboro. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.jacksoncountysheriffal.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Jackson County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Marshall County",
+    slug: "marshall-county",
+    publishedAt: "2026-11-08",
+    seatCity: "Guntersville",
+    h1: "Marshall County Jail Roster & Inmate Search",
+    title: "Marshall County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Marshall County, Alabama current-inmate information for the jail in Guntersville from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Marshall County Sheriff's Office publishes a current inmate roster for the Marshall County Jail in Guntersville. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl:
+      "https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Marshall County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

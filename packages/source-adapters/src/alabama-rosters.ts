@@ -27,10 +27,31 @@ export const ST_CLAIR_COUNTY_AL_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const JACKSON_COUNTY_AL_ROSTER = {
+  adapterKey: "jackson-county-al-current-roster",
+  countyName: "Jackson County",
+  diagnosticPrefix: "JACKSON_COUNTY_AL",
+  sourceUrl:
+    "https://www.jacksoncountysheriffal.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
+export const MARSHALL_COUNTY_AL_ROSTER = {
+  adapterKey: "marshall-county-al-current-roster",
+  countyName: "Marshall County",
+  diagnosticPrefix: "MARSHALL_COUNTY_AL",
+  sourceUrl: "https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ALABAMA_ROSTER_SITES = [
   FRANKLIN_COUNTY_AL_ROSTER,
   CHILTON_COUNTY_AL_ROSTER,
-  ST_CLAIR_COUNTY_AL_ROSTER
+  ST_CLAIR_COUNTY_AL_ROSTER,
+  JACKSON_COUNTY_AL_ROSTER,
+  MARSHALL_COUNTY_AL_ROSTER
 ] as const;
 
 export function alabamaRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
