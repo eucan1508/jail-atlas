@@ -48,6 +48,13 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9825120246638231"
           crossOrigin="anonymous"
         />
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-THMJ866B" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());"
+          }}
+        />
       </head>
       <body>
         <a className="skip-link" href="#main-content">

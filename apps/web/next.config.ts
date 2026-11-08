@@ -14,14 +14,21 @@ const adHosts = [
   "https://*.adtrafficquality.google"
 ].join(" ");
 
+// Google Tag Manager loads its container and tags, which send measurement calls to Google Analytics.
+const analyticsHosts = [
+  "https://www.googletagmanager.com",
+  "https://*.google-analytics.com",
+  "https://*.analytics.google.com"
+].join(" ");
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${productionLike ? "" : " 'unsafe-eval'"} ${adHosts}`,
+  `script-src 'self' 'unsafe-inline'${productionLike ? "" : " 'unsafe-eval'"} ${adHosts} ${analyticsHosts}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self'",
-  `connect-src 'self' ${adHosts}`,
-  `frame-src ${adHosts}`,
+  `connect-src 'self' ${adHosts} ${analyticsHosts}`,
+  `frame-src ${adHosts} https://www.googletagmanager.com`,
   "media-src 'none'",
   "object-src 'none'",
   "base-uri 'self'",
