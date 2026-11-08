@@ -104,7 +104,9 @@ const liveCountyKeys = [
   "alabama/chilton-county",
   "alabama/st-clair-county",
   "alabama/jackson-county",
-  "alabama/marshall-county"
+  "alabama/marshall-county",
+  "alabama/marion-county",
+  "alabama/dekalb-county"
 ] as const;
 
 describe("verified county guides", () => {

@@ -2745,6 +2745,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/marion-county": {
+    facilityName: "Marion County Jail",
+    address: "842 Industrial Dr., Hamilton, AL 35570",
+    phone: "205-921-7433",
+    operatedBy: "Marion County Sheriff's Office",
+    reviewedAt: "November 8, 2026",
+    overview:
+      "The Marion County Sheriff's Office runs the county jail in Hamilton, built in 1979, with the Sheriff's offices in a 2005 addition. The office answers around the clock at 205-921-7433; administrative hours are 8 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.marionsoal.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through NCIC, and they are scheduled with NCIC, not with the jail. Call 205-921-7433 if you have questions about visiting.",
+        sourceLabel: "Official visitation answer",
+        sourceUrl: "https://www.marionsoal.com/do-i-need-identifications-to-visit-someone"
+      },
+      {
+        title: "Money and commissary",
+        body: "Stamps, envelopes, and writing paper are bought from the jail store; they cannot be sent in. No outside clothing may be brought to the jail. The site does not explain how to deposit money; call 205-921-7433 to ask.",
+        sourceLabel: "Official writing materials answer",
+        sourceUrl: "https://www.marionsoal.com/writing-and-mailing-materials"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone service is provided by NCIC Inmate Communications. Inmates may receive only plain white postcards, except legal mail and money orders, sent to Marion County Jail, the inmate's name, P.O. Box 1387, Hamilton, AL 35570, with a full return address. Envelopes, greeting cards, stickers, labels, clippings, printouts, and scented mail are returned or discarded, and jail staff cannot take messages or letters at the door.",
+        sourceLabel: "Official incoming mail policy",
+        sourceUrl: "https://www.marionsoal.com/incoming-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The site does not explain how to post bond. Call the Sheriff's Office at 205-921-7433, or the courthouse office at 205-921-2101, to ask about a bond. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official contact information",
+        sourceUrl: "https://www.marionsoal.com/marion-county-sheriffs-office-contact-information"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Marion County Jail?",
+        answer: "By video through NCIC; visits are scheduled with NCIC, not the jail."
+      },
+      {
+        question: "Can I send a letter to a Marion County inmate?",
+        answer:
+          "Only plain white postcards, to Marion County Jail, inmate's name, P.O. Box 1387, Hamilton, AL 35570."
+      },
+      {
+        question: "Can I bring clothing or writing supplies to the Marion County Jail?",
+        answer:
+          "No. Outside clothing is not accepted, and writing supplies come from the jail store."
+      },
+      {
+        question: "How do I post bond in Marion County?",
+        answer: "Call 205-921-7433; the site does not post bond steps."
+      }
+    ]
+  },
+  "alabama/dekalb-county": {
+    facilityName: "DeKalb County Detention Center",
+    address: "Fort Payne, AL 35968",
+    phone: "256-845-3801",
+    operatedBy: "DeKalb County Sheriff's Office",
+    reviewedAt: "November 8, 2026",
+    overview:
+      "The DeKalb County Sheriff's Office runs the detention center in Fort Payne, which holds about 235 people on an average day, including people awaiting trial, people serving sentences under a year, and federal inmates under a U.S. Marshals contract. The Sheriff's Office is at 2801 Jordan Road SW and answers at 256-845-3801.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.dekalbcountysheriff.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by appointment, Monday through Friday from 9 a.m. to 3:30 p.m. Book at jailfunds.com or at the kiosk in the Sheriff's Office lobby. Inmates may have up to three visitors at a time, for 30 minutes.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.dekalbcountysheriff.org/faq"
+      },
+      {
+        title: "Money and commissary",
+        body: "Inmates cannot keep cash. Money orders can be left in the drop box just outside the Detention Center doors or mailed in, with the inmate's name and number and your name and return address; they are posted Monday through Friday. A VendEngine kiosk in the Detention Center lobby also takes deposits.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.dekalbcountysheriff.org/faq"
+      },
+      {
+        title: "Phone and mail",
+        body: "The site does not post phone or mail rules for inmates. Call 256-845-3801 before sending mail or setting up calls.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.dekalbcountysheriff.org/faq"
+      },
+      {
+        title: "Bail and court records",
+        body: "A person may be released on their own recognizance, through a private bonding company, on a property bond, or on a cash bond. The bond required depends on the charge, so call the Detention Center to learn the type for a specific person. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ page",
+        sourceUrl: "https://www.dekalbcountysheriff.org/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the DeKalb County Detention Center?",
+        answer:
+          "By appointment, Monday through Friday from 9 a.m. to 3:30 p.m., booked at jailfunds.com or the lobby kiosk."
+      },
+      {
+        question: "How do I put money on a DeKalb County inmate's account?",
+        answer:
+          "Leave or mail a money order with the inmate's name and number, or use the VendEngine kiosk in the lobby."
+      },
+      {
+        question: "What kinds of bond are available in DeKalb County?",
+        answer:
+          "Own recognizance, a bonding company, a property bond, or a cash bond, depending on the charge."
+      },
+      {
+        question: "Where is the DeKalb County Sheriff's Office?",
+        answer: "2801 Jordan Road SW, Fort Payne, AL 35968."
+      }
+    ]
+  },
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",

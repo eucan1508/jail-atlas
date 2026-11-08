@@ -535,6 +535,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "marshall",
       adapterKey: "marshall-county-al-current-roster",
       sourceHost: "www.marshallso.org"
+    },
+    {
+      countySlug: "marion",
+      adapterKey: "marion-county-al-current-roster",
+      sourceHost: "www.marionsoal.com"
+    },
+    {
+      countySlug: "dekalb",
+      adapterKey: "dekalb-county-al-current-roster",
+      sourceHost: "www.dekalbcountysheriff.org"
     }
   ]
 };

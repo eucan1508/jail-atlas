@@ -123,7 +123,9 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/chilton-county": "chilton-county-al-current-roster",
   "alabama/st-clair-county": "st-clair-county-al-current-roster",
   "alabama/jackson-county": "jackson-county-al-current-roster",
-  "alabama/marshall-county": "marshall-county-al-current-roster"
+  "alabama/marshall-county": "marshall-county-al-current-roster",
+  "alabama/marion-county": "marion-county-al-current-roster",
+  "alabama/dekalb-county": "dekalb-county-al-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.
