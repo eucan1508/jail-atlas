@@ -107,6 +107,8 @@ Oklahoma was added on 2026-10-09.
 | Major    | [Major County Sheriff inmate search](https://www.majorcosheriff.com/inmate-search)       | Adapter tested; production approval pending |
 | Jackson  | [Jackson County Sheriff inmate search](https://www.jacksoncountyso.com/inmate-search)    | Adapter tested; production approval pending |
 | Custer   | [Custer County Sheriff inmate search](https://www.custercountysheriff.com/inmate-search) | Adapter tested; production approval pending |
+| Craig    | [Craig County Sheriff inmate search](https://craigcountyso.com/inmate-search)            | Adapter tested; production approval pending |
+| Noble    | [Noble County Sheriff inmate search](https://www.noblecosook.gov/inmate-search)          | Adapter tested; production approval pending |
 
 ## Missouri
 

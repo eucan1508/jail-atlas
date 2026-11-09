@@ -987,6 +987,42 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Craig County",
+    slug: "craig-county",
+    publishedAt: "2026-11-09",
+    seatCity: "Vinita",
+    h1: "Craig County Jail Roster & Inmate Search",
+    title: "Craig County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Craig County, Oklahoma current-inmate information for the jail in Vinita from the official sheriff inmate search, with source-listed charges and capture time.",
+    article:
+      "The Craig County Sheriff's Office publishes an in-custody inmate search for the Craig County Jail in Vinita. This page reads the same official list, checks it against the jail's second booking list, keeps booking numbers and source-listed charges, and leaves out photos, birth dates, and home addresses.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://craigcountyso.com/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Craig County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Noble County",
+    slug: "noble-county",
+    publishedAt: "2026-11-09",
+    seatCity: "Perry",
+    h1: "Noble County Jail Roster & Inmate Search",
+    title: "Noble County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Noble County, Oklahoma current-inmate information for the jail in Perry from the official sheriff inmate search, with source-listed charges and capture time.",
+    article:
+      "The Noble County Sheriff's Office publishes an in-custody inmate search for the Noble County Jail in Perry. This page reads the same official list, checks it against the jail's second booking list, keeps source-listed charges, and leaves out photos, birth dates, and home addresses.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.noblecosook.gov/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Noble County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "missouri",
     stateName: "Missouri",
     county: "Crawford County",
