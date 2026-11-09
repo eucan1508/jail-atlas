@@ -154,9 +154,10 @@ const TEXAS_CHARGE_TEXT =
 const DETAINER_TEXT = new RegExp(String.raw`^Detainer-Out of County Hold: (${STATUTE}) - (.+)$`);
 // "Bench warrant W2600586 issued by Clinton, IA (908.11 - Violation Of Probation - 1985)"; the
 // warrant number, the issuing court, and the charge in parentheses are each sometimes left out,
-// and the charge can carry a short code ("Blue - Blue Warrant") instead of a statute.
+// and the charge can carry a short code ("Blue - Blue Warrant") instead of a statute, or no code
+// at all ("Unspecified warrant ETX2711000036 (ICE DETAINER)").
 const WARRANT_TEXT = new RegExp(
-  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: +[A-Za-z0-9,-]+)*?(?: +issued by [^()]+)?(?: \((?:(${STATUTE})|[A-Za-z]{1,10}|\d{8}) - (.+)\))?$`
+  String.raw`^Warrant: ((?:[A-Za-z]+ )*?warrant)(?: +[A-Za-z0-9,-]+)*?(?: +issued by [^()]+)?(?: \((?:(?:(${STATUTE})|[A-Za-z]{1,10}|\d{8}) - )?(.+)\))?$`
 );
 const SENTENCE_TEXT =
   /^(Sentenced|Mittimus|Intermittent Mittimus|Electronic Monitoring Program): (Serving .+)$/;
@@ -247,7 +248,7 @@ function classify(
   return {
     stage,
     classification: stage === "fetch" || stage === "health_check" ? "network" : "parser",
-    publicMessage: `The approved ${config.countyName}, Iowa jail portal could not be processed safely.`,
+    publicMessage: `The approved ${config.countyName} jail portal could not be processed safely.`,
     retryable: true,
     occurredAt: context.requestedAt,
     diagnosticCode: `${config.diagnosticPrefix}_${code}`.slice(0, 100)

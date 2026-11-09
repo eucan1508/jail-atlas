@@ -392,6 +392,15 @@ describe("jail portal source adapter", () => {
         "Out of County Charge: Unspecified warrant SYN-1 issued by SYNTHETIC, TX (HSC 481.115(b) - SYNTHETIC POSSESSION &lt;1G- 35990247); Bond - No Bond;"
       )
     ).toMatchObject({ statuteCode: "HSC 481.115(b)", description: "SYNTHETIC POSSESSION <1G" });
+    expect(
+      parseJailPortalHoldReason(
+        "Out of County Charge: Unspecified warrant SYN0002 (SYNTHETIC DETAINER); Arrest Date 01/01/2000; Bond - No Bond, $0.00; Set By PCT 2 JP;"
+      )
+    ).toMatchObject({
+      label: "Unspecified warrant",
+      statuteCode: null,
+      description: "SYNTHETIC DETAINER"
+    });
     for (const entry of [
       "Detainer: Synthetic; Bond - No Bond;",
       "Charge: Synthetic without a statute;",
