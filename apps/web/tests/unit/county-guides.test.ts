@@ -82,6 +82,8 @@ const liveCountyKeys = [
   "oklahoma/major-county",
   "oklahoma/jackson-county",
   "oklahoma/custer-county",
+  "oklahoma/craig-county",
+  "oklahoma/noble-county",
   "missouri/crawford-county",
   "missouri/camden-county",
   "missouri/polk-county",

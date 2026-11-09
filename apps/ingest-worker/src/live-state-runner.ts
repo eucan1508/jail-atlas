@@ -414,6 +414,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "custer",
       adapterKey: "custer-county-ok-current-roster",
       sourceHost: "www.custercountysheriff.com"
+    },
+    {
+      countySlug: "craig",
+      adapterKey: "craig-county-ok-current-roster",
+      sourceHost: "craigcountyso.com"
+    },
+    {
+      countySlug: "noble",
+      adapterKey: "noble-county-ok-current-roster",
+      sourceHost: "www.noblecosook.gov"
     }
   ],
   MO: [

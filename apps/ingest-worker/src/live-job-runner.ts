@@ -99,6 +99,10 @@ import {
   JACKSON_COUNTY_ADAPTER_KEY,
   createCusterCountySourceAdapter,
   CUSTER_COUNTY_ADAPTER_KEY,
+  createCraigCountySourceAdapter,
+  CRAIG_COUNTY_ADAPTER_KEY,
+  createNobleCountySourceAdapter,
+  NOBLE_COUNTY_ADAPTER_KEY,
   createClearwaterCountySourceAdapter,
   CLEARWATER_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
@@ -233,7 +237,9 @@ export function createLiveSourceAdapter(
                         source.adapterKey === GREER_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === MAJOR_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === JACKSON_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CUSTER_COUNTY_ADAPTER_KEY
+                        source.adapterKey === CUSTER_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === CRAIG_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
                       : portal
                         ? // The portal is opened (its session token or setup), then takes the
@@ -505,6 +511,20 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === CLEARWATER_COUNTY_ADAPTER_KEY) {
     return createClearwaterCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === CRAIG_COUNTY_ADAPTER_KEY) {
+    return createCraigCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY) {
+    return createNobleCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

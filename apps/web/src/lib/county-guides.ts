@@ -3319,6 +3319,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/craig-county": {
+    facilityName: "Craig County Jail",
+    address: "Vinita, OK 74301",
+    phone: "918-256-6466",
+    operatedBy: "Craig County Sheriff's Office",
+    reviewedAt: "November 9, 2026",
+    overview:
+      "The Craig County Sheriff's Office runs the county jail in Vinita. The Sheriff's Office is on the first floor of the Craig County Courthouse, 210 W. Delaware, Suite 101, and its main line is 918-256-6466; administration works 8:30 a.m. to 4:30 p.m. on weekdays and dispatch is staffed around the clock.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://craigcountyso.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits run through Prodigy: set up an account, add money, and you get a text with a link when a video call comes in. On-site visits at the Prodigy kiosk in the jail visitation room are 8:30 a.m. to 4:15 p.m. on weekdays. Off-site visits run 6 a.m. to 11 p.m. daily, except 1:30 to 3:30 p.m. on Tuesdays and Thursdays.",
+        sourceLabel: "Official visitation and mail page",
+        sourceUrl: "https://craigcountyso.com/inmate-mail-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Prodigy Solutions. Add money at the jail from 8:30 a.m. to 4:30 p.m. on weekdays with cash or a card at the lobby kiosk, or bring a money order made out to the inmate. Call 918-256-6466 during those hours with questions.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://craigcountyso.com/inmate-commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail is scanned and delivered to kiosks or tablets, and the original is destroyed. Send it through jailATM.com or to JailATM.com – Craig County Jail, the inmate's ID number and full name, 12101 N. MacArthur Blvd. Ste. A, Box #421, Oklahoma City, OK 73162. The inmate's name and ID must be printed on the outside.",
+        sourceLabel: "Official visitation and mail page",
+        sourceUrl: "https://craigcountyso.com/inmate-mail-visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office lists the licensed bondsmen in Craig County. Bonds that are not filled out or notarized properly are not accepted by the court clerk, and the bondsman is responsible for the paperwork. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://craigcountyso.com/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Craig County Jail?",
+        answer:
+          "Through Prodigy video visits: on site on weekdays from 8:30 a.m. to 4:15 p.m., or from home daily from 6 a.m. to 11 p.m."
+      },
+      {
+        question: "How do I put money on a Craig County inmate's account?",
+        answer:
+          "Use the lobby kiosk at the jail on weekdays, or bring a money order made out to the inmate."
+      },
+      {
+        question: "Where do I send a letter to a Craig County inmate?",
+        answer:
+          "JailATM.com – Craig County Jail, inmate ID and full name, 12101 N. MacArthur Blvd. Ste. A, Box #421, Oklahoma City, OK 73162."
+      },
+      {
+        question: "Where is the Craig County Sheriff's Office?",
+        answer: "In the Craig County Courthouse, 210 W. Delaware, Suite 101, Vinita, OK 74301."
+      }
+    ]
+  },
+  "oklahoma/noble-county": {
+    facilityName: "Noble County Jail",
+    address: "Perry, OK 73077",
+    phone: "580-336-3517",
+    operatedBy: "Noble County Sheriff's Office",
+    reviewedAt: "November 9, 2026",
+    overview:
+      "The Noble County Sheriff's Office runs the county jail in Perry. The Sheriff's Office is at 721 Cedar Street, and the jail answers at 580-336-3517, extension 2; administration works 8:30 a.m. to 4:30 p.m. on weekdays and dispatch is staffed around the clock.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.noblecosook.gov/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "All visits are by video through Prodigy Solutions and are recorded. Sign up at prodigysales.com and schedule at least 24 hours ahead; visitors need a valid ID and a headshot photo. Anyone released from this jail cannot visit for six months.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.noblecosook.gov/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Prodigy Solutions; order online or bring a money order made out to the inmate. Books, including Bibles, must be new paperbacks shipped directly from Amazon or a publisher. Call 580-336-3517, extension 2, from 8:30 a.m. to 4 p.m. on weekdays with questions.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.noblecosook.gov/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone and tablet time are set up through Prodigy, the same provider as visits. The site does not post mail rules or a mailing address; call the jail before sending mail.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.noblecosook.gov/visitation"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office lists the licensed bondsmen in Noble County. Bonds that are not filled out or notarized properly are not accepted by the court clerk, and the bondsman is responsible for the paperwork. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.noblecosook.gov/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Noble County Jail?",
+        answer:
+          "By video through Prodigy; sign up at prodigysales.com and book at least 24 hours ahead."
+      },
+      {
+        question: "How do I put money on a Noble County inmate's account?",
+        answer:
+          "Order commissary online through Prodigy or bring a money order made out to the inmate."
+      },
+      {
+        question: "Can I send books to a Noble County inmate?",
+        answer: "Only new paperbacks shipped directly from Amazon or a publisher."
+      },
+      {
+        question: "Where is the Noble County Sheriff's Office?",
+        answer: "721 Cedar Street, Perry, OK 73077."
+      }
+    ]
+  },
   "oklahoma/custer-county": {
     facilityName: "Custer County Jail",
     address: "300 North 7th Ave., Arapaho, OK 73620",
