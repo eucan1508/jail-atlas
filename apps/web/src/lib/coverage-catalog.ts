@@ -1792,6 +1792,26 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "minnesota",
     stateName: "Minnesota",
+    county: "Roseau County",
+    slug: "roseau-county",
+    publishedAt: "2026-11-10",
+    seatCity: "Roseau",
+    h1: "Roseau County Jail Roster & Inmate Search",
+    title: "Roseau County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Roseau County, Minnesota current-inmate information for the detention center in Roseau from the official sheriff inmate list, with jail IDs, source-listed charges, and capture time.",
+    article:
+      "The Roseau County Sheriff's Office publishes a current inmate list for the Roseau County Detention Center in Roseau. This page reads the same official list, keeps jail IDs and source-listed charges with their offense level, and leaves out ages, arresting agencies, and booking dates.",
+    // The Sheriff's Inmate List shows this file from the county's storage bucket.
+    officialSourceUrl:
+      "https://s3.us-east-2.amazonaws.com/inmates.co.roseau.mn.us/CurrentInmateList.pdf",
+    officialSourceLabel: "Roseau County Sheriff's Office inmate list",
+    sourceStatus: "audit_pending"
+  },
+
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
     county: "Redwood County",
     slug: "redwood-county",
     publishedAt: "2026-10-23",

@@ -193,6 +193,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "map.co.clearwater.mn.us"
     },
     {
+      countySlug: "roseau",
+      adapterKey: "roseau-county-mn-current-roster",
+      sourceHost: "s3.us-east-2.amazonaws.com"
+    },
+    {
       countySlug: "watonwan",
       adapterKey: "watonwan-county-mn-current-roster",
       sourceHost: "www.watonwancountymn.gov"

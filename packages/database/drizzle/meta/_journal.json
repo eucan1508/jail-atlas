@@ -750,6 +750,13 @@
       "when": 1798865600000,
       "tag": "0106_oklahoma_washington_source",
       "breakpoints": true
+    },
+    {
+      "idx": 107,
+      "version": "7",
+      "when": 1798952000000,
+      "tag": "0107_minnesota_roseau_source",
+      "breakpoints": true
     }
   ]
 }

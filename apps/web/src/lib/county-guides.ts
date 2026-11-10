@@ -4667,6 +4667,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/roseau-county": {
+    facilityName: "Roseau County Detention Center",
+    address: "604 5th Ave SW, Roseau, MN 56751",
+    phone: "218-463-1421",
+    operatedBy: "Roseau County Sheriff's Office",
+    reviewedAt: "November 10, 2026",
+    overview:
+      "The Roseau County Sheriff's Office runs the Detention Center at 604 5th Ave SW in Roseau. The Sheriff's Office answers at 218-463-1421 and is open 8 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official Sheriff's page",
+    contactSourceUrl: "https://www.roseaucountymn.gov/offices/sheriff/index.php",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's page links video visitation through Inmate Canteen. It does not post visiting hours or rules; call the Sheriff's Office at 218-463-1421 before you plan a visit. No one under 18 is allowed into the detention area.",
+        sourceLabel: "Official Sheriff's page",
+        sourceUrl: "https://www.roseaucountymn.gov/offices/sheriff/index.php"
+      },
+      {
+        title: "Money and commissary",
+        body: "The county site does not explain how to add money to an inmate's account. Call the Sheriff's Office at 218-463-1421 to ask.",
+        sourceLabel: "Official Sheriff's page",
+        sourceUrl: "https://www.roseaucountymn.gov/offices/sheriff/index.php"
+      },
+      {
+        title: "Phone and mail",
+        body: "The county site does not post mail rules or explain inmate phone calls. Call the Sheriff's Office at 218-463-1421 before sending mail.",
+        sourceLabel: "Official Sheriff's page",
+        sourceUrl: "https://www.roseaucountymn.gov/offices/sheriff/index.php"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail can be posted once the court has set an amount. Pay it in cash at the Court Administration Office in the Roseau County Court House, 606 5th Ave SW, Room 20, from 8 a.m. to 4:30 p.m. on weekdays; at other times, post it at the jail. Bail on another county's case must be posted at the Detention Center, and a bail bond agent can help. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.roseaucountymn.gov/government/offices/sheriff/detention_center.php"
+      }
+    ],
+    faq: [
+      {
+        question: "Where is the Roseau County Detention Center?",
+        answer: "604 5th Ave SW, Roseau, MN 56751."
+      },
+      {
+        question: "How do I post bail in Roseau County?",
+        answer:
+          "In cash at Court Administration, 606 5th Ave SW, Room 20, on weekdays from 8 a.m. to 4:30 p.m.; at other times, at the jail."
+      },
+      {
+        question: "Can I visit someone at the Roseau County Detention Center?",
+        answer:
+          "The Sheriff's page links video visitation through Inmate Canteen; call 218-463-1421 for hours and rules."
+      },
+      {
+        question: "Can children come into the detention area?",
+        answer: "No. No one under 18 is allowed into the detention area."
+      }
+    ]
+  },
   "minnesota/clearwater-county": {
     facilityName: "Clearwater County Jail",
     address: "213 Main Ave. N., Bagley, MN 56621",

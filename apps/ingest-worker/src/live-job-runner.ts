@@ -52,6 +52,8 @@ import {
   jailRosterReport,
   createNoblesCountySourceAdapter,
   NOBLES_COUNTY_ADAPTER_KEY,
+  createRoseauCountySourceAdapter,
+  ROSEAU_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
   BENTON_COUNTY_ADAPTER_KEY,
   createHennepinCountySourceAdapter,
@@ -388,6 +390,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
     return createBentonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === ROSEAU_COUNTY_ADAPTER_KEY) {
+    return createRoseauCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
