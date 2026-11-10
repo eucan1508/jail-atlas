@@ -45,6 +45,7 @@ source-specific parser contract and a human review packet.
 | Cottonwood | [Cottonwood County Jail](https://www.cottonwoodcountymn.gov/departments/courts___legal/sheriff/jail.php)                                            | Adapter tested; production approval pending      |
 | Redwood    | [Redwood County Sheriff's Office](https://redwoodcounty-mn.gov/departments/sheriffs-office/)                                                        | Adapter tested; production approval pending      |
 | Clearwater | [Clearwater County Inmate List](https://clearwatercountymn.gov/inmate-list)                                                                         | Adapter tested; production approval pending      |
+| Roseau     | [Roseau County Current Inmate List](https://www.roseaucountymn.gov/offices/sheriff/index.php)                                                       | Adapter tested; production approval pending      |
 | Watonwan   | [Watonwan County Jail Roster](https://www.watonwancountymn.gov/DocumentCenter/View/67/Jail-Roster)                                                  | Adapter tested; production approval pending      |
 | Wright     | [Wright County Jail Census](https://www.wrightcountymn.gov/DocumentCenter/View/13203/Jail-Census)                                                   | Adapter tested; production approval pending      |
 | Carlton    | [Carlton County jail roster](https://jailroster.co.carlton.mn.us/CCJ_Jail_Roster.pdf)                                                               | Adapter tested; production approval pending      |
