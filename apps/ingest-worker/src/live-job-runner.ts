@@ -280,11 +280,13 @@ export function createLiveSourceAdapter(
         }
       : {}),
     // The St. Louis County report is a ~50-page PDF of about 3 MB, the Cerro Gordo County
-    // report grows by about 7 KB per person, and the Otter Tail County and Freeborn County
-    // lists carry a ~30 KB photo per person; every other source stays at the 1 MB default.
+    // report grows by about 7 KB per person, the Otter Tail County and Freeborn County
+    // lists carry a ~30 KB photo per person, and the Roseau County list runs about 200 KB per
+    // printed page; every other source stays at the 1 MB default.
     ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ||
     source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY
+    source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === ROSEAU_COUNTY_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
