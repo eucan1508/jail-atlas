@@ -73,6 +73,15 @@ export const MORGAN_COUNTY_MO_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const ANDREW_COUNTY_MO_ROSTER = {
+  adapterKey: "andrew-county-mo-current-roster",
+  countyName: "Andrew County",
+  diagnosticPrefix: "ANDREW_COUNTY_MO",
+  sourceUrl: "https://www.andrewcountysheriff.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -81,7 +90,8 @@ export const MISSOURI_ROSTER_SITES = [
   STONE_COUNTY_MO_ROSTER,
   LAWRENCE_COUNTY_MO_ROSTER,
   LEWIS_COUNTY_MO_ROSTER,
-  MORGAN_COUNTY_MO_ROSTER
+  MORGAN_COUNTY_MO_ROSTER,
+  ANDREW_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

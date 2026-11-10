@@ -123,28 +123,30 @@ with the adapter records disabled and publication approval off.
    ```
 
    Oklahoma runs Wagoner, Lincoln, Pawnee, Seminole, Carter, Canadian, Sequoyah, Muskogee, Ottawa,
-   Love, Greer, Major, Jackson, Custer, Craig, and Noble, which read the JSON endpoints behind each
-   sheriff's inmate search (`/dmxConnect/api/Booking/`). For all sixteen, the list total must match
-   its rows and a second official ID list must name the same people. Wagoner, Canadian, Sequoyah,
-   Jackson, and Craig also fetch each booking's detail for its charges and check it against the list
-   entry (the Canadian, Sequoyah, and Jackson details also carry the booking number and must show no
-   release date); the Lincoln, Pawnee, Seminole, Carter, Muskogee, Ottawa, Love, Greer, Major,
-   Custer, and Noble lists already carry the charges and must show no release dates. On a mismatch
-   the crawl restarts (up to three times) and then fails closed:
+   Love, Greer, Major, Jackson, Custer, Craig, Noble, and Washington, which read the JSON endpoints
+   behind each sheriff's inmate search (`/dmxConnect/api/Booking/`). For all seventeen, the list
+   total must match its rows and a second official ID list must name the same people. Wagoner,
+   Canadian, Sequoyah, Jackson, and Craig also fetch each booking's detail for its charges and check
+   it against the list entry (the Canadian, Sequoyah, and Jackson details also carry the booking
+   number and must show no release date); the Lincoln, Pawnee, Seminole, Carter, Muskogee, Ottawa,
+   Love, Greer, Major, Custer, and Noble lists already carry the charges and must show no release
+   dates, and the Washington list carries the charges with no release date field. On a mismatch the
+   crawl restarts (up to three times) and then fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com,craigcountyso.com,www.noblecosook.gov
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com,craigcountyso.com,www.noblecosook.gov,www.washingtoncosheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 
-   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, and Morgan through the
-   shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`).
-   Crawford, Camden, Polk, Stone, Lawrence, and Morgan use the `roster.php?grp=` layout; Benton and
-   Lewis use `/inmate-roster/filters/current/...` paths. Every crawl must collect exactly the count
-   in the page's "Inmate Roster (N)" heading or the county fails closed:
+   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, and Andrew through
+   the shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in
+   `missouri-rosters.ts`). Crawford, Camden, Polk, Stone, Lawrence, Morgan, and Andrew use the
+   `roster.php?grp=` layout; Benton and Lewis use `/inmate-roster/filters/current/...` paths. Every
+   crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the county
+   fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 

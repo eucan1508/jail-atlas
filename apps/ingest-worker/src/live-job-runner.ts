@@ -103,6 +103,8 @@ import {
   CRAIG_COUNTY_ADAPTER_KEY,
   createNobleCountySourceAdapter,
   NOBLE_COUNTY_ADAPTER_KEY,
+  createWashingtonCountyOkSourceAdapter,
+  WASHINGTON_COUNTY_OK_ADAPTER_KEY,
   createClearwaterCountySourceAdapter,
   CLEARWATER_COUNTY_ADAPTER_KEY,
   WAGONER_COUNTY_ADAPTER_KEY,
@@ -239,7 +241,8 @@ export function createLiveSourceAdapter(
                         source.adapterKey === JACKSON_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === CUSTER_COUNTY_ADAPTER_KEY ||
                         source.adapterKey === CRAIG_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY
+                        source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY ||
+                        source.adapterKey === WASHINGTON_COUNTY_OK_ADAPTER_KEY
                       ? ["/dmxConnect/api/Booking"]
                       : portal
                         ? // The portal is opened (its session token or setup), then takes the
@@ -525,6 +528,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY) {
     return createNobleCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WASHINGTON_COUNTY_OK_ADAPTER_KEY) {
+    return createWashingtonCountyOkSourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
