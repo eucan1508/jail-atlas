@@ -424,6 +424,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "noble",
       adapterKey: "noble-county-ok-current-roster",
       sourceHost: "www.noblecosook.gov"
+    },
+    {
+      countySlug: "washington",
+      adapterKey: "washington-county-ok-current-roster",
+      sourceHost: "www.washingtoncosheriff.com"
     }
   ],
   MO: [
@@ -466,6 +471,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "morgan",
       adapterKey: "morgan-county-mo-current-roster",
       sourceHost: "www.morgancountymoso.org"
+    },
+    {
+      countySlug: "andrew",
+      adapterKey: "andrew-county-mo-current-roster",
+      sourceHost: "www.andrewcountysheriff.org"
     }
   ],
   KS: [

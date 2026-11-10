@@ -1023,6 +1023,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Washington County",
+    slug: "washington-county",
+    publishedAt: "2026-11-10",
+    seatCity: "Bartlesville",
+    h1: "Washington County Jail Roster & Inmate Search",
+    title: "Washington County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Washington County, Oklahoma current-inmate information for the jail in Bartlesville from the official sheriff inmate search, with source-listed charges and capture time.",
+    article:
+      "The Washington County Sheriff's Office publishes an in-custody inmate search for the Washington County Jail in Bartlesville. This page reads the same official list, checks it against the jail's second booking list, keeps source-listed charges, and leaves out photos, ages, towns, and bond amounts.",
+    // The inmate search page loads its list from this official endpoint, which is what is read.
+    officialSourceUrl: "https://www.washingtoncosheriff.com/dmxConnect/api/Booking/Read.php",
+    officialSourceLabel: "Washington County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
     state: "missouri",
     stateName: "Missouri",
     county: "Crawford County",
@@ -1158,6 +1176,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "The Morgan County Sheriff's Office publishes a current inmate roster for the Morgan County Adult Detention Center in Versailles. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
     officialSourceUrl: "https://www.morgancountymoso.org/roster.php",
     officialSourceLabel: "Morgan County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Andrew County",
+    slug: "andrew-county",
+    publishedAt: "2026-11-10",
+    seatCity: "Savannah",
+    h1: "Andrew County Jail Roster & Inmate Search",
+    title: "Andrew County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Andrew County, Missouri current-inmate information for the jail in Savannah from the official sheriff roster, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Andrew County Sheriff's Office publishes a current inmate roster for the Andrew County Jail in Savannah. This page reads only the current list, keeps booking numbers and source-listed charges, and does not republish mugshots or ages.",
+    officialSourceUrl: "https://www.andrewcountysheriff.org/roster.php",
+    officialSourceLabel: "Andrew County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
   {

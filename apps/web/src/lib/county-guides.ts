@@ -3260,6 +3260,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/andrew-county": {
+    facilityName: "Andrew County Jail",
+    address: "400 East Main Street, Savannah, MO 64485",
+    phone: "816-324-4114",
+    operatedBy: "Andrew County Sheriff's Office",
+    reviewedAt: "November 10, 2026",
+    overview:
+      "The Andrew County Sheriff's Office runs an 84-bed jail at 400 East Main Street in Savannah, open 24 hours a day. Besides Andrew County inmates, it holds people for nearby cities and counties, including Holt, Clinton, and Jackson counties in Missouri and Wyandotte County, Kansas. The jail administrator answers at 816-324-4114.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.andrewcountysheriff.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "On-site visits are Saturday and Sunday from 8:30 to 11:30 a.m. and 1 to 4:30 p.m. Off-site visits run Monday through Friday from 11 a.m. to 8 p.m. and are set up through NCIC at ncic.com. Religious services are held on Thursdays, and Muslim services on Fridays.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.andrewcountysheriff.org/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money at the kiosk in the Sheriff's Office lobby or online through NCIC. Hygiene items and over-the-counter medicine such as ibuprofen are bought from commissary, not brought in.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.andrewcountysheriff.org/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates send mail on postcards. On visiting days, or within 48 hours of booking, you can drop off prescription medicine in a labeled container, legal papers, up to five unframed photos, and plain white underwear, socks, and T-shirts (white long johns in winter only). Books, games, and other clothing are not accepted. The site does not explain inmate phone calls; call the jail at 816-324-4114.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.andrewcountysheriff.org/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail page lists local bonding agents for Andrew and Buchanan counties, and a full list of qualified bonding agents is available from the Office of State Courts Administrator in Jefferson City. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.andrewcountysheriff.org/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Andrew County Jail?",
+        answer:
+          "On-site on Saturday and Sunday, 8:30 to 11:30 a.m. and 1 to 4:30 p.m.; off-site on weekdays from 11 a.m. to 8 p.m. through NCIC."
+      },
+      {
+        question: "How do I put money on an Andrew County inmate's account?",
+        answer: "Use the kiosk in the Sheriff's Office lobby or add it online through NCIC."
+      },
+      {
+        question: "What can I bring for an Andrew County inmate?",
+        answer:
+          "On visiting days or within 48 hours of booking: prescription medicine, legal papers, up to five unframed photos, and plain white underwear, socks, and T-shirts."
+      },
+      {
+        question: "Where is the Andrew County Jail?",
+        answer: "400 East Main Street, Savannah, MO 64485."
+      }
+    ]
+  },
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",
@@ -3431,6 +3488,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       {
         question: "Where is the Noble County Sheriff's Office?",
         answer: "721 Cedar Street, Perry, OK 73077."
+      }
+    ]
+  },
+  "oklahoma/washington-county": {
+    facilityName: "Washington County Jail",
+    address: "Bartlesville, OK 74003",
+    phone: "918-332-4011",
+    operatedBy: "Washington County Sheriff's Office",
+    reviewedAt: "November 10, 2026",
+    overview:
+      "The Washington County Sheriff's Office runs the county jail in Bartlesville. The Sheriff's Office is at 611 SW Adams Blvd.; the jail answers at 918-332-4011, the office at 918-332-4000, and dispatch at 918-338-4001 around the clock. Administration works 8:30 a.m. to 4:30 p.m. on weekdays.",
+    contactSourceLabel: "Official contact page",
+    contactSourceUrl: "https://www.washingtoncosheriff.com/contact-us",
+    sections: [
+      {
+        title: "Visitation",
+        body: "In-house visits are no-contact, last 15 minutes, and must be booked ahead by calling 918-337-2800. Each inmate gets one free visit every 30 days, and more cost $10 each; there are at most two visits a weekend, one on Saturday and one on Sunday. One adult and one child may visit, with photo ID, and phones are not allowed. Video visits go through City Tele Coin: one 10-minute visit a day for visitors on the approved list.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.washingtoncosheriff.com/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary and deposits are handled by Tiger Commissary; add money online with a credit or debit card. Money orders are not accepted. Money left on the account at release can be collected only by the inmate.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.washingtoncosheriff.com/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to Washington County Sheriff's Office, the inmate's name, 611 SW Adams Blvd., Bartlesville, OK 74003, with the full name and address of both sender and inmate. Mail is scanned and delivered electronically. Anyone released from this jail cannot write to an inmate for six months without approval. Video calls and messages go through the City Tele Coin app.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.washingtoncosheriff.com/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's Office lists the licensed bondsmen in Washington County. Bonds that are not filled out or notarized properly are not accepted by the court clerk, and the bondsman is responsible for the paperwork. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bondsmen page",
+        sourceUrl: "https://www.washingtoncosheriff.com/bondsmen"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Washington County Jail?",
+        answer:
+          "Book an in-house visit by calling 918-337-2800, or set up a video visit through City Tele Coin."
+      },
+      {
+        question: "How do I put money on a Washington County inmate's account?",
+        answer:
+          "Online through Tiger Commissary with a credit or debit card; money orders are not accepted."
+      },
+      {
+        question: "Where do I send mail to a Washington County inmate?",
+        answer:
+          "Washington County Sheriff's Office, the inmate's name, 611 SW Adams Blvd., Bartlesville, OK 74003."
+      },
+      {
+        question: "What is the jail's phone number?",
+        answer: "918-332-4011."
       }
     ]
   },

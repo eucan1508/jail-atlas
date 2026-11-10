@@ -91,24 +91,25 @@ the same roster software but were left out because their sites do not publish al
 
 Oklahoma was added on 2026-10-09.
 
-| County   | Official source                                                                          | Status                                      |
-| -------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Wagoner  | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search)    | Adapter tested; production approval pending |
-| Lincoln  | [Lincoln County Sheriff inmate search](https://lincolncountysheriffok.gov/inmate-search) | Adapter tested; production approval pending |
-| Pawnee   | [Pawnee County Sheriff inmate search](https://www.pawneecountysook.gov/inmate-search)    | Adapter tested; production approval pending |
-| Seminole | [Seminole County Sheriff inmate search](https://www.seminolecosheriff.com/inmate-search) | Adapter tested; production approval pending |
-| Carter   | [Carter County Sheriff inmate search](https://www.cartercountysheriff.us/inmate-search)  | Adapter tested; production approval pending |
-| Canadian | [Canadian County Sheriff inmate search](https://ccsheriff.net/inmate-search)             | Adapter tested; production approval pending |
-| Sequoyah | [Sequoyah County Sheriff inmate search](https://scsok.org/inmate-search)                 | Adapter tested; production approval pending |
-| Muskogee | [Muskogee County Sheriff inmate search](https://www.muskogeeso.org/inmate-search)        | Adapter tested; production approval pending |
-| Ottawa   | [Ottawa County Sheriff inmate search](https://www.ottawacountysook.gov/inmate-search)    | Adapter tested; production approval pending |
-| Love     | [Love County Sheriff inmate search](https://www.lovecosheriff.com/inmate-search)         | Adapter tested; production approval pending |
-| Greer    | [Greer County Sheriff inmate search](https://www.greercountysheriff.org/inmate-search)   | Adapter tested; production approval pending |
-| Major    | [Major County Sheriff inmate search](https://www.majorcosheriff.com/inmate-search)       | Adapter tested; production approval pending |
-| Jackson  | [Jackson County Sheriff inmate search](https://www.jacksoncountyso.com/inmate-search)    | Adapter tested; production approval pending |
-| Custer   | [Custer County Sheriff inmate search](https://www.custercountysheriff.com/inmate-search) | Adapter tested; production approval pending |
-| Craig    | [Craig County Sheriff inmate search](https://craigcountyso.com/inmate-search)            | Adapter tested; production approval pending |
-| Noble    | [Noble County Sheriff inmate search](https://www.noblecosook.gov/inmate-search)          | Adapter tested; production approval pending |
+| County     | Official source                                                                              | Status                                      |
+| ---------- | -------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Wagoner    | [Wagoner County Sheriff inmate search](https://www.wagonercountyso.org/inmate-search)        | Adapter tested; production approval pending |
+| Lincoln    | [Lincoln County Sheriff inmate search](https://lincolncountysheriffok.gov/inmate-search)     | Adapter tested; production approval pending |
+| Pawnee     | [Pawnee County Sheriff inmate search](https://www.pawneecountysook.gov/inmate-search)        | Adapter tested; production approval pending |
+| Seminole   | [Seminole County Sheriff inmate search](https://www.seminolecosheriff.com/inmate-search)     | Adapter tested; production approval pending |
+| Carter     | [Carter County Sheriff inmate search](https://www.cartercountysheriff.us/inmate-search)      | Adapter tested; production approval pending |
+| Canadian   | [Canadian County Sheriff inmate search](https://ccsheriff.net/inmate-search)                 | Adapter tested; production approval pending |
+| Sequoyah   | [Sequoyah County Sheriff inmate search](https://scsok.org/inmate-search)                     | Adapter tested; production approval pending |
+| Muskogee   | [Muskogee County Sheriff inmate search](https://www.muskogeeso.org/inmate-search)            | Adapter tested; production approval pending |
+| Ottawa     | [Ottawa County Sheriff inmate search](https://www.ottawacountysook.gov/inmate-search)        | Adapter tested; production approval pending |
+| Love       | [Love County Sheriff inmate search](https://www.lovecosheriff.com/inmate-search)             | Adapter tested; production approval pending |
+| Greer      | [Greer County Sheriff inmate search](https://www.greercountysheriff.org/inmate-search)       | Adapter tested; production approval pending |
+| Major      | [Major County Sheriff inmate search](https://www.majorcosheriff.com/inmate-search)           | Adapter tested; production approval pending |
+| Jackson    | [Jackson County Sheriff inmate search](https://www.jacksoncountyso.com/inmate-search)        | Adapter tested; production approval pending |
+| Custer     | [Custer County Sheriff inmate search](https://www.custercountysheriff.com/inmate-search)     | Adapter tested; production approval pending |
+| Craig      | [Craig County Sheriff inmate search](https://craigcountyso.com/inmate-search)                | Adapter tested; production approval pending |
+| Noble      | [Noble County Sheriff inmate search](https://www.noblecosook.gov/inmate-search)              | Adapter tested; production approval pending |
+| Washington | [Washington County Sheriff inmate search](https://www.washingtoncosheriff.com/inmate-search) | Adapter tested; production approval pending |
 
 ## Missouri
 
@@ -125,6 +126,7 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Lawrence | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                          | Adapter tested; production approval pending |
 | Lewis    | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
 | Morgan   | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                             | Adapter tested; production approval pending |
+| Andrew   | [Andrew County Sheriff inmate roster](https://www.andrewcountysheriff.org/roster.php)                                          | Adapter tested; production approval pending |
 
 ## Kansas
 
