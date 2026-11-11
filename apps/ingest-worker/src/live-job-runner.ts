@@ -22,6 +22,8 @@ import {
   alabamaRosterSite,
   toolsetJailRoster,
   createToolsetJailRosterAdapter,
+  proPhoenixLocator,
+  createProPhoenixLocatorAdapter,
   myr2mRosterSite,
   createMyr2mRosterAdapter,
   createSheriffRosterSiteAdapter,
@@ -204,6 +206,7 @@ export function createLiveSourceAdapter(
   const rosterReport = jailRosterReport(source.adapterKey);
   const portal = jailPortal(source.adapterKey);
   const toolsetRoster = toolsetJailRoster(source.adapterKey);
+  const locator = proPhoenixLocator(source.adapterKey);
   // Path-style rosters page as ".../booking_time=desc/2"; allow the current-roster folder only.
   const allowedPathPrefixes =
     source.adapterKey === RAMSEY_COUNTY_ADAPTER_KEY
@@ -260,9 +263,10 @@ export function createLiveSourceAdapter(
     allowlist: config.sourceHostAllowlist,
     allowedPathPrefixes,
     userAgent: "JailAtlas/1.0 (+official-source-ingest)",
-    // myr2m rosters page through ASP.NET form posts back to the roster's own path, and the
-    // Woodbury County search posts its "All" rows request the same way.
-    ...(myr2mSite || source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
+    // myr2m rosters page through ASP.NET form posts back to the roster's own path, the
+    // Woodbury County search posts its "All" rows request the same way, and a ProPhoenix
+    // locator posts back to itself to select each person's row.
+    ...(myr2mSite || locator || source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
       ? { allowFormPost: true }
       : {}),
     // The Hennepin County roster API takes its in-custody search as a small JSON post.
@@ -406,6 +410,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === NOBLES_COUNTY_ADAPTER_KEY) {
     return createNoblesCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (locator) {
+    return createProPhoenixLocatorAdapter(locator, {
       fetch,
       facilityId,
       createId: createAdapterId

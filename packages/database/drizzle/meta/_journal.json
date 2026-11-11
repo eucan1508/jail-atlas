@@ -757,6 +757,20 @@
       "when": 1798952000000,
       "tag": "0107_minnesota_roseau_source",
       "breakpoints": true
+    },
+    {
+      "idx": 108,
+      "version": "7",
+      "when": 1799038400000,
+      "tag": "0108_minnesota_hubbard_source",
+      "breakpoints": true
+    },
+    {
+      "idx": 109,
+      "version": "7",
+      "when": 1799124800000,
+      "tag": "0109_minnesota_kanabec_source",
+      "breakpoints": true
     }
   ]
 }

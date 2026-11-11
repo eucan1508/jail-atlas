@@ -198,6 +198,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "s3.us-east-2.amazonaws.com"
     },
     {
+      countySlug: "hubbard",
+      adapterKey: "hubbard-county-mn-current-roster",
+      sourceHost: "prophoenix.co.hubbard.mn.us"
+    },
+    {
+      countySlug: "kanabec",
+      adapterKey: "kanabec-county-mn-current-roster",
+      sourceHost: "jail.kanabec.org"
+    },
+    {
       countySlug: "watonwan",
       adapterKey: "watonwan-county-mn-current-roster",
       sourceHost: "www.watonwancountymn.gov"

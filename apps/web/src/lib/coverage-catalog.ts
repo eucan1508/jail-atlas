@@ -1808,6 +1808,40 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceLabel: "Roseau County Sheriff's Office inmate list",
     sourceStatus: "audit_pending"
   },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Hubbard County",
+    slug: "hubbard-county",
+    publishedAt: "2026-11-11",
+    seatCity: "Park Rapids",
+    h1: "Hubbard County Jail Roster & Inmate Search",
+    title: "Hubbard County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Hubbard County, Minnesota current-inmate information for the jail in Park Rapids from the official sheriff inmate locator, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Hubbard County Sheriff's Office publishes an inmate locator for the Hubbard County Detention Center in Park Rapids. This page reads everyone the locator lists, opens each person's charges the same way the locator does, keeps booking numbers and source-listed charges, and leaves out birth dates, ages, physical descriptions, and cell locations.",
+    officialSourceUrl: "https://prophoenix.co.hubbard.mn.us/InmateLocator/",
+    officialSourceLabel: "Hubbard County Sheriff's Office inmate locator",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Kanabec County",
+    slug: "kanabec-county",
+    publishedAt: "2026-11-11",
+    seatCity: "Mora",
+    h1: "Kanabec County Jail Roster & Inmate Search",
+    title: "Kanabec County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Kanabec County, Minnesota current-inmate information for the jail in Mora from the official sheriff inmate locator, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Kanabec County Sheriff's Office publishes an inmate locator for the Kanabec County Jail in Mora. This page reads everyone the locator lists, opens each person's charges the same way the locator does, keeps booking numbers and source-listed charges, and leaves out birth dates, ages, physical descriptions, and cell locations.",
+    officialSourceUrl: "https://jail.kanabec.org/inmatelocator/",
+    officialSourceLabel: "Kanabec County Sheriff's Office inmate locator",
+    sourceStatus: "audit_pending"
+  },
 
   {
     state: "minnesota",

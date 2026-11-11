@@ -84,7 +84,7 @@ with the adapter records disabled and publication approval off.
    INGEST_NETWORK_ACCESS=enabled
    INGEST_DATABASE_WRITES=disabled
    ALLOW_LIVE_SOURCE_FETCHES=true
-   SOURCE_HOST_ALLOWLIST=opendata.ramseycountymn.gov,jailroster.stearnscountymn.gov,incustodysearch.co.anoka.mn.us,mower-sftp.co.mower.mn.us,www.wrightcountymn.gov,jailroster.co.carlton.mn.us,www.douglascountymn.gov,www.stlouiscountymn.gov,www.steelecountymn.gov,www3.crowwing.us,custody.renvillecountymn.gov,web1.co.ottertail.mn.us,inmatelocatorext.co.sherburne.mn.us,www2.kcmn.us,web1.washingtoncountymn.gov,dakotacountymn.gov,files.claycountymn.gov,www.winonaco.com,api.hennepincounty.gov,jailroster.hennepin.us,ftp.co.nobles.mn.us,api.correctionsrecordssearch.com,www.freeborncountymn.gov,cms5.revize.com,redwoodcounty-mn.gov,www.watonwancountymn.gov,map.co.clearwater.mn.us,s3.us-east-2.amazonaws.com
+   SOURCE_HOST_ALLOWLIST=opendata.ramseycountymn.gov,jailroster.stearnscountymn.gov,incustodysearch.co.anoka.mn.us,mower-sftp.co.mower.mn.us,www.wrightcountymn.gov,jailroster.co.carlton.mn.us,www.douglascountymn.gov,www.stlouiscountymn.gov,www.steelecountymn.gov,www3.crowwing.us,custody.renvillecountymn.gov,web1.co.ottertail.mn.us,inmatelocatorext.co.sherburne.mn.us,www2.kcmn.us,web1.washingtoncountymn.gov,dakotacountymn.gov,files.claycountymn.gov,www.winonaco.com,api.hennepincounty.gov,jailroster.hennepin.us,ftp.co.nobles.mn.us,api.correctionsrecordssearch.com,www.freeborncountymn.gov,cms5.revize.com,redwoodcounty-mn.gov,www.watonwancountymn.gov,map.co.clearwater.mn.us,s3.us-east-2.amazonaws.com,prophoenix.co.hubbard.mn.us,jail.kanabec.org
    DATABASE_URL=<customer Neon URL>
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MN --dry-run
    ```
