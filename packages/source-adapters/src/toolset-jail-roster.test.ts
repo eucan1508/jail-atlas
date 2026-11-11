@@ -44,11 +44,15 @@ function context(sourceUrl: string = config.sourceUrl): AdapterContext {
   };
 }
 
-function person(entry: SyntheticPerson): string {
+function person(entry: SyntheticPerson, heading = "h3"): string {
+  const open =
+    heading === "h2"
+      ? `<h2 class="nso-roster-h" style="background-color:#C6CDD7;">`
+      : `<${heading} style="background-color:#C6CDD7;">`;
   return `
-          <h3 style="background-color:#C6CDD7;">
+          ${open}
             ${entry.name}
-			   </h3>
+			   </${heading}>
 <div style="float: left; width:25%;"><img decoding="async" src="/inmatephotos/${entry.booking}-1.jpg" width="150"></div>
 <div style="float: right; width:70%;">
 <b>Booking Number:</b> ${entry.booking}<br>
@@ -62,7 +66,7 @@ Age: 99, Sex: X, Race: X<br></div>
 
 function page(
   people: readonly SyntheticPerson[],
-  options: { total?: number; next?: number | null; county?: string } = {}
+  options: { total?: number; next?: number | null; county?: string; heading?: string } = {}
 ): string {
   const total = options.total ?? people.length;
   const next =
@@ -72,7 +76,7 @@ function page(
   return `<!doctype html><html><head><title>Jail Roster | ${options.county ?? "Jackson County"} Sheriff&#039;s Office of Kansas</title></head><body>
 <div id="wpv-view-layout-5832" data-viewnumber="5832">
 (Number of Inmates: ${total} )
-${people.map(person).join("\n")}
+${people.map((entry) => person(entry, options.heading)).join("\n")}
 </div>${next}
 </body></html>`;
 }
@@ -191,6 +195,30 @@ describe("Toolset jail roster adapter (Jackson County, Kansas)", () => {
       expect(result.ok, code).toBe(false);
       if (result.ok) continue;
       expect(result.failure.diagnosticCode, code).toBe(`JACKSON_COUNTY_KS_${code}`);
+    }
+  });
+
+  it("reads the classed <h2> person headings some sites use", async () => {
+    const result = await runSourceAdapter(
+      adapter(roster(page([alpha, gamma], { heading: "h2" }))),
+      context()
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings.map((booking) => booking.person.displayName)).toEqual([
+      "Tester, Alpha Synthetic",
+      "Tester, Gamma"
+    ]);
+  });
+
+  it("reports a changed layout, not an empty roster, when it cannot find the headings", async () => {
+    const result = await runSourceAdapter(
+      adapter(roster(page([alpha], { heading: "h4" }))),
+      context()
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.failure.diagnosticCode).toBe("JACKSON_COUNTY_KS_LAYOUT_CHANGED");
     }
   });
 
