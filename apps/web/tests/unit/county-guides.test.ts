@@ -33,6 +33,8 @@ const liveCountyKeys = [
   "minnesota/watonwan-county",
   "minnesota/clearwater-county",
   "minnesota/roseau-county",
+  "minnesota/hubbard-county",
+  "minnesota/kanabec-county",
   "iowa/johnson-county",
   "iowa/polk-county",
   "iowa/woodbury-county",

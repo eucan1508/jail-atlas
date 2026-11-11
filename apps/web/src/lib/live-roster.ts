@@ -52,6 +52,8 @@ const liveAdapterKeys: Record<string, string> = {
   "minnesota/watonwan-county": "watonwan-county-mn-current-roster",
   "minnesota/clearwater-county": "clearwater-county-mn-current-roster",
   "minnesota/roseau-county": "roseau-county-mn-current-roster",
+  "minnesota/hubbard-county": "hubbard-county-mn-current-roster",
+  "minnesota/kanabec-county": "kanabec-county-mn-current-roster",
   "iowa/johnson-county": "johnson-county-iowa-current-roster",
   "iowa/polk-county": "polk-county-iowa-current-roster",
   "iowa/woodbury-county": "woodbury-county-iowa-current-roster",

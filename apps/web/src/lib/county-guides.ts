@@ -4667,6 +4667,123 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/hubbard-county": {
+    facilityName: "Hubbard County Detention Center",
+    address: "203 Court Avenue, Park Rapids, MN 56470",
+    phone: "218-732-2512",
+    operatedBy: "Hubbard County Sheriff's Office",
+    reviewedAt: "November 11, 2026",
+    overview:
+      "The Hubbard County Sheriff's Office runs the Detention Center in the Law Enforcement Center at 203 Court Avenue in Park Rapids, north of the Government Center. Opened in 2006, it has 116 beds and is staffed for up to 60 inmates. The jail answers at 218-732-2512; the Sheriff's Office and dispatch answer at 218-732-3331.",
+    contactSourceLabel: "Official Corrections page",
+    contactSourceUrl:
+      "https://www.hubbardcounty.gov/index.asp?SEC={52FD1C53-B8D1-4691-B7AF-47DE85E0125D}",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video only, 20 minutes each: Sunday and Tuesday from 1 to 3:30 p.m. and Thursday from 7 to 10 p.m. Check in at the Control window in the outer lobby with a photo ID; visitors must be on the inmate's visitor list, and anyone under 18 needs a parent or guardian. Family can also visit from home through inmatecanteen.com. Anyone released from this jail in the last 30 days cannot visit.",
+        sourceLabel: "Official visitor information page",
+        sourceUrl:
+          "https://www.hubbardcounty.gov/index.asp?SEC={1C2B4DEC-A734-443D-AA00-469BFD79D542}"
+      },
+      {
+        title: "Money and commissary",
+        body: "Put cash in the kiosk in the Sheriff's Office lobby, or add money online with a card at inmatecanteen.com, any time; the vendor charges a fee online. Staff at the window do not take money for inmates. The only items you can drop off are current prescription medication in its original packaging and eyeglasses.",
+        sourceLabel: "Official add funds page",
+        sourceUrl:
+          "https://www.hubbardcounty.gov/index.asp?SEC={31F85513-D597-42E5-8B62-A2A03C3B068C}"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, Hubbard County Detention Center, 301 Court Ave, Park Rapids, MN 56470. Mail is scanned and delivered electronically, so send only letters that fit a regular scanner; cards go into the inmate's property. Packages, magazines, stamps, envelopes, and Polaroids are not accepted. New softcover books may be sent directly from Amazon.com.",
+        sourceLabel: "Official correspondence page",
+        sourceUrl:
+          "https://www.hubbardcounty.gov/index.asp?SEC={D5D3F883-3B75-4025-BC5F-91BFF9F87B77}"
+      },
+      {
+        title: "Bail and court records",
+        body: "On weekdays from 8:30 a.m. to 4:30 p.m., post bail for a Hubbard County charge at the Clerk of Court on the first floor of the Court House. After hours, or for another county's charge, post it in cash at the Detention Center, which cannot make change. A court-approved bondsman can also help. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official bail page",
+        sourceUrl:
+          "https://www.hubbardcounty.gov/index.asp?SEC={E17333A0-C576-4828-9075-8A04AD64DE56}"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Hubbard County Detention Center?",
+        answer:
+          "By video on Sunday and Tuesday from 1 to 3:30 p.m. and Thursday from 7 to 10 p.m., or from home through inmatecanteen.com."
+      },
+      {
+        question: "How do I put money on a Hubbard County inmate's account?",
+        answer: "Cash at the lobby kiosk, or online by card at inmatecanteen.com."
+      },
+      {
+        question: "Where do I send mail to a Hubbard County inmate?",
+        answer:
+          "The inmate's name, Hubbard County Detention Center, 301 Court Ave, Park Rapids, MN 56470."
+      },
+      {
+        question: "What is the jail's phone number?",
+        answer: "218-732-2512."
+      }
+    ]
+  },
+  "minnesota/kanabec-county": {
+    facilityName: "Kanabec County Jail",
+    address: "100 S. Vine, Mora, MN 55051",
+    phone: "320-679-8402",
+    operatedBy: "Kanabec County Sheriff's Office",
+    reviewedAt: "November 11, 2026",
+    overview:
+      "The Kanabec County Sheriff's Office runs the county jail at 100 S. Vine in Mora, licensed and inspected every year by the Minnesota Department of Corrections. The jail answers at 320-679-8402 around the clock, and messages for an inmate can be left at 320-515-2209.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.kanabeccountymn.gov/departments/jail.php",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visiting hours are Sunday and Tuesday from 1 to 4 p.m. and Thursday from 6 to 9 p.m. Register at dispatch with a photo ID; visits last 20 minutes, one inmate per visit, and everyone entering gets a warrant check. Anyone under 18 needs a parent or guardian, and phones and cameras are not allowed.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kanabeccountymn.gov/departments/jail.php"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposit cash at the kiosk in the jail lobby, or add money online through the link on the jail page.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kanabeccountymn.gov/departments/jail.php"
+      },
+      {
+        title: "Phone and mail",
+        body: "Send mail to Kanabec County Jail, 100 S. Vine, Mora, MN 55051. Phone cards can be bought online at reliancetelephone.com, which also sets up collect calls from the jail. To leave a message for an inmate, call 320-515-2209.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kanabeccountymn.gov/departments/jail.php"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bail on warrants can be posted at the dispatch center inside the jail, 24 hours a day, and a bail bond agent can help. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.kanabeccountymn.gov/departments/jail.php"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Kanabec County Jail?",
+        answer: "Sunday and Tuesday from 1 to 4 p.m. and Thursday from 6 to 9 p.m."
+      },
+      {
+        question: "How do I leave a message for a Kanabec County inmate?",
+        answer: "Call 320-515-2209 and follow the prompts."
+      },
+      {
+        question: "Where do I send mail to a Kanabec County inmate?",
+        answer: "Kanabec County Jail, 100 S. Vine, Mora, MN 55051."
+      },
+      {
+        question: "Where can I post bail in Kanabec County?",
+        answer: "At the dispatch center inside the jail, 24 hours a day."
+      }
+    ]
+  },
   "minnesota/roseau-county": {
     facilityName: "Roseau County Detention Center",
     address: "604 5th Ave SW, Roseau, MN 56751",
