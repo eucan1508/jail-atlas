@@ -70,7 +70,10 @@ export function toolsetJailRoster(adapterKey: string): ToolsetJailRosterConfig |
 const MAX_PAGES = 60;
 const MAX_RECORDS = 1_000;
 const MAX_PAGE_BYTES = 3_000_000;
-const RECORD_START = '<h3 style="background-color:#C6CDD7;">';
+// Each person opens with a shaded heading: <h3 style="…"> on most sites, or
+// <h2 class="nso-roster-h" style="…"> where the theme sets a class. The level is captured so the
+// heading's own closing tag can be found.
+const RECORD_START = /<h([23])(?: class="[^"<>]*")? style="background-color:#C6CDD7;">/g;
 const TOTAL = /\(Number of Inmates: (\d+) \)/g;
 const BOOKING = /<b>Booking Number:<\/b>\s*([^<]*?)\s*<br\s*\/?>/g;
 const CHARGES = /<b>Charges:<\/b>([\s\S]*?)<b>Bond:<\/b>/g;
@@ -200,11 +203,17 @@ export function parseToolsetPage(
   if (!html.trimEnd().endsWith("</html>")) throw new Error("PAGE_TRUNCATED");
   const totals = [...html.matchAll(TOTAL)].map((match) => Number(match[1]));
   if (totals.length > 1) throw new Error("ROSTER_TOTAL_REPEATED");
-  const blocks = html.split(RECORD_START).slice(1);
+  const starts = [...html.matchAll(RECORD_START)];
+  const blocks = starts.map((start, index) => ({
+    level: start[1]!,
+    body: html.slice(start.index + start[0].length, starts[index + 1]?.index ?? html.length)
+  }));
+  // Every booking number must sit under a person heading; if not, the heading markup changed.
+  if ([...html.matchAll(BOOKING)].length !== blocks.length) throw new Error("LAYOUT_CHANGED");
   if (blocks.length > 0 && totals.length === 0) throw new Error("ROSTER_TOTAL_MISSING");
 
-  const records = blocks.map((block) => {
-    const headingEnd = block.indexOf("</h3>");
+  const records = blocks.map(({ level, body: block }) => {
+    const headingEnd = block.indexOf(`</h${level}>`);
     if (headingEnd < 0) throw new Error("NAME_UNREADABLE");
     const displayName = text(block.slice(0, headingEnd));
     if (!NAME.test(displayName)) throw new Error("NAME_UNREADABLE");
