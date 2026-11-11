@@ -703,6 +703,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
   {
     state: "arkansas",
     stateName: "Arkansas",
+    county: "Newton County",
+    slug: "newton-county",
+    publishedAt: "2026-11-11",
+    seatCity: "Jasper",
+    h1: "Newton County Jail Roster & Inmate Search",
+    title: "Newton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Newton County, Arkansas current-inmate information for the jail in Jasper from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Newton County Sheriff's Office links its Inmate Roster for the Newton County Jail in Jasper from its Jail page. This page reads every current inmate on that roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/NewtonCoRoster/",
+    officialSourceLabel: "Newton County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Searcy County",
+    slug: "searcy-county",
+    publishedAt: "2026-11-11",
+    seatCity: "Marshall",
+    h1: "Searcy County Jail Roster & Inmate Search",
+    title: "Searcy County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Searcy County, Arkansas current-inmate information for the jail in Marshall from the official sheriff roster, with source-listed charges, bond amounts, and capture time.",
+    article:
+      "The Searcy County Sheriff's Office points the public to the RPS inmate app for the Searcy County Jail roster in Marshall. This page reads every current inmate on that app's web roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
+    officialSourceUrl: "https://www.myr2m.com/SearcyCoRoster/",
+    officialSourceLabel: "Searcy County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
     county: "Sharp County",
     slug: "sharp-county",
     publishedAt: "2026-10-14",
