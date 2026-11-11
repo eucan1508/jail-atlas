@@ -81,12 +81,32 @@ export const DALLAS_COUNTY_AR_ROSTER = {
   parserVersion: "1.0.0"
 } as const satisfies Myr2mRosterConfig;
 
+export const NEWTON_COUNTY_AR_ROSTER = {
+  adapterKey: "newton-county-ar-current-roster",
+  agencyHeading: "Newton County Sheriffs Office",
+  countyLabel: "Newton County, Arkansas",
+  diagnosticPrefix: "NEWTON_COUNTY_AR",
+  sourceUrl: "https://www.myr2m.com/NewtonCoRoster/",
+  parserVersion: "1.0.0"
+} as const satisfies Myr2mRosterConfig;
+
+export const SEARCY_COUNTY_AR_ROSTER = {
+  adapterKey: "searcy-county-ar-current-roster",
+  agencyHeading: "Searcy County Sheriffs Office",
+  countyLabel: "Searcy County, Arkansas",
+  diagnosticPrefix: "SEARCY_COUNTY_AR",
+  sourceUrl: "https://www.myr2m.com/SearcyCoRoster/",
+  parserVersion: "1.0.0"
+} as const satisfies Myr2mRosterConfig;
+
 const MYR2M_ROSTERS: readonly Myr2mRosterConfig[] = [
   SHARP_COUNTY_AR_ROSTER,
   STONE_COUNTY_AR_ROSTER,
   LONOKE_COUNTY_AR_ROSTER,
   INDEPENDENCE_COUNTY_AR_ROSTER,
-  DALLAS_COUNTY_AR_ROSTER
+  DALLAS_COUNTY_AR_ROSTER,
+  NEWTON_COUNTY_AR_ROSTER,
+  SEARCY_COUNTY_AR_ROSTER
 ];
 
 export function myr2mRosterSite(adapterKey: string): Myr2mRosterConfig | undefined {

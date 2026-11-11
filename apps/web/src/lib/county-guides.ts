@@ -6304,6 +6304,116 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/newton-county": {
+    facilityName: "Newton County Jail",
+    address: "Jasper, AR 72641",
+    phone: "870-446-5124",
+    operatedBy: "Newton County Sheriff's Office",
+    reviewedAt: "November 11, 2026",
+    overview:
+      "The Newton County Sheriff's Office runs the county jail in Jasper; the new jail replaced a lockup of more than 100 years that closed in 2009. A jail administrator handles inmate procedures, legal proceedings, and transports. The Sheriff's Office is at 300 North Spring St., Jasper, and answers at 870-446-5124; administrative hours are 8 a.m. to 2 p.m. on weekdays.",
+    contactSourceLabel: "Official Jail page",
+    contactSourceUrl: "https://www.newtoncountysheriff.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's site does not post visiting hours or rules. Call the Sheriff's Office at 870-446-5124 before you plan a visit.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://www.newtoncountysheriff.org/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's site does not explain how to put money on an inmate's account. Call 870-446-5124 to ask.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.newtoncountysheriff.org/"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's site does not post mail rules or explain inmate phone calls. The office's mailing address is P.O. Box 312, Jasper, AR 72641; call 870-446-5124 before sending anything to an inmate.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.newtoncountysheriff.org/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bond. Call 870-446-5124 to ask about a bond and how to post it. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.newtoncountysheriff.org/"
+      }
+    ],
+    faq: [
+      {
+        question: "What is the phone number for the Newton County Sheriff's Office?",
+        answer: "870-446-5124."
+      },
+      {
+        question: "Where is the Newton County Sheriff's Office?",
+        answer: "300 North Spring St., Jasper, AR 72641."
+      },
+      {
+        question: "When is the Sheriff's administrative office open?",
+        answer: "Monday through Friday, 8 a.m. to 2 p.m."
+      },
+      {
+        question: "How do I visit someone at the Newton County Jail?",
+        answer: "The Sheriff's site does not post visiting rules; call 870-446-5124."
+      }
+    ]
+  },
+  "arkansas/searcy-county": {
+    facilityName: "Searcy County Jail",
+    address: "Marshall, AR 72650",
+    phone: "870-448-2340",
+    operatedBy: "Searcy County Sheriff's Office",
+    reviewedAt: "November 11, 2026",
+    overview:
+      "The Searcy County Sheriff's Office runs the county jail in Marshall. The Sheriff's Office is at 301 Factory Road and answers at 870-448-2340 around the clock; administrative hours are 8 a.m. to 4 p.m. on weekdays. The Sheriff's own Jail Roster page points the public to the RPS inmate app.",
+    contactSourceLabel: "Official Jail Roster page",
+    contactSourceUrl: "https://www.searcycountysheriff.org/jail-roster",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's site does not post visiting hours or rules. Call the Sheriff's Office at 870-448-2340 before you plan a visit.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.searcycountysheriff.org/"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's site does not explain how to put money on an inmate's account. Call 870-448-2340 to ask.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.searcycountysheriff.org/"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's site does not post mail rules or explain inmate phone calls. The office's mailing address is PO Box 812, Marshall, AR 72650; call 870-448-2340 before sending anything to an inmate.",
+        sourceLabel: "Official Sheriff's site",
+        sourceUrl: "https://www.searcycountysheriff.org/"
+      },
+      {
+        title: "Bail and court records",
+        body: "For court information on people held on felony charges, the Sheriff points to the Arkansas courts' public case search; for misdemeanor charges, call the District Court office at 870-448-5411, 8 a.m. to 4 p.m. on weekdays. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Jail Roster page",
+        sourceUrl: "https://www.searcycountysheriff.org/jail-roster"
+      }
+    ],
+    faq: [
+      {
+        question: "What is the phone number for the Searcy County Sheriff's Office?",
+        answer: "870-448-2340, answered 24 hours a day."
+      },
+      {
+        question: "Where is the Searcy County Sheriff's Office?",
+        answer: "301 Factory Road, Marshall, AR 72650."
+      },
+      {
+        question: "How do I check court dates for a misdemeanor charge?",
+        answer: "Call the District Court office at 870-448-5411, 8 a.m. to 4 p.m. on weekdays."
+      },
+      {
+        question: "How do I visit someone at the Searcy County Jail?",
+        answer: "The Sheriff's site does not post visiting rules; call 870-448-2340."
+      }
+    ]
+  },
   "arkansas/dallas-county": {
     facilityName: "Dallas County Jail",
     address: "106 South Charlotte, Fordyce, AR 71742",

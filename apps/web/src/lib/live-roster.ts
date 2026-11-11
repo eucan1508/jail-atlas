@@ -90,6 +90,8 @@ const liveAdapterKeys: Record<string, string> = {
   "arkansas/lonoke-county": "lonoke-county-ar-current-roster",
   "arkansas/independence-county": "independence-county-ar-current-roster",
   "arkansas/dallas-county": "dallas-county-ar-current-roster",
+  "arkansas/newton-county": "newton-county-ar-current-roster",
+  "arkansas/searcy-county": "searcy-county-ar-current-roster",
   "oklahoma/wagoner-county": "wagoner-county-ok-current-roster",
   "oklahoma/lincoln-county": "lincoln-county-ok-current-roster",
   "oklahoma/pawnee-county": "pawnee-county-ok-current-roster",

@@ -71,6 +71,8 @@ const liveCountyKeys = [
   "arkansas/lonoke-county",
   "arkansas/independence-county",
   "arkansas/dallas-county",
+  "arkansas/newton-county",
+  "arkansas/searcy-county",
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",

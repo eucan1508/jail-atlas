@@ -357,6 +357,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "dallas",
       adapterKey: "dallas-county-ar-current-roster",
       sourceHost: "www.myr2m.com"
+    },
+    {
+      countySlug: "newton",
+      adapterKey: "newton-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
+    },
+    {
+      countySlug: "searcy",
+      adapterKey: "searcy-county-ar-current-roster",
+      sourceHost: "www.myr2m.com"
     }
   ],
   OK: [

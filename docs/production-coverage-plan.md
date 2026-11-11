@@ -89,6 +89,8 @@ the same roster software but were left out because their sites do not publish al
 | Lonoke       | [Lonoke County Sheriff inmate roster](https://www.myr2m.com/lonokecoroster/)                                                          | Adapter tested; production approval pending |
 | Independence | [Independence County Sheriff jail roster](https://www.myr2m.com/IndependenceCoRoster/)                                                | Adapter tested; production approval pending |
 | Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |
+| Newton       | [Newton County Sheriff inmate roster](https://www.myr2m.com/NewtonCoRoster/)                                                          | Adapter tested; production approval pending |
+| Searcy       | [Searcy County Sheriff inmate roster](https://www.myr2m.com/SearcyCoRoster/)                                                          | Adapter tested; production approval pending |
 
 ## Oklahoma
 

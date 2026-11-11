@@ -112,10 +112,10 @@ with the adapter records disabled and publication approval off.
    Spring, Baxter, St. Francis, Cross, Carroll, and Poinsett use
    `/inmate-roster/filters/current/...` paths and only the current view is read. Every crawl must
    collect exactly the count in the page's "Inmate Roster (N)" heading or the county fails closed.
-   The Sharp, Stone, Lonoke, Independence, and Dallas County rosters are hosted by their roster
-   service at `www.myr2m.com` and read by `myr2m-roster.ts`, which pages with ASP.NET form posts
-   (the only source allowed to POST) and must match both the "shown out of N total" line and the
-   roster's name list:
+   The Sharp, Stone, Lonoke, Independence, Dallas, Newton, and Searcy County rosters are hosted by
+   their roster service at `www.myr2m.com` and read by `myr2m-roster.ts`, which pages with ASP.NET
+   form posts (the only source allowed to POST) and must match both the "shown out of N total" line
+   and the roster's name list:
 
    ```text
    SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.hempsteadcountysheriff.org,www.izardcountysheriff.org,www.crosscountysheriff.org,www.carrollcountysheriffar.gov,www.poinsettsheriffar.gov,www.myr2m.com
