@@ -387,6 +387,25 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     sourceStatus: "audit_pending"
   },
   {
+    state: "texas",
+    stateName: "Texas",
+    county: "Jefferson County",
+    slug: "jefferson-county",
+    publishedAt: "2026-11-12",
+    seatCity: "Beaumont",
+    h1: "Jefferson County Jail Roster & Inmate Search",
+    title: "Jefferson County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Jefferson County, Texas current-inmate information for the correctional facility in Beaumont from the official sheriff inmate log, with source-listed charges and capture time.",
+    article:
+      "The Jefferson County Sheriff's Office publishes a daily inmate log for the Jefferson County Correctional Facility in Beaumont. This page reads every page of that log with source-listed charges, and leaves out race, age, arrest agencies, bond amounts, and warrant numbers.",
+    officialSourceUrl:
+      "https://jeffersoncountytx.gov/blobs/Sheriff/content/documents/inmate/CURRENTINMATES.PDF",
+    officialSourceLabel: "Jefferson County Sheriff's Office inmate log",
+    sourceStatus: "audit_pending"
+  },
+
+  {
     state: "arkansas",
     stateName: "Arkansas",
     county: "Jefferson County",
@@ -732,6 +751,25 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "The Searcy County Sheriff's Office points the public to the RPS inmate app for the Searcy County Jail roster in Marshall. This page reads every current inmate on that app's web roster with source-listed charges and bond amounts, and leaves out mugshots, ages, home towns, arresting agencies, and court dates.",
     officialSourceUrl: "https://www.myr2m.com/SearcyCoRoster/",
     officialSourceLabel: "Searcy County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Pulaski County",
+    slug: "pulaski-county",
+    publishedAt: "2026-11-12",
+    seatCity: "Little Rock",
+    h1: "Pulaski County Jail Roster & Inmate Search",
+    title: "Pulaski County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Pulaski County, Arkansas current-inmate information for the Regional Detention Facility in Little Rock from the official sheriff inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Pulaski County Sheriff's Office links its inmate roster for the Pulaski County Regional Detention Facility in Little Rock, the largest county jail in Arkansas. This page reads every current inmate on that roster with source-listed charges and their offense class, and leaves out birth dates, photos, physical descriptions, and arresting agencies.",
+    // The Sheriff's Inmate Roster link opens this records-search instance, which is what is read.
+    officialSourceUrl:
+      "https://api.correctionsrecordssearch.com/instances/lookup?alias=arpulaskicounty",
+    officialSourceLabel: "Pulaski County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
 

@@ -1650,6 +1650,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/jefferson-county": {
+    facilityName: "Jefferson County Correctional Facility",
+    address: "5030 Hwy 69 S., Beaumont, TX 77705",
+    phone: "409-726-2540",
+    operatedBy: "Jefferson County Sheriff's Office",
+    reviewedAt: "November 12, 2026",
+    overview:
+      "The Jefferson County Sheriff's Office runs the Jefferson County Correctional Facility in Beaumont, a short-term, direct-supervision jail certified by the Texas Commission on Jail Standards. The inmate log lists 409-726-2540 for bond and fee details; the Sheriff's Office is at 1001 Pearl St. #103 and answers at 409-835-8411 on weekdays from 8 a.m. to 5 p.m.",
+    contactSourceLabel: "Official Corrections page",
+    contactSourceUrl: "https://www.sheriff.jeffersoncountytx.gov/corrections",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Each inmate may have two 30-minute visits a week, scheduled before the day of the visit by calling Visitation at 409-726-2565. Visits run Wednesday through Sunday from 11 a.m. to 8 p.m., with each day set aside for certain housing areas. Only ID, keys, and cash or a card for the kiosk are allowed in the building; phones and smart devices are not.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.sheriff.jeffersoncountytx.gov/visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Phone accounts are funded through Smart Communications at smartinmate.com or (888) 253-5178, which also handles messages, photos, and remote video visits. The visitation building's kiosk takes deposits Wednesday through Sunday from 11 a.m. to 8 p.m.",
+        sourceLabel: "Official send money page",
+        sourceUrl: "https://www.sheriff.jeffersoncountytx.gov/sendMoneyToAnInmate"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to JCSO-SCH, the inmate's name and booking number, 9490 FM 1960 Bypass W #355, Humble, TX 77338, where it is scanned for the inmate to read on a kiosk. Legal mail, court documents, bank statements, money orders, and publications go to the facility at 5030 Hwy 69 S., Beaumont, TX 77705.",
+        sourceLabel: "Official send mail page",
+        sourceUrl: "https://www.sheriff.jeffersoncountytx.gov/sendMailToAnInmate"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bond and fees must be paid in exact cash; call 409-726-2540 for details. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Corrections page",
+        sourceUrl: "https://www.sheriff.jeffersoncountytx.gov/corrections"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I schedule a visit at the Jefferson County Correctional Facility?",
+        answer:
+          "Call Visitation at 409-726-2565 before the day of the visit; visits run Wednesday through Sunday."
+      },
+      {
+        question: "Where do I send mail to a Jefferson County, Texas inmate?",
+        answer:
+          "JCSO-SCH, the inmate's name and booking number, 9490 FM 1960 Bypass W #355, Humble, TX 77338."
+      },
+      {
+        question: "How do I put money on a phone account?",
+        answer: "Through Smart Communications at smartinmate.com or (888) 253-5178."
+      },
+      {
+        question: "How is bond paid?",
+        answer: "In exact cash; call 409-726-2540 for details."
+      }
+    ]
+  },
   "texas/upshur-county": {
     facilityName: "Upshur County Jail",
     address: "405 North Titus, Gilmer, TX 75644",
@@ -6523,6 +6580,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       {
         question: "How do I visit someone at the Searcy County Jail?",
         answer: "The Sheriff's site does not post visiting rules; call 870-448-2340."
+      }
+    ]
+  },
+  "arkansas/pulaski-county": {
+    facilityName: "Pulaski County Regional Detention Facility",
+    address: "2900 South Woodrow, Little Rock, AR 72204",
+    phone: "501-340-7001",
+    operatedBy: "Pulaski County Sheriff's Office",
+    reviewedAt: "November 12, 2026",
+    overview:
+      "The Pulaski County Sheriff's Office runs the Regional Detention Facility in Little Rock, the largest county detention facility in Arkansas. Opened in 1994, it holds more than 1,200 people a day for twelve law enforcement agencies and thirty-three courts. The non-emergency line is 501-340-7001.",
+    contactSourceLabel: "Official Detention page",
+    contactSourceUrl: "https://pcso.org/detention/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's page says in-person visitation is suspended until further notice; video visits are set up through a Jail ATM account. When in-person visits run, they are scheduled 24 hours ahead, from 9 a.m. to 7 p.m., one 30-minute visit a week with up to three visitors, on days set by last name and housing unit. Adults need photo ID, and anyone under 18 must be with an adult. Call 501-340-7001, option 1, for visitation.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://pcso.org/detention/visitation/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money orders are taken in person Monday through Friday from 8 a.m. to 3:30 p.m. with a slip listing the inmate's name, book-in number, S.O. number, unit, and date; no cash. Visitors can also use the lobby kiosk with cash or a card. Phone funds go to an inmate's PIN Debit account online, and commissary funds can be deposited online as well.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://pcso.org/detention/commissary/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates make calls from a PIN Debit account that family and friends can fund online or by phone. The Sheriff's site notes that checks and cash are not accepted in inmate mail; call 501-340-7001 for current mail rules.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://pcso.org/detention/visitation/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bond; call 501-340-7001 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Detention page",
+        sourceUrl: "https://pcso.org/detention/"
+      }
+    ],
+    faq: [
+      {
+        question: "Is in-person visitation open at the Pulaski County jail?",
+        answer:
+          "The Sheriff's page says it is suspended until further notice; video visits run through Jail ATM."
+      },
+      {
+        question: "How do I put money on a Pulaski County inmate's account?",
+        answer:
+          "Money order in person on weekdays (8 a.m. to 3:30 p.m.), the lobby kiosk, or online deposits for phone and commissary accounts."
+      },
+      {
+        question: "Where is the Pulaski County Regional Detention Facility?",
+        answer: "2900 South Woodrow, Little Rock, AR 72204."
+      },
+      {
+        question: "What is the non-emergency number?",
+        answer: "501-340-7001."
       }
     ]
   },

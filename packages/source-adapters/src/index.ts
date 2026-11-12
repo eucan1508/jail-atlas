@@ -59,6 +59,8 @@ export * from "./roseau-county.js";
 export * from "./prophoenix-locator.js";
 export * from "./wilkin-county.js";
 export * from "./meeker-county.js";
+export * from "./jefferson-county-tx.js";
+export * from "./pulaski-county-ar.js";
 export * from "./clearwater-county-mn.js";
 export * from "./woodbury-county.js";
 export * from "./jail-portal.js";

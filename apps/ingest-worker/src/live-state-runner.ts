@@ -265,6 +265,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "upshur",
       adapterKey: "upshur-county-tx-current-roster",
       sourceHost: "upshur-so-tx.zuercherportal.com"
+    },
+    {
+      countySlug: "jefferson",
+      adapterKey: "jefferson-county-tx-current-roster",
+      sourceHost: "jeffersoncountytx.gov"
     }
   ],
   AR: [
@@ -377,6 +382,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "searcy",
       adapterKey: "searcy-county-ar-current-roster",
       sourceHost: "www.myr2m.com"
+    },
+    {
+      countySlug: "pulaski",
+      adapterKey: "pulaski-county-ar-current-roster",
+      sourceHost: "api.correctionsrecordssearch.com"
     }
   ],
   OK: [
