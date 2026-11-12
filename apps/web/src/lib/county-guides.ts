@@ -4784,6 +4784,118 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "minnesota/meeker-county": {
+    facilityName: "Meeker County Jail",
+    address: "325 N Sibley Avenue, Litchfield, MN 55355",
+    phone: "320-693-5415",
+    operatedBy: "Meeker County Sheriff's Office",
+    reviewedAt: "November 12, 2026",
+    overview:
+      "The Meeker County Sheriff's Office runs the county jail on the main floor of the Justice Center at 325 N Sibley Avenue in Litchfield. The jail answers at 320-693-5415.",
+    contactSourceLabel: "Official Jail page",
+    contactSourceUrl: "https://www.meekercountymn.gov/303/Jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by appointment only; call the jail at 320-693-5415 at least 24 hours ahead. Hours are Tuesday and Saturday from 9 to 11 a.m. and 1 to 3:15 p.m., and Thursday from 9 to 11 a.m., 1 to 3:15 p.m., and 7 to 9 p.m. Each inmate gets one visit a day of up to 30 minutes. Bring a photo ID; visitors under 18 need an adult and prior approval, and inmates cannot have visitors before their first court appearance.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.meekercountymn.gov/311/Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Phone calls, texts, and video visits are provided by Reliance Telephone Services and are fee based. Add funds to an inmate's account at reliancetelephone.com, or call Reliance at 800-896-3201, Monday through Friday from 9 a.m. to 6 p.m.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.meekercountymn.gov/311/Visitation"
+      },
+      {
+        title: "Phone and mail",
+        body: "Address letters to the inmate's name, c/o Meeker County Jail, 326 N Ramsey, Litchfield, MN 55355; all mail except legal mail is screened. Inmates cannot receive calls, but you can leave a short voicemail at 320-434-1240. Calls, texts, and video messages are recorded.",
+        sourceLabel: "Official writing to inmates page",
+        sourceUrl: "https://www.meekercountymn.gov/315/Writing-to-Inmates"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bail; call the jail at 320-693-5415. Sentenced inmates are released after 8 a.m. on their release date and can be picked up at the jail entrance. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official inmate release times page",
+        sourceUrl: "https://www.meekercountymn.gov/305/Inmate-Release-Times"
+      }
+    ],
+    faq: [
+      {
+        question: "When can I visit someone at the Meeker County Jail?",
+        answer:
+          "By appointment made at least 24 hours ahead: Tuesday, Thursday, and Saturday mornings and afternoons, plus Thursday evening."
+      },
+      {
+        question: "Where do I send mail to a Meeker County inmate?",
+        answer: "The inmate's name, c/o Meeker County Jail, 326 N Ramsey, Litchfield, MN 55355."
+      },
+      {
+        question: "How do I leave a message for a Meeker County inmate?",
+        answer: "Call 320-434-1240 and leave a short voicemail."
+      },
+      {
+        question: "When are sentenced inmates released?",
+        answer: "After 8 a.m. on their release date, at the jail entrance."
+      }
+    ]
+  },
+  "minnesota/wilkin-county": {
+    facilityName: "Wilkin County Jail",
+    address: "515 Dacotah Ave, Breckenridge, MN 56520",
+    phone: "218-643-1205",
+    operatedBy: "Wilkin County Sheriff's Office",
+    reviewedAt: "November 12, 2026",
+    overview:
+      "The Wilkin County Jail, a behavior-based facility with a positive behavior reward system, is at 515 Dacotah Ave in Breckenridge. The correctional facility answers at 218-643-1205.",
+    contactSourceLabel: "Official Jail page",
+    contactSourceUrl: "https://wilkincounty.gov/countyjail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are Monday through Friday from 1 to 5 p.m., and Saturday and Sunday from 9 to 11:30 a.m. and 1 to 5 p.m. Every visit must be scheduled online through InmateCanteen.com; jail staff do not schedule visits by phone. The Inmate Canteen app also allows video visits from anywhere.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://wilkincounty.gov/countyjail"
+      },
+      {
+        title: "Money and commissary",
+        body: "The jail page links Inmate Canteen, the same service used for visits. Call the jail at 218-643-1205 with questions about an inmate's account.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://wilkincounty.gov/countyjail"
+      },
+      {
+        title: "Phone and mail",
+        body: "The jail page does not post mail rules. Call 218-643-1205 before sending anything to an inmate at 515 Dacotah Ave, Breckenridge, MN 56520.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://wilkincounty.gov/countyjail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail page does not explain how to post bail; call 218-643-1205. Charge descriptions on this page are shown as the county's report prints them, which can cut long descriptions short; the statute number is complete. A roster entry is a record of arrest, not a finding of guilt.",
+        sourceLabel: "Official Jail page",
+        sourceUrl: "https://wilkincounty.gov/countyjail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I schedule a visit at the Wilkin County Jail?",
+        answer: "Online through InmateCanteen.com; jail staff do not schedule visits by phone."
+      },
+      {
+        question: "When are visiting hours?",
+        answer: "Weekdays 1 to 5 p.m.; Saturday and Sunday 9 to 11:30 a.m. and 1 to 5 p.m."
+      },
+      {
+        question: "Where is the Wilkin County Jail?",
+        answer: "515 Dacotah Ave, Breckenridge, MN 56520."
+      },
+      {
+        question: "Why do some charge descriptions look cut off?",
+        answer:
+          "The county's report prints at most 45 characters of each description; the statute number shown beside it is complete."
+      }
+    ]
+  },
   "minnesota/roseau-county": {
     facilityName: "Roseau County Detention Center",
     address: "604 5th Ave SW, Roseau, MN 56751",

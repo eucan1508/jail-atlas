@@ -57,6 +57,8 @@ export * from "./noble-county-ok.js";
 export * from "./washington-county-ok.js";
 export * from "./roseau-county.js";
 export * from "./prophoenix-locator.js";
+export * from "./wilkin-county.js";
+export * from "./meeker-county.js";
 export * from "./clearwater-county-mn.js";
 export * from "./woodbury-county.js";
 export * from "./jail-portal.js";
