@@ -35,6 +35,8 @@ const liveCountyKeys = [
   "minnesota/roseau-county",
   "minnesota/hubbard-county",
   "minnesota/kanabec-county",
+  "minnesota/meeker-county",
+  "minnesota/wilkin-county",
   "iowa/johnson-county",
   "iowa/polk-county",
   "iowa/woodbury-county",

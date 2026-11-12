@@ -1877,6 +1877,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceLabel: "Kanabec County Sheriff's Office inmate locator",
     sourceStatus: "audit_pending"
   },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Meeker County",
+    slug: "meeker-county",
+    publishedAt: "2026-11-12",
+    seatCity: "Litchfield",
+    h1: "Meeker County Jail Roster & Inmate Search",
+    title: "Meeker County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Meeker County, Minnesota current-inmate information for the jail in Litchfield from the official sheriff jail roster, with source-listed charges and capture time.",
+    article:
+      "The Meeker County Sheriff's Office publishes a daily jail roster for the Meeker County Jail in Litchfield. This page reads every page of that roster, checks it against the roster's own total, keeps source-listed charges with their statutes, and leaves out home addresses, ages, and arrest times.",
+    officialSourceUrl:
+      "https://www.meekercountymn.gov/DocumentCenter/View/721/Meeker-County-Jail-Roster",
+    officialSourceLabel: "Meeker County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "minnesota",
+    stateName: "Minnesota",
+    county: "Wilkin County",
+    slug: "wilkin-county",
+    publishedAt: "2026-11-12",
+    seatCity: "Breckenridge",
+    h1: "Wilkin County Jail Roster & Inmate Search",
+    title: "Wilkin County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Wilkin County, Minnesota current-inmate information for the jail in Breckenridge from the official in-custody report, with booking numbers, source-listed charges, and capture time.",
+    article:
+      "The Wilkin County Jail publishes an in-custody report for the jail in Breckenridge. This page reads that report, keeps booking numbers, statutes, and charge descriptions as the report prints them, and leaves out photos, ages, and intake times.",
+    officialSourceUrl: "https://co.wilkin.mn.us/jail/custody.html",
+    officialSourceLabel: "Wilkin County Jail in-custody report",
+    sourceStatus: "audit_pending"
+  },
 
   {
     state: "minnesota",

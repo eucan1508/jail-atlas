@@ -56,6 +56,10 @@ import {
   NOBLES_COUNTY_ADAPTER_KEY,
   createRoseauCountySourceAdapter,
   ROSEAU_COUNTY_ADAPTER_KEY,
+  createMeekerCountySourceAdapter,
+  MEEKER_COUNTY_ADAPTER_KEY,
+  createWilkinCountySourceAdapter,
+  WILKIN_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
   BENTON_COUNTY_ADAPTER_KEY,
   createHennepinCountySourceAdapter,
@@ -396,6 +400,20 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
     return createBentonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === MEEKER_COUNTY_ADAPTER_KEY) {
+    return createMeekerCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === WILKIN_COUNTY_ADAPTER_KEY) {
+    return createWilkinCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

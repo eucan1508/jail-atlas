@@ -208,6 +208,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "jail.kanabec.org"
     },
     {
+      countySlug: "meeker",
+      adapterKey: "meeker-county-mn-current-roster",
+      sourceHost: "www.meekercountymn.gov"
+    },
+    {
+      countySlug: "wilkin",
+      adapterKey: "wilkin-county-mn-current-roster",
+      sourceHost: "co.wilkin.mn.us"
+    },
+    {
       countySlug: "watonwan",
       adapterKey: "watonwan-county-mn-current-roster",
       sourceHost: "www.watonwancountymn.gov"
