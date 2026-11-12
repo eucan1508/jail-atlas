@@ -93,6 +93,7 @@ the same roster software but were left out because their sites do not publish al
 | Dallas       | [Dallas County Sheriff inmate roster](https://www.myr2m.com/DallasCoRoster/)                                                          | Adapter tested; production approval pending |
 | Newton       | [Newton County Sheriff inmate roster](https://www.myr2m.com/NewtonCoRoster/)                                                          | Adapter tested; production approval pending |
 | Searcy       | [Searcy County Sheriff inmate roster](https://www.myr2m.com/SearcyCoRoster/)                                                          | Adapter tested; production approval pending |
+| Pulaski      | [Pulaski County Regional Detention Facility inmate roster](https://correctionsrecordssearch.com/arpulaskicounty)                      | Adapter tested; production approval pending |
 
 ## Oklahoma
 

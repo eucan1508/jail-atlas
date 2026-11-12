@@ -58,6 +58,10 @@ import {
   ROSEAU_COUNTY_ADAPTER_KEY,
   createMeekerCountySourceAdapter,
   MEEKER_COUNTY_ADAPTER_KEY,
+  createJeffersonCountyTxSourceAdapter,
+  JEFFERSON_COUNTY_TX_ADAPTER_KEY,
+  createPulaskiCountyArSourceAdapter,
+  PULASKI_COUNTY_AR_ADAPTER_KEY,
   createWilkinCountySourceAdapter,
   WILKIN_COUNTY_ADAPTER_KEY,
   createBentonCountySourceAdapter,
@@ -225,7 +229,8 @@ export function createLiveSourceAdapter(
             : source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY
               ? // The Jail Roster page links the day's list, uploaded under /DocumentCenter/View.
                 ["/438/Jail-Roster", "/DocumentCenter/View"]
-              : source.adapterKey === BENTON_COUNTY_ADAPTER_KEY
+              : source.adapterKey === BENTON_COUNTY_ADAPTER_KEY ||
+                  source.adapterKey === PULASKI_COUNTY_AR_ADAPTER_KEY
                 ? // The instance lookup and the inmate list share the /instances path.
                   ["/instances"]
                 : source.adapterKey === HENNEPIN_COUNTY_ADAPTER_KEY
@@ -294,7 +299,8 @@ export function createLiveSourceAdapter(
     ...(source.adapterKey === ST_LOUIS_COUNTY_ADAPTER_KEY ||
     source.adapterKey === OTTER_TAIL_COUNTY_ADAPTER_KEY ||
     source.adapterKey === FREEBORN_COUNTY_ADAPTER_KEY ||
-    source.adapterKey === ROSEAU_COUNTY_ADAPTER_KEY
+    source.adapterKey === ROSEAU_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === JEFFERSON_COUNTY_TX_ADAPTER_KEY
       ? { maxResponseBytes: 6_000_000 }
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
@@ -400,6 +406,20 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
     return createBentonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === JEFFERSON_COUNTY_TX_ADAPTER_KEY) {
+    return createJeffersonCountyTxSourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === PULASKI_COUNTY_AR_ADAPTER_KEY) {
+    return createPulaskiCountyArSourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId
