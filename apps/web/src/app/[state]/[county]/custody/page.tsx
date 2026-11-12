@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Alert, LinkButton, StatusPill } from "@jail-atlas/ui";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -223,6 +224,13 @@ export default async function CountyCustodyBriefPage({
                   timeZone: "America/Chicago",
                   timeZoneName: "short"
                 })}
+                .
+              </p>
+              <p>
+                Short notes under each charge explain abbreviations and statute numbers.{" "}
+                <Link href={`/charge-terms/${entry.state}/`}>
+                  {entry.stateName} charge terms explained
+                </Link>
                 .
               </p>
             </div>

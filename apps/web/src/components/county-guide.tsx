@@ -47,6 +47,84 @@ function countyFaqItems({
   ];
 }
 
+function sectionAnchor(index: number): string {
+  return `guidance-${index + 1}`;
+}
+
+type FirstStep = Readonly<{ title: string; body: string; link?: { href: string; label: string } }>;
+
+/**
+ * The first things a family usually needs after an arrest, in order. Every step points to this
+ * county's verified guidance below rather than restating it, so no step adds facts of its own.
+ */
+function firstSteps({
+  profile,
+  rosterPublished,
+  capturedLabel
+}: {
+  profile: CountyGuideProfile;
+  rosterPublished: boolean;
+  capturedLabel: string | undefined;
+}): FirstStep[] {
+  const facility = profile.facilityName;
+  const used = new Set<number>();
+  const find = (pattern: RegExp) => {
+    const index = profile.sections.findIndex(
+      (section, position) => !used.has(position) && pattern.test(section.title)
+    );
+    if (index < 0) return null;
+    used.add(index);
+    return { href: `#${sectionAnchor(index)}`, index };
+  };
+  const bail = find(/bail|bond/i);
+  const visit = find(/visit/i);
+  const money = find(/money/i);
+  const contact = find(/phone|mail|messag|communication/i);
+
+  const steps: FirstStep[] = [
+    {
+      title: "Confirm where the person is held",
+      body:
+        rosterPublished && capturedLabel
+          ? `Search the name in the roster above. Anyone booked after ${capturedLabel} will not appear yet, so call ${facility} at ${profile.phone} if you cannot find them.`
+          : `Call ${facility} at ${profile.phone} and ask whether the person has been booked there.`
+    },
+    {
+      title: "Write down the booking details",
+      body: "Note the full name exactly as the jail lists it, the booking number if one is shown, and each charge. You may be asked for them when you call the jail, send money, or ask about bail."
+    }
+  ];
+  if (bail) {
+    steps.push({
+      title: "Ask about bail and the first court date",
+      body: "Find out whether bail has been set, how it can be paid, and which court has the case.",
+      link: { href: bail.href, label: `How bail works at ${facility}` }
+    });
+  }
+  if (money) {
+    steps.push({
+      title: "Set up money for commissary and calls",
+      body: "People in custody use their account for commissary items and, at many jails, phone time.",
+      link: { href: money.href, label: `How to send money to ${facility}` }
+    });
+  }
+  if (contact) {
+    steps.push({
+      title: "Learn the rules for calls and mail",
+      body: "Check what is allowed before you send anything, because mail that breaks the rules can be rejected.",
+      link: { href: contact.href, label: `Phone and mail at ${facility}` }
+    });
+  }
+  if (visit) {
+    steps.push({
+      title: "Plan a visit",
+      body: "Check the schedule, sign-up rules, and ID requirements before you travel.",
+      link: { href: visit.href, label: `Visiting ${facility}` }
+    });
+  }
+  return steps;
+}
+
 export function CountyGuide({
   entry,
   capturedAt,
@@ -83,9 +161,35 @@ export function CountyGuide({
   const guidanceSources = [...new Set(profile.sections.map((section) => section.sourceLabel))];
   const pagePath = `/${entry.state}/${entry.slug}/custody/`;
   const reviewedIso = reviewedDateIso(profile.reviewedAt);
+  const steps = firstSteps({ profile, rosterPublished, capturedLabel });
 
   return (
     <>
+      <section
+        className="content-section county-guide__panel county-guide__first-steps"
+        aria-labelledby="first-steps-heading"
+      >
+        <div className="section-heading-row">
+          <div>
+            <p className="eyebrow">If someone was just arrested</p>
+            <h2 id="first-steps-heading">What to do in the first 24 hours</h2>
+            <p className="section-lede">
+              A short checklist for {facility}. Each step links to the official details further down
+              this page.
+            </p>
+          </div>
+        </div>
+        <ol className="first-steps">
+          {steps.map((step) => (
+            <li key={step.title}>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+              {step.link ? <a href={step.link.href}>{step.link.label}</a> : null}
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section
         className="content-section county-guide__panel county-guide__about"
         aria-labelledby="facility-heading"
@@ -167,7 +271,7 @@ export function CountyGuide({
         </div>
         <div className="guidance-grid">
           {profile.sections.map((section, index) => (
-            <article className="guidance-card" key={section.title}>
+            <article className="guidance-card" id={sectionAnchor(index)} key={section.title}>
               <header className="guidance-card__header">
                 <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{guidanceQuestion(section.title, facility)}</h3>
