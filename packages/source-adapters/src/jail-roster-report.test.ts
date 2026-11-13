@@ -311,6 +311,27 @@ describe("Minnesota jail roster report adapter", () => {
     }
   });
 
+  it("asks once more after a refused redirect, but not twice", async () => {
+    const run = (redirects: number) => {
+      let calls = 0;
+      const refused = createJailRosterReportAdapter(COTTONWOOD_COUNTY_ROSTER_REPORT, {
+        fetch: async () => {
+          calls += 1;
+          if (calls <= redirects) throw new Error("The approved source attempted a redirect");
+          return new Response(PDF_BYTES);
+        },
+        facilityId: "00000000-0000-4000-8000-000000000904",
+        createId: idFactory(),
+        extractPdfPages: async () => pages(),
+        nowMs: () => 1_000
+      });
+      return runSourceAdapter(refused, context());
+    };
+    expect((await run(1)).ok).toBe(true);
+    const twice = await run(2);
+    expect(twice.ok).toBe(false);
+  });
+
   it("refuses a body that is not a PDF and a source URL other than the approved report", async () => {
     const notPdf = await runSourceAdapter(
       adapter(pages(), new TextEncoder().encode("<html>")),

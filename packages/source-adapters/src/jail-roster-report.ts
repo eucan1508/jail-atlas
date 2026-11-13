@@ -386,12 +386,23 @@ async function requestRoster(
   if (context.source.sourceUrl !== config.sourceUrl) {
     throw new Error("SOURCE_URL_MISMATCH");
   }
-  const response = await options.fetch(config.sourceUrl, {
-    method: "GET",
-    redirect: "error",
-    signal: context.signal,
-    headers: { accept: "application/pdf", "accept-encoding": "identity" }
-  });
+  const request = () =>
+    options.fetch(config.sourceUrl, {
+      method: "GET",
+      redirect: "error",
+      signal: context.signal,
+      headers: { accept: "application/pdf", "accept-encoding": "identity" }
+    });
+  let response: Response;
+  try {
+    response = await request();
+  } catch (error) {
+    // Watonwan County's document server now and then answers the first request with a redirect
+    // and serves the file on the next one. Redirects are never followed; the same URL is asked once
+    // more instead.
+    if (!(error instanceof Error && /redirect/i.test(error.message))) throw error;
+    response = await request();
+  }
   if (!response.ok) throw new Error(`HTTP_${response.status}`);
   const declaredLength = Number(response.headers.get("content-length") ?? "0");
   if (declaredLength > MAX_RESPONSE_BYTES) throw new Error("RESPONSE_SIZE");
