@@ -45,6 +45,9 @@ const MAX_RECORDS = 1_000;
 const MAX_PAGE_BYTES = 3_000_000;
 const PAGE_SIZE = 20;
 const ROSTER_PATH_PREFIX = "/inmate-roster/filters/current/booking_time=desc/";
+// Cards with many charges end the list with "+ 2 more charges"; the profile page has them all.
+const MORE_CHARGES = /^\+ ?(\d{1,3}) more charges?$/i;
+const MAX_PROFILE_PAGES = 150;
 
 const SheriffRosterRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
@@ -222,6 +225,13 @@ function findRecordCard(profileLink: ReturnType<CheerioAPI>) {
   throw new Error("RECORD_CARD_NOT_FOUND");
 }
 
+interface TruncatedCharges {
+  readonly bookingNumber: string;
+  readonly profileUrl: string;
+  readonly listed: readonly string[];
+  readonly expectedCount: number;
+}
+
 function parsePage(
   html: string,
   pageUrl: string,
@@ -231,6 +241,7 @@ function parsePage(
   records: SheriffRoster["records"];
   pageUrls: readonly string[];
   declaredCount: number;
+  truncated: readonly TruncatedCharges[];
 } {
   const $ = load(html);
   sourceIdentity($, config);
@@ -242,6 +253,7 @@ function parsePage(
   const declaredCount = Number(headingText.match(/\((\d+)\)/)?.[1]);
 
   const recordsByBooking = new Map<string, SheriffRoster["records"][number]>();
+  const truncated = new Map<string, TruncatedCharges>();
   for (const profileLink of site.profileLinks($)) {
     const href = $(profileLink).attr("href");
     if (!href) throw new Error("MISSING_PROFILE_URL");
@@ -286,11 +298,23 @@ function parsePage(
     ) {
       throw new Error("INVALID_RECORD_IDENTITY");
     }
+    const listedCharges = valuesBetween(lines, CHARGE_LABELS);
+    const moreCharges = listedCharges.at(-1)?.match(MORE_CHARGES);
+    const charges = moreCharges ? listedCharges.slice(0, -1) : listedCharges;
+    if (charges.some((charge) => MORE_CHARGES.test(charge))) throw new Error("CHARGE_LIST_CHANGED");
+    if (moreCharges) {
+      truncated.set(bookingNumber, {
+        bookingNumber,
+        profileUrl: profileUrl.href,
+        listed: charges,
+        expectedCount: charges.length + Number(moreCharges[1])
+      });
+    }
     const record = SheriffRosterRecordSchema.parse({
       displayName,
       bookingNumber,
       bookingDateText: valueAfter(lines, BOOKING_DATE_LABELS),
-      charges: valuesBetween(lines, CHARGE_LABELS),
+      charges,
       bondText: valueAfter(lines, "Bond:")
     });
     const previous = recordsByBooking.get(bookingNumber);
@@ -309,7 +333,35 @@ function parsePage(
     .map((link) => site.canonicalPageUrl(new URL($(link).attr("href") ?? "", pageUrl).href))
     .filter((url): url is string => url !== null)
     .filter((url, index, all) => all.indexOf(url) === index);
-  return { records, pageUrls, declaredCount };
+  return { records, pageUrls, declaredCount, truncated: [...truncated.values()] };
+}
+
+/** Reads every charge from a person's profile page, which repeats a "Charge:" row per charge. */
+export function parseProfileCharges(
+  html: string,
+  config: SheriffRosterSiteConfig,
+  expected: TruncatedCharges
+): string[] {
+  const $ = load(html);
+  const title = normalizeText($("title").first().text());
+  if (!title.includes(config.countyName)) throw new Error("PROFILE_IDENTITY_MISMATCH");
+  const lines = cardLines($, $("body"));
+  if (normalizeText(valueAfter(lines, BOOKING_LABELS) ?? "") !== expected.bookingNumber) {
+    throw new Error("PROFILE_IDENTITY_MISMATCH");
+  }
+  const charges = lines.flatMap((line, index) =>
+    CHARGE_LABELS.some((label) => label.toLowerCase() === line.toLowerCase())
+      ? [lines[index + 1] ?? ""]
+      : []
+  );
+  if (
+    charges.length !== expected.expectedCount ||
+    charges.some((charge) => !charge || /^[A-Za-z #()]+:$/.test(charge)) ||
+    expected.listed.some((charge, index) => charges[index] !== charge)
+  ) {
+    throw new Error("PROFILE_CHARGES_MISMATCH");
+  }
+  return charges;
 }
 
 const ROSTER_CHANGED = "ROSTER_CHANGED_DURING_CRAWL";
@@ -330,6 +382,7 @@ async function crawlRoster(
   const pending: string[] = [config.sourceUrl];
   const visited = new Set<string>();
   const recordsByBooking = new Map<string, SheriffRoster["records"][number]>();
+  const truncatedByBooking = new Map<string, TruncatedCharges>();
   let declaredTotal: number | null = null;
 
   while (pending.length > 0) {
@@ -357,6 +410,7 @@ async function crawlRoster(
       }
       recordsByBooking.set(record.bookingNumber, record);
     }
+    for (const entry of parsed.truncated) truncatedByBooking.set(entry.bookingNumber, entry);
     for (const pageUrl of parsed.pageUrls) {
       if (!visited.has(pageUrl) && !pending.includes(pageUrl)) pending.push(pageUrl);
     }
@@ -365,6 +419,29 @@ async function crawlRoster(
   // The first page's "Inmate Roster (N)" heading is the source total; a short crawl must fail.
   if (declaredTotal === null || recordsByBooking.size !== declaredTotal) {
     throw new Error("RECORD_COUNT_MISMATCH");
+  }
+  if (truncatedByBooking.size > 0 && config.layout !== "inmate-roster-path") {
+    throw new Error("CHARGES_TRUNCATED");
+  }
+  if (truncatedByBooking.size > MAX_PROFILE_PAGES) throw new Error("PROFILE_LIMIT_REACHED");
+  for (const entry of truncatedByBooking.values()) {
+    const record = recordsByBooking.get(entry.bookingNumber);
+    if (!record) throw new Error("PROFILE_RECORD_MISSING");
+    const response = await options.fetch(entry.profileUrl, {
+      method: "GET",
+      redirect: "error",
+      signal: context.signal,
+      headers: { accept: "text/html", "accept-encoding": "identity" }
+    });
+    // A person released while we read the roster no longer has a profile page.
+    if (response.status === 404) throw new Error(ROSTER_CHANGED);
+    if (!response.ok) throw new Error(`HTTP_${response.status}`);
+    const html = await response.text();
+    if (!html || html.length > MAX_PAGE_BYTES) throw new Error("RESPONSE_SIZE");
+    recordsByBooking.set(entry.bookingNumber, {
+      ...record,
+      charges: parseProfileCharges(html, config, entry)
+    });
   }
   return SheriffRosterSchema.parse({
     records: [...recordsByBooking.values()],

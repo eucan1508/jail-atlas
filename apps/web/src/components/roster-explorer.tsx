@@ -10,6 +10,16 @@ function ChargeDetails({ charge }: { charge: PublicRosterRecord["charges"][numbe
       <strong>{charge.description}</strong>
       {charge.sourceLabel ? <span>{charge.sourceLabel}</span> : null}
       {charge.statuteCode ? <span>Code {charge.statuteCode}</span> : null}
+      {charge.notes.length > 0 ? (
+        <dl className="charge-notes" aria-label="What this charge text means">
+          {charge.notes.map((note) => (
+            <div key={note.term}>
+              <dt>{note.term}</dt>
+              <dd>{note.meaning}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
     </>
   );
 }

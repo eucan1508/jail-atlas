@@ -347,6 +347,96 @@ describe("sheriff roster site adapter", () => {
     expect(JSON.stringify(result.snapshot)).not.toContain("999002");
   });
 
+  it("reads every charge from the profile page when a card ends with '+ N more charges'", async () => {
+    // Robertson County, TX shows the first charge on the card and links the rest to the profile.
+    const config = CLEBURNE_COUNTY_AR_ROSTER;
+    const profileId = "0123456789abcdef0123456b";
+    const roster = rosterPathPage("Cleburne County", 1, [
+      {
+        bookingNumber: "1235",
+        name: "TESTER, EPSILON",
+        profileId,
+        charges: ["SYNTHETIC OFFENSE ONE", "+ 2 more charges"]
+      }
+    ]);
+    const profile = (charges: readonly string[], bookingNumber = "1235") =>
+      `<!doctype html><html><head><title>TESTER, EPSILON - Roster | Cleburne County Sheriff's Office</title></head><body>
+        <div><strong>Booking Number:</strong></div><div>${bookingNumber}</div>
+        <table><tr><th>Charge</th><th>Bond</th></tr>
+        ${charges.map((charge) => `<tr><td>${charge}</td><td>$0.00</td></tr>`).join("")}</table>
+        ${charges
+          .map(
+            (charge) =>
+              `<div><strong>Charge:</strong></div><div>${charge}</div><div><strong>Bond:</strong></div><div>$0.00</div>`
+          )
+          .join("")}
+      </body></html>`;
+    const run = (profileHtml: string) =>
+      runSourceAdapter(
+        createSheriffRosterSiteAdapter(config, {
+          fetch: async (input) =>
+            input === cleburnePage(1)
+              ? new Response(roster)
+              : input === `https://www.cleburnearso.gov/inmate-roster/${profileId}`
+                ? new Response(profileHtml)
+                : new Response("missing", { status: 404 }),
+          facilityId: "00000000-0000-4000-8000-000000000084",
+          createId: idFactory()
+        }),
+        context(config)
+      );
+
+    const result = await run(
+      profile(["SYNTHETIC OFFENSE ONE", "SYNTHETIC OFFENSE TWO", "SYNTHETIC OFFENSE THREE"])
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
+      "SYNTHETIC OFFENSE ONE",
+      "SYNTHETIC OFFENSE TWO",
+      "SYNTHETIC OFFENSE THREE"
+    ]);
+
+    // A profile that disagrees with the card (count, first charge, or person) is never published.
+    for (const mismatch of [
+      profile(["SYNTHETIC OFFENSE ONE", "SYNTHETIC OFFENSE TWO"]),
+      profile(["SYNTHETIC OFFENSE OTHER", "SYNTHETIC OFFENSE TWO", "SYNTHETIC OFFENSE THREE"]),
+      profile(["SYNTHETIC OFFENSE ONE", "SYNTHETIC OFFENSE TWO", "SYNTHETIC OFFENSE THREE"], "9999")
+    ]) {
+      const failed = await run(mismatch);
+      expect(failed.ok).toBe(false);
+      if (failed.ok) continue;
+      expect(failed.failure.diagnosticCode).toMatch(
+        /^CLEBURNE_COUNTY_AR_PROFILE_(CHARGES|IDENTITY)_MISMATCH$/
+      );
+    }
+  });
+
+  it("does not publish a cut-short charge list from a roster.php site", async () => {
+    const config = JEFFERSON_COUNTY_AR_ROSTER;
+    const result = await runSourceAdapter(
+      adapter(
+        config,
+        new Map([
+          [
+            config.sourceUrl,
+            rosterPhpPage("Jefferson County", 1, [
+              {
+                bookingNumber: "900001",
+                name: "TESTER, ALPHA — TEST ONLY",
+                charges: ["HOLD", "+ 1 more charge"]
+              }
+            ])
+          ]
+        ])
+      ),
+      context(config)
+    );
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toBe("JEFFERSON_COUNTY_AR_CHARGES_TRUNCATED");
+  });
+
   it("starts the crawl again when the roster changes between pages", async () => {
     const config = JEFFERSON_COUNTY_AR_ROSTER;
     let firstPageRequests = 0;

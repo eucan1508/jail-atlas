@@ -6,7 +6,12 @@ export const maximumRosterPageSize = 25;
 export const PublicChargeSchema = z.object({
   description: z.string().min(1).max(1_000),
   sourceLabel: z.string().max(150).nullable(),
-  statuteCode: z.string().max(100).nullable()
+  statuteCode: z.string().max(100).nullable(),
+  /** Plain-English notes for abbreviations and statute citations in the charge text. */
+  notes: z
+    .array(z.object({ term: z.string().min(1).max(80), meaning: z.string().min(1).max(400) }))
+    .max(10)
+    .default([])
 });
 
 export const PublicRosterRecordSchema = z.object({

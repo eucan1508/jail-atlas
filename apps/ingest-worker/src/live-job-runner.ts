@@ -263,7 +263,9 @@ export function createLiveSourceAdapter(
                           // custody list query as a JSON post.
                           jailPortalPaths(portal)
                         : rosterSite?.layout === "inmate-roster-path"
-                          ? [sourceUrl.pathname.replace(/\/\d+$/, "")]
+                          ? // Roster pages, plus the profile pages that list every charge when a
+                            // card cuts its list short ("+ 2 more charges").
+                            ["/inmate-roster"]
                           : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.

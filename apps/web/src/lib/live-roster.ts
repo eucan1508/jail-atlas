@@ -17,7 +17,12 @@ import {
   normalizeRosterSearch
 } from "./roster";
 import { PublicRosterRecordSchema, RosterPageSchema, type RosterPage } from "./roster-contract";
-import { countyCoverageCatalog, type CountyCoverageBrief } from "./coverage-catalog";
+import { explainCharge } from "./charge-decoder";
+import {
+  countyCoverageCatalog,
+  type CountyCoverageBrief,
+  type CoverageState
+} from "./coverage-catalog";
 
 // Keyed by "state/county" because county names repeat across states (Dallas County, IA and AR).
 const liveAdapterKeys: Record<string, string> = {
@@ -157,6 +162,7 @@ const SourceRowSchema = z.object({
 });
 export type LiveSource = {
   sourceId: string;
+  state: CoverageState;
   sourceUrl: string;
   snapshotId: string;
   capturedAt: Date;
@@ -276,6 +282,7 @@ async function readSourceStatus(
     kind: "live",
     source: {
       sourceId: row.source_id,
+      state: entry.state,
       sourceUrl: row.source_url,
       snapshotId: row.snapshot_id,
       capturedAt: row.captured_at,
@@ -382,7 +389,10 @@ export async function getLiveRosterPage({
           bookingIdentifier: row.source_identifies_as_booking_identifier
             ? row.booking_identifier_value
             : null,
-          charges: row.charges,
+          charges: row.charges.map((charge) => ({
+            ...charge,
+            notes: explainCharge(source.state, charge.description, charge.statuteCode)
+          })),
           displayName: row.display_name,
           recordKey: row.record_key,
           sourceOrder: row.source_order

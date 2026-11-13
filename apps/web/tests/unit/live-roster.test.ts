@@ -38,7 +38,10 @@ function booking(index: number) {
     booking_identifier_value: null,
     source_identifies_as_booking_identifier: false,
     booked_at: null,
-    charges: [{ description: "SYNTHETIC CHARGE", sourceLabel: "Charge", statuteCode: null }]
+    charges: [
+      { description: "SYNTHETIC CHARGE", sourceLabel: "Charge", statuteCode: null },
+      { description: "SYNTHETIC OWI CHARGE", sourceLabel: "Charge", statuteCode: "321J.2(2)(a)" }
+    ]
   };
 }
 beforeEach(() => {
@@ -63,6 +66,7 @@ describe("live roster publication", () => {
     const entry = findCountyCoverage("iowa", "dallas-county")!;
     expect(await getLiveCountySource(entry)).toEqual({
       sourceId,
+      state: "iowa",
       snapshotId,
       sourceUrl: source().source_url,
       capturedAt: new Date(source().captured_at),
@@ -98,6 +102,12 @@ describe("live roster publication", () => {
       expect(page.records).toHaveLength(Math.min(25, 84 - start));
       expect(page.endOfResults).toBe(start === 75);
       expect(page.records[0]).not.toHaveProperty("bonds");
+      // Notes are added on the server from the county's state; plain text gets none.
+      expect(page.records[0]?.charges[0]?.notes).toEqual([]);
+      expect(page.records[0]?.charges[1]?.notes.map((note) => note.term)).toEqual([
+        "Iowa Code 321J.2",
+        "OWI"
+      ]);
       cursor = page.nextCursor ?? undefined;
       if (cursor) expect(decodeRosterCursor(cursor, sourceId).snapshotId).toBe(snapshotId);
     }
