@@ -38,6 +38,11 @@ export interface SheriffRosterSiteConfig {
   readonly sourceUrl: string;
   readonly parserVersion: string;
   readonly layout: SheriffRosterLayout;
+  /**
+   * Read every person's charges from their profile page. For sites whose roster cards no longer
+   * list charges (inmate-roster-path layout only).
+   */
+  readonly chargesFromProfile?: boolean;
 }
 
 const MAX_PAGES = 40;
@@ -48,6 +53,7 @@ const ROSTER_PATH_PREFIX = "/inmate-roster/filters/current/booking_time=desc/";
 // Cards with many charges end the list with "+ 2 more charges"; the profile page has them all.
 const MORE_CHARGES = /^\+ ?(\d{1,3}) more charges?$/i;
 const MAX_PROFILE_PAGES = 150;
+const MIN_RECORDS_FOR_CHARGE_CHECK = 10;
 
 const SheriffRosterRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
@@ -229,7 +235,8 @@ interface TruncatedCharges {
   readonly bookingNumber: string;
   readonly profileUrl: string;
   readonly listed: readonly string[];
-  readonly expectedCount: number;
+  /** Charges the profile must list, or null when the card listed none to compare against. */
+  readonly expectedCount: number | null;
 }
 
 function parsePage(
@@ -302,12 +309,16 @@ function parsePage(
     const moreCharges = listedCharges.at(-1)?.match(MORE_CHARGES);
     const charges = moreCharges ? listedCharges.slice(0, -1) : listedCharges;
     if (charges.some((charge) => MORE_CHARGES.test(charge))) throw new Error("CHARGE_LIST_CHANGED");
-    if (moreCharges) {
+    if (moreCharges || config.chargesFromProfile) {
       truncated.set(bookingNumber, {
         bookingNumber,
         profileUrl: profileUrl.href,
         listed: charges,
-        expectedCount: charges.length + Number(moreCharges[1])
+        expectedCount: moreCharges
+          ? charges.length + Number(moreCharges[1])
+          : charges.length > 0
+            ? charges.length
+            : null
       });
     }
     const record = SheriffRosterRecordSchema.parse({
@@ -355,7 +366,7 @@ export function parseProfileCharges(
       : []
   );
   if (
-    charges.length !== expected.expectedCount ||
+    (expected.expectedCount !== null && charges.length !== expected.expectedCount) ||
     charges.some((charge) => !charge || /^[A-Za-z #()]+:$/.test(charge)) ||
     expected.listed.some((charge, index) => charges[index] !== charge)
   ) {
@@ -443,10 +454,15 @@ async function crawlRoster(
       charges: parseProfileCharges(html, config, entry)
     });
   }
-  return SheriffRosterSchema.parse({
-    records: [...recordsByBooking.values()],
-    validEmptyMarker: declaredTotal === 0
-  });
+  const records = [...recordsByBooking.values()];
+  // A roster of real size where nobody has a charge means the charge field moved or vanished.
+  if (
+    records.length >= MIN_RECORDS_FOR_CHARGE_CHECK &&
+    records.every((r) => r.charges.length === 0)
+  ) {
+    throw new Error("CHARGES_MISSING");
+  }
+  return SheriffRosterSchema.parse({ records, validEmptyMarker: declaredTotal === 0 });
 }
 
 async function requestRoster(
