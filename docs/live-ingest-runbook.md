@@ -116,10 +116,12 @@ with the adapter records disabled and publication approval off.
    The Sharp, Stone, Lonoke, Independence, Dallas, Newton, and Searcy County rosters are hosted by
    their roster service at `www.myr2m.com` and read by `myr2m-roster.ts`, which pages with ASP.NET
    form posts (the only source allowed to POST) and must match both the "shown out of N total" line
-   and the roster's name list:
+   and the roster's name list. Sebastian County's NewWorld inmate inquiry
+   (`inmate.sebastiancountyar.gov`, `sebastian-county-ar.ts`) is read like Dallas County, Iowa: the
+   in-custody list, then each person's detail page for the current booking's charges:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.hempsteadcountysheriff.org,www.izardcountysheriff.org,www.crosscountysheriff.org,www.carrollcountysheriffar.gov,www.poinsettsheriffar.gov,www.myr2m.com
+   SOURCE_HOST_ALLOWLIST=www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.hempsteadcountysheriff.org,www.izardcountysheriff.org,www.crosscountysheriff.org,www.carrollcountysheriffar.gov,www.poinsettsheriffar.gov,www.myr2m.com,inmate.sebastiancountyar.gov
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AR --dry-run
    ```
 
@@ -169,10 +171,12 @@ with the adapter records disabled and publication approval off.
    Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, and DeKalb counties through
    the same shared sheriff roster adapter, configured in `alabama-rosters.ts`. Franklin and Chilton
    use the `roster.php?grp=` layout and the others the `/inmate-roster/filters/current/...` paths;
-   each must collect exactly the "Inmate Roster (N)" count:
+   each must collect exactly the "Inmate Roster (N)" count. Mobile County's Metro Jail publishes a
+   single "Current Inmates" report (`all.mobileso.com`, `mobile-county-al.ts`); the download must be
+   complete and list at least 200 people:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 

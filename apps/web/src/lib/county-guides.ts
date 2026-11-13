@@ -2917,6 +2917,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/mobile-county": {
+    facilityName: "Mobile County Metro Jail",
+    address: "450 St. Emmanuel Street, Mobile, AL",
+    phone: "251-574-6412",
+    operatedBy: "Mobile County Sheriff's Office",
+    reviewedAt: "November 13, 2026",
+    overview:
+      "The Mobile County Sheriff's Office runs Metro Jail, the detention facility for the county and the City of Mobile. It holds an average of about 1,500 people a day in a main jail and a minimum-security barracks. For information about someone held there, the Sheriff's automated line is 251-574-6412; the Sheriff's Office main number is 251-574-2423.",
+    contactSourceLabel: "Official Metro Jail page",
+    contactSourceUrl: "https://www.mobileso.com/metro-jail-2/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Personal visits are video visits, registered and scheduled through GettingOut, one day to seven days ahead. Onsite video visits at Metro Jail are free; remote visits run seven days a week. Visitors must be on the inmate's approved list (four at most) and signed in 15 minutes early. Registration is also possible in the Metro Jail lobby at 450 St. Emmanuel Street on weekdays, or by phone at 866-516-0115. Only clergy, medical, and legal visitors meet face to face.",
+        sourceLabel: "Official Metro Jail page",
+        sourceUrl: "https://www.mobileso.com/metro-jail-2/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits to inmate trust accounts are made through InmateCanteen.com; the Sheriff asks that questions about that service go to its support channels rather than the jail. Since September 1, 2023, the money clerks no longer accept money orders for deposit.",
+        sourceLabel: "Official Metro Jail page",
+        sourceUrl: "https://www.mobileso.com/metro-jail-2/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail must be a metered postcard no larger than 4 by 6 inches, with no postage stamps, a full return address, and the inmate's full name and date of birth if known, addressed to Mobile County Metro Jail, P.O. Box 104, Mobile, Alabama 36601. Padded envelopes are refused, and mail that arrives after a release is returned to sender.",
+        sourceLabel: "Official Metro Jail page",
+        sourceUrl: "https://www.mobileso.com/metro-jail-2/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's pages do not explain how to post bond. Call the Sheriff's automated line at 251-574-6412 or the Sheriff's Office at 251-574-2423 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official Metro Jail page",
+        sourceUrl: "https://www.mobileso.com/metro-jail-2/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at Mobile County Metro Jail?",
+        answer:
+          "Register and schedule a video visit through GettingOut, one to seven days ahead. Onsite video visits at the jail are free, and you must be on the inmate's approved visitor list."
+      },
+      {
+        question: "How do I send mail to a Mobile County Metro Jail inmate?",
+        answer:
+          "Send a metered postcard (no stamps, no larger than 4 by 6 inches) with your full return address to the inmate's full name and date of birth, Mobile County Metro Jail, P.O. Box 104, Mobile, Alabama 36601."
+      },
+      {
+        question: "How do I put money on a Mobile County inmate's account?",
+        answer: "Use InmateCanteen.com. The jail's money clerks no longer accept money orders."
+      },
+      {
+        question: "How many people does Metro Jail hold?",
+        answer:
+          "The Sheriff's Office says Metro Jail houses an average of about 1,500 people a day for Mobile County and the City of Mobile."
+      }
+    ]
+  },
+
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
     address: "518 Parallel Street, Atchison, KS 66002",
@@ -6640,6 +6699,69 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "arkansas/sebastian-county": {
+    facilityName: "Sebastian County Adult Detention Center",
+    address: "801 South A Street, Fort Smith, AR 72901",
+    phone: "479-783-4988",
+    operatedBy: "Sebastian County Sheriff's Office",
+    reviewedAt: "November 13, 2026",
+    overview:
+      "The Sebastian County Sheriff's Office runs the Adult Detention Center at 801 South A Street in Fort Smith. The Sheriff's inmate inquiry lists everyone currently held there, and the detention center's own pages explain visits, mail, deposits, and the two bond types it uses.",
+    contactSourceLabel: "Official Adult Detention Center page",
+    contactSourceUrl:
+      "https://www.sebastiancountyar.gov/Sheriff/Adult-Detention-Center/Inmate-Search",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visitors register and schedule visits through CorrectPay, or at a kiosk in the detention center lobby for those without a device. Visits can be booked only two days ahead, are recorded, and can be cancelled for unforeseen reasons. Each inmate is allowed two visits a week.",
+        sourceLabel: "Official visitation page",
+        sourceUrl:
+          "https://www.sebastiancountyar.gov/Sheriff/Adult-Detention-Center/Inmate-Visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits go through the lobby kiosk, CSGpay.com, or 1-877-618-3516, using facility number 24065. Funds can go to an inmate's commissary account, an inmate PIN debit phone account, or a prepaid account for your own phone number. Inmates can also use the money for fines or to pay their way out of jail.",
+        sourceLabel: "Official money page",
+        sourceUrl:
+          "https://www.sebastiancountyar.gov/Sheriff/Adult-Detention-Center/Sending-Inmate-Money"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to the inmate's first and last name and ID number (the Subject Number on the inmate inquiry), Sebastian County Detention Center, P.O. Box 247, Phoenix, MD 21131. It is scanned and delivered on kiosks or tablets, and the original is destroyed. Only legal and commercial mail goes to 801 South A Street. Electronic messages can be sent through CorrectPay.",
+        sourceLabel: "Official mail page",
+        sourceUrl:
+          "https://www.sebastiancountyar.gov/Sheriff/Adult-Detention-Center/Sending-Inmate-Mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The detention center lists two bond types: legally sufficient bonds are posted through a bonding agency, and cash-only bonds are paid in cash to the Fort Smith Police Department or the detention center, depending on where the charges were filed. For a copy of the actual charge, contact the Sebastian County Circuit Clerk.",
+        sourceLabel: "Official inmate search and bond page",
+        sourceUrl: "https://www.sebastiancountyar.gov/Sheriff/Adult-Detention-Center/Inmate-Search"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Sebastian County jail?",
+        answer:
+          "Register with CorrectPay and schedule the visit there, up to two days ahead, or use the kiosk in the detention center lobby. Each inmate gets two visits a week."
+      },
+      {
+        question: "Where do I send mail to a Sebastian County inmate?",
+        answer:
+          "Write the inmate's name and Subject Number on the envelope and mail it to Sebastian County Detention Center, P.O. Box 247, Phoenix, MD 21131. Legal and commercial mail goes to 801 South A Street, Fort Smith."
+      },
+      {
+        question: "How do I put money on a Sebastian County inmate's account?",
+        answer: "Use the lobby kiosk, CSGpay.com, or 1-877-618-3516 with facility number 24065."
+      },
+      {
+        question: "How is bond posted at the Sebastian County jail?",
+        answer:
+          "Legally sufficient bonds go through a bonding agency; cash-only bonds are paid in cash to the Fort Smith Police Department or the detention center, depending on where the charges were filed."
+      }
+    ]
+  },
+
   "arkansas/dallas-county": {
     facilityName: "Dallas County Jail",
     address: "106 South Charlotte, Fordyce, AR 71742",

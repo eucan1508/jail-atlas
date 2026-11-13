@@ -94,6 +94,7 @@ the same roster software but were left out because their sites do not publish al
 | Newton       | [Newton County Sheriff inmate roster](https://www.myr2m.com/NewtonCoRoster/)                                                          | Adapter tested; production approval pending |
 | Searcy       | [Searcy County Sheriff inmate roster](https://www.myr2m.com/SearcyCoRoster/)                                                          | Adapter tested; production approval pending |
 | Pulaski      | [Pulaski County Regional Detention Facility inmate roster](https://correctionsrecordssearch.com/arpulaskicounty)                      | Adapter tested; production approval pending |
+| Sebastian    | [Sebastian County Sheriff inmate inquiry](https://inmate.sebastiancountyar.gov/NewWorld.InmateInquiry/AR0660000?InCustody=True)       | Adapter tested; production approval pending |
 
 ## Oklahoma
 
@@ -168,6 +169,7 @@ Kansas, Arkansas, and Texas counties above.
 | Marshall  | [Marshall County Sheriff inmate roster](https://www.marshallso.org/inmate-roster/filters/current/booking_time=desc/1)            | Adapter tested; production approval pending |
 | Marion    | [Marion County Sheriff inmate roster](https://www.marionsoal.com/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
 | DeKalb    | [DeKalb County Sheriff inmate roster](https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+| Mobile    | [Mobile County Sheriff current inmates report](https://all.mobileso.com/OthReports/CurrentInmates.aspx)                          | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

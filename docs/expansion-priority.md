@@ -43,54 +43,54 @@ Jail population is the Texas 2022 count where given, or the live roster size mea
 evaluating. "Check" means the official roster has not yet been confirmed to publish a full current
 list (rather than a name-only search).
 
-| #   | County          | State | Jail pop. | Known source / blocker                                                                                | Status           |
-| --- | --------------- | ----- | --------- | ----------------------------------------------------------------------------------------------------- | ---------------- |
-| 1   | Jefferson       | TX    | ~1,035    | Full roster PDF on jeffersoncountytx.gov; above the 1,000-record cap                                  | Added 2026-11-12 |
-| 2   | Madison         | AL    | ~1,234    | Card list hides extra charges behind '+ N more'; reading them needs ~750 profile requests per refresh | Skipped          |
-| 3   | Pulaski         | AR    | ~1,337    | Added from the Sheriff-linked records-search instance (arpulaskicounty), not the Zuercher portal      | Added 2026-11-12 |
-| 4   | Lubbock         | TX    | 1,325     | Check (a printable full roster is reported)                                                           | To do            |
-| 5   | Bell            | TX    | 1,022     | Check (roster and recent bookings reported)                                                           | To do            |
-| 6   | Oklahoma County | OK    | large     | Check                                                                                                 | To do            |
-| 7   | Tulsa           | OK    | large     | Check                                                                                                 | To do            |
-| 8   | Sedgwick        | KS    | large     | Check                                                                                                 | To do            |
-| 9   | Tarrant         | TX    | 4,024     | Check (likely name search only)                                                                       | To do            |
-| 10  | Dallas          | TX    | 5,964     | Check (likely name search only)                                                                       | To do            |
-| 11  | Harris          | TX    | 9,499     | Check (likely name search only)                                                                       | To do            |
-| 12  | Bexar           | TX    | 4,557     | Check (likely name search only)                                                                       | To do            |
-| 13  | Travis          | TX    | 2,236     | Check                                                                                                 | To do            |
-| 14  | El Paso         | TX    | 2,217     | Check                                                                                                 | To do            |
-| 15  | Hidalgo         | TX    | 1,325     | Check                                                                                                 | To do            |
-| 16  | McLennan        | TX    | 1,351     | Check                                                                                                 | To do            |
-| 17  | Nueces          | TX    | 1,128     | Check                                                                                                 | To do            |
-| 18  | Denton          | TX    | 1,053     | Check                                                                                                 | To do            |
-| 19  | Smith           | TX    | 1,050     | Check                                                                                                 | To do            |
-| 20  | Cameron         | TX    | 1,028     | Check                                                                                                 | To do            |
-| 21  | Collin          | TX    | 1,021     | Check                                                                                                 | To do            |
-| 22  | Brazoria        | TX    | 954       | Check                                                                                                 | To do            |
-| 23  | Galveston       | TX    | 850       | Check                                                                                                 | To do            |
-| 24  | Montgomery      | TX    | 874       | Check                                                                                                 | To do            |
-| 25  | Fort Bend       | TX    | 733       | Check                                                                                                 | To do            |
-| 26  | Johnson         | TX    | 825       | Check                                                                                                 | To do            |
-| 27  | Ector           | TX    | 762       | Check                                                                                                 | To do            |
-| 28  | Taylor          | TX    | 717       | Check                                                                                                 | To do            |
-| 29  | Gregg           | TX    | 688       | Check                                                                                                 | To do            |
-| 30  | Williamson      | TX    | 595       | Check                                                                                                 | To do            |
-| 31  | Mobile          | AL    | large     | Check                                                                                                 | To do            |
-| 32  | Jefferson       | AL    | large     | Check                                                                                                 | To do            |
-| 33  | Montgomery      | AL    | large     | Check                                                                                                 | To do            |
-| 34  | Jackson         | MO    | large     | Check                                                                                                 | To do            |
-| 35  | St. Louis Co.   | MO    | large     | Check                                                                                                 | To do            |
-| 36  | Greene          | MO    | large     | Check                                                                                                 | To do            |
-| 37  | Johnson         | KS    | large     | Check                                                                                                 | To do            |
-| 38  | Wyandotte       | KS    | large     | Check                                                                                                 | To do            |
-| 39  | Cleveland       | OK    | mid       | Check                                                                                                 | To do            |
-| 40  | Washington      | AR    | mid       | Check                                                                                                 | To do            |
-| 41  | Sebastian       | AR    | mid       | Check                                                                                                 | To do            |
-| 42  | Benton          | AR    | ~668      | Portal reads cleanly; official site blocks automated access (no guide)                                | Blocked          |
-| 43  | Brazos          | TX    | 586       | Check                                                                                                 | To do            |
-| 44  | Potter          | TX    | 533       | Check                                                                                                 | To do            |
-| 45  | Ellis           | TX    | 515       | Check                                                                                                 | To do            |
-| 46  | Wichita         | TX    | 510       | Check                                                                                                 | To do            |
+| #   | County          | State | Jail pop.  | Known source / blocker                                                                                | Status           |
+| --- | --------------- | ----- | ---------- | ----------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Jefferson       | TX    | ~1,035     | Full roster PDF on jeffersoncountytx.gov; above the 1,000-record cap                                  | Added 2026-11-12 |
+| 2   | Madison         | AL    | ~1,234     | Card list hides extra charges behind '+ N more'; reading them needs ~750 profile requests per refresh | Skipped          |
+| 3   | Pulaski         | AR    | ~1,337     | Added from the Sheriff-linked records-search instance (arpulaskicounty), not the Zuercher portal      | Added 2026-11-12 |
+| 4   | Lubbock         | TX    | 1,325      | publicrecords.lubbockcounty.gov returns an empty page to automated requests                           | Blocked          |
+| 5   | Bell            | TX    | 1,022      | NewWorld inquiry server sends an incomplete TLS certificate chain                                     | Blocked          |
+| 6   | Oklahoma County | OK    | large      | JailTracker portal requires a CAPTCHA                                                                 | Skipped          |
+| 7   | Tulsa           | OK    | large      | 365labs inmate list requires a reCAPTCHA                                                              | Skipped          |
+| 8   | Sedgwick        | KS    | large      | Name search only; page forbids unauthorized use of the data                                           | Skipped          |
+| 9   | Tarrant         | TX    | 4,024      | Name or CID search only                                                                               | Skipped          |
+| 10  | Dallas          | TX    | 5,964      | Name or booking search only, with a search limit                                                      | Skipped          |
+| 11  | Harris          | TX    | 9,499      | Name search only, behind a CAPTCHA                                                                    | Skipped          |
+| 12  | Bexar           | TX    | 4,557      | County site answers automated requests with HTTP 429                                                  | Blocked          |
+| 13  | Travis          | TX    | 2,236      | Name search only (SIP)                                                                                | Skipped          |
+| 14  | El Paso         | TX    | 2,217      | Check                                                                                                 | To do            |
+| 15  | Hidalgo         | TX    | 1,325      | Check                                                                                                 | To do            |
+| 16  | McLennan        | TX    | 1,351      | Check                                                                                                 | To do            |
+| 17  | Nueces          | TX    | 1,128      | Check                                                                                                 | To do            |
+| 18  | Denton          | TX    | 1,053      | Name search only (Odyssey jail records)                                                               | Skipped          |
+| 19  | Smith           | TX    | 1,050      | Tyler Jail Search portal; full list not confirmed                                                     | Skipped          |
+| 20  | Cameron         | TX    | 1,028      | List mixes current inmates with people released in the last 7 days                                    | Skipped          |
+| 21  | Collin          | TX    | 1,021      | Judicial search requires a CAPTCHA                                                                    | Skipped          |
+| 22  | Brazoria        | TX    | 954        | Check                                                                                                 | To do            |
+| 23  | Galveston       | TX    | 850        | Check                                                                                                 | To do            |
+| 24  | Montgomery      | TX    | 874        | Inmate lookup requires an account and Cloudflare check                                                | Skipped          |
+| 25  | Fort Bend       | TX    | 733        | Name search only                                                                                      | Skipped          |
+| 26  | Johnson         | TX    | 825        | Check                                                                                                 | To do            |
+| 27  | Ector           | TX    | 762        | Check                                                                                                 | To do            |
+| 28  | Taylor          | TX    | 717        | Check                                                                                                 | To do            |
+| 29  | Gregg           | TX    | 688        | Check                                                                                                 | To do            |
+| 30  | Williamson      | TX    | 595        | Check                                                                                                 | To do            |
+| 31  | Mobile          | AL    | ~1,550     | Sheriff's "Current Inmates" report (all.mobileso.com)                                                 | Added 2026-11-13 |
+| 32  | Jefferson       | AL    | large      | County site answers automated requests with HTTP 403                                                  | Blocked          |
+| 33  | Montgomery      | AL    | large      | Sheriff site unreachable from automated requests                                                      | Blocked          |
+| 34  | Jackson         | MO    | large      | Name search only                                                                                      | Skipped          |
+| 35  | St. Louis Co.   | MO    | large      | County site answers automated requests with HTTP 403                                                  | Blocked          |
+| 36  | Greene          | MO    | large      | No public roster link on the Sheriff site                                                             | Skipped          |
+| 37  | Johnson         | KS    | large      | Name search only                                                                                      | Skipped          |
+| 38  | Wyandotte       | KS    | large      | Vendor search unreachable (HTTP only)                                                                 | Blocked          |
+| 39  | Cleveland       | OK    | mid        | No public roster link on the Sheriff site                                                             | Skipped          |
+| 40  | Washington      | AR    | mid        | No public roster link on the Sheriff site                                                             | Skipped          |
+| 41  | Sebastian       | AR    | mid (~370) | NewWorld inmate inquiry on the county domain                                                          | Added 2026-11-13 |
+| 42  | Benton          | AR    | ~668       | Portal reads cleanly; official site blocks automated access (no guide)                                | Blocked          |
+| 43  | Brazos          | TX    | 586        | Check                                                                                                 | To do            |
+| 44  | Potter          | TX    | 533        | Check                                                                                                 | To do            |
+| 45  | Ellis           | TX    | 515        | Check                                                                                                 | To do            |
+| 46  | Wichita         | TX    | 510        | Check                                                                                                 | To do            |
 
 ## New states, in order (owner approval required before starting each)
 

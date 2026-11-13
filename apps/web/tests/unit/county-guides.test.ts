@@ -77,6 +77,7 @@ const liveCountyKeys = [
   "arkansas/newton-county",
   "arkansas/searcy-county",
   "arkansas/pulaski-county",
+  "arkansas/sebastian-county",
   "oklahoma/wagoner-county",
   "oklahoma/lincoln-county",
   "oklahoma/pawnee-county",
@@ -119,7 +120,8 @@ const liveCountyKeys = [
   "alabama/jackson-county",
   "alabama/marshall-county",
   "alabama/marion-county",
-  "alabama/dekalb-county"
+  "alabama/dekalb-county",
+  "alabama/mobile-county"
 ] as const;
 
 describe("verified county guides", () => {

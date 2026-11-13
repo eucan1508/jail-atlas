@@ -33,6 +33,7 @@ import {
   BLACK_HAWK_COUNTY_ADAPTER_KEY,
   CEDAR_COUNTY_ADAPTER_KEY,
   DALLAS_COUNTY_ADAPTER_KEY,
+  SEBASTIAN_COUNTY_AR_ADAPTER_KEY,
   createCrowWingCountySourceAdapter,
   CROW_WING_COUNTY_ADAPTER_KEY,
   createRenvilleCountySourceAdapter,
@@ -60,6 +61,7 @@ import {
   MEEKER_COUNTY_ADAPTER_KEY,
   createJeffersonCountyTxSourceAdapter,
   JEFFERSON_COUNTY_TX_ADAPTER_KEY,
+  MOBILE_COUNTY_AL_ADAPTER_KEY,
   createPulaskiCountyArSourceAdapter,
   PULASKI_COUNTY_AR_ADAPTER_KEY,
   createWilkinCountySourceAdapter,
@@ -126,6 +128,8 @@ import {
   createDouglasCountySourceAdapter,
   DOUGLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
+  createMobileCountySourceAdapter,
+  createSebastianCountySourceAdapter,
   createHutchinsonCountySourceAdapter,
   HUTCHINSON_COUNTY_ADAPTER_KEY,
   createKendallCountySourceAdapter,
@@ -307,8 +311,10 @@ export function createLiveSourceAdapter(
       : {}),
     // The Polk County current list is a single page of about 1 MB, the Woodbury County "All"
     // search runs about 1.4 KB per person, the Cottonwood and Redwood County jail roster
-    // reports about 10-15 KB, and a jail portal list carries a ~4 KB photo per person.
+    // reports about 10-15 KB, a jail portal list carries a ~4 KB photo per person, and the
+    // Mobile County current-inmates report runs about 400 bytes per person.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === MOBILE_COUNTY_AL_ADAPTER_KEY ||
     rosterReport !== undefined ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
     source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY ||
@@ -319,6 +325,14 @@ export function createLiveSourceAdapter(
 
   if (source.adapterKey === DALLAS_COUNTY_ADAPTER_KEY) {
     return createDallasCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId,
+      currency: "USD"
+    });
+  }
+  if (source.adapterKey === SEBASTIAN_COUNTY_AR_ADAPTER_KEY) {
+    return createSebastianCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId,
@@ -408,6 +422,13 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
     return createBentonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === MOBILE_COUNTY_AL_ADAPTER_KEY) {
+    return createMobileCountySourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

@@ -101,6 +101,7 @@ const liveAdapterKeys: Record<string, string> = {
   "arkansas/newton-county": "newton-county-ar-current-roster",
   "arkansas/searcy-county": "searcy-county-ar-current-roster",
   "arkansas/pulaski-county": "pulaski-county-ar-current-roster",
+  "arkansas/sebastian-county": "sebastian-county-ar-current-roster",
   "oklahoma/wagoner-county": "wagoner-county-ok-current-roster",
   "oklahoma/lincoln-county": "lincoln-county-ok-current-roster",
   "oklahoma/pawnee-county": "pawnee-county-ok-current-roster",
@@ -143,7 +144,8 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/jackson-county": "jackson-county-al-current-roster",
   "alabama/marshall-county": "marshall-county-al-current-roster",
   "alabama/marion-county": "marion-county-al-current-roster",
-  "alabama/dekalb-county": "dekalb-county-al-current-roster"
+  "alabama/dekalb-county": "dekalb-county-al-current-roster",
+  "alabama/mobile-county": "mobile-county-al-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

@@ -772,6 +772,24 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceLabel: "Pulaski County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
   },
+  {
+    state: "arkansas",
+    stateName: "Arkansas",
+    county: "Sebastian County",
+    slug: "sebastian-county",
+    publishedAt: "2026-11-13",
+    seatCity: "Fort Smith",
+    h1: "Sebastian County Jail Roster & Inmate Search",
+    title: "Sebastian County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Sebastian County, Arkansas current-inmate information for the Adult Detention Center in Fort Smith from the official Sheriff's inmate inquiry, with source-listed charges and capture time.",
+    article:
+      "The Sebastian County Sheriff's Office runs the Adult Detention Center at 801 South A Street in Fort Smith and publishes an inmate inquiry of everyone currently held. This page reads each current booking and its source-listed charges, and leaves out birth dates, home addresses, photos, physical descriptions, and arresting agencies.",
+    officialSourceUrl:
+      "https://inmate.sebastiancountyar.gov/NewWorld.InmateInquiry/AR0660000?InCustody=True",
+    officialSourceLabel: "Sebastian County Sheriff's Office inmate inquiry",
+    sourceStatus: "audit_pending"
+  },
 
   {
     state: "arkansas",
@@ -2107,6 +2125,23 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl:
       "https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "DeKalb County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Mobile County",
+    slug: "mobile-county",
+    publishedAt: "2026-11-13",
+    seatCity: "Mobile",
+    h1: "Mobile County Jail Roster & Inmate Search",
+    title: "Mobile County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Mobile County, Alabama current-inmate information for Metro Jail in Mobile from the Sheriff's official current-inmates report, with source-listed charges and capture time.",
+    article:
+      "The Mobile County Sheriff's Office runs Metro Jail, which holds about 1,500 people a day for the county and the City of Mobile, and publishes a report of everyone currently held. This page reads that report with each person's source-listed charges and leaves out booking dates, bond amounts, and case numbers.",
+    officialSourceUrl: "https://all.mobileso.com/OthReports/CurrentInmates.aspx",
+    officialSourceLabel: "Mobile County Sheriff's Office current inmates report",
     sourceStatus: "audit_pending"
   }
 ];
