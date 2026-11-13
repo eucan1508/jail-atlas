@@ -387,6 +387,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "pulaski",
       adapterKey: "pulaski-county-ar-current-roster",
       sourceHost: "api.correctionsrecordssearch.com"
+    },
+    {
+      countySlug: "sebastian",
+      adapterKey: "sebastian-county-ar-current-roster",
+      sourceHost: "inmate.sebastiancountyar.gov"
     }
   ],
   OK: [
@@ -610,6 +615,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "dekalb",
       adapterKey: "dekalb-county-al-current-roster",
       sourceHost: "www.dekalbcountysheriff.org"
+    },
+    {
+      countySlug: "mobile",
+      adapterKey: "mobile-county-al-current-roster",
+      sourceHost: "all.mobileso.com"
     }
   ]
 };
