@@ -412,6 +412,57 @@ describe("sheriff roster site adapter", () => {
     }
   });
 
+  it("reads charges from profiles when a site's cards no longer list them", async () => {
+    const config = { ...CLEBURNE_COUNTY_AR_ROSTER, chargesFromProfile: true } as const;
+    const profileId = "0123456789abcdef0123456c";
+    const roster = rosterPathPage("Cleburne County", 1, [
+      { bookingNumber: "1236", name: "TESTER, ZETA", profileId, charges: [] }
+    ]);
+    const profile = `<!doctype html><html><head><title>TESTER, ZETA - Roster | Cleburne County Sheriff's Office</title></head><body>
+      <div><strong>Booking Number:</strong></div><div>1236</div>
+      <div><strong>Charge:</strong></div><div>SYNTHETIC OFFENSE ONE</div>
+      <div><strong>Charge:</strong></div><div>SYNTHETIC OFFENSE TWO</div>
+    </body></html>`;
+    const result = await runSourceAdapter(
+      createSheriffRosterSiteAdapter(config, {
+        fetch: async (input) =>
+          input === cleburnePage(1)
+            ? new Response(roster)
+            : input === `https://www.cleburnearso.gov/inmate-roster/${profileId}`
+              ? new Response(profile)
+              : new Response("missing", { status: 404 }),
+        facilityId: "00000000-0000-4000-8000-000000000084",
+        createId: idFactory()
+      }),
+      context(config)
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
+      "SYNTHETIC OFFENSE ONE",
+      "SYNTHETIC OFFENSE TWO"
+    ]);
+  });
+
+  it("fails when nobody on a roster of real size has a charge", async () => {
+    const config = JEFFERSON_COUNTY_AR_ROSTER;
+    const records = Array.from({ length: 10 }, (_, index) => ({
+      bookingNumber: `90000${index}`,
+      name: `TESTER, NUMBER ${index} — TEST ONLY`,
+      charges: []
+    }));
+    const result = await runSourceAdapter(
+      adapter(
+        config,
+        new Map([[config.sourceUrl, rosterPhpPage("Jefferson County", 10, records)]])
+      ),
+      context(config)
+    );
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.failure.diagnosticCode).toBe("JEFFERSON_COUNTY_AR_CHARGES_MISSING");
+  });
+
   it("does not publish a cut-short charge list from a roster.php site", async () => {
     const config = JEFFERSON_COUNTY_AR_ROSTER;
     const result = await runSourceAdapter(

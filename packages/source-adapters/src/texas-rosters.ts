@@ -27,7 +27,9 @@ export const ROBERTSON_COUNTY_TX_ROSTER = {
   sourceUrl:
     "https://www.robertsoncountysherifftx.org/inmate-roster/filters/current/booking_time=desc/1",
   parserVersion: "1.0.0",
-  layout: "inmate-roster-path"
+  layout: "inmate-roster-path",
+  // Since November 13, 2026 the roster cards leave the charge field empty; profiles list them.
+  chargesFromProfile: true
 } as const satisfies SheriffRosterSiteConfig;
 
 export const TEXAS_ROSTER_SITES = [
