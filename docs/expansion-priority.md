@@ -48,24 +48,24 @@ list (rather than a name-only search).
 | 1   | Jefferson       | TX    | ~1,035    | Full roster PDF on jeffersoncountytx.gov; above the 1,000-record cap                                  | Added 2026-11-12 |
 | 2   | Madison         | AL    | ~1,234    | Card list hides extra charges behind '+ N more'; reading them needs ~750 profile requests per refresh | Skipped          |
 | 3   | Pulaski         | AR    | ~1,337    | Added from the Sheriff-linked records-search instance (arpulaskicounty), not the Zuercher portal      | Added 2026-11-12 |
-| 4   | Lubbock         | TX    | 1,325     | Check (a printable full roster is reported)                                                           | To do            |
-| 5   | Bell            | TX    | 1,022     | Check (roster and recent bookings reported)                                                           | To do            |
-| 6   | Oklahoma County | OK    | large     | Check                                                                                                 | To do            |
-| 7   | Tulsa           | OK    | large     | Check                                                                                                 | To do            |
-| 8   | Sedgwick        | KS    | large     | Check                                                                                                 | To do            |
-| 9   | Tarrant         | TX    | 4,024     | Check (likely name search only)                                                                       | To do            |
-| 10  | Dallas          | TX    | 5,964     | Check (likely name search only)                                                                       | To do            |
-| 11  | Harris          | TX    | 9,499     | Check (likely name search only)                                                                       | To do            |
-| 12  | Bexar           | TX    | 4,557     | Check (likely name search only)                                                                       | To do            |
-| 13  | Travis          | TX    | 2,236     | Check                                                                                                 | To do            |
+| 4   | Lubbock         | TX    | 1,325     | publicrecords.lubbockcounty.gov returns an empty page to automated requests                           | Blocked          |
+| 5   | Bell            | TX    | 1,022     | NewWorld inquiry server sends an incomplete TLS certificate chain                                     | Blocked          |
+| 6   | Oklahoma County | OK    | large     | JailTracker portal requires a CAPTCHA                                                                 | Skipped          |
+| 7   | Tulsa           | OK    | large     | 365labs inmate list requires a reCAPTCHA                                                              | Skipped          |
+| 8   | Sedgwick        | KS    | large     | Name search only; page forbids unauthorized use of the data                                           | Skipped          |
+| 9   | Tarrant         | TX    | 4,024     | Name or CID search only                                                                               | Skipped          |
+| 10  | Dallas          | TX    | 5,964     | Name or booking search only, with a search limit                                                      | Skipped          |
+| 11  | Harris          | TX    | 9,499     | Name search only, behind a CAPTCHA                                                                    | Skipped          |
+| 12  | Bexar           | TX    | 4,557     | County site answers automated requests with HTTP 429                                                  | Blocked          |
+| 13  | Travis          | TX    | 2,236     | Name search only (SIP)                                                                                | Skipped          |
 | 14  | El Paso         | TX    | 2,217     | Check                                                                                                 | To do            |
 | 15  | Hidalgo         | TX    | 1,325     | Check                                                                                                 | To do            |
 | 16  | McLennan        | TX    | 1,351     | Check                                                                                                 | To do            |
 | 17  | Nueces          | TX    | 1,128     | Check                                                                                                 | To do            |
-| 18  | Denton          | TX    | 1,053     | Check                                                                                                 | To do            |
+| 18  | Denton          | TX    | 1,053     | Name search only (Odyssey jail records)                                                               | Skipped          |
 | 19  | Smith           | TX    | 1,050     | Check                                                                                                 | To do            |
-| 20  | Cameron         | TX    | 1,028     | Check                                                                                                 | To do            |
-| 21  | Collin          | TX    | 1,021     | Check                                                                                                 | To do            |
+| 20  | Cameron         | TX    | 1,028     | List mixes current inmates with people released in the last 7 days                                    | Skipped          |
+| 21  | Collin          | TX    | 1,021     | Judicial search requires a CAPTCHA                                                                    | Skipped          |
 | 22  | Brazoria        | TX    | 954       | Check                                                                                                 | To do            |
 | 23  | Galveston       | TX    | 850       | Check                                                                                                 | To do            |
 | 24  | Montgomery      | TX    | 874       | Check                                                                                                 | To do            |
