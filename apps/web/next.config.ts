@@ -57,6 +57,9 @@ if (productionLike) {
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  // ISR pages revalidate every 10 minutes; a stale copy may be served for at most 10 more minutes
+  // (s-maxage=600, stale-while-revalidate=600) instead of Next's one-year default.
+  expireTime: 1200,
   pageExtensions: [
     "tsx",
     "ts",

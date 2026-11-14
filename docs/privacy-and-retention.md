@@ -78,6 +78,12 @@ remain visible only within the approved maximum display age and must carry truth
 messaging. After that threshold, suppress the records while keeping a non-personal source-status
 explanation if the county publication policy allows it.
 
+Public pages are cached on the CDN for at most 20 minutes (10 minutes fresh plus 10 minutes
+stale-while-revalidate). Every roster write run purges the whole cache when it finishes. After a
+person-level record is removed for any other reason (a privacy or correction request), run the
+"Purge site cache" workflow with `PURGE` so no cached page keeps that person. The roster API that
+loads further pages and runs name searches is never cached.
+
 Retention jobs run independently of deployment, use database transactions, and record run time,
 policy version, source, and aggregate deletion counts without logging the deleted values.
 

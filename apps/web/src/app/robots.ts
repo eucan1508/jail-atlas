@@ -15,12 +15,27 @@ export const answerEngineCrawlers = [
   "PerplexityBot"
 ] as const;
 
+// Data collectors that send no visitors: AI dataset and API crawlers and SEO tools. Each request
+// renders a page on the server, so they are asked not to crawl. Bytespider does not follow
+// robots.txt and is also refused in proxy.ts.
+export const blockedCrawlers = [
+  "ShapBot",
+  "ExaSearchBot",
+  "ElevenlabsCrawler",
+  "Bytespider",
+  "PetalBot",
+  "Amazonbot",
+  "AhrefsBot",
+  "SemrushBot"
+] as const;
+
 export function robotsRules(blocked: boolean): MetadataRoute.Robots["rules"] {
   return blocked
     ? [{ userAgent: "*", disallow: "/" }]
     : [
         { userAgent: "*", allow: "/" },
-        { userAgent: [...answerEngineCrawlers], allow: "/" }
+        { userAgent: [...answerEngineCrawlers], allow: "/" },
+        { userAgent: [...blockedCrawlers], disallow: "/" }
       ];
 }
 

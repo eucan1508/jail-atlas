@@ -3,8 +3,18 @@ import { shouldNoIndex } from "@/lib/env";
 
 const cleanCountyPath = "/iowa/scott-county/custody/";
 
+// Bytespider (ByteDance) ignores robots.txt, so it is refused here before any page renders.
+const refusedCrawler = /\bBytespider\b/i;
+
 export function proxy(request: NextRequest) {
   const url = request.nextUrl;
+
+  if (refusedCrawler.test(request.headers.get("user-agent") ?? "")) {
+    return new NextResponse("Crawling is not permitted.", {
+      status: 403,
+      headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" }
+    });
+  }
 
   if (url.pathname === cleanCountyPath && url.searchParams.size > 0) {
     const cleanUrl = new URL(cleanCountyPath, request.url);

@@ -13,7 +13,9 @@ export const metadata = createPageMetadata({
     "Browse JailAtlas county jail roster coverage by state and open published county pages."
 });
 
-export const dynamic = "force-dynamic";
+// Cached on the CDN for 10 minutes and purged right after each roster refresh (see
+// app/api/revalidate/route.ts), so crawlers do not render the page on every request.
+export const revalidate = 600;
 
 export default async function CoveragePage() {
   const published = await getPublishedCountyCoverage();

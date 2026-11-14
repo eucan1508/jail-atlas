@@ -11,7 +11,9 @@ import { canRenderIowaCoverage } from "@/lib/publication";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+// Cached on the CDN for 10 minutes and purged right after each roster refresh (see
+// app/api/revalidate/route.ts), so crawlers do not render the page on every request.
+export const revalidate = 600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const published = await getPublishedCountyCoverage("iowa");

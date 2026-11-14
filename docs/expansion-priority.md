@@ -58,23 +58,23 @@ list (rather than a name-only search).
 | 11  | Harris          | TX    | 9,499      | Name search only, behind a CAPTCHA                                                                    | Skipped          |
 | 12  | Bexar           | TX    | 4,557      | County site answers automated requests with HTTP 429                                                  | Blocked          |
 | 13  | Travis          | TX    | 2,236      | Name search only (SIP)                                                                                | Skipped          |
-| 14  | El Paso         | TX    | 2,217      | Check                                                                                                 | To do            |
-| 15  | Hidalgo         | TX    | 1,325      | Check                                                                                                 | To do            |
-| 16  | McLennan        | TX    | 1,351      | Check                                                                                                 | To do            |
-| 17  | Nueces          | TX    | 1,128      | Check                                                                                                 | To do            |
+| 14  | El Paso         | TX    | 2,217      | Odyssey jail records search with a CAPTCHA                                                            | Skipped          |
+| 15  | Hidalgo         | TX    | 1,325      | Odyssey jail search behind a CAPTCHA                                                                  | Skipped          |
+| 16  | McLennan        | TX    | 1,351      | Full PDF list exists but was last updated 2026-08-25 (stale)                                          | Skipped          |
+| 17  | Nueces          | TX    | 1,128      | County site answers automated requests with HTTP 403                                                  | Blocked          |
 | 18  | Denton          | TX    | 1,053      | Name search only (Odyssey jail records)                                                               | Skipped          |
-| 19  | Smith           | TX    | 1,050      | Tyler Jail Search portal; full list not confirmed                                                     | Skipped          |
+| 19  | Smith           | TX    | 1,050      | Tyler Jail Search needs a 3+ character name query                                                     | Skipped          |
 | 20  | Cameron         | TX    | 1,028      | List mixes current inmates with people released in the last 7 days                                    | Skipped          |
 | 21  | Collin          | TX    | 1,021      | Judicial search requires a CAPTCHA                                                                    | Skipped          |
-| 22  | Brazoria        | TX    | 954        | Check                                                                                                 | To do            |
-| 23  | Galveston       | TX    | 850        | Check                                                                                                 | To do            |
+| 22  | Brazoria        | TX    | 954        | Odyssey name search; site 403/503                                                                     | Blocked          |
+| 23  | Galveston       | TX    | 850        | Moved to the new list (P2C inmate inquiry)                                                            | Moved            |
 | 24  | Montgomery      | TX    | 874        | Inmate lookup requires an account and Cloudflare check                                                | Skipped          |
 | 25  | Fort Bend       | TX    | 733        | Name search only                                                                                      | Skipped          |
-| 26  | Johnson         | TX    | 825        | Check                                                                                                 | To do            |
-| 27  | Ector           | TX    | 762        | Check                                                                                                 | To do            |
-| 28  | Taylor          | TX    | 717        | Check                                                                                                 | To do            |
-| 29  | Gregg           | TX    | 688        | Check                                                                                                 | To do            |
-| 30  | Williamson      | TX    | 595        | Check                                                                                                 | To do            |
+| 26  | Johnson         | TX    | 825        | Name search only; unauthorized-use notice                                                             | Skipped          |
+| 27  | Ector           | TX    | 762        | Tyler portal login returns 403                                                                        | Blocked          |
+| 28  | Taylor          | TX    | 717        | Odyssey name search only                                                                              | Skipped          |
+| 29  | Gregg           | TX    | 688        | Jail page returns 403                                                                                 | Blocked          |
+| 30  | Williamson      | TX    | 595        | Site 403; name or booking search only                                                                 | Blocked          |
 | 31  | Mobile          | AL    | ~1,550     | Sheriff's "Current Inmates" report (all.mobileso.com)                                                 | Added 2026-11-13 |
 | 32  | Jefferson       | AL    | large      | County site answers automated requests with HTTP 403                                                  | Blocked          |
 | 33  | Montgomery      | AL    | large      | Sheriff site unreachable from automated requests                                                      | Blocked          |
@@ -87,10 +87,34 @@ list (rather than a name-only search).
 | 40  | Washington      | AR    | mid        | No public roster link on the Sheriff site                                                             | Skipped          |
 | 41  | Sebastian       | AR    | mid (~370) | NewWorld inmate inquiry on the county domain                                                          | Added 2026-11-13 |
 | 42  | Benton          | AR    | ~668       | Portal reads cleanly; official site blocks automated access (no guide)                                | Blocked          |
-| 43  | Brazos          | TX    | 586        | Check                                                                                                 | To do            |
-| 44  | Potter          | TX    | 533        | Check                                                                                                 | To do            |
-| 45  | Ellis           | TX    | 515        | Check                                                                                                 | To do            |
-| 46  | Wichita         | TX    | 510        | Check                                                                                                 | To do            |
+| 43  | Brazos          | TX    | 586        | Tyler portal returns 403                                                                              | Blocked          |
+| 44  | Potter          | TX    | 533        | Moved to the new list (Spillman PDF report)                                                           | Moved            |
+| 45  | Ellis           | TX    | 515        | LockupLists feed; page forbids unauthorized use of the data                                           | Skipped          |
+| 46  | Wichita         | TX    | 510        | County site answers automated requests with HTTP 403                                                  | Blocked          |
+
+## Verified list (approved by the owner 2026-11-13)
+
+The first list ran out of usable entries. Every county below was checked at the source on
+2026-11-13: an official full current roster with charges, readable with a plain request, no CAPTCHA
+or login. "Template" means the shared "Inmate Roster (N)" sheriff site already read by
+`sheriff-roster-site.ts`. Take these in order for "yer ekle".
+
+| #   | County    | State | People | Source                                                                                 | Status |
+| --- | --------- | ----- | ------ | -------------------------------------------------------------------------------------- | ------ |
+| 1   | Galveston | TX    | 667    | P2C inmate inquiry (p2c.galvestoncountytx.gov); full charges need a per-person request | To do  |
+| 2   | Potter    | TX    | ~590   | Spillman "Prisoners with their Offenses" PDF (public.pottercountysheriff.org)          | To do  |
+| 3   | Etowah    | AL    | 581    | Template, roster.php (www.etowahcountysheriff.com)                                     | To do  |
+| 4   | Morgan    | AL    | 505    | Template, roster.php (www.morgancountysheriffal.gov)                                   | To do  |
+| 5   | Escambia  | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info                | To do  |
+| 6   | Elmore    | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                        | To do  |
+| 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                         | To do  |
+| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                            | To do  |
+| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                 | To do  |
+| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com)                                     | To do  |
+
+Smaller template counties to check next: Barry MO, Labette KS, Miller MO, Phillips AR, Harrison MO
+(skip any whose official site lacks jail guidance). Pottawattamie IA runs a Zuercher portal whose
+custody list could not be checked yet.
 
 ## New states, in order (owner approval required before starting each)
 
