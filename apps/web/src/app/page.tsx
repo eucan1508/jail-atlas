@@ -8,7 +8,9 @@ import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { coveragePreviewAllowed } from "@/lib/coverage-catalog";
 
-export const dynamic = "force-dynamic";
+// Cached on the CDN for 10 minutes and purged right after each roster refresh (see
+// app/api/revalidate/route.ts), so crawlers do not render the page on every request.
+export const revalidate = 600;
 
 export const metadata = createPageMetadata({
   path: "/",

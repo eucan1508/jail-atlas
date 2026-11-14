@@ -22,6 +22,15 @@ import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
 type CountyPageParams = { state: string; county: string };
 
+// Each county page is rendered on its first visit and cached on the CDN for 10 minutes. The
+// roster refresh workflow purges every cached page right after it writes new snapshots, and an
+// operator purge does the same after a record is removed, so no removed person stays cached.
+export const revalidate = 600;
+
+export function generateStaticParams(): CountyPageParams[] {
+  return [];
+}
+
 function countyArticle({
   entry,
   path,

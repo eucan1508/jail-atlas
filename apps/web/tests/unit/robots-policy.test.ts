@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
-import { answerEngineCrawlers, robotsRules } from "@/app/robots";
+import { answerEngineCrawlers, blockedCrawlers, robotsRules } from "@/app/robots";
 import { readEnvironment, shouldNoIndex } from "@/lib/env";
 
 const reservedProductionOrigin = "https://custody.example.test";
@@ -25,10 +25,31 @@ afterEach(() => {
 });
 
 describe("robots environment policy", () => {
+  it("never blocks search and answer-engine crawlers", () => {
+    const protectedCrawlers = [
+      "Googlebot",
+      "Bingbot",
+      "OAI-SearchBot",
+      "ChatGPT-User",
+      "PerplexityBot",
+      "GPTBot",
+      "ClaudeBot",
+      "Claude-SearchBot",
+      "Google-Extended",
+      "Applebot"
+    ];
+    for (const crawler of protectedCrawlers) {
+      expect(blockedCrawlers.map((name) => name.toLowerCase())).not.toContain(
+        crawler.toLowerCase()
+      );
+    }
+  });
+
   it("uses robots.txt as a crawl hint instead of route-level noindex enforcement", () => {
     expect(robotsRules(false)).toEqual([
       { userAgent: "*", allow: "/" },
-      { userAgent: [...answerEngineCrawlers], allow: "/" }
+      { userAgent: [...answerEngineCrawlers], allow: "/" },
+      { userAgent: [...blockedCrawlers], disallow: "/" }
     ]);
     expect(robotsRules(true)).toEqual([{ userAgent: "*", disallow: "/" }]);
   });
@@ -63,6 +84,29 @@ describe("robots environment policy", () => {
 
     const response = proxy(new NextRequest(`${reservedProductionOrigin}/methodology/`));
     expect(response.headers.get("X-Robots-Tag")).toBeNull();
+  });
+
+  it("refuses Bytespider but lets protected crawlers through", async () => {
+    const { proxy } = await import("@/proxy");
+    const request = (userAgent: string) =>
+      new NextRequest("https://example.test/texas/milam-county/custody/", {
+        headers: { "user-agent": userAgent }
+      });
+
+    expect(
+      proxy(
+        request(
+          "Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)"
+        )
+      ).status
+    ).toBe(403);
+    for (const userAgent of [
+      "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.1; +https://openai.com/gptbot)",
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)"
+    ]) {
+      expect(proxy(request(userAgent)).status).toBe(200);
+    }
   });
 
   it("emits noindex and nofollow on preview responses", async () => {

@@ -9,7 +9,12 @@ import { countiesForState, type CoverageState } from "@/lib/coverage-catalog";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+// Rendered on first visit, then cached on the CDN for 10 minutes (purged after roster refreshes).
+export const revalidate = 600;
+
+export function generateStaticParams(): { state: string }[] {
+  return [];
+}
 
 type ChargeTermsParams = { state: string };
 

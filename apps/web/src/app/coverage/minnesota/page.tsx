@@ -7,7 +7,9 @@ import { StateFaq } from "@/components/state-faq";
 import { absoluteUrl, createPageMetadata } from "@/lib/site";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
 
-export const dynamic = "force-dynamic";
+// Cached on the CDN for 10 minutes and purged right after each roster refresh (see
+// app/api/revalidate/route.ts), so crawlers do not render the page on every request.
+export const revalidate = 600;
 
 export async function generateMetadata() {
   const published = await getPublishedCountyCoverage("minnesota");

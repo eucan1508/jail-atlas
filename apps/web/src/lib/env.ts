@@ -43,6 +43,9 @@ const environmentSchema = z
       .regex(/^[a-z]{2}(?:-[A-Z]{2})?$/)
       .default("en-US"),
     PRODUCTION_DOMAIN: z.string().url().default("https://example.test"),
+    // Shared with the roster refresh workflow to purge cached pages; the purge route is disabled
+    // while it is unset.
+    REVALIDATE_SECRET: z.string().trim().min(32).optional(),
     ROSTER_API_RATE_LIMIT: z.coerce.number().int().min(1).max(500).default(30),
     ROSTER_API_RATE_WINDOW_SECONDS: z.coerce.number().int().min(1).max(3600).default(60),
     VERCEL_ENV: z.enum(["production", "preview", "development"]).optional()

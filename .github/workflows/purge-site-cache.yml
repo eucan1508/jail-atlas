@@ -1,0 +1,33 @@
+name: Purge site cache
+
+# Run after removing a record (for example a privacy or correction request) so the person does not
+# stay on any cached page. Roster refreshes already purge the cache after every write run.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type PURGE to clear every cached page"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  purge:
+    name: Purge cached site pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ inputs.confirm == 'PURGE' }}
+    steps:
+      - name: Purge
+        env:
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+        run: |
+          if [[ -z "$REVALIDATE_SECRET" ]]; then
+            echo "::error::REVALIDATE_SECRET is not set in the repository secrets."
+            exit 1
+          fi
+          curl --fail --silent --show-error --proto '=https' --max-time 30 --retry 3 --retry-all-errors \
+            -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" \
+            https://jailatlas.com/api/revalidate/
