@@ -4,9 +4,9 @@ import { getIndexedCountyCoverage } from "@/lib/published-coverage";
 import { countyCoveragePath } from "@/lib/coverage-catalog";
 import { absoluteUrl, trustPaths } from "@/lib/site";
 
-// Cached on the CDN for 10 minutes and purged right after each roster refresh (see
-// app/api/revalidate/route.ts), so crawlers do not render the page on every request.
-export const revalidate = 600;
+// Rendered on each request: a time-revalidated sitemap stayed on its first copy past its expiry,
+// so newly published counties never appeared. Crawlers fetch it rarely, so this costs little.
+export const dynamic = "force-dynamic";
 
 export function indexableSitemapPaths(): string[] {
   const paths = ["/", "/coverage/", ...trustPaths];
