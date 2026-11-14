@@ -270,6 +270,16 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "jefferson",
       adapterKey: "jefferson-county-tx-current-roster",
       sourceHost: "jeffersoncountytx.gov"
+    },
+    {
+      countySlug: "galveston",
+      adapterKey: "galveston-county-tx-current-roster",
+      sourceHost: "p2c.galvestoncountytx.gov"
+    },
+    {
+      countySlug: "potter",
+      adapterKey: "potter-county-tx-current-roster",
+      sourceHost: "public.pottercountysheriff.org"
     }
   ],
   AR: [

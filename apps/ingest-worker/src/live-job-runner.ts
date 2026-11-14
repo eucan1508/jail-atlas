@@ -62,6 +62,8 @@ import {
   createJeffersonCountyTxSourceAdapter,
   JEFFERSON_COUNTY_TX_ADAPTER_KEY,
   MOBILE_COUNTY_AL_ADAPTER_KEY,
+  GALVESTON_COUNTY_TX_ADAPTER_KEY,
+  POTTER_COUNTY_TX_ADAPTER_KEY,
   createPulaskiCountyArSourceAdapter,
   PULASKI_COUNTY_AR_ADAPTER_KEY,
   createWilkinCountySourceAdapter,
@@ -129,6 +131,8 @@ import {
   DOUGLAS_COUNTY_ADAPTER_KEY,
   createDallasCountySourceAdapter,
   createMobileCountySourceAdapter,
+  createGalvestonCountyTxSourceAdapter,
+  createPotterCountyTxSourceAdapter,
   createSebastianCountySourceAdapter,
   createHutchinsonCountySourceAdapter,
   HUTCHINSON_COUNTY_ADAPTER_KEY,
@@ -241,36 +245,39 @@ export function createLiveSourceAdapter(
                   ? // The in-custody search and each person's detail share the JailRoster path; the
                     // roster site's config.json carries the API key.
                     ["/hcso-public-services-api/v1/JailRoster", "/config.json"]
-                  : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
-                    ? // The list is /injail/ and each detail page /injail/inmate/.
-                      ["/injail"]
-                    : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
-                        source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CARTER_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === OTTAWA_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === LOVE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === GREER_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === MAJOR_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === JACKSON_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CUSTER_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === CRAIG_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY ||
-                        source.adapterKey === WASHINGTON_COUNTY_OK_ADAPTER_KEY
-                      ? ["/dmxConnect/api/Booking"]
-                      : portal
-                        ? // The portal is opened (its session token or setup), then takes the
-                          // custody list query as a JSON post.
-                          jailPortalPaths(portal)
-                        : rosterSite?.layout === "inmate-roster-path"
-                          ? // Roster pages, plus the profile pages that list every charge when a
-                            // card cuts its list short ("+ 2 more charges").
-                            ["/inmate-roster"]
-                          : [sourceUrl.pathname];
+                  : source.adapterKey === GALVESTON_COUNTY_TX_ADAPTER_KEY
+                    ? // The Inmate Inquiry page and the handler its grid posts to.
+                      ["/jailinmates.aspx", "/jqHandler.ashx"]
+                    : source.adapterKey === ANGELINA_COUNTY_ADAPTER_KEY
+                      ? // The list is /injail/ and each detail page /injail/inmate/.
+                        ["/injail"]
+                      : source.adapterKey === WAGONER_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === LINCOLN_COUNTY_OK_ADAPTER_KEY ||
+                          source.adapterKey === PAWNEE_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === SEMINOLE_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === CARTER_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === CANADIAN_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === SEQUOYAH_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === MUSKOGEE_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === OTTAWA_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === LOVE_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === GREER_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === MAJOR_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === JACKSON_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === CUSTER_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === CRAIG_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === NOBLE_COUNTY_ADAPTER_KEY ||
+                          source.adapterKey === WASHINGTON_COUNTY_OK_ADAPTER_KEY
+                        ? ["/dmxConnect/api/Booking"]
+                        : portal
+                          ? // The portal is opened (its session token or setup), then takes the
+                            // custody list query as a JSON post.
+                            jailPortalPaths(portal)
+                          : rosterSite?.layout === "inmate-roster-path"
+                            ? // Roster pages, plus the profile pages that list every charge when a
+                              // card cuts its list short ("+ 2 more charges").
+                              ["/inmate-roster"]
+                            : [sourceUrl.pathname];
   // Adapter ID factories receive record kind/key arguments; randomUUID accepts
   // an options object instead. Do not forward adapter arguments to this factory.
   const createAdapterId = () => createId();
@@ -281,7 +288,11 @@ export function createLiveSourceAdapter(
     // myr2m rosters page through ASP.NET form posts back to the roster's own path, the
     // Woodbury County search posts its "All" rows request the same way, and a ProPhoenix
     // locator posts back to itself to select each person's row.
-    ...(myr2mSite || locator || source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY
+    // The Galveston County inquiry grid posts its "All rows" list request as a form too.
+    ...(myr2mSite ||
+    locator ||
+    source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY ||
+    source.adapterKey === GALVESTON_COUNTY_TX_ADAPTER_KEY
       ? { allowFormPost: true }
       : {}),
     // The Hennepin County roster API takes its in-custody search as a small JSON post.
@@ -315,6 +326,8 @@ export function createLiveSourceAdapter(
     // Mobile County current-inmates report runs about 400 bytes per person.
     ...(source.adapterKey === CERRO_GORDO_COUNTY_ADAPTER_KEY ||
     source.adapterKey === MOBILE_COUNTY_AL_ADAPTER_KEY ||
+    source.adapterKey === GALVESTON_COUNTY_TX_ADAPTER_KEY ||
+    source.adapterKey === POTTER_COUNTY_TX_ADAPTER_KEY ||
     rosterReport !== undefined ||
     source.adapterKey === POLK_COUNTY_ADAPTER_KEY ||
     source.adapterKey === WOODBURY_COUNTY_ADAPTER_KEY ||
@@ -422,6 +435,20 @@ export function createLiveSourceAdapter(
   }
   if (source.adapterKey === BENTON_COUNTY_ADAPTER_KEY) {
     return createBentonCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === GALVESTON_COUNTY_TX_ADAPTER_KEY) {
+    return createGalvestonCountyTxSourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId
+    });
+  }
+  if (source.adapterKey === POTTER_COUNTY_TX_ADAPTER_KEY) {
+    return createPotterCountyTxSourceAdapter({
       fetch,
       facilityId,
       createId: createAdapterId

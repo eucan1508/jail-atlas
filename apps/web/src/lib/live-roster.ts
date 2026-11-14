@@ -78,6 +78,8 @@ const liveAdapterKeys: Record<string, string> = {
   "texas/robertson-county": "robertson-county-tx-current-roster",
   "texas/upshur-county": "upshur-county-tx-current-roster",
   "texas/jefferson-county": "jefferson-county-tx-current-roster",
+  "texas/galveston-county": "galveston-county-tx-current-roster",
+  "texas/potter-county": "potter-county-tx-current-roster",
   "arkansas/jefferson-county": "jefferson-county-ar-current-roster",
   "arkansas/logan-county": "logan-county-ar-current-roster",
   "arkansas/greene-county": "greene-county-ar-current-roster",
