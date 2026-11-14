@@ -1707,6 +1707,124 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "texas/galveston-county": {
+    facilityName: "Galveston County Jail",
+    address: "5700 Avenue H, Galveston, TX 77551",
+    phone: "409-766-2315",
+    operatedBy: "Galveston County Sheriff's Office",
+    reviewedAt: "November 14, 2026",
+    overview:
+      "The Galveston County Sheriff's Office Corrections Division runs the county jail at 5700 Avenue H in Galveston. The Sheriff's Inmate Inquiry lists everyone currently held with their primary charge. The jail line is 409-766-2315 and the Sheriff's Office main line is 409-766-2300.",
+    contactSourceLabel: "Official Corrections Division page",
+    contactSourceUrl: "https://sheriff.galvestoncountytx.gov/Corrections.html",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are registered through the Sheriff's online visitation sign-up, with sessions from 8:00 to 10:30 a.m., 1:15 to 4:25 p.m., and 6:30 to 11:40 p.m.; the days depend on the person's pod. Each person may have one visit a day and two a week, with two visitors per visit and one child with an adult. Visitors 16 and older need proper ID. Phones, smart watches, tablets, and other recording devices are not allowed in the lobby, and the Sheriff publishes a dress code.",
+        sourceLabel: "Official Corrections Division page",
+        sourceUrl: "https://sheriff.galvestoncountytx.gov/Corrections.html"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's Corrections page does not explain how to put money on an inmate's account. Call the jail at 409-766-2315 to ask.",
+        sourceLabel: "Official Corrections Division page",
+        sourceUrl: "https://sheriff.galvestoncountytx.gov/Corrections.html"
+      },
+      {
+        title: "Phone and mail",
+        body: "After booking, each person gets two free two-minute phone calls to arrange release, reach family, or call a lawyer. Since November 1, 2023, personal mail goes through a digital platform: mail addressed to the jail is returned to sender, and mail without a return address goes back to the post office. The Sheriff's mail notice gives the address format to use.",
+        sourceLabel: "Official mail notice",
+        sourceUrl: "https://sheriff.galvestoncountytx.gov/forms/transition.pdf"
+      },
+      {
+        title: "Bail and court records",
+        body: "Most people need a bond or fine paid to be released. The Sheriff lists two options: pay the full bond or fine yourself, or contact a bondsman (the Sheriff cannot suggest one). Release paperwork starts only after every payment and document is received. The inmate list shows each person's primary charge; call 409-766-2315 for the full list of charges.",
+        sourceLabel: "Official Corrections Division page",
+        sourceUrl: "https://sheriff.galvestoncountytx.gov/Corrections.html"
+      }
+    ],
+    faq: [
+      {
+        question: "Why does the Galveston County list show only one charge?",
+        answer:
+          "The Sheriff's Inmate Inquiry list shows each person's primary charge. Someone may face other charges too; call the jail at 409-766-2315 for all of them."
+      },
+      {
+        question: "How many visits are allowed at the Galveston County Jail?",
+        answer:
+          "One visit a day and two a week, with up to two visitors per visit and one child with an adult. Register through the Sheriff's online visitation sign-up."
+      },
+      {
+        question: "How is bond posted in Galveston County?",
+        answer:
+          "Pay the full bond or fine yourself, or contact a bondsman. Release begins once all payments and paperwork are received."
+      },
+      {
+        question: "Where is the Galveston County Jail?",
+        answer: "5700 Avenue H, Galveston, TX 77551. The jail line is 409-766-2315."
+      }
+    ]
+  },
+  "texas/potter-county": {
+    facilityName: "Potter County Detention Center",
+    address: "13100 NE 29th Ave., Amarillo, TX 79111",
+    phone: "806-335-4100",
+    operatedBy: "Potter County Sheriff's Office",
+    reviewedAt: "November 14, 2026",
+    overview:
+      "The Potter County Sheriff's Office runs the Detention Center in Amarillo, a 576-bed facility with a 27-bed infirmary that opened in 1995. It holds people awaiting trial, people sentenced to county time, and people waiting for transfer to state and federal prisons. The Detention Center number is 806-335-4100; the Sheriff's Office is at 806-379-2900.",
+    contactSourceLabel: "Official Detention Center page",
+    contactSourceUrl: "https://www.pottercountysheriff.org/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Each person has one visiting day a week, set by the first letter of the last name: A-D Monday, E-J Tuesday, K-N Wednesday, O-R Thursday, S-Z Friday. Visiting hours are 8:30 to 11:30 a.m. and 6:30 to 9:30 p.m. Each person gets two 20-minute non-contact visits a week, for two adults or one adult with children under 16. Visitors need photo ID, and phones, bags, and purses stay outside.",
+        sourceLabel: "Official visitation rules",
+        sourceUrl: "https://www.pottercountysheriff.org/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits go through Access Corrections online (AccessCorrections.com, 866-345-1884) or the kiosk in the Detention Center visitation lobby, which takes cash ($5 bills or larger, no change), debit, and credit cards but not prepaid cards. There is no limit on the amount.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.pottercountysheriff.org/detention-center"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates place collect calls from their housing units; they cannot receive calls. Personal mail and photos go to Potter County Detention Center, the inmate's name and SO#, P.O. Box 247, Phoenix, MD 21131, where they are scanned and delivered on tablets. Legal mail goes to the Detention Center. Soft-cover books and Bibles are accepted only from a publisher or distributor.",
+        sourceLabel: "Official correspondence page",
+        sourceUrl: "https://www.pottercountysheriff.org/detention-center"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's pages do not explain how to post bond, and the Sheriff's Office does not give out court dates. Call the Detention Center at 806-335-4100 about bond. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official FAQ",
+        sourceUrl: "https://www.pottercountysheriff.org/faq"
+      }
+    ],
+    faq: [
+      {
+        question: "What day can I visit someone at the Potter County jail?",
+        answer:
+          "It depends on the person's last name: A-D Monday, E-J Tuesday, K-N Wednesday, O-R Thursday, S-Z Friday, from 8:30 to 11:30 a.m. or 6:30 to 9:30 p.m."
+      },
+      {
+        question: "How do I send money to a Potter County inmate?",
+        answer:
+          "Use AccessCorrections.com, call 866-345-1884, or use the kiosk in the Detention Center visitation lobby."
+      },
+      {
+        question: "What do the letters after a Potter County charge mean?",
+        answer:
+          "The Sheriff's roster codes each charge's level: MA, MB, and MC are misdemeanor classes, and F1, F2, F3, FS, and FX are felony levels. This page spells those out, for example Class A Misdemeanor or State Jail Felony."
+      },
+      {
+        question: "Where do I send mail to a Potter County inmate?",
+        answer:
+          "Potter County Detention Center, the inmate's name and SO#, P.O. Box 247, Phoenix, MD 21131."
+      }
+    ]
+  },
+
   "texas/upshur-county": {
     facilityName: "Upshur County Jail",
     address: "405 North Titus, Gilmer, TX 75644",

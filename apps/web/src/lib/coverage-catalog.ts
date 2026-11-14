@@ -404,6 +404,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceLabel: "Jefferson County Sheriff's Office inmate log",
     sourceStatus: "audit_pending"
   },
+  {
+    state: "texas",
+    stateName: "Texas",
+    county: "Galveston County",
+    slug: "galveston-county",
+    publishedAt: "2026-11-14",
+    seatCity: "Galveston",
+    h1: "Galveston County Jail Roster & Inmate Search",
+    title: "Galveston County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Galveston County, Texas current-inmate information for the county jail in Galveston from the Sheriff's official Inmate Inquiry, with each person's primary charge and capture time.",
+    article:
+      "The Galveston County Sheriff's Office runs the county jail at 5700 Avenue H in Galveston and publishes an Inmate Inquiry of everyone currently held. Its list shows each person's primary charge, so this page shows that charge and leaves out ages, birth dates, race, and arresting agencies.",
+    officialSourceUrl: "https://p2c.galvestoncountytx.gov/jailinmates.aspx",
+    officialSourceLabel: "Galveston County Sheriff's Office Inmate Inquiry",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "texas",
+    stateName: "Texas",
+    county: "Potter County",
+    slug: "potter-county",
+    publishedAt: "2026-11-14",
+    seatCity: "Amarillo",
+    h1: "Potter County Jail Roster & Inmate Search",
+    title: "Potter County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Potter County, Texas current-inmate information for the Detention Center in Amarillo from the Sheriff's official jail roster, with source-listed charges, offense levels, and capture time.",
+    article:
+      "The Potter County Sheriff's Office runs the Detention Center in Amarillo and publishes a daily report of everyone held there with their charges. This page reads that report with each charge and its offense level, and leaves out ages, demographics, bonds, courts, and dispositions.",
+    officialSourceUrl:
+      "https://public.pottercountysheriff.org/pottersheriff/PrisonerAndTheirOffensesReport.pdf",
+    officialSourceLabel: "Potter County Sheriff's Office jail roster",
+    sourceStatus: "audit_pending"
+  },
 
   {
     state: "arkansas",

@@ -99,18 +99,18 @@ The first list ran out of usable entries. Every county below was checked at the 
 or login. "Template" means the shared "Inmate Roster (N)" sheriff site already read by
 `sheriff-roster-site.ts`. Take these in order for "yer ekle".
 
-| #   | County    | State | People | Source                                                                                 | Status |
-| --- | --------- | ----- | ------ | -------------------------------------------------------------------------------------- | ------ |
-| 1   | Galveston | TX    | 667    | P2C inmate inquiry (p2c.galvestoncountytx.gov); full charges need a per-person request | To do  |
-| 2   | Potter    | TX    | ~590   | Spillman "Prisoners with their Offenses" PDF (public.pottercountysheriff.org)          | To do  |
-| 3   | Etowah    | AL    | 581    | Template, roster.php (www.etowahcountysheriff.com)                                     | To do  |
-| 4   | Morgan    | AL    | 505    | Template, roster.php (www.morgancountysheriffal.gov)                                   | To do  |
-| 5   | Escambia  | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info                | To do  |
-| 6   | Elmore    | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                        | To do  |
-| 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                         | To do  |
-| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                            | To do  |
-| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                 | To do  |
-| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com)                                     | To do  |
+| #   | County    | State | People | Source                                                                                            | Status           |
+| --- | --------- | ----- | ------ | ------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Galveston | TX    | 667    | P2C inmate inquiry (p2c.galvestoncountytx.gov); list gives the primary charge only, shown as such | Added 2026-11-14 |
+| 2   | Potter    | TX    | ~590   | Spillman "Prisoners with their Offenses" PDF (public.pottercountysheriff.org)                     | Added 2026-11-14 |
+| 3   | Etowah    | AL    | 581    | Template, roster.php (www.etowahcountysheriff.com)                                                | To do            |
+| 4   | Morgan    | AL    | 505    | Template, roster.php (www.morgancountysheriffal.gov)                                              | To do            |
+| 5   | Escambia  | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info                           | To do            |
+| 6   | Elmore    | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                                   | To do            |
+| 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                                    | To do            |
+| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                       | To do            |
+| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                            | To do            |
+| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com)                                                | To do            |
 
 Smaller template counties to check next: Barry MO, Labette KS, Miller MO, Phillips AR, Harrison MO
 (skip any whose official site lacks jail guidance). Pottawattamie IA runs a Zuercher portal whose
