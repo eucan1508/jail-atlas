@@ -130,6 +130,7 @@ const liveAdapterKeys: Record<string, string> = {
   "missouri/lewis-county": "lewis-county-mo-current-roster",
   "missouri/morgan-county": "morgan-county-mo-current-roster",
   "missouri/andrew-county": "andrew-county-mo-current-roster",
+  "missouri/callaway-county": "callaway-county-mo-current-roster",
   "kansas/bourbon-county": "bourbon-county-ks-current-roster",
   "kansas/coffey-county": "coffey-county-ks-current-roster",
   "kansas/atchison-county": "atchison-county-ks-current-roster",
@@ -147,7 +148,8 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/marshall-county": "marshall-county-al-current-roster",
   "alabama/marion-county": "marion-county-al-current-roster",
   "alabama/dekalb-county": "dekalb-county-al-current-roster",
-  "alabama/mobile-county": "mobile-county-al-current-roster"
+  "alabama/mobile-county": "mobile-county-al-current-roster",
+  "alabama/elmore-county": "elmore-county-al-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

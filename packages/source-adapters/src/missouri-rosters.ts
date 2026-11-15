@@ -82,6 +82,15 @@ export const ANDREW_COUNTY_MO_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CALLAWAY_COUNTY_MO_ROSTER = {
+  adapterKey: "callaway-county-mo-current-roster",
+  countyName: "Callaway County",
+  diagnosticPrefix: "CALLAWAY_COUNTY_MO",
+  sourceUrl: "https://www.callawaysheriff.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -91,7 +100,8 @@ export const MISSOURI_ROSTER_SITES = [
   LAWRENCE_COUNTY_MO_ROSTER,
   LEWIS_COUNTY_MO_ROSTER,
   MORGAN_COUNTY_MO_ROSTER,
-  ANDREW_COUNTY_MO_ROSTER
+  ANDREW_COUNTY_MO_ROSTER,
+  CALLAWAY_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

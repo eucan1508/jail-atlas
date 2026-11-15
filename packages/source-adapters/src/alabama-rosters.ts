@@ -65,6 +65,15 @@ export const DEKALB_COUNTY_AL_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const ELMORE_COUNTY_AL_ROSTER = {
+  adapterKey: "elmore-county-al-current-roster",
+  countyName: "Elmore County",
+  diagnosticPrefix: "ELMORE_COUNTY_AL",
+  sourceUrl: "https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ALABAMA_ROSTER_SITES = [
   FRANKLIN_COUNTY_AL_ROSTER,
   CHILTON_COUNTY_AL_ROSTER,
@@ -72,7 +81,8 @@ export const ALABAMA_ROSTER_SITES = [
   JACKSON_COUNTY_AL_ROSTER,
   MARSHALL_COUNTY_AL_ROSTER,
   MARION_COUNTY_AL_ROSTER,
-  DEKALB_COUNTY_AL_ROSTER
+  DEKALB_COUNTY_AL_ROSTER,
+  ELMORE_COUNTY_AL_ROSTER
 ] as const;
 
 export function alabamaRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

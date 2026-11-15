@@ -3093,6 +3093,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/elmore-county": {
+    facilityName: "Elmore County Jail",
+    address: "Sheriff's Office: 8955 U.S. Highway 231, Wetumpka, AL 36092",
+    phone: "334-567-5441",
+    operatedBy: "Elmore County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Elmore County Sheriff's Office runs the county jail, which holds municipal and county inmates and people waiting for transfer to the Alabama Department of Corrections. The jail operates around the clock and can be reached at 334-567-5441; the Sheriff's Office main line is 334-567-5546.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.elmoreso.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are video visits on the jail's machines. Family and friends can also visit from a phone or computer by setting up an NCIC account (1-800-943-2189); there is a charge for remote visits. Privileges can be taken away for behavior without notice to family.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.elmoreso.com/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is supplied by Stacy Williams Company. Money can be added at the kiosk in the east corner of the Sheriff's Office lobby (cash or card) or at correctpay.com. Inmates may spend up to $150 a week.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.elmoreso.com/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "The jail accepts postcards only; letters are returned to the sender. Inmates may receive two soft-back books a month, sent directly from a publisher or retailer. Phone calls and video visits go through NCIC. No property may be dropped off without prior approval.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.elmoreso.com/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's jail page does not explain how to post bond. Call the jail at 334-567-5441 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.elmoreso.com/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Elmore County Jail?",
+        answer:
+          "Visits are by video. You can also visit from a phone or computer through an NCIC account (1-800-943-2189); remote visits cost a fee."
+      },
+      {
+        question: "How do I put money on an Elmore County inmate's account?",
+        answer:
+          "Use the kiosk in the Sheriff's Office lobby (cash or card) or correctpay.com. Inmates can spend up to $150 a week."
+      },
+      {
+        question: "Can I send a letter to an Elmore County inmate?",
+        answer: "Only postcards are accepted; letters are returned to the sender."
+      },
+      {
+        question: "What is the Elmore County Jail phone number?",
+        answer: "334-567-5441. The Sheriff's Office main line is 334-567-5546."
+      }
+    ]
+  },
 
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
@@ -3551,6 +3608,65 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "missouri/callaway-county": {
+    facilityName: "Callaway County Jail",
+    address: "Sheriff's Office: 1201 State Road O, Fulton, MO 65251",
+    phone: "573-642-7291",
+    operatedBy: "Callaway County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Callaway County Sheriff's Office in Fulton runs the county jail and publishes a current inmate roster. The Sheriff's Office answers 573-642-7291 around the clock; its administrative office is open 8:00 a.m. to 5:00 p.m.",
+    contactSourceLabel: "Official Sheriff's Office contact",
+    contactSourceUrl: "https://www.callawaysheriff.org/inmate-visitation",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Phone calls and video visits go through NCIC Inmate Communications during the jail's normal inmate schedule. Remote video visits need an account at ncic.com and carry a fee. One free video visit a week is available at the kiosk in the Sheriff's Office lobby, scheduled at least 24 hours ahead at ncic.com. Jail staff cannot pass messages to inmates.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.callawaysheriff.org/inmate-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's pages do not explain how to put money on an inmate's account. Call 573-642-7291 to ask.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.callawaysheriff.org/inmate-visitation"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls from inmates are collect calls. The jail accepts postcards only, except legal mail, addressed to the inmate's name, C/O Callaway County Jail, PO Box 817, Fulton, MO 65251.",
+        sourceLabel: "Official mail policy",
+        sourceUrl: "https://www.callawaysheriff.org/mail-policy"
+      },
+      {
+        title: "Bail and court records",
+        body: "Inmates allowed a cash or surety bond can call a bonding agent of their choice collect; jail staff cannot recommend one. Cash bonds must be cash or a certified bank check, and the jail does not take cards. On 13th Circuit Court charges, the bonding agent must be one approved by that court.",
+        sourceLabel: "Official bonding page",
+        sourceUrl: "https://www.callawaysheriff.org/inmate-bonding"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Callaway County Jail?",
+        answer:
+          "Schedule a video visit through ncic.com. One visit a week at the Sheriff's Office lobby kiosk is free if booked 24 hours ahead; remote visits cost a fee."
+      },
+      {
+        question: "How do I post bond at the Callaway County Jail?",
+        answer:
+          "Pay a cash bond with cash or a certified bank check (no cards), or use a bonding agent; on 13th Circuit Court charges the agent must be court-approved."
+      },
+      {
+        question: "Where do I send mail to a Callaway County inmate?",
+        answer:
+          "Postcards only, to the inmate's name, C/O Callaway County Jail, PO Box 817, Fulton, MO 65251."
+      },
+      {
+        question: "What is the Callaway County Sheriff's Office number?",
+        answer: "573-642-7291, answered 24 hours a day."
+      }
+    ]
+  },
+
   "missouri/crawford-county": {
     facilityName: "Crawford County Detention Center",
     address: "212 Third Street, Steelville, MO 65565",
