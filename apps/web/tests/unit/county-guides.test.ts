@@ -125,7 +125,9 @@ const liveCountyKeys = [
   "alabama/marion-county",
   "alabama/dekalb-county",
   "alabama/mobile-county",
-  "alabama/elmore-county"
+  "alabama/elmore-county",
+  "alabama/cherokee-county",
+  "oklahoma/mayes-county"
 ] as const;
 
 describe("verified county guides", () => {

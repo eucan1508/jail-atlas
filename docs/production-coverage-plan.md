@@ -119,6 +119,7 @@ Oklahoma was added on 2026-10-09.
 | Craig      | [Craig County Sheriff inmate search](https://craigcountyso.com/inmate-search)                | Adapter tested; production approval pending |
 | Noble      | [Noble County Sheriff inmate search](https://www.noblecosook.gov/inmate-search)              | Adapter tested; production approval pending |
 | Washington | [Washington County Sheriff inmate search](https://www.washingtoncosheriff.com/inmate-search) | Adapter tested; production approval pending |
+| Mayes      | [Mayes County Sheriff inmate roster](https://www.mayessheriff.org/roster.php)                | Adapter tested; production approval pending |
 
 ## Missouri
 
@@ -172,6 +173,7 @@ Kansas, Arkansas, and Texas counties above.
 | DeKalb    | [DeKalb County Sheriff inmate roster](https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 | Mobile    | [Mobile County Sheriff current inmates report](https://all.mobileso.com/OthReports/CurrentInmates.aspx)                          | Adapter tested; production approval pending |
 | Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
+| Cherokee  | [Cherokee County Sheriff inmate roster](https://www.cherokeecountyalsheriff.com/roster.php)                                      | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

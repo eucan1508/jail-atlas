@@ -108,8 +108,8 @@ or login. "Template" means the shared "Inmate Roster (N)" sheriff site already r
 | 5   | Escambia  | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info; 77 of 346 cards list no charge              | Skipped          |
 | 6   | Elmore    | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                                                      | Added 2026-11-15 |
 | 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                                                       | Added 2026-11-15 |
-| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                                          | To do            |
-| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                                               | To do            |
+| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                                          | Added 2026-11-15 |
+| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                                               | Added 2026-11-15 |
 | 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com)                                                                   | To do            |
 
 Smaller template counties to check next: Barry MO, Labette KS, Miller MO, Phillips AR, Harrison MO

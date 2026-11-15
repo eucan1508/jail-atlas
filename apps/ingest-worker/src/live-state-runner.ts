@@ -489,6 +489,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "washington",
       adapterKey: "washington-county-ok-current-roster",
       sourceHost: "www.washingtoncosheriff.com"
+    },
+    {
+      countySlug: "mayes",
+      adapterKey: "mayes-county-ok-current-roster",
+      sourceHost: "www.mayessheriff.org"
     }
   ],
   MO: [
@@ -635,6 +640,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "elmore",
       adapterKey: "elmore-county-al-current-roster",
       sourceHost: "www.elmoreso.com"
+    },
+    {
+      countySlug: "cherokee",
+      adapterKey: "cherokee-county-al-current-roster",
+      sourceHost: "www.cherokeecountyalsheriff.com"
     },
     {
       countySlug: "mobile",

@@ -74,6 +74,15 @@ export const ELMORE_COUNTY_AL_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CHEROKEE_COUNTY_AL_ROSTER = {
+  adapterKey: "cherokee-county-al-current-roster",
+  countyName: "Cherokee County",
+  diagnosticPrefix: "CHEROKEE_COUNTY_AL",
+  sourceUrl: "https://www.cherokeecountyalsheriff.com/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ALABAMA_ROSTER_SITES = [
   FRANKLIN_COUNTY_AL_ROSTER,
   CHILTON_COUNTY_AL_ROSTER,
@@ -82,7 +91,8 @@ export const ALABAMA_ROSTER_SITES = [
   MARSHALL_COUNTY_AL_ROSTER,
   MARION_COUNTY_AL_ROSTER,
   DEKALB_COUNTY_AL_ROSTER,
-  ELMORE_COUNTY_AL_ROSTER
+  ELMORE_COUNTY_AL_ROSTER,
+  CHEROKEE_COUNTY_AL_ROSTER
 ] as const;
 
 export function alabamaRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {
