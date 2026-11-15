@@ -2246,6 +2246,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.cherokeecountyalsheriff.com/roster.php",
     officialSourceLabel: "Cherokee County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Saline County",
+    slug: "saline-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Marshall",
+    h1: "Saline County Jail Roster & Inmate Search",
+    title: "Saline County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Saline County, Missouri current-inmate information for the county jail in Marshall from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Saline County Sheriff's Office runs the county jail in Marshall, with eight men's pods, one women's pod, and three holding cells, and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.salinecountysheriff.com/roster.php",
+    officialSourceLabel: "Saline County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "kansas",
+    stateName: "Kansas",
+    county: "Labette County",
+    slug: "labette-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Oswego",
+    h1: "Labette County Jail Roster & Inmate Search",
+    title: "Labette County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Labette County, Kansas current-inmate information for the county jail in Oswego from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Labette County Sheriff's Office runs the county jail at 718 5th Street in Oswego and publishes a current inmate roster. This page reads that roster with each person's charges from their roster profile and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl:
+      "https://www.labettecountykssheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Labette County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

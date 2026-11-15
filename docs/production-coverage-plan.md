@@ -138,6 +138,7 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Morgan   | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                             | Adapter tested; production approval pending |
 | Andrew   | [Andrew County Sheriff inmate roster](https://www.andrewcountysheriff.org/roster.php)                                          | Adapter tested; production approval pending |
 | Callaway | [Callaway County Sheriff inmate roster](https://www.callawaysheriff.org/roster.php)                                            | Adapter tested; production approval pending |
+| Saline   | [Saline County Sheriff inmate roster](https://www.salinecountysheriff.com/roster.php)                                          | Adapter tested; production approval pending |
 
 ## Kansas
 
@@ -153,6 +154,7 @@ Arkansas, and Texas counties above.
 | Jefferson   | [Jefferson County Sheriff inmate roster](https://www.jeffersoncountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 | Woodson     | [Woodson County Sheriff inmate roster](https://www.woodsonsheriff.com/roster.php)                                                    | Adapter tested; production approval pending |
 | Cherokee    | [Cherokee County Sheriff inmate roster](https://www.cherokeecountykssheriff.com/inmate-roster/filters/current/booking_time=desc/1)   | Adapter tested; production approval pending |
+| Labette     | [Labette County Sheriff inmate roster](https://www.labettecountykssheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 | Jackson     | [Jackson County Sheriff jail roster](https://www.jasoks.org/agency-data/jail-roster/)                                                | Adapter tested; production approval pending |
 | Brown       | [Brown County Sheriff jail roster](https://www.brownso.org/agency-data/jail-roster/)                                                 | Adapter tested; production approval pending |
 | Nemaha      | [Nemaha County Sheriff jail roster](https://nemahasoks.gov/jail/jail-roster/)                                                        | Adapter tested; production approval pending |

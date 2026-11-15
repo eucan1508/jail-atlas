@@ -43,6 +43,11 @@ export interface SheriffRosterSiteConfig {
    * list charges (inmate-roster-path layout only).
    */
   readonly chargesFromProfile?: boolean;
+  /**
+   * Charge lines end with the bond amount and type ("DWI - ALCOHOL - 1500.00 - Cash Only"). Bonds
+   * are not published, so the ending is removed; a line without it fails the run.
+   */
+  readonly chargeLinesEndWithBond?: boolean;
 }
 
 // Some sites list 10 people a page, so 1,000 records can take 100 pages.
@@ -55,6 +60,13 @@ const ROSTER_PATH_PREFIX = "/inmate-roster/filters/current/booking_time=desc/";
 const MORE_CHARGES = /^\+ ?(\d{1,3}) more charges?$/i;
 const MAX_PROFILE_PAGES = 150;
 const MIN_RECORDS_FOR_CHARGE_CHECK = 10;
+const CHARGE_BOND_ENDING = / - \d[\d,]*\.\d{2} - [^-]+$/;
+
+function withoutBondEnding(config: SheriffRosterSiteConfig, charge: string): string {
+  if (!config.chargeLinesEndWithBond) return charge;
+  if (!CHARGE_BOND_ENDING.test(charge)) throw new Error("CHARGE_BOND_FORMAT_CHANGED");
+  return charge.replace(CHARGE_BOND_ENDING, "").trim();
+}
 
 const SheriffRosterRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
@@ -309,7 +321,9 @@ function parsePage(
     }
     const listedCharges = valuesBetween(lines, CHARGE_LABELS);
     const moreCharges = listedCharges.at(-1)?.match(MORE_CHARGES);
-    const charges = moreCharges ? listedCharges.slice(0, -1) : listedCharges;
+    const charges = (moreCharges ? listedCharges.slice(0, -1) : listedCharges).map((charge) =>
+      withoutBondEnding(config, charge)
+    );
     if (charges.some((charge) => MORE_CHARGES.test(charge))) throw new Error("CHARGE_LIST_CHANGED");
     if (moreCharges || config.chargesFromProfile) {
       truncated.set(bookingNumber, {
@@ -362,11 +376,14 @@ export function parseProfileCharges(
   if (normalizeText(valueAfter(lines, BOOKING_LABELS) ?? "") !== expected.bookingNumber) {
     throw new Error("PROFILE_IDENTITY_MISMATCH");
   }
-  const charges = lines.flatMap((line, index) =>
-    CHARGE_LABELS.some((label) => label.toLowerCase() === line.toLowerCase())
-      ? [lines[index + 1] ?? ""]
-      : []
-  );
+  const charges = lines.flatMap((line, index) => {
+    if (!CHARGE_LABELS.some((label) => label.toLowerCase() === line.toLowerCase())) return [];
+    const next = lines[index + 1] ?? "";
+    // A "Charges:" heading over a charge table is followed by the table's column names
+    // ("Jurisdiction:Case Number:Statute:Charge:..."); each charge then has its own "Charge:" row.
+    if (/^(?:[A-Za-z #()]+:){2,}$/.test(next)) return [];
+    return [next];
+  });
   if (
     (expected.expectedCount !== null && charges.length !== expected.expectedCount) ||
     charges.some((charge) => !charge || /^[A-Za-z #()]+:$/.test(charge)) ||
