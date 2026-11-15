@@ -136,6 +136,7 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Lewis    | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
 | Morgan   | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                             | Adapter tested; production approval pending |
 | Andrew   | [Andrew County Sheriff inmate roster](https://www.andrewcountysheriff.org/roster.php)                                          | Adapter tested; production approval pending |
+| Callaway | [Callaway County Sheriff inmate roster](https://www.callawaysheriff.org/roster.php)                                            | Adapter tested; production approval pending |
 
 ## Kansas
 
@@ -170,6 +171,7 @@ Kansas, Arkansas, and Texas counties above.
 | Marion    | [Marion County Sheriff inmate roster](https://www.marionsoal.com/inmate-roster/filters/current/booking_time=desc/1)              | Adapter tested; production approval pending |
 | DeKalb    | [DeKalb County Sheriff inmate roster](https://www.dekalbcountysheriff.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
 | Mobile    | [Mobile County Sheriff current inmates report](https://all.mobileso.com/OthReports/CurrentInmates.aspx)                          | Adapter tested; production approval pending |
+| Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 
 ## What “API content” means here
 

@@ -536,6 +536,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "andrew",
       adapterKey: "andrew-county-mo-current-roster",
       sourceHost: "www.andrewcountysheriff.org"
+    },
+    {
+      countySlug: "callaway",
+      adapterKey: "callaway-county-mo-current-roster",
+      sourceHost: "www.callawaysheriff.org"
     }
   ],
   KS: [
@@ -625,6 +630,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "dekalb",
       adapterKey: "dekalb-county-al-current-roster",
       sourceHost: "www.dekalbcountysheriff.org"
+    },
+    {
+      countySlug: "elmore",
+      adapterKey: "elmore-county-al-current-roster",
+      sourceHost: "www.elmoreso.com"
     },
     {
       countySlug: "mobile",

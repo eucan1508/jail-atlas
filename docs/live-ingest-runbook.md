@@ -153,7 +153,7 @@ with the adapter records disabled and publication approval off.
    fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org,www.callawaysheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
@@ -172,15 +172,15 @@ with the adapter records disabled and publication approval off.
    crawl follows the list's own Next links, and the people it collects must match the page's "Number
    of Inmates" count, or the county fails closed. It runs in the same Kansas batch.
 
-   Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, and DeKalb counties through
-   the same shared sheriff roster adapter, configured in `alabama-rosters.ts`. Franklin and Chilton
-   use the `roster.php?grp=` layout and the others the `/inmate-roster/filters/current/...` paths;
-   each must collect exactly the "Inmate Roster (N)" count. Mobile County's Metro Jail publishes a
-   single "Current Inmates" report (`all.mobileso.com`, `mobile-county-al.ts`); the download must be
-   complete and list at least 200 people:
+   Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, DeKalb, and Elmore counties
+   through the same shared sheriff roster adapter, configured in `alabama-rosters.ts`. Franklin and
+   Chilton use the `roster.php?grp=` layout and the others the `/inmate-roster/filters/current/...`
+   paths; each must collect exactly the "Inmate Roster (N)" count. Mobile County's Metro Jail
+   publishes a single "Current Inmates" report (`all.mobileso.com`, `mobile-county-al.ts`); the
+   download must be complete and list at least 200 people:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com,www.elmoreso.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 

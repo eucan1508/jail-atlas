@@ -45,7 +45,8 @@ export interface SheriffRosterSiteConfig {
   readonly chargesFromProfile?: boolean;
 }
 
-const MAX_PAGES = 40;
+// Some sites list 10 people a page, so 1,000 records can take 100 pages.
+const MAX_PAGES = 100;
 const MAX_RECORDS = 1_000;
 const MAX_PAGE_BYTES = 3_000_000;
 const PAGE_SIZE = 20;

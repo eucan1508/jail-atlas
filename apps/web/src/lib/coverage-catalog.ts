@@ -2178,6 +2178,40 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://all.mobileso.com/OthReports/CurrentInmates.aspx",
     officialSourceLabel: "Mobile County Sheriff's Office current inmates report",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Elmore County",
+    slug: "elmore-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Wetumpka",
+    h1: "Elmore County Jail Roster & Inmate Search",
+    title: "Elmore County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Elmore County, Alabama current-inmate information for the county jail in Wetumpka from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Elmore County Sheriff's Office runs the county jail in Wetumpka, which holds municipal, county, and state inmates, and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Elmore County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Callaway County",
+    slug: "callaway-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Fulton",
+    h1: "Callaway County Jail Roster & Inmate Search",
+    title: "Callaway County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Callaway County, Missouri current-inmate information for the county jail in Fulton from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Callaway County Sheriff's Office runs the county jail in Fulton and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.callawaysheriff.org/roster.php",
+    officialSourceLabel: "Callaway County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

@@ -106,6 +106,7 @@ const liveCountyKeys = [
   "missouri/lewis-county",
   "missouri/morgan-county",
   "missouri/andrew-county",
+  "missouri/callaway-county",
   "kansas/bourbon-county",
   "kansas/coffey-county",
   "kansas/atchison-county",
@@ -123,7 +124,8 @@ const liveCountyKeys = [
   "alabama/marshall-county",
   "alabama/marion-county",
   "alabama/dekalb-county",
-  "alabama/mobile-county"
+  "alabama/mobile-county",
+  "alabama/elmore-county"
 ] as const;
 
 describe("verified county guides", () => {
