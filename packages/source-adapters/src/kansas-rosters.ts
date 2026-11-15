@@ -67,6 +67,17 @@ export const CHEROKEE_COUNTY_KS_ROSTER = {
   layout: "inmate-roster-path"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const LABETTE_COUNTY_KS_ROSTER = {
+  adapterKey: "labette-county-ks-current-roster",
+  countyName: "Labette County",
+  diagnosticPrefix: "LABETTE_COUNTY_KS",
+  sourceUrl:
+    "https://www.labettecountykssheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path",
+  chargesFromProfile: true
+} as const satisfies SheriffRosterSiteConfig;
+
 export const KANSAS_ROSTER_SITES = [
   BOURBON_COUNTY_KS_ROSTER,
   COFFEY_COUNTY_KS_ROSTER,
@@ -74,7 +85,8 @@ export const KANSAS_ROSTER_SITES = [
   LEAVENWORTH_COUNTY_KS_ROSTER,
   JEFFERSON_COUNTY_KS_ROSTER,
   WOODSON_COUNTY_KS_ROSTER,
-  CHEROKEE_COUNTY_KS_ROSTER
+  CHEROKEE_COUNTY_KS_ROSTER,
+  LABETTE_COUNTY_KS_ROSTER
 ] as const;
 
 export function kansasRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

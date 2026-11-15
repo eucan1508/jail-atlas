@@ -148,25 +148,27 @@ with the adapter records disabled and publication approval off.
    Mayes County uses the shared sheriff roster template (`roster.php`), configured in
    `oklahoma-rosters.ts`, and runs in the same Oklahoma batch.
 
-   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, Andrew, and
-   Callaway through the shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in
-   `missouri-rosters.ts`). Crawford, Camden, Polk, Stone, Lawrence, Morgan, and Andrew use the
+   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, Andrew, Callaway,
+   and Saline through the shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in
+   `missouri-rosters.ts`). Saline's charge lines end with the bond amount and type, which the
+   adapter removes. Crawford, Camden, Polk, Stone, Lawrence, Morgan, and Andrew use the
    `roster.php?grp=` layout; Benton and Lewis use `/inmate-roster/filters/current/...` paths. Every
    crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the county
    fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org,www.callawaysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org,www.callawaysheriff.org,www.salinecountysheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
-   Kansas runs Bourbon, Coffey, Atchison, Leavenworth, Jefferson, Woodson, and Cherokee through the
-   same shared sheriff roster adapter, configured in `kansas-rosters.ts`; Woodson uses the
-   `roster.php?grp=` layout and the rest use `/inmate-roster/filters/current/...` paths, and all
-   must collect exactly the "Inmate Roster (N)" count:
+   Kansas runs Bourbon, Coffey, Atchison, Leavenworth, Jefferson, Woodson, Cherokee, and Labette
+   through the same shared sheriff roster adapter, configured in `kansas-rosters.ts`; Woodson uses
+   the `roster.php?grp=` layout and the rest use `/inmate-roster/filters/current/...` paths, and all
+   must collect exactly the "Inmate Roster (N)" count. Labette's cards list no charges, so its
+   charges are read from each person's profile page:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com,www.woodsonsheriff.com,www.cherokeecountykssheriff.com,www.jasoks.org,www.brownso.org,nemahasoks.gov
+   SOURCE_HOST_ALLOWLIST=www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com,www.woodsonsheriff.com,www.cherokeecountykssheriff.com,www.jasoks.org,www.brownso.org,nemahasoks.gov,www.labettecountykssheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=KS --dry-run
    ```
 

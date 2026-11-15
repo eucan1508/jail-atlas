@@ -110,11 +110,13 @@ or login. "Template" means the shared "Inmate Roster (N)" sheriff site already r
 | 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                                                       | Added 2026-11-15 |
 | 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                                          | Added 2026-11-15 |
 | 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                                               | Added 2026-11-15 |
-| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com)                                                                   | To do            |
+| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com); charge lines end with the bond, which is removed                 | Added 2026-11-15 |
+| 11  | Barry     | MO    | 53     | Older table-style roster page (www.barrycountysheriff.com) that the shared template does not read                    | Skipped          |
+| 12  | Labette   | KS    | 43     | Template, inmate-roster path (www.labettecountykssheriff.org); charges read from profile pages                       | Added 2026-11-15 |
 
-Smaller template counties to check next: Barry MO, Labette KS, Miller MO, Phillips AR, Harrison MO
-(skip any whose official site lacks jail guidance). Pottawattamie IA runs a Zuercher portal whose
-custody list could not be checked yet.
+Smaller template counties to check next: Miller MO, Phillips AR, Harrison MO (skip any whose
+official site lacks jail guidance). Pottawattamie IA runs a Zuercher portal whose custody list could
+not be checked yet.
 
 ## New states, in order (owner approval required before starting each)
 

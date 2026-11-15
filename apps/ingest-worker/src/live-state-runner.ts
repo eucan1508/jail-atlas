@@ -546,6 +546,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "callaway",
       adapterKey: "callaway-county-mo-current-roster",
       sourceHost: "www.callawaysheriff.org"
+    },
+    {
+      countySlug: "saline",
+      adapterKey: "saline-county-mo-current-roster",
+      sourceHost: "www.salinecountysheriff.com"
     }
   ],
   KS: [
@@ -583,6 +588,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cherokee",
       adapterKey: "cherokee-county-ks-current-roster",
       sourceHost: "www.cherokeecountykssheriff.com"
+    },
+    {
+      countySlug: "labette",
+      adapterKey: "labette-county-ks-current-roster",
+      sourceHost: "www.labettecountykssheriff.org"
     },
     {
       countySlug: "jackson",

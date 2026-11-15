@@ -2462,6 +2462,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "kansas/labette-county": {
+    facilityName: "Labette County Jail",
+    address: "718 5th Street, Oswego, KS 67356",
+    phone: "620-795-2565",
+    operatedBy: "Labette County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Labette County Sheriff's Office runs the county jail at 718 5th Street in Oswego. The Sheriff's non-emergency line, 620-795-2565, is answered 24 hours a day.",
+    contactSourceLabel: "Official inmate mail page",
+    contactSourceUrl: "https://www.labettecountykssheriff.org/inmate-mail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "In-person visits are for immediate family only and must be approved and scheduled at least 48 hours ahead through NCIC. Each inmate gets one 30-minute visit a week. Hours are Sunday noon to 5 p.m. and Monday through Saturday 9 a.m. to 7 p.m., closed 11:30-12:30 and 4:30-5:30. Bring a valid photo ID and proof of relationship, and arrive 15 minutes early.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.labettecountykssheriff.org/facility-visitation"
+      },
+      {
+        title: "Money and commissary",
+        body: "Add money online at JailATM.com or at the kiosk in the jail lobby. Cash and checks sent by mail are returned. Inmates can buy up to $75 of commissary a week, and family can order commissary directly from Benchmark unless the inmate owes the jail money.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.labettecountykssheriff.org/inmate-commissary-and-account-funds"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone and video calls run through NCIC Correctional Services, (800) 943-2189. Video chat is open 8 a.m. to 10 p.m. daily for users 18 and older. Mail goes to Labette County Jail, the inmate's last and first name, 718 5th Street, Oswego, KS 67356; it is scanned and must have a return address. Packages are not accepted.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://www.labettecountykssheriff.org/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Confirm the charges and bond amount with jail staff before posting. Bonds can be posted online at JailATM.com, at the lobby kiosk, or through a bondsman approved by the 11th Judicial District. Out-of-state bonds are not accepted here.",
+        sourceLabel: "Official bonding page",
+        sourceUrl: "https://www.labettecountykssheriff.org/inmate-bonding-procedures"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Labette County jail?",
+        answer:
+          "Only immediate family may visit in person, once a week for 30 minutes, after approval and scheduling through NCIC at least 48 hours ahead."
+      },
+      {
+        question: "How do I put money on a Labette County inmate's account?",
+        answer: "Online at JailATM.com or at the jail lobby kiosk. Money sent by mail is returned."
+      },
+      {
+        question: "What is the mailing address for the Labette County jail?",
+        answer:
+          "Labette County Jail, inmate's last and first name, 718 5th Street, Oswego, KS 67356."
+      },
+      {
+        question: "What is the Labette County Sheriff's Office phone number?",
+        answer: "620-795-2565, answered 24 hours a day."
+      }
+    ]
+  },
+
   "kansas/jackson-county": {
     facilityName: "Jackson County Jail",
     address: "210 US 75 Highway, Holton, KS 66436",
@@ -3721,6 +3779,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       {
         question: "What is the Callaway County Sheriff's Office number?",
         answer: "573-642-7291, answered 24 hours a day."
+      }
+    ]
+  },
+  "missouri/saline-county": {
+    facilityName: "Saline County Jail",
+    address: "Sheriff's Office: 1915 W. Arrow St., Marshall, MO 65340",
+    phone: "660-886-5512",
+    operatedBy: "Saline County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Saline County Sheriff's Office in Marshall runs the county jail, which has eight men's pods, one women's pod, and three holding cells. The Sheriff's Office answers 660-886-5512 around the clock.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.salinecountysheriff.com/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Since September 28, 2026, calls, video visits, visitation, and messages all run through the HomeWAV app. For visitation changes, call the Sheriff's Office at 660-886-5511. People on probation or parole, co-defendants, victims, people out on bond, and anyone with an active warrant are denied visits.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.salinecountysheriff.com/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money for inmates is handled only through the HomeWAV app; the lobby kiosk has been removed. The only property allowed in is eyeglasses, contact lenses, sealed contact solution, and dentures. Paperback books are accepted as donations to the jail, and an inmate may keep a softcover Bible.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.salinecountysheriff.com/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail must be a plain white postcard no larger than 5 by 7 inches, addressed to Saline County Jail, the inmate's name, P.O. Box 366, Marshall, MO 65340 (no inmate number needed). Postcards with stickers, labels, stains, plastic wrap, or prohibited images are returned. Calls go through the HomeWAV app.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.salinecountysheriff.com/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bonds are taken 24 hours a day, 7 days a week. Cash bonds must be the exact amount in cash, with a valid ID; cards and checks are not accepted. Bondsmen must be approved by the Saline County Court, and the list of approved bondsmen is kept at the Sheriff's front window.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.salinecountysheriff.com/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I send mail to someone in the Saline County jail?",
+        answer:
+          "Only plain white postcards up to 5 by 7 inches, to Saline County Jail, the inmate's name, P.O. Box 366, Marshall, MO 65340."
+      },
+      {
+        question: "How do I put money on a Saline County inmate's account?",
+        answer: "Through the HomeWAV app. The jail no longer has a lobby kiosk."
+      },
+      {
+        question: "How is bond posted at the Saline County jail?",
+        answer:
+          "Any time, day or night, in exact cash with a valid ID, or through a bondsman approved by the Saline County Court."
+      },
+      {
+        question: "What is the Saline County Sheriff's Office phone number?",
+        answer: "660-886-5512, answered 24 hours a day."
       }
     ]
   },

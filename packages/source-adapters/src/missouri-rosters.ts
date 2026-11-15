@@ -91,6 +91,16 @@ export const CALLAWAY_COUNTY_MO_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const SALINE_COUNTY_MO_ROSTER = {
+  adapterKey: "saline-county-mo-current-roster",
+  countyName: "Saline County",
+  diagnosticPrefix: "SALINE_COUNTY_MO",
+  sourceUrl: "https://www.salinecountysheriff.com/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php",
+  chargeLinesEndWithBond: true
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -101,7 +111,8 @@ export const MISSOURI_ROSTER_SITES = [
   LEWIS_COUNTY_MO_ROSTER,
   MORGAN_COUNTY_MO_ROSTER,
   ANDREW_COUNTY_MO_ROSTER,
-  CALLAWAY_COUNTY_MO_ROSTER
+  CALLAWAY_COUNTY_MO_ROSTER,
+  SALINE_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

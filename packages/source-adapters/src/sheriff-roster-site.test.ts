@@ -422,6 +422,8 @@ describe("sheriff roster site adapter", () => {
     ]);
     const profile = `<!doctype html><html><head><title>TESTER, ZETA - Roster | Cleburne County Sheriff's Office</title></head><body>
       <div><strong>Booking Number:</strong></div><div>1236</div>
+      <h2>Charges:</h2>
+      <table><thead><tr><th>Jurisdiction:</th><th>Statute:</th><th>Charge:</th></tr></thead></table>
       <div><strong>Charge:</strong></div><div>SYNTHETIC OFFENSE ONE</div>
       <div><strong>Charge:</strong></div><div>SYNTHETIC OFFENSE TWO</div>
     </body></html>`;
@@ -444,6 +446,36 @@ describe("sheriff roster site adapter", () => {
       "SYNTHETIC OFFENSE ONE",
       "SYNTHETIC OFFENSE TWO"
     ]);
+  });
+
+  it("drops the bond amount and type that some sites append to each charge", async () => {
+    const config = { ...JEFFERSON_COUNTY_AR_ROSTER, chargeLinesEndWithBond: true } as const;
+    const page = (charges: readonly string[]) =>
+      adapter(
+        config,
+        new Map([
+          [
+            config.sourceUrl,
+            rosterPhpPage("Jefferson County", 1, [
+              { bookingNumber: "900001", name: "TESTER, ALPHA — TEST ONLY", charges }
+            ])
+          ]
+        ])
+      );
+    const result = await runSourceAdapter(
+      page(["DWI - ALCOHOL - 1500.00 - Cash Only", "STEALING - $750 OR MORE - 0.00 - None Set"]),
+      context(config)
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
+      "DWI - ALCOHOL",
+      "STEALING - $750 OR MORE"
+    ]);
+    const changed = await runSourceAdapter(page(["DWI - ALCOHOL"]), context(config));
+    expect(changed.ok).toBe(false);
+    if (changed.ok) return;
+    expect(changed.failure.diagnosticCode).toBe("JEFFERSON_COUNTY_AR_CHARGE_BOND_FORMAT_CHANGED");
   });
 
   it("fails when nobody on a roster of real size has a charge", async () => {
