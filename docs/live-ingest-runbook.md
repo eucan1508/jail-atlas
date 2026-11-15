@@ -141,12 +141,15 @@ with the adapter records disabled and publication approval off.
    crawl restarts (up to three times) and then fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com,craigcountyso.com,www.noblecosook.gov,www.washingtoncosheriff.com
+   SOURCE_HOST_ALLOWLIST=www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com,craigcountyso.com,www.noblecosook.gov,www.washingtoncosheriff.com,www.mayessheriff.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=OK --dry-run
    ```
 
-   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, and Andrew through
-   the shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in
+   Mayes County uses the shared sheriff roster template (`roster.php`), configured in
+   `oklahoma-rosters.ts`, and runs in the same Oklahoma batch.
+
+   Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, Andrew, and
+   Callaway through the shared sheriff roster adapter (`sheriff-roster-site.ts`, configured in
    `missouri-rosters.ts`). Crawford, Camden, Polk, Stone, Lawrence, Morgan, and Andrew use the
    `roster.php?grp=` layout; Benton and Lewis use `/inmate-roster/filters/current/...` paths. Every
    crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the county
@@ -172,15 +175,16 @@ with the adapter records disabled and publication approval off.
    crawl follows the list's own Next links, and the people it collects must match the page's "Number
    of Inmates" count, or the county fails closed. It runs in the same Kansas batch.
 
-   Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, DeKalb, and Elmore counties
-   through the same shared sheriff roster adapter, configured in `alabama-rosters.ts`. Franklin and
-   Chilton use the `roster.php?grp=` layout and the others the `/inmate-roster/filters/current/...`
-   paths; each must collect exactly the "Inmate Roster (N)" count. Mobile County's Metro Jail
-   publishes a single "Current Inmates" report (`all.mobileso.com`, `mobile-county-al.ts`); the
-   download must be complete and list at least 200 people:
+   Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, DeKalb, Elmore, and
+   Cherokee counties through the same shared sheriff roster adapter, configured in
+   `alabama-rosters.ts`. Franklin and Chilton use the `roster.php?grp=` layout and the others the
+   `/inmate-roster/filters/current/...` paths; each must collect exactly the "Inmate Roster (N)"
+   count. Mobile County's Metro Jail publishes a single "Current Inmates" report
+   (`all.mobileso.com`, `mobile-county-al.ts`); the download must be complete and list at least 200
+   people:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com,www.elmoreso.com
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com,www.elmoreso.com,www.cherokeecountyalsheriff.com
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 

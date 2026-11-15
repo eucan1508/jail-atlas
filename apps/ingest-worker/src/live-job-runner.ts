@@ -20,6 +20,7 @@ import {
   kansasRosterSite,
   iowaRosterSite,
   alabamaRosterSite,
+  oklahomaRosterSite,
   toolsetJailRoster,
   createToolsetJailRosterAdapter,
   proPhoenixLocator,
@@ -217,7 +218,8 @@ export function createLiveSourceAdapter(
     missouriRosterSite(source.adapterKey) ??
     kansasRosterSite(source.adapterKey) ??
     iowaRosterSite(source.adapterKey) ??
-    alabamaRosterSite(source.adapterKey);
+    alabamaRosterSite(source.adapterKey) ??
+    oklahomaRosterSite(source.adapterKey);
   const myr2mSite = myr2mRosterSite(source.adapterKey);
   const rosterReport = jailRosterReport(source.adapterKey);
   const portal = jailPortal(source.adapterKey);

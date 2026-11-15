@@ -60,7 +60,8 @@ const SheriffRosterRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
   bookingNumber: z.string().trim().min(1).max(100),
   bookingDateText: z.string().trim().min(1).max(100).nullable(),
-  charges: z.array(z.string().trim().min(1).max(1_000)).max(100),
+  // One case can carry hundreds of counts (Cherokee County, AL lists 255 for one person).
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(400),
   bondText: z.string().trim().min(1).max(250).nullable()
 });
 

@@ -149,7 +149,9 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/marion-county": "marion-county-al-current-roster",
   "alabama/dekalb-county": "dekalb-county-al-current-roster",
   "alabama/mobile-county": "mobile-county-al-current-roster",
-  "alabama/elmore-county": "elmore-county-al-current-roster"
+  "alabama/elmore-county": "elmore-county-al-current-roster",
+  "alabama/cherokee-county": "cherokee-county-al-current-roster",
+  "oklahoma/mayes-county": "mayes-county-ok-current-roster"
 };
 
 // Two refreshes a day per state; 30 hours covers one failed run plus scheduler delays.

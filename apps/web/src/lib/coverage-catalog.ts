@@ -2212,6 +2212,40 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.callawaysheriff.org/roster.php",
     officialSourceLabel: "Callaway County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "oklahoma",
+    stateName: "Oklahoma",
+    county: "Mayes County",
+    slug: "mayes-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Pryor",
+    h1: "Mayes County Jail Roster & Inmate Search",
+    title: "Mayes County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Mayes County, Oklahoma current-inmate information for the county jail in Pryor from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Mayes County Sheriff's Office in Pryor runs the county jail and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.mayessheriff.org/roster.php",
+    officialSourceLabel: "Mayes County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Cherokee County",
+    slug: "cherokee-county",
+    publishedAt: "2026-11-15",
+    seatCity: "Centre",
+    h1: "Cherokee County Jail Roster & Inmate Search",
+    title: "Cherokee County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cherokee County, Alabama current-inmate information for the Detention Center in Centre from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Cherokee County Sheriff's Office runs the Detention Center at 110 Cedar Bluff Road in Centre, which holds county, municipal, state, and U.S. Marshals Service inmates, and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.cherokeecountyalsheriff.com/roster.php",
+    officialSourceLabel: "Cherokee County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

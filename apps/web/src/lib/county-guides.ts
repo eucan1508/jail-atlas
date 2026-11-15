@@ -3150,6 +3150,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/cherokee-county": {
+    facilityName: "Cherokee County Detention Center",
+    address: "110 Cedar Bluff Road, Centre, AL 35960",
+    phone: "256-927-6435",
+    operatedBy: "Cherokee County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Cherokee County Sheriff's Office runs the Detention Center at 110 Cedar Bluff Road in Centre. Opened in 1996 and renovated in 2004, it holds adult men and women for the county, its towns, the state, and the U.S. Marshals Service.",
+    contactSourceLabel: "Official Detention Center page",
+    contactSourceUrl: "https://www.cherokeecountyalsheriff.com/detention-facility",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video only, seven days a week. Set up an account and appointment at inmatesales.com or call 1-877-998-5678; officers cannot schedule visits. The jail does not accept property for inmates from outside.",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.cherokeecountyalsheriff.com/detention-facility"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary funds go through the Legacy Cashier machine in the Sheriff's Office lobby (cash or card) or JailATM.com, which needs the inmate's full name, date of birth, and location. Phone funds go through the CPC kiosk in the lobby, cpcjail.com, or 1-877-998-5678.",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.cherokeecountyalsheriff.com/detention-facility"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate phone accounts are funded at the CPC lobby kiosk, cpcjail.com, or 1-877-998-5678. The Detention Center publishes a separate inmate mail policy on its page; read it before sending anything.",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.cherokeecountyalsheriff.com/detention-facility"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail takes property bonds (two signers, each with unmortgaged property equal to the bond), cash bonds paid in full at the Circuit Clerk's Office or through Cash Bond Online (1-888-726-6301), and bonds from bonding companies licensed in Cherokee County. Bonds can be made any time except 5-7 a.m., 11 a.m.-1 p.m., and 5-7 p.m. People with a zero bond leave only by court order or after fines are paid at the Circuit Clerk's Office (256-927-3637).",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.cherokeecountyalsheriff.com/detention-facility"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Cherokee County jail?",
+        answer:
+          "Visits are by video only, seven days a week. Book through inmatesales.com or call 1-877-998-5678."
+      },
+      {
+        question: "What do the abbreviations on Cherokee County charges mean?",
+        answer:
+          "The Detention Center lists them: TOP is theft of property, UPODP unlawful possession of drug paraphernalia, UPOM unlawful possession of marijuana, UPOCS unlawful possession of a controlled substance, UDOCS unlawful distribution of a controlled substance, FTA/FTP failure to appear or pay, and GJI grand jury indictment."
+      },
+      {
+        question: "When can bond be posted at the Cherokee County jail?",
+        answer:
+          "Any day, except 5-7 a.m., 11 a.m.-1 p.m., and 5-7 p.m. Cash bonds are paid at the Circuit Clerk's Office or through Cash Bond Online."
+      },
+      {
+        question: "What is the Cherokee County Detention Center phone number?",
+        answer: "256-927-6435."
+      }
+    ]
+  },
 
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",
@@ -3899,6 +3957,63 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "oklahoma/mayes-county": {
+    facilityName: "Mayes County Jail",
+    address: "Sheriff's Office: 1 Court Place, Suite 150, Pryor, OK 74361",
+    phone: "918-825-6500",
+    operatedBy: "Mayes County Sheriff's Office",
+    reviewedAt: "November 15, 2026",
+    overview:
+      "The Mayes County Sheriff's Office in Pryor runs the county jail and publishes a current inmate roster. The jail answers 918-825-6500, and the Sheriff's Office is reachable around the clock at 918-825-3535.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.mayessheriff.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visits run through the Prodigylink app on a phone or computer. Inmates can call whenever they are in the day room.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.mayessheriff.org/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits to inmate accounts are made online at tigerdeposits.com. Commissary is delivered on Tuesdays and Fridays, and families can send a care package through tigercommissary.com.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.mayessheriff.org/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Phone time and video visits use a Prodigy account at prodigytel.com, which can include friends and family (1-866-700-4545). The Sheriff's jail page does not give mail rules; call 918-825-6500 before sending mail.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.mayessheriff.org/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's jail page does not explain how to post bond. Call the jail at 918-825-6500 to ask. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.mayessheriff.org/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I video visit someone at the Mayes County jail?",
+        answer: "Use the Prodigylink app or prodigytel.com (1-866-700-4545)."
+      },
+      {
+        question: "How do I put money on a Mayes County inmate's account?",
+        answer:
+          "Deposit online at tigerdeposits.com. Commissary arrives Tuesdays and Fridays; care packages go through tigercommissary.com."
+      },
+      {
+        question: "What is the Mayes County jail phone number?",
+        answer: "918-825-6500. The Sheriff's Office 24-hour line is 918-825-3535."
+      },
+      {
+        question: "Where is the Mayes County Sheriff's Office?",
+        answer: "1 Court Place, Suite 150, Pryor, OK 74361."
+      }
+    ]
+  },
+
   "oklahoma/custer-county": {
     facilityName: "Custer County Jail",
     address: "300 North 7th Ave., Arapaho, OK 73620",
