@@ -662,7 +662,18 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       sourceHost: "all.mobileso.com"
     }
   ],
-  FL: []
+  FL: [
+    {
+      countySlug: "walton",
+      adapterKey: "walton-county-fl-current-roster",
+      sourceHost: "nwscorrections.waltonso.org"
+    },
+    {
+      countySlug: "flagler",
+      adapterKey: "flagler-county-fl-current-roster",
+      sourceHost: "nwwebcad.fcpsn.org"
+    }
+  ]
 };
 
 /** Every county each state's live run refreshes, for checks that cover the whole list. */

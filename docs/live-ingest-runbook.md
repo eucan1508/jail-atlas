@@ -40,7 +40,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, TX, AR, or OK>
+   state=<IA, MN, TX, AR, OK, MO, KS, AL, or FL>
    county_slug=<county slug>
    confirm=APPROVE
    ```
@@ -190,6 +190,16 @@ with the adapter records disabled and publication approval off.
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 
+   Florida runs Walton and Flagler counties through `newworld-inquiry.ts`, which reads a NewWorld
+   "Inmate Inquiry" with its In Custody filter: every list page, then each person's detail page,
+   keeping the charges on the booking that has no release date. Walton's server starts failing after
+   about 170 back-to-back reads, so the adapter pauses half a second between its requests:
+
+   ```text
+   SOURCE_HOST_ALLOWLIST=nwscorrections.waltonso.org,nwwebcad.fcpsn.org
+   pnpm --filter @jail-atlas/ingest-worker dev -- run --state=FL --dry-run
+   ```
+
 4. Review the dry-run output and the source evidence. Only then run the `Approve live source`
    workflow for that specific adapter. The workflow performs the approval transaction with the
    customer-owned `DATABASE_URL`; no one needs to open Neon or paste SQL:
@@ -197,7 +207,7 @@ with the adapter records disabled and publication approval off.
    ```text
    GitHub → Actions → Approve live source → Run workflow
    adapter_key=<approved adapter key>
-   state=<IA, MN, TX, AR, or OK>
+   state=<IA, MN, TX, AR, OK, MO, KS, AL, or FL>
    county_slug=<county slug>
    confirm=APPROVE
    ```

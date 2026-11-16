@@ -129,6 +129,8 @@ const liveCountyKeys = [
   "alabama/mobile-county",
   "alabama/elmore-county",
   "alabama/cherokee-county",
+  "florida/walton-county",
+  "florida/flagler-county",
   "oklahoma/mayes-county"
 ] as const;
 

@@ -3,6 +3,7 @@ export * from "./anoka-county.js";
 export * from "./carlton-county.js";
 export * from "./dallas-county.js";
 export * from "./sebastian-county-ar.js";
+export * from "./newworld-inquiry.js";
 export * from "./mobile-county-al.js";
 export * from "./potter-county-tx.js";
 export * from "./galveston-county-tx.js";

@@ -153,6 +153,8 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/mobile-county": "mobile-county-al-current-roster",
   "alabama/elmore-county": "elmore-county-al-current-roster",
   "alabama/cherokee-county": "cherokee-county-al-current-roster",
+  "florida/walton-county": "walton-county-fl-current-roster",
+  "florida/flagler-county": "flagler-county-fl-current-roster",
   "oklahoma/mayes-county": "mayes-county-ok-current-roster"
 };
 

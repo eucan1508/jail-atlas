@@ -2289,6 +2289,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
       "https://www.labettecountykssheriff.org/inmate-roster/filters/current/booking_time=desc/1",
     officialSourceLabel: "Labette County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "florida",
+    stateName: "Florida",
+    county: "Walton County",
+    slug: "walton-county",
+    publishedAt: "2026-11-16",
+    seatCity: "DeFuniak Springs",
+    h1: "Walton County Jail Roster & Inmate Search",
+    title: "Walton County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Walton County, Florida current-inmate information for the county jail in DeFuniak Springs from the Sheriff's official inmate search, with source-listed charges and capture time.",
+    article:
+      "The Walton County Sheriff's Office runs the Walton County Jail in DeFuniak Springs, an accredited 596-bed jail for men and women, and publishes an inmate search of everyone in custody. This page reads that list with the charges on each person's current booking and leaves out photos, birth dates, addresses, and bonds.",
+    officialSourceUrl:
+      "https://nwscorrections.waltonso.org/NewWorld.InMateInquiry/WaltonCounty?InCustody=True",
+    officialSourceLabel: "Walton County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "florida",
+    stateName: "Florida",
+    county: "Flagler County",
+    slug: "flagler-county",
+    publishedAt: "2026-11-16",
+    seatCity: "Bunnell",
+    h1: "Flagler County Jail Roster & Inmate Search",
+    title: "Flagler County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Flagler County, Florida current-inmate information for the Sheriff Perry Hall Inmate Detention Facility in Bunnell from the Sheriff's official inmate search, with source-listed charges and capture time.",
+    article:
+      "The Flagler County Sheriff's Office runs the Sheriff Perry Hall Inmate Detention Facility at 1002 Justice Lane in Bunnell, with 15 housing units and room for 400 people, and publishes an inmate search of everyone in custody. This page reads that list with the charges on each person's current booking and leaves out photos, birth dates, addresses, and bonds.",
+    officialSourceUrl: "https://nwwebcad.fcpsn.org/NewWorld.InmateInquiry/FL0180000?InCustody=True",
+    officialSourceLabel: "Flagler County Sheriff's Office inmate search",
+    sourceStatus: "audit_pending"
   }
 ];
 

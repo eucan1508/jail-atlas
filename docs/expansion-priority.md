@@ -21,21 +21,21 @@ Built 2026-11-12 from:
 
 ## State demand (population-weighted search interest, Texas = 100)
 
-| Rank | State          | Score | Coverage                     |
-| ---- | -------------- | ----- | ---------------------------- |
-| 1    | Texas          | 100   | Live, 9 small counties       |
-| 2    | Florida        | 76    | Not covered (needs approval) |
-| 3    | Minnesota      | 43    | Live, 31 counties            |
-| 4    | California     | 41    | Not covered                  |
-| 5    | Georgia        | 39    | Not covered                  |
-| 6    | Ohio           | 38    | Not covered                  |
-| 7    | Illinois       | 33    | Not covered                  |
-| 8    | North Carolina | 29    | Not covered                  |
-| 9    | South Carolina | 29    | Not covered                  |
-| 10   | Alabama        | 28    | Live, 7 counties             |
-| 11   | Arkansas       | 21    | Live, 22 counties            |
-| 16   | Oklahoma       | 17    | Live, 17 counties            |
-| 22   | Missouri       | 13    | Live, 9 counties             |
+| Rank | State          | Score | Coverage               |
+| ---- | -------------- | ----- | ---------------------- |
+| 1    | Texas          | 100   | Live, 9 small counties |
+| 2    | Florida        | 76    | Live, 2 counties       |
+| 3    | Minnesota      | 43    | Live, 31 counties      |
+| 4    | California     | 41    | Not covered            |
+| 5    | Georgia        | 39    | Not covered            |
+| 6    | Ohio           | 38    | Not covered            |
+| 7    | Illinois       | 33    | Not covered            |
+| 8    | North Carolina | 29    | Not covered            |
+| 9    | South Carolina | 29    | Not covered            |
+| 10   | Alabama        | 28    | Live, 7 counties       |
+| 11   | Arkansas       | 21    | Live, 22 counties      |
+| 16   | Oklahoma       | 17    | Live, 17 counties      |
+| 22   | Missouri       | 13    | Live, 9 counties       |
 
 ## Priority order
 
@@ -99,30 +99,46 @@ The first list ran out of usable entries. Every county below was checked at the 
 or login. "Template" means the shared "Inmate Roster (N)" sheriff site already read by
 `sheriff-roster-site.ts`. Take these in order for "yer ekle".
 
-| #   | County    | State | People | Source                                                                                                               | Status           |
-| --- | --------- | ----- | ------ | -------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| 1   | Galveston | TX    | 667    | P2C inmate inquiry (p2c.galvestoncountytx.gov); list gives the primary charge only, shown as such                    | Added 2026-11-14 |
-| 2   | Potter    | TX    | ~590   | Spillman "Prisoners with their Offenses" PDF (public.pottercountysheriff.org)                                        | Added 2026-11-14 |
-| 3   | Etowah    | AL    | 581    | Template, roster.php (www.etowahcountysheriff.com); 67 of 583 cards list no charge, profile too (over the 10% limit) | Skipped          |
-| 4   | Morgan    | AL    | 505    | Template, roster.php (www.morgancountysheriffal.gov); cards show only the first charge ("More charges in profile")   | Skipped          |
-| 5   | Escambia  | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info; 77 of 346 cards list no charge              | Skipped          |
-| 6   | Elmore    | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                                                      | Added 2026-11-15 |
-| 7   | Callaway  | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                                                       | Added 2026-11-15 |
-| 8   | Mayes     | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                                          | Added 2026-11-15 |
-| 9   | Cherokee  | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                                               | Added 2026-11-15 |
-| 10  | Saline    | MO    | 73     | Template, roster.php (www.salinecountysheriff.com); charge lines end with the bond, which is removed                 | Added 2026-11-15 |
-| 11  | Barry     | MO    | 53     | Older table-style roster page (www.barrycountysheriff.com) that the shared template does not read                    | Skipped          |
-| 12  | Labette   | KS    | 43     | Template, inmate-roster path (www.labettecountykssheriff.org); charges read from profile pages                       | Added 2026-11-15 |
+| #   | County        | State | People | Source                                                                                                               | Status           |
+| --- | ------------- | ----- | ------ | -------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Galveston     | TX    | 667    | P2C inmate inquiry (p2c.galvestoncountytx.gov); list gives the primary charge only, shown as such                    | Added 2026-11-14 |
+| 2   | Potter        | TX    | ~590   | Spillman "Prisoners with their Offenses" PDF (public.pottercountysheriff.org)                                        | Added 2026-11-14 |
+| 3   | Etowah        | AL    | 581    | Template, roster.php (www.etowahcountysheriff.com); 67 of 583 cards list no charge, profile too (over the 10% limit) | Skipped          |
+| 4   | Morgan        | AL    | 505    | Template, roster.php (www.morgancountysheriffal.gov); cards show only the first charge ("More charges in profile")   | Skipped          |
+| 5   | Escambia      | AL    | 341    | Template, roster.php (www.escambiacountysheriffal.org); thin guide info; 77 of 346 cards list no charge              | Skipped          |
+| 6   | Elmore        | AL    | 301    | Template, inmate-roster path (www.elmoreso.com)                                                                      | Added 2026-11-15 |
+| 7   | Callaway      | MO    | 129    | Template, roster.php (www.callawaysheriff.org)                                                                       | Added 2026-11-15 |
+| 8   | Mayes         | OK    | 117    | Template, roster.php (www.mayessheriff.org)                                                                          | Added 2026-11-15 |
+| 9   | Cherokee      | AL    | 91     | Template, roster.php (www.cherokeecountyalsheriff.com)                                                               | Added 2026-11-15 |
+| 10  | Saline        | MO    | 73     | Template, roster.php (www.salinecountysheriff.com); charge lines end with the bond, which is removed                 | Added 2026-11-15 |
+| 11  | Barry         | MO    | 53     | Older table-style roster page (www.barrycountysheriff.com) that the shared template does not read                    | Skipped          |
+| 12  | Labette       | KS    | 43     | Template, inmate-roster path (www.labettecountykssheriff.org); charges read from profile pages                       | Added 2026-11-15 |
+| 13  | Miller        | MO    | 28     | Template, roster.php (www.millercountysheriff.org); the source cuts charge text off mid-word                         | Skipped          |
+| 14  | Phillips      | AR    | 29     | Template, roster.php; no visitation, money, mail, or bond guidance, and pages disagree on where detainees are held   | Skipped          |
+| 15  | Harrison      | MO    | 19     | Template, roster.php; 3 of 19 people list no charge (over the 10% limit)                                             | Skipped          |
+| 16  | Pottawattamie | IA    | —      | The Sheriff's Inmate Locator link goes to pottcounty-ia.gov, which answers automated requests with HTTP 403          | Blocked          |
 
-Smaller template counties to check next: Miller MO, Phillips AR, Harrison MO (skip any whose
-official site lacks jail guidance). Pottawattamie IA runs a Zuercher portal whose custody list could
-not be checked yet.
+This list ran out on 2026-11-16.
+
+## Florida list (approved by the owner 2026-11-16)
+
+Checked at the source on 2026-11-16 with the same rules. None of the large counties passed (name
+search only, CAPTCHA, blocked, or an unauthorized-use ban), and no Florida sheriff site uses the
+shared roster template. Take these in order for "yer ekle".
+
+| #   | County  | People | Source                                                                                                                       | Status           |
+| --- | ------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Monroe  | ~341   | One JSON list on data.keysso.net; the jail guidance and address load from an outside CMS and could not be verified           | Skipped          |
+| 2   | Walton  | 331    | NewWorld inquiry (nwscorrections.waltonso.org); charges from each detail page                                                | Added 2026-11-16 |
+| 3   | Flagler | 208    | NewWorld inquiry (nwwebcad.fcpsn.org); charges from each detail page                                                         | Added 2026-11-16 |
+| 4   | DeSoto  | 167    | Sheriff's inmate table (jail.desotosheriff.org); page 2 is a form post, charges on each detail page; jail address not stated | To do            |
+
+Not usable: Alachua (its "view all inmates" request was refused by this session's permission check)
+and Martin (a full list needs a blank-name report).
 
 ## New states, in order (owner approval required before starting each)
 
-1. **Florida** (demand 76; about 56,400 jail inmates statewide in 2024). Start with the largest
-   counties whose sheriffs publish full current lists: Pinellas, Hillsborough, Polk, Orange, Duval,
-   Broward, Palm Beach, Escambia.
+1. **Florida** (demand 76): approved and started 2026-11-16; see the Florida list above.
 2. **Georgia** (39).
 3. **South Carolina** (29; highest per-capita "inmate search" interest in the country).
 4. **Ohio** (38).
