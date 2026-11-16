@@ -137,4 +137,24 @@ describe("robots environment policy", () => {
       canonical: `${reservedProductionOrigin}/methodology/`
     });
   });
+
+  it("keeps links followable on a page held out of the index, only when asked", async () => {
+    for (const [name, value] of Object.entries(productionEnvironment())) {
+      if (value !== undefined) {
+        vi.stubEnv(name, value);
+      }
+    }
+    const { createPageMetadata } = await import("@/lib/site");
+    const page = { path: "/texas/example-county/custody/", title: "Example", description: "x" };
+
+    expect(createPageMetadata({ ...page, index: false, follow: true }).robots).toMatchObject({
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true }
+    });
+    expect(createPageMetadata({ ...page, index: false }).robots).toMatchObject({
+      index: false,
+      follow: false
+    });
+  });
 });

@@ -92,7 +92,9 @@ export async function generateMetadata({
       profile: findCountyGuide(entry.state, entry.slug),
       recordCount: rosterStatus?.kind === "live" ? rosterStatus.source.recordCount : null
     }),
-    index: isIndexableRosterStatus(rosterStatus)
+    index: isIndexableRosterStatus(rosterStatus),
+    // A paused or empty county stays out of the index, but its guide links still count.
+    follow: true
   });
   // County pages use a complete, search-focused title. Use an absolute title
   // here so the root layout's generic site-name suffix is not duplicated.
