@@ -19,6 +19,7 @@ import { countySearchDescription, countySearchTitle } from "@/lib/county-search-
 import type { CountyCoverageBrief } from "@/lib/coverage-catalog";
 import { getCountyRosterStatus, getLiveRosterPage } from "@/lib/live-roster";
 import { getPublishedCountyCoverage } from "@/lib/published-coverage";
+import { isIndexableRosterStatus } from "@/lib/roster-indexing";
 
 type CountyPageParams = { state: string; county: string };
 
@@ -91,7 +92,7 @@ export async function generateMetadata({
       profile: findCountyGuide(entry.state, entry.slug),
       recordCount: rosterStatus?.kind === "live" ? rosterStatus.source.recordCount : null
     }),
-    index: rosterStatus !== null
+    index: isIndexableRosterStatus(rosterStatus)
   });
   // County pages use a complete, search-focused title. Use an absolute title
   // here so the root layout's generic site-name suffix is not duplicated.

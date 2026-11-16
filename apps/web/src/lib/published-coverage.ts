@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getCountyRosterStatus, getLiveCountySource } from "./live-roster";
+import { isIndexableRosterStatus } from "./roster-indexing";
 import {
   countyCoverageCatalog,
   countyCoveragePath,
@@ -40,14 +41,15 @@ export async function getPublishedCountyCoverage(
 }
 
 /**
- * Counties whose pages stay public: live ones and approved ones paused because their latest
- * snapshot is too old. A paused page keeps its guide and drops only the roster.
+ * Counties listed in the sitemap: only those showing a current roster with at least one person.
+ * Paused counties (no recent refresh) and empty lists stay reachable but are left out until the
+ * next successful refresh.
  */
 export async function getIndexedCountyCoverage(): Promise<readonly CountyCoverageBrief[]> {
   const results = await Promise.all(
     countyCoverageCatalog.map(async (entry) => {
       try {
-        return (await getCountyRosterStatus(entry)) ? entry : null;
+        return isIndexableRosterStatus(await getCountyRosterStatus(entry)) ? entry : null;
       } catch {
         return null;
       }
