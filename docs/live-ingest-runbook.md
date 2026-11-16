@@ -193,7 +193,9 @@ with the adapter records disabled and publication approval off.
    Florida runs Walton and Flagler counties through `newworld-inquiry.ts`, which reads a NewWorld
    "Inmate Inquiry" with its In Custody filter: every list page, then each person's detail page,
    keeping the charges on the booking that has no release date. Walton's server starts failing after
-   about 170 back-to-back reads, so the adapter pauses half a second between its requests:
+   about 170 back-to-back reads and now and then drops a connection, so the adapter pauses half a
+   second between its requests and reads a page again (up to 10 times a run) after a dropped
+   connection or 5xx answer; a block (401, 403, 429) still fails the county:
 
    ```text
    SOURCE_HOST_ALLOWLIST=nwscorrections.waltonso.org,nwwebcad.fcpsn.org
