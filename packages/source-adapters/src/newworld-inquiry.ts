@@ -43,6 +43,11 @@ export interface NewWorldInquiryConfig {
   readonly activeBookingNeedsHousing: boolean;
   /** Pause between requests, for sites that start failing when pages are read back to back. */
   readonly requestDelayMs: number;
+  /**
+   * How many dropped connections or 5xx answers a run may retry, each once after a short wait.
+   * Blocks (401, 403, 429) are never retried.
+   */
+  readonly transientRetries: number;
 }
 
 export function newWorldInquirySourceUrl(config: NewWorldInquiryConfig): string {
@@ -60,8 +65,10 @@ export const WALTON_COUNTY_FL_INQUIRY = {
   listHeaders: ["Name", "In Custody", "Multiple Bookings", "Housing Facility"],
   listHasCustodyColumn: true,
   activeBookingNeedsHousing: false,
-  // The site begins answering 500 after about 170 back-to-back detail reads.
-  requestDelayMs: 500
+  // The site begins answering 500 after about 170 back-to-back detail reads, and now and then
+  // drops a connection; one page in a few hundred is read again after a pause.
+  requestDelayMs: 500,
+  transientRetries: 10
 } as const satisfies NewWorldInquiryConfig;
 
 export const FLAGLER_COUNTY_FL_INQUIRY = {
@@ -75,7 +82,8 @@ export const FLAGLER_COUNTY_FL_INQUIRY = {
   listHeaders: ["Name", "Subject Number", "Multiple Bookings"],
   listHasCustodyColumn: false,
   activeBookingNeedsHousing: true,
-  requestDelayMs: 0
+  requestDelayMs: 0,
+  transientRetries: 0
 } as const satisfies NewWorldInquiryConfig;
 
 export const NEWWORLD_INQUIRY_SITES = [
@@ -818,9 +826,11 @@ export function createNewWorldInquiryAdapter(
   const nowMs = options.nowMs ?? (() => Date.now());
 
   let requestCount = 0;
-  const pause = (signal: AbortSignal): Promise<void> =>
+  let retriesLeft = config.transientRetries;
+  const RETRY_WAIT_MS = 5_000;
+  const pause = (signal: AbortSignal, ms = config.requestDelayMs): Promise<void> =>
     new Promise((resolve, reject) => {
-      const timer = setTimeout(resolve, config.requestDelayMs);
+      const timer = setTimeout(resolve, ms);
       signal.addEventListener(
         "abort",
         () => {
@@ -834,15 +844,32 @@ export function createNewWorldInquiryAdapter(
   const requestDocument = async (url: string, signal: AbortSignal): Promise<SourceDocument> => {
     if (config.requestDelayMs > 0 && requestCount > 0) await pause(signal);
     requestCount += 1;
-    const response = await options.fetch(url, {
-      method: "GET",
-      redirect: "error",
-      signal,
-      headers: {
-        accept: "text/html",
-        "accept-encoding": "identity"
-      }
-    });
+    const get = () =>
+      options.fetch(url, {
+        method: "GET",
+        redirect: "error",
+        signal,
+        headers: {
+          accept: "text/html",
+          "accept-encoding": "identity"
+        }
+      });
+    let response: Response;
+    try {
+      response = await get();
+    } catch (error) {
+      const code = error instanceof Error && "code" in error ? error.code : null;
+      if (retriesLeft <= 0 || (code !== "NETWORK_FAILURE" && code !== "TIMEOUT")) throw error;
+      retriesLeft -= 1;
+      await pause(signal, RETRY_WAIT_MS);
+      response = await get();
+    }
+    if (response.status >= 500 && retriesLeft > 0) {
+      retriesLeft -= 1;
+      await response.body?.cancel();
+      await pause(signal, RETRY_WAIT_MS);
+      response = await get();
+    }
     return readBoundedHtml(response, url, limits.maxDocumentBytes);
   };
 

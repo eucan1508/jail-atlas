@@ -144,6 +144,43 @@ describe("NewWorld inquiry adapter", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("reads a page again after one dropped connection or 5xx answer, but not after a block", async () => {
+    const detail = `${base}/Inmate/Detail/synthetic-alpha-test-only`;
+    const run = async (status: number | "drop") => {
+      let failed = false;
+      const site = { ...config, transientRetries: 1 };
+      return runSourceAdapter(
+        createNewWorldInquiryAdapter(site, {
+          fetch: async (input) => {
+            if (input === detail && !failed) {
+              failed = true;
+              if (status === "drop") {
+                throw Object.assign(new Error("connection reset"), { code: "NETWORK_FAILURE" });
+              }
+              return new Response("busy", { status, headers: { "content-type": "text/html" } });
+            }
+            const html = documents.get(input);
+            return new Response(html ?? "missing", {
+              status: html ? 200 : 404,
+              headers: { "content-type": "text/html; charset=utf-8" }
+            });
+          },
+          facilityId: syntheticId(8_204),
+          createId: idFactory(),
+          currency: "USD",
+          nowMs: () => 1_000
+        }),
+        context(site)
+      );
+    };
+    expect((await run("drop")).ok).toBe(true);
+    expect((await run(500)).ok).toBe(true);
+    const blocked = await run(403);
+    expect(blocked.ok).toBe(false);
+    if (blocked.ok) return;
+    expect(blocked.failure.diagnosticCode).toBe("WALTON_COUNTY_FL_SOURCE_BLOCKED");
+  }, 30_000);
+
   it("rejects a page without the county's heading, under the county's diagnostic prefix", async () => {
     const pages = new Map(documents);
     pages.set(
