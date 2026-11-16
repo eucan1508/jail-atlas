@@ -29,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (publishedStates.has("missouri")) paths.add("/coverage/missouri/");
   if (publishedStates.has("kansas")) paths.add("/coverage/kansas/");
   if (publishedStates.has("alabama")) paths.add("/coverage/alabama/");
+  if (publishedStates.has("florida")) paths.add("/coverage/florida/");
   for (const state of publishedStates) paths.add(`/charge-terms/${state}/`);
   return Array.from(paths).map((path) => ({ url: absoluteUrl(path) }));
 }

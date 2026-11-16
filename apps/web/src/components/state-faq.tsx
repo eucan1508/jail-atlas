@@ -46,6 +46,11 @@ const stateDetails: Record<
     name: "Alabama",
     correctionsName: "Alabama Department of Corrections",
     path: "/coverage/alabama/"
+  },
+  florida: {
+    name: "Florida",
+    correctionsName: "Florida Department of Corrections",
+    path: "/coverage/florida/"
   }
 };
 

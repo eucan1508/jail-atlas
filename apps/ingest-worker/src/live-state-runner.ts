@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | "KS" | "AL";
+export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | "KS" | "AL" | "FL";
 
 export type LiveStateSource = Readonly<{
   countySlug: string;
@@ -661,7 +661,8 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       adapterKey: "mobile-county-al-current-roster",
       sourceHost: "all.mobileso.com"
     }
-  ]
+  ],
+  FL: []
 };
 
 /** Every county each state's live run refreshes, for checks that cover the whole list. */

@@ -248,7 +248,7 @@ async function readSourceStatus(
       AND co.publication_status = 'published'
       AND st.publication_status = 'published'
       -- Keep in step with stateByCode below; a state missing here never shows any county page.
-      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO', 'KS', 'AL')
+      AND st.code IN ('IA', 'MN', 'TX', 'AR', 'OK', 'MO', 'KS', 'AL', 'FL')
       AND EXISTS (
         SELECT 1 FROM source_adapters sa
         WHERE sa.source_id = os.id AND sa.adapter_key = os.adapter_key
@@ -266,7 +266,8 @@ async function readSourceStatus(
     OK: "oklahoma",
     MO: "missouri",
     KS: "kansas",
-    AL: "alabama"
+    AL: "alabama",
+    FL: "florida"
   } as const;
   const expectedState = stateByCode[row.state_code as keyof typeof stateByCode];
   const entry = countyCoverageCatalog.find(

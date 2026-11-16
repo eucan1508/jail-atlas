@@ -33,10 +33,13 @@ export default async function CoveragePage() {
   const showKansas = publishedKansas.length > 0 || coveragePreviewAllowed();
   const publishedAlabama = published.filter(({ entry }) => entry.state === "alabama");
   const showAlabama = publishedAlabama.length > 0 || coveragePreviewAllowed();
+  const publishedFlorida = published.filter(({ entry }) => entry.state === "florida");
+  const showFlorida = publishedFlorida.length > 0 || coveragePreviewAllowed();
   const stateCount =
     2 + (showTexas ? 1 : 0) + (showArkansas ? 1 : 0) + (showOklahoma ? 1 : 0) + (showMissouri ? 1 : 0) +
     (showKansas ? 1 : 0) +
-    (showAlabama ? 1 : 0);
+    (showAlabama ? 1 : 0) +
+    (showFlorida ? 1 : 0);
   const iowaPublished = publishedIowa.length > 0;
 
   return (
@@ -217,6 +220,24 @@ export default async function CoveragePage() {
               </div>
               <Link className="coverage-state-row__link" href="/coverage/alabama/">
                 Explore Alabama <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          ) : null}
+          {showFlorida ? (
+            <div className="surface-card coverage-state-row">
+              <div>
+                <StatusPill tone={publishedFlorida.length > 0 ? "current" : "neutral"}>
+                  {publishedFlorida.length > 0 ? "Active coverage" : "Under review"}
+                </StatusPill>
+                <h3>Florida</h3>
+                <p>
+                  {publishedFlorida.length > 0
+                    ? `${publishedFlorida.length} public county page${publishedFlorida.length === 1 ? " is" : "s are"} available.`
+                    : "County pages are prepared for source and publication review."}
+                </p>
+              </div>
+              <Link className="coverage-state-row__link" href="/coverage/florida/">
+                Explore Florida <span aria-hidden="true">↗</span>
               </Link>
             </div>
           ) : null}

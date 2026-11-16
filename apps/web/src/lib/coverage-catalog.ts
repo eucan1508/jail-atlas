@@ -1,7 +1,15 @@
 import { isProductionEnvironment, readEnvironment } from "./env";
 
 export type CoverageState =
-  "iowa" | "minnesota" | "texas" | "arkansas" | "oklahoma" | "missouri" | "kansas" | "alabama";
+  | "iowa"
+  | "minnesota"
+  | "texas"
+  | "arkansas"
+  | "oklahoma"
+  | "missouri"
+  | "kansas"
+  | "alabama"
+  | "florida";
 
 export type CountyCoverageBrief = Readonly<{
   state: CoverageState;
