@@ -20,6 +20,7 @@ type ChargeTermsParams = { state: string };
 
 const stateNames: Readonly<Record<CoverageState, string>> = {
   alabama: "Alabama",
+  florida: "Florida",
   arkansas: "Arkansas",
   iowa: "Iowa",
   kansas: "Kansas",
@@ -52,6 +53,10 @@ const citationGuides: Partial<Record<CoverageState, readonly string[]>> = {
   ],
   oklahoma: [
     "Oklahoma rosters cite the Oklahoma Statutes by title and section. In 21 O.S. 1283, 21 is the title and 1283 the section."
+  ],
+  florida: [
+    "Florida rosters cite the Florida Statutes by chapter and section. In 812.014, 812 is the chapter and 014 the section; letters and numbers in parentheses, such as 812.014(2)(c), point to a subsection.",
+    "Chapter 812 covers theft, chapter 893 covers drugs, chapter 784 covers assault and battery, and chapter 316 covers traffic offenses."
   ],
   texas: [
     "Texas rosters cite a code and section, such as PC 49.04 (Penal Code section 49.04) or HSC 481.115 (Health and Safety Code section 481.115).",

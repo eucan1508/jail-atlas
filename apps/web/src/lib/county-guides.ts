@@ -3266,6 +3266,121 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "florida/walton-county": {
+    facilityName: "Walton County Jail",
+    address: "40 Sheriff Circle, DeFuniak Springs, FL 32433",
+    phone: "850-892-8196",
+    operatedBy: "Walton County Sheriff's Office",
+    reviewedAt: "November 16, 2026",
+    overview:
+      "The Walton County Sheriff's Office runs the Walton County Jail in DeFuniak Springs, an accredited 596-bed jail for men and women with an average of about 500 people held. The jail offers GED, trade, and treatment programs.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://waltonso.org/jail/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video, on-site or remote (remote visits are paid by the visitor). On-site video visits run 8:00 to 11:45 a.m. and 1:00 to 4:30 p.m., seven days a week. Contact visits are not allowed except in rare cases with prior approval. Former inmates cannot visit until 60 days after release.",
+        sourceLabel: "Official inmate handbook",
+        sourceUrl: "https://waltonso.org/wp-content/uploads/2026/09/Inmate-Handbook-9-21-26.pdf"
+      },
+      {
+        title: "Money and commissary",
+        body: "Deposits for bonds, commissary, and phone accounts are made at commissarydeposit.com by choosing Florida and Walton County Jail; there is a fee. Commissary orders placed by Monday 10 p.m. are delivered on Wednesday.",
+        sourceLabel: "Official commissary funds page",
+        sourceUrl: "https://waltonso.org/deposit-inmate-commissary-funds/"
+      },
+      {
+        title: "Phone and mail",
+        body: "Calls, messages, and video run through GettingOut by Telmate, and you must verify your identity before you can communicate. Only inmates can place calls. Personal mail goes to Walton County Jail, Florida, inmate name and booking number, PO Box 247, Phoenix, MD 21131; it is scanned and shown on tablets. Legal mail goes to 40 Sheriff Circle, DeFuniak Springs, FL 32433.",
+        sourceLabel: "Official inmate communications page",
+        sourceUrl: "https://waltonso.org/inmate-calling/"
+      },
+      {
+        title: "Bail and court records",
+        body: "The jail accepts bail bonds only from the bondsmen on the Sheriff's approved list; anyone else must bring a certified power of attorney filed with the Walton County Clerk of Court, a valid driver's license, a Florida bail bond license, and full business details.",
+        sourceLabel: "Official bail bonds page",
+        sourceUrl: "https://waltonso.org/bail-bonds/"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Walton County Jail?",
+        answer:
+          "By video, either on-site (8:00 to 11:45 a.m. and 1:00 to 4:30 p.m. daily) or remotely for a fee."
+      },
+      {
+        question: "Where do I send mail to a Walton County inmate?",
+        answer:
+          "Walton County Jail, Florida, inmate name and booking number, PO Box 247, Phoenix, MD 21131. The mail is scanned and shown on tablets."
+      },
+      {
+        question: "How do I put money on a Walton County inmate's account?",
+        answer:
+          "Through commissarydeposit.com, choosing Florida and Walton County Jail. A fee applies."
+      },
+      {
+        question: "What is the Walton County Jail phone number?",
+        answer: "850-892-8196."
+      }
+    ]
+  },
+  "florida/flagler-county": {
+    facilityName: "Sheriff Perry Hall Inmate Detention Facility",
+    address: "1002 Justice Lane, Bunnell, FL 32110",
+    phone: "386-437-4116",
+    operatedBy: "Flagler County Sheriff's Office",
+    reviewedAt: "November 16, 2026",
+    overview:
+      "The Flagler County Sheriff's Office runs the Sheriff Perry Hall Inmate Detention Facility, also called the Flagler County Inmate Facility, at 1002 Justice Lane in Bunnell. It has 15 housing units and room for 400 people, sentenced and awaiting trial.",
+    contactSourceLabel: "Official Court and Detention page",
+    contactSourceUrl: "https://flaglersheriff.com/divisions/court-and-detention/",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits are by video at the Video Visitation Center, 1001 Justice Lane, Bunnell, (386) 586-4871, from 9 to 11 a.m. and 1 to 4 p.m., Monday through Friday. Each inmate may have two 60-minute visits a week. Bring a valid government photo ID; car keys and ID are the only items allowed.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://flaglersheriff.com/divisions/court-and-detention/jail-visitation/"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money can be added at the lobby kiosk at 1001 Justice Lane (cash or card, weekdays 8 a.m. to 5 p.m.), online at AccessCorrections.com, by phone at 1-866-345-1884, in cash at CashPayToday retailers, or by money order mailed to the facility payable to the Flagler County Inmate Trust Fund.",
+        sourceLabel: "Official inmate funds page",
+        sourceUrl: "https://flaglersheriff.com/inmate-funds"
+      },
+      {
+        title: "Phone and mail",
+        body: "Personal mail goes to Flagler County Jail, inmate name and ID, P.O. Box 16120, Jonesboro, AR 72401; it is scanned and delivered on tablets. The sender's full name and address must be on the envelope. Legal mail goes to Flagler County Jail, 1002 Justice Lane, Bunnell, FL 32110.",
+        sourceLabel: "Official inmate mail page",
+        sourceUrl: "https://flaglersheriff.com/inmate-mail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Bonds and cash are accepted 24 hours a day. A cash bond is the full amount; a surety bond goes through a bonding agency registered with the Flagler County Clerk of Court. To confirm someone is in jail before posting bond, call (386) 437-4116. Credit card bonds go through Access Corrections.",
+        sourceLabel: "Official bail and bond page",
+        sourceUrl: "https://flaglersheriff.com/bail-bond-info"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Flagler County jail?",
+        answer:
+          "By video at the Video Visitation Center, 1001 Justice Lane, Bunnell, weekdays 9 to 11 a.m. and 1 to 4 p.m."
+      },
+      {
+        question: "Where do I send mail to a Flagler County inmate?",
+        answer:
+          "Flagler County Jail, inmate name and ID, P.O. Box 16120, Jonesboro, AR 72401. Legal mail goes to 1002 Justice Lane, Bunnell."
+      },
+      {
+        question: "When can bond be posted at the Flagler County jail?",
+        answer: "Bonds and cash are accepted 24 hours a day."
+      },
+      {
+        question: "What is the Flagler County jail phone number?",
+        answer: "(386) 437-4116."
+      }
+    ]
+  },
 
   "kansas/atchison-county": {
     facilityName: "Atchison County Jail",

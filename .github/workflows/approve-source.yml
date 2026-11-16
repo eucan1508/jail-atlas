@@ -20,6 +20,7 @@ on:
           - MO
           - KS
           - AL
+          - FL
       county_slug:
         description: "County slug"
         required: true

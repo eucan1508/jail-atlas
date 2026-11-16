@@ -590,6 +590,31 @@ export const offenseLevels: Partial<Record<CoverageState, OffenseLevelGuide>> = 
           "Felonies are ranked from severity level 1, the most serious, to level 10 (drug crimes from 1 to 5). The sentence comes from the state sentencing grid and the person's criminal history."
       }
     ]
+  },
+  florida: {
+    source: "Florida Statutes sections 775.082 and 775.083",
+    levels: [
+      {
+        name: "Noncriminal violation",
+        meaning: "No jail time. The most it can bring is a $500 fine."
+      },
+      {
+        name: "Second degree misdemeanor",
+        meaning: "Up to 60 days in jail and a $500 fine."
+      },
+      { name: "First degree misdemeanor", meaning: "Up to one year in jail and a $1,000 fine." },
+      { name: "Third degree felony", meaning: "Up to five years in prison and a $5,000 fine." },
+      { name: "Second degree felony", meaning: "Up to 15 years in prison and a $10,000 fine." },
+      {
+        name: "First degree felony",
+        meaning: "Up to 30 years in prison, or life when the law says so, and a $10,000 fine."
+      },
+      { name: "Life felony", meaning: "Up to life in prison and a $15,000 fine." },
+      {
+        name: "Capital felony",
+        meaning: "Life in prison without parole, or death if a death sentence is imposed."
+      }
+    ]
   }
 };
 

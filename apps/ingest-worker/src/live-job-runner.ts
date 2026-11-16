@@ -135,6 +135,8 @@ import {
   createGalvestonCountyTxSourceAdapter,
   createPotterCountyTxSourceAdapter,
   createSebastianCountySourceAdapter,
+  createNewWorldInquiryAdapter,
+  newWorldInquirySite,
   createHutchinsonCountySourceAdapter,
   HUTCHINSON_COUNTY_ADAPTER_KEY,
   createKendallCountySourceAdapter,
@@ -340,6 +342,15 @@ export function createLiveSourceAdapter(
 
   if (source.adapterKey === DALLAS_COUNTY_ADAPTER_KEY) {
     return createDallasCountySourceAdapter({
+      fetch,
+      facilityId,
+      createId: createAdapterId,
+      currency: "USD"
+    });
+  }
+  const newWorldSite = newWorldInquirySite(source.adapterKey);
+  if (newWorldSite) {
+    return createNewWorldInquiryAdapter(newWorldSite, {
       fetch,
       facilityId,
       createId: createAdapterId,

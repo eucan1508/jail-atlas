@@ -177,6 +177,16 @@ Kansas, Arkansas, and Texas counties above.
 | Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 | Cherokee  | [Cherokee County Sheriff inmate roster](https://www.cherokeecountyalsheriff.com/roster.php)                                      | Adapter tested; production approval pending |
 
+## Florida
+
+Florida was added on 2026-11-16. Its counties publish a NewWorld Inmate Inquiry; the list is read
+with its In Custody filter, and charges come from each person's current booking.
+
+| County  | Official source                                                                                                               | Status                                      |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Walton  | [Walton County Sheriff inmate search](https://nwscorrections.waltonso.org/NewWorld.InMateInquiry/WaltonCounty?InCustody=True) | Adapter tested; production approval pending |
+| Flagler | [Flagler County Sheriff inmate search](https://nwwebcad.fcpsn.org/NewWorld.InmateInquiry/FL0180000?InCustody=True)            | Adapter tested; production approval pending |
+
 ## What “API content” means here
 
 The public page will have a stable editorial article, H1, title, meta description, canonical URL,

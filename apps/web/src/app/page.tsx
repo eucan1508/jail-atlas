@@ -66,7 +66,8 @@ export default async function HomePage() {
     { code: "OK", name: "Oklahoma", slug: "oklahoma" },
     { code: "MO", name: "Missouri", slug: "missouri" },
     { code: "KS", name: "Kansas", slug: "kansas" },
-    { code: "AL", name: "Alabama", slug: "alabama" }
+    { code: "AL", name: "Alabama", slug: "alabama" },
+    { code: "FL", name: "Florida", slug: "florida" }
   ]
     .map((state) => ({
       ...state,
@@ -79,7 +80,8 @@ export default async function HomePage() {
           state.slug !== "oklahoma" &&
           state.slug !== "missouri" &&
           state.slug !== "kansas" &&
-          state.slug !== "alabama") ||
+          state.slug !== "alabama" &&
+          state.slug !== "florida") ||
         state.published > 0 ||
         coveragePreviewAllowed()
     );

@@ -6,7 +6,7 @@ import {
 import { runCountySequence, type CountyIngestResult } from "./county-sequence.ts";
 import type { WorkerConfig } from "./config.ts";
 
-export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | "KS" | "AL";
+export type LiveState = "IA" | "MN" | "TX" | "AR" | "OK" | "MO" | "KS" | "AL" | "FL";
 
 export type LiveStateSource = Readonly<{
   countySlug: string;
@@ -660,6 +660,18 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "mobile",
       adapterKey: "mobile-county-al-current-roster",
       sourceHost: "all.mobileso.com"
+    }
+  ],
+  FL: [
+    {
+      countySlug: "walton",
+      adapterKey: "walton-county-fl-current-roster",
+      sourceHost: "nwscorrections.waltonso.org"
+    },
+    {
+      countySlug: "flagler",
+      adapterKey: "flagler-county-fl-current-roster",
+      sourceHost: "nwwebcad.fcpsn.org"
     }
   ]
 };

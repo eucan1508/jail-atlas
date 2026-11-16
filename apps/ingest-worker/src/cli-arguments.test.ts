@@ -67,6 +67,13 @@ describe("parseLiveCliArguments", () => {
     });
   });
 
+  it("accepts the Florida state batch", () => {
+    expect(parseLiveCliArguments(["run", "--state=fl", "--dry-run"])).toEqual({
+      dryRun: true,
+      state: "FL"
+    });
+  });
+
   it("accepts the Alabama state batch", () => {
     expect(parseLiveCliArguments(["run", "--state=al", "--dry-run"])).toEqual({
       dryRun: true,
