@@ -45,16 +45,20 @@ export function absoluteUrl(path: string): string {
 export function createPageMetadata({
   description,
   index = true,
+  follow,
   path,
   title
 }: {
   description: string;
   index?: boolean;
+  /** Let crawlers follow links on a page kept out of the index; defaults to the index value. */
+  follow?: boolean;
   path: string;
   title: string;
 }): Metadata {
   const environment = readEnvironment();
   const allowIndex = index && !shouldNoIndex(environment);
+  const allowFollow = (follow ?? index) && !shouldNoIndex(environment);
 
   return {
     title,
@@ -74,10 +78,10 @@ export function createPageMetadata({
     },
     robots: {
       index: allowIndex,
-      follow: allowIndex,
+      follow: allowFollow,
       googleBot: {
         index: allowIndex,
-        follow: allowIndex,
+        follow: allowFollow,
         noimageindex: true,
         "max-image-preview": "none",
         "max-snippet": allowIndex ? -1 : 0
