@@ -46,6 +46,14 @@ try {
   );
   console.log(`before: ${before.rows[0].snapshots} snapshots, database ${before.rows[0].size}`);
 
+  if (apply) {
+    // Same index as migration 0130. Deleting a person record cascades to bookings by this column;
+    // without the index every cascade scans the whole bookings table.
+    await client.query(
+      'CREATE INDEX IF NOT EXISTS "bookings_person_display_record_idx" ON "bookings" ("person_display_record_id")'
+    );
+    console.log("index: bookings_person_display_record_idx ready");
+  }
   const ids = (await client.query(SUPERSEDED, [KEEP])).rows.map((row) => row.id);
   const counts = await client.query(
     `SELECT
