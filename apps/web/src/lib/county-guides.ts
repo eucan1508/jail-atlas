@@ -3266,6 +3266,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/colbert-county": {
+    facilityName: "Colbert County Jail",
+    address: "107 W. 4th Street, Tuscumbia, AL 35674",
+    phone: "256-386-8551",
+    operatedBy: "Colbert County Sheriff's Office",
+    reviewedAt: "November 17, 2026",
+    overview:
+      "The Colbert County Sheriff's Office runs the Colbert County Jail in Tuscumbia, built in 1962 to hold 62 people. Men are held at the county jail; women are held at the Tuscumbia City Jail and follow that jail's rules.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.colbertsheriff.net/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visits are requested online, the same way funds are added at JailATM.com. The jail page still carries COVID-era rules that allow no in-person visits or clothing drop-offs, so call the jail at 256-386-8551 before going.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.colbertsheriff.net/jail"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary is run by Legacy Commissary Services. Funds can be added online at JailATM.com or with a money order mailed to Colbert County Jail, inmate's name, 107 W. 4th St., Tuscumbia, AL 35674 (money orders are held 10 days). Orders are placed on Thursdays and delivered on Fridays.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.colbertsheriff.net/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmate phones are run by C.P.C. (Combined Public Communications); add funds online at cpcjail.com or at the jail lobby kiosk. Letters go to JailATM.com-Colbert County Jail, inmate name and number, 1605 Beltline Rd SW D8 #244, Decatur, AL 35601, with the sender's name and return address.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.colbertsheriff.net/jail"
+      },
+      {
+        title: "Bail and court records",
+        body: "Cash and property bonds are made at the jail Monday to Friday, 8 a.m. to 4 p.m.; bondsmen must be licensed in Colbert County. Every bond needs a $35 money order filing fee payable to the Colbert County Circuit Clerk. For bond questions, call the jail at 256-386-8551.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.colbertsheriff.net/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "Where are women from Colbert County held?",
+        answer: "At the Tuscumbia City Jail. The Colbert County Jail holds men."
+      },
+      {
+        question: "How do I send mail to a Colbert County inmate?",
+        answer:
+          "JailATM.com-Colbert County Jail, inmate name and number, 1605 Beltline Rd SW D8 #244, Decatur, AL 35601, with your name and return address."
+      },
+      {
+        question: "When can bond be posted at the Colbert County Jail?",
+        answer:
+          "Cash and property bonds, Monday to Friday from 8 a.m. to 4 p.m. Every bond needs a $35 money order filing fee."
+      },
+      {
+        question: "What is the Colbert County Jail phone number?",
+        answer: "256-386-8551. The Sheriff's Office non-emergency line is 256-383-0741."
+      }
+    ]
+  },
+
   "florida/walton-county": {
     facilityName: "Walton County Jail",
     address: "40 Sheriff Circle, DeFuniak Springs, FL 32433",
@@ -3951,6 +4009,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       {
         question: "What is the Saline County Sheriff's Office phone number?",
         answer: "660-886-5512, answered 24 hours a day."
+      }
+    ]
+  },
+  "missouri/cape-girardeau-county": {
+    facilityName: "Cape Girardeau County Jail",
+    address: "Sheriff's Office: 216 North Missouri, Jackson, MO 63755",
+    phone: "573-243-3551",
+    operatedBy: "Cape Girardeau County Sheriff's Office",
+    reviewedAt: "November 17, 2026",
+    overview:
+      "The Cape Girardeau County Sheriff's Office in Jackson runs the county jail. The Jail Division answers at 573-243-3551 (option 1) and by email at contactjail@capecountysheriff.org; the Sheriff's Office line is answered 24 hours a day.",
+    contactSourceLabel: "Official jail information page",
+    contactSourceUrl: "https://www.capecountysheriff.org/inmate-facility-information",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Video visits and e-messages run through Securus (support line 877-578-3658); visitors need an account with a clear photo ID and a photo of themselves. The jail page still carries a COVID-era notice that lobby video visits are canceled and off-site video visits continue, so call the Jail Division before going in person.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.capecountysheriff.org/inmate-facility-information"
+      },
+      {
+        title: "Money and commissary",
+        body: "Money can be added online through Access Corrections, by phone at 636-888-7004, or at the kiosk in the Sheriff's Office main lobby.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.capecountysheriff.org/inmate-facility-information"
+      },
+      {
+        title: "Phone and mail",
+        body: "Detainees can make only collect calls, through Securus (800-844-6591). All non-legal mail must be a plain white postcard no larger than 5 by 7 inches, sent to the detainee's name and ID number, Cape Girardeau County Jail, C/O Securus Digital Mail Center, PO Box 25957, Tampa, FL 33622. Officers do not pass on phone messages.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.capecountysheriff.org/inmate-facility-information"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's jail page does not explain how to post bond. Call the Jail Division at 573-243-3551 (option 1). A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail information page",
+        sourceUrl: "https://www.capecountysheriff.org/inmate-facility-information"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I send mail to someone in the Cape Girardeau County Jail?",
+        answer:
+          "Only plain white postcards up to 5 by 7 inches, to the detainee's name and ID number, Cape Girardeau County Jail, C/O Securus Digital Mail Center, PO Box 25957, Tampa, FL 33622."
+      },
+      {
+        question: "How do I put money on a Cape Girardeau County inmate's account?",
+        answer:
+          "Online through Access Corrections, by phone at 636-888-7004, or at the Sheriff's Office lobby kiosk."
+      },
+      {
+        question: "What do the numbers in front of Cape Girardeau County charges mean?",
+        answer:
+          "They are Missouri statute numbers. In 579.015-001, 579.015 is the section of the Revised Statutes of Missouri and the part after the dash is the state charge code for the exact offense."
+      },
+      {
+        question: "What is the Cape Girardeau County Jail phone number?",
+        answer: "573-243-3551, option 1 for the Jail Division."
       }
     ]
   },

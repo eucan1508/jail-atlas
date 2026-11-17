@@ -108,6 +108,7 @@ const liveCountyKeys = [
   "missouri/andrew-county",
   "missouri/callaway-county",
   "missouri/saline-county",
+  "missouri/cape-girardeau-county",
   "kansas/bourbon-county",
   "kansas/coffey-county",
   "kansas/atchison-county",
@@ -129,6 +130,7 @@ const liveCountyKeys = [
   "alabama/mobile-county",
   "alabama/elmore-county",
   "alabama/cherokee-county",
+  "alabama/colbert-county",
   "florida/walton-county",
   "florida/flagler-county",
   "oklahoma/mayes-county"

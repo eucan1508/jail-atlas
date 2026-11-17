@@ -101,6 +101,16 @@ export const SALINE_COUNTY_MO_ROSTER = {
   chargeLinesEndWithBond: true
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CAPE_GIRARDEAU_COUNTY_MO_ROSTER = {
+  adapterKey: "cape-girardeau-county-mo-current-roster",
+  countyName: "Cape Girardeau County",
+  diagnosticPrefix: "CAPE_GIRARDEAU_COUNTY_MO",
+  sourceUrl: "https://www.capecountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path",
+  textLineBreaksAreSpaces: true
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -112,7 +122,8 @@ export const MISSOURI_ROSTER_SITES = [
   MORGAN_COUNTY_MO_ROSTER,
   ANDREW_COUNTY_MO_ROSTER,
   CALLAWAY_COUNTY_MO_ROSTER,
-  SALINE_COUNTY_MO_ROSTER
+  SALINE_COUNTY_MO_ROSTER,
+  CAPE_GIRARDEAU_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

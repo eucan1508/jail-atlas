@@ -176,6 +176,7 @@ Kansas, Arkansas, and Texas counties above.
 | Mobile    | [Mobile County Sheriff current inmates report](https://all.mobileso.com/OthReports/CurrentInmates.aspx)                          | Adapter tested; production approval pending |
 | Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 | Cherokee  | [Cherokee County Sheriff inmate roster](https://www.cherokeecountyalsheriff.com/roster.php)                                      | Adapter tested; production approval pending |
+| Colbert   | [Colbert County Sheriff inmate roster](https://www.colbertsheriff.net/roster.php)                                                | Adapter tested; production approval pending |
 
 ## Florida
 

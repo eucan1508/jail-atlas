@@ -83,6 +83,15 @@ export const CHEROKEE_COUNTY_AL_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const COLBERT_COUNTY_AL_ROSTER = {
+  adapterKey: "colbert-county-al-current-roster",
+  countyName: "Colbert County",
+  diagnosticPrefix: "COLBERT_COUNTY_AL",
+  sourceUrl: "https://www.colbertsheriff.net/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ALABAMA_ROSTER_SITES = [
   FRANKLIN_COUNTY_AL_ROSTER,
   CHILTON_COUNTY_AL_ROSTER,
@@ -92,7 +101,8 @@ export const ALABAMA_ROSTER_SITES = [
   MARION_COUNTY_AL_ROSTER,
   DEKALB_COUNTY_AL_ROSTER,
   ELMORE_COUNTY_AL_ROSTER,
-  CHEROKEE_COUNTY_AL_ROSTER
+  CHEROKEE_COUNTY_AL_ROSTER,
+  COLBERT_COUNTY_AL_ROSTER
 ] as const;
 
 export function alabamaRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

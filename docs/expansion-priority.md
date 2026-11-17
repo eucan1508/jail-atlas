@@ -126,15 +126,33 @@ Checked at the source on 2026-11-16 with the same rules. None of the large count
 search only, CAPTCHA, blocked, or an unauthorized-use ban), and no Florida sheriff site uses the
 shared roster template. Take these in order for "yer ekle".
 
-| #   | County  | People | Source                                                                                                                       | Status           |
-| --- | ------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| 1   | Monroe  | ~341   | One JSON list on data.keysso.net; the jail guidance and address load from an outside CMS and could not be verified           | Skipped          |
-| 2   | Walton  | 331    | NewWorld inquiry (nwscorrections.waltonso.org); charges from each detail page                                                | Added 2026-11-16 |
-| 3   | Flagler | 208    | NewWorld inquiry (nwwebcad.fcpsn.org); charges from each detail page                                                         | Added 2026-11-16 |
-| 4   | DeSoto  | 167    | Sheriff's inmate table (jail.desotosheriff.org); page 2 is a form post, charges on each detail page; jail address not stated | To do            |
+| #   | County  | People | Source                                                                                                                                                              | Status           |
+| --- | ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Monroe  | ~341   | One JSON list on data.keysso.net; the jail guidance and address load from an outside CMS and could not be verified                                                  | Skipped          |
+| 2   | Walton  | 331    | NewWorld inquiry (nwscorrections.waltonso.org); charges from each detail page                                                                                       | Added 2026-11-16 |
+| 3   | Flagler | 208    | NewWorld inquiry (nwwebcad.fcpsn.org); charges from each detail page                                                                                                | Added 2026-11-16 |
+| 4   | DeSoto  | 167    | Sheriff's inmate table (jail.desotosheriff.org); all rows need the grid's page-size cookie (transport change), charges on each detail page; jail address not stated | To do            |
 
 Not usable: Alachua (its "view all inmates" request was refused by this session's permission check)
 and Martin (a full list needs a blank-name report).
+
+## Template list (approved by the owner 2026-11-17)
+
+Checked at the source on 2026-11-17: shared sheriff roster template, full current roster, no
+charge-less cards in the pages checked, no cut-off charge text, and jail guidance on the official
+site. Take these in order for "yer ekle"; DeSoto FL (Florida list #4) waits on a transport change
+for its page-size preference.
+
+| #   | County         | State | People | Source                                                                                              | Status           |
+| --- | -------------- | ----- | ------ | --------------------------------------------------------------------------------------------------- | ---------------- |
+| 1   | Cape Girardeau | MO    | 272    | Template, inmate-roster path (www.capecountysheriff.org); long charges wrap with a plain line break | Added 2026-11-17 |
+| 2   | Colbert        | AL    | 88     | Template, roster.php (www.colbertsheriff.net); jail page still shows COVID-era rules                | Added 2026-11-17 |
+| 3   | Pickens        | AL    | 78     | Template, roster.php (www.pcsoal.org), 10 people a page                                             | To do            |
+| 4   | Caldwell       | MO    | 18     | Template, inmate-roster path (www.caldwellcosdmo.gov); visitation page "Coming Soon"                | To do            |
+
+Skipped on 2026-11-17: Blount AL, Arkansas County AR, and Terry TX (clean rosters, no jail guidance
+on the official site); Putnam MO (held in Grundy County, narrative charge text, stale); Creek OK
+(roster removed). Blocked: Nassau FL and Geary KS (incomplete TLS chain), Buchanan MO (HTTP only).
 
 ## New states, in order (owner approval required before starting each)
 

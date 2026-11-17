@@ -478,6 +478,37 @@ describe("sheriff roster site adapter", () => {
     expect(changed.failure.diagnosticCode).toBe("JEFFERSON_COUNTY_AR_CHARGE_BOND_FORMAT_CHANGED");
   });
 
+  it("joins a charge the site wraps with a plain line break, when the site is set up for it", async () => {
+    const page = rosterPhpPage("Jefferson County", 1, [
+      {
+        bookingNumber: "900001",
+        name: "TESTER, ALPHA — TEST ONLY",
+        charges: [
+          "579.015-001 - POSSESSION EXCEPT 35 GRAMS OR\nLESS OF SYNTHETIC TEST ONLY",
+          "HOLD"
+        ]
+      }
+    ]);
+    const read = async (config: SheriffRosterSiteConfig) => {
+      const result = await runSourceAdapter(
+        adapter(config, new Map([[config.sourceUrl, page]])),
+        context(config)
+      );
+      expect(result.ok).toBe(true);
+      if (!result.ok) return [];
+      return result.snapshot.bookings[0]?.charges.map((charge) => charge.description) ?? [];
+    };
+    expect(await read({ ...JEFFERSON_COUNTY_AR_ROSTER, textLineBreaksAreSpaces: true })).toEqual([
+      "579.015-001 - POSSESSION EXCEPT 35 GRAMS OR LESS OF SYNTHETIC TEST ONLY",
+      "HOLD"
+    ]);
+    expect(await read(JEFFERSON_COUNTY_AR_ROSTER)).toEqual([
+      "579.015-001 - POSSESSION EXCEPT 35 GRAMS OR",
+      "LESS OF SYNTHETIC TEST ONLY",
+      "HOLD"
+    ]);
+  });
+
   it("fails when nobody on a roster of real size has a charge", async () => {
     const config = JEFFERSON_COUNTY_AR_ROSTER;
     const records = Array.from({ length: 10 }, (_, index) => ({

@@ -132,6 +132,7 @@ const liveAdapterKeys: Record<string, string> = {
   "missouri/andrew-county": "andrew-county-mo-current-roster",
   "missouri/callaway-county": "callaway-county-mo-current-roster",
   "missouri/saline-county": "saline-county-mo-current-roster",
+  "missouri/cape-girardeau-county": "cape-girardeau-county-mo-current-roster",
   "kansas/bourbon-county": "bourbon-county-ks-current-roster",
   "kansas/coffey-county": "coffey-county-ks-current-roster",
   "kansas/atchison-county": "atchison-county-ks-current-roster",
@@ -153,6 +154,7 @@ const liveAdapterKeys: Record<string, string> = {
   "alabama/mobile-county": "mobile-county-al-current-roster",
   "alabama/elmore-county": "elmore-county-al-current-roster",
   "alabama/cherokee-county": "cherokee-county-al-current-roster",
+  "alabama/colbert-county": "colbert-county-al-current-roster",
   "florida/walton-county": "walton-county-fl-current-roster",
   "florida/flagler-county": "flagler-county-fl-current-roster",
   "oklahoma/mayes-county": "mayes-county-ok-current-roster"
