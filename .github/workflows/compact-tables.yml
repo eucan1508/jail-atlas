@@ -1,0 +1,51 @@
+name: Compact roster tables
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type COMPACT to rewrite the roster tables (VACUUM FULL)"
+        required: true
+        type: string
+      set_aside_charges_key:
+        description: "Database too full: set the charges primary key aside during its rewrite"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-snapshot-prune
+  cancel-in-progress: false
+
+jobs:
+  compact:
+    name: Compact roster tables
+    if: ${{ inputs.confirm == 'COMPACT' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Rewrite roster tables
+        working-directory: packages/database
+        run:
+          node scripts/compact-tables.mjs ${{ inputs.set_aside_charges_key &&
+          '--set-aside-charges-key' || '' }}
