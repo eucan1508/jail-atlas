@@ -229,6 +229,9 @@ const CARD_LABELS = [
   ...BOOKING_DATE_LABELS,
   ...CHARGE_LABELS,
   "Bond:",
+  // Some cards follow the charge with grouped "Bond Amount:" and "Bond Type:" rows.
+  "Bond Amount:",
+  "Bond Type:",
   "SO #:",
   "Inmate ID (Commissary):",
   "Vine ID:"
