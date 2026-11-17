@@ -87,6 +87,12 @@ loads further pages and runs name searches is never cached.
 Retention jobs run independently of deployment, use database transactions, and record run time,
 policy version, source, and aggregate deletion counts without logging the deleted values.
 
+Current-custody snapshots: every roster write run ends by deleting superseded snapshots
+(`packages/database/scripts/prune-snapshots.mjs`, policy `current-custody-keep-2-v1`). For each
+source it keeps the two newest snapshots from successful runs and anything newer; older snapshots
+and their people, bookings, charges, and bonds are deleted. The "Prune superseded snapshots"
+workflow runs the same job by hand (dry-run first; apply needs `PRUNE`).
+
 ## Source artifacts and fixtures
 
 Raw roster responses are processed ephemerally by default and discarded after validation, parsing,
