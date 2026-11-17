@@ -1,0 +1,62 @@
+name: Prune superseded snapshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run reports counts only; apply deletes"
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - apply
+      confirm:
+        description: "Type PRUNE to apply"
+        required: false
+        type: string
+      vacuum:
+        description: "Run VACUUM ANALYZE after deleting"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-snapshot-prune
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    name: Prune superseded custody snapshots
+    if: ${{ inputs.mode == 'dry-run' || inputs.confirm == 'PRUNE' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Report or delete superseded snapshots
+        working-directory: packages/database
+        run: |
+          if [[ "${{ inputs.mode }}" == "apply" ]]; then
+            node scripts/prune-snapshots.mjs --apply ${{ inputs.vacuum && '--vacuum' || '' }}
+          else
+            node scripts/prune-snapshots.mjs --dry-run
+          fi

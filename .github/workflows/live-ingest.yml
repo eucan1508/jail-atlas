@@ -151,6 +151,14 @@ jobs:
           RECORD_FAILURES: ${{ inputs.mode != 'dry-run' }}
         run: node .github/scripts/ingest-report.mjs "$RUNNER_TEMP/ingest.log"
 
+      - name: Delete superseded roster snapshots
+        # Each write run stores a new snapshot per county. Older ones are never shown and must not
+        # be kept (privacy-and-retention.md), and letting them pile up filled the database on
+        # 2026-11-16. Keeps the two newest successful snapshots per source.
+        if: ${{ always() && inputs.mode != 'dry-run' }}
+        working-directory: packages/database
+        run: node scripts/prune-snapshots.mjs --apply
+
       - name: Purge cached site pages
         # Pages are cached on the CDN for up to 10 minutes. After a write run (even a partly failed
         # one) every cached page is purged so new snapshots and removals show at once.
