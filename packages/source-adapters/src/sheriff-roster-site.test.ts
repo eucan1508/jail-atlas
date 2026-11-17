@@ -472,6 +472,15 @@ describe("sheriff roster site adapter", () => {
       "DWI - ALCOHOL",
       "STEALING - $750 OR MORE"
     ]);
+    const hold = await runSourceAdapter(
+      page(["- 0.00 - 24 hour hold", "DWI - ALCOHOL - 1500.00 - Cash Only"]),
+      context(config)
+    );
+    expect(hold.ok).toBe(true);
+    if (!hold.ok) return;
+    expect(hold.snapshot.bookings[0]?.charges.map((charge) => charge.description)).toEqual([
+      "DWI - ALCOHOL"
+    ]);
     const changed = await runSourceAdapter(page(["DWI - ALCOHOL"]), context(config));
     expect(changed.ok).toBe(false);
     if (changed.ok) return;
