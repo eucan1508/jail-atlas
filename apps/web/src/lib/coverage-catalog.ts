@@ -2324,6 +2324,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://nwwebcad.fcpsn.org/NewWorld.InmateInquiry/FL0180000?InCustody=True",
     officialSourceLabel: "Flagler County Sheriff's Office inmate search",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Cape Girardeau County",
+    slug: "cape-girardeau-county",
+    publishedAt: "2026-11-17",
+    seatCity: "Jackson",
+    h1: "Cape Girardeau County Jail Roster & Inmate Search",
+    title: "Cape Girardeau County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Cape Girardeau County, Missouri current-inmate information for the county jail in Jackson from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Cape Girardeau County Sheriff's Office in Jackson runs the county jail and publishes a current inmate roster. This page reads that roster with each person's source-listed charges, including the Missouri statute number in front of each one, and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl:
+      "https://www.capecountysheriff.org/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Cape Girardeau County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Colbert County",
+    slug: "colbert-county",
+    publishedAt: "2026-11-17",
+    seatCity: "Tuscumbia",
+    h1: "Colbert County Jail Roster & Inmate Search",
+    title: "Colbert County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Colbert County, Alabama current-inmate information for the county jail in Tuscumbia from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Colbert County Sheriff's Office runs the Colbert County Jail at 107 W. 4th Street in Tuscumbia, which holds men; women arrested in the county are held at the Tuscumbia City Jail. This page reads the Sheriff's current inmate roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.colbertsheriff.net/roster.php",
+    officialSourceLabel: "Colbert County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

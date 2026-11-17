@@ -126,19 +126,20 @@ Oklahoma was added on 2026-10-09.
 Missouri counties run on the same sheriff roster software as several Arkansas and Texas counties, so
 they read through the shared `sheriff-roster-site.ts` adapter.
 
-| County   | Official source                                                                                                                | Status                                      |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
-| Crawford | [Crawford County Sheriff inmate roster](https://www.crawfordcountyso.org/roster.php)                                           | Adapter tested; production approval pending |
-| Camden   | [Camden County Sheriff inmate roster](https://www.camdencountymosheriff.org/roster.php)                                        | Adapter tested; production approval pending |
-| Polk     | [Polk County Sheriff inmate roster](https://www.polkcountymosheriff.org/roster.php)                                            | Adapter tested; production approval pending |
-| Benton   | [Benton County Sheriff inmate roster](https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
-| Stone    | [Stone County Sheriff inmate roster](https://www.stonecountymosheriff.com/roster.php)                                          | Adapter tested; production approval pending |
-| Lawrence | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                          | Adapter tested; production approval pending |
-| Lewis    | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)         | Adapter tested; production approval pending |
-| Morgan   | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                             | Adapter tested; production approval pending |
-| Andrew   | [Andrew County Sheriff inmate roster](https://www.andrewcountysheriff.org/roster.php)                                          | Adapter tested; production approval pending |
-| Callaway | [Callaway County Sheriff inmate roster](https://www.callawaysheriff.org/roster.php)                                            | Adapter tested; production approval pending |
-| Saline   | [Saline County Sheriff inmate roster](https://www.salinecountysheriff.com/roster.php)                                          | Adapter tested; production approval pending |
+| County         | Official source                                                                                                                    | Status                                      |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Crawford       | [Crawford County Sheriff inmate roster](https://www.crawfordcountyso.org/roster.php)                                               | Adapter tested; production approval pending |
+| Camden         | [Camden County Sheriff inmate roster](https://www.camdencountymosheriff.org/roster.php)                                            | Adapter tested; production approval pending |
+| Polk           | [Polk County Sheriff inmate roster](https://www.polkcountymosheriff.org/roster.php)                                                | Adapter tested; production approval pending |
+| Benton         | [Benton County Sheriff inmate roster](https://www.bentoncountysheriffmo.org/inmate-roster/filters/current/booking_time=desc/1)     | Adapter tested; production approval pending |
+| Stone          | [Stone County Sheriff inmate roster](https://www.stonecountymosheriff.com/roster.php)                                              | Adapter tested; production approval pending |
+| Lawrence       | [Lawrence County Sheriff inmate roster](https://www.lawrencecosheriff.com/roster.php)                                              | Adapter tested; production approval pending |
+| Lewis          | [Lewis County Sheriff inmate roster](https://www.lewiscosheriff.org/inmate-roster/filters/current/booking_time=desc/1)             | Adapter tested; production approval pending |
+| Morgan         | [Morgan County Sheriff inmate roster](https://www.morgancountymoso.org/roster.php)                                                 | Adapter tested; production approval pending |
+| Andrew         | [Andrew County Sheriff inmate roster](https://www.andrewcountysheriff.org/roster.php)                                              | Adapter tested; production approval pending |
+| Callaway       | [Callaway County Sheriff inmate roster](https://www.callawaysheriff.org/roster.php)                                                | Adapter tested; production approval pending |
+| Saline         | [Saline County Sheriff inmate roster](https://www.salinecountysheriff.com/roster.php)                                              | Adapter tested; production approval pending |
+| Cape Girardeau | [Cape Girardeau County Sheriff inmate roster](https://www.capecountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
 
 ## Kansas
 
@@ -176,6 +177,7 @@ Kansas, Arkansas, and Texas counties above.
 | Mobile    | [Mobile County Sheriff current inmates report](https://all.mobileso.com/OthReports/CurrentInmates.aspx)                          | Adapter tested; production approval pending |
 | Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 | Cherokee  | [Cherokee County Sheriff inmate roster](https://www.cherokeecountyalsheriff.com/roster.php)                                      | Adapter tested; production approval pending |
+| Colbert   | [Colbert County Sheriff inmate roster](https://www.colbertsheriff.net/roster.php)                                                | Adapter tested; production approval pending |
 
 ## Florida
 

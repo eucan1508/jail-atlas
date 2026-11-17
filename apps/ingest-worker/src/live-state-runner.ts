@@ -551,6 +551,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "saline",
       adapterKey: "saline-county-mo-current-roster",
       sourceHost: "www.salinecountysheriff.com"
+    },
+    {
+      countySlug: "cape-girardeau",
+      adapterKey: "cape-girardeau-county-mo-current-roster",
+      sourceHost: "www.capecountysheriff.org"
     }
   ],
   KS: [
@@ -660,6 +665,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "mobile",
       adapterKey: "mobile-county-al-current-roster",
       sourceHost: "all.mobileso.com"
+    },
+    {
+      countySlug: "colbert",
+      adapterKey: "colbert-county-al-current-roster",
+      sourceHost: "www.colbertsheriff.net"
     }
   ],
   FL: [

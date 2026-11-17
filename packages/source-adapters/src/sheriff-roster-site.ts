@@ -48,6 +48,12 @@ export interface SheriffRosterSiteConfig {
    * are not published, so the ending is removed; a line without it fails the run.
    */
   readonly chargeLinesEndWithBond?: boolean;
+  /**
+   * The site wraps long charges with a plain line break inside the text ("…35 GRAMS OR" then
+   * "LESS OF MARIJUANA…"). Only <br> and block boundaries then separate values; a line break
+   * inside text is read as a space.
+   */
+  readonly textLineBreaksAreSpaces?: boolean;
 }
 
 // Some sites list 10 people a page, so 1,000 records can take 100 pages.
@@ -178,13 +184,24 @@ function sourceIdentity($: CheerioAPI, config: SheriffRosterSiteConfig): void {
   }
 }
 
-function cardLines($: CheerioAPI, cardInput: ReturnType<CheerioAPI>): string[] {
+// Marks <br> and block boundaries when a line break inside text must not split a value.
+const VALUE_BREAK = "\u0001";
+
+function cardLines(
+  $: CheerioAPI,
+  cardInput: ReturnType<CheerioAPI>,
+  textLineBreaksAreSpaces = false
+): string[] {
   const card = cardInput.clone();
-  card.find("br").replaceWith("\n");
+  const separator = textLineBreaksAreSpaces ? VALUE_BREAK : "\n";
+  card.find("br").replaceWith(separator);
   card.find("div, dt, dd, p, h1, h2, h3, h4, h5, li, strong").each((_index, node) => {
-    $(node).prepend("\n").append("\n");
+    $(node).prepend(separator).append(separator);
   });
-  return card.text().split(/\n+/).map(normalizeText).filter(Boolean);
+  const text = card.text();
+  return (textLineBreaksAreSpaces ? text.split(VALUE_BREAK) : text.split(/\n+/))
+    .map(normalizeText)
+    .filter(Boolean);
 }
 
 // Some sites word the same fields differently ("Booking Number:", "Booking Time:", "Charge:").
@@ -282,7 +299,7 @@ function parsePage(
     if (profileUrl.hostname !== site.sourceHost) throw new Error("PROFILE_URL_BOUNDARY");
 
     const card = findRecordCard($(profileLink));
-    const lines = cardLines($, card);
+    const lines = cardLines($, card, config.textLineBreaksAreSpaces);
     const bookingNumber = normalizeText(valueAfter(lines, BOOKING_LABELS) ?? "");
     if (!bookingNumber) throw new Error("MISSING_BOOKING_NUMBER");
     if (
@@ -372,7 +389,7 @@ export function parseProfileCharges(
   const $ = load(html);
   const title = normalizeText($("title").first().text());
   if (!title.includes(config.countyName)) throw new Error("PROFILE_IDENTITY_MISMATCH");
-  const lines = cardLines($, $("body"));
+  const lines = cardLines($, $("body"), config.textLineBreaksAreSpaces);
   if (normalizeText(valueAfter(lines, BOOKING_LABELS) ?? "") !== expected.bookingNumber) {
     throw new Error("PROFILE_IDENTITY_MISMATCH");
   }
