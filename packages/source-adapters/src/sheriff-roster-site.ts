@@ -67,6 +67,8 @@ const MORE_CHARGES = /^\+ ?(\d{1,3}) more charges?$/i;
 const MAX_PROFILE_PAGES = 150;
 const MIN_RECORDS_FOR_CHARGE_CHECK = 10;
 const CHARGE_BOND_ENDING = / - \d[\d,]*\.\d{2} - [^-]+$/;
+// A hold with no charge at all is listed as just the bond ending ("- 0.00 - 24 hour hold").
+const BOND_ENDING_ONLY = /^- \d[\d,]*\.\d{2} - [^-]+$/;
 
 function withoutBondEnding(config: SheriffRosterSiteConfig, charge: string): string {
   if (!config.chargeLinesEndWithBond) return charge;
@@ -338,9 +340,10 @@ function parsePage(
     }
     const listedCharges = valuesBetween(lines, CHARGE_LABELS);
     const moreCharges = listedCharges.at(-1)?.match(MORE_CHARGES);
-    const charges = (moreCharges ? listedCharges.slice(0, -1) : listedCharges).map((charge) =>
-      withoutBondEnding(config, charge)
-    );
+    const charges = (moreCharges ? listedCharges.slice(0, -1) : listedCharges)
+      // Such a line names no charge, so it is left out rather than shown as one.
+      .filter((charge) => !(config.chargeLinesEndWithBond && BOND_ENDING_ONLY.test(charge)))
+      .map((charge) => withoutBondEnding(config, charge));
     if (charges.some((charge) => MORE_CHARGES.test(charge))) throw new Error("CHARGE_LIST_CHANGED");
     if (moreCharges || config.chargesFromProfile) {
       truncated.set(bookingNumber, {
