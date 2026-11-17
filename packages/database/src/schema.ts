@@ -374,6 +374,9 @@ export const bookings = pgTable(
   (table) => [
     uniqueIndex("bookings_snapshot_source_order_unique").on(table.snapshotId, table.sourceOrder),
     index("bookings_snapshot_idx").on(table.snapshotId),
+    // Deleting a person record cascades to bookings by this column; without an index each delete
+    // scans the whole table.
+    index("bookings_person_display_record_idx").on(table.personDisplayRecordId),
     check("bookings_source_order_check", sql`${table.sourceOrder} >= 0`),
     check(
       "bookings_identifier_provenance_check",
