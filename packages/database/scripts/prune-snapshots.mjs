@@ -9,7 +9,7 @@ import pg from "pg";
 
 const POLICY_VERSION = "current-custody-keep-2-v1";
 const KEEP = 2;
-const BATCH = 20;
+const BATCH = 50;
 const args = new Set(process.argv.slice(2));
 const apply = args.has("--apply");
 const vacuum = args.has("--vacuum");
@@ -46,14 +46,6 @@ try {
   );
   console.log(`before: ${before.rows[0].snapshots} snapshots, database ${before.rows[0].size}`);
 
-  if (apply) {
-    // Same index as migration 0130. Deleting a person record cascades to bookings by this column;
-    // without the index every cascade scans the whole bookings table.
-    await client.query(
-      'CREATE INDEX IF NOT EXISTS "bookings_person_display_record_idx" ON "bookings" ("person_display_record_id")'
-    );
-    console.log("index: bookings_person_display_record_idx ready");
-  }
   const ids = (await client.query(SUPERSEDED, [KEEP])).rows.map((row) => row.id);
   const counts = await client.query(
     `SELECT
@@ -69,25 +61,55 @@ try {
     `superseded: ${ids.length} snapshots from ${c.sources} sources; ${c.people} people, ${c.bookings} bookings, ${c.charges} charges, ${c.bonds} bond rows`
   );
 
-  if (apply) {
-    let deleted = 0;
+  if (apply && ids.length > 0) {
+    // 1. Bookings first, in small batches: their charges and bonds follow through indexed
+    //    foreign keys, so this is quick and each batch commits on its own.
+    let bookings = 0;
     for (let index = 0; index < ids.length; index += BATCH) {
-      const batch = ids.slice(index, index + BATCH);
-      await client.query("BEGIN");
-      try {
-        const result = await client.query(
-          "DELETE FROM custody_snapshots WHERE id = ANY($1::uuid[])",
-          [batch]
-        );
-        await client.query("COMMIT");
-        deleted += result.rowCount ?? 0;
-      } catch (error) {
-        await client.query("ROLLBACK").catch(() => undefined);
-        throw error;
-      }
-      if ((index / BATCH) % 25 === 0) console.log(`deleted ${deleted} of ${ids.length} snapshots`);
+      const result = await client.query(
+        "DELETE FROM bookings WHERE snapshot_id = ANY($1::uuid[])",
+        [ids.slice(index, index + BATCH)]
+      );
+      bookings += result.rowCount ?? 0;
+      if ((index / BATCH) % 50 === 0) console.log(`bookings deleted so far: ${bookings}`);
     }
-    console.log(`deleted: ${deleted} snapshots`);
+    console.log(`bookings deleted: ${bookings}`);
+
+    // 2. People and snapshots in one transaction. Deleting a person cascades to bookings by
+    //    person_display_record_id; without an index on that column (the database is too full to
+    //    build one) every person delete would scan all bookings. Their bookings are already gone,
+    //    so the foreign key is set aside inside the transaction and restored unchanged before
+    //    commit; if anything fails, the whole step rolls back.
+    await client.query("BEGIN");
+    try {
+      await client.query("SET LOCAL lock_timeout = '60s'");
+      const fk = await client.query(`
+        SELECT conname, pg_get_constraintdef(oid) AS definition
+        FROM pg_constraint
+        WHERE conrelid = 'bookings'::regclass AND confrelid = 'person_display_records'::regclass
+          AND contype = 'f'`);
+      for (const row of fk.rows) {
+        await client.query(`ALTER TABLE bookings DROP CONSTRAINT "${row.conname}"`);
+      }
+      const snapshots = await client.query(
+        "DELETE FROM custody_snapshots WHERE id = ANY($1::uuid[])",
+        [ids]
+      );
+      for (const row of fk.rows) {
+        await client.query(
+          `ALTER TABLE bookings ADD CONSTRAINT "${row.conname}" ${row.definition}`
+        );
+      }
+      await client.query("COMMIT");
+      console.log(
+        `snapshots deleted: ${snapshots.rowCount}; foreign keys restored: ${fk.rows.length}`
+      );
+    } catch (error) {
+      await client.query("ROLLBACK").catch(() => undefined);
+      throw error;
+    }
+  }
+  if (apply) {
     if (vacuum) {
       for (const table of [
         "charges",
@@ -99,6 +121,16 @@ try {
         await client.query(`VACUUM (ANALYZE) ${table}`);
       }
       console.log("vacuum: done");
+    }
+    // Same index as migration 0130; it speeds up later prunes. Building it needs free space, so a
+    // failure here is reported and does not fail the run.
+    try {
+      await client.query(
+        'CREATE INDEX IF NOT EXISTS "bookings_person_display_record_idx" ON "bookings" ("person_display_record_id")'
+      );
+      console.log("index: bookings_person_display_record_idx ready");
+    } catch (error) {
+      console.log(`index: not built yet (${error.code ?? ""} ${error.message})`);
     }
     const after = await client.query(
       "SELECT pg_size_pretty(pg_database_size(current_database())) AS size, (SELECT count(*) FROM custody_snapshots) AS snapshots"
