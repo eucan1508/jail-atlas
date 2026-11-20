@@ -25,11 +25,13 @@ const MAX_PAGE_BYTES = 6_000_000;
 // Metro Jail holds about 1,500 people a day; a list far below that means a broken report.
 const MIN_RECORDS = 200;
 const EXPECTED_COLUMNS = ["NAME", "DATE", "CHARGES", "BONDS"] as const;
+const MAX_SHARE_WITHOUT_CHARGES = 0.1;
 
 const MobileRecordSchema = z.object({
   displayName: z.string().trim().min(1).max(250),
   bookingDateText: z.string().regex(/^\d{1,2}\/\d{1,2}\/\d{4}$/),
-  charges: z.array(z.string().trim().min(1).max(1_000)).min(1).max(100)
+  // Someone booked minutes ago can appear before any charge is entered.
+  charges: z.array(z.string().trim().min(1).max(1_000)).max(100)
 });
 
 const MobileRosterSchema = z.object({
@@ -121,12 +123,17 @@ export function parseMobileRosterHtml(html: string): MobileRoster {
       const chargeCell = cells.eq(2).clone();
       chargeCell.find("br").replaceWith("\n");
       const charges = chargeCell.text().split("\n").map(formatMobileCharge).filter(Boolean);
-      if (!displayName || charges.length === 0) throw new Error("INVALID_RECORD");
+      if (!displayName) throw new Error("INVALID_RECORD");
       const key = JSON.stringify([displayName, bookingDateText, charges]);
       if (seen.has(key)) return;
       seen.add(key);
       records.push(MobileRecordSchema.parse({ displayName, bookingDateText, charges }));
     });
+  // A few fresh bookings without charges are normal; many mean the charges column broke.
+  const withoutCharges = records.filter((record) => record.charges.length === 0).length;
+  if (withoutCharges > records.length * MAX_SHARE_WITHOUT_CHARGES) {
+    throw new Error("CHARGES_MISSING");
+  }
   return MobileRosterSchema.parse({ records });
 }
 
