@@ -2359,6 +2359,41 @@ export const countyCoverageCatalog: readonly CountyCoverageBrief[] = [
     officialSourceUrl: "https://www.colbertsheriff.net/roster.php",
     officialSourceLabel: "Colbert County Sheriff's Office inmate roster",
     sourceStatus: "audit_pending"
+  },
+  {
+    state: "alabama",
+    stateName: "Alabama",
+    county: "Pickens County",
+    slug: "pickens-county",
+    publishedAt: "2026-11-20",
+    seatCity: "Carrollton",
+    h1: "Pickens County Jail Roster & Inmate Search",
+    title: "Pickens County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Pickens County, Alabama current-inmate information for the county jail in Carrollton from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Pickens County Sheriff's Office runs the county jail at 188 Cemetery Street in Carrollton and publishes a current inmate roster. This page reads that roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl: "https://www.pcsoal.org/roster.php",
+    officialSourceLabel: "Pickens County Sheriff's Office inmate roster",
+    sourceStatus: "audit_pending"
+  },
+  {
+    state: "missouri",
+    stateName: "Missouri",
+    county: "Caldwell County",
+    slug: "caldwell-county",
+    publishedAt: "2026-11-20",
+    seatCity: "Kingston",
+    h1: "Caldwell County Jail Roster & Inmate Search",
+    title: "Caldwell County Jail Roster & Inmate Search - JailAtlas.com",
+    description:
+      "Search Caldwell County, Missouri current-inmate information for the Detention Center in Kingston from the Sheriff's official inmate roster, with source-listed charges and capture time.",
+    article:
+      "The Caldwell County Sheriff's Department runs the 178-bed Caldwell County Detention Center in Kingston, opened in 2004, which holds men and women from Caldwell County, nearby counties, and the U.S. Marshals Service. This page reads the Sheriff's current inmate roster with each person's source-listed charges and leaves out photos, ages, booking dates, and bonds.",
+    officialSourceUrl:
+      "https://www.caldwellcosdmo.gov/inmate-roster/filters/current/booking_time=desc/1",
+    officialSourceLabel: "Caldwell County Sheriff's Department inmate roster",
+    sourceStatus: "audit_pending"
   }
 ];
 

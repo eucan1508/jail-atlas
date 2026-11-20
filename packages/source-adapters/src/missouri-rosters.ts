@@ -111,6 +111,15 @@ export const CAPE_GIRARDEAU_COUNTY_MO_ROSTER = {
   textLineBreaksAreSpaces: true
 } as const satisfies SheriffRosterSiteConfig;
 
+export const CALDWELL_COUNTY_MO_ROSTER = {
+  adapterKey: "caldwell-county-mo-current-roster",
+  countyName: "Caldwell County",
+  diagnosticPrefix: "CALDWELL_COUNTY_MO",
+  sourceUrl: "https://www.caldwellcosdmo.gov/inmate-roster/filters/current/booking_time=desc/1",
+  parserVersion: "1.0.0",
+  layout: "inmate-roster-path"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const MISSOURI_ROSTER_SITES = [
   CRAWFORD_COUNTY_MO_ROSTER,
   CAMDEN_COUNTY_MO_ROSTER,
@@ -123,7 +132,8 @@ export const MISSOURI_ROSTER_SITES = [
   ANDREW_COUNTY_MO_ROSTER,
   CALLAWAY_COUNTY_MO_ROSTER,
   SALINE_COUNTY_MO_ROSTER,
-  CAPE_GIRARDEAU_COUNTY_MO_ROSTER
+  CAPE_GIRARDEAU_COUNTY_MO_ROSTER,
+  CALDWELL_COUNTY_MO_ROSTER
 ] as const;
 
 export function missouriRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

@@ -149,16 +149,16 @@ with the adapter records disabled and publication approval off.
    `oklahoma-rosters.ts`, and runs in the same Oklahoma batch.
 
    Missouri runs Crawford, Camden, Polk, Benton, Stone, Lawrence, Lewis, Morgan, Andrew, Callaway,
-   Saline, and Cape Girardeau through the shared sheriff roster adapter (`sheriff-roster-site.ts`,
-   configured in `missouri-rosters.ts`). Saline's charge lines end with the bond amount and type,
-   which the adapter removes, and Cape Girardeau wraps long charges with a plain line break, which
-   is read as a space. Crawford, Camden, Polk, Stone, Lawrence, Morgan, and Andrew use the
-   `roster.php?grp=` layout; Benton and Lewis use `/inmate-roster/filters/current/...` paths. Every
-   crawl must collect exactly the count in the page's "Inmate Roster (N)" heading or the county
-   fails closed:
+   Saline, Cape Girardeau, and Caldwell through the shared sheriff roster adapter
+   (`sheriff-roster-site.ts`, configured in `missouri-rosters.ts`). Saline's charge lines end with
+   the bond amount and type, which the adapter removes, and Cape Girardeau wraps long charges with a
+   plain line break, which is read as a space. Crawford, Camden, Polk, Stone, Lawrence, Morgan, and
+   Andrew use the `roster.php?grp=` layout; Benton and Lewis use
+   `/inmate-roster/filters/current/...` paths. Every crawl must collect exactly the count in the
+   page's "Inmate Roster (N)" heading or the county fails closed:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org,www.callawaysheriff.org,www.salinecountysheriff.com,www.capecountysheriff.org
+   SOURCE_HOST_ALLOWLIST=www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.andrewcountysheriff.org,www.callawaysheriff.org,www.salinecountysheriff.com,www.capecountysheriff.org,www.caldwellcosdmo.gov
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=MO --dry-run
    ```
 
@@ -179,7 +179,7 @@ with the adapter records disabled and publication approval off.
    of Inmates" count, or the county fails closed. It runs in the same Kansas batch.
 
    Alabama runs Franklin, Chilton, St. Clair, Jackson, Marshall, Marion, DeKalb, Elmore, Cherokee,
-   and Colbert counties through the same shared sheriff roster adapter, configured in
+   Colbert, and Pickens counties through the same shared sheriff roster adapter, configured in
    `alabama-rosters.ts`. Franklin and Chilton use the `roster.php?grp=` layout and the others the
    `/inmate-roster/filters/current/...` paths; each must collect exactly the "Inmate Roster (N)"
    count. Mobile County's Metro Jail publishes a single "Current Inmates" report
@@ -187,7 +187,7 @@ with the adapter records disabled and publication approval off.
    people:
 
    ```text
-   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com,www.elmoreso.com,www.cherokeecountyalsheriff.com,www.colbertsheriff.net
+   SOURCE_HOST_ALLOWLIST=www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,all.mobileso.com,www.elmoreso.com,www.cherokeecountyalsheriff.com,www.colbertsheriff.net,www.pcsoal.org
    pnpm --filter @jail-atlas/ingest-worker dev -- run --state=AL --dry-run
    ```
 

@@ -140,6 +140,7 @@ they read through the shared `sheriff-roster-site.ts` adapter.
 | Callaway       | [Callaway County Sheriff inmate roster](https://www.callawaysheriff.org/roster.php)                                                | Adapter tested; production approval pending |
 | Saline         | [Saline County Sheriff inmate roster](https://www.salinecountysheriff.com/roster.php)                                              | Adapter tested; production approval pending |
 | Cape Girardeau | [Cape Girardeau County Sheriff inmate roster](https://www.capecountysheriff.org/inmate-roster/filters/current/booking_time=desc/1) | Adapter tested; production approval pending |
+| Caldwell       | [Caldwell County Sheriff inmate roster](https://www.caldwellcosdmo.gov/inmate-roster/filters/current/booking_time=desc/1)          | Adapter tested; production approval pending |
 
 ## Kansas
 
@@ -178,6 +179,7 @@ Kansas, Arkansas, and Texas counties above.
 | Elmore    | [Elmore County Sheriff inmate roster](https://www.elmoreso.com/inmate-roster/filters/current/booking_time=desc/1)                | Adapter tested; production approval pending |
 | Cherokee  | [Cherokee County Sheriff inmate roster](https://www.cherokeecountyalsheriff.com/roster.php)                                      | Adapter tested; production approval pending |
 | Colbert   | [Colbert County Sheriff inmate roster](https://www.colbertsheriff.net/roster.php)                                                | Adapter tested; production approval pending |
+| Pickens   | [Pickens County Sheriff inmate roster](https://www.pcsoal.org/roster.php)                                                        | Adapter tested; production approval pending |
 
 ## Florida
 

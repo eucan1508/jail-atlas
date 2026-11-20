@@ -147,8 +147,8 @@ for its page-size preference.
 | --- | -------------- | ----- | ------ | --------------------------------------------------------------------------------------------------- | ---------------- |
 | 1   | Cape Girardeau | MO    | 272    | Template, inmate-roster path (www.capecountysheriff.org); long charges wrap with a plain line break | Added 2026-11-17 |
 | 2   | Colbert        | AL    | 88     | Template, roster.php (www.colbertsheriff.net); jail page still shows COVID-era rules                | Added 2026-11-17 |
-| 3   | Pickens        | AL    | 78     | Template, roster.php (www.pcsoal.org), 10 people a page                                             | To do            |
-| 4   | Caldwell       | MO    | 18     | Template, inmate-roster path (www.caldwellcosdmo.gov); visitation page "Coming Soon"                | To do            |
+| 3   | Pickens        | AL    | 78     | Template, roster.php (www.pcsoal.org), 10 people a page                                             | Added 2026-11-20 |
+| 4   | Caldwell       | MO    | 18     | Template, inmate-roster path (www.caldwellcosdmo.gov); visitation page "Coming Soon"                | Added 2026-11-20 |
 
 Skipped on 2026-11-17: Blount AL, Arkansas County AR, and Terry TX (clean rosters, no jail guidance
 on the official site); Putnam MO (held in Grundy County, narrative charge text, stale); Creek OK
