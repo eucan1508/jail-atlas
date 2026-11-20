@@ -132,4 +132,19 @@ describe("Mobile County roster adapter", () => {
     ).toThrow("ROSTER_COLUMNS_CHANGED");
     expect(() => parseMobileRosterHtml(page(filler(5)))).toThrow();
   });
+
+  it("keeps a fresh booking with no charge yet, but not a report missing many charges", () => {
+    const fresh: Row = ["TESTER, FRESH — TEST ONLY", "1/1/2000", []];
+    const roster = parseMobileRosterHtml(page([...filler(250), fresh]));
+    expect(roster.records).toHaveLength(251);
+    expect(roster.records.at(-1)?.charges).toEqual([]);
+    const blank = Array.from({ length: 40 }, (_, index): Row => [
+      `TESTER, BLANK ${index} — TEST ONLY`,
+      "1/1/2000",
+      []
+    ]);
+    expect(() => parseMobileRosterHtml(page([...filler(250), ...blank]))).toThrow(
+      "CHARGES_MISSING"
+    );
+  });
 });
