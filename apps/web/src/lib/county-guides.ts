@@ -3323,6 +3323,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       }
     ]
   },
+  "alabama/pickens-county": {
+    facilityName: "Pickens County Jail",
+    address: "188 Cemetery Street, Carrollton, AL 35447",
+    phone: "205-367-2000",
+    operatedBy: "Pickens County Sheriff's Office",
+    reviewedAt: "November 20, 2026",
+    overview:
+      "The Pickens County Sheriff's Office runs the county jail at 188 Cemetery Street in Carrollton. The Sheriff's Office answers 205-367-2000 around the clock; visit appointments go through 205-367-2006.",
+    contactSourceLabel: "Official jail page",
+    contactSourceUrl: "https://www.pcsoal.org/jail",
+    sections: [
+      {
+        title: "Visitation",
+        body: "Visits must be booked at least 24 hours ahead by calling 205-367-2006 (weekdays 8 a.m. to 5 p.m.), and only people on the inmate's visitation list (3 family members and 1 minister) can book. Visits run Monday to Friday, 9 to 11 a.m. and 1 to 3 p.m., except holidays and court days; each inmate gets 2 visits of 30 minutes a month. Adult visitors need a photo ID and their Social Security number for a background check, and nothing may be brought in.",
+        sourceLabel: "Official visitation page",
+        sourceUrl: "https://www.pcsoal.org/visitation-information"
+      },
+      {
+        title: "Money and commissary",
+        body: "The Sheriff's site does not explain how to add money to an inmate's account. Call the jail at 205-367-2000 to ask.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.pcsoal.org/jail"
+      },
+      {
+        title: "Phone and mail",
+        body: "Inmates can make collect calls or use a Securus prepaid account (1-800-844-6591, securustech.net) from the dayroom, 7 a.m. to 10 p.m.; they cannot receive calls, and staff do not pass on messages. Mail must be pre-stamped postcards only, sent to Pickens County Jail, P.O. Box 226, Carrollton, AL 35447.",
+        sourceLabel: "Official telephone service page",
+        sourceUrl: "https://www.pcsoal.org/telephone-service"
+      },
+      {
+        title: "Bail and court records",
+        body: "The Sheriff's site does not explain how to post bond. Call the jail at 205-367-2000. A listing is a record of a booking, not a finding of guilt.",
+        sourceLabel: "Official jail page",
+        sourceUrl: "https://www.pcsoal.org/jail"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I visit someone at the Pickens County Jail?",
+        answer:
+          "Call 205-367-2006 at least 24 hours ahead. You must be on the inmate's visitation list; visits run weekdays 9 to 11 a.m. and 1 to 3 p.m."
+      },
+      {
+        question: "Can I send a letter to a Pickens County inmate?",
+        answer:
+          "Only pre-stamped postcards, sent to Pickens County Jail, P.O. Box 226, Carrollton, AL 35447."
+      },
+      {
+        question: "How do inmates at the Pickens County Jail make phone calls?",
+        answer:
+          "Collect calls or a Securus prepaid account (1-800-844-6591). Inmates cannot receive incoming calls."
+      },
+      {
+        question: "What is the Pickens County Jail phone number?",
+        answer: "205-367-2000. For visit appointments, call 205-367-2006."
+      }
+    ]
+  },
 
   "florida/walton-county": {
     facilityName: "Walton County Jail",
@@ -4067,6 +4125,64 @@ const profiles: Readonly<Record<string, CountyGuideProfile>> = {
       {
         question: "What is the Cape Girardeau County Jail phone number?",
         answer: "573-243-3551, option 1 for the Jail Division."
+      }
+    ]
+  },
+  "missouri/caldwell-county": {
+    facilityName: "Caldwell County Detention Center",
+    address: "280 W. Main Street, Kingston, MO 64650",
+    phone: "816-586-5245",
+    operatedBy: "Caldwell County Sheriff's Department",
+    reviewedAt: "November 20, 2026",
+    overview:
+      "The Caldwell County Sheriff's Department runs the 178-bed Caldwell County Detention Center in Kingston, opened in 2004 for people held before trial and short sentences. It holds men and women from Caldwell County, other local counties, and the U.S. Marshals Service.",
+    contactSourceLabel: "Official Detention Center page",
+    contactSourceUrl: "https://www.caldwellcosdmo.gov/detention-center",
+    sections: [
+      {
+        title: "Visitation",
+        body: "The Sheriff's visitation page is not published yet. Call the Detention Center at 816-586-5245 before planning a visit.",
+        sourceLabel: "Official Detention Center page",
+        sourceUrl: "https://www.caldwellcosdmo.gov/detention-center"
+      },
+      {
+        title: "Money and commissary",
+        body: "Commissary and inmate banking run through Stellar Services. Add money at jailatm.com with a debit or credit card, at the 24-hour kiosk in the Detention Center lobby, or by money order with the inmate's name in the Pay To line, mailed to Caldwell County Detention Center, Attn: Administration / Finance Office, PO Box 38, Kingston, MO 64650. Stellar Services: (870) 627-5476.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.caldwellcosdmo.gov/commissary"
+      },
+      {
+        title: "Phone and mail",
+        body: "The Sheriff's site does not give phone or mail rules for inmates; the email and video options on jailatm.com are not available for this jail. Call 816-586-5245 before sending mail.",
+        sourceLabel: "Official commissary page",
+        sourceUrl: "https://www.caldwellcosdmo.gov/commissary"
+      },
+      {
+        title: "Bail and court records",
+        body: "Cash bonds can be posted at the Detention Center or through its lobby kiosk, open 24 hours (cash, credit, or debit). For bond information call 816-586-5245 or check the case on courts.mo.gov.",
+        sourceLabel: "Official bonds page",
+        sourceUrl: "https://www.caldwellcosdmo.gov/bonds"
+      }
+    ],
+    faq: [
+      {
+        question: "How do I put money on a Caldwell County inmate's account?",
+        answer:
+          "At jailatm.com, at the 24-hour lobby kiosk, or by money order mailed to the Detention Center's finance office at PO Box 38, Kingston, MO 64650."
+      },
+      {
+        question: "How do I post bond at the Caldwell County Detention Center?",
+        answer:
+          "Cash bonds can be posted at the Detention Center or through its lobby kiosk, available 24 hours a day."
+      },
+      {
+        question: "Who is held at the Caldwell County Detention Center?",
+        answer:
+          "Men and women from Caldwell County, other local counties, and the U.S. Marshals Service, held before trial or on short sentences."
+      },
+      {
+        question: "What is the Caldwell County Detention Center phone number?",
+        answer: "816-586-5245."
       }
     ]
   },

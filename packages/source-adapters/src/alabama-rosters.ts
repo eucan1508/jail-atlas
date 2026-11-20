@@ -92,6 +92,15 @@ export const COLBERT_COUNTY_AL_ROSTER = {
   layout: "roster-php"
 } as const satisfies SheriffRosterSiteConfig;
 
+export const PICKENS_COUNTY_AL_ROSTER = {
+  adapterKey: "pickens-county-al-current-roster",
+  countyName: "Pickens County",
+  diagnosticPrefix: "PICKENS_COUNTY_AL",
+  sourceUrl: "https://www.pcsoal.org/roster.php",
+  parserVersion: "1.0.0",
+  layout: "roster-php"
+} as const satisfies SheriffRosterSiteConfig;
+
 export const ALABAMA_ROSTER_SITES = [
   FRANKLIN_COUNTY_AL_ROSTER,
   CHILTON_COUNTY_AL_ROSTER,
@@ -102,7 +111,8 @@ export const ALABAMA_ROSTER_SITES = [
   DEKALB_COUNTY_AL_ROSTER,
   ELMORE_COUNTY_AL_ROSTER,
   CHEROKEE_COUNTY_AL_ROSTER,
-  COLBERT_COUNTY_AL_ROSTER
+  COLBERT_COUNTY_AL_ROSTER,
+  PICKENS_COUNTY_AL_ROSTER
 ] as const;
 
 export function alabamaRosterSite(adapterKey: string): SheriffRosterSiteConfig | null {

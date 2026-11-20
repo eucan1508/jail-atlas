@@ -556,6 +556,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "cape-girardeau",
       adapterKey: "cape-girardeau-county-mo-current-roster",
       sourceHost: "www.capecountysheriff.org"
+    },
+    {
+      countySlug: "caldwell",
+      adapterKey: "caldwell-county-mo-current-roster",
+      sourceHost: "www.caldwellcosdmo.gov"
     }
   ],
   KS: [
@@ -670,6 +675,11 @@ const LIVE_STATE_SOURCES: Readonly<Record<LiveState, readonly LiveStateSource[]>
       countySlug: "colbert",
       adapterKey: "colbert-county-al-current-roster",
       sourceHost: "www.colbertsheriff.net"
+    },
+    {
+      countySlug: "pickens",
+      adapterKey: "pickens-county-al-current-roster",
+      sourceHost: "www.pcsoal.org"
     }
   ],
   FL: [
