@@ -9,6 +9,7 @@
     "start": "tsx src/cli.ts run --scenario=current-custody --dry-run",
     "ingest:synthetic": "tsx src/cli.ts run --scenario=current-custody --dry-run",
     "source:approve": "tsx src/approve-source.ts",
+    "source:approve-all": "tsx src/approve-all-sources.ts",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

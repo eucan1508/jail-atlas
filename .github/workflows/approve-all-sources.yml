@@ -1,0 +1,47 @@
+name: Approve all live sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description:
+          "Type APPROVE_ALL to approve every county in the live state lists (new database setup)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-source-approval
+  cancel-in-progress: false
+
+jobs:
+  approve:
+    name: Approve every live source
+    if: ${{ inputs.confirm == 'APPROVE_ALL' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace packages
+        run: pnpm -r --filter "./packages/**" --if-present build
+
+      - name: Approve every live source
+        run: pnpm --filter @jail-atlas/ingest-worker source:approve-all -- --confirm=APPROVE_ALL
