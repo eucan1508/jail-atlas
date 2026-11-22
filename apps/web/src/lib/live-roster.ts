@@ -214,9 +214,13 @@ function getDatabase() {
 /**
  * An approved county is "live" while its latest snapshot is fresh and "paused" once that snapshot
  * is too old to show. A paused county keeps its page and guide but never shows the old roster.
+ * "unavailable" means the database could not be reached at all (an outage or a plan quota): the
+ * page keeps its guide and says the roster is temporarily unavailable.
  */
 export type CountyRosterStatus =
-  { kind: "live"; source: LiveSource } | { kind: "paused"; lastCapturedAt: Date };
+  | { kind: "live"; source: LiveSource }
+  | { kind: "paused"; lastCapturedAt: Date }
+  | { kind: "unavailable" };
 
 async function readSource(
   db: Pick<Database, "execute">,
@@ -318,7 +322,17 @@ export async function getCountyRosterStatus(
 ): Promise<CountyRosterStatus | null> {
   if (readEnvironment().DATA_MODE !== "official" || !process.env.DATABASE_URL) return null;
   const adapterKey = liveAdapterKeys[`${entry.state}/${entry.slug}`];
-  return adapterKey ? readSourceStatus(getDatabase(), { adapterKey }) : null;
+  if (!adapterKey) return null;
+  try {
+    return await readSourceStatus(getDatabase(), { adapterKey });
+  } catch {
+    return { kind: "unavailable" };
+  }
+}
+
+/** Whether a county page is backed by an approved live source (see liveAdapterKeys). */
+export function hasLiveAdapter(entry: CountyCoverageBrief): boolean {
+  return `${entry.state}/${entry.slug}` in liveAdapterKeys;
 }
 
 export async function getLiveRosterPage({

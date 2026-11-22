@@ -25,4 +25,8 @@ describe("county page indexing", () => {
     expect(isIndexableRosterStatus(live(0))).toBe(false);
     expect(isIndexableRosterStatus(null)).toBe(false);
   });
+
+  it("keeps a county indexed while the database cannot be reached", () => {
+    expect(isIndexableRosterStatus({ kind: "unavailable" })).toBe(true);
+  });
 });
