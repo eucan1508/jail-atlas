@@ -2,28 +2,20 @@ name: Approved live ingest
 
 on:
   schedule:
-    # Each state refreshes twice a day, 12 hours apart, so one failed or delayed run is covered by
-    # the next one well inside the 30-hour page freshness window. Iowa runs at 00:00 and 12:00 UTC,
-    # Minnesota at 06:00 and 18:00, Texas at 03:00 and 15:00, Arkansas at 09:00 and 21:00,
-    # Oklahoma at 01:00 and 13:00, Missouri at 10:00 and 22:00, Kansas at 11:00 and 23:00,
-    # Alabama at 02:00 and 14:00, and Florida at 04:00 and 16:00.
-    - cron: "0 0,12 * * *"
-    - cron: "0 6,18 * * *"
-    - cron: "0 3,15 * * *"
-    - cron: "0 9,21 * * *"
-    - cron: "0 1,13 * * *"
-    - cron: "0 10,22 * * *"
-    - cron: "0 11,23 * * *"
-    - cron: "0 2,14 * * *"
-    - cron: "0 4,16 * * *"
+    # Every state refreshes twice a day in one batch, 12 hours apart, so the database is awake
+    # for two short windows instead of all day (Neon's free plan limits monthly compute time).
+    # One failed or delayed batch is still covered by the next one inside the 30-hour page
+    # freshness window.
+    - cron: "23 5,17 * * *"
   workflow_dispatch:
     inputs:
       state:
-        description: "State to refresh"
+        description: "State to refresh (ALL runs every state)"
         required: true
-        default: IA
+        default: ALL
         type: choice
         options:
+          - ALL
           - IA
           - MN
           - TX
@@ -74,6 +66,13 @@ jobs:
     name: Refresh approved state sources
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        state:
+          ${{ fromJSON((!inputs.state || inputs.state == 'ALL') &&
+          '["IA","MN","TX","AR","OK","MO","KS","AL","FL"]' || format('["{0}"]', inputs.state)) }}
     # The explicit repository secret is the final operator-controlled enable switch. Keeping it
     # absent or false makes this scheduled workflow a no-op until the customer approves live writes.
     if: ${{ needs.gate.outputs.enabled == 'go' }}
@@ -90,13 +89,7 @@ jobs:
       ALLOW_LIVE_SOURCE_FETCHES: "true"
       SOURCE_HOST_ALLOWLIST: inmates.dallascountyiowa.gov,cedarcounty.iowa.gov,www.bhcso.org,sofiles.cerrogordo.gov,ww1.johnsoncountyiowa.gov,polkinmates.polkcountyiowa.gov,injail.wcicc.com,marshall-so-ia.zuercherportal.com,wapello-so-ia.zuercherportal.com,www.idacountysheriff.us,opendata.ramseycountymn.gov,jailroster.stearnscountymn.gov,incustodysearch.co.anoka.mn.us,mower-sftp.co.mower.mn.us,www.wrightcountymn.gov,jailroster.co.carlton.mn.us,www.douglascountymn.gov,www.stlouiscountymn.gov,www.steelecountymn.gov,www3.crowwing.us,custody.renvillecountymn.gov,web1.co.ottertail.mn.us,inmatelocatorext.co.sherburne.mn.us,www2.kcmn.us,web1.washingtoncountymn.gov,dakotacountymn.gov,files.claycountymn.gov,www.winonaco.com,api.hennepincounty.gov,jailroster.hennepin.us,ftp.co.nobles.mn.us,api.correctionsrecordssearch.com,www.freeborncountymn.gov,cms5.revize.com,redwoodcounty-mn.gov,www.watonwancountymn.gov,map.co.clearwater.mn.us,s3.us-east-2.amazonaws.com,prophoenix.co.hubbard.mn.us,jail.kanabec.org,www.meekercountymn.gov,co.wilkin.mn.us,www.milamcountysherifftx.org,www.kendallcountysheriff.com,www.klebergcoso.org,www.burlesoncountysherifftx.org,www.tomgreencountysheriff.org,www.angelinacounty.net,www.robertsoncountysherifftx.org,upshur-so-tx.zuercherportal.com,jeffersoncountytx.gov,www.crawfordcountyso.org,www.camdencountymosheriff.org,www.polkcountymosheriff.org,www.bentoncountysheriffmo.org,www.stonecountymosheriff.com,www.lawrencecosheriff.com,www.lewiscosheriff.org,www.morgancountymoso.org,www.bourboncountysheriffks.org,www.coffeycountysheriff.org,www.atcosheriffks.org,www.lvsheriff.org,www.jeffersoncountykssheriff.com,www.woodsonsheriff.com,www.cherokeecountykssheriff.com,www.jasoks.org,www.brownso.org,nemahasoks.gov,www.franklinsheriff.org,www.chiltoncountyso.org,www.stclairsheriff.org,www.jacksoncountysheriffal.org,www.marshallso.org,www.marionsoal.com,www.dekalbcountysheriff.org,www.jeffcoso.org,www.loganso.com,www.greenesoar.gov,www.cleburnearso.gov,www.fcso.ar.gov,www.hotspringcountysoar.gov,www.baxtercountysheriff.com,www.stfranciscountysheriff.org,www.mississippicountysheriffar.org,www.randolphcountysheriff.org,www.hempsteadcountysheriff.org,www.izardcountysheriff.org,www.crosscountysheriff.org,www.carrollcountysheriffar.gov,www.poinsettsheriffar.gov,www.myr2m.com,www.wagonercountyso.org,lincolncountysheriffok.gov,www.pawneecountysook.gov,www.seminolecosheriff.com,www.cartercountysheriff.us,ccsheriff.net,scsok.org,www.muskogeeso.org,www.ottawacountysook.gov,www.lovecosheriff.com,www.greercountysheriff.org,www.majorcosheriff.com,www.jacksoncountyso.com,www.custercountysheriff.com,craigcountyso.com,www.noblecosook.gov,www.andrewcountysheriff.org,www.washingtoncosheriff.com,inmate.sebastiancountyar.gov,all.mobileso.com,p2c.galvestoncountytx.gov,public.pottercountysheriff.org,www.elmoreso.com,www.callawaysheriff.org,www.mayessheriff.org,www.cherokeecountyalsheriff.com,www.salinecountysheriff.com,www.labettecountykssheriff.org,nwscorrections.waltonso.org,nwwebcad.fcpsn.org,www.capecountysheriff.org,www.colbertsheriff.net,www.pcsoal.org,www.caldwellcosdmo.gov
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      INGEST_STATE:
-        ${{ inputs.state || (github.event.schedule == '0 4,16 * * *' && 'FL' ||
-        github.event.schedule == '0 2,14 * * *' && 'AL' || github.event.schedule == '0 11,23 * * *'
-        && 'KS' || github.event.schedule == '0 10,22 * * *' && 'MO' || github.event.schedule == '0
-        1,13 * * *' && 'OK' || github.event.schedule == '0 9,21 * * *' && 'AR' ||
-        github.event.schedule == '0 3,15 * * *' && 'TX' || github.event.schedule == '0 6,18 * * *'
-        && 'MN' || 'IA') }}
+      INGEST_STATE: ${{ matrix.state }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -151,18 +144,45 @@ jobs:
           RECORD_FAILURES: ${{ inputs.mode != 'dry-run' }}
         run: node .github/scripts/ingest-report.mjs "$RUNNER_TEMP/ingest.log"
 
+  finish:
+    # Runs once after every state in the batch: deletes superseded snapshots, purges the page
+    # cache, and renders every listed page again while the database is still awake.
+    needs: [gate, iowa]
+    name: Prune, purge, and warm the site
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: ${{ always() && needs.gate.outputs.enabled == 'go' && inputs.mode != 'dry-run' }}
+    permissions:
+      contents: read
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install exact dependency graph
+        run: pnpm install --frozen-lockfile
+
       - name: Delete superseded roster snapshots
         # Each write run stores a new snapshot per county. Older ones are never shown and must not
         # be kept (privacy-and-retention.md), and letting them pile up filled the database on
         # 2026-11-16. Keeps the two newest successful snapshots per source.
-        if: ${{ always() && inputs.mode != 'dry-run' }}
         working-directory: packages/database
         run: node scripts/prune-snapshots.mjs --apply
 
       - name: Purge cached site pages
-        # Pages are cached on the CDN for up to 10 minutes. After a write run (even a partly failed
-        # one) every cached page is purged so new snapshots and removals show at once.
-        if: ${{ always() && inputs.mode != 'dry-run' }}
+        # Pages are cached on the CDN for up to 20 minutes. After every batch (even a partly failed
+        # one) the whole cache is purged so new snapshots and removals show at once.
+        id: purge
         env:
           REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
         run: |
@@ -173,3 +193,18 @@ jobs:
           curl --fail --silent --show-error --proto '=https' --max-time 30 --retry 3 --retry-all-errors \
             -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" \
             https://jailatlas.com/api/revalidate/
+          echo "purged=yes" >> "$GITHUB_OUTPUT"
+
+      - name: Render every listed page again
+        # Fills the cache while the database is awake, so crawlers do not wake it page by page.
+        if: ${{ steps.purge.outputs.purged == 'yes' }}
+        run: |
+          urls=$(curl --fail --silent --show-error --max-time 60 https://jailatlas.com/sitemap.xml |
+            grep -oE '<loc>[^<]+</loc>' | sed -E 's#</?loc>##g')
+          count=0
+          for url in $urls; do
+            curl --silent --output /dev/null --max-time 60 "$url" || true
+            count=$((count + 1))
+            sleep 0.3
+          done
+          echo "Rendered $count pages."
