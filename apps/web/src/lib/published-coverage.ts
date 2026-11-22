@@ -1,6 +1,6 @@
 import "server-only";
 
-import { getCountyRosterStatus, getLiveCountySource } from "./live-roster";
+import { getCountyRosterStatus, hasLiveAdapter, type LiveSource } from "./live-roster";
 import { isIndexableRosterStatus } from "./roster-indexing";
 import {
   countyCoverageCatalog,
@@ -11,7 +11,8 @@ import {
 
 export type PublishedCountyCoverage = Readonly<{
   entry: CountyCoverageBrief;
-  liveSource: NonNullable<Awaited<ReturnType<typeof getLiveCountySource>>>;
+  /** Null only while the database cannot be reached; see getPublishedCountyCoverage. */
+  liveSource: LiveSource | null;
   path: string;
 }>;
 
@@ -26,18 +27,19 @@ export async function getPublishedCountyCoverage(
     ? countyCoverageCatalog.filter((entry) => entry.state === state)
     : countyCoverageCatalog;
 
-  const results = await Promise.all(
-    candidates.map(async (entry) => {
-      try {
-        const source = await getLiveCountySource(entry);
-        return source ? { entry, liveSource: source, path: countyCoveragePath(entry) } : null;
-      } catch {
-        return null;
-      }
-    })
-  );
-
-  return results.filter((result): result is PublishedCountyCoverage => result !== null);
+  const statuses = await Promise.all(candidates.map((entry) => getCountyRosterStatus(entry)));
+  // When the database cannot be reached, every approved county stays listed (without counts) so
+  // navigation keeps working; each county page then says its roster is temporarily unavailable.
+  return candidates.flatMap((entry, index): PublishedCountyCoverage[] => {
+    const status = statuses[index];
+    if (status?.kind === "live") {
+      return [{ entry, liveSource: status.source, path: countyCoveragePath(entry) }];
+    }
+    if (status?.kind === "unavailable" && hasLiveAdapter(entry)) {
+      return [{ entry, liveSource: null, path: countyCoveragePath(entry) }];
+    }
+    return [];
+  });
 }
 
 /**

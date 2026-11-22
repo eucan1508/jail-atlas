@@ -116,9 +116,9 @@ export default async function CountyCustodyBriefPage({
   if (!rosterStatus && !coveragePreviewAllowed()) notFound();
 
   const path = countyCoveragePath(entry);
-  const pausedProfile =
-    rosterStatus?.kind === "paused" ? findCountyGuide(entry.state, entry.slug) : undefined;
-  if (rosterStatus?.kind === "paused" && pausedProfile) {
+  const rosterHeld = rosterStatus?.kind === "paused" || rosterStatus?.kind === "unavailable";
+  const pausedProfile = rosterHeld ? findCountyGuide(entry.state, entry.slug) : undefined;
+  if (rosterHeld && pausedProfile) {
     const stateCoverage = await getPublishedCountyCoverage(entry.state);
     return (
       <main id="main-content" className="page-main site-shell county-page county-page--live">
@@ -143,9 +143,10 @@ export default async function CountyCustodyBriefPage({
         <section className="content-section roster-section" aria-labelledby="roster-heading">
           <h2 id="roster-heading">Who is currently held at {pausedProfile.facilityName}?</h2>
           <Alert heading="Roster temporarily unavailable" tone="warning">
-            The official {entry.county} roster could not be refreshed recently, so JailAtlas is not
-            showing the last list it captured. It returns here after the next successful refresh. To
-            confirm whether someone is held now, call {pausedProfile.facilityName} at{" "}
+            {rosterStatus?.kind === "unavailable"
+              ? `The ${entry.county} roster cannot be loaded right now. It returns here once the service is back.`
+              : `The official ${entry.county} roster could not be refreshed recently, so JailAtlas is not showing the last list it captured. It returns here after the next successful refresh.`}{" "}
+            To confirm whether someone is held now, call {pausedProfile.facilityName} at{" "}
             {pausedProfile.phone}.
           </Alert>
         </section>
@@ -169,7 +170,7 @@ export default async function CountyCustodyBriefPage({
     );
   }
   // Every published county has a guide; without one a paused page would have nothing to show.
-  if (rosterStatus?.kind === "paused") notFound();
+  if (rosterHeld) notFound();
   if (liveSource) {
     const [initialPage, stateCoverage] = await Promise.all([
       getLiveRosterPage({

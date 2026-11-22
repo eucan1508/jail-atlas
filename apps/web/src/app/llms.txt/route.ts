@@ -18,7 +18,10 @@ export async function GET(): Promise<Response> {
   const published = await getPublishedCountyCoverage();
   const counties = published.map(({ entry, liveSource, path }) => {
     const facility = findCountyGuide(entry.state, entry.slug)?.facilityName ?? entry.county;
-    return `- [${entry.h1}](${absoluteUrl(path)}): ${facility}, ${entry.seatCity}, ${entry.stateName}. ${liveSource.recordCount} people on the official roster at the last capture.`;
+    const count = liveSource
+      ? ` ${liveSource.recordCount} people on the official roster at the last capture.`
+      : "";
+    return `- [${entry.h1}](${absoluteUrl(path)}): ${facility}, ${entry.seatCity}, ${entry.stateName}.${count}`;
   });
 
   const body = [

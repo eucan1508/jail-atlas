@@ -87,13 +87,15 @@ export default async function HomePage() {
     );
   // Totals come from each live county's latest successful capture, the same rows its page shows.
   const listedPeople = published.reduce(
-    (total, { liveSource }) => total + liveSource.recordCount,
+    (total, { liveSource }) => total + (liveSource?.recordCount ?? 0),
     0
   );
   const liveStates = new Set(published.map(({ entry }) => entry.state)).size;
   const latestCapture = published.reduce<Date | null>(
     (latest, { liveSource }) =>
-      latest === null || liveSource.capturedAt > latest ? liveSource.capturedAt : latest,
+      liveSource && (latest === null || liveSource.capturedAt > latest)
+        ? liveSource.capturedAt
+        : latest,
     null
   );
   const recentlyAdded = [...published]
@@ -205,10 +207,12 @@ export default async function HomePage() {
                     timeZone: "UTC"
                   }).format(new Date(`${entry.publishedAt}T00:00:00Z`))}
                 </span>
-                <small>
-                  {liveSource.recordCount} visible{" "}
-                  {liveSource.recordCount === 1 ? "record" : "records"}
-                </small>
+                {liveSource ? (
+                  <small>
+                    {liveSource.recordCount} visible{" "}
+                    {liveSource.recordCount === 1 ? "record" : "records"}
+                  </small>
+                ) : null}
               </Link>
             ))}
           </div>
